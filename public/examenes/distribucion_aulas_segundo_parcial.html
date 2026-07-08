@@ -1,0 +1,5963 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aulas Segundo Examen Parcial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            padding: 0.5rem;
+        }
+
+        h1 {
+            font-family: 'courier new', courier, monospace;
+            font-size: medium;
+            padding: 1rem;
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-family: 'courier new', courier, monospace;
+            font-size: medium;
+            padding: 1rem;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            font-family: 'courier new', courier, monospace;
+            font-size: medium;
+            padding: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .input-container {
+            position: relative;
+            width: 300px;
+            max-width: 400px;
+            margin: 0 auto 2rem auto;
+            display: inline-block;
+        }
+
+        .input-container input[type="text"] {
+            font-family: 'courier new', courier, monospace;
+            font-size: medium;
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            /* más padding a la izquierda */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-family: inherit;
+            /* transition: all 0.3s ease; */
+            transition: border-color 0.3s;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-container input[type="text"]::placeholder {
+            color: #aaa;
+            font-family: inherit;
+        }
+
+        .input-container input[type="text"]:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+        }
+
+        .input-container .icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            pointer-events: none;
+            /* Para que el icono no bloquee el input */
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-family: 'courier new', courier, monospace;
+            font-size: medium;
+            white-space: nowrap;
+            /* evita que el contenido haga salto de línea */
+            width: 1%;
+            /* hace que ocupe solo lo necesario */
+        }
+
+        /* Estilo solo para las  columnas */
+        td:nth-child(2) {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td:nth-child(4),
+        th:nth-child(4) {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        td:nth-child(5),
+        th:nth-child(5) {
+            text-align: center;
+        }
+
+        td:nth-child(6) {
+            text-align: left;
+        }
+
+        .no-results {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
+            flex-wrap: wrap;
+            margin-top: 2em;
+        }
+
+        .no-results-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: medium;
+            font-weight: 200;
+            color: #f80101;
+            display: flex;
+            align-items: center;
+            gap: 0.3em;
+            padding-bottom: 2em;
+        }
+
+        .warning-icon {
+            color: #FF9800;
+        }
+
+        .btn-return {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            padding: 0.5em 1.2em;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3em;
+        }
+
+        .btn-return:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        @keyframes highlightFade {
+            from {
+                background-color: yellow;
+            }
+
+            to {
+                background-color: transparent;
+            }
+        }
+
+        mark {
+            background-color: yellow;
+            color: black;
+            padding: 0 0.2rem;
+            animation: highlightFade 2s ease-out forwards;
+        }
+
+        @keyframes fadeSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #noResultsMessage {
+            margin-top: 1rem;
+            color: red;
+            font-weight: 100;
+            display: none;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            animation: fadeSlideDown 0.5s ease forwards;
+        }
+
+        #showAllButton {
+            background-color: #0077ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            font-size: medium;
+            cursor: pointer;
+            margin-left: 1rem;
+            animation: fadeIn 1s ease forwards;
+            /* <-- agregado aquí */
+            transition: background-color 0.3s ease;
+        }
+
+        #showAllButton:hover {
+            background-color: #0056cc;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #scrollTopBtn {
+            display: none;
+            /* Oculto por defecto */
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 99;
+            /* Siempre arriba de otros elementos */
+            border: none;
+            outline: none;
+            background-color: #0d6efd;
+            /* Color azul Bootstrap */
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #0b5ed7;
+            /* Un azul más oscuro al pasar el mouse */
+        }
+
+        #cardContainer {
+            display: none;
+            /* Oculto por defecto */
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            /* Centrado */
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+</head>
+
+<body>
+    <button id="scrollTopBtn" title="Regresar arriba">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <h1>Segundo Parcial</h1>
+    <h2> Lunes 25 de mayo, 1:00 p.m.
+    </h2>
+
+    <h3>Distribución de aulas</h3>
+
+    <div class="input-container">
+        <span class="icon">🔍</span>
+        <input type="text" id="myInput" oninput="this.value=this.value.replace(/[^0-9]/g,'')" onkeyup="buscarCarnet()"
+            placeholder="Ingrese su carné " title="Ingrese su número de carné (solo números)">
+    </div>
+
+    <div style="padding: 10pt;">
+        Distribución de aulas Segundo Parcial Física General I, I semestre 2026
+    </div>
+
+    <div class="table-responsive" id="table-container">
+        <table id="myTable" class="table table-hover thead-dark">
+            <thead>
+                <tr>
+                    <th>CARNET</th>
+                    <th>NOMBRE</th>
+                    <th>GRUPO</th>
+                    <th>DOCENTE</th>
+                    <th>AULA</th>
+                    <th>SEDE</th>
+                </tr>
+            </thead>
+
+            <tbody>
+    <tr>
+        <td>2025065862</td>
+        <td>ABARCA CASCANTE KEVIN JOSUE</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022078049</td>
+        <td>ACOSTA ROJAS CARLOS GABRIEL</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022163441</td>
+        <td>ACUÑA ALVARADO JOSUE RICARDO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2014016497</td>
+        <td>ACUÑA DUARTE MICHELLE</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025099784</td>
+        <td>AGUERO QUESADA GLORIANA</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2025073408</td>
+        <td>AGUILAR ACOSTA FIORELLA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025086120</td>
+        <td>AGUILAR ARROYO IAN</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025072259</td>
+        <td>AGUILAR RUGAMA CHRISTOPHER ISAAC</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025063723</td>
+        <td>AGUILAR SOJO DIEGO JOSUE</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020103870</td>
+        <td>AGUILAR VEGA CAMILO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025117278</td>
+        <td>AGUIRRE OLIVERA MAIKEL JOSUE</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024256268</td>
+        <td>ALFARO GUTIERREZ BRAYAN STEVEN</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025078648</td>
+        <td>ALFARO MONGE CLAUDIA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022438572</td>
+        <td>ALFARO SANDOVAL PAMELA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024290760</td>
+        <td>ALFARO SEQUEIRA JUAN PABLO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024134447</td>
+        <td>ALFARO VEGA SEBASTIAN</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067126</td>
+        <td>ALPIZAR GRANADOS ANTONIO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024327960</td>
+        <td>ALPIZAR HERRERA KEVIN ANDRES</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024099182</td>
+        <td>ALPIZAR RODRIGUEZ HILARY NAHOMY</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024227262</td>
+        <td>ALSTON RAMOS FABIOLA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077680</td>
+        <td>ALVARADO CONTRERAS HISLENY YARIELA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024315964</td>
+        <td>ALVARADO ESQUIVEL FIORELLA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024145326</td>
+        <td>ALVARADO GOMEZ MARIA PAULA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024154835</td>
+        <td>ALVARADO GONZALEZ SEBASTIAN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025092521</td>
+        <td>ALVARADO GUZMAN KAIRY LUCILE</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025104767</td>
+        <td>ALVARADO JIMENEZ CATALINA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024146774</td>
+        <td>ALVARADO RODRIGUEZ ALLYSON FIORELLA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025065008</td>
+        <td>ALVARENGA CARRANZA MELINA SOFIA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024801046</td>
+        <td>ALVAREZ SANCHEZ MISHELLE FABIOLA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024218262</td>
+        <td>AMADOR MORALES KENDALL FABRICIO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024134155</td>
+        <td>ANGULO ALVAREZ TAIRON HILARIO</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025100748</td>
+        <td>ANGULO RAMIREZ JIMENA VALESKA</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025098592</td>
+        <td>ANTUNES HERNANDEZ SAUL ANDRE</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024138645</td>
+        <td>ARAYA CHAVARRIA MARIANGEL</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024159694</td>
+        <td>ARAYA MARIN BRITANY DARIANA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2023318780</td>
+        <td>ARAYA SAMBUCCI SEBASTIAN</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081227</td>
+        <td>ARCE MORA RONALD ANDRES</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074230</td>
+        <td>ARCE QUIROS ISAAC DAVID</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2026007509</td>
+        <td>ARCE SOLANO ISAAC JOSUE</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025071702</td>
+        <td>ARCIA HERRERA NATALIA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024105981</td>
+        <td>ARGUELLO JIMENEZ ANDRES FABIAN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025128021</td>
+        <td>ARGUELLO RODRIGUEZ AARON IGNACIO</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025114821</td>
+        <td>ARIAS ALVAREZ FIORELLA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024227508</td>
+        <td>ARIAS ARTAVIA SOFIA</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2026090181</td>
+        <td>ARIAS CORRALES ESTEBAN ALONSO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081275</td>
+        <td>ARIAS DELGADO ALLISON DE LOS ANGELES</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025104898</td>
+        <td>ARIAS ELIZONDO MATIAS ANTONIO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024072104</td>
+        <td>ARIAS GRANADOS KENDRA MARIA</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023384552</td>
+        <td>ARIAS LARA GABRIEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024120819</td>
+        <td>ARIAS MIRANDA MICHAEL STUARTH</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081283</td>
+        <td>ARIAS SOLANO EMILY FIORELLA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025082425</td>
+        <td>ARRIETA MENA VALERIA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024263693</td>
+        <td>ARROYO BONILLA JOSE DAVID</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437521</td>
+        <td>ARROYO COREA ANGIE DANIELA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020113309</td>
+        <td>ARROYO OBANDO JOSUE</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025083270</td>
+        <td>ARROYO UMAÑA SEBASTIAN JOEL</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025134764</td>
+        <td>ARTAVIA ALFARO ANDREW STEVE</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024216026</td>
+        <td>ARTAVIA ARIAS LEINER FERNANDO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022207089</td>
+        <td>ARTAVIA RUIZ GABRIEL JESUS</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023282355</td>
+        <td>ASTORGA GRANADOS JULISSA RAQUEL</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800229</td>
+        <td>ASTORGA TAPIA DANIELA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800204</td>
+        <td>ASTUA ARCE JOSE GABRIEL</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022438553</td>
+        <td>ASTUA GAMBOA FABIOLA MARIA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025095707</td>
+        <td>BADILLA DENIS CHRISTOPHER ALBERTO</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079778</td>
+        <td>BADILLA DIAZ HAROLD EDUARDO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024132581</td>
+        <td>BADILLA GONZALEZ CESAR JOSUE</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025091373</td>
+        <td>BADILLA HERNANDEZ JIMENA</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025069579</td>
+        <td>BADILLA MARTINEZ LAURA TERESA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025076549</td>
+        <td>BADILLA MOLINA MARIA DEL MAR</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025800566</td>
+        <td>BADILLA MORA NATHANIEL JOSE</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025086094</td>
+        <td>BAGNARELLO CAJINA ANTONIO ALBERTO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-02</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025099058</td>
+        <td>BALTODANO DORMOND DIEGO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024070765</td>
+        <td>BALTODANO GALARZA MELANY GRACIELA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024212763</td>
+        <td>BALTODANO GARCIA FABIOLA NATALIA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023112216</td>
+        <td>BARADIN MURILLO JOAN DANIEL</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022163523</td>
+        <td>BARAHONA CORDERO MARIA JIMENA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064686</td>
+        <td>BARBOZA CORDERO PABLO MARCELO</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025086065</td>
+        <td>BARQUERO LORIA ISMAEL FERNANDO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023047806</td>
+        <td>BARRANTES ESQUIVEL HELLEN CASSANDRA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025132321</td>
+        <td>BARRANTES GRANADOS KEVIN ANDRES</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2020048464</td>
+        <td>BARRENECHEA CAMACHO ESTEBAN</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067338</td>
+        <td>BASTOS ESQUIVEL FRIDA DE LOS ANGELES</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025131729</td>
+        <td>BENAVIDES DAVILA FERNANDO STEVEN</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2025081790</td>
+        <td>BENAVIDES MORA PRISCILLA ISABEL</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2017103151</td>
+        <td>BENAVIDES MOREIRA SEBASTIAN MAURICIO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026008755</td>
+        <td>BERGER ALFARO MARIA CELESTE</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023343296</td>
+        <td>BERNARD MENDEZ LESTER ISAAC</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064127</td>
+        <td>BETANCOURT VEGA DERECK ENRIQUE</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024801087</td>
+        <td>BLANCO MENDEZ PEDRO LUIS</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2026800667</td>
+        <td>BLANCO QUIROS DYLANA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2026106400</td>
+        <td>BOLAÑOS FERNANDEZ JOSE PABLO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064468</td>
+        <td>BOLAÑOS LARA YOLETH FRANCINY</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025079395</td>
+        <td>BOLAÑOS SANABRIA JOSE RICARDO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025137897</td>
+        <td>BONILLA BARQUERO DYLAN</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025066394</td>
+        <td>BONILLA JIMENEZ LITZY CASANDRA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024253343</td>
+        <td>BONILLA MENA IAN ALEJANDRO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025119612</td>
+        <td>BRENES CASASOLA GABRIEL DAVID</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024305444</td>
+        <td>BRENES CORONADO JOSE ANTONIO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026079282</td>
+        <td>BRENES ESQUIVEL JIMENA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024084576</td>
+        <td>BRENES GARITA JOSE FELIPE</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079752</td>
+        <td>BRENES LOPEZ EFRED JOSUE</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2024302905</td>
+        <td>BRENES MOLINA MARCELA DE LOS ANGELES</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025095034</td>
+        <td>BRENES MONESTEL SIANNY MARIA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025146271</td>
+        <td>BRENES QUESADA MATHIAS</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024138783</td>
+        <td>BRENES QUIROS TOMAS DE JESUS</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026091822</td>
+        <td>BRENES SOLIS MIRIAM YULIANA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083461</td>
+        <td>BRENES VARGAS SAMUEL FRANCISCO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024192854</td>
+        <td>BRIZUELA QUESADA CATALINA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025090564</td>
+        <td>BUSTAMANTE LEITON ARIANNA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024259057</td>
+        <td>BUTZ HERNANDEZ ISIS FERNANDA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025082920</td>
+        <td>CALDERON AGUERO MELANIE SAMANTHA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025099390</td>
+        <td>CALDERON CAMACHO ASHLY NALLELY</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025127138</td>
+        <td>CALDERON DE LA O ARIANA SOFIA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083124</td>
+        <td>CALDERON DIAZ JESUS ADRIAN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024063028</td>
+        <td>CALDERON HERNANDEZ GENESIS NAZARETH</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064963</td>
+        <td>CALDERON MARTINEZ CAMILA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024075047</td>
+        <td>CALDERON NAVARRO ALONSO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022128524</td>
+        <td>CALDERON RODRIGUEZ KIANY FABIANA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067264</td>
+        <td>CALDERON ROJAS SIMON</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067626</td>
+        <td>CALVO FERNANDEZ MATHIAS FERNANDO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026005262</td>
+        <td>CALVO LOAIZA MARIANGEL</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025144165</td>
+        <td>CALVO OTAROLA MARIA JIMENA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025093675</td>
+        <td>CAMACHO ANGULO YULIANA VICTORIA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023020715</td>
+        <td>CAMACHO CHINCHILLA ALYS MARIAM</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437385</td>
+        <td>CAMACHO MEJIA MARIA FERNANDA</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026010075</td>
+        <td>CAMACHO MEZA SANTIAGO ADOLFO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025095631</td>
+        <td>CAMACHO SALAS KENDALL ANDRES</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024276527</td>
+        <td>CAMACHO SANCHEZ DANIELA MARIA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023087346</td>
+        <td>CAMACHO TREJOS BRANDOM AARON</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024256299</td>
+        <td>CAMBRONERO GARITA MONSERRAT</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024063259</td>
+        <td>CAMPOS AGUERO ANDRES GERARDO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026080378</td>
+        <td>CAMPOS BRENES JIMENA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077051</td>
+        <td>CAMPOS CERDAS IGNACIO JOSE</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025087862</td>
+        <td>CAMPOS GOLLNITZ LIA SUSANNE</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023104343</td>
+        <td>CAMPOS JAUBERT CARLOS MAURICIO</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023143788</td>
+        <td>CAMPOS SOLANO DIEGO ALONSO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025109429</td>
+        <td>CANO CASTRO FREDDY ISIDRO</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025077639</td>
+        <td>CAÑAS SOTO JIMENA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024083259</td>
+        <td>CARAVACA RIOS ADRIAN ALEXANDER</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025085342</td>
+        <td>CARBALLO QUESADA FARED ALONSO</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-03</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026009163</td>
+        <td>CARBALLO SOLANO NOELIA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026112519</td>
+        <td>CARDENAS GONZALEZ CATALINA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025104730</td>
+        <td>CARDOZA ARTOLA KENDALL DAVID</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064393</td>
+        <td>CARRANZA ARIAS NAZARETH</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025099547</td>
+        <td>CARVAJAL CORDERO SAUL</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2023396024</td>
+        <td>CARVAJAL GONZALEZ DAVID FABIAN</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2026008890</td>
+        <td>CARVAJAL LEIVA KEYDEN ALONSO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026008775</td>
+        <td>CASAS COTERA ELENA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025144872</td>
+        <td>CASCANTE RODRIGUEZ SARA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025150605</td>
+        <td>CASTILLO JIMENEZ JARETH MIXSU</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026009913</td>
+        <td>CASTILLO QUINTANILLA ALISSON</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021010752</td>
+        <td>CASTILLO SANTOS ASRIEL</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026097784</td>
+        <td>CASTRO BARQUERO GUSTAVO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024211191</td>
+        <td>CASTRO BERROCAL JENNIFER MARIA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024307833</td>
+        <td>CASTRO DUARTE HANNAH</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024096944</td>
+        <td>CASTRO DURAN VALENTINA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024185401</td>
+        <td>CASTRO PANIAGUA DANNA PAULA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025071393</td>
+        <td>CASTRO QUESADA EDWIN ALEJANDRO</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023153113</td>
+        <td>CASTRO RICHARD ENGEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067449</td>
+        <td>CASTRO SEGURA MARIANO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024178825</td>
+        <td>CECILIANO MOYA GIAN LUKA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2023387992</td>
+        <td>CENTENO MUÑOZ ERNESTO</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023071823</td>
+        <td>CENTENO VARGAS MARIA PAULA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023052159</td>
+        <td>CERDAS ABARCA NATALIE SOFIA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026013810</td>
+        <td>CHACON ARAYA MATIAS</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024136045</td>
+        <td>CHACON MORA DANA ANGEL</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800016</td>
+        <td>CHACON RODRIGUEZ LEONEL GERARDO</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024109670</td>
+        <td>CHACON ROJAS CRISTEL</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025100754</td>
+        <td>CHACON SANDOVAL DYLAN</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025093118</td>
+        <td>CHAMORRO RODRIGUEZ MARIANGEL</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024134413</td>
+        <td>CHAVARRIA ALVARADO DANIELA MARIA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025086213</td>
+        <td>CHAVARRIA DIAZ DEYBER JANFRED</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025116383</td>
+        <td>CHAVARRIA ZAMORA DANIEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025128589</td>
+        <td>CHAVES BOLAÑOS JOSE EMILIO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023125401</td>
+        <td>CHAVES GAMBOA ESTEBAN</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025088529</td>
+        <td>CHAVES GUILLEN MARIA PAZ</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025090224</td>
+        <td>CHAVES JIMENEZ RICARDO JAVIER</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079365</td>
+        <td>CHAVES LEIVA OSVALDO JESUS</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024159894</td>
+        <td>CHAVES MADRIGAL JUAN PABLO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081484</td>
+        <td>CHAVES RODRIGUEZ JUAN PABLO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074061</td>
+        <td>CHAVES SANCHO MARIANA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024178184</td>
+        <td>CHAVES ZUÑIGA JIMENA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024215369</td>
+        <td>CHEVEZ BOLAÑOS SAUL</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2013034211</td>
+        <td>CHINCHILLA JIMENEZ DAYANA ALEJANDRA</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024207652</td>
+        <td>CONEJO GONZALEZ LUCIA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024800609</td>
+        <td>CORDERO BARQUERO MARIELA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025141940</td>
+        <td>CORDERO GONZALEZ FABRICIO JOSE</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-04</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021024806</td>
+        <td>CORDERO NAVARRO ANDERSON DAVID</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025134301</td>
+        <td>CORDERO ROSALES IAN</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023088859</td>
+        <td>CORDOBA MONTENEGRO KRISBELL TATIANA</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024196794</td>
+        <td>CORDOBA SOLANO ANA ELENA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026099538</td>
+        <td>COREA CRUZ LUIS ALEJANDRO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025092804</td>
+        <td>CORRALES FERNANDEZ KALED SAUL</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025078566</td>
+        <td>CORRALES HERNANDEZ MARIPAZ</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2015008776</td>
+        <td>CORTES ROMAN ROBERTO JESUS</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026009014</td>
+        <td>CORTES SOLORZANO CARLOS ARTURO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024071903</td>
+        <td>COTO CHACON MARIA LOURDES</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025066074</td>
+        <td>COTO CHAVES SEBASTIAN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023033151</td>
+        <td>COTO MURILLO VALERIA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025105976</td>
+        <td>COTO UMAÑA ARIANA JIMENA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023157418</td>
+        <td>COTO VALVERDE ALICIA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067505</td>
+        <td>COTO WILHELN CAMILA DE JESUS</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023052180</td>
+        <td>CUBILLO ALFARO VALERIA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025076378</td>
+        <td>DANNENBERGER MENDEZ NAZARETH</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025078487</td>
+        <td>DAVILA SILVA HELLEN YULEISCE</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023073150</td>
+        <td>DELGADO SOLIS LUIS AARON</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094436</td>
+        <td>DIAZ CARVAJAL NATACHA VALERIA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024315994</td>
+        <td>DIAZ SANDOVAL MAURICIO ALEJANDRO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026080683</td>
+        <td>DIAZ SCOTT SEBASTIAN</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437580</td>
+        <td>DUARTE ASTUA JOSE JULIAN</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022178182</td>
+        <td>DUARTE CHANTO LAURA MARIA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026105100</td>
+        <td>DURAN ALVARADO MAGDIEL GERARDO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025102121</td>
+        <td>ECHEVERRIA CASTRO JEAN CARLO</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023055805</td>
+        <td>ESPINOZA TORRES BRENDA</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024201152</td>
+        <td>ESQUIVEL CASTRO DANIELA MELISSA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094597</td>
+        <td>ESQUIVEL PEREZ BRANDON</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024305763</td>
+        <td>FAJARDO ULLOA SEBASTIAN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074229</td>
+        <td>FALLAS CALVO ALANA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024188865</td>
+        <td>FALLAS FERNANDEZ GLORIANA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2023121133</td>
+        <td>FANG ZHANG ZI JIE JACKY</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024088138</td>
+        <td>FERNANDEZ AMPIE ANA CATALINA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021103855</td>
+        <td>FERNANDEZ MORALES CARLOS SIMON</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025068462</td>
+        <td>FERRETO PEREZ JOHEL ANTONIO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024083118</td>
+        <td>FLORES GONZALEZ MILTON JANDYR</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025084380</td>
+        <td>FLORES MONGE ANGELINA ISABEL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081854</td>
+        <td>FLORES RODRIGUEZ JEFFERSON AARON</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025093788</td>
+        <td>FONSECA VILLEGAS MATIAS</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437421</td>
+        <td>FOSTER SEGURA BRADLEY</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025066384</td>
+        <td>FRANCO BERMUDEZ ESTEBAN DAVID</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024092502</td>
+        <td>FRAY RUIZ DANNA MICHELLE</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025119837</td>
+        <td>FUENTES GONZALEZ IGNACIO DE JESUS</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-05</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025100912</td>
+        <td>FUENTES NUÑEZ IAN JAIRI</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025120917</td>
+        <td>FUENTES SOLANO GABRIEL DAVID</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025069828</td>
+        <td>GALLEGOS ARTIÑANO ALBERTO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024178926</td>
+        <td>GAMBOA ARAYA JOSHUA JARETH</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025093372</td>
+        <td>GAMBOA JIMENEZ JULIAN ANDRES</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023101344</td>
+        <td>GAMBOA PORRAS SEBASTIAN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024080820</td>
+        <td>GARCIA RETANA ANDRES</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023344584</td>
+        <td>GARCIA RIVERA GABRIEL ALONSO</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025066447</td>
+        <td>GARCIA SOZA ANTHONY JESUS</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023161656</td>
+        <td>GARITA QUESADA DIANA</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025087383</td>
+        <td>GAZEL NIETO AMIR</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024143314</td>
+        <td>GIANOLI MEJIA HERNAN DAVID</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077922</td>
+        <td>GOMEZ ARIAS DIEGO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022438578</td>
+        <td>GOMEZ CALDERON PAULA MELISSA</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022131330</td>
+        <td>GOMEZ CARBALLO FABIOLA MARIA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025097005</td>
+        <td>GOMEZ ESPINOZA SEBASTIAN</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025065342</td>
+        <td>GOMEZ GOMEZ LUIS ALEJANDRO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025089354</td>
+        <td>GOMEZ GUTIERREZ NICOLE</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026020108</td>
+        <td>GOMEZ PORRAS DEREK STEVE</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074524</td>
+        <td>GONZALEZ ALPIZAR JIMENA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025130566</td>
+        <td>GONZALEZ CORRALES ISMAEL</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026009780</td>
+        <td>GONZALEZ FERNANDEZ JHOSEPH EMANUEL</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025102693</td>
+        <td>GONZALEZ MARTINEZ SEBASTIAN</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024108461</td>
+        <td>GONZALEZ NARVAEZ MANUEL</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024122347</td>
+        <td>GONZALEZ OLIVAR TOMAS</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025085353</td>
+        <td>GONZALEZ QUESADA JOSE DANIEL</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020138452</td>
+        <td>GONZALEZ RODRIGUEZ KELLY XIMENA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026018229</td>
+        <td>GOURZONG MADRIGAL CAMILA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023393886</td>
+        <td>GRANADOS CECILIANO DANIEL ALFONSO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025122125</td>
+        <td>GRANT DUARTE RANDALL MAURICIO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025085584</td>
+        <td>GUERRERO SALAZAR MARVIN CALETH</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025065941</td>
+        <td>GUEVARA AVILA BYRON</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2022029377</td>
+        <td>GUEVARA IGLESIAS MARILYN KARINA</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081436</td>
+        <td>GUILLEN MARTINEZ BRIAN ANDREY</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>201212084</td>
+        <td>GUTIERREZ CABALLERO JAIRO JAVIER</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024154968</td>
+        <td>GUTIERREZ CHACON TAYLOR KENDALL</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022136379</td>
+        <td>GUTIERREZ MARIN LUIS ALONSO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024126421</td>
+        <td>GUTIERREZ OLIVARES INGRID FABIOLA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800227</td>
+        <td>GUTIERREZ VALERIN VALERIA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025089633</td>
+        <td>GUTIERREZ VEGA LORENZO PABLO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025100551</td>
+        <td>GUZMAN CEDEÑO SEBASTIAN ANTONIO</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025078551</td>
+        <td>GUZMAN HERNANDEZ TREISY JURIETH</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024084643</td>
+        <td>GUZMAN JAEN JEREMY FRANCISCO</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025123885</td>
+        <td>GUZMAN MENDOZA KENNETH</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023020743</td>
+        <td>GUZMAN SALAZAR ADRIAN</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026108258</td>
+        <td>HAKANSON HIDALGO ARIANA MARIA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024163963</td>
+        <td>HERNANDEZ ACEVEDO ADRIANA DANIELA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024140831</td>
+        <td>HERNANDEZ ASTORGA JAVIER ANTONIO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023338596</td>
+        <td>HERNANDEZ CALVO ANDREY FABRICIO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2019246950</td>
+        <td>HERNANDEZ CORRALES RONALD JOSUE</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021082541</td>
+        <td>HERNANDEZ ESTRADA SEBASTIAN</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025120786</td>
+        <td>HERNANDEZ GUILLEN JEYLAN SANTIAGO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024112197</td>
+        <td>HERNANDEZ HIDALGO ZHARICK GABRIELA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025105939</td>
+        <td>HERNANDEZ MORA NATALIA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025105962</td>
+        <td>HERNANDEZ MORA NAZARETH</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024207923</td>
+        <td>HERNANDEZ UGALDE KENDALL JOSUE</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026006484</td>
+        <td>HERRERA RIVERA DIEGO ANDRES</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021051791</td>
+        <td>HIDALGO ELIZONDO NAZARETH MARIA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2023087280</td>
+        <td>HIDALGO FALLAS SEBASTIAN</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023113332</td>
+        <td>HIDALGO PICADO CARLOS ENRIQUE</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024307789</td>
+        <td>HIDALGO SOLIS ANTHUAR MAURICIO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081844</td>
+        <td>HURTADO LOPEZ ALLAN ARMANDO</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024086567</td>
+        <td>ITURRINO MOYA ANDRES</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-06</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021074993</td>
+        <td>JARQUIN FLORES ISEL JADILEY</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025097076</td>
+        <td>JIMENEZ AGUILAR ANGIE DE LOS ANGELES</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025109506</td>
+        <td>JIMENEZ AMADOR ALBERTO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025109545</td>
+        <td>JIMENEZ AMADOR MARCELO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025075892</td>
+        <td>JIMENEZ ARIAS JOSTIN GABRIEL</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023059673</td>
+        <td>JIMENEZ ASENJO VALERIA DE LOS ANGELES</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023094743</td>
+        <td>JIMENEZ BERROCAL FLAVIO JOSE</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026017386</td>
+        <td>JIMENEZ CHAVARRIA SEBASTIAN</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022236716</td>
+        <td>JIMENEZ CHAVARRIA WES JEIKEL</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025098329</td>
+        <td>JIMENEZ CRUZ MAURICIO GABRIEL</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025069321</td>
+        <td>JIMENEZ FERNANDEZ BRAYAN ALONSO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024146822</td>
+        <td>JIMENEZ GONZALEZ DEBORAH</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025102627</td>
+        <td>JIMENEZ GRANADOS RAQUEL</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437841</td>
+        <td>JIMENEZ HERNANDEZ KENDRY VINICIO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021082788</td>
+        <td>JIMENEZ JIMENEZ NAFIRY</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437922</td>
+        <td>JIMENEZ LOBO FIORELLA ESTER</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064899</td>
+        <td>JIMENEZ LOPEZ GABRIEL FRANCISCO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025071426</td>
+        <td>JIMENEZ MURILLO SOPHIA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026010247</td>
+        <td>JIMENEZ TORRES ISAAC ANDRES</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025106469</td>
+        <td>JIMENEZ VENEGAS YAHEL ALONSO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025069088</td>
+        <td>KOPPER MURILLO KENDALL JOSUE</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025068971</td>
+        <td>LALYRE CASTILLO MARIA LUISA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023800043</td>
+        <td>LARIOS MONTERO FABIAN ANDRES</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025101499</td>
+        <td>LEANDRO QUIROS FABIAN STEVEN</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025150974</td>
+        <td>LEIVA JIMENEZ KRISTEL JHOELY</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025076667</td>
+        <td>LEIVA LOPEZ LOANA DE LOS ANGELES</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025069221</td>
+        <td>LEIVA QUIROS YAZID</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025111071</td>
+        <td>LEIVA ROBLES ALEJANDRO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024130327</td>
+        <td>LEIVA SEGURA MELANY</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025098920</td>
+        <td>LEIVA SOTO LUCIANA TAIS</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024089261</td>
+        <td>LEON ELIZONDO EDUARDO JOSE</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023297502</td>
+        <td>LEON QUESADA ANDRES DE JESUS</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020021041</td>
+        <td>LEON RODRIGUEZ JEAN CARLO</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026020059</td>
+        <td>LEON VALERIO MATIAS</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025072578</td>
+        <td>LIANG WU YIN IUN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022191657</td>
+        <td>LOAIZA CARRILLO GAEL ALBERTO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083827</td>
+        <td>LOBO SEGURA LAURA DARIELA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025080020</td>
+        <td>LOPEZ ARAYA YEILYN ARIANA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025069552</td>
+        <td>LOPEZ DELGADO YARETZY PAMELA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025800567</td>
+        <td>LOPEZ GOMEZ GABRIEL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023099996</td>
+        <td>LOPEZ PEREZ TRACY NAOMY</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025063998</td>
+        <td>LORIA ALFARO WINDELL JOSEPH</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024088202</td>
+        <td>MACHADO NAVARRO CAMILA FIORELLA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023110874</td>
+        <td>MADRIGAL BLANCO ELIAN JOSUE</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025087832</td>
+        <td>MADRIGAL PEREIRA ALINA DE JESUS</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023106162</td>
+        <td>MADRIZ CERDAS HAROLD JOAN</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023800112</td>
+        <td>MAHECHA AGUILAR MARIANA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025128180</td>
+        <td>MARCELO CORRALES ALEJANDRO ESTEBAN</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025073643</td>
+        <td>MARCHENA CONTRERAS ITZEL ARIANA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079248</td>
+        <td>MARIN CAMPOS JULISSA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025092446</td>
+        <td>MARIN GARCIA GOHAN JESUS</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024284996</td>
+        <td>MARIN SOLANO JOSE DAVID</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023138631</td>
+        <td>MARTINEZ BLANDON JINDRICH ARTURO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021157326</td>
+        <td>MARTINEZ HERRERA CARLOS GERARDO</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024192712</td>
+        <td>MARTINEZ RIVERA EDWIN JAFETH</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023396046</td>
+        <td>MARTINEZ ROMERO JULIAN ANDRES</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094483</td>
+        <td>MARTINEZ SANCHEZ GREIVIN JOEL</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025097772</td>
+        <td>MASIS FERNANDEZ CESAR JOSUE</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023179734</td>
+        <td>MASIS HERNANDEZ ALEJANDRO STEVEN</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025116846</td>
+        <td>MASIS LOAIZA MAGDALENA DE LOS ANGELES</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024146737</td>
+        <td>MATA CASTILLO LUIS ANGELO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023286864</td>
+        <td>MATA GONZALEZ JOSEPH ALEXANDER</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2023066626</td>
+        <td>MATHEWS AMADOR SAMANTHA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2014134089</td>
+        <td>MC LEAN TAYLOR ELEONORA ELISA</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025107349</td>
+        <td>MEJIA MEJIA JEFRI JOSE</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025800632</td>
+        <td>MEJIA PERAZA KRISTY DAYAN</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024252395</td>
+        <td>MEJIAS MEJIAS LUIS FERNANDO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-07</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025142215</td>
+        <td>MEJIAS MENDEZ GABRIEL JOSUE</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025102854</td>
+        <td>MEJIAS SALAS ALEJANDRA BEATRIZ</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025091971</td>
+        <td>MENA BARBOZA ESTEBAN ARIEL</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024071123</td>
+        <td>MENA MARTINEZ SEBASTIAN ANDRES</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094653</td>
+        <td>MENA MURILLO ANDREA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025114405</td>
+        <td>MENA QUIROS SANTIAGO JOSE</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024062675</td>
+        <td>MENA SANCHEZ LUIS DIEGO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025125035</td>
+        <td>MENDEZ CAMPOS JIMENA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024126399</td>
+        <td>MENDEZ CASTRO TIFFANNY MICHEL</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025091931</td>
+        <td>MENDEZ RODRIGUEZ EYTHAN YOHEL</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021128564</td>
+        <td>MENDEZ VALERIO ALLAN JOSE</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025072234</td>
+        <td>MENDEZ ZAMORA JASSIEL RODRIGO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025082215</td>
+        <td>MENDOZA FONSECA ALANNA ITZEL</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025106569</td>
+        <td>MERCADO RIOS ANDRES EDUARDO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025082917</td>
+        <td>MIRANDA GONZALEZ ELIDIER JOSUE</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025078415</td>
+        <td>MOLINA ALVARADO BRANDON GABRIEL</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024291185</td>
+        <td>MOLINA ELIZONDO SOLSIRE</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024183285</td>
+        <td>MOLINA JIMENEZ BRANDON RIBALDO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2018186579</td>
+        <td>MOLINA VASQUEZ JOSE GUILLERMO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024108472</td>
+        <td>MOLINA VEGA JUAN PABLO</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022161230</td>
+        <td>MONDRAGON DURAN CARLOS MANUEL</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024159607</td>
+        <td>MONDRAGON SANCHEZ FREDMAN CRISTOBAL</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025154690</td>
+        <td>MONESTEL FLORES MARIA GLORIANA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024167001</td>
+        <td>MONGE CORDERO MICHAEL ANTONIO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025117105</td>
+        <td>MONGE GUTIERREZ ELIAS JOSE</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023087371</td>
+        <td>MONGE JIMENEZ DAVID</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023800088</td>
+        <td>MONGE MAIRENA ADRIAN ANDRES</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094565</td>
+        <td>MONGE MUÑOZ JOSE MANUEL</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025125018</td>
+        <td>MONGE OROZCO DIEGO ALONSO</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025075865</td>
+        <td>MONGE SANCHEZ GABRIEL JESUS</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026094288</td>
+        <td>MONTEJO CORDERO MIGUEL ALBERTO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083159</td>
+        <td>MONTENEGRO ROJAS EITHAN JOSUE</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024130097</td>
+        <td>MONTERO VILLEGAS NOAH ABYADE</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025132603</td>
+        <td>MONTIEL LOPEZ ANTONY FABRICIO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025097959</td>
+        <td>MORA BARRANTES FRANKLIN SANTIAGO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025084794</td>
+        <td>MORA CHINCHILLA EMILY</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074831</td>
+        <td>MORA DIAZ AGNES KRISTINE</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064946</td>
+        <td>MORA ELIZONDO SOFIA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025133817</td>
+        <td>MORA IRIAS JOSTIN ANDREY</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025066525</td>
+        <td>MORA LIZANO ISRAEL GERARDO</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2026014139</td>
+        <td>MORA MARTINEZ OMAR ANDRES</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023277300</td>
+        <td>MORA MATA AMANDA LUCIA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025068180</td>
+        <td>MORA OSES STEFANNY</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2025120969</td>
+        <td>MORA RIVERA ISAAC</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026081319</td>
+        <td>MORA SINFONTE ANDRE FERNANDO</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079052</td>
+        <td>MORA TAT ALINA SOFIA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025082019</td>
+        <td>MORA UMAÑA JORDAN MARCELO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-08</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024130487</td>
+        <td>MORALES CASCANTE SAMUEL RICARDO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025092823</td>
+        <td>MORALES CISNEROS JORGE ALBERTO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025090419</td>
+        <td>MORALES FUMERO LUCIA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023800086</td>
+        <td>MORALES GUZMAN JOSHUA ALEXANDER</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025122535</td>
+        <td>MORALES SALAZAR ANGIE DANIELA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024182465</td>
+        <td>MORALES SALAZAR NICOL VANESSA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025065211</td>
+        <td>MORERA CHAVES SEBASTIAN</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025113985</td>
+        <td>MORICE ESQUIVEL ALEJANDRO JOSE</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025087517</td>
+        <td>MOYA NARANJO SAMANTHA ELENA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800056</td>
+        <td>MUÑOZ MARIN PRISCILLA TERESA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2023800070</td>
+        <td>MURCIA MORA EUNICE DE LOS ANGELES</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024230409</td>
+        <td>MURILLO CASTRO JOSE MANUEL</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024130341</td>
+        <td>MURILLO GARCIA JUAN DAVID</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2020043854</td>
+        <td>MURILLO ZAMORA CARLOS DANIEL</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022000207</td>
+        <td>NAJERA BARBOZA KENYI PAMELA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025101485</td>
+        <td>NAVARRO CALVO ARIANA LUCIA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023083084</td>
+        <td>NAVARRO QUIROS VALERIA DE LOS ANGELES</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025091918</td>
+        <td>NAVARRO VALVERDE CAMILA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083657</td>
+        <td>NAVARRO VALVERDE MARIA CAMILA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437599</td>
+        <td>NAVARRO ZUÑIGA MAUREN FABIOLA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025114579</td>
+        <td>NAVIDAD MEJIA LAURA BEATRIZ</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024084201</td>
+        <td>NUÑEZ MOLINA DOUGLAS TOMAS</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081095</td>
+        <td>NUÑEZ ORTEGA ERICK ANDRES</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025069617</td>
+        <td>NUÑEZ PALMA DANIEL</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025124850</td>
+        <td>NUÑEZ SOLANO MARIA FERNANDA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025072020</td>
+        <td>ORDOÑEZ RAMOS NANCY</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025099866</td>
+        <td>OROZCO RUIZ WILBER ENRIQUE</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2020109281</td>
+        <td>ORTEGA LEIVA JIMENA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025106097</td>
+        <td>ORTEGA SOTO ESTEBAN</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022365983</td>
+        <td>OSEJO VALLE GUISELLE VANESSA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094804</td>
+        <td>OSPINO BLANCO EVAN FERNANDO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025096444</td>
+        <td>OTAÑO JIMENEZ DANIEL JOSUE</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437762</td>
+        <td>OTAROLA MENDEZ DANA PAULA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025063769</td>
+        <td>OVIEDO MORALES VALERIA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021016925</td>
+        <td>PACHECO QUIROS DAVID EDUARDO</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023277734</td>
+        <td>PADILLA HIDALGO YIDSSETTE ARIANA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026010952</td>
+        <td>PAEZ ALPIZAR YAEL</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024120581</td>
+        <td>PANIAGUA ARIAS NAOMY</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026104723</td>
+        <td>PANIAGUA SANTAMARIA SANTIAGO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2019023798</td>
+        <td>PATTERSON VEGA MIGUEL ARMANDO</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021032478</td>
+        <td>PERAZA GARITA RAQUEL NAOMI</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2019077553</td>
+        <td>PERAZA RIOS BRANDON GEOVANNY</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025098005</td>
+        <td>PEREZ DUARTE ADRIEL SANTIAGO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025100930</td>
+        <td>PEREZ PEREZ HASMALIM</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2023104224</td>
+        <td>PEREZ VARGAS LUIS DIEGO</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024109895</td>
+        <td>PICADO GOMEZ JAROT JOEL</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025095222</td>
+        <td>PICADO MONTERO ANDERSON</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-09</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024255504</td>
+        <td>PICADO NAVARRO NICOLE</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025090325</td>
+        <td>PINEDA GRANT MARIA VENICIA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025800584</td>
+        <td>PORRAS BRENES ESTEBAN</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026000329</td>
+        <td>PORRAS MORENO ISMAEL</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023155147</td>
+        <td>PORRAS NAVARRO MARVIN ISAAC</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025125836</td>
+        <td>PORRAS QUIROS KRISTHEL DAYANA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025090685</td>
+        <td>PORTILLO BAUTISTA NAGHELL ALBERTO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024283198</td>
+        <td>PRAHL ESQUIVEL MATIAS</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081933</td>
+        <td>PROCEL MORA CHRISTIAN ALEJANDRO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079885</td>
+        <td>QUESADA AGUILAR IVAN ALEXANDER</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024156722</td>
+        <td>QUESADA CARVAJAL JILARY GRASIELA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025125958</td>
+        <td>QUESADA GOMEZ KRYSTEL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800598</td>
+        <td>QUESADA GONZALEZ FABIAN</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025081496</td>
+        <td>QUESADA PEREIRA JOSE GABRIEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025098835</td>
+        <td>QUESADA SEGURA FIORELLA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025097238</td>
+        <td>QUIROS PEREZ BRITANY MARIA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025080620</td>
+        <td>QUIROS RODRIGUEZ SEBASTIAN</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026010482</td>
+        <td>QUIROS YEE SEBASTIAN</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023048026</td>
+        <td>QUISPE MORMONTOY MEL HARRISON</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023086445</td>
+        <td>RAMIREZ BRENES ARIANNA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025063961</td>
+        <td>RAMIREZ CHACON ISMAEL ANTONIO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026016858</td>
+        <td>RAMIREZ DELGADO SOFIA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083941</td>
+        <td>RAMIREZ HUERTAS DANIEL</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024240121</td>
+        <td>RAMIREZ MARIN SEBASTIAN RAUL</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023104537</td>
+        <td>RAMIREZ MASIS MARIA ALEJANDRA</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024156841</td>
+        <td>RAMIREZ MIRANDA BRENDA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024083316</td>
+        <td>RAMIREZ MONGE ARIANNA</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024080957</td>
+        <td>RAMIREZ MURILLO ALICIA</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023350917</td>
+        <td>RAMIREZ RAMIREZ MARIA PAULA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024101077</td>
+        <td>RAMIREZ SOLANO JASON DAVID</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020158281</td>
+        <td>RAMIREZ TORRES INDIANA MONSERRAT</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077739</td>
+        <td>RAMIREZ VARGAS KENDALL FAURICIO</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025063712</td>
+        <td>REDONDO MONTENEGRO EMANUEL</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025092856</td>
+        <td>REDONDO VARGAS GABRIEL FERNANDO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025088099</td>
+        <td>RETANA ARAYA JESUS GABRIEL</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2023307326</td>
+        <td>RETANA BLANCO DANIEL FRANCISCO</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074953</td>
+        <td>REYES CAMACHO AARON</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025096744</td>
+        <td>REYES CHAVARRIA EMANUEL</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025123340</td>
+        <td>REYES GARRO JOSE PABLO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437628</td>
+        <td>REYES VALLE SIRLEN MELISI</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024231630</td>
+        <td>RIVAS FLORES EITHEL SAMUEL</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083925</td>
+        <td>RIVERA BRENES ESTEBAN JOSUE</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077240</td>
+        <td>RIVERA MONGE MARCELO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025114484</td>
+        <td>RIVERA MORALES SANTIAGO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025070921</td>
+        <td>RIVERA QUESADA VLADIMIR</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023184799</td>
+        <td>RIVERA VARGAS IOSIF SEBASTIAN</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025084027</td>
+        <td>RIVERA VARGAS KEYLOR ALEJANDRO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026111546</td>
+        <td>RODRIGUEZ AGUILAR AUSTIN STIFF</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025084514</td>
+        <td>RODRIGUEZ ALFARO ANDY GABRIEL</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022296481</td>
+        <td>RODRIGUEZ CAMPOS JOSE JULIAN</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025125473</td>
+        <td>RODRIGUEZ CAMPOS MAURICIO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025063571</td>
+        <td>RODRIGUEZ CASTRO STACY GIULIANA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025094370</td>
+        <td>RODRIGUEZ CHAVES JUAN JOSE</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025086031</td>
+        <td>RODRIGUEZ CORDERO ULFRAN RICARDO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025120617</td>
+        <td>RODRIGUEZ ESPINOZA ARIANNA</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024096804</td>
+        <td>RODRIGUEZ FERNANDEZ JOEL</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024253345</td>
+        <td>RODRIGUEZ FONSECA ANDRES DAVID</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024122362</td>
+        <td>RODRIGUEZ GOMEZ KEILYN NAZARETH</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074577</td>
+        <td>RODRIGUEZ GORDON LESHLIE NAOMY</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025078369</td>
+        <td>RODRIGUEZ HERNANDEZ JASLINM DE LOS ANGELES</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023099829</td>
+        <td>RODRIGUEZ LAINEZ CRISTOPHER</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020426164</td>
+        <td>RODRIGUEZ MARTINEZ LUIS ANTONIO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020426184</td>
+        <td>RODRIGUEZ MENDEZ CATALINA DE JESUS</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025087408</td>
+        <td>RODRIGUEZ MORA MARIANA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025136226</td>
+        <td>Rodríguez Parra Juan diego</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025090160</td>
+        <td>RODRIGUEZ RAMIREZ TANNIA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025126377</td>
+        <td>RODRIGUEZ RODRIGUEZ FABRIZIO ALEJANDRO</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2025094312</td>
+        <td>RODRIGUEZ SOLIS CARLOS DANIEL</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025076715</td>
+        <td>RODRIGUEZ VILLEGAS AYMARA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025076498</td>
+        <td>RODRIGUEZ VILLEGAS XOCHITL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067976</td>
+        <td>ROJAS ALVAREZ SOFIA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025097292</td>
+        <td>ROJAS ARAYA NICOLE</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025120720</td>
+        <td>ROJAS BALLESTERO ANA PAULA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026006249</td>
+        <td>ROJAS BENAVIDES EMANUEL</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064432</td>
+        <td>ROJAS GOMEZ GABRIEL</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025083739</td>
+        <td>ROJAS JIMENEZ KRISTEL DANIELA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094809</td>
+        <td>ROJAS JIMENEZ MARIANO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025099277</td>
+        <td>ROJAS LYON NICOLE</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024127001</td>
+        <td>ROJAS MONTOYA NATALIA</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026020035</td>
+        <td>ROJAS NUÑEZ EDRIAN</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025100627</td>
+        <td>ROJAS OBANDO JOSE GABRIEL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026013549</td>
+        <td>ROJAS ROJAS EMMANUEL</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074693</td>
+        <td>ROJAS SALAS YERALD EDUARDO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026017589</td>
+        <td>ROJAS SALAZAR JOSE MANUEL</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025113862</td>
+        <td>ROJAS SANCHO CHARLIE GABRIEL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025106365</td>
+        <td>ROMAN RAMIREZ ESTEBAN DANIEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026016613</td>
+        <td>ROSALES CASTILLO LUIS JOSUE</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025122477</td>
+        <td>ROSITO SOLANO PAOLO ALESSANDRO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023179727</td>
+        <td>RUIZ HERNANDEZ MELANY VANESSA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023138210</td>
+        <td>RUIZ MORALES JOSE FABIO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025073203</td>
+        <td>RUIZ ZUÑIGA LUCIA ISABEL</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026090721</td>
+        <td>SAENZ VARGAS NICOLAS</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2021141167</td>
+        <td>SALAS CESPEDES CESAR JULIAN</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025120048</td>
+        <td>SALAS JIMENEZ MARIA FERNANDA</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2026092145</td>
+        <td>SALAS PEÑA SANTIAGO</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025126645</td>
+        <td>SALAS TULA ANA SOFIA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024207721</td>
+        <td>SALAZAR DELGADO ELENA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024800139</td>
+        <td>SALAZAR DORADO JEISON ANDRES</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025080932</td>
+        <td>SALAZAR FLORES MARIA FERNANDA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023071569</td>
+        <td>SALAZAR RIVERA LUIS DANIEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025087831</td>
+        <td>SALAZAR VARGAS ALEXANDRA LUCIA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800610</td>
+        <td>SANABRIA TORRES BYRON GABRIEL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025105245</td>
+        <td>SANCHEZ ALFARO MATIAS</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025080376</td>
+        <td>SANCHEZ BARQUERO SEBASTIAN ANDRES</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025128084</td>
+        <td>SANCHEZ GRANADOS ULISES EDUARDO</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025097068</td>
+        <td>SANCHEZ MORA JOSE ANDRES</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024224176</td>
+        <td>SANCHEZ MOYA JOHAN ALBERTO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024136028</td>
+        <td>SANCHEZ MYRIE CHARLEN SOPHIA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024099168</td>
+        <td>SANCHEZ SOLIS KIARA</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077005</td>
+        <td>SANCHO RODRIGUEZ ANGELYNE</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025084477</td>
+        <td>SANDI MONTERO ANGELICA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024086456</td>
+        <td>SANTAMARIA PORTUGUEZ ANDREY ALEJANDRO</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025080468</td>
+        <td>SEGURA ACUÑA SOFIA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026006605</td>
+        <td>SEGURA MONTENEGRO JAVIER</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025088217</td>
+        <td>SEGURA NAVARRO DYLAN ESTEBAN</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026006129</td>
+        <td>SEQUEIRA MATUTE ISAAC FELIPE</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024145354</td>
+        <td>SEQUEIRA SILES JENNIFER TATIANA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025100269</td>
+        <td>SERRANO CRUZ AARON</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023395950</td>
+        <td>SERRANO VALVERDE CAMILA</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022090302</td>
+        <td>SIBAJA MARTINEZ BRANDON JAFETH</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025083069</td>
+        <td>SIBAJA RAMOS OLMAN ALONSO</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023104189</td>
+        <td>SILES SOLANO SEBASTIAN ALFREDO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025078600</td>
+        <td>SMITH BRENES AISHA VANESSA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025123123</td>
+        <td>SOLANO BARQUERO BYRON ALONSO</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024074786</td>
+        <td>SOLANO FERNANDEZ ESTEFANIA DE FATIMA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025138892</td>
+        <td>SOLANO GONZALEZ IVAN YARON</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026000407</td>
+        <td>SOLANO HERNANDEZ KEVIN ESTEBAN</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025103306</td>
+        <td>SOLANO MENDEZ NOHELIA MARIA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025068878</td>
+        <td>SOLANO MONTOYA FIORELLA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074970</td>
+        <td>SOLANO NUÑEZ NAYUDEL</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2019164725</td>
+        <td>SOLANO SOLANO SEBASTIAN</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-11</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023063707</td>
+        <td>SOLERA SANCHEZ CRISTIAN DANIEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025095981</td>
+        <td>SOLIS PRIETO ANDRES</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022029070</td>
+        <td>SOLORZANO VARGAS ELIAM ALESSANDRO</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079989</td>
+        <td>SOTO FERNANDEZ SAMANTHA</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025103500</td>
+        <td>SOTO PACHECO AMANDA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024143270</td>
+        <td>SOTO PORRAS MARIANA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025071125</td>
+        <td>SOTO PORRAS RYAN GABRIEL</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2023113528</td>
+        <td>SOTO SANABRIA ANGEL GABRIEL</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077284</td>
+        <td>SOZA SOLIS MIGUEL ANGEL</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2025095085</td>
+        <td>SUAZO FONSECA RICARDO FABIAN</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025070672</td>
+        <td>TORRES CAAMAÑO SOFIA MARIA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024185082</td>
+        <td>TORRES CAMPOS JOSE FRANCISCO</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025117234</td>
+        <td>TORRES GRANADOS THOMAS ALEJANDRO</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022035763</td>
+        <td>TORRES SOLANO VALERIA PAMELA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025113417</td>
+        <td>TORRES VILLALOBOS KENDALL DAVID</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800147</td>
+        <td>TORUÑO ESQUIVEL LEONARDO</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2025148853</td>
+        <td>TREJOS CARVAJAL KRISTEL TATIANA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025129491</td>
+        <td>TRIGUEROS NAVARRO BRANDON JAFETH</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2024140779</td>
+        <td>UBA MORALES JESHUA CALEB</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026006212</td>
+        <td>UGALDE ABRAHAMS SAMUEL</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023135231</td>
+        <td>UGALDE CORTEZ JUAN MANUEL</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025106476</td>
+        <td>UGALDE MASIS SEBASTIAN</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025093008</td>
+        <td>ULATE SALAZAR DIEGO FRANCISCO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026020123</td>
+        <td>UMAÑA LOPEZ ANDRON EDUARDO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025127285</td>
+        <td>UMAÑA PACHECO ASHLY FIORELLA</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024801090</td>
+        <td>UMAÑA SALAS MARIANA PAMELA</td>
+        <td>50</td>
+        <td>CHAVES ALVAREZ MARCELA MARIA</td>
+        <td>A-04</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024134371</td>
+        <td>UREÑA CARRASCO MARIA AUXILIADORA</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025092371</td>
+        <td>UREÑA HERNANDEZ ELEAZAR ALI</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026081607</td>
+        <td>UREÑA MONGE RODRIGO JAVIER</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023150397</td>
+        <td>UREÑA MURILLO KAREN DAHIANA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025072944</td>
+        <td>UVA CORDOBA ALLAN FRANCISCO</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025094275</td>
+        <td>VALENCIANO QUIROZ JESHUA</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025072640</td>
+        <td>VALERIO ARROYO DAVID ALBERTO</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026116527</td>
+        <td>VALERIO VILLEGAS GABRIEL ANTONIO</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025147172</td>
+        <td>VALLADARES VEGA JOSUE DAVID</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024240599</td>
+        <td>VALLECILLO CAMACHO SEBASTIAN ALI</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077545</td>
+        <td>VALLEJO GOMEZ DANIELA DE JESUS</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025106875</td>
+        <td>VALVERDE CAJINA SANTIAGO ALONSO</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2024088055</td>
+        <td>VALVERDE GOMEZ RICARDO ANDRES</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024093092</td>
+        <td>VALVERDE GUILLEN ISABELLA</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>B2-10</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022144512</td>
+        <td>VALVERDE JIMENEZ MARIA JESUS</td>
+        <td>16</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024167010</td>
+        <td>VARELA RODRIGUEZ HELLEN DANIELA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025065692</td>
+        <td>VARGAS ALVARADO ARIANA SOFIA</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800531</td>
+        <td>VARGAS BERROCAL DILAN JEUDY</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2024297064</td>
+        <td>VARGAS CALDERON JOSHUA ISMAEL</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024139485</td>
+        <td>VARGAS CUBILLO FELIPE ALEJANDRO</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025065685</td>
+        <td>VARGAS GOMEZ JIMENA MARCELA</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024080974</td>
+        <td>VARGAS LEDEZMA EMILCE MARIEL</td>
+        <td>5</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022164065</td>
+        <td>VARGAS MEDINA JASSETH JOSE</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026106335</td>
+        <td>VARGAS PALMA KENDALL</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024086726</td>
+        <td>VARGAS VEGA JEURY CALEL</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023117924</td>
+        <td>VARGAS ZUÑIGA SEBASTIAN</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-12</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025086281</td>
+        <td>VAZQUEZ GUTIERREZ ADRIAN</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022437860</td>
+        <td>VEGA CAMPOS DILAN DE JESUS</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077180</td>
+        <td>VEGA MUÑOZ MARIA DEL MAR</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022206698</td>
+        <td>VEGA OBANDO ANDRES DANIEL</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025800167</td>
+        <td>VEGA SANCHEZ ALEJANDRO DE JESUS</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024073847</td>
+        <td>VEGA SOLANO MONSERRAT</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025089606</td>
+        <td>VEGA SOLANO YAROL ANDRES</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022195285</td>
+        <td>VENEGAS ESQUIVEL DANIEL</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023131096</td>
+        <td>VENEGAS ROBLES EMMA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026106009</td>
+        <td>VIDES BADILLA IGNACIO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024093407</td>
+        <td>VILLAGRA SABORIO DIEGO ALBERTO</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024328614</td>
+        <td>VILLALOBOS ALVARADO HILARY PAMELA</td>
+        <td>10</td>
+        <td>ELIZONDO ZUÑIGA JENNIFER</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022284900</td>
+        <td>VILLALOBOS CASTRO ARIELA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2017076317</td>
+        <td>VILLALOBOS HERNANDEZ JUAN DANIEL</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2023083020</td>
+        <td>VILLALOBOS RAMIREZ JOSE RAFAEL</td>
+        <td>8</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026094211</td>
+        <td>VILLALOBOS VILLALOBOS EMANUEL</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025102215</td>
+        <td>VILLANEA MURILLO ISAAC DAMIAN</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2025800046</td>
+        <td>VILLANUEVA PATIÑO KTEISHE YAELI</td>
+        <td>6</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025074089</td>
+        <td>VILLARREAL CASTILLO OSCAR ANTONIO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025072196</td>
+        <td>VILLAVICENCIO FERNANDEZ JEAN CARLO</td>
+        <td>13</td>
+        <td>SEGURA ZARATE ANA YANCY</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025131770</td>
+        <td>VINDAS VALVERDE KEISSY ALEXANDRA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023083045</td>
+        <td>VIQUEZ ARIAS FABIAN</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023072530</td>
+        <td>VIQUEZ CHAVES MAURICIO ALONSO</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024108024</td>
+        <td>VIQUEZ SOLIS HEINER ANDRES</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023800108</td>
+        <td>WALTERS NAVARRO ZELDA</td>
+        <td>15</td>
+        <td>SEGURA CARVAJAL MARCOS</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025064236</td>
+        <td>WONG GARRO KRISTHY DANIELA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025092082</td>
+        <td>Wu Yan Ricky</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2026006278</td>
+        <td>YIN LU JACKY</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025079781</td>
+        <td>ZAMBRANA MORA ALEX JESUS</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2022081924</td>
+        <td>ZAMORA GUEVARA ETHAN ANDRES</td>
+        <td>35</td>
+        <td>LACY MORA GERARDO</td>
+        <td>602</td>
+        <td>CAA</td>
+    </tr>
+    <tr>
+        <td>2025083445</td>
+        <td>ZAMORA VARGAS BRANDON</td>
+        <td>51</td>
+        <td>ROJAS SANTAMARIA FERNANDO</td>
+        <td>E-105</td>
+        <td>SC</td>
+    </tr>
+    <tr>
+        <td>2026013034</td>
+        <td>ZHEN HU TONY</td>
+        <td>3</td>
+        <td>MURILLO SALAZAR DENNIS</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025080176</td>
+        <td>ZHEN WU RONNY</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025098861</td>
+        <td>ZHENG JIMENEZ ALEXA MARIA</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025077261</td>
+        <td>ZHOU FERNANDEZ CARLOS DAWAN</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024177147</td>
+        <td>ZUÑIGA CHACON GABRIEL ALEJANDRO</td>
+        <td>9</td>
+        <td>MURILLO ZUMBADO GUSTAVO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023395895</td>
+        <td>ZUÑIGA HERRERA SHARLYN FRANCELA</td>
+        <td>1</td>
+        <td>LACY MORA GERARDO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2024130448</td>
+        <td>ZUÑIGA JIRON DANIELA</td>
+        <td>7</td>
+        <td>CORRALES QUESADA ESTEBAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025067091</td>
+        <td>ZUÑIGA LORIA JUAN PABLO</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025107502</td>
+        <td>ZUÑIGA MATA NAOMI DANIELA</td>
+        <td>12</td>
+        <td>CAMBRONERO CORDERO MICHAEL</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2023113354</td>
+        <td>ZUÑIGA MORALES MARIA FERNANDA</td>
+        <td>2</td>
+        <td>PINEDA LIZANO JUAN JOSE</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2020100806</td>
+        <td>ZUÑIGA ROJAS MAURO DE LOS ANGELES</td>
+        <td>11</td>
+        <td>VARGAS BLANCO IVAN</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+    <tr>
+        <td>2025091095</td>
+        <td>ZUÑIGA VILLALOBOS LUIS FELIPE</td>
+        <td>4</td>
+        <td>ROJAS PEREZ FRANCISCO</td>
+        <td>D3-13</td>
+        <td>CTCC</td>
+    </tr>
+</tbody>
+
+
+        </table>
+    </div>
+
+    <div id="cardContainer"></div>
+
+    <div class="no-results" id="noResultsMessage">
+        <span class="no-results-text">
+            <span class="material-symbols-outlined warning-icon">report_problem</span>
+            No se encontraron resultados
+            <span class="material-symbols-outlined warning-icon">report_problem</span>
+        </span>
+        <button class="btn-return" onclick="resetTable()"><span
+                class="material-symbols-outlined">chevron_left</span><span
+                style="font-size: medium;">Regresar</span></button>
+    </div>
+
+    <script>
+        function resetTable() {
+            const table = document.getElementById("myTable");
+            const thead = table.querySelector("thead");
+            const tr = Array.from(table.querySelectorAll("tbody tr"));
+            const noResultsMessage = document.getElementById("noResultsMessage");
+            const cardContainer = document.getElementById("cardContainer");
+            const tableContainer = document.getElementById("table-container");
+
+            // Mostrar todas las filas
+            tr.forEach(row => {
+                row.style.display = "";
+                const td = row.querySelector("td");
+                if (td) {
+                    td.innerHTML = td.textContent || td.innerText; // Eliminar el marcado
+                }
+            });
+
+            // Restaurar estado normal
+            noResultsMessage.style.display = "none";
+            cardContainer.innerHTML = "";
+            cardContainer.style.display = "none";
+            table.style.display = "table";
+            thead.style.display = "table-header-group"; // Mostrar encabezado
+            tableContainer.style.display = "block";
+
+            // ✅ Colocar el cursor en el input
+            const input = document.getElementById("myInput");
+            input.focus();
+        }
+
+        function buscarCarnet() {
+            const input = document.getElementById("myInput");
+            input.value = input.value.replace(/[^0-9]/g, ''); // Solo permitir números
+            const filter = input.value;
+            const table = document.getElementById("myTable");
+            const tableContainer = document.getElementById("table-container");
+
+
+            const thead = table.querySelector("thead");
+            const tr = Array.from(table.querySelectorAll("tbody tr"));
+            const noResultsMessage = document.getElementById("noResultsMessage");
+            const cardContainer = document.getElementById("cardContainer");
+            let foundCount = 0;
+            let matchedRow = null;
+
+            tr.forEach(row => {
+                const td = row.querySelector("td");
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+
+                    if (txtValue.includes(filter) || filter === "") {
+                        row.style.display = "";
+
+                        if (filter !== "") {
+                            const regex = new RegExp(`(${filter})`, "gi");
+                            td.innerHTML = txtValue.replace(regex, '<mark>$1</mark>');
+
+                            if (txtValue === filter) {
+                                foundCount++;
+                                matchedRow = row;
+                            }
+                        } else {
+                            td.innerHTML = txtValue;
+                        }
+                    } else {
+                        row.style.display = "none";
+                        td.innerHTML = txtValue;
+                    }
+                }
+            });
+
+            // Cuando se encuentra exactamente el carnet despliega en formato "card"
+            if (foundCount === 1 && matchedRow) {
+                const cells = matchedRow.querySelectorAll("td");
+
+                cardContainer.innerHTML = `
+            <div class="card" style="font-family: 'Courier New', Courier, monospace; padding: 1em;">
+                <!-- Carnet -->
+                <div style="display: flex; align-items: center; margin-bottom: 0.5em;">
+                    <span class="material-symbols-outlined" style="margin-right: 0.5em; font-size: 20pt;">badge</span>
+                    <span style="font-size: 16pt;">${cells[0].textContent}</span>
+                </div>
+                <!-- Nombre -->
+                <div style="display: flex; align-items: center; margin-bottom: 0.5em;">
+                    <span class="material-symbols-outlined" style="margin-right: 0.5em; font-size: 20pt;">person</span>
+                    <span style="font-size: 16pt;">${cells[1].textContent}</span>
+                </div>
+                <!-- Aula -->
+                <div style="display: flex; align-items: center; margin-bottom: 0.5em;">
+                    <span class="material-symbols-outlined" style="margin-right: 0.5em; font-size: 20pt;">door_front</span>
+                    <span style="font-size: 16pt; font-weight: bold;">${cells[4].textContent}</span>
+                </div>
+                <!-- Sede -->
+                <div style="display: flex; align-items: center;">
+                    <span class="material-symbols-outlined" style="margin-right: 0.5em; font-size: 20pt;">location_on</span>
+                    <span style="font-size: 16pt;">${cells[5].textContent}</span>
+                </div>
+                <div style="display: flex; justify-content: center; margin-top: 1.5em;">
+                    <button class="btn-return" onclick="resetTable()"><span class="material-symbols-outlined">chevron_left</span><span style="font-size: medium;">Regresar</span></button>
+                </div>
+            </div>
+        `;
+
+
+                cardContainer.style.display = "block";
+                table.style.display = "none";
+                noResultsMessage.style.display = "none";
+                thead.style.display = "table-header-group"; // Asegurar que el encabezado esté visible en caso de regresar
+                tableContainer.style.display = "none";
+
+            } else {
+                // Mostrar tabla normal
+                cardContainer.innerHTML = "";
+                cardContainer.style.display = "none";
+                table.style.display = "table";
+                tableContainer.style.display = "block"
+
+                // Verificar si hay filas visibles
+                const visibleRows = tr.filter(row => row.style.display !== "none").length;
+
+                if (filter !== "" && visibleRows === 0) {
+                    tableContainer.style.display = "none"
+                    table.style.display = "none";
+                    noResultsMessage.style.display = "flex";
+                    noResultsMessage.style.animation = "fadeSlideDown 0.5s ease forwards";
+
+                    // Ocultar encabezado si no hay resultados
+                    thead.style.display = "none";
+                } else {
+                    noResultsMessage.style.display = "none";
+                    thead.style.display = "table-header-group"; // Asegurar que el encabezado esté visible
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Obtener el botón
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        // Mostrar el botón al hacer scroll hacia abajo 100px
+        window.onscroll = function () {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        // Cuando el usuario hace click en el botón, vuelve arriba
+        scrollTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth" // Desplazamiento suave
+            });
+        });
+    </script>
+
+</body>
+
+</html>
