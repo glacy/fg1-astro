@@ -12,8 +12,6 @@ dist/
 .env.local
 .env.*.local
 
-.gitignore
-
 # IDE
 .vscode/
 .idea/
