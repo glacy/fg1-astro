@@ -36,4 +36,4 @@ coverage/
 .cache/
 .temp/
 
-packages/
+packages/*
