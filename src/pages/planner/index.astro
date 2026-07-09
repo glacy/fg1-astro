@@ -1,19 +1,149 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
-const title = Planner
+import ShellLayout from '../../layouts/ShellLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import ExamStats from '../../components/ExamStats.astro';
+import Filters from '../../components/Filters.astro';
+import ExamCard from '../../components/ExamCard.astro';
+import { getExams, getStats } from '../../lib/planner';
+import type { Exam } from '../../lib/planner';
+import { Icon } from 'astro-icon/components';
+
+const exams = getExams();
+const stats = getStats(exams);
 ---
 
-<MainLayout 
-  title=" - Física General I"
-  description="Sección de "
->
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-4"></h1>
-    <p class="text-muted-foreground mb-8">
-      Esta sección está en desarrollo...
-    </p>
-    <a href="/" class="text-primary hover:underline">
-      ← Volver al dashboard
-    </a>
+<ShellLayout title="Evaluaciones" activeTab="planner">
+  <slot name="sidebar" slot="sidebar">
+    <Sidebar activeTab="planner" />
+  </slot>
+  <div class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 flex flex-col">
+    <main class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-4 flex-1 overflow-auto min-w-0">
+      <div class="space-y-8 max-w-7xl mx-auto">
+        <ExamStats
+          upcoming={stats.upcoming}
+          today={stats.today}
+        />
+
+        <Filters currentFilter="all" />
+
+        <div id="exams-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {exams.map(exam => (
+            <ExamCard
+              key={exam.id}
+              exam={exam}
+            />
+          ))}
+        </div>
+
+        <!-- No results message -->
+        <div id="no-results" class="hidden w-full min-h-96 py-20 text-center bg-white dark:bg-slate-900 rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 mb-4">
+            <Icon name="lucide:calendar-x" size={32} aria-hidden="true" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-600 dark:text-slate-400">No hay evaluaciones para mostrar</h3>
+          <p class="text-sm text-slate-400 dark:text-slate-500 max-w-xs mx-auto mt-2">
+            No hay evaluaciones programadas para el filtro seleccionado.
+          </p>
+          <p class="text-sm text-slate-400 dark:text-slate-500 max-w-xs mx-auto mt-2">
+            Consulta con tu docente para más detalles.
+          </p>
+        </div>
+      </div>
+    </main>
   </div>
-</MainLayout>
+</ShellLayout>
+
+<script client:load>
+  function setupFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const pill = document.querySelector('.filter-pill');
+    const examCards = document.querySelectorAll('.exam-card');
+    const noResults = document.getElementById('no-results');
+    
+    if (!filterButtons.length || !pill || !examCards.length) return;
+    
+    let currentFilter = 'all';
+    
+    function updatePillPosition(activeIndex) {
+      const activeButton = filterButtons[activeIndex];
+      const buttonWidth = activeButton.offsetWidth;
+      const buttonLeft = activeButton.offsetLeft;
+      
+      console.log('Button width:', buttonWidth, 'Button left:', buttonLeft);
+      
+      pill.style.width = `${buttonWidth}px`;
+      pill.style.left = `${buttonLeft}px`;
+      pill.style.transform = 'none';
+      
+      filterButtons.forEach((btn, index) => {
+        if (index === activeIndex) {
+          btn.classList.remove('text-slate-500', 'dark:text-slate-400');
+          btn.classList.add('text-indigo-600', 'dark:text-indigo-400');
+        } else {
+          btn.classList.remove('text-indigo-600', 'dark:text-indigo-400');
+          btn.classList.add('text-slate-500', 'dark:text-slate-400');
+        }
+      });
+    }
+    
+    function filterExams() {
+      const today = new Date().toLocaleDateString('en-CA');
+      let visibleCount = 0;
+      
+      examCards.forEach(card => {
+        const examDate = card.dataset.date || '';
+        
+        let shouldShow = true;
+        if (currentFilter === 'today') {
+          shouldShow = examDate === today;
+        } else if (currentFilter === 'upcoming') {
+          shouldShow = examDate > today;
+        }
+        
+        if (shouldShow) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+    
+    filterButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        if (filter) {
+          currentFilter = filter;
+          updatePillPosition(index);
+          filterExams();
+        }
+      });
+      
+      btn.addEventListener('resize', () => {
+        if (currentFilter) {
+          const activeIndex = Array.from(filterButtons).findIndex(
+            btn => btn.getAttribute('data-filter') === currentFilter
+          );
+          updatePillPosition(activeIndex);
+        }
+      });
+    });
+    
+    updatePillPosition(0);
+    filterExams();
+    
+    window.addEventListener('resize', () => {
+      const activeIndex = Array.from(filterButtons).findIndex(
+        btn => btn.getAttribute('data-filter') === currentFilter
+      );
+      updatePillPosition(activeIndex);
+    });
+  }
+  
+  setupFilters();
+  document.addEventListener('astro:after-swap', setupFilters);
+</script>

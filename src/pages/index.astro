@@ -1,28 +1,6 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
----
+import ShellLayout from "../layouts/ShellLayout.astro";
+import Sidebar from "../components/Sidebar.astro";
 
-<MainLayout 
-  title="Dashboard"
-  description="Plataforma educativa para Física General I - I semestre 2026"
->
-  <div class="container mx-auto px-4 py-8">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold mb-4">Física General I</h1>
-      <p class="text-xl text-muted-foreground mb-8">
-        I semestre 2026 - Dashboard en construcción
-      </p>
-      <div class="flex justify-center gap-4">
-        <a href="/weekly" class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition">
-          Plan Semanal
-        </a>
-        <a href="/planner" class="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition">
-          Planner
-        </a>
-        <a href="/schedule" class="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90 transition">
-          Horario
-        </a>
-      </div>
-    </div>
-  </div>
-</MainLayout>
+Astro.redirect("/weekly");
+---

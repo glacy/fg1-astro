@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "config": {
+    "titleName": "Física General I",
+    "subtitleName": "Calendario de evaluaciones",
+    "semester": "I Semestre 2026",
+    "footerText": "Tecnológico de Costa Rica"
+  },
+  "exams": [
+    {
+      "id": "80f35105-c3b7-43ee-8669-3f5cda551735",
+      "title": "Bitácora e informe",
+      "subject": "Proyecto",
+      "date": "2027-03-27",
+      "time": "23:55",
+      "location": "",
+      "topics": [
+        "Vectores",
+        "Trabajo en equipo"
+      ],
+      "notes": "Se deben entregar DOS documentos separados: 1. Informe técnico del proyecto. 2. Bitácora de trabajo (según plantilla oficial de la cátedra)",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/proyecto/FG1_I_2026_proyecto_instrucciones.pdf",
+      "instructionsUrl2": "/proyecto/FG1_I_2026_proyecto_plantilla_bitacora.docx",
+      "instructionsUrl3": "/proyecto/GUIA_visualizacion_de_vectores_en_GeoGebra.pdf"
+    },
+    {
+      "id": "35e4a9a0-8c32-4332-8099-4cf9c2dacf6d",
+      "title": "Tarea 1",
+      "subject": "Tarea",
+      "date": "2026-04-17",
+      "time": "16:30",
+      "location": "",
+      "topics": [
+        "Cantidades físicas",
+        "MRU",
+        "MRUA",
+        "Movimiento parabólico",
+        "Leyes de Newton"
+      ],
+      "notes": "Esta tarea abarca los contenidos de Semana 1 a Semana 7; que corresponden con los contenidos del Primer Parcial.  La fecha de entrega se amplia al 17 de abril a las 16:30 horas.",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/tareas/FG1_IS_2026_tarea1.pdf",
+      "instructionsUrlSol": "/tareas/FG1_IS_2026_tarea1_solucion.pdf"
+    },
+    {
+      "id": "1",
+      "title": "Primer Parcial",
+      "subject": "Examen",
+      "date": "2026-04-20",
+      "time": "13:00",
+      "location": "",
+      "topics": [
+        "Cantidades físicas",
+        "MRU",
+        "MRUA",
+        "Movimiento parabólico",
+        "Leyes de Newton"
+      ],
+      "notes": "",
+      "formUrl": "",
+      "distributionUrl": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_primer_parcial.html",
+      "instructionsUrl": "/examenes/FG1_IS_2026_primer_parcial.pdf",
+      "instructionsUrlSol": "/examenes/FG1_IS_2026_primer_parcial_solucion.pdf"
+    },
+    {
+      "id": "826a86d2-b926-461c-ada5-7b4b253a8fe9",
+      "title": "Primer Parcial Extraordinario",
+      "subject": "Examen Extraordinario",
+      "date": "2026-04-27",
+      "time": "13:00",
+      "location": "F5-01",
+      "topics": [
+        "Cantidades físicas",
+        "MRU",
+        "MRUA",
+        "Movimiento parabólico",
+        "Leyes de Newton"
+      ],
+      "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/examenes/FG1_IS_2026_primer_parcial_extraordinario.pdf",
+      "instructionsUrlSol": "/examenes/FG1_IS_2026_primer_parcial_extraordinario_solucion.pdf"
+    },
+    {
+      "id": "0129affc-d9a8-406b-8a2b-932c1a651313",
+      "title": "Tarea 2",
+      "subject": "Tarea",
+      "date": "2026-05-22",
+      "time": "16:30",
+      "location": "",
+      "topics": [
+        "Movimiento en un círculo",
+        "Dinámica del movimiento circular",
+        "Trabajo y energía",
+        "Conservación de la energía",
+        "Colisiones"
+      ],
+      "notes": "Esta tarea abarca los contenidos de Semana 8 a Semana 11; que corresponden con los contenidos del Segundo Parcial.",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/tareas/FG1_IS_2026_tarea2-2.pdf",
+      "instructionsUrlSol": "/tareas/FG1_IS_2026_tarea2_solucion_errata.pdf"
+    },
+    {
+      "id": "2",
+      "title": "Segundo Parcial",
+      "subject": "Examen",
+      "date": "2026-05-25",
+      "time": "13:00",
+      "location": "",
+      "topics": [
+        "Movimiento en un círculo",
+        "Dinámica del movimiento circular",
+        "Trabajo y energía",
+        "Conservación de la energía",
+        "Colisiones"
+      ],
+      "notes": "Esta prueba abarca los contenidos de Semana 8 a Semana 11.",
+      "formUrl": "",
+      "distributionUrl": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_segundo_parcial.html",
+      "instructionsUrl": "/examenes/FG1_IS_2026_segundo_parcial.pdf",
+      "instructionsUrlSol": "/examenes/FG1_IS_2026_segundo_parcial_solucion.pdf"
+    },
+    {
+      "id": "2-extra",
+      "title": "Segundo Parcial",
+      "subject": "Examen Extraordinario",
+      "date": "2026-06-01",
+      "time": "13:00",
+      "location": "C1-09",
+      "topics": [
+        "Movimiento en un círculo",
+        "Dinámica del movimiento circular",
+        "Trabajo y energía",
+        "Conservación de la energía",
+        "Colisiones"
+      ],
+      "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/examenes/FG1_IS_2026_segundo_parcial_extraordinario.pdf",
+      "instructionsUrlSol": "/examenes/FG1_IS_2026_segundo_parcial_extraordinario_solucion_errata.pdf"
+    },
+    {
+      "id": "0f641e2d-6f6e-486c-ab39-f79234dce647",
+      "title": "Tarea 3",
+      "subject": "Tarea",
+      "date": "2026-06-12",
+      "time": "23:59",
+      "location": "",
+      "topics": [
+        "Cinemática rotacional",
+        "Dinámica rotacional",
+        "Equilibrio estático"
+      ],
+      "notes": "Esta tarea abarca los contenidos de Semana 12 a Semana 15; que corresponden con los contenidos del Tercer Parcial.",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/tareas/FG1_IS_2026_tarea3.pdf",
+      "instructionsUrlSol": "/tareas/FG1_IS_2026_tarea3_solucion.pdf"
+    },
+    {
+      "id": "3",
+      "title": "Tercer Parcial",
+      "subject": "Examen",
+      "date": "2026-06-17",
+      "time": "08:30",
+      "location": "",
+      "topics": [
+        "Cinemática rotacional",
+        "Dinámica rotacional",
+        "Equilibrio estático"
+      ],
+      "notes": "",
+      "formUrl": "",
+      "distributionUrl": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_tercer_parcial.html",
+      "instructionsUrl": "/examenes/FG1_IS_2026_tercer_parcial.pdf",
+      "instructionsUrlSol": "/examenes/FG1_IS_2026_tercer_parcial_solucion.pdf"
+    },
+    {
+      "id": "3-extra",
+      "title": "Tercer Parcial",
+      "subject": "Examen Extraordinario",
+      "date": "2026-07-09",
+      "time": "13:00",
+      "location": "C1-09",
+      "topics": [
+        "Cinemática rotacional",
+        "Dinámica rotacional",
+        "Equilibrio estático"
+      ],
+      "notes": "",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/examenes/FG1_IS_2026_tercer_parcial_extraordinario.pdf",
+      "instructionsUrlSol": "/examenes/FG1_IS_2026_tercer_parcial_extraordinario_solucion.pdf"
+    },
+    {
+      "id": "repo",
+      "title": "Examen de Reposición",
+      "subject": "Examen de Reposición",
+      "date": "2026-07-30",
+      "time": "08:30",
+      "location": "D3-02/D3-03",
+      "topics": [],
+      "notes": "Esta prueba la puede realizar la persona estudiante cuya nota final sea 60 ó 65, una vez aplicado el redondeo; de acuerdo a lo establecido en el Artículo 78 del RREA.",
+      "formUrl": "",
+      "distributionUrl": "",
+      "instructionsUrl": "/examenes/FG1_IS_2026_reposicion.pdf",
+      "instructionsUrlSol": "/examenes/FG1_IS_2026_reposicion_solucion_errata.pdf"
+    }
+  ]
+}

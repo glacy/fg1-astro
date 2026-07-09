@@ -1,0 +1,51 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface WeekNavigationProps {
+  currentWeek: number;
+  totalWeeks: number;
+  maxCurrentWeek: number;
+}
+
+const { currentWeek, totalWeeks, maxCurrentWeek } = Astro.props;
+const canGoPrevious = currentWeek > 1;
+const canGoNext = currentWeek < maxCurrentWeek;
+---
+
+<div class="flex items-center justify-between pt-6 pb-2 mt-8 border-t border-gray-200 dark:border-white/10 gap-2">
+  <button
+    disabled={!canGoPrevious}
+    data-nav="previous"
+    class={`
+      flex items-center gap-1 px-3 sm:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+      ${canGoPrevious
+        ? 'bg-white border border-gray-200 text-slate-800 hover:bg-gray-50 hover:border-gray-300 dark:bg-[#161d2a] dark:border-white/5 dark:text-white dark:hover:bg-white/5 dark:hover:border-white/10'
+        : 'opacity-50 cursor-not-allowed'
+      }
+    `}
+  >
+    <Icon name="lucide:chevron-left" size={16} class="w-4 h-4" aria-hidden="true" />
+    <span class="hidden sm:inline">Anterior</span>
+  </button>
+
+  <div class="flex items-center gap-1 sm:gap-2 shrink-0">
+    <span class="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">Semana</span>
+    <span class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">{currentWeek}</span>
+    <span class="text-xs sm:text-sm text-slate-400 dark:text-slate-500">de {totalWeeks}</span>
+  </div>
+
+  <button
+    disabled={!canGoNext}
+    data-nav="next"
+    class={`
+      flex items-center gap-1 px-3 sm:px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+      ${canGoNext
+        ? 'bg-blue-600 text-white hover:bg-blue-700'
+        : 'opacity-50 cursor-not-allowed'
+      }
+    `}
+  >
+    <span class="hidden sm:inline">Siguiente</span>
+    <Icon name="lucide:chevron-right" size={16} class="w-4 h-4" aria-hidden="true" />
+  </button>
+</div>

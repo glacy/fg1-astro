@@ -1,0 +1,105 @@
+---
+import ShellLayout from '../layouts/ShellLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { Icon } from 'astro-icon/components';
+import { COURSE_CONFIG } from '../lib/shared';
+---
+
+<ShellLayout title="Página no encontrada" activeTab="weekly">
+  <slot name="sidebar" slot="sidebar">
+    <Sidebar activeTab="weekly" />
+  </slot>
+  <div class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 flex flex-col">
+    <div class="flex-1 flex items-center justify-center p-8">
+      <div class="max-w-lg w-full text-center space-y-8" data-max-week={COURSE_CONFIG.maxCurrentWeek}>
+
+        <div id="error-blocked" class="space-y-8 hidden">
+          <div class="relative inline-flex">
+            <div class="absolute inset-0 bg-amber-500 blur-3xl opacity-10 rounded-full" aria-hidden="true" />
+            <div class="relative p-6 bg-white dark:bg-[#161d2a] rounded-2xl border border-gray-200 dark:border-white/5 shadow-sm">
+              <Icon name="lucide:lock" size={48} class="text-amber-500 mx-auto" />
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="text-2xl font-bold text-slate-800 dark:text-white">Semana no disponible</h1>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+              La semana <strong id="blocked-week-num" class="text-slate-700 dark:text-slate-300"></strong>
+              aún no está disponible. El contenido se publica progresivamente durante el semestre.
+            </p>
+            <p class="text-sm text-slate-400 dark:text-slate-500">
+              Semanas disponibles: 1 — {COURSE_CONFIG.maxCurrentWeek}
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={`/weekly/${COURSE_CONFIG.maxCurrentWeek}`}
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+            >
+              <Icon name="lucide:arrow-left" size={16} />
+              Ir a la semana actual
+            </a>
+            <a
+              href="/planner"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-[#161d2a] border border-gray-200 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+            >
+              <Icon name="lucide:calendar-days" size={16} />
+              Ver evaluaciones
+            </a>
+          </div>
+        </div>
+
+        <div id="error-generic" class="space-y-8 hidden">
+          <div class="relative inline-flex">
+            <div class="absolute inset-0 bg-slate-500 blur-3xl opacity-10 rounded-full" aria-hidden="true" />
+            <div class="relative p-6 bg-white dark:bg-[#161d2a] rounded-2xl border border-gray-200 dark:border-white/5 shadow-sm">
+              <Icon name="lucide:file-question" size={48} class="text-slate-400 mx-auto" />
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="text-2xl font-bold text-slate-800 dark:text-white">Página no encontrada</h1>
+            <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+              La página que buscas no existe o ha sido movida.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={`/weekly/${COURSE_CONFIG.maxCurrentWeek}`}
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20"
+            >
+              <Icon name="lucide:arrow-left" size={16} />
+              Ir a la semana actual
+            </a>
+            <a
+              href="/planner"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-700 dark:hover:text-slate-200 bg-white dark:bg-[#161d2a] border border-gray-200 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+            >
+              <Icon name="lucide:calendar-days" size={16} />
+              Ver evaluaciones
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ShellLayout>
+
+<script>
+  const container = document.querySelector('[data-max-week]');
+  const MAX_WEEK = parseInt(container?.getAttribute('data-max-week') || '8');
+
+  const match = window.location.pathname.match(/^\/weekly\/(\d+)/);
+  const requestedWeek = match ? parseInt(match[1]) : null;
+  const isBlockedWeek = requestedWeek && requestedWeek > MAX_WEEK;
+
+  if (isBlockedWeek) {
+    document.getElementById('blocked-week-num').textContent = requestedWeek;
+    document.getElementById('error-blocked').classList.remove('hidden');
+  } else {
+    document.getElementById('error-generic').classList.remove('hidden');
+  }
+</script>

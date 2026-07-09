@@ -1,0 +1,32 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface ExamStatsProps {
+  upcoming: number;
+  today: number;
+}
+
+const { upcoming, today } = Astro.props;
+---
+
+<div class="flex flex-wrap sm:flex-nowrap lg:flex-wrap justify-end gap-4">
+  <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-3 sm:gap-4">
+    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl flex-shrink-0 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400">
+      <Icon name="lucide:hourglass" size={24} aria-hidden="true" />
+    </div>
+    <div>
+      <p class="text-xl sm:text-2xl font-black text-slate-800 dark:text-white">{upcoming}</p>
+      <p class="text-[10px] sm:text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">Próximos</p>
+    </div>
+  </div>
+  
+  <div class="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-3 sm:gap-4">
+    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl flex-shrink-0 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400">
+      <Icon name="lucide:star" size={24} aria-hidden="true" />
+    </div>
+    <div>
+      <p class="text-xl sm:text-2xl font-black text-slate-800 dark:text-white">{today}</p>
+      <p class="text-[10px] sm:text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">Para Hoy</p>
+    </div>
+  </div>
+</div>

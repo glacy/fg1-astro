@@ -1,19 +1,270 @@
 ---
-import MainLayout from '../../layouts/MainLayout.astro';
-const title = Schedule
+import ShellLayout from '../../layouts/ShellLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+import { Icon } from 'astro-icon/components';
+import { filterInstructors, getInstructorsList, days } from '../../lib/schedule';
+
+// Obtener todos los instructores para mostrar inicialmente
+const allInstructors = filterInstructors('', '', '');
+const instructorsList = getInstructorsList();
 ---
 
-<MainLayout 
-  title=" - Física General I"
-  description="Sección de "
->
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-4"></h1>
-    <p class="text-muted-foreground mb-8">
-      Esta sección está en desarrollo...
-    </p>
-    <a href="/" class="text-primary hover:underline">
-      ← Volver al dashboard
-    </a>
+<ShellLayout title="Horarios" activeTab="schedule">
+  <slot name="sidebar" slot="sidebar">
+    <Sidebar activeTab="schedule" />
+  </slot>
+  <div id="schedule-root" class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 flex flex-col">
+    <main class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-4 flex-1 overflow-auto min-w-0">
+      <div class="space-y-8 max-w-7xl mx-auto">
+        <div class="text-center sm:text-left">
+          <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-50 mb-2">
+            Horarios de Atención Estudiantil
+          </h1>
+          <p class="text-sm text-slate-600 dark:text-slate-400">I Semestre 2026</p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 text-sm text-slate-600 dark:text-slate-400">
+          <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
+            <div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <Icon name="lucide:building-2" size={16} aria-hidden="true" />
+            </div>
+            <span>Presencial</span>
+          </div>
+          <div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
+            <div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <Icon name="lucide:monitor" size={16} aria-hidden="true" />
+            </div>
+            <span>Virtual</span>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+          <h2 class="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-4 flex items-center gap-2">
+            <Icon name="lucide:sliders-horizontal" size={20} class="text-blue-600 dark:text-blue-400" aria-hidden="true" />
+            Filtros de búsqueda
+          </h2>
+          <div class="flex flex-wrap gap-4">
+            <div class="flex-1 min-w-[280px]">
+              <label for="docente-select" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Docente
+              </label>
+              <select
+                id="docente-select"
+                class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              >
+                <option value="">Todos</option>
+                {instructorsList.map((instructor) => (
+                  <option key={instructor} value={instructor}>
+                    {instructor}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div class="w-48">
+              <label for="modalidad-select" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Modalidad
+              </label>
+              <select
+                id="modalidad-select"
+                class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              >
+                <option value="">Todas</option>
+                <option value="presencial">Presencial</option>
+                <option value="virtual">Virtual</option>
+              </select>
+            </div>
+
+            <div class="w-48">
+              <label for="dia-select" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Día
+              </label>
+              <select
+                id="dia-select"
+                class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              >
+                <option value="">Todos</option>
+                {days.map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Items -->
+        <div id="schedule-items" class="space-y-4">
+          {allInstructors.map((instructor) => (
+            <div
+              key={instructor.docente}
+              class="instructor-card bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-4 shadow-sm"
+              data-instructor={instructor.docente.toLowerCase()}
+            >
+              <div class="mb-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="text-base font-bold text-slate-900 dark:text-slate-50 truncate">
+                  {instructor.docente}
+                </h3>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {instructor.atenciones.map((attention, index) => {
+                  const { text, url } = attention.detalle.match(/(https?:\/\/[^\s]+)/) 
+                    ? (() => {
+                        const match = attention.detalle.match(/(https?:\/\/[^\s]+)/);
+                        const [_, url] = match!;
+                        const text = attention.detalle.split(':')[0];
+                        return { text, url };
+                      })()
+                    : { text: attention.detalle, url: undefined };
+                  
+                  return (
+                    <div
+                      key={`${instructor.docente}-${index}`}
+                      class="attention-card bg-slate-50 dark:bg-slate-800 rounded-lg p-3 border border-slate-100 dark:border-slate-700 flex flex-col"
+                      data-modalidad={attention.modalidad}
+                      data-dia={attention.dia}
+                    >
+                      <div class="flex items-start justify-between gap-2 mb-2">
+                        <span class="text-sm font-semibold text-slate-900 dark:text-slate-50 shrink-0">
+                          {attention.dia}
+                        </span>
+                        <div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 flex-shrink-0">
+                          {attention.modalidad === 'virtual' ? (
+                            <Icon name="lucide:monitor" size={16} aria-label="Virtual" />
+                          ) : (
+                            <Icon name="lucide:building-2" size={16} aria-label="Presencial" />
+                          )}
+                        </div>
+                      </div>
+                      <div class="space-y-2 flex-1 min-w-0">
+                        <div class="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400">
+                          <Icon name="lucide:clock" size={13} aria-hidden="true" />
+                          <span class="truncate" title={attention.hora}>
+                            {attention.hora}
+                          </span>
+                        </div>
+                        <div class="flex items-start gap-1 text-sm text-slate-600 dark:text-slate-400">
+                          {attention.modalidad === 'virtual' ? (
+                            <Icon name="lucide:video" size={13} class="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                          ) : (
+                            <Icon name="lucide:map-pin" size={13} class="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                          )}
+                          {url ? (
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+                            >
+                              <span class="break-all text-xs" title={text}>
+                                {text}
+                              </span>
+                            </a>
+                          ) : (
+                            <span class="break-all text-xs" title={text}>
+                              {text}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- No results message -->
+        <div id="no-results" class="hidden w-full min-h-96 py-20 text-center bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-300 dark:text-slate-600 mb-4">
+            <Icon name="lucide:clock" size={32} aria-hidden="true" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-600 dark:text-slate-400">No se encontraron horarios</h3>
+          <p class="text-sm text-slate-400 dark:text-slate-500 max-w-xs mx-auto mt-2">
+            Intenta con otros filtros de búsqueda.
+          </p>
+        </div>
+      </div>
+    </main>
   </div>
-</MainLayout>
+</ShellLayout>
+
+<script client:load>
+  function setupFilters() {
+    const instructorSelect = document.getElementById('docente-select');
+    const modalitySelect = document.getElementById('modalidad-select');
+    const daySelect = document.getElementById('dia-select');
+    const instructorCards = document.querySelectorAll('.instructor-card');
+    const noResults = document.getElementById('no-results');
+
+    if (!instructorSelect || !modalitySelect || !daySelect || !instructorCards.length) return;
+
+    function filterSchedule() {
+      const instructorValue = instructorSelect.value.toLowerCase();
+      const modalityValue = modalitySelect.value;
+      const dayValue = daySelect.value;
+      
+      let visibleCount = 0;
+
+      instructorCards.forEach(card => {
+        const instructorName = card.dataset.instructor || '';
+        const attentionCards = card.querySelectorAll('.attention-card');
+        
+        let hasVisibleAttention = false;
+
+        const instructorMatch = !instructorValue || instructorName.includes(instructorValue);
+        
+        if (!instructorMatch) {
+          card.style.display = 'none';
+          return;
+        }
+
+        attentionCards.forEach(attention => {
+          const modality = attention.dataset.modalidad || '';
+          const dia = attention.dataset.dia || '';
+          
+          const modalityMatch = !modalityValue || modality === modalityValue;
+          const dayMatch = !dayValue || dia === dayValue;
+          
+          if (modalityMatch && dayMatch) {
+            attention.style.display = 'flex';
+            hasVisibleAttention = true;
+          } else {
+            attention.style.display = 'none';
+          }
+        });
+
+        if (hasVisibleAttention) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+
+    instructorSelect.addEventListener('change', filterSchedule);
+    modalitySelect.addEventListener('change', filterSchedule);
+    daySelect.addEventListener('change', filterSchedule);
+  }
+
+  setupFilters();
+  document.addEventListener('astro:after-swap', setupFilters);
+</script>
+
+<style>
+  .attention-card {
+    transition: opacity 0.2s ease-in-out;
+  }
+  .instructor-card {
+    transition: opacity 0.2s ease-in-out;
+  }
+</style>

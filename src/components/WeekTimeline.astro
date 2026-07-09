@@ -1,0 +1,97 @@
+---
+import WeekItem from './WeekItem.astro';
+import { Icon } from 'astro-icon/components';
+
+interface WeekTimelineProps {
+  currentWeek: number;
+  totalWeeks: number;
+  maxCurrentWeek: number;
+  isOpen: boolean;
+  isDesktop: boolean;
+}
+
+const { currentWeek, totalWeeks, maxCurrentWeek, isOpen, isDesktop } = Astro.props;
+const weeks = Array.from({ length: totalWeeks }, (_, i) => i + 1);
+const { weeksData } = await import('../lib/weekly/weeks.ts');
+const activeWeekData = weeksData[currentWeek];
+---
+
+<nav class="w-full space-y-4" aria-label="Navegación por semanas del curso" data-component="week-timeline">
+  {!isDesktop && (
+    <div class="lg:hidden">
+      <button
+        data-timeline-toggle
+        class="w-full flex items-center justify-between p-4 rounded-xl border shadow-sm transition-all duration-300 bg-white border-gray-200 text-slate-800 dark:bg-[#161d2a] dark:border-white/5 dark:text-white"
+      >
+        <div class="flex items-center gap-3 min-w-0 flex-1">
+          <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex-shrink-0 flex items-center justify-center">
+            <Icon name="lucide:calendar" size={16} class="text-blue-500" aria-hidden="true" />
+          </div>
+          <div class="text-left min-w-0 flex-1">
+            <p class="text-sm font-bold truncate">{activeWeekData?.title}</p>
+          </div>
+        </div>
+        <div class="flex-shrink-0 ml-2">
+          {isOpen ? (
+            <Icon name="lucide:x" size={20} class="text-slate-500 dark:text-slate-400" aria-hidden="true" />
+          ) : (
+            <Icon name="lucide:chevron-down" size={20} class="text-slate-500 dark:text-slate-400" aria-hidden="true" />
+          )}
+        </div>
+      </button>
+    </div>
+  )}
+
+  <div
+    data-timeline-container
+    class={`
+      rounded-xl border shadow-sm transition-colors duration-300 max-h-96 lg:max-h-[60vh] flex flex-col overflow-hidden
+      bg-white border-gray-200 shadow-xl dark:bg-[#161d2a] dark:border-white/5 dark:shadow-2xl
+      ${isOpen ? 'mt-2' : ''}
+      ${!isOpen && !isDesktop ? 'h-0 opacity-0' : ''}
+      ${isOpen || isDesktop ? 'h-auto opacity-100' : ''}
+    `}
+  >
+    <div class="flex-shrink-0 flex items-center justify-between px-5 py-5 border-b border-white/5">
+      <h2
+        id="sidebar-title"
+        class="font-bold flex items-center gap-2 text-slate-800 dark:text-white"
+      >
+        <Icon name="lucide:calendar" size={16} class="text-blue-500" aria-hidden="true" />
+        Cronograma
+      </h2>
+      <span
+        class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 dark:bg-blue-500/20 dark:text-blue-300"
+      >
+        {totalWeeks} SEMANAS
+      </span>
+    </div>
+
+    <div class="flex-1 overflow-y-auto custom-scrollbar p-2">
+      <ul class="space-y-1 pb-2">
+        {weeks.map((week) => {
+          const data = weeksData[week];
+          const isActive = currentWeek === week;
+          const isPast = week < maxCurrentWeek;
+          const isInProgress = week === maxCurrentWeek;
+          const isLocked = week > maxCurrentWeek;
+
+          return (
+            <li>
+              <WeekItem
+                week={week}
+                title={data?.title}
+                isActive={isActive}
+                isPast={isPast}
+                isInProgress={isInProgress}
+                isLocked={isLocked}
+                totalWeeks={totalWeeks}
+                maxCurrentWeek={maxCurrentWeek}
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </div>
+</nav>

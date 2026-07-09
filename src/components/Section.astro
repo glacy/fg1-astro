@@ -1,0 +1,32 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface SectionProps {
+  title: string;
+  delay?: number;
+}
+
+const { title, delay = 0 } = Astro.props;
+
+const iconMap = {
+  "Objetivos de aprendizaje": "lucide:target",
+  "Contenidos": "lucide:list",
+  "Materiales": "lucide:clipboard-check",
+  "Actividades": "lucide:pencil-ruler",
+  "Recursos complementarios": "lucide:external-link"
+};
+
+const iconName = iconMap[title as keyof typeof iconMap] || "lucide:circle";
+---
+
+<section class="rounded-xl border gap-3 p-4 mb-6 bg-white border-gray-200 shadow-xl dark:bg-[#161d2a] dark:border-white/5 dark:shadow-2xl md:mb-8">
+  <div class="flex items-center gap-3 mb-4">
+    <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+      <Icon name={iconName} size={16} class="text-blue-500 dark:text-blue-400" aria-hidden="true" />
+    </div>
+    <h3 class="text-lg font-bold text-slate-800 dark:text-white">{title}</h3>
+  </div>
+  <!-- <div class="pl-11"> -->
+    <slot />
+  <!-- </div> -->
+</section>

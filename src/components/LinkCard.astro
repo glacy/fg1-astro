@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface LinkCardProps {
+  text: string;
+  url: string;
+  icon: string;
+  variant?: 'default' | 'evaluation';
+}
+
+const { text, url, icon, variant = 'default' } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={`
+    flex items-center gap-3 p-4 rounded-xl border transition-all duration-200 group min-w-0
+    ${variant === 'evaluation'
+      ? 'bg-orange-50/50 border-orange-200/50 hover:bg-orange-50 hover:border-orange-300 hover:shadow-orange-500/10 dark:bg-orange-500/5 dark:border-orange-500/20 dark:hover:bg-orange-500/10 dark:hover:border-orange-500/30'
+      : 'bg-white border-gray-200 hover:bg-blue-50 hover:border-blue-300 hover:shadow-blue-500/10 dark:bg-[#161d2a] dark:border-white/5 dark:hover:bg-blue-500/5 dark:hover:border-blue-500/30'
+    }
+    hover:shadow-sm
+  `}
+>
+    <div class={`
+      flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center
+      ${variant === 'evaluation'
+        ? 'bg-orange-100 dark:bg-orange-500/20'
+        : 'bg-blue-100 dark:bg-blue-500/20'
+      }
+    `}>
+      <Icon 
+        name={icon} 
+        size={20} 
+        class={`
+          ${variant === 'evaluation'
+            ? 'text-orange-500 dark:text-orange-400'
+            : 'text-blue-500 dark:text-blue-400'
+          }
+        `} 
+        aria-hidden="true" 
+      />
+    </div>
+  <div class="flex-1 min-w-0">
+    <p class="text-sm font-medium text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug break-words">
+      {text}
+    </p>
+  </div>
+  <div class="flex-shrink-0">
+    <Icon name="lucide:external-link" size={16} class="text-slate-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" aria-hidden="true" />
+  </div>
+</a>
