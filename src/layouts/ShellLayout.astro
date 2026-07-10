@@ -71,20 +71,7 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 				class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden"
 			></div>
 
-		<script is:inline>
-			(function() {
-				var sidebar = document.getElementById('sidebar');
-				var toggleBtn = document.getElementById('sidebar-toggle');
-				var toggleIcon = document.getElementById('sidebar-toggle-icon');
-				if (sidebar && localStorage.getItem('sidebar-collapsed') === 'true') {
-					sidebar.classList.add('w-16');
-					sidebar.classList.remove('w-64');
-					sidebar.setAttribute('data-collapsed', 'true');
-					if (toggleBtn) toggleBtn.setAttribute('data-collapsed', 'true');
-					if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
-				}
-			})();
-		</script>
+
 
 			<main class="flex flex-col flex-1 relative bg-slate-100 dark:bg-slate-50/5 min-w-0 h-full">
 				<button
@@ -133,6 +120,12 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 		const STORAGE_KEY = 'sidebar-collapsed';
 		const isCollapsed = localStorage.getItem(STORAGE_KEY) === 'true';
 		let collapsed = isCollapsed;
+
+		sidebar.style.transition = 'none';
+		applyState();
+		requestAnimationFrame(() => requestAnimationFrame(() => {
+			sidebar.style.transition = '';
+		}));
 
 		function applyState() {
 			sidebar.classList.toggle('w-16', collapsed);
