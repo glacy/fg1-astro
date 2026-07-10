@@ -13,7 +13,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       manifest: false,
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,jpg,webp,woff2,json}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,jpg,webp,woff2,json,pdf}'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: null,
         runtimeCaching: [
@@ -35,6 +35,10 @@ export default defineConfig({
     domains: ['images.unsplash.com'],
   },
   vite: {
+    define: {
+      __BUILD_TIME__: JSON.stringify(new Date().toISOString().replace(/T.*/, '')),
+      __BUILD_VERSION__: JSON.stringify('2.0.0'),
+    },
     build: {
       outDir: 'dist'
     }

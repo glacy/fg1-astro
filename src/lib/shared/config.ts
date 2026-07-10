@@ -8,6 +8,11 @@ export const COURSE_CONFIG = {
   githubRepository: 'https://github.com/glacy/fg1-astro',
 };
 
+export const BUILD_INFO = {
+  date: 'dev',
+  version: '0.0.0',
+};
+
 export const UI_CONFIG = {
   animations: {
     transition: 0.3,
