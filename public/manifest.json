@@ -8,6 +8,19 @@
   "display_override": ["window-controls-overlay", "standalone"],
   "theme_color": "#000000",
   "background_color": "#000000",
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "type": "image/png",
+      "sizes": "1920x1080",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "type": "image/png",
+      "sizes": "480x800"
+    }
+  ],
   "protocol_handlers": [
     {
       "protocol": "web+fisica",
