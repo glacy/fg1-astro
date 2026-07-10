@@ -20,6 +20,7 @@
     "@course-dashboard/shared": "workspace:*",
     "@course-dashboard/weekly-plan": "workspace:*",
     "@iconify-json/lucide": "^1.2.116",
+    "@vite-pwa/astro": "^1.2.0",
     "astro": "^5.0.0",
     "astro-icon": "^1.1.5",
     "clsx": "^2.1.1",
