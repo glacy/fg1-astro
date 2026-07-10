@@ -633,6 +633,214 @@ Además, se agregó una validación en `[week].astro` que redirige a `/weekly/1`
 - Las URLs remotas (Unsplash) se descargan y procesan localmente durante el build
 - El `object-fit: cover` del CSS mantiene el aspect ratio visual del contenedor h-48/h-64
 
+---
+
+### Implementación PWA (Progressive Web App)
+
+#### Stack utilizado
+- `@vite-pwa/astro` v1.2.0 — integración oficial PWA para Astro (wrapper de `vite-plugin-pwa`)
+- `workbox-window` v7.4.0 — runtime de Workbox para service worker
+- `sharp` — procesamiento de imágenes para el manifest
+
+#### Archivos de configuración
+
+**`astro.config.mjs`** — Integración `@vite-pwa/astro` con Workbox en modo `generateSW`:
+```js
+AstroPWA({
+  registerType: 'autoUpdate',
+  manifest: false, // usamos manifest propio en public/
+  workbox: {
+    globPatterns: ['**/*.{js,css,html,svg,png,ico,jpg,webp,woff2,json}'],
+    globIgnores: ['examenes/**'],
+    maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+    navigateFallback: null,
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/images\.unsplash\.com\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'unsplash-images',
+          expiration: { maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 },
+        },
+      },
+    ],
+  },
+})
+```
+
+| Opción | Valor | Propósito |
+|---|---|---|
+| `registerType` | `'autoUpdate'` | El SW se actualiza automáticamente sin prompt |
+| `manifest` | `false` | Desactiva generación automática, usamos nuestro `public/manifest.json` |
+| `globPatterns` | `**/*.{js,css,…}` | Recursos a precachear (32 entries, ~1.45 MiB) |
+| `globIgnores` | `['examenes/**']` | Excluye HTML duplicados en `public/examenes/` que generaban conflicto de URL |
+| `navigateFallback` | `null` | Deshabilitado: sitio MPA, no SPA (cada página se sirve individualmente) |
+| `runtimeCaching` | Unsplash CacheFirst | Imágenes Unsplash cacheadas por 30 días (50 entradas máx) |
+
+#### Service Worker
+
+Generado automáticamente por Workbox en `dist/sw.js`:
+- **Precache**: 30 entries (HTML, CSS, JS, imágenes, fuentes, SVG)
+- **Estrategia**: CacheFirst para precache, CacheFirst con expiración para Unsplash
+- **Auto-activación**: `self.skipWaiting()` + `clientsClaim()` para control inmediato
+- **Actualización**: Cada build genera nuevo SW con revisiones actualizadas
+
+#### Registro del Service Worker
+
+Como `@vite-pwa/astro` no inyecta el registro automáticamente en Astro (el hook `transformIndexHtml` de Vite no se dispara para páginas `.astro`), se agregó manualmente en ambos layouts:
+
+**`src/layouts/ShellLayout.astro`** y **`src/layouts/MainLayout.astro`**:
+```astro
+<script is:inline>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+```
+
+Esto asegura que todas las páginas que usan estos layouts registren el SW.
+
+#### Web App Manifest
+
+**`public/manifest.json`** — Adaptado para el deploy actual:
+```json
+{
+  "name": "Física General I",
+  "short_name": "Física General I",
+  "start_url": "/weekly",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "screenshots": [
+    { "src": "/screenshot-wide.png", "sizes": "1920x1080", "form_factor": "wide" },
+    { "src": "/screenshot-narrow.png", "sizes": "480x800" }
+  ],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "sizes": "512x512" },
+    { "src": "/icon-192-maskable.png", "sizes": "192x192", "purpose": "maskable" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}
+```
+
+| Cambio | Razón |
+|---|---|
+| `start_url` → `/weekly` | La raíz `/` redirige a `/weekly`; inicio directo en contenido |
+| `scope` → `"/"` | Toda la app está bajo el mismo origen |
+| `screenshots` → wide + narrow | Requerido para "Richer PWA Install UI" en desktop y mobile |
+
+#### Íconos PWA
+
+Los íconos se sirven desde `public/`:
+- `icon-192.png`, `icon-512.png` — estándar
+- `icon-192-maskable.png`, `icon-512-maskable.png` — con `purpose: "maskable"` para adaptive icons en Android
+
+#### Manejo offline
+
+El SW precachea todas las páginas generadas por Astro (weekly/1–5, planner, schedule, 404, index redirect) y los assets críticos (CSS, JS, imágenes). Al navegar offline:
+
+1. El SW intercepta la navegación
+2. Busca la URL en el precache
+3. Si existe, sirve desde caché (instantáneo)
+4. Si no existe (ej. semanas futuras), la solicitud va a la red y falla normalmente
+
+Para imágenes Unsplash, se usa `CacheFirst` con expiración de 30 días para que las imágenes de héroe funcionen offline después de la primera visita.
+
+#### Problemas resueltos
+
+| Problema | Síntoma | Solución |
+|---|---|---|
+| `add-to-cache-list-conflicting-entries` | Error en consola, SW no se instala | Dos HTML en `public/examenes/` generaban misma URL `examenes` tras el transform de `@vite-pwa/astro`. Se agregó `globIgnores: ['examenes/**']`. |
+| `NavigationRoute` atrapaba navegaciones no precacheadas | Documentos en `public/` redirigían a `/weekly` | `navigateFallback: '/weekly'` creaba un `NavigationRoute` que atrapaba TODAS las navegaciones no precacheadas. Se cambió a `null`. |
+| Manifest no detectado | DevTools mostraba "No manifest detected" | El `<link rel="manifest">` solo estaba en `MainLayout.astro`, no en `ShellLayout.astro` (el layout que usan las páginas principales). |
+| Service Worker no se registraba | SW no disponible offline | `@vite-pwa/astro` no inyecta el registro automáticamente en Astro. Se agregó `<script>` inline manual en ambos layouts. |
+
+---
+
+### Configuración de Vercel
+
+#### vercel.json
+
+```json
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/weekly",
+      "permanent": false
+    }
+  ]
+}
+```
+
+**Propósito:** Redirigir la raíz `/` a `/weekly` a nivel edge HTTP (antes de que el navegador cargue cualquier página). El redirect es inmediato y no requiere carga de HTML.
+
+#### Estrategia de redirect `/` → `/weekly`
+
+| Capa | Mecanismo | Ventaja |
+|---|---|---|
+| **Edge (Vercel)** | `vercel.json` redirect (302) | Instantáneo, sin carga de página |
+| **Estático (fallback)** | `public/index.html` con `<meta http-equiv="refresh">` | Funciona en cualquier host estático |
+
+El `index.astro` genera un HTML con meta refresh como respaldo:
+```html
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta http-equiv="refresh" content="0;url=/weekly" />
+  </head>
+  <body>
+    <p>Redirigiendo a <a href="/weekly">/weekly</a>...</p>
+  </body>
+</html>
+```
+
+---
+
+### Sidebar: Sincronización de estado colapsado entre páginas
+
+**Problema:** Al colapsar el sidebar y navegar a otra semana, el chevron cambiaba de dirección (apuntaba a `<` como si estuviera expandido) aunque el sidebar seguía colapsado.
+
+**Causa:** El script inline que inicializa el sidebar en cada carga de página leía `localStorage` y aplicaba `w-16`/`data-collapsed="true"` al sidebar, pero **no actualizaba** el botón toggle ni la rotación del ícono:
+
+```js
+// ❌ Solo actualizaba el sidebar
+(function() {
+  var sidebar = document.getElementById('sidebar');
+  if (sidebar && localStorage.getItem('sidebar-collapsed') === 'true') {
+    sidebar.classList.add('w-16');
+    sidebar.classList.remove('w-64');
+    sidebar.setAttribute('data-collapsed', 'true');
+    // toggleBtn y toggleIcon quedaban sin actualizar
+  }
+})();
+```
+
+**Solución:** Extender el script para sincronizar también el botón y el ícono:
+
+```js
+// ✅ También actualiza toggle y chevron
+(function() {
+  var sidebar = document.getElementById('sidebar');
+  var toggleBtn = document.getElementById('sidebar-toggle');
+  var toggleIcon = document.getElementById('sidebar-toggle-icon');
+  if (sidebar && localStorage.getItem('sidebar-collapsed') === 'true') {
+    sidebar.classList.add('w-16');
+    sidebar.classList.remove('w-64');
+    sidebar.setAttribute('data-collapsed', 'true');
+    if (toggleBtn) toggleBtn.setAttribute('data-collapsed', 'true');
+    if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
+  }
+})();
+```
+
+**Archivo modificado:** `src/layouts/ShellLayout.astro`
+
 ### Preservación de Funcionalidad:
 - La experiencia del usuario debe ser idéntica
 - El diseño visual se mantiene consistente
@@ -801,6 +1009,9 @@ La migración de fg1 a fg1-astro ha sido exitosa para los paquetes schedule, pla
 - Los React Context/Hooks se simplifican a módulos vanilla JS en Astro
 
 ### Próximos pasos:
-1. Optimizar rendimiento general
-2. Agregar testing end-to-end
-3. Configurar adapter para deploy (Vercel/Netlify)
+1. ✅ Despliegue en Vercel con redirects y PWA
+2. ⬜ Agregar testing end-to-end
+3. ⬜ Autenticación con Keycloak
+4. ⬜ Notificaciones push con Firebase
+5. ⬜ Implementar componentes React Islands (planner interactivo, etc.)
+6. ⬜ Generar semanas restantes (6–16) a medida que estén disponibles

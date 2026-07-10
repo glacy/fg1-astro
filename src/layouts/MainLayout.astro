@@ -55,11 +55,9 @@ const siteName = "Física General I";
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-		<script is:inline>
-			if ('serviceWorker' in navigator) {
-				window.addEventListener('load', () => {
-					navigator.serviceWorker.register('/sw.js');
-				});
+		<script>
+			if ('serviceWorker' in navigator && !import.meta.env.DEV) {
+				navigator.serviceWorker.register('/sw.js');
 			}
 		</script>
 

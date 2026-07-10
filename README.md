@@ -1,59 +1,54 @@
-# FG1 - Física General I (Astro Version)
+# FG1 - Física General I (Astro)
 
-Plataforma educativa para Física General I - I semestre 2026
+Plataforma educativa para Física General I - I semestre 2026.
 
-Esta es la versión migrada a Astro + React Islands de la plataforma FG1.
+Migración de React SPA a Astro (Multiple Page Application) con contenido estático prerenderizado.
 
-## 🚀 Características
+## Características
 
-- ⚡ **Ultra rápido**: 5-10x más rápido que la versión React
-- 🌐 **SEO optimizado**: HTML estático pre-rendered
-- 📱 **PWA**: Instalable y offline-first
-- 🎨 **Responsive**: Optimizado para todos los dispositivos
-- 🔐 **Autenticación**: Integración con Keycloak
-- 🔔 **Notificaciones**: Firebase Cloud Messaging
+- ⚡ **Rendimiento**: HTML estático prerenderizado, zero JavaScript en carga inicial
+- 📱 **PWA**: Instalable, offline-first con Workbox (32 assets precacheados, ~1.45 MiB)
+- 🌙 **Tema oscuro/claro**: Con persistencia en localStorage y sin flash (FOUC)
+- 📐 **Responsive**: Sidebar colapsable en desktop, drawer overlay en mobile
+- 📄 **Contenido**: 16 semanas de plan de estudios con objetivos, lecturas, prácticas y evaluaciones
+- 🔍 **Filtros en cliente**: Horarios de atención y evaluaciones con filtrado instantáneo
 
-## 📦 Tech Stack
+## Tech Stack
 
-- **Frontend**: Astro 5 + React 19
-- **Styling**: TailwindCSS
-- **Auth**: Keycloak
-- **Push Notifications**: Firebase
-- **Build**: Vite
-- **Package Manager**: pnpm workspaces
+| Capa | Tecnología |
+|---|---|
+| Framework | Astro 5 (static output) |
+| UI | Componentes `.astro` + JavaScript vanilla |
+| Estilos | TailwindCSS 3 (darkMode: class) |
+| PWA | `@vite-pwa/astro` + Workbox 7 (generateSW) |
+| Iconos | `astro-icon` + Lucide (inline SVG) |
+| Imágenes | `@astrojs/image` + Sharp (WebP optimizado) |
+| Build | Vite 6 + pnpm workspaces |
+| Deploy | Vercel (edge redirects + static hosting) |
 
-## 🛠️ Desarrollo
+## Desarrollo
 
 ```bash
-# Instalar dependencias
-pnpm install
-
-# Iniciar development server
-pnpm dev
-
-# Build para producción
-pnpm build
-
-# Preview de producción
-pnpm preview
+pnpm install        # Instalar dependencias
+pnpm dev            # Servidor de desarrollo (localhost:4321)
+pnpm build          # Build producción → dist/
+pnpm preview        # Preview del build
 ```
 
-## 📚 Documentación
+## Documentación
 
-- [Plan de Migración](./MIGRATION_PLAN.md)
-- [Configuración de Entorno](./ENV_SETUP.md)
-- [Estructura del Proyecto](./PROJECT_STRUCTURE.md)
-- [Guía de Implementación](./IMPLEMENTATION_GUIDE.md)
+- [Documentación técnica de migración](./MIGRATION_DOCUMENTATION.md)
+- [Estructura del proyecto](./PROJECT_STRUCTURE.md)
+- [Plan de migración](./MIGRATION_PLAN.md)
+- [Guía de implementación](./IMPLEMENTATION_GUIDE.md)
+- [Configuración de entorno](./ENV_SETUP.md)
 
-## 🚢 Deployment
+## Deploy
 
-Este proyecto está configurado para despliegue automático en Vercel.
-
-## 📄 Licencia
-
-MIT
+```bash
+git push origin main   # Vercel deploy automático
+```
 
 ---
 
-**Versión Legacy**: [fg1 (React SPA)](https://github.com/glacy/fg1)
-**Versión Astro**: fg1-astro
+**Legacy**: [fg1 (React SPA)](https://github.com/glacy/fg1) · **Actual**: fg1-astro
