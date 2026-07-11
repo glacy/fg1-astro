@@ -64,6 +64,18 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 		<div class="flex h-[100dvh] overflow-hidden">
 			<div id="sidebar-wrapper" data-mobile-open="false">
 				<slot name="sidebar" />
+				<script is:inline>
+				(function() {
+					var collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+					if (!collapsed) return;
+					var s = document.getElementById('sidebar');
+					var btn = document.getElementById('sidebar-toggle');
+					var icon = document.getElementById('sidebar-toggle-icon');
+					if (s) s.setAttribute('data-collapsed', 'true');
+					if (btn) btn.setAttribute('data-collapsed', 'true');
+					if (icon) icon.style.transform = 'rotate(180deg)';
+				})();
+				</script>
 			</div>
 
 			<div
