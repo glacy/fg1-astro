@@ -23,6 +23,9 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 			:root {
 				--radius: 0.5rem;
 			}
+			body[data-sidebar-collapsed] #sidebar-toggle-icon {
+				transform: rotate(180deg);
+			}
 			#sidebar-wrapper {
 				position: fixed;
 				inset: 0 auto 0 0;
@@ -69,11 +72,8 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 					var collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
 					if (!collapsed) return;
 					var s = document.getElementById('sidebar');
-					var btn = document.getElementById('sidebar-toggle');
-					var icon = document.getElementById('sidebar-toggle-icon');
 					if (s) s.setAttribute('data-collapsed', 'true');
-					if (btn) btn.setAttribute('data-collapsed', 'true');
-					if (icon) icon.style.transform = 'rotate(180deg)';
+					document.body.setAttribute('data-sidebar-collapsed', 'true');
 				})();
 				</script>
 			</div>
@@ -145,7 +145,7 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 			sidebar.setAttribute('data-collapsed', String(collapsed));
 			toggleBtn.setAttribute('data-collapsed', String(collapsed));
 			toggleBtn.setAttribute('aria-label', collapsed ? 'Expandir barra lateral' : 'Colapsar barra lateral');
-			toggleIcon.style.transform = collapsed ? 'rotate(180deg)' : '';
+			document.body.toggleAttribute('data-sidebar-collapsed', collapsed);
 			localStorage.setItem(STORAGE_KEY, String(collapsed));
 		}
 
