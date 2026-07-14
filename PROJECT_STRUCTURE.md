@@ -9,7 +9,7 @@ fg1-astro/
 ├── tsconfig.json              # Configuración TypeScript
 ├── tailwind.config.mjs        # Configuración TailwindCSS (darkMode: 'class')
 ├── postcss.config.mjs         # Configuración PostCSS
-├── pnpm-workspace.yaml       # Configuración workspace packages
+├── pnpm-workspace.yaml       # Configuración workspace (monoproject)
 ├── vercel.json               # Configuración Vercel (redirects)
 ├── .gitignore                # Archivos ignorados por Git
 ├── .env.example              # Ejemplo de variables de entorno

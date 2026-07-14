@@ -14,18 +14,6 @@ importers:
       '@astrojs/tailwind':
         specifier: ^6.0.0
         version: 6.0.2(astro@5.18.2)(tailwindcss@3.4.19)
-      '@course-dashboard/planner':
-        specifier: workspace:*
-        version: link:packages/planner
-      '@course-dashboard/schedule':
-        specifier: workspace:*
-        version: link:packages/schedule
-      '@course-dashboard/shared':
-        specifier: workspace:*
-        version: link:packages/shared
-      '@course-dashboard/weekly-plan':
-        specifier: workspace:*
-        version: link:packages/weekly-plan
       '@iconify-json/lucide':
         specifier: ^1.2.116
         version: 1.2.116
@@ -93,14 +81,6 @@ importers:
       vitest:
         specifier: ^4.0.0
         version: 4.1.10(vite@7.3.6)
-
-  packages/planner: {}
-
-  packages/schedule: {}
-
-  packages/shared: {}
-
-  packages/weekly-plan: {}
 
 packages:
 

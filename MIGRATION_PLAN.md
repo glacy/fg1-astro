@@ -73,11 +73,6 @@ fg1-astro/
 │   ├── styles/                  # Estilos globales
 │   │   └── global.css
 │   └── env.d.ts                 # Tipos de entorno
-├── packages/                    # Packages compatibles (Nx/pnpm workspaces)
-│   ├── @course-dashboard/shared/
-│   ├── @course-dashboard/planner/
-│   ├── @course-dashboard/schedule/
-│   └── @course-dashboard/weekly-plan/
 ├── public/                      # Assets estáticos
 │   ├── icons/                   # Iconos e imagenes
 │   ├── content/                 # Contenido educativo
@@ -92,7 +87,7 @@ fg1-astro/
 ├── tsconfig.json
 ├── tailwind.config.mjs
 ├── vitest.config.ts             # Configuración tests
-└── pnpm-workspace.yaml          # Workspace configuration
+└── (sin packages — monoproject con Astro)
 ```
 
 ---
@@ -122,15 +117,15 @@ fg1-astro/
 - [ ] Configurar image optimization
 
 #### 1.4 Configuración Workspaces
-- [ ] Setup pnpm workspaces
-- [ ] Migrar packages Nx
-- [ ] Adaptar scripts de build
+- [x] Setup pnpm workspaces
+- [x] Migrar packages Nx
+- [x] Adaptar scripts de build
 - [ ] Configurar dependencies compartidas
 
 **Entregables:**
 - Proyecto Astro funcional
 - Assets migrados
-- Packages compatibles
+- Packages migrados a src/
 - Environment de desarrollo listo
 
 ---
@@ -174,19 +169,19 @@ fg1-astro/
 
 #### 3.1 Interactive Planner Island
 - [ ] Crear `InteractivePlanner.tsx` island
-- [ ] Integrar `@course-dashboard/planner`
+- [ ] Integrar lógica de planner (desde `src/lib/planner/`)
 - [ ] Adaptar Framer Motion
 - [ ] Testing de interactividad
 
 #### 3.2 Interactive Schedule Island
 - [ ] Crear `InteractiveSchedule.tsx` island
-- [ ] Integrar `@course-dashboard/schedule`
+- [ ] Integrar lógica de schedule (desde `src/lib/schedule.ts`)
 - [ ] Adaptar responsive design
 - [ ] Testing de interactividad
 
 #### 3.3 Weekly Plan Islands
 - [ ] Crear `WeeklyPlanTabs.tsx` island
-- [ ] Integrar `@course-dashboard/weekly-plan`
+- [ ] Integrar lógica de weekly-plan (desde `src/lib/weekly/`)
 - [ ] Configurar hydration strategies
 - [ ] Testing de interactividad
 
@@ -203,7 +198,7 @@ fg1-astro/
 
 **Entregables:**
 - React islands funcionales
-- Integración con packages
+- Lógica de planner/schedule/weekly-plan integrada
 - Hydration configurado
 - Tests de interactividad
 
@@ -368,7 +363,6 @@ export default defineConfig({
 ### pnpm-workspace.yaml
 ```yaml
 packages:
-  - 'packages/*'
   - '.'
 ```
 

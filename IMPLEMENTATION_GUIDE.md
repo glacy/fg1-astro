@@ -538,7 +538,7 @@ export default defineConfig({
 **Contenido de `src/components/islands/InteractivePlanner.tsx`:**
 ```tsx
 import { useState, useEffect } from 'react';
-import { usePlanner } from '@course-dashboard/planner';
+import { usePlanner } from '../../lib/planner';
 
 interface Exam {
   id: string;

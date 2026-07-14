@@ -23,7 +23,7 @@ Migración de React SPA a Astro (Multiple Page Application) con contenido estát
 | PWA | `@vite-pwa/astro` + Workbox 7 (generateSW) |
 | Iconos | `astro-icon` + Lucide (inline SVG) |
 | Imágenes | `@astrojs/image` + Sharp (WebP optimizado) |
-| Build | Vite 6 + pnpm workspaces |
+| Build | Vite 6 + pnpm |
 | Deploy | Vercel (edge redirects + static hosting) |
 
 ## Desarrollo

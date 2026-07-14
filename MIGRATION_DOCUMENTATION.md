@@ -313,11 +313,13 @@ function updatePillPosition(activeIndex) {
 
 ## Próximos Pasos
 
-## Paquetes pendientes de migración:
+## Paquetes migrados:
 1. ✅ **schedule**: Horarios de atención estudiantil (completado)
 2. ✅ **planner**: Sistema de evaluaciones (completado)
 3. ✅ **weekly-plan**: Planificación semanal (completado)
-4. **shared**: Utilidades compartidas (pendiente)
+4. ✅ **shared**: Utilidades compartidas (completado)
+
+> Nota: Los directorios `packages/@course-dashboard/*` originales del monorepo Nx fueron eliminados tras migrar todo el código a `src/` en la raíz. El workspace de pnpm quedó simplificado a un monoprojecto.
 
 ### 4. Paquete Weekly Plan (Planificación Semanal)
 
