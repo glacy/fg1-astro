@@ -72,7 +72,10 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 					var collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
 					if (!collapsed) return;
 					var s = document.getElementById('sidebar');
-					if (s) s.setAttribute('data-collapsed', 'true');
+					if (s) {
+						s.style.transition = 'none';
+						s.setAttribute('data-collapsed', 'true');
+					}
 					document.body.setAttribute('data-sidebar-collapsed', 'true');
 				})();
 				</script>
