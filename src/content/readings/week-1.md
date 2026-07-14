@@ -1,3 +1,8 @@
+---
+title: "Unidades, cantidades físicas y vectores"
+week: 1
+---
+
 # Unidades, cantidades físicas y vectores {#cap:cap1}
 
 La [Física]{.smallcaps} es una ciencia natural que estudia las
@@ -14,7 +19,20 @@ resistencia del aire, etc. Un modelo físico inicial de esta situación
 omitiría muchas de estas características. Ver Figura
 [1.1](#fig:modelo){reference-type="ref" reference="fig:modelo"}.\
 
-
+<figure id="fig:modelo">
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;"><embed src="../figuras/baseball1.pdf"
+style="width:8cm" /></td>
+<td style="text-align: center;"><embed src="../figuras/baseball2.pdf"
+style="width:6.55cm" /></td>
+</tr>
+</tbody>
+</table>
+<figcaption><em>Sistema físico</em> (izquierda) vs <em>modelo
+físico</em> (derecha) del lanzamiento de una bola.</figcaption>
+</figure>
 
 Todas estas cantidades (masa, tamaño, velocidad, fuerza, etc.)
 necesarias para describir un sistema o modelo físico, se llaman
@@ -63,13 +81,13 @@ SI.](../figuras/SI-units){#fig:SI-text width="2.5in"}
 ::: {#tab:SI-const}
   --------------------------------- -------------------------------------- -------------------------------- -------------
   **Constante**                                  **Símbolo**                      **Valor numérico**         **Unidad**
-  Frecuencia hiperfina del cesio     $\Delta v_{\mbox{\scriptsize{C}}_s}$           9 192 631 770                Hz
+  Frecuencia hiperfina del cesio     $\Delta v_{\text{\scriptsize{C}}_s}$           9 192 631 770                Hz
   Velocidad de la luz en el vacío                    $c$                             299 792 458             m s$^{-1}$
   Constante de Plank                                 $h$                     6.626 070 15$\times 10^{34}$        J s
   Carga elemental                                    $e$                    1.602 176 634$\times 10^{-19}$        C
   Constante de Boltzman                              $k$                      1.380 649$\times 10^{-23}$     J K$^{-1}$
   Constante de Avogadro                             $N_A$                    6.022 140 76$\times 10^{23}$    mol$^{-1}$
-  Eficacia lumínica de una               $K_{\mbox{\scriptsize{cd}}}$                    683                 lm W$^{-1}$
+  Eficacia lumínica de una               $K_{\text{\scriptsize{cd}}}$                    683                 lm W$^{-1}$
   radiación visible definida                                                                                
   --------------------------------- -------------------------------------- -------------------------------- -------------
 
@@ -82,10 +100,10 @@ SI.](../figuras/SI-units){#fig:SI-text width="2.5in"}
   -------------- ----------------- ----------------- ----------------------------------------------------------------------------------
   **Cantidad**    **Símbolo de**      **Unidad**                                       **Símbolo de**
   **Física**      **la cantidad**   **Fundamental**                                    **la unidad**
-  velocidad          $\VEC{v}$           $---$                                              m/s
-  aceleración        $\VEC{a}$           $---$                                           m/s$^{2}$
-  Fuerza             $\VEC{F}$          newton          N $\left(1 \text{ N}=1\frac{\text{ kg}\cdot \mbox{m}}{\text{ s}^{2}}\right)$
-  Energía          E, K, U, etc.         joule        J $\left(1 \text{ J}=1\frac{\text{ kg}\cdot \mbox{m}^{2}}{\text{ s}^{2}}\right)$
+  velocidad          $\vec{v}$           $---$                                              m/s
+  aceleración        $\vec{a}$           $---$                                           m/s$^{2}$
+  Fuerza             $\vec{F}$          newton          N $\left(1 \text{ N}=1\frac{\text{ kg}\cdot \text{m}}{\text{ s}^{2}}\right)$
+  Energía          E, K, U, etc.         joule        J $\left(1 \text{ J}=1\frac{\text{ kg}\cdot \text{m}^{2}}{\text{ s}^{2}}\right)$
   Potencia               P               watt                            W $\left(1 \text{ W}=1\frac{J}{s}\right)$
   -------------- ----------------- ----------------- ----------------------------------------------------------------------------------
 :::
@@ -158,8 +176,8 @@ Ejemplo factores de conversión
 -   1 oz = 28.35 g
     $$\Rightarrow 1\cancel{\text{ kg}}\times\frac{1000\cancel{ \text{ g}}}{1 \cancel{\text{ kg}}}\times\frac{1 \text{ oz}}{28.35\cancel{\text{ g}}}=35.27 \text{ oz}$$
 
--   1 UA (Unidad Astronómica)= 1.51$\tentimes{11}$ m
-    $$\Rightarrow 5\cancel{\text{ UA}}\times\frac{1.51\tentimes{11}\text{ m}}{1\cancel{\text{ UA}}}=7.55\tentimes{11}\text{ m}$$
+-   1 UA (Unidad Astronómica)= 1.51$\times 10^{11}$ m
+    $$\Rightarrow 5\cancel{\text{ UA}}\times\frac{1.51\times 10^{11}\text{ m}}{1\cancel{\text{ UA}}}=7.55\times 10^{11}\text{ m}$$
 :::
 
 ## Escalares y vectores
@@ -173,7 +191,7 @@ escalares usualmente se expresan usando una unidad.
 ::: wwteorema
 Ejemplo cantidades escalares
 
--   La temperatura ambiente es de 25$^{\circ}\mbox{C}$.
+-   La temperatura ambiente es de 25$^{\circ}\text{C}$.
 
 -   La densidad del agua es de 1000 kg/m$^{3}.$
 
@@ -190,19 +208,19 @@ es proporcional a la magnitud del vector y su dirección apunta en la
 misma dirección que la cantidad vectorial. Para denotar simbólicamente
 que cierta cantidad física es un vector, se coloca una flecha sobre el
 símbolo que representa dicha cantidad. Por ejemplo, si denotamos una
-cantidad vectorial con la letra V, escribiremos $\VEC{V}$ para denotar
+cantidad vectorial con la letra V, escribiremos $\vec{V}$ para denotar
 que dicha cantidad es un vector.\
 
 ::: wwteorema
 Ejemplos cantidades vectoriales
 
 -   El viento está soplando con una velocidad máxima de 20
-    $\mbox{km}\cdot \mbox{h}^{-1}$ hacia el Noreste.
+    $\text{km}\cdot \text{h}^{-1}$ hacia el Noreste.
 
 -   Mi colegio está a 1 km y 30$^{\circ}$ al sur de mi casa.
 
 -   En la Tierra, los objetos en caída libre experimentan una
-    aceleración de $9.81 \, \mbox{m}\cdot\mbox{s}^{-2}$, hacia el centro
+    aceleración de $9.81 \, \text{m}\cdot\text{s}^{-2}$, hacia el centro
     de la Tierra.
 
 -   El campo magnético terrestre tiene una magnitud de $5\times10^{-5}$
@@ -229,17 +247,3 @@ ejes coordenados** (cartesiano); a partir del cual se puede describir
 cualquier vector a partir de sus *componentes cartesianas*. Ver Figura
 [1.3](#fig:comp){reference-type="ref" reference="fig:comp"}.
 
-<figure id="fig:comp">
-<table>
-<tbody>
-<tr>
-<td style="text-align: left;"><embed src="../figuras/desplazamiento.pdf"
-style="width:7cm" /></td>
-<td style="text-align: right;"><embed
-src="../figuras/componentes_vectoriales.pdf" style="width:7cm" /></td>
-</tr>
-</tbody>
-</table>
-<figcaption><em>Vector desplazamiento</em> (izquierda), <em>componentes
-cartesianas</em> (derecha).</figcaption>
-</figure>

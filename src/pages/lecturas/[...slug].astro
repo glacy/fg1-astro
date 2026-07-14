@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import ShellLayout from '../../layouts/ShellLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import 'katex/dist/katex.min.css';
+
+export async function getStaticPaths() {
+  const readings = await getCollection('readings');
+  return readings.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<ShellLayout title={entry.data.title} activeTab="weekly">
+  <slot name="sidebar" slot="sidebar">
+    <Sidebar activeTab="weekly" />
+  </slot>
+  <div class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 flex flex-col">
+    <main class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-4 flex-1 overflow-auto min-w-0">
+      <div class="max-w-3xl mx-auto prose prose-slate dark:prose-invert prose-img:rounded-xl">
+        <Content />
+      </div>
+    </main>
+  </div>
+</ShellLayout>
+
+<style is:global>
+  .katex { font-size: 1.1em; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; }
+</style>
