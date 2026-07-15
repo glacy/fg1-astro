@@ -1,13 +1,6 @@
 import { z, defineCollection } from 'astro:content';
-
-const readingsCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    week: z.number().optional(),
-  }),
-});
+import { docsSchema } from '@astrojs/starlight/schema';
 
 export const collections = {
-  readings: readingsCollection,
+  docs: defineCollection({ schema: docsSchema() }),
 };

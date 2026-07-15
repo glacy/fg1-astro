@@ -1017,3 +1017,92 @@ La migración de fg1 a fg1-astro ha sido exitosa para los paquetes schedule, pla
 4. ⬜ Notificaciones push con Firebase
 5. ⬜ Implementar componentes React Islands (planner interactivo, etc.)
 6. ⬜ Generar semanas restantes (6–16) a medida que estén disponibles
+
+---
+
+## Migración de contenido educativo de Overleaf (LaTeX) a Astro
+
+### Pipeline de conversión
+
+El contenido académico del curso, originalmente en LaTeX (Overleaf), se migra a Markdown dentro de Astro Content Collections. El flujo es:
+
+```
+.tex (Overleaf)
+   ↓  pandoc
+.md con frontmatter (src/content/readings/)
+   ↓  Astro Content Collections + remark
+HTML renderizado con KaTeX + estilo wwteorema
+```
+
+### Conversión con pandoc
+
+```bash
+pandoc semana1.tex -o week-1.md --wrap=none
+```
+
+Luego se limpian manualmente los artefactos de LaTeX que pandoc no convierte bien:
+- `\VEC{}` → `\vec{}`
+- `\tentimes` → `\times`
+- `\text{\scriptsize{}}` → texto plano o `\text{}`
+- `{.smallcaps}` → `<span style="font-variant: small-caps;">`
+- `{.underline}` → `<u>`
+- Referencias cruzadas (`{#etiqueta}`, `{reference-type="ref"}`) se eliminan
+- Figuras con `<embed>` o rutas relativas se adaptan a `<img>` con `alt`
+
+### Tablas: pipe tables
+
+Todas las tablas se convierten al formato pipe table de Markdown:
+
+```markdown
+| Header 1 | Header 2 |
+|----------|----------|
+| Celda 1  | Celda 2  |
+```
+
+No se usan grid tables, fenced divs como contenedores de tablas, ni directivas LaTeX (`tblr`, `table*`). Incluso tablas anchas o con contenido matemático usan pipe tables simples.
+
+### KaTeX para ecuaciones
+
+- Math inline: `$E = mc^2$`
+- Math display: `$$...$$` o `\[...\]`
+- Plugins: `remark-math` + `rehype-katex` + hoja de estilo `katex/dist/katex.min.css`
+- Configurado en `astro.config.mjs` como plugins de markdown globales.
+
+### Bloques destacados: wwteorema
+
+El ambiente `wwteorema` de LaTeX se implementa como `<div class="wwteorema">` directamente en el Markdown (Astro no soporta fenced divs `:::` nativamente):
+
+```markdown
+<div class="wwteorema">
+
+**Título del bloque**
+
+- Contenido con $fórmulas$
+- Listas, etc.
+
+</div>
+```
+
+El CSS está en `src/pages/lecturas/[...slug].astro` (`<style is:global>`) y replica el estilo original de LaTeX: fondo gris claro, borde superior azul, sombra suave, título en negrita azul. Soporta modo oscuro.
+
+### Convenciones documentadas
+
+`AGENTS.md` en la raíz del proyecto documenta las reglas para todo el contenido Markdown académico: pipe tables, KaTeX, figuras con `<figure>`/`<img>`, fenced divs reemplazados por HTML directo, y eliminación de referencias cruzadas.
+
+---
+
+## Nuevas rutas y páginas
+
+| Ruta | Archivo | Descripción |
+|------|---------|-------------|
+| `/lecturas/week-1/` | `src/pages/lecturas/[...slug].astro` | Página dinámica que renderiza cualquier entry de la colección `readings` de Content Collections |
+
+### Colecciones de contenido
+
+`src/content/config.ts` define el esquema de la colección `readings` con frontmatter tipado (`title`, `week`). Los archivos `.md` se almacenan en `src/content/readings/`.
+
+---
+
+## Rama de trabajo
+
+Las funcionalidades experimentales (Content Collections, migración de contenido) se desarrollan en la rama `feat/content-collections`, separada de `main` hasta que el pipeline esté maduro.

@@ -4,6 +4,7 @@ import icon from 'astro-icon';
 import AstroPWA from '@vite-pwa/astro';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import starlight from '@astrojs/starlight';
 
 export default defineConfig({
   markdown: {
@@ -11,6 +12,8 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex],
   },
   integrations: [
+    starlight({
+      title: 'Mi encantador sitio de documentos',}),
     tailwind(),
     icon(),
     AstroPWA({
