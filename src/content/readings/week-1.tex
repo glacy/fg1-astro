@@ -1,0 +1,252 @@
+\chapter{Unidades, cantidades f\'isicas y vectores}
+\label{cap:cap1}
+\vspace{-10ex}
+\raggedright
+
+
+\begin{comment}
+\resp{.75\textwidth}{Al finalizar esta sesi\'on ser\'as capaz de \\[.5cm]
+\begin{itemize}
+\item reconocer las cantidades f\'isicas fundamentales del Sistema Internacional de Unidades,
+\item expresar cantidades f\'isicas usando distintos sistemas de unidades,
+\item diferenciar cantidades f\'isicas escalares y vectoriales,
+\item calcular las componentes cartesianas de un vector.
+\end{itemize}}{c4}{noticias}
+\end{comment}
+
+%\linea{3.4}
+La \textsc{F\'isica} es una ciencia natural que estudia las propiedades y el comportamiento de la energ\'ia y la materia, el tiempo, el espacio y las interacciones entre estos cuatro conceptos. Para lograrlo muchas veces se utilizan \textit{modelos f\'isicos} que abstraen y simplifican con una construcci\'on te\'orica (muchas veces modelos matem\'aticos) un \textit{sistema f\'isico}, generalmente complejo. \\[.5cm]
+
+Consideremos por ejemplo el lanzamiento de una bola. En general, para analizar su movimiento es necesario conocer sus caracter\'isticas f\'isicas, tales como su masa, su forma y tama\~no; as\'i como los agentes externos que act\'uan sobre ella: direcci\'on del viento, fuerza de lanzamiento, resistencia del aire, etc. Un modelo f\'isico inicial de esta situaci\'on omitir\'ia muchas de estas caracter\'isticas. Ver Figura \ref{fig:modelo}. \\[.5cm]
+
+\begin{figure}[!ht]
+\hspace{-7ex}
+\begin{tabular}{c|c}
+\includegraphics[width=8cm]{../figuras/baseball1.pdf}&
+\includegraphics[width=6.55cm]{../figuras/baseball2.pdf}
+%sistema f\'isico & modelo f\'isico
+\end{tabular}
+\caption{\textit{Sistema f\'isico} (izquierda) vs \textit{modelo f\'isico} (derecha) del lanzamiento de una bola.}
+\label{fig:modelo}
+\end{figure}
+
+Todas estas cantidades (masa, tama\~no, velocidad, fuerza, etc.) necesarias para describir un sistema o modelo físico, se llaman \textit{cantidades f\'isicas}. Esta sesi\'on iniciamos el estudio de las cantidades físicas y sus unidades, sin las cuales la Física no sería posible.
+
+\section{Cantidades f\'isicas y unidades}
+
+Una \textbf{cantidad f\'isica} es una cualidad de un sistema f\'isico que es susceptible de cuantificaci\'on, es decir, que puede medirse. Al realizar una medici\'on, se compara cierta cantidad f\'isica con un \textit{est\'andar de referencia} o \textit{patr\'on}. Dicho est\'andar define una \textbf{unidad} de la cantidad. Una medici\'on exacta y confiable requiere un sistema coherente de unidades. El sistema de unidades m\'as utilizado por cient\'ificos e ingenieros es el \textit{Sistema Internacional de Unidades} (SI). La Tabla \ref{tab:SI-fund} presenta una lista de las \textbf{cantidades f\'isicas fundamentales} del S.I.  Otras cantidades f\'isicas se obtienen por medio de relaciones entre las cantidades f\'isicas fundamentales. Algunos ejemplos de \textbf{cantidades f\'isicas derivadas} se muestran en la Tabla \ref{tab:SI-der}.\\[.5cm]
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=2.5in]{../figuras/SI-units}
+\caption{Unidades y constantes de definici\'on en el SI.}
+\label{fig:SI-text}
+\end{figure}
+
+\begin{table}[h!]
+\caption{Unidades fundamentales del SI.}
+\label{tab:SI-fund}
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Cantidad}&\textbf{S\'imbolo de}&\textbf{Unidad}&\textbf{S\'imbolo de}\\[.5cm]
+\textbf{f\'isica}&\textbf{la cantidad}&\textbf{fundamental}&\textbf{la unidad}\\[.5cm]
+\otoprule 
+longitud & $l,x,r$, etc.& metro & m\\[.5cm]
+masa & $m$& kilogramo & kg\\[.5cm]
+tiempo & $t$& segundo & s\\[.5cm]
+temperatura termodin\'amica & $T$& kelvin & K\\[.5cm]
+intensidad de corriente el\'ectrica & I, $i$& amperio & A\\[.5cm]
+cantidad de sustancia & $n$& mol & mol\\[.5cm]
+Intensidad lum\'inica & $I_\nu$&candela&cd\\[.5cm]
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\begin{table}[h!]
+\caption{Constantes de definici\'on del SI.}
+\label{tab:SI-const}
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Constante}&\textbf{S\'imbolo}&\textbf{Valor num\'erico}&\textbf{Unidad}\\[.5cm]
+\otoprule 
+Frecuencia hiperfina del cesio & $\Delta v_{\text{C}}_s$& 9 192 631 770& Hz\\[.5cm]
+Velocidad de la luz en el vac\'io & $c$& 299 792 458& m s$^{-1}$\\[.5cm]
+Constante de Plank & $h$& 6.626 070 15$\times 10^{34}$& J s\\[.5cm]
+Carga elemental& $e$& 1.602 176 634$\times 10^{-19}$& C\\[.5cm]
+Constante de Boltzman& $k$& 1.380 649$\times 10^{-23}$& J K$^{-1}$\\[.5cm]
+Constante de Avogadro& $N_A$& 6.022 140 76$\times 10^{23}$& mol$^{-1}$\\[.5cm]
+Eficacia lum\'inica de una  & $K_{\text{cd}}$&683&lm W$^{-1}$\\[.5cm]
+\hspace{3ex}radiaci\'on visible definida & & & \\[.5cm]
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+\begin{table*}[h!]
+\caption{Algunas unidades derivadas del SI.}
+\label{tab:SI-der}
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Cantidad}&\textbf{S\'imbolo de}&\textbf{Unidad}&\textbf{S\'imbolo de}\\[.5cm]
+\textbf{F\'isica}&\textbf{la cantidad}&\textbf{Fundamental}&\textbf{la unidad}\\[.5cm]
+\otoprule 
+velocidad & $\VEC{v}$& $---$ & m/s\\[.5cm]
+aceleraci\'on & $\VEC{a}$& $---$ & m/s$^{2}$\\[.5cm]
+Fuerza & $\VEC{F}$& newton & N $\left(1 \text{ N}=1\frac{\text{ kg}\cdot \mbox{m}}{\text{ s}^{2}}\right)$\\[.5cm]
+Energ\'ia & E, K, U, etc. & joule & J $\left(1 \text{ J}=1\frac{\text{ kg}\cdot \mbox{m}^{2}}{\text{ s}^{2}}\right)$\\[.5cm]
+Potencia & P & watt & W $\left(1 \text{ W}=1\frac{J}{s}\right)$\\[.5cm]
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+\begin{comment}
+\textbf{Incertidumbre o error:} M\'axima diferencia probable entre un valor medido y el valor real. La incertidumbre por lo tanto depende tanto del instrumento utilizado, as\'i como la t\'ecnica empleada. \\[.5cm]
+
+\noindent\textbf{Exactitud:} Capacidad de un instrumento de acercarse al valor de la magnitud real. \\[.5cm]
+
+\noindent\textbf{Precisi\'on:} capacidad de un instrumento de dar el mismo resultado en mediciones diferentes realizadas en las mismas condiciones.\\[.5cm]
+
+\noindent\textbf{Cifras Significativas:} Las cifras significativas son los d\'igitos de un n\'umero que consideramos no nulos. Las cifras significativas indican el nivel de precisi\'on de una medida. La \'ultima cifra significativa indica el primer d\'igito incierto.
+\begin{itemize}
+\item Son significativos todos los d\'igitos distintos de cero. Ejemplo: 1234 tienes 4 c.s.
+\item Los ceros situados entre dos cifras significativas son significativos. Ejemplo: 1001 tiene 4 c.s.
+\item Los ceros a la izquierda de la primera cifra significativa no lo son. Ejemplo: 0.001 tiene 1 c.s.
+\item Para n\'umeros mayores que 1, los ceros a la derecha de la coma son significativos. Ejemplo: 3.00 tiene 3 c.s.
+\item Para n\'umeros sin coma decimal, los ceros posteriores a la \'ultima cifra distinta de cero pueden o no considerarse significativos. Ejemplo: $70$ tiene 2 c.s, mientras que $7\times10^{1}$ tiene 1 c.s, y $7.0\times10^{1}$ tiene 2 c.s.
+\end{itemize}
+\end{comment}
+
+Debido a que las cantidades f\'isicas pueden tener rangos de variaci\'on de varios ordenes de magnitud respecto a la unidad fundamental, es muy com\'un el uso de \textbf{prefijos} y de \textbf{notaci\'on cient\'ifica} para expresar m\'ultiplos o fracciones de las unidades fundamentales. La Tabla \ref{tab:pref} lista los principales prefijos usados en el SI.\\[.5cm]
+
+\begin{table}[h!]
+\caption{Prefijos usados en el SI.}
+\label{tab:pref}
+\begin{center}
+\begin{tblr}{
+    colspec = {cccccc},
+    column{1} = {c3},
+    column{2} = {c3},
+    column{3} = {c3},
+    column{4} = {c1},
+    column{5} = {c1},
+    column{6} = {c1},
+  }
+%\toprule
+ \hline
+\textbf{Factor}&\textbf{Nombre}&\textbf{S\'imbolo}&\textbf{Factor}&\textbf{Nombre}&\textbf{S\'imbolo}\\[.5cm]
+%\otoprule 
+\hline
+$10^{-1}$&deci & d& $10^{1}$&deca &  da\\[.5cm]
+$10^{-2}$&centi &c & $10^{2}$&hecto &h  \\[.5cm]
+$10^{-3}$&mili & m& $10^{3}$&kilo &  k\\[.5cm]
+$10^{-6}$& micro&$\mu$ & $10^{6}$& mega& M \\[.5cm]
+$10^{-9}$& nano& n& $10^{9}$&giga &  G\\[.5cm]
+$10^{-12}$&pico & p& $10^{12}$&tera &  T\\[.5cm]
+$10^{-15}$&femto &f & $10^{15}$&peta & P \\[.5cm]
+$10^{-18}$& atto& a& $10^{18}$&exa &  E\\[.5cm]
+$10^{-21}$& zepto& z& $10^{21}$&zetta &  Z\\[.5cm]
+$10^{-24}$&yocto & y& $10^{24}$&yotta & Y \\[.5cm]
+$10^{-27}$&ronto & r& $10^{27}$&ronna & R \\[.5cm]
+$10^{-30}$&quecto& q& $10^{30}$&quetta& Q \\[.5cm]
+ \hline
+%\bottomrule
+\end{tblr}
+\end{center}
+\end{table}
+ 
+%Algunos ejemplos del uso de prefijos / notaci\'on cient\'ifica: \\[.5cm]
+\begin{wwteorema}{Ejemplo prefijos y notación científica}
+\begin{itemize}
+\item 1000 m = 1 km. %$$3\text{ pulgada}\star\frac{2.54\text{ cm}}{1\text{ pulgada}} $$
+\item 1000000 bits = 1 Mbit (\'o Mb).
+\item 1 MW = $10^{6}$ W.
+\item 1 $\mu$s = $10^{-6}$ s = 0.000001 s. 
+%\item 
+\end{itemize}
+\end{wwteorema}
+Por supuesto, el SI no es el \'unico sistema de unidades disponible. Para transformar cierta cantidad f\'isica de un sistema de unidades a otro, es necesario conocer el correspondiente \textbf{factor de conversi\'on} entre los sistemas de unidades para la cantidad f\'isica en cuesti\'on.  Un factor de conversi\'on es entonces, un t\'ermino multiplicativo que permite convertir las unidades de una cantidad f\'isica de un sistema de unidades a otro, es decir:
+
+\begin{center}
+\textcolor{c4}{unidades sist. 1}$\equiv$\textcolor{c2}{(factor de conversi\'on)} $\times$  \textcolor{c5}{unidades sist. 2}
+\end{center}
+
+o de manera equivalente
+
+\resp{.65\textwidth}{
+\[\textcolor{c2}{\mbox{(factor de conversi\'on)}}=\frac{\textcolor{c4}{\mbox{unidades sist. 1}}}{\textcolor{c5}{\mbox{unidades sist. 2}}} \]
+}{white}{noticias}
+
+%Algunos ejemplos de factores de conversi\'on y su uso se muestran a continuaci\'on:
+\newpage
+\begin{wwteorema}{Ejemplo factores de conversi\'on}
+\begin{itemize}
+\item 1 in = 2.54 cm $$\Rightarrow 3\cancel{\text{ in}}\times\frac{2.54\text{ cm}}{1\cancel{\text{ in}}}=7.62\text{ cm} $$
+\item 1 gal = 3.785 L 
+$$\Rightarrow 2\cancel{\text{ gal}}\times\frac{3.785\text{ L}}{1\cancel{\text{ gal}}}=7.570\text{ L} $$
+\item 1 oz = 28.35 g
+$$\Rightarrow 1\cancel{\text{ kg}}\times\frac{1000\cancel{ \text{ g}}}{1 \cancel{\text{ kg}}}\times\frac{1 \text{ oz}}{28.35\cancel{\text{ g}}}=35.27 \text{ oz} $$
+\item 1 UA (Unidad Astron\'omica)= 1.51$\tentimes{11}$ m
+$$\Rightarrow 5\cancel{\text{ UA}}\times\frac{1.51\tentimes{11}\text{ m}}{1\cancel{\text{ UA}}}=7.55\tentimes{11}\text{ m} $$
+\end{itemize}
+\end{wwteorema}
+
+\newpage
+\section{Escalares y vectores}
+
+Las cantidades f\'isicas pueden clasificarse en dos grupos: \textit{escalares} y \textit{vectoriales}.\\[.5cm]
+
+\noindent\textbf{Cantidad f\'isica escalar:} cualquier cantidad f\'isica que puede ser definida usando \'unicamente una \underline{magnitud}. Las magnitudes escalares usualmente se expresan usando una unidad. 
+
+\begin{wwteorema}{Ejemplo cantidades escalares}
+\begin{itemize}
+\item La temperatura ambiente es de 25$^{\circ}\mbox{C}$.
+\item La densidad del agua es de 1000 kg/m$^{3}.$
+\item La distancia entre San Jos\'e y Cartago es de 13 km.
+\item El \'indice de refracci\'on del aire es igual a 1.
+\end{itemize}
+\end{wwteorema}
+
+\noindent\textbf{Cantidad f\'isica vectorial:} cualquier cantidad f\'isica caracterizada no s\'olo por una \underline{magnitud}, sino tambi\'en por una \underline{direcci\'on}. Debido a esta propiedad, los vectores suelen \textit{representarse} por medio de flechas, en donde la longitud de la flecha es proporcional a la magnitud del vector y su direcci\'on apunta en la misma direcci\'on que la cantidad vectorial. Para denotar simb\'olicamente que cierta cantidad f\'isica es un vector, se coloca una flecha sobre el s\'imbolo que representa dicha cantidad. Por ejemplo, si denotamos una cantidad vectorial con la letra V, escribiremos $\VEC{V}$ para denotar que dicha cantidad es un vector. \\[.5cm]
+\begin{comment}
+ y \ref{fig:componentes_vectores}).\\[.5cm]
+ \end{comment}
+
+\begin{wwteorema}{Ejemplos cantidades vectoriales}
+
+\begin{itemize}
+\item El viento est\'a soplando con una velocidad m\'axima de 20 $\mbox{km}\cdot \mbox{h}^{-1}$ hacia el Noreste.
+\item Mi colegio est\'a a 1 km y 30$^{\circ}$ al sur de mi casa.
+\item En la Tierra, los objetos en ca\'ida libre experimentan una aceleraci\'on de $9.81 \, \mbox{m}\cdot\mbox{s}^{-2}$, hacia el centro de la Tierra.
+\item El campo magn\'etico terrestre tiene una magnitud de $5\times10^{-5}$ T y est\'a orientado 11$^{\circ}$ respecto al eje de rotaci\'on de la Tierra.
+\end{itemize}
+\end{wwteorema}
+
+Consideremos, por ejemplo, el \textit{desplazamiento} de un objeto cuando se mueve de un punto A a un punto B. Esta cantidad es un vector, ya que no solo es necesario conocer la distancia entre ambos puntos, si no la ubicaci\'on de uno respecto al otro. Ver por ejemplo la sitaci\'on descrita en la Figura \ref{fig:comp}. \\[.5cm]
+
+Debido al caracter direccional de los vectores, es necesario contar con un sistema o marco de referencia desde el cual establecer su magnitud y su direcci\'on. \\[.5cm]
+
+Un \textbf{sistema de coordenadas o de referencia} es un conjunto de convenciones usadas por un observador para poder medir la posici\'on y otras magnitudes f\'isicas de un sistema f\'isico. Por ejemplo, los puntos cardinales (norte, oeste, sur y este) permiten especificar direcciones de una manera consistente.\\[.5cm]
+
+El sistema de referencia m\'as utilizado es el \textbf{sistema rectangular de ejes coordenados} (cartesiano); a partir del cual se puede describir cualquier vector a partir de sus \textit{componentes cartesianas}. Ver Figura \ref{fig:comp}.
+
+\addtolength{\tabcolsep}{10pt} 
+\begin{figure}[h!]
+\hspace{-5ex}
+%\centering
+\begin{tabular}{l|r}
+\includegraphics[width=7cm]{../figuras/desplazamiento.pdf}&\includegraphics[width=7cm]{../figuras/componentes_vectoriales.pdf}
+\end{tabular}
+\caption{\textit{Vector desplazamiento} (izquierda), \textit{componentes cartesianas} (derecha).}
+\label{fig:comp}
+\end{figure}
+\addtolength{\tabcolsep}{-10pt}
+

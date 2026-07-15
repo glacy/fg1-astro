@@ -35,14 +35,10 @@ presenta una lista de las **cantidades físicas fundamentales** del S.I.
 Otras cantidades físicas se obtienen por medio de relaciones entre las
 cantidades físicas fundamentales. Algunos ejemplos de **cantidades
 físicas derivadas** se muestran en la Tabla
-[\[tab:SI-der\]](#tab:SI-der){reference-type="ref"
-reference="tab:SI-der"}.\
 
-![Unidades y constantes de definición en el
-SI.](../figuras/SI-units){#fig:SI-text width="2.5in"}
 
-:::: center
-::: {#tab:SI-fund}
+
+
   ----------------------------------- ----------------- ----------------- ----------------
   **Cantidad**                         **Símbolo de**      **Unidad**      **Símbolo de**
   **física**                           **la cantidad**   **fundamental**   **la unidad**

@@ -2,8 +2,14 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import AstroPWA from '@vite-pwa/astro';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  },
   integrations: [
     tailwind(),
     icon(),
