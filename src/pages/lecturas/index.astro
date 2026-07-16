@@ -17,33 +17,27 @@ const lecturas = await getCollection("docs");
       class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-4 flex-1 overflow-auto min-w-0"
     >
       <div class="max-w-4xl mx-auto">
-        <a
-          href="/"
-          class="inline-flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors mb-6"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
-          Volver al Dashboard
-        </a>
-
-        <h1 class="text-2xl font-bold mb-2">Lecturas del curso</h1>
+        <h1 class="text-2xl font-bold mb-2">Documentos del curso</h1>
         <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">
           Material de lectura, resúmenes y recursos para Física General I.
         </p>
 
         <div class="grid gap-3">
-          {lecturas
-            .filter((e) => e.slug !== "index")
-            .sort((a, b) => a.slug.localeCompare(b.slug))
-            .map((entry) => (
-              <a
-                href={`/${entry.slug}/`}
-                class="block p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-300 dark:hover:border-sky-700 transition-all hover:shadow-sm"
-              >
-                <span class="font-medium text-slate-800 dark:text-slate-200">
-                  {entry.data.title}
-                </span>
-              </a>
-            ))}
+          {
+            lecturas
+              .filter((e) => e.slug !== "index")
+              .sort((a, b) => a.slug.localeCompare(b.slug))
+              .map((entry) => (
+                <a
+                  href={`/${entry.slug}/`}
+                  class="block p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-300 dark:hover:border-sky-700 transition-all hover:shadow-sm"
+                >
+                  <span class="font-medium text-slate-800 dark:text-slate-200">
+                    {entry.data.title}
+                  </span>
+                </a>
+              ))
+          }
         </div>
       </div>
     </main>
