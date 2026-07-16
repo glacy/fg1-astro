@@ -32,7 +32,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 1 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_01.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 1.", url: "readings/week-1", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Semana 1.", url: "../lecturas/week-1", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 1", url: "/practicas/practica_semana1.pdf", icon: "lucide:calculator" }
@@ -53,7 +53,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 1 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_01.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 2.", url: "readings/week-2", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Semana 2.", url: "lecturas/week-2", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 2", url: "/practicas/practica_semana2.pdf", icon: "lucide:calculator" }
@@ -79,7 +79,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 2 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_02.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen de Semana 3.", url: "readings/week-3", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen de Semana 3.", url: "lecturas/week-3", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 3", url: "/practicas/practica_semana3.pdf", icon: "lucide:calculator" }
@@ -102,7 +102,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 2 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_02.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen de Semana 4.", url: "readings/week-4", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen de Semana 4.", url: "lecturas/week-4", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 4", url: "/practicas/practica_semana4.pdf", icon: "lucide:calculator" }
@@ -126,7 +126,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 3 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_03.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen de Semana 5.", url: "readings/week-5", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen de Semana 5.", url: "lecturas/week-5", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 5", url: "/practicas/practica_semana5.pdf", icon: "lucide:calculator" }
@@ -154,7 +154,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 4 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_04.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 6.", url: "readings/week-6", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Semana 6.", url: "lecturas/week-6", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 6", url: "/practicas/practica_semana6.pdf", icon: "lucide:calculator" }
@@ -181,7 +181,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 5 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_05.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 7.", url: "readings/week-7", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Semana 7.", url: "lecturas/week-7", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 7", url: "/practicas/practica_semana7.pdf", icon: "lucide:calculator" }
@@ -209,7 +209,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 3, Capítulo 5 y Capítulo 13 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_03.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 8.", url: "readings/week-8", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Semana 8.", url: "lecturas/week-8", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 8", url: "/practicas/practica_semana8.pdf", icon: "lucide:calculator" }
@@ -236,7 +236,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 6 y Capítulo 7 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_06.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 9.", url: "readings/week-9", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Semana 9.", url: "lecturas/week-9", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 9", url: "/practicas/practica_semana9.pdf", icon: "lucide:calculator" }
@@ -260,7 +260,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 6 y Capítulo 7 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_06.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 10.", url: "readings/week-10", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Semana 10.", url: "lecturas/week-10", icon: "lucide:file-text" }
     ],
     evaluaciones: [],
     recursos: [
@@ -285,7 +285,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 8 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/classes/FI/FI1101/V-1-2024.CA.FI1101.1/file-storage/view/libro%2FCapitulo_08.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen de sesión 11.", url: "readings/week-11", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen de sesión 11.", url: "lecturas/week-11", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 11", url: "/practicas/practica_semana11.pdf", icon: "lucide:calculator" }
@@ -309,7 +309,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 9 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_09.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen SEMANA 12.", url: "readings/week-12", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen SEMANA 12.", url: "lecturas/week-12", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 12", url: "/practicas/practica_semana12.pdf", icon: "lucide:calculator" }
@@ -333,7 +333,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 9 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_09.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen SEMANA 13.", url: "readings/week-13", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen SEMANA 13.", url: "lecturas/week-13", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 13", url: "/practicas/practica_semana13.pdf", icon: "lucide:calculator" }
@@ -356,7 +356,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 10 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_10.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen SEMANA 14.", url: "readings/week-14", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen SEMANA 14.", url: "lecturas/week-14", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 14", url: "/practicas/practica_semana14.pdf", icon: "lucide:calculator" }
@@ -380,7 +380,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 11 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_11.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen SEMANA 15.", url: "readings/week-15", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen SEMANA 15.", url: "lecturas/week-15", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 15", url: "/practicas/practica_semana15.pdf", icon: "lucide:calculator" }
@@ -404,7 +404,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 10 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/classes/FI/FI1101/V-1-2024.CA.FI1101.1/file-storage/view/libro%2FCapitulo_10.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen de Semana 16.", url: "readings/week-16", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen de Semana 16.", url: "lecturas/week-16", icon: "lucide:file-text" }
     ],
     evaluaciones: [],
     recursos: []
