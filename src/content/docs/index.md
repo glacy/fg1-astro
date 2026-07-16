@@ -1,6 +1,4 @@
 ---
-title: Documentación
-description: Aprende más sobre mi proyecto en este sitio de documentación construido con Starlight.
+title: Lecturas del curso
+description: Material de lectura, resúmenes y recursos para Física General I.
 ---
-
-¡Bienvenido a mi proyecto!
