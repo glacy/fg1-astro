@@ -1,10 +1,10 @@
 ---
-title: "Unidades, cantidades físicas y vectores"
+title: "Semana 1"
 week: 1
 ---
 import { FileTree } from '@astrojs/starlight/components';
-
-# Unidades, cantidades físicas y vectores
+import { Image } from "astro:assets";
+import myImage from "./../../../assets/site_logo.svg"; 
 
 <FileTree>
 - src/
@@ -18,6 +18,13 @@ import { FileTree } from '@astrojs/starlight/components';
 `assets` es un nombre de carpeta popular para colocar imágenes, pero eres libre de nombrar la carpeta como quieras.
 ::: 
 
+<Image
+  src={myImage}
+  alt="asd"
+  width={100}
+  heigth={100}
+  loading="lazy"
+  />
 
 La <span style="font-variant: small-caps;">Física</span> es una ciencia natural que estudia las propiedades y el comportamiento de la energía y la materia, el tiempo, el espacio y las interacciones entre estos cuatro conceptos. Para lograrlo muchas veces se utilizan *modelos físicos* que abstraen y simplifican con una construcción teórica (muchas veces modelos matemáticos) un *sistema físico*, generalmente complejo.  
 

@@ -15,13 +15,13 @@ export const prerender = true;
 export function getStaticPaths() {
   const paths = [];
   for (let i = 1; i <= COURSE_CONFIG.maxCurrentWeek; i++) {
-    paths.push({ params: { week: i.toString() } });
+    paths.push({ params: { semana: i.toString() } });
   }
   return paths;
 }
 
-const { week } = Astro.params;
-const currentWeek = parseInt(week);
+const { semana } = Astro.params;
+const currentWeek = parseInt(semana);
 const maxCurrentWeek = COURSE_CONFIG.maxCurrentWeek;
 const totalWeeks = COURSE_CONFIG.totalWeeks;
 
