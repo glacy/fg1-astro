@@ -43,7 +43,8 @@ src/pages/
 ├── schedule/
 │   └── index.astro          # Horarios de atención (usa ScheduleTable + ScheduleFilters)
 ├── lecturas/
-│   └── [...slug].astro      # Página dinámica para Content Collection docs
+│   └── index.astro          # Índice de lecturas con lista navegable (ShellLayout)
+├── offline.astro            # Página offline personalizada (PWA navigateFallback)
 ├── auth/                    # (vacío — sin implementar)
 └── robots.txt.ts           # Endpoint API de robots.txt
 ```
@@ -242,3 +243,8 @@ public/ (assets estáticos) ──┘                       ↓
 | **Fuente autohosteada** | `@fontsource/inter` reemplaza Google Fonts externa; elimina petición bloqueante y mejora privacidad |
 | **Dashboard en raíz** | `index.astro` es un dashboard con navegación rápida, tarjeta de la semana actual y stats; ya no es un redirect |
 | **Sin código muerto** | `MainLayout.astro` eliminado (0 imports); `src/components/islands/` eliminado (vacío); comentarios de código eliminados |
+| **Página offline** | `src/pages/offline.astro` con estilos inline autónomos, dark/light mode y botones de reintentar/volver al inicio |
+| **PWA navigateFallback** | `navigateFallback: '/offline'` en workbox de `astro.config.mjs`; SW sirve la página offline en navegaciones fallidas |
+| **Lecturas con Starlight** | `[...slug].astro` eliminado; Starlight maneja el ruteo de docs individuales (`/lecturas/semana-1/`). El índice (`/lecturas/`) usa `index.astro` con ShellLayout |
+| **Sidebar "Lecturas"** | Nuevo item de navegación `lecturas` con icono `lucide:book-open`, href a `/lecturas/` |
+| **index.md simplificado** | `src/content/docs/index.md` solo conserva frontmatter (title/description); Starlight no renderiza el body markdown |

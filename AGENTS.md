@@ -37,6 +37,9 @@
 
 - **La raíz (`/`)** es un dashboard, no un redirect. Muestra navegación rápida (`<a>` cards), tarjeta de la semana actual, y stats de evaluaciones.
 - **La semana actual** se determina en build-time desde `COURSE_CONFIG.maxCurrentWeek`. No hay detección client-side de la fecha real.
+- **Página offline personalizada** (`src/pages/offline.astro`) con estilos autónomos (sin dependencias de componentes), dark/light mode, y botones de reintentar/volver al inicio. Configurada via `navigateFallback: '/offline'` en PWA Workbox.
+- **Página de lecturas** (`/lecturas/`) usa `src/pages/lecturas/index.astro` con ShellLayout + lista de enlaces desde `getCollection('docs')`. Las páginas individuales (`/lecturas/semana-1/` etc.) son manejadas por Starlight nativamente, no por `[...slug].astro`.
+- **`[...slug].astro` para lecturas fue eliminado** — Starlight maneja el ruteo y estilos de las páginas individuales de docs.
 
 ## Limpieza
 

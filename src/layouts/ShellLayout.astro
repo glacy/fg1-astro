@@ -1,24 +1,28 @@
 ---
-import '@fontsource/inter/300.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
-import '../styles/base.css';
-import Footer from '../components/Footer.astro';
-import { Icon } from 'astro-icon/components';
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "../styles/base.css";
+import Footer from "../components/Footer.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
 	title?: string;
 	description?: string;
-	activeTab?: 'weekly' | 'planner' | 'schedule';
+	activeTab?: "weekly" | "planner" | "schedule" | "lecturas";
 }
 
-const { title = 'Dashboard', description = 'Plataforma educativa para Física General I', activeTab = 'weekly' } = Astro.props;
+const {
+	title = "Dashboard",
+	description = "Plataforma educativa para Física General I",
+	activeTab = "/",
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
@@ -56,54 +60,71 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			}
 		</style>
 		<script is:inline>
-			(function() {
-				var key = 'theme';
+			(function () {
+				var key = "theme";
 				var stored = localStorage.getItem(key);
-				var theme = stored === 'light' || stored === 'dark' ? stored
-					: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-				document.documentElement.classList.remove('light', 'dark');
+				var theme =
+					stored === "light" || stored === "dark"
+						? stored
+						: window.matchMedia("(prefers-color-scheme: dark)")
+									.matches
+							? "dark"
+							: "light";
+				document.documentElement.classList.remove("light", "dark");
 				document.documentElement.classList.add(theme);
 			})();
 		</script>
 		<script>
-			if ('serviceWorker' in navigator && !import.meta.env.DEV) {
-				navigator.serviceWorker.register('/sw.js');
+			if ("serviceWorker" in navigator && !import.meta.env.DEV) {
+				navigator.serviceWorker.register("/sw.js");
 			}
 		</script>
 	</head>
-	<body class="min-h-screen bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-200 font-sans antialiased">
+	<body
+		class="min-h-screen bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-200 font-sans antialiased"
+	>
 		<div class="flex h-[100dvh] overflow-hidden">
 			<div id="sidebar-wrapper" data-mobile-open="false">
 				<slot name="sidebar" />
 				<script is:inline>
-				(function() {
-					var collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
-					if (!collapsed) return;
-					var s = document.getElementById('sidebar');
-					if (s) {
-						s.style.transition = 'none';
-						s.setAttribute('data-collapsed', 'true');
-					}
-					document.body.setAttribute('data-sidebar-collapsed', 'true');
-				})();
+					(function () {
+						var collapsed =
+							localStorage.getItem("sidebar-collapsed") ===
+							"true";
+						if (!collapsed) return;
+						var s = document.getElementById("sidebar");
+						if (s) {
+							s.style.transition = "none";
+							s.setAttribute("data-collapsed", "true");
+						}
+						document.body.setAttribute(
+							"data-sidebar-collapsed",
+							"true",
+						);
+					})();
 				</script>
 			</div>
 
 			<div
 				id="mobile-backdrop"
 				class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden"
-			></div>
+			>
+			</div>
 
-
-
-			<main class="flex flex-col flex-1 relative bg-slate-100 dark:bg-slate-50/5 min-w-0 h-full">
+			<main
+				class="flex flex-col flex-1 relative bg-slate-100 dark:bg-slate-50/5 min-w-0 h-full"
+			>
 				<button
 					id="sidebar-toggle"
 					class="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-50 w-6 h-10 -translate-x-1/2 items-center justify-center rounded-full bg-white dark:bg-[#161d2a] border border-gray-200 dark:border-white/5 shadow-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-all duration-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
 					aria-label="Colapsar barra lateral"
 					data-collapsed="false"
 				>
-					<Icon id="sidebar-toggle-icon" name="lucide:chevron-left" size={14} />
+					<Icon
+						id="sidebar-toggle-icon"
+						name="lucide:chevron-left"
+						size={14}
+					/>
 				</button>
 
 				<button
@@ -112,11 +133,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 					aria-label="Abrir menú"
 				>
 					<Icon id="menu-icon" name="lucide:menu" size={20} />
-					<Icon id="menu-close-icon" name="lucide:x" size={20} class="hidden" />
+					<Icon
+						id="menu-close-icon"
+						name="lucide:x"
+						size={20}
+						class="hidden"
+					/>
 				</button>
 
-				<div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-indigo-500/5 pointer-events-none" />
-				<div class="flex-1 overflow-auto scrollbar-hide relative z-0 flex flex-col">
+				<div
+					class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-indigo-500/5 pointer-events-none"
+				>
+				</div>
+				<div
+					class="flex-1 overflow-auto scrollbar-hide relative z-0 flex flex-col"
+				>
 					<slot />
 					<Footer />
 				</div>
@@ -126,74 +157,87 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </html>
 
 <script>
-	import { setupTheme } from '../lib/shared';
+	import { setupTheme } from "../lib/shared";
 	setupTheme();
 
-	const sidebar = document.getElementById('sidebar');
-	const toggleBtn = document.getElementById('sidebar-toggle');
-	const toggleIcon = document.getElementById('sidebar-toggle-icon');
-	const sidebarWrapper = document.getElementById('sidebar-wrapper');
-	const mobileBackdrop = document.getElementById('mobile-backdrop');
-	const mobileBtn = document.getElementById('mobile-menu-btn');
-	const menuIcon = document.getElementById('menu-icon');
-	const menuCloseIcon = document.getElementById('menu-close-icon');
+	const sidebar = document.getElementById("sidebar");
+	const toggleBtn = document.getElementById("sidebar-toggle");
+	const toggleIcon = document.getElementById("sidebar-toggle-icon");
+	const sidebarWrapper = document.getElementById("sidebar-wrapper");
+	const mobileBackdrop = document.getElementById("mobile-backdrop");
+	const mobileBtn = document.getElementById("mobile-menu-btn");
+	const menuIcon = document.getElementById("menu-icon");
+	const menuCloseIcon = document.getElementById("menu-close-icon");
 
 	// Desktop sidebar collapse
 	if (sidebar && toggleBtn && toggleIcon) {
-		const STORAGE_KEY = 'sidebar-collapsed';
-		const isCollapsed = localStorage.getItem(STORAGE_KEY) === 'true';
+		const STORAGE_KEY = "sidebar-collapsed";
+		const isCollapsed = localStorage.getItem(STORAGE_KEY) === "true";
 		let collapsed = isCollapsed;
 
-		sidebar.style.transition = 'none';
+		sidebar.style.transition = "none";
 		applyState();
-		requestAnimationFrame(() => requestAnimationFrame(() => {
-			sidebar.style.transition = '';
-		}));
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => {
+				sidebar.style.transition = "";
+			}),
+		);
 
 		function applyState() {
-			sidebar.classList.toggle('w-16', collapsed);
-			sidebar.classList.toggle('w-64', !collapsed);
-			sidebar.setAttribute('data-collapsed', String(collapsed));
-			toggleBtn.setAttribute('data-collapsed', String(collapsed));
-			toggleBtn.setAttribute('aria-label', collapsed ? 'Expandir barra lateral' : 'Colapsar barra lateral');
-			document.body.toggleAttribute('data-sidebar-collapsed', collapsed);
+			sidebar.classList.toggle("w-16", collapsed);
+			sidebar.classList.toggle("w-64", !collapsed);
+			sidebar.setAttribute("data-collapsed", String(collapsed));
+			toggleBtn.setAttribute("data-collapsed", String(collapsed));
+			toggleBtn.setAttribute(
+				"aria-label",
+				collapsed ? "Expandir barra lateral" : "Colapsar barra lateral",
+			);
+			document.body.toggleAttribute("data-sidebar-collapsed", collapsed);
 			localStorage.setItem(STORAGE_KEY, String(collapsed));
 		}
 
-		toggleBtn.addEventListener('click', () => {
+		toggleBtn.addEventListener("click", () => {
 			collapsed = !collapsed;
 			applyState();
 		});
 	}
 
 	// Mobile drawer
-	if (sidebarWrapper && mobileBackdrop && mobileBtn && menuIcon && menuCloseIcon && sidebar) {
+	if (
+		sidebarWrapper &&
+		mobileBackdrop &&
+		mobileBtn &&
+		menuIcon &&
+		menuCloseIcon &&
+		sidebar
+	) {
 		const isDesktop = () => window.innerWidth >= 1024;
 
 		function openMobileMenu() {
 			if (isDesktop()) return;
-			sidebarWrapper.setAttribute('data-mobile-open', 'true');
-			mobileBackdrop.classList.remove('hidden');
-			menuIcon.classList.add('hidden');
-			menuCloseIcon.classList.remove('hidden');
-			mobileBtn.setAttribute('aria-label', 'Cerrar menú');
+			sidebarWrapper.setAttribute("data-mobile-open", "true");
+			mobileBackdrop.classList.remove("hidden");
+			menuIcon.classList.add("hidden");
+			menuCloseIcon.classList.remove("hidden");
+			mobileBtn.setAttribute("aria-label", "Cerrar menú");
 			// Force expanded on mobile regardless of desktop collapsed state
-			sidebar.setAttribute('data-collapsed', 'false');
-			sidebar.classList.remove('w-16');
-			sidebar.classList.add('w-64');
+			sidebar.setAttribute("data-collapsed", "false");
+			sidebar.classList.remove("w-16");
+			sidebar.classList.add("w-64");
 		}
 
 		function closeMobileMenu() {
-			sidebarWrapper.setAttribute('data-mobile-open', 'false');
-			mobileBackdrop.classList.add('hidden');
-			menuIcon.classList.remove('hidden');
-			menuCloseIcon.classList.add('hidden');
-			mobileBtn.setAttribute('aria-label', 'Abrir menú');
+			sidebarWrapper.setAttribute("data-mobile-open", "false");
+			mobileBackdrop.classList.add("hidden");
+			menuIcon.classList.remove("hidden");
+			menuCloseIcon.classList.add("hidden");
+			mobileBtn.setAttribute("aria-label", "Abrir menú");
 		}
 
-		mobileBtn.addEventListener('click', (e) => {
+		mobileBtn.addEventListener("click", (e) => {
 			e.stopPropagation();
-			const isOpen = sidebarWrapper.getAttribute('data-mobile-open') === 'true';
+			const isOpen =
+				sidebarWrapper.getAttribute("data-mobile-open") === "true";
 			if (isOpen) {
 				closeMobileMenu();
 			} else {
@@ -201,16 +245,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			}
 		});
 
-		mobileBackdrop.addEventListener('click', closeMobileMenu);
+		mobileBackdrop.addEventListener("click", closeMobileMenu);
 
-		sidebarWrapper.addEventListener('click', (e) => {
-			const link = e.target.closest('a[href]');
+		sidebarWrapper.addEventListener("click", (e) => {
+			const link = e.target.closest("a[href]");
 			if (link) {
 				closeMobileMenu();
 			}
 		});
 
-		window.addEventListener('resize', () => {
+		window.addEventListener("resize", () => {
 			if (isDesktop()) {
 				closeMobileMenu();
 			}

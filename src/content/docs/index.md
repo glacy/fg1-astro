@@ -1,4 +1,4 @@
 ---
-title: Lecturas del curso
+title: Documentos del curso
 description: Material de lectura, resúmenes y recursos para Física General I.
 ---
