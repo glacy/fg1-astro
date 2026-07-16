@@ -32,7 +32,7 @@ export const weeksData: Record<number, WeekData> = {
     ],
     consignas: [
       { text: "Revisar las secciones correspondientes del Capítulo 1 del libro principal de consulta.", url: "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_01.pdf", icon: "lucide:book-open" },
-      { text: "Estudiar el resumen Semana 1.", url: "../lecturas/week-1", icon: "lucide:file-text" }
+      { text: "Estudiar el resumen Sesión 1.", url: "../lecturas/week-1", icon: "lucide:file-text" }
     ],
     evaluaciones: [
       { text: "Práctica 1", url: "/practicas/practica_semana1.pdf", icon: "lucide:calculator" }
