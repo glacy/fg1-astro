@@ -5,8 +5,8 @@ import Sidebar from "../../components/Sidebar.astro";
 import "katex/dist/katex.min.css";
 
 export async function getStaticPaths() {
-  const readings = await getCollection("docs");
-  return readings.map((entry) => ({
+  const lecturas = await getCollection("docs");
+  return lecturas.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
