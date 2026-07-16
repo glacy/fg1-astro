@@ -10,6 +10,7 @@ fg1-astro/
 ├── tailwind.config.mjs        # Configuración TailwindCSS (darkMode: 'class')
 ├── postcss.config.mjs         # Configuración PostCSS
 ├── pnpm-workspace.yaml       # Configuración workspace (monoproject)
+├── AGENTS.md                 # Convenciones del proyecto (AI-assisted coding)
 ├── vercel.json               # Configuración Vercel (redirects)
 ├── .gitignore                # Archivos ignorados por Git
 ├── .env.example              # Ejemplo de variables de entorno
@@ -41,6 +42,8 @@ src/pages/
 │   └── index.astro          # Evaluaciones con filtros y animaciones
 ├── schedule/
 │   └── index.astro          # Horarios de atención con filtrado cliente
+├── lecturas/
+│   └── [...slug].astro      # Página dinámica para Content Collection readings
 └── auth/                    # (vacío — sin implementar)
 ```
 
@@ -99,6 +102,17 @@ Estilos globales. Actualmente vacío (se usa Tailwind y estilos inline en layout
 ```
 src/styles/
 └── (vacío)
+```
+
+### src/content/
+Content Collections de Astro para contenido educativo.
+
+```
+src/content/
+├── config.ts                # Esquema y configuración de colecciones
+└── readings/
+    ├── week-1.md            # Lectura de semana 1 (Markdown con KaTeX + wwteorema)
+    └── week-1.tex           # Fuente LaTeX original (Overleaf)
 ```
 
 ---

@@ -1,10 +1,28 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import AstroPWA from '@vite-pwa/astro';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import starlight from '@astrojs/starlight';
 
 export default defineConfig({
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  },
+  site: 'https://fg1-astro.vercel.app',
   integrations: [
+    sitemap(),
+    starlight({
+      title: 'Documentos FG1 - II semestre 2026',
+      logo: {
+        light: './src/assets/site_logo.svg',
+        dark: './src/assets/site_logo_dark.svg',
+        replacesTitle: true,
+      },
+    }),
     tailwind(),
     icon(),
     AstroPWA({

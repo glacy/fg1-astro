@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fg1-astro.vercel.app/sitemap-index.xml

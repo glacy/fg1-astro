@@ -4,10 +4,12 @@ import { Icon } from 'astro-icon/components';
 
 interface Props {
 	title?: string;
+	description?: string;
 	activeTab?: 'weekly' | 'planner' | 'schedule';
 }
 
-const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
+const { title = 'Dashboard', description = 'Plataforma educativa para Física General I', activeTab = 'weekly' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -16,6 +18,9 @@ const { title = 'Dashboard', activeTab = 'weekly' } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title} | Física General I</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+		<meta name="robots" content="index, follow" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="manifest" href="/manifest.json" />
 		<meta name="theme-color" content="#000000" />
