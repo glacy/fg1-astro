@@ -1,0 +1,40 @@
+{
+  "id": 14,
+  "title": "Dinámica del movimiento de rotación",
+  "image": "https://images.unsplash.com/photo-1707194402198-167726d7f687?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Determinar como la torca neta sobre un cuerpo afecta su movimiento de rotación.",
+    "Analizar el movimiento de un cuerpo que gira y se mueve como un todo en el espacio."
+  ],
+  "contenidos": [
+    "Torca (sección 10.1).",
+    "Torca y aceleración angular de un cuerpo rígido (sección 10.2).",
+    "Rotación de un cuerpo rígido en torno a un eje móvil (sección 10.3)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 10 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_10.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen SEMANA 14.",
+      "url": "./../lecturas/semana-14",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 14",
+      "url": "/practicas/practica_semana14.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 13",
+      "url": "/soluciones/solucion_practica_semana13.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

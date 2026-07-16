@@ -1,0 +1,44 @@
+{
+  "id": 9,
+  "title": "Trabajo y energía",
+  "image": "https://images.unsplash.com/photo-1599405032290-29d6e9e7274c?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Definir los conceptos: trabajo, energía cinética, energía potencial, fuerza conservativa y energía mecánica.",
+    "Calcular el trabajo efectuado por una fuerza sobre un cuerpo.",
+    "Relacionar el trabajo neto efectuado sobre un cuerpo con el cambio de energía cinética experimentado.",
+    "Resolver problemas aplicando los conceptos de trabajo y energía, en contextos con fuerzas conservativas y no conservativas."
+  ],
+  "contenidos": [
+    "Trabajo (sección 6.1).",
+    "Energía cinética y el teorema trabajo – energía (sección 6.2).",
+    "Energía potencial gravitacional (sección 7.1).",
+    "Energía potencial elástica (sección 7.2).",
+    "Fuerzas conservativas y no conservativas (sección 7.3)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 6 y Capítulo 7 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_06.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen Semana 9.",
+      "url": "./../lecturas/semana-9",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 9",
+      "url": "/practicas/practica_semana9.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 8",
+      "url": "/soluciones/solucion_practica_semana8.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

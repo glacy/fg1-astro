@@ -33,18 +33,19 @@ Rutas Astro (estático prerenderizado). Define las rutas de la aplicación.
 
 ```
 src/pages/
-├── index.astro              # Redirección a /weekly (meta refresh)
+├── index.astro              # Dashboard principal: navegación, semana actual, stats
 ├── 404.astro                # Página no encontrada personalizada con variantes
 ├── weekly/
-│   ├── [week].astro         # Página dinámica de semana (getStaticPaths)
+│   ├── [semana].astro       # Página dinámica de semana (getStaticPaths)
 │   └── index.astro          # Redirección a /weekly/1
 ├── planner/
-│   └── index.astro          # Evaluaciones con filtros y animaciones
+│   └── index.astro          # Evaluaciones con filtros cliente (data-attributes)
 ├── schedule/
-│   └── index.astro          # Horarios de atención con filtrado cliente
+│   └── index.astro          # Horarios de atención (usa ScheduleTable + ScheduleFilters)
 ├── lecturas/
-│   └── [...slug].astro      # Página dinámica para Content Collection readings
-└── auth/                    # (vacío — sin implementar)
+│   └── [...slug].astro      # Página dinámica para Content Collection docs
+├── auth/                    # (vacío — sin implementar)
+└── robots.txt.ts           # Endpoint API de robots.txt
 ```
 
 ### src/layouts/
@@ -52,67 +53,74 @@ Layouts reutilizables para estructura de páginas.
 
 ```
 src/layouts/
-├── ShellLayout.astro        # Layout principal con sidebar, footer, theme, PWA
-└── MainLayout.astro         # Layout genérico con SEO, Open Graph, PWA
+└── ShellLayout.astro        # Layout único con sidebar, footer, theme, PWA, Google Fonts (Inter via @fontsource)
 ```
 
 ### src/components/
-Componentes Astro (estáticos, renderizados en servidor).
+Componentes Astro (estáticos, renderizados en servidor). Se prefiere composición sobre duplicación inline.
 
 ```
 src/components/
 ├── Sidebar.astro            # Navegación lateral con iconos y colapso
-├── Footer.astro             # Pie de página con datos del curso
+├── Footer.astro             # Pie de página con datos del curso (variant: minimal | full)
 ├── WeekTimeline.astro       # Línea de tiempo semanal (navegación entre semanas)
 ├── WeekItem.astro           # Ítem individual de la línea de tiempo
 ├── WeekNavigation.astro     # Botones anterior/siguiente
-├── LinkCard.astro           # Tarjeta de enlace a recursos
-├── Section.astro            # Contenedor de sección con iconos dinámicos
+├── LinkCard.astro           # Tarjeta de enlace a recursos (variant: default | evaluation)
+├── Section.astro            # Contenedor de sección con iconos dinámicos por título
 ├── ObjectivesList.astro     # Lista de objetivos de aprendizaje
 ├── ContentList.astro        # Lista de contenidos
-├── ExamStats.astro          # Estadísticas de evaluaciones
+├── ExamStats.astro          # Estadísticas de evaluaciones (upcoming / today)
 ├── Filters.astro            # Filtros con pill animada (planner)
-├── ExamCard.astro           # Tarjeta de evaluación
-├── ScheduleFilters.astro    # Filtros de horario
-└── ScheduleTable.astro      # Tabla de horarios de atención
+├── ExamCard.astro           # Tarjeta de evaluación (links dinámicos desde array)
+├── ScheduleFilters.astro    # Filtros de horario (docente, modalidad, día)
+└── ScheduleTable.astro      # Tabla de horarios de atención (data-attributes para filtro cliente)
 ```
 
 ### src/lib/
-Lógica compartida y datos.
+Lógica compartida y datos. Separación clara entre lógica (`.ts`) y datos (`.json`).
 
 ```
 src/lib/
 ├── shared/
-│   ├── config.ts            # Configuración centralizada (curso, temas)
+│   ├── config.ts            # Configuración centralizada (curso, temas, breakpoints)
 │   ├── theme.ts             # Utilidades de tema dark/light (vanilla JS)
 │   ├── media.ts             # Detección mobile
 │   └── index.ts             # Barrel export
 ├── weekly/
-│   └── weeks.ts             # Datos de 16 semanas (objetivos, contenidos, materiales)
+│   └── weeks.ts             # Tipos + loadWeeksData() (getCollection desde content/weeks/) + COURSE_CONFIG
 ├── planner/
-│   ├── index.ts             # Lógica de planner
-│   └── exams.json           # Datos de evaluaciones
-├── schedule.ts              # Lógica de horarios
-└── instructors.ts           # Datos de instructores
+│   ├── index.ts             # Lógica de planner (Exam, ExamLink, getExams, getStats, filterExams)
+│   └── exams.json           # Datos de evaluaciones con array links[]
+├── schedule.ts              # Lógica de horarios (formatLocation, filterInstructors)
+├── instructors.ts           # Datos de instructores (tipos en src/types.ts)
+└── types.ts                 # Tipos compartidos: Attention, Instructor
 ```
 
 ### src/styles/
-Estilos globales. Actualmente vacío (se usa Tailwind y estilos inline en layouts).
+Estilos globales. CSS custom properties de tema (shadcn/ui) centralizadas aquí.
 
 ```
 src/styles/
-└── (vacío)
+└── base.css                 # CSS custom properties (tema, colores semanticos, fuente)
 ```
 
 ### src/content/
-Content Collections de Astro para contenido educativo.
+Content Collections de Astro para lecturas académicas.
 
 ```
 src/content/
-├── config.ts                # Esquema y configuración de colecciones
-└── readings/
-    ├── week-1.md            # Lectura de semana 1 (Markdown con KaTeX + wwteorema)
-    └── week-1.tex           # Fuente LaTeX original (Overleaf)
+├── config.ts                # Esquema y configuración de colecciones (docs + weeks)
+├── weeks/                   # Colección de datos semanales (schema validado con Zod)
+│   ├── semana-1.json
+│   ├── semana-2.json
+│   ├── ...
+│   └── semana-16.json
+└── docs/
+    ├── index.md             # Índice de lecturas
+    └── lecturas/
+        ├── semana-1.mdx     # Lectura de semana 1 (Markdown + KaTeX)
+        └── semana-2.mdx     # Lectura de semana 2
 ```
 
 ---
@@ -193,10 +201,11 @@ dist/
 | Tipo | Convención | Ejemplos |
 |---|---|---|
 | Archivos Astro | PascalCase | `ShellLayout.astro`, `WeekTimeline.astro` |
-| Páginas Astro | kebab-case | `index.astro`, `404.astro`, `[week].astro` |
+| Páginas Astro | kebab-case | `index.astro`, `404.astro`, `[semana].astro` |
 | Directorios | kebab-case | `src/components/`, `src/layouts/` |
 | Librerías/utilidades | camelCase | `config.ts`, `theme.ts`, `instructors.ts` |
 | Assets estáticos | kebab-case | `icon-192.png`, `screenshot-wide.png` |
+| Datos (JSON) | kebab-case | `weeks.json`, `exams.json` |
 
 ---
 
@@ -213,7 +222,23 @@ Usuario → Browser → Astro (build) → HTML estático + CSS + JS → Deploy (
 ```
 src/ (Astro, componentes) ──┐
                             ├──→ Astro build ──→ dist/ (HTML estático)
-public/ (assets estáticos) ──┘                        ↓
+public/ (assets estáticos) ──┘                       ↓
                                               Service Worker (Workbox)
                                               Precache de assets generados
 ```
+
+---
+
+## Decisiones arquitectónicas recientes
+
+| Decisión | Detalle |
+|---|---|
+| **Componentes sobre inline** | `ScheduleTable` y `ScheduleFilters` reemplazan código duplicado en `schedule/index.astro`; data-attributes (`data-instructor`, `data-modalidad`, `data-dia`) permiten filtrado cliente sin acoplar componente a JS |
+| **Content Collections para datos** | Datos semanales migrados de `weeks.json` a `src/content/weeks/` (16 archivos individuales) con schema Zod validado en build-time. `loadWeeksData()` async usando `getCollection()` |
+| **Datos separados de lógica** | `exams.json` contiene datos planos; los `.ts` contienen tipos y lógica de acceso |
+| **Links dinámicos en examanes** | `Exam.links: ExamLink[]` reemplaza 5 campos de URL fijos; agregar un nuevo enlace solo requiere editar `exams.json` |
+| **CSS centralizado** | Tema CSS (shadcn/ui) movido de `MainLayout` a `src/styles/base.css`, importado desde `ShellLayout` |
+| **Tipos compartidos** | `Attention` e `Instructor` en `src/types.ts` en lugar de definidos localmente en `instructors.ts` |
+| **Fuente autohosteada** | `@fontsource/inter` reemplaza Google Fonts externa; elimina petición bloqueante y mejora privacidad |
+| **Dashboard en raíz** | `index.astro` es un dashboard con navegación rápida, tarjeta de la semana actual y stats; ya no es un redirect |
+| **Sin código muerto** | `MainLayout.astro` eliminado (0 imports); `src/components/islands/` eliminado (vacío); comentarios de código eliminados |

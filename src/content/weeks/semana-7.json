@@ -1,0 +1,48 @@
+{
+  "id": 7,
+  "title": "Aplicación de las Leyes de Newton",
+  "image": "https://images.unsplash.com/photo-1569406125624-98ee19b01d4a?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Identificar las fuerzas que actúan sobre un cuerpo en un diagrama de cuerpo libre (DCL).",
+    "Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio",
+    "Usar la segunda ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo con aceleración."
+  ],
+  "contenidos": [
+    "Diagramas de cuerpo libre (sección 4.6).",
+    "Empleo de la primera ley de Newton: partículas en equilibrio (sección 5.1).",
+    "Uso de la segunda ley de Newton: dinámica de partículas (sección 5.2).",
+    "fuerzas de fricción (sección 5.3).",
+    "Fuerzas fundamentales de la naturaleza (sección 5.5)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 5 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_05.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen Semana 7.",
+      "url": "./../lecturas/semana-7",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 7",
+      "url": "/practicas/practica_semana7.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 6",
+      "url": "/soluciones/solucion_practica_semana6.pdf",
+      "icon": "lucide:calculator"
+    },
+    {
+      "text": "Phet: Leyes de Newton",
+      "url": "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_all.html?locale=es",
+      "icon": "lucide:link"
+    }
+  ]
+}

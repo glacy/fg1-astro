@@ -1,0 +1,41 @@
+{
+  "id": 15,
+  "title": "Equilibrio estático",
+  "image": "https://images.unsplash.com/photo-1656090756308-e2cfced43780?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Reconocer las condiciones que deben satisfacerse para que un cuerpo o una estructura estén en equilibrio.",
+    "Relacionar la posición del centro de gravedad de un objeto con su estabilidad.",
+    "Resolver problemas que implican cuerpos rígidos en equilibrio."
+  ],
+  "contenidos": [
+    "Condiciones de equilibrio (sección 11.1).",
+    "Centro de gravedad (sección 11.2)",
+    "Solución de problemas de equilibrio de cuerpos rígidos (sección 11.3)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 11 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_11.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen SEMANA 15.",
+      "url": "./../lecturas/semana-15",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 15",
+      "url": "/practicas/practica_semana15.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 14",
+      "url": "/soluciones/solucion_practica_semana14.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

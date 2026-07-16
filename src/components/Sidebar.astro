@@ -1,64 +1,115 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
+import { COURSE_CONFIG } from "../lib/shared";
 
 interface Props {
-	activeTab: 'weekly' | 'planner' | 'schedule';
+  activeTab: "weekly" | "planner" | "schedule";
 }
 
 const { activeTab } = Astro.props;
 
 const menuItems = [
-  { id: 'weekly', label: 'Detalle semanal', icon: 'lucide:layout-dashboard', href: '/weekly/1' },
-  { id: 'planner', label: 'Evaluaciones', icon: 'lucide:calendar-days', href: '/planner' },
-  { id: 'schedule', label: 'Horarios', icon: 'lucide:clock', href: '/schedule' },
+  {
+    id: "weekly",
+    label: "Detalle semanal",
+    icon: "lucide:layout-dashboard",
+    href: "/weekly/1",
+  },
+  {
+    id: "planner",
+    label: "Evaluaciones",
+    icon: "lucide:calendar-days",
+    href: "/planner",
+  },
+  {
+    id: "schedule",
+    label: "Horarios",
+    icon: "lucide:clock",
+    href: "/schedule",
+  },
 ];
 ---
 
-<aside id="sidebar" data-collapsed="false" class="bg-white dark:bg-[#0b0f19] border-r border-slate-200 dark:border-white/5 flex flex-col h-full relative transition-[width] duration-300 w-64 shrink-0 z-40 overflow-hidden" aria-label="Barra lateral de navegación">
+<aside
+  id="sidebar"
+  data-collapsed="false"
+  class="bg-white dark:bg-[#0b0f19] border-r border-slate-200 dark:border-white/5 flex flex-col h-full relative transition-[width] duration-300 w-64 shrink-0 z-40 overflow-hidden"
+  aria-label="Barra lateral de navegación"
+>
   <div class="p-6 space-y-6 sidebar-inner">
-    
-    <div class="flex items-center gap-3">
+    <a
+      href="/"
+      class="flex items-center gap-3 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#0b0f19] transition-opacity hover:opacity-80"
+      aria-label="Ir al inicio"
+    >
       <div class="relative shrink-0">
-        <div class="absolute inset-0 bg-blue-500 blur-lg opacity-20" aria-hidden="true" />
-        <div class="relative p-2.5 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl border border-white/10">
+        <div
+          class="absolute inset-0 bg-blue-500 blur-lg opacity-20"
+          aria-hidden="true"
+        >
+        </div>
+        <div
+          class="relative p-2.5 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl border border-white/10"
+        >
           <Icon name="lucide:atom" size={24} class="text-blue-400" />
         </div>
       </div>
       <div class="overflow-hidden sidebar-text">
-        <h1 class="font-bold text-xl text-slate-800 dark:text-white tracking-tight whitespace-nowrap">Física General I</h1>
-        <p class="text-xs text-slate-600 dark:text-slate-400 font-medium tracking-wide uppercase mt-0.5 whitespace-nowrap">I semestre 2026</p>
+        <h1
+          class="font-bold text-xl text-slate-800 dark:text-white tracking-tight whitespace-nowrap"
+        >
+          {COURSE_CONFIG.name}
+        </h1>
+        <p
+          class="text-xs text-slate-600 dark:text-slate-400 font-medium tracking-wide uppercase mt-0.5 whitespace-nowrap"
+        >
+          {COURSE_CONFIG.semester}
+        </p>
       </div>
-    </div>
+    </a>
 
     <div class="space-y-2">
-      <div class="px-4 pb-2 text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider sidebar-section-label">
+      <div
+        class="px-4 pb-2 text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider sidebar-section-label"
+      >
         Información
       </div>
 
-      {menuItems.map((item) => (
-        <a
-          href={item.href}
-          class={`sidebar-nav-link relative overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#0b0f19] transition-all duration-200 group w-full flex items-center gap-3 pl-4 pr-10 py-3 rounded-xl ${
-            activeTab === item.id
-              ? 'text-white shadow-lg shadow-blue-500/20 bg-gradient-to-r from-blue-600 to-indigo-600'
-              : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5'
-          }`}
-          aria-current={activeTab === item.id ? 'page' : undefined}
-          aria-label={item.label}
-              >
-          <span class="relative z-10 flex items-center gap-3">
-            <Icon name={item.icon} size={20} class={activeTab === item.id ? 'text-white' : ''} />
-            <span class="font-medium text-sm sidebar-text">{item.label}</span>
-          </span>
-          {activeTab === item.id && (
-            <div class="absolute right-4 w-1.5 h-1.5 rounded-full bg-white z-10 sidebar-active-dot" aria-hidden="true" />
-          )}
-        </a>
-      ))}
+      {
+        menuItems.map((item) => (
+          <a
+            href={item.href}
+            class={`sidebar-nav-link relative overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#0b0f19] transition-all duration-200 group w-full flex items-center gap-3 pl-4 pr-10 py-3 rounded-xl ${
+              activeTab === item.id
+                ? "text-white shadow-lg shadow-blue-500/20 bg-gradient-to-r from-blue-600 to-indigo-600"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5"
+            }`}
+            aria-current={activeTab === item.id ? "page" : undefined}
+            aria-label={item.label}
+          >
+            <span class="relative z-10 flex items-center gap-3">
+              <Icon
+                name={item.icon}
+                size={20}
+                class={activeTab === item.id ? "text-white" : ""}
+              />
+              <span class="font-medium text-sm sidebar-text">{item.label}</span>
+            </span>
+            {activeTab === item.id && (
+              <div
+                class="absolute right-4 w-1.5 h-1.5 rounded-full bg-white z-10 sidebar-active-dot"
+                aria-hidden="true"
+              />
+            )}
+          </a>
+        ))
+      }
     </div>
   </div>
 
-  <div class="mt-auto border-t border-slate-200 dark:border-white/5 p-4 space-y-1 sidebar-inner">
+  <div
+    class="mt-auto border-t border-slate-200 dark:border-white/5 p-4 space-y-1 sidebar-inner"
+  >
     <a
       href="/programa-del-curso.pdf"
       class="sidebar-bottom-item flex items-center gap-3 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#0b0f19] w-full px-4 py-3"
@@ -81,10 +132,18 @@ const menuItems = [
 </aside>
 
 <style is:global>
-  html.dark #theme-toggle-dark-icon { display: block; }
-  html.dark #theme-toggle-light-icon { display: none; }
-  html.light #theme-toggle-dark-icon { display: none; }
-  html.light #theme-toggle-light-icon { display: block; }
+  html.dark #theme-toggle-dark-icon {
+    display: block;
+  }
+  html.dark #theme-toggle-light-icon {
+    display: none;
+  }
+  html.light #theme-toggle-dark-icon {
+    display: none;
+  }
+  html.light #theme-toggle-light-icon {
+    display: block;
+  }
 </style>
 
 <style>
@@ -105,26 +164,27 @@ const menuItems = [
     padding: 0.5rem;
   }
   #sidebar[data-collapsed="true"] .sidebar-nav-link > span,
-  #sidebar[data-collapsed="true"] .sidebar-bottom-item > span:not(.sidebar-text) {
+  #sidebar[data-collapsed="true"]
+    .sidebar-bottom-item
+    > span:not(.sidebar-text) {
     gap: 0;
   }
 </style>
 
 <script>
-  import { toggleTheme, isDarkMode } from '../lib/shared';
+  import { toggleTheme, isDarkMode } from "../lib/shared";
 
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const darkIcon = document.getElementById('theme-toggle-dark-icon');
-  const lightIcon = document.getElementById('theme-toggle-light-icon');
-  const themeText = document.getElementById('theme-toggle-text');
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  const darkIcon = document.getElementById("theme-toggle-dark-icon");
+  const lightIcon = document.getElementById("theme-toggle-light-icon");
+  const themeText = document.getElementById("theme-toggle-text");
 
   if (themeToggleBtn && darkIcon && lightIcon && themeText) {
-    
     const updateTheme = () => {
-      themeText.textContent = isDarkMode() ? 'Modo claro' : 'Modo oscuro';
+      themeText.textContent = isDarkMode() ? "Modo claro" : "Modo oscuro";
     };
 
-    themeToggleBtn.addEventListener('click', () => {
+    themeToggleBtn.addEventListener("click", () => {
       toggleTheme();
       updateTheme();
     });

@@ -1,0 +1,41 @@
+{
+  "id": 12,
+  "title": "Cinemática del movimiento rotacional",
+  "image": "https://images.unsplash.com/photo-1763393567638-3ab4969974ed?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Describir la rotación de un cuerpo rígido en términos de las coordenadas, la velocidad y la aceleración angulares.",
+    "Analizar la rotación de un cuerpo rígido cuando la aceleración angular es constante.",
+    "Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo."
+  ],
+  "contenidos": [
+    "Velocidad y aceleración angulares (sección 9.1).",
+    "Rotación con aceleración angular constante (sección 9.2).",
+    "Relación entre cinemática lineal y cinemática angular (sección 9.3)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 9 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_09.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen SEMANA 12.",
+      "url": "./../lecturas/semana-12",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 12",
+      "url": "/practicas/practica_semana12.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 11",
+      "url": "/soluciones/solucion_practica_semana11.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

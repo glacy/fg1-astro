@@ -1,5 +1,5 @@
 ---
-title: Mis Documentos
+title: Documentación
 description: Aprende más sobre mi proyecto en este sitio de documentación construido con Starlight.
 ---
 

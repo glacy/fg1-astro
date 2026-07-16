@@ -1,5 +1,5 @@
 import { INSTRUCTORS_DATA, DIAS } from './instructors';
-import type { Attention, Instructor } from './instructors';
+import type { Attention, Instructor } from '../types';
 
 export type { Attention, Instructor };
 

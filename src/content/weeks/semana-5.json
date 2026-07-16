@@ -1,0 +1,46 @@
+{
+  "id": 5,
+  "title": "Movimiento parabólico",
+  "image": "https://images.unsplash.com/photo-1457364887197-9150188c107b?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Describir un movimiento general en 2 ó 3 dimensiones, mediante cantidades cinemáticas vectoriales.",
+    "Definir las características del movimiento parabólico.",
+    "Resolver, analítica y gráficamente, problemas que involucren movimiento parabólico."
+  ],
+  "contenidos": [
+    "Vectores de posición y velocidad (sección 3.1).",
+    "El vector aceleración (sección 3.2).",
+    "Movimiento de proyectiles (sección 3.3)"
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 3 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_03.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen de Semana 5.",
+      "url": "./../lecturas/semana-5",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 5",
+      "url": "/practicas/practica_semana5.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 4",
+      "url": "/soluciones/solucion_practica_semana4.pdf",
+      "icon": "lucide:calculator"
+    },
+    {
+      "text": "Phet: Proyectiles",
+      "url": "https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_all.html?locale=es",
+      "icon": "lucide:link"
+    }
+  ]
+}

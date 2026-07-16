@@ -8,7 +8,7 @@ import ObjectivesList from "../../components/ObjectivesList.astro";
 import ContentList from "../../components/ContentList.astro";
 import LinkCard from "../../components/LinkCard.astro";
 import WeekNavigation from "../../components/WeekNavigation.astro";
-import { weeksData, COURSE_CONFIG } from "../../lib/weekly/weeks";
+import { loadWeeksData, COURSE_CONFIG } from "../../lib/weekly/weeks";
 
 export const prerender = true;
 
@@ -31,6 +31,7 @@ if (currentWeek > maxCurrentWeek) {
 
 // Validación para asegurar que currentWeek sea válido
 const validWeek = Math.max(1, Math.min(currentWeek, totalWeeks));
+const weeksData = await loadWeeksData();
 const weekData = weeksData[validWeek];
 const isOpen = false;
 const isDesktop = false;

@@ -1,0 +1,41 @@
+{
+  "id": 13,
+  "title": "Rotación de cuerpos rígidos",
+  "image": "https://images.unsplash.com/photo-1659983637890-fe3ce747ed33?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Relacionar la energía cinética de rotación con el momento de inercia de un cuerpo en torno a un eje de rotación.",
+    "Relacionar los valores del momento de inercia de un cuerpo para dos ejes de rotación diferentes, pero paralelos.",
+    "Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo."
+  ],
+  "contenidos": [
+    "Energía en el movimiento de rotación (sección 9.4).",
+    "Teorema de los ejes paralelos (sección 9.5).",
+    "Cálculos de momento de inercia (sección 9.6)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 9 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_09.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen SEMANA 13.",
+      "url": "./../lecturas/semana-13",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 13",
+      "url": "/practicas/practica_semana13.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 12",
+      "url": "/soluciones/solucion_practica_semana12.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

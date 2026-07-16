@@ -1,0 +1,46 @@
+{
+  "id": 2,
+  "title": "Vectores y operaciones vectoriales",
+  "image": "https://images.unsplash.com/photo-1516503424803-708327384b90?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección.",
+    "Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas.",
+    "Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar."
+  ],
+  "contenidos": [
+    "Componentes de vectores (Sección 1.8).",
+    "Vectores unitarios (Sección 1.9).",
+    "Productos de vectores (Sección 1.10)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 1 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_01.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen Semana 2.",
+      "url": "./../lecturas/semana-2",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 2",
+      "url": "/practicas/practica_semana2.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 1",
+      "url": "/soluciones/solucion_practica_semana1.pdf",
+      "icon": "lucide:calculator"
+    },
+    {
+      "text": "PhET: Vectores",
+      "url": "https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_all.html?locale=es",
+      "icon": "lucide:link"
+    }
+  ]
+}

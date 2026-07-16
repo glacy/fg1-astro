@@ -1,9 +1,9 @@
 export const COURSE_CONFIG = {
   name: 'Física General I',
   institution: 'Tecnológico de Costa Rica',
-  semester: 'I semestre 2026',
+  semester: 'II semestre 2026',
   totalWeeks: 16,
-  maxCurrentWeek: 5,
+  maxCurrentWeek: 15,
   contactEmail: 'glacy@tec.ac.cr',
   githubRepository: 'https://github.com/glacy/fg1-astro',
 };

@@ -1,0 +1,44 @@
+{
+  "id": 8,
+  "title": "MCU, velocidad relativa y Fuerza gravitacional",
+  "image": "https://images.unsplash.com/photo-1711560217836-f42ac4a11a4f?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Analizar el movimiento en una trayectoria circular con rapidez constante.",
+    "Relacionar la fuerza neta en un movimiento circular uniforme con la aceleración centrípeta.",
+    "Relacionar la velocidad de un cuerpo en movimiento visto desde dos marcos de referencia distintos.",
+    "Calcular las fuerzas gravitacionales que dos cuerpos cualesquiera ejercen uno sobre el otro.",
+    "Relacionar el peso de un objeto con la expresión general de la fuerza gravitacional."
+  ],
+  "contenidos": [
+    "Movimiento en círculo (sección 3.4) y Dinámica del movimiento circular (sección 5.4).",
+    "Velocidad relativa (sección 3.5)",
+    "Uso de la segunda ley de Newton: dinámica de partículas (sección 5.2).",
+    "Ley de Newton de la gravitación y peso (secciones 13.1 y 13.2)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 3, Capítulo 5 y Capítulo 13 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_03.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen Semana 8.",
+      "url": "./../lecturas/semana-8",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 8",
+      "url": "/practicas/practica_semana8.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 7",
+      "url": "/soluciones/solucion_practica_semana7.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

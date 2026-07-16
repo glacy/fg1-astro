@@ -1,10 +1,11 @@
 ---
 import WeekItem from "./WeekItem.astro";
 import { Icon } from "astro-icon/components";
-import { weeksData } from "../lib/weekly/weeks.ts";
+import { loadWeeksData } from "../lib/weekly/weeks.ts";
 
 const { currentWeek, totalWeeks, maxCurrentWeek, isOpen, isDesktop } =
   Astro.props;
+const weeksData = await loadWeeksData();
 const weeks = Array.from({ length: totalWeeks }, (_, i) => i + 1);
 const activeWeekData = weeksData[currentWeek];
 ---

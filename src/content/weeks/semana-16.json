@@ -1,0 +1,29 @@
+{
+  "id": 16,
+  "title": "Momentum Angular",
+  "image": "https://images.unsplash.com/photo-1682953390639-381112a2c4f0?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Definir los conceptos: momento angular, trabajo y potencia en la rotación.",
+    "Explicar el teorema de conservación del momento angular.",
+    "Resolver problemas aplicando los conceptos de momento angular."
+  ],
+  "contenidos": [
+    "Trabajo y potencia en movimiento de rotación (sección 10.4).",
+    "Momento angular (sección 10.5).",
+    "Conservación del momento angular (sección 10.6)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 10 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/classes/FI/FI1101/V-1-2024.CA.FI1101.1/file-storage/view/libro%2FCapitulo_10.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen de Semana 16.",
+      "url": "./../lecturas/semana-16",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [],
+  "recursos": []
+}

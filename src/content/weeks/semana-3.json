@@ -1,0 +1,42 @@
+{
+  "id": 3,
+  "title": "Cantidades cinemáticas",
+  "image": "https://images.unsplash.com/photo-1767177375224-c46fc0b50dcf?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Definir las cantidades físicas de interés como la posición, velocidad, aceleración, rapidez, entre otros.",
+    "Diferenciar entre rapidez y velocidad; así como entre cantidades instantáneas y medias.",
+    "Analizar las gráficas de un movimiento.",
+    "Resolver problemas que involucren los conceptos de cinemática en 1D, tanto analítica como gráficamente."
+  ],
+  "contenidos": [
+    "Desplazamiento, tiempo y velocidad media (sección 2.1).",
+    "Velocidad instantánea (sección 2.2).",
+    "Aceleración media y aceleración instantánea (sección 2.3)"
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 2 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_02.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen de Semana 3.",
+      "url": "./../lecturas/semana-3",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 3",
+      "url": "/practicas/practica_semana3.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 2",
+      "url": "/soluciones/solucion_practica_semana2.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

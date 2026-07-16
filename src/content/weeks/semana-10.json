@@ -1,0 +1,35 @@
+{
+  "id": 10,
+  "title": "Fuerzas variables, potencia, fuerza y energia potencial",
+  "image": "https://images.unsplash.com/photo-1429772011165-0c2e054367b8?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Calcular el trabajo efectuado por una fuerza variable.",
+    "Comprender el concepto de potencia como la tasa de cambio para efectuar trabajo.",
+    "Determinar las propiedades de una fuerza conservativa conociendo la función de energía potencial correspondiente."
+  ],
+  "contenidos": [
+    "Trabajo y energía con fuerza variable (sección 6.3).",
+    "Potencia (sección 6.4).",
+    "Fuerza y energía potencial (sección 7.4)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 6 y Capítulo 7 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_06.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen Semana 10.",
+      "url": "./../lecturas/semana-10",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 9",
+      "url": "/soluciones/solucion_practica_semana9.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}

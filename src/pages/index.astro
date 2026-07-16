@@ -1,11 +1,153 @@
-<!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="refresh" content="0;url=/weekly" />
-        <title>Redirigiendo ...</title>
-    </head>
-    <body>
-        <p>Redirigiendo a <a href="/weekly">/weekly</a>. . .</p>
-    </body>
-</html>
+---
+import ShellLayout from '../layouts/ShellLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { loadWeeksData, COURSE_CONFIG } from '../lib/weekly/weeks';
+import { getExams, getStats } from '../lib/planner';
+
+const currentWeek = COURSE_CONFIG.maxCurrentWeek;
+const weeksData = await loadWeeksData();
+const weekData = weeksData[currentWeek];
+const totalWeeks = COURSE_CONFIG.totalWeeks;
+const stats = getStats(getExams());
+---
+
+<ShellLayout title="Inicio" activeTab="weekly">
+  <slot name="sidebar" slot="sidebar">
+    <Sidebar activeTab="weekly" />
+  </slot>
+  <div class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 flex flex-col">
+    <main class="w-full px-4 sm:px-6 lg:px-8 pt-6 pb-4 flex-1 overflow-auto min-w-0">
+      <div class="space-y-8 max-w-7xl mx-auto">
+
+        <div class="space-y-2">
+          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">{COURSE_CONFIG.name}</h1>
+          <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400">{COURSE_CONFIG.semester} &middot; {COURSE_CONFIG.institution}</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <a
+            href={`/weekly/${currentWeek}`}
+            class="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#161d2a] p-6 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-500/30 transition-all duration-200"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center">
+                <Icon name="lucide:layout-dashboard" size={20} class="text-blue-600 dark:text-blue-400" />
+              </div>
+              <Icon name="lucide:arrow-right" size={16} class="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <h2 class="text-lg font-bold text-slate-800 dark:text-white mb-1">Detalle semanal</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+              Semana {currentWeek} de {totalWeeks} &middot; {weekData?.title?.split(",")[0]}
+            </p>
+          </a>
+
+          <a
+            href="/planner"
+            class="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#161d2a] p-6 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-500/30 transition-all duration-200"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-500/20 flex items-center justify-center">
+                <Icon name="lucide:calendar-days" size={20} class="text-amber-600 dark:text-amber-400" />
+              </div>
+              <Icon name="lucide:arrow-right" size={16} class="text-slate-300 dark:text-slate-600 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <h2 class="text-lg font-bold text-slate-800 dark:text-white mb-1">Evaluaciones</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+              {stats.upcoming > 0 ? `${stats.upcoming} próximas` : "Sin evaluaciones pendientes"}
+              {stats.today > 0 ? ` &middot; ${stats.today} para hoy` : ""}
+            </p>
+          </a>
+
+          <a
+            href="/schedule"
+            class="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#161d2a] p-6 hover:shadow-lg hover:border-emerald-300 dark:hover:border-emerald-500/30 transition-all duration-200"
+          >
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center">
+                <Icon name="lucide:clock" size={20} class="text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <Icon name="lucide:arrow-right" size={16} class="text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <h2 class="text-lg font-bold text-slate-800 dark:text-white mb-1">Horarios</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Atención estudiantil &middot; Presencial y virtual</p>
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#161d2a] overflow-hidden shadow-sm">
+          <div class="relative h-44 sm:h-52 overflow-hidden">
+            {weekData?.image && (
+              <Image
+                src={weekData.image}
+                alt={weekData.title}
+                class="w-full h-full object-cover"
+                width={1000}
+                height={667}
+                loading="lazy"
+              />
+            )}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-500/30 text-xs font-bold text-blue-400 uppercase tracking-wider">
+                  Semana {currentWeek}
+                </span>
+                <span class="text-xs text-slate-400">{totalWeeks} semanas</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-white">{weekData?.title}</h2>
+            </div>
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="flex flex-wrap gap-4">
+              {weekData?.objetivos?.slice(0, 3).map((obj) => (
+                <div class="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400 w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.33%-0.75rem)]">
+                  <Icon name="lucide:target" size={14} class="mt-0.5 shrink-0 text-blue-500" aria-hidden="true" />
+                  <span>{obj}</span>
+                </div>
+              ))}
+            </div>
+            <a
+              href={`/weekly/${currentWeek}`}
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            >
+              Ver semana completa
+              <Icon name="lucide:arrow-right" size={14} />
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="rounded-xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#161d2a] p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-green-50 dark:bg-green-500/20 flex items-center justify-center shrink-0">
+              <Icon name="lucide:star" size={24} class="text-green-600 dark:text-green-400" aria-hidden="true" />
+            </div>
+            <div>
+              <p class="text-2xl font-black text-slate-800 dark:text-white">{stats.today}</p>
+              <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wide">Para hoy</p>
+            </div>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#161d2a] p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-500/20 flex items-center justify-center shrink-0">
+              <Icon name="lucide:hourglass" size={24} class="text-amber-600 dark:text-amber-400" aria-hidden="true" />
+            </div>
+            <div>
+              <p class="text-2xl font-black text-slate-800 dark:text-white">{stats.upcoming}</p>
+              <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wide">Próximas</p>
+            </div>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#161d2a] p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-500/20 flex items-center justify-center shrink-0">
+              <Icon name="lucide:book-open" size={24} class="text-blue-600 dark:text-blue-400" aria-hidden="true" />
+            </div>
+            <div>
+              <p class="text-2xl font-black text-slate-800 dark:text-white">{COURSE_CONFIG.totalWeeks}</p>
+              <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wide">Semanas del curso</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</ShellLayout>

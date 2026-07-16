@@ -1,0 +1,40 @@
+{
+  "id": 4,
+  "title": "Movimiento rectilíneo",
+  "image": "https://images.unsplash.com/photo-1452573992436-6d508f200b30?auto=format&fit=crop&q=80&w=1000",
+  "objetivos": [
+    "Definir las características de un movimiento rectilíneo uniforme (MRU).",
+    "Definir las características de un movimiento rectilíneo uniformemente acelerado (MRUA), con la caída libre como un caso particular.",
+    "Resolver, analítica y gráficamente, problemas que involucren tanto MRU como MRUA y caída libre."
+  ],
+  "contenidos": [
+    "Movimiento con aceleración constante (sección 2.4).",
+    "Cuerpos en caída libre (sección 2.5)."
+  ],
+  "consignas": [
+    {
+      "text": "Revisar las secciones correspondientes del Capítulo 2 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_02.pdf",
+      "icon": "lucide:book-open"
+    },
+    {
+      "text": "Estudiar el resumen de Semana 4.",
+      "url": "./../lecturas/semana-4",
+      "icon": "lucide:file-text"
+    }
+  ],
+  "evaluaciones": [
+    {
+      "text": "Práctica 4",
+      "url": "/practicas/practica_semana4.pdf",
+      "icon": "lucide:calculator"
+    }
+  ],
+  "recursos": [
+    {
+      "text": "Solución Práctica Semana 3",
+      "url": "/soluciones/solucion_practica_semana3.pdf",
+      "icon": "lucide:calculator"
+    }
+  ]
+}
