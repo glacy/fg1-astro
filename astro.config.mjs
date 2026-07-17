@@ -17,6 +17,12 @@ export default defineConfig({
     sitemap(),
     starlight({
       title: 'Documentos FG1 - II semestre 2026',
+      locales: {
+        root: {
+          label: 'Documentación',
+          lang: 'es',
+        },
+      },
       logo: {
         light: './src/assets/site_logo.svg',
         dark: './src/assets/site_logo_dark.svg',

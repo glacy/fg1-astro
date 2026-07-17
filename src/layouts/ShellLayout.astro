@@ -127,27 +127,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 					/>
 				</button>
 
-				<button
-					id="mobile-menu-btn"
-					class="lg:hidden fixed top-4 left-4 z-30 w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-[#161d2a] border border-gray-200 dark:border-white/5 shadow-sm text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white transition-colors"
-					aria-label="Abrir menú"
+				<div
+					class="lg:hidden fixed top-0 left-0 z-30 w-full bg-white/70 dark:bg-[#161d2a]/70 backdrop-blur-sm border-b border-gray-200 dark:border-white/5"
 				>
-					<Icon id="menu-icon" name="lucide:menu" size={20} />
-					<Icon
-						id="menu-close-icon"
-						name="lucide:x"
-						size={20}
-						class="hidden"
-					/>
-				</button>
+					<div class="relative h-14 flex items-center px-4">
+						<button
+							id="mobile-menu-btn"
+							class="flex items-center justify-center w-10 h-10 rounded-xl border border-gray-200 dark:border-white/5 shadow-sm text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white transition-colors"
+							aria-label="Abrir menú"
+						>
+							<Icon id="menu-icon" name="lucide:menu" size={20} />
+							<Icon
+								id="menu-close-icon"
+								name="lucide:x"
+								size={20}
+								class="hidden"
+							/>
+						</button>
+					</div>
+				</div>
 
 				<div
 					class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-indigo-500/5 pointer-events-none"
 				>
 				</div>
-			<div
-				class="flex-1 overflow-auto scrollbar-hide relative z-0 flex flex-col lg:pt-0 pt-14"
-			>
+				<div
+					class="flex-1 overflow-auto scrollbar-hide relative z-0 flex flex-col lg:pt-0 pt-14"
+				>
 					<slot />
 					<Footer />
 				</div>
@@ -171,24 +177,26 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 	// Desktop sidebar collapse
 	if (sidebar && toggleBtn && toggleIcon) {
+		const sidebarEl = sidebar;
+		const toggleBtnEl = toggleBtn;
 		const STORAGE_KEY = "sidebar-collapsed";
 		const isCollapsed = localStorage.getItem(STORAGE_KEY) === "true";
 		let collapsed = isCollapsed;
 
-		sidebar.style.transition = "none";
+		sidebarEl.style.transition = "none";
 		applyState();
 		requestAnimationFrame(() =>
 			requestAnimationFrame(() => {
-				sidebar.style.transition = "";
+				sidebarEl.style.transition = "";
 			}),
 		);
 
 		function applyState() {
-			sidebar.classList.toggle("w-16", collapsed);
-			sidebar.classList.toggle("w-64", !collapsed);
-			sidebar.setAttribute("data-collapsed", String(collapsed));
-			toggleBtn.setAttribute("data-collapsed", String(collapsed));
-			toggleBtn.setAttribute(
+			sidebarEl.classList.toggle("w-16", collapsed);
+			sidebarEl.classList.toggle("w-64", !collapsed);
+			sidebarEl.setAttribute("data-collapsed", String(collapsed));
+			toggleBtnEl.setAttribute("data-collapsed", String(collapsed));
+			toggleBtnEl.setAttribute(
 				"aria-label",
 				collapsed ? "Expandir barra lateral" : "Colapsar barra lateral",
 			);
@@ -196,7 +204,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			localStorage.setItem(STORAGE_KEY, String(collapsed));
 		}
 
-		toggleBtn.addEventListener("click", () => {
+		toggleBtnEl.addEventListener("click", () => {
 			collapsed = !collapsed;
 			applyState();
 		});
@@ -211,33 +219,40 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		menuCloseIcon &&
 		sidebar
 	) {
+		const safeSidebarWrapper = sidebarWrapper;
+		const safeMobileBackdrop = mobileBackdrop;
+		const safeMobileBtn = mobileBtn;
+		const safeMenuIcon = menuIcon;
+		const safeMenuCloseIcon = menuCloseIcon;
+		const safeSidebar = sidebar;
+
 		const isDesktop = () => window.innerWidth >= 1024;
 
 		function openMobileMenu() {
 			if (isDesktop()) return;
-			sidebarWrapper.setAttribute("data-mobile-open", "true");
-			mobileBackdrop.classList.remove("hidden");
-			menuIcon.classList.add("hidden");
-			menuCloseIcon.classList.remove("hidden");
-			mobileBtn.setAttribute("aria-label", "Cerrar menú");
+			safeSidebarWrapper.setAttribute("data-mobile-open", "true");
+			safeMobileBackdrop.classList.remove("hidden");
+			safeMenuIcon.classList.add("hidden");
+			safeMenuCloseIcon.classList.remove("hidden");
+			safeMobileBtn.setAttribute("aria-label", "Cerrar menú");
 			// Force expanded on mobile regardless of desktop collapsed state
-			sidebar.setAttribute("data-collapsed", "false");
-			sidebar.classList.remove("w-16");
-			sidebar.classList.add("w-64");
+			safeSidebar.setAttribute("data-collapsed", "false");
+			safeSidebar.classList.remove("w-16");
+			safeSidebar.classList.add("w-64");
 		}
 
 		function closeMobileMenu() {
-			sidebarWrapper.setAttribute("data-mobile-open", "false");
-			mobileBackdrop.classList.add("hidden");
-			menuIcon.classList.remove("hidden");
-			menuCloseIcon.classList.add("hidden");
-			mobileBtn.setAttribute("aria-label", "Abrir menú");
+			safeSidebarWrapper.setAttribute("data-mobile-open", "false");
+			safeMobileBackdrop.classList.add("hidden");
+			safeMenuIcon.classList.remove("hidden");
+			safeMenuCloseIcon.classList.add("hidden");
+			safeMobileBtn.setAttribute("aria-label", "Abrir menú");
 		}
 
-		mobileBtn.addEventListener("click", (e) => {
+		safeMobileBtn.addEventListener("click", (e) => {
 			e.stopPropagation();
 			const isOpen =
-				sidebarWrapper.getAttribute("data-mobile-open") === "true";
+				safeSidebarWrapper.getAttribute("data-mobile-open") === "true";
 			if (isOpen) {
 				closeMobileMenu();
 			} else {
@@ -247,8 +262,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 		mobileBackdrop.addEventListener("click", closeMobileMenu);
 
+		const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
+		if (sidebarCloseBtn) {
+			sidebarCloseBtn.addEventListener("click", closeMobileMenu);
+		}
+
 		sidebarWrapper.addEventListener("click", (e) => {
-			const link = e.target.closest("a[href]");
+			const link = (e.target as HTMLElement)?.closest("a[href]");
 			if (link) {
 				closeMobileMenu();
 			}

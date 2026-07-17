@@ -2,8 +2,27 @@
 import { getCollection } from "astro:content";
 import ShellLayout from "../../layouts/ShellLayout.astro";
 import Sidebar from "../../components/Sidebar.astro";
-
+import PageHeader from "../../components/PageHeader.astro";
 const lecturas = await getCollection("docs");
+
+const groups: Record<string, { label: string; entries: typeof lecturas }> = {
+  lecturas: { label: "Lecturas", entries: [] },
+  practicas: { label: "Prácticas", entries: [] },
+  soluciones_practicas: { label: "Soluciones de prácticas", entries: [] },
+};
+
+for (const entry of lecturas) {
+  const cat = entry.slug.includes("/") ? entry.slug.split("/")[0] : null;
+  if (cat && groups[cat]) {
+    groups[cat].entries.push(entry);
+  }
+}
+
+const orderedGroups = [
+  "lecturas",
+  "practicas",
+  "soluciones_practicas",
+] as const;
 ---
 
 <ShellLayout title="Lecturas del curso" activeTab="lecturas">
@@ -16,26 +35,36 @@ const lecturas = await getCollection("docs");
     <main
       class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-4 flex-1 overflow-auto min-w-0"
     >
-      <div class="max-w-4xl mx-auto">
-        <h1 class="text-2xl font-bold mb-2">Documentos del curso</h1>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">
-          Material de lectura, resúmenes y recursos para Física General I.
-        </p>
+      <div class="space-y-8 max-w-7xl mx-auto">
+        <PageHeader
+          title="Documentos del curso"
+          subtitle="Material de lectura, resúmenes y recursos para Física General I."
+        />
 
-        <div class="grid gap-3">
+        <div class="space-y-8">
           {
-            lecturas
-              .filter((e) => e.slug !== "index")
-              .sort((a, b) => a.slug.localeCompare(b.slug))
-              .map((entry) => (
-                <a
-                  href={`/${entry.slug}/`}
-                  class="block p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-300 dark:hover:border-sky-700 transition-all hover:shadow-sm"
-                >
-                  <span class="font-medium text-slate-800 dark:text-slate-200">
-                    {entry.data.title}
-                  </span>
-                </a>
+            orderedGroups
+              .filter((key) => groups[key].entries.length > 0)
+              .map((key) => (
+                <section>
+                  <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-3">
+                    {groups[key].label}
+                  </h2>
+                  <div class="grid gap-3">
+                    {groups[key].entries
+                      .sort((a, b) => a.slug.localeCompare(b.slug))
+                      .map((entry) => (
+                        <a
+                          href={`/${entry.slug}/`}
+                          class="block p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-300 dark:hover:border-sky-700 transition-all hover:shadow-sm"
+                        >
+                          <span class="font-medium text-slate-800 dark:text-slate-200">
+                            {entry.data.title}
+                          </span>
+                        </a>
+                      ))}
+                  </div>
+                </section>
               ))
           }
         </div>

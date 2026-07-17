@@ -29,7 +29,7 @@ const menuItems = [
   },
   {
     id: "lecturas",
-    label: "Lecturas",
+    label: "Documentos",
     icon: "lucide:book-open",
     href: "/lecturas/",
   },
@@ -133,6 +133,15 @@ const menuItems = [
       <Icon id="theme-toggle-dark-icon" name="lucide:sun" size={18} />
       <Icon id="theme-toggle-light-icon" name="lucide:moon" size={18} />
       <span class="sidebar-text" id="theme-toggle-text">Cambiar tema</span>
+    </button>
+    <button
+      id="sidebar-close-btn"
+      type="button"
+      class="lg:hidden sidebar-bottom-item flex items-center gap-3 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#0b0f19] w-full px-4 py-3"
+      aria-label="Cerrar menú"
+    >
+      <Icon name="lucide:x" size={18} />
+      <span class="sidebar-text">Cerrar</span>
     </button>
   </div>
 </aside>
