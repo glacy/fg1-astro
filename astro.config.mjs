@@ -17,6 +17,7 @@ export default defineConfig({
     sitemap(),
     starlight({
       title: 'Documentos FG1 - II semestre 2026',
+      disable404Route: true,
       locales: {
         root: {
           label: 'Documentación',
