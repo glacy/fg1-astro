@@ -132,9 +132,12 @@ import { COURSE_CONFIG } from "../lib/shared";
   const isBlockedWeek = requestedWeek && requestedWeek > MAX_WEEK;
 
   if (isBlockedWeek) {
-    document.getElementById("blocked-week-num").textContent = requestedWeek;
-    document.getElementById("error-blocked").classList.remove("hidden");
+    const blockedWeekNum = document.getElementById("blocked-week-num");
+    if (blockedWeekNum) blockedWeekNum.textContent = String(requestedWeek);
+    const blockedError = document.getElementById("error-blocked");
+    if (blockedError) blockedError.classList.remove("hidden");
   } else {
-    document.getElementById("error-generic").classList.remove("hidden");
+    const genericError = document.getElementById("error-generic");
+    if (genericError) genericError.classList.remove("hidden");
   }
 </script>

@@ -22,9 +22,8 @@ const { instructors } = Astro.props;
   </div>
 ) : (
   <div class="space-y-4">
-    {instructors.map((instructor) => (
+    {instructors.map((instructor: Instructor) => (
       <div
-        key={instructor.docente}
         class="instructor-card bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-4 shadow-sm"
         data-instructor={instructor.docente.toLowerCase()}
       >

@@ -1,3 +1,5 @@
 ---
-return Astro.redirect('/weekly/1', 302);
+import { COURSE_CONFIG } from "../../lib/weekly/weeks";
+
+return Astro.redirect(`/weekly/${COURSE_CONFIG.maxCurrentWeek}`, 302);
 ---

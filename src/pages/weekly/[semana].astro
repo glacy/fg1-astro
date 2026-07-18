@@ -38,14 +38,14 @@ const isOpen = false;
 const isDesktop = false;
 ---
 
-<ShellLayout title="Plan Semanal" activeTab="weekly">
+<ShellLayout title="Detalle semanal" activeTab="weekly">
   <slot name="sidebar" slot="sidebar">
     <Sidebar activeTab="weekly" />
   </slot>
   <div
     class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 flex flex-col"
     data-max-week={maxCurrentWeek}
-    transition:animate="morph"
+    transition:animate="fade"
   >
     <main
       class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-4 flex-1 overflow-auto min-w-0"
@@ -53,7 +53,7 @@ const isDesktop = false;
       <div class="space-y-8 max-w-7xl mx-auto">
         <div class="space-y-8 max-w-7xl mx-auto">
           <PageHeader
-            title="Consignas semanales"
+            title="Detallle semanal"
             subtitle={COURSE_CONFIG.semester}
           />
         </div>
@@ -210,6 +210,7 @@ const isDesktop = false;
     }
 
     function updateTimelineVisibility() {
+      if (!timelineContainer) return;
       if (isOpen || isDesktop) {
         timelineContainer.classList.remove("h-0", "opacity-0");
         timelineContainer.classList.add("h-auto", "opacity-100");

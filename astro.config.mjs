@@ -8,6 +8,7 @@ import rehypeKatex from 'rehype-katex';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
+  prefetch: true,
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
