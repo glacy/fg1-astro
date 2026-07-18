@@ -35,7 +35,7 @@ export default defineConfig({
     icon(),
     AstroPWA({
       registerType: 'autoUpdate',
-      injectRegister: 'script',
+
       manifest: false,
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,jpg,webp,woff2,json}'],
