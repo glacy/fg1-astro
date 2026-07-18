@@ -51,4 +51,15 @@ git push origin main   # Vercel deploy automático
 
 ---
 
+## Licencia
+
+**Dual licensing:**
+
+| Componente | Licencia | Archivo |
+|---|---|---|
+| Código fuente (componentes, layouts, lib, config) | MIT | [`LICENSE`](./LICENSE) |
+| Contenido educativo (lecturas, planes semanales, exámenes, PDFs) | CC BY-SA 4.0 | [`LICENSE-content`](./LICENSE-content) |
+
+---
+
 **Legacy**: [fg1 (React SPA)](https://github.com/glacy/fg1) · **Actual**: fg1-astro
