@@ -76,7 +76,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				document.documentElement.classList.add(theme);
 			})();
 		</script>
-	
+		<script is:inline>
+			if ("serviceWorker" in navigator) {
+				navigator.serviceWorker.register("/sw.js").catch(function(){});
+			}
+		</script>
 	</head>
 	<body
 		class="min-h-screen bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-slate-200 font-sans antialiased"
