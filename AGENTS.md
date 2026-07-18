@@ -41,6 +41,15 @@
 - **Página de lecturas** (`/lecturas/`) usa `src/pages/lecturas/index.astro` con ShellLayout + lista de enlaces desde `getCollection('docs')`. Las páginas individuales (`/lecturas/semana-1/` etc.) son manejadas por Starlight nativamente, no por `[...slug].astro`.
 - **`[...slug].astro` para lecturas fue eliminado** — Starlight maneja el ruteo y estilos de las páginas individuales de docs.
 
+## View Transitions
+
+- **Activado via `<ViewTransitions />`** en `ShellLayout.astro`. Solo aplica a páginas con ShellLayout (dashboard, planner, schedule, weekly). Starlight no se ve afectado (usa su propio layout).
+- **`transition:animate="morph"`** en el wrapper de contenido de cada página (`<div>` inmediatamente dentro del `<slot>` de ShellLayout).
+- **`transition:persist`** en elementos estáticos: barra superior móvil y botón de colapsar sidebar. No persisten en el sidebar completo (se re-renderiza para actualizar `activeTab`).
+- **`<a>` links sobre botones JS** para navegación entre semanas. `WeekNavigation.astro` y `WeekItem.astro` usan `<a href="/weekly/{n}">` en lugar de `<button>` + `window.location.href`. Semanas bloqueadas: `aria-disabled="true"` + `pointer-events-none`.
+- **`astro:after-swap`** para scripts que necesitan re-inicializarse tras una navegación VT. `ShellLayout.astro`, `planner/index.astro`, `schedule/index.astro`, `weekly/[semana].astro` lo usan.
+- **No usar `window.location.href` para navegación** entre páginas con VT. Preferir `<a>` links nativos o `navigate()` de `astro:transitions/client`.
+
 ## Limpieza
 
 - **Eliminar código comentado** antes de commit. No dejar `{/* ... */}` o `<!-- ... -->` en producción.

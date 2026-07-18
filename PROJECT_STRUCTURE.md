@@ -65,8 +65,8 @@ src/components/
 ├── Sidebar.astro            # Navegación lateral con iconos y colapso
 ├── Footer.astro             # Pie de página con datos del curso (variant: minimal | full)
 ├── WeekTimeline.astro       # Línea de tiempo semanal (navegación entre semanas)
-├── WeekItem.astro           # Ítem individual de la línea de tiempo
-├── WeekNavigation.astro     # Botones anterior/siguiente
+├── WeekItem.astro           # Ítem individual de la línea de tiempo (usado como <a> link con VT)
+├── WeekNavigation.astro     # Botones anterior/siguiente (usados como <a> links con VT)
 ├── LinkCard.astro           # Tarjeta de enlace a recursos (variant: default | evaluation)
 ├── Section.astro            # Contenedor de sección con iconos dinámicos por título
 ├── ObjectivesList.astro     # Lista de objetivos de aprendizaje
@@ -74,8 +74,11 @@ src/components/
 ├── ExamStats.astro          # Estadísticas de evaluaciones (upcoming / today)
 ├── Filters.astro            # Filtros con pill animada (planner)
 ├── ExamCard.astro           # Tarjeta de evaluación (links dinámicos desde array)
+├── PageHeader.astro         # Encabezado reutilizable (título + subtítulo)
+├── NavCard.astro            # Tarjeta de navegación del dashboard (href, icon, title, description, color)
 ├── ScheduleFilters.astro    # Filtros de horario (docente, modalidad, día)
-└── ScheduleTable.astro      # Tabla de horarios de atención (data-attributes para filtro cliente)
+├── ScheduleTable.astro      # Tabla de horarios de atención (data-attributes para filtro cliente)
+├── ScheduleTable.astro      # Tabla de horarios de atención (data-attributes para filtro cliente)
 ```
 
 ### src/lib/
@@ -94,6 +97,7 @@ src/lib/
 │   ├── index.ts             # Lógica de planner (Exam, ExamLink, getExams, getStats, filterExams)
 │   └── exams.json           # Datos de evaluaciones con array links[]
 ├── schedule.ts              # Lógica de horarios (formatLocation, filterInstructors)
+├── schedule-filter.client.ts # Filtrado cliente de horarios (CustomEvent + data-attributes)
 ├── instructors.ts           # Datos de instructores (tipos en src/types.ts)
 └── types.ts                 # Tipos compartidos: Attention, Instructor
 ```
@@ -248,3 +252,4 @@ public/ (assets estáticos) ──┘                       ↓
 | **Lecturas con Starlight** | `[...slug].astro` eliminado; Starlight maneja el ruteo de docs individuales (`/lecturas/semana-1/`). El índice (`/lecturas/`) usa `index.astro` con ShellLayout |
 | **Sidebar "Lecturas"** | Nuevo item de navegación `lecturas` con icono `lucide:book-open`, href a `/lecturas/` |
 | **index.md simplificado** | `src/content/docs/index.md` solo conserva frontmatter (title/description); Starlight no renderiza el body markdown |
+| **View Transitions progresivas** | `<ViewTransitions />` en `ShellLayout.astro` con `transition:animate="morph"` en cada wrapper de contenido. Elementos estáticos (`#sidebar-toggle`, barra móvil) llevan `transition:persist`. WeekNavigation y WeekItem convertidos de `<button>` a `<a>` para navegación nativa VT. `astro:after-swap` para re-inicializar scripts tras navegación. Starlight no se ve afectado. |

@@ -45,6 +45,7 @@ const isDesktop = false;
   <div
     class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300 flex flex-col"
     data-max-week={maxCurrentWeek}
+    transition:animate="morph"
   >
     <main
       class="w-full px-4 sm:px-6 lg:px-8 pt-4 pb-4 flex-1 overflow-auto min-w-0"
@@ -190,25 +191,15 @@ const isDesktop = false;
 </ShellLayout>
 
 <script>
-  function setupWeeklyPlan() {
-    const weekItems = document.querySelectorAll("[data-week-item]");
+  function setupWeeklyTimeline() {
     const timelineToggle = document.querySelector("[data-timeline-toggle]");
     const timelineContainer = document.querySelector(
       "[data-timeline-container]",
     );
-    const prevButton = document.querySelector('[data-nav="previous"]');
-    const nextButton = document.querySelector('[data-nav="next"]');
+    if (!timelineContainer) return;
 
-    const currentWeek = parseInt(
-      window.location.pathname.match(/\/weekly\/(\d+)/)?.[1] || "1",
-    );
     let isOpen = false;
     let isDesktop = window.innerWidth >= 1024;
-    const maxCurrentWeek = parseInt(
-      document
-        .querySelector("[data-max-week]")
-        ?.getAttribute("data-max-week") || "1",
-    );
 
     function checkIsDesktop() {
       isDesktop = window.innerWidth >= 1024;
@@ -219,71 +210,26 @@ const isDesktop = false;
     }
 
     function updateTimelineVisibility() {
-      if (timelineContainer) {
-        if (isOpen || isDesktop) {
-          timelineContainer.classList.remove("h-0", "opacity-0");
-          timelineContainer.classList.add("h-auto", "opacity-100");
-        } else {
-          timelineContainer.classList.add("h-0", "opacity-0");
-          timelineContainer.classList.remove("h-auto", "opacity-100");
-        }
+      if (isOpen || isDesktop) {
+        timelineContainer.classList.remove("h-0", "opacity-0");
+        timelineContainer.classList.add("h-auto", "opacity-100");
+      } else {
+        timelineContainer.classList.add("h-0", "opacity-0");
+        timelineContainer.classList.remove("h-auto", "opacity-100");
       }
     }
 
-    function navigateToWeek(week) {
-      window.location.href = `/weekly/${week}`;
-    }
-
-    function updateNavigation() {
-      if (prevButton) {
-        prevButton.disabled = currentWeek <= 1;
-      }
-      if (nextButton) {
-        nextButton.disabled = currentWeek >= maxCurrentWeek;
-      }
-    }
-
-    function setupTimeline() {
-      if (timelineToggle) {
-        timelineToggle.addEventListener("click", () => {
-          isOpen = !isOpen;
-          updateTimelineVisibility();
-        });
-      }
-
-      weekItems.forEach((button) => {
-        button.addEventListener("click", () => {
-          const week = parseInt(button.getAttribute("data-week-item"));
-          if (week && week <= maxCurrentWeek) {
-            navigateToWeek(week);
-            isOpen = false;
-            updateTimelineVisibility();
-          }
-        });
+    if (timelineToggle) {
+      timelineToggle.addEventListener("click", () => {
+        isOpen = !isOpen;
+        updateTimelineVisibility();
       });
     }
 
-    function setupNavigation() {
-      if (prevButton) {
-        prevButton.addEventListener("click", () => {
-          navigateToWeek(currentWeek - 1);
-        });
-      }
-
-      if (nextButton) {
-        nextButton.addEventListener("click", () => {
-          navigateToWeek(currentWeek + 1);
-        });
-      }
-    }
-
     window.addEventListener("resize", checkIsDesktop);
-
     checkIsDesktop();
-    updateNavigation();
-    setupTimeline();
-    setupNavigation();
   }
 
-  setupWeeklyPlan();
+  setupWeeklyTimeline();
+  document.addEventListener("astro:after-swap", setupWeeklyTimeline);
 </script>

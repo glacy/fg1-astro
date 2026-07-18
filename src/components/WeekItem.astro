@@ -18,9 +18,9 @@ const showCurrentBadge = isInProgress;
 const nextWeekIsLocked = week + 1 > maxCurrentWeek;
 ---
 
-<button
+<a
+  href={isLocked ? "#" : `/weekly/${week}`}
   data-week-item={week}
-  disabled={isLocked}
   aria-current={isInProgress ? "true" : isActive ? "page" : undefined}
   aria-disabled={isLocked}
   class={`
@@ -29,7 +29,7 @@ const nextWeekIsLocked = week + 1 > maxCurrentWeek;
     ${isActive || isInProgress
       ? 'bg-blue-500/10 border border-blue-200 shadow-sm hover:bg-blue-50 dark:bg-blue-600/10 dark:border-blue-500/30 dark:hover:bg-blue-600/20'
       : isLocked
-        ? 'opacity-85 cursor-not-allowed border border-transparent'
+        ? 'opacity-85 pointer-events-none border border-transparent'
         : isPast
           ? 'bg-green-50/50 border border-green-200/50 hover:bg-green-50 dark:bg-green-500/5 dark:border-green-500/20 dark:hover:bg-green-500/10'
           : 'hover:bg-black/5 border border-transparent dark:hover:bg-white/5'
@@ -147,7 +147,7 @@ const nextWeekIsLocked = week + 1 > maxCurrentWeek;
       <div class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
     </div>
   )}
-</button>
+</a>
 
 <style>
   @keyframes pulse-scale {

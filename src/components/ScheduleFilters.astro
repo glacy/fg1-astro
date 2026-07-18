@@ -79,3 +79,19 @@ const { searchTerm, modalityFilter, dayFilter, instructors, days } = Astro.props
     </div>
   </div>
 </div>
+
+<script>
+  function dispatchFilterChange() {
+    const docente = (document.getElementById("docente-select") as HTMLSelectElement)?.value ?? "";
+    const modalidad = (document.getElementById("modalidad-select") as HTMLSelectElement)?.value ?? "";
+    const dia = (document.getElementById("dia-select") as HTMLSelectElement)?.value ?? "";
+    document.dispatchEvent(new CustomEvent("filter-change", { detail: { docente, modalidad, dia } }));
+  }
+
+  document.addEventListener("change", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.matches("#docente-select, #modalidad-select, #dia-select")) {
+      dispatchFilterChange();
+    }
+  });
+</script>

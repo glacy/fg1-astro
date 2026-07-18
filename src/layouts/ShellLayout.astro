@@ -7,6 +7,7 @@ import "@fontsource/inter/700.css";
 import "../styles/base.css";
 import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title?: string;
@@ -34,6 +35,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="manifest" href="/manifest.json" />
 		<meta name="theme-color" content="#000000" />
+		<ViewTransitions />
 		<style is:global>
 			body[data-sidebar-collapsed] #sidebar-toggle-icon {
 				transform: rotate(180deg);
@@ -117,6 +119,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				<button
 					id="sidebar-toggle"
 					class="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-50 w-6 h-10 -translate-x-1/2 items-center justify-center rounded-full bg-white dark:bg-[#161d2a] border border-gray-200 dark:border-white/5 shadow-sm text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-all duration-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+					transition:persist
 					aria-label="Colapsar barra lateral"
 					data-collapsed="false"
 				>
@@ -129,6 +132,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 				<div
 					class="lg:hidden fixed top-0 left-0 z-30 w-full bg-white/70 dark:bg-[#161d2a]/70 backdrop-blur-sm border-b border-gray-200 dark:border-white/5"
+					transition:persist
 				>
 					<div class="relative h-14 flex items-center px-4">
 						<button
@@ -153,6 +157,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				</div>
 				<div
 					class="flex-1 overflow-auto scrollbar-hide relative z-0 flex flex-col lg:pt-0 pt-14"
+					transition:name="page-content"
 				>
 					<slot />
 					<Footer />
@@ -164,120 +169,111 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 <script>
 	import { setupTheme } from "../lib/shared";
-	setupTheme();
 
-	const sidebar = document.getElementById("sidebar");
-	const toggleBtn = document.getElementById("sidebar-toggle");
-	const toggleIcon = document.getElementById("sidebar-toggle-icon");
-	const sidebarWrapper = document.getElementById("sidebar-wrapper");
-	const mobileBackdrop = document.getElementById("mobile-backdrop");
-	const mobileBtn = document.getElementById("mobile-menu-btn");
-	const menuIcon = document.getElementById("menu-icon");
-	const menuCloseIcon = document.getElementById("menu-close-icon");
+	function setupShellLayout() {
+		setupTheme();
 
-	// Desktop sidebar collapse
-	if (sidebar && toggleBtn && toggleIcon) {
-		const sidebarEl = sidebar;
-		const toggleBtnEl = toggleBtn;
-		const STORAGE_KEY = "sidebar-collapsed";
-		const isCollapsed = localStorage.getItem(STORAGE_KEY) === "true";
-		let collapsed = isCollapsed;
+		const sidebar = document.getElementById("sidebar");
+		const toggleBtn = document.getElementById("sidebar-toggle");
+		const toggleIcon = document.getElementById("sidebar-toggle-icon");
+		const sidebarWrapper = document.getElementById("sidebar-wrapper");
+		const mobileBackdrop = document.getElementById("mobile-backdrop");
+		const mobileBtn = document.getElementById("mobile-menu-btn");
+		const menuIcon = document.getElementById("menu-icon");
+		const menuCloseIcon = document.getElementById("menu-close-icon");
 
-		sidebarEl.style.transition = "none";
-		applyState();
-		requestAnimationFrame(() =>
-			requestAnimationFrame(() => {
-				sidebarEl.style.transition = "";
-			}),
-		);
+		if (!sidebar || !sidebarWrapper) return;
 
-		function applyState() {
-			sidebarEl.classList.toggle("w-16", collapsed);
-			sidebarEl.classList.toggle("w-64", !collapsed);
-			sidebarEl.setAttribute("data-collapsed", String(collapsed));
-			toggleBtnEl.setAttribute("data-collapsed", String(collapsed));
-			toggleBtnEl.setAttribute(
-				"aria-label",
-				collapsed ? "Expandir barra lateral" : "Colapsar barra lateral",
-			);
-			document.body.toggleAttribute("data-sidebar-collapsed", collapsed);
-			localStorage.setItem(STORAGE_KEY, String(collapsed));
-		}
+		// Desktop sidebar collapse
+		if (toggleBtn && toggleIcon) {
+			const STORAGE_KEY = "sidebar-collapsed";
+			const isCollapsed = localStorage.getItem(STORAGE_KEY) === "true";
+			let collapsed = isCollapsed;
 
-		toggleBtnEl.addEventListener("click", () => {
-			collapsed = !collapsed;
+			sidebar.style.transition = "none";
 			applyState();
-		});
+			requestAnimationFrame(() =>
+				requestAnimationFrame(() => {
+					sidebar.style.transition = "";
+				}),
+			);
+
+			function applyState() {
+				sidebar.classList.toggle("w-16", collapsed);
+				sidebar.classList.toggle("w-64", !collapsed);
+				sidebar.setAttribute("data-collapsed", String(collapsed));
+				toggleBtn.setAttribute("data-collapsed", String(collapsed));
+				toggleBtn.setAttribute(
+					"aria-label",
+					collapsed ? "Expandir barra lateral" : "Colapsar barra lateral",
+				);
+				document.body.toggleAttribute("data-sidebar-collapsed", collapsed);
+				localStorage.setItem(STORAGE_KEY, String(collapsed));
+			}
+
+			toggleBtn.addEventListener("click", () => {
+				collapsed = !collapsed;
+				applyState();
+			});
+		}
+
+		// Mobile drawer
+		if (mobileBackdrop && mobileBtn && menuIcon && menuCloseIcon) {
+			const isDesktop = () => window.innerWidth >= 1024;
+
+			function openMobileMenu() {
+				if (isDesktop()) return;
+				sidebarWrapper.setAttribute("data-mobile-open", "true");
+				mobileBackdrop.classList.remove("hidden");
+				menuIcon.classList.add("hidden");
+				menuCloseIcon.classList.remove("hidden");
+				mobileBtn.setAttribute("aria-label", "Cerrar menú");
+				sidebar.setAttribute("data-collapsed", "false");
+				sidebar.classList.remove("w-16");
+				sidebar.classList.add("w-64");
+			}
+
+			function closeMobileMenu() {
+				sidebarWrapper.setAttribute("data-mobile-open", "false");
+				mobileBackdrop.classList.add("hidden");
+				menuIcon.classList.remove("hidden");
+				menuCloseIcon.classList.add("hidden");
+				mobileBtn.setAttribute("aria-label", "Abrir menú");
+			}
+
+			mobileBtn.addEventListener("click", (e) => {
+				e.stopPropagation();
+				const isOpen =
+					sidebarWrapper.getAttribute("data-mobile-open") === "true";
+				if (isOpen) {
+					closeMobileMenu();
+				} else {
+					openMobileMenu();
+				}
+			});
+
+			mobileBackdrop.addEventListener("click", closeMobileMenu);
+
+			const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
+			if (sidebarCloseBtn) {
+				sidebarCloseBtn.addEventListener("click", closeMobileMenu);
+			}
+
+			sidebarWrapper.addEventListener("click", (e) => {
+				const link = (e.target as HTMLElement)?.closest("a[href]");
+				if (link) {
+					closeMobileMenu();
+				}
+			});
+
+			window.addEventListener("resize", () => {
+				if (isDesktop()) {
+					closeMobileMenu();
+				}
+			});
+		}
 	}
 
-	// Mobile drawer
-	if (
-		sidebarWrapper &&
-		mobileBackdrop &&
-		mobileBtn &&
-		menuIcon &&
-		menuCloseIcon &&
-		sidebar
-	) {
-		const safeSidebarWrapper = sidebarWrapper;
-		const safeMobileBackdrop = mobileBackdrop;
-		const safeMobileBtn = mobileBtn;
-		const safeMenuIcon = menuIcon;
-		const safeMenuCloseIcon = menuCloseIcon;
-		const safeSidebar = sidebar;
-
-		const isDesktop = () => window.innerWidth >= 1024;
-
-		function openMobileMenu() {
-			if (isDesktop()) return;
-			safeSidebarWrapper.setAttribute("data-mobile-open", "true");
-			safeMobileBackdrop.classList.remove("hidden");
-			safeMenuIcon.classList.add("hidden");
-			safeMenuCloseIcon.classList.remove("hidden");
-			safeMobileBtn.setAttribute("aria-label", "Cerrar menú");
-			// Force expanded on mobile regardless of desktop collapsed state
-			safeSidebar.setAttribute("data-collapsed", "false");
-			safeSidebar.classList.remove("w-16");
-			safeSidebar.classList.add("w-64");
-		}
-
-		function closeMobileMenu() {
-			safeSidebarWrapper.setAttribute("data-mobile-open", "false");
-			safeMobileBackdrop.classList.add("hidden");
-			safeMenuIcon.classList.remove("hidden");
-			safeMenuCloseIcon.classList.add("hidden");
-			safeMobileBtn.setAttribute("aria-label", "Abrir menú");
-		}
-
-		safeMobileBtn.addEventListener("click", (e) => {
-			e.stopPropagation();
-			const isOpen =
-				safeSidebarWrapper.getAttribute("data-mobile-open") === "true";
-			if (isOpen) {
-				closeMobileMenu();
-			} else {
-				openMobileMenu();
-			}
-		});
-
-		mobileBackdrop.addEventListener("click", closeMobileMenu);
-
-		const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
-		if (sidebarCloseBtn) {
-			sidebarCloseBtn.addEventListener("click", closeMobileMenu);
-		}
-
-		sidebarWrapper.addEventListener("click", (e) => {
-			const link = (e.target as HTMLElement)?.closest("a[href]");
-			if (link) {
-				closeMobileMenu();
-			}
-		});
-
-		window.addEventListener("resize", () => {
-			if (isDesktop()) {
-				closeMobileMenu();
-			}
-		});
-	}
+	setupShellLayout();
+	document.addEventListener("astro:after-swap", setupShellLayout);
 </script>
