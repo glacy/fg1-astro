@@ -1,58 +1,81 @@
 # Convenciones del proyecto
 
-## Markdown para contenido académico
+## Comandos
 
-- Todas las tablas deben usar **pipe tables** (`| col1 | col2 |`), no grid tables, no fenced divs (`:::`) como contenedores de tablas, ni directivas LaTeX (`tblr`, `table*`).
-- Usar pipe tables incluso para tablas anchas o con contenido matemático. Dividir en varias tablas simples si es necesario.
-- LaTeX math: usar `$...$` inline y `$$...$$`/`\[...\]` display (KaTeX).
-- No usar `\VEC{}`, `\tentimes`, `\text{\scriptsize{}}` ni otros comandos LaTeX personalizados — reemplazar con `\vec{}`, `\times`, y funciones estándar de KaTeX.
-- Figuras: usar `<figure>` y `<img>` con `src` relativa a `src/content/` o absoluta desde `public/`.
-- Fenced divs (`::: note`, `::: wwteorema`) no tienen soporte en Astro — usar `<div class="note">` HTML directamente para bloques destacados.
+```bash
+pnpm dev        # dev server → localhost:4321
+pnpm build      # build → dist/ (incluye PWA SW)
+pnpm preview    # preview del build (necesario para probar SW)
+pnpm typecheck  # tsc --noEmit (único verification que funciona)
+```
+
+`pnpm lint` y `pnpm test` fallan — ESLint y Vitest declarados en devDependencies pero sin config.
+
+## PWA (Service Worker)
+
+- **Registro**: `<script is:inline>` en `ShellLayout.astro` — necesario `is:inline` para evitar tree-shaking en producción. No usar `import.meta.env.DEV` condicional.
+- **404 exclusion**: `globIgnores: ['**/404*']` en `astro.config.mjs:42` — Workbox rechaza precacheo de respuestas non-2xx (la página 404 sirve con status 404).
+- **navigateFallback**: `'/offline'` — navegaciones a URLs no precacheadas (offline) sirven `src/pages/offline.astro`.
+- **Build → Preview**: Probar SW requiere `pnpm build && pnpm preview`. Dev server no sirve `sw.js`.
+
+## ShellLayout — layout único
+
+`src/layouts/ShellLayout.astro` es el único layout. Contiene:
+- `<ViewTransitions />` en `<head>` — activa VT solo en páginas con ShellLayout. Starlight no se ve afectado.
+- Tema dark/light: script `is:inline` que lee `localStorage` antes de renderizar (evita flash).
+- SW registration: script `is:inline` incondicional.
+- Sidebar: colapsable en desktop, drawer en mobile.
+- Todos los scripts de página se re-inicializan con `document.addEventListener("astro:after-swap", fn)`.
+
+VT reglas:
+- `transition:persist` en barra móvil y botón colapsar sidebar (elementos estáticos).
+- `transition:name="page-content"` en el scroll container.
+- Navegación entre semanas: `<a href="/weekly/{n}">`, no `<button>` + `location.href`.
+- Semanas bloqueadas: `aria-disabled="true"` + `pointer-events-none`.
+
+## Rutas
+
+| Ruta | Archivo | Notas |
+|---|---|---|
+| `/` | `src/pages/index.astro` | Dashboard con semana actual, stats, cards |
+| `/weekly/{n}` | `src/pages/weekly/[semana].astro` | `getStaticPaths()` genera 1..`maxCurrentWeek` |
+| `/weekly/` | `src/pages/weekly/index.astro` | Redirect 302 → `/weekly/{maxCurrentWeek}` |
+| `/planner` | `src/pages/planner/index.astro` | Filtros cliente (btn + pill animada) |
+| `/schedule` | `src/pages/schedule/index.astro` | Filtros cliente (CustomEvent + data-attributes) |
+| `/lecturas/` | `src/pages/lecturas/index.astro` | ShellLayout + lista de docs |
+| `/lecturas/semana-N/` | Starlight | Starlight maneja ruteo nativo, NO `[...slug].astro` |
+| `/offline` | `src/pages/offline.astro` | Estilos inline autónomos, sin dep de componentes |
+
+## Content Collections
+
+- **Semanas**: `src/content/weeks/semana-N.json` (N = 1..16). Schema Zod en `src/content/config.ts`.
+  - Cargar con `await loadWeeksData()` (usa `getCollection('weeks')`) → retorna `Record<number, WeekData>`.
+  - Async, requiere `await` en frontmatter de páginas/componentes.
+- **Lecturas**: Starlight docs en `src/content/docs/`. Schema via `docsSchema()`.
+- **JSON plano** (`src/lib/planner/exams.json`) solo para datos sin colección propia.
+
+## Contenido Markdown (lecturas académicas)
+
+- Tablas: pipe tables (`\| col1 \| col2 \|`). No grid tables, fenced divs, ni LaTeX `tblr`.
+- Math KaTeX: `$...$` inline, `$$...$$` / `\[...\]` display.
+- No `\VEC{}`, `\tentimes`, `\text{\scriptsize{}}`. Usar `\vec{}`, `\times`, estándar KaTeX.
+- Figuras: `<figure>` + `<img>` con `src` relativa a `src/content/` o absoluta desde `public/`.
+- Bloques destacados (`::: note`, `::: wwteorema`) no existen en Astro → `<div class="note">`.
 - `{.smallcaps}` → `<span style="font-variant: small-caps;">`
 - `{.underline}` → `<u>`
-- Referencias cruzadas (`{#etiqueta}`, `{reference-type="ref"}`) no tienen soporte nativo en Markdown estático — eliminarlas o usar texto plano.
-- Títulos: usar `##` para secciones (no `{#cap:cap1}`).
+- Referencias cruzadas (`{#etiqueta}`, `{reference-type="ref"}`) no tienen soporte → texto plano.
+- Títulos usar `##` (no `{#cap:cap1}`).
 
-## Composición de componentes
+## Filtros cliente
 
-- **Preferir composición sobre duplicación inline.** Si un componente existe (`ScheduleTable`, `ScheduleFilters`) y cumple la función, úsalo en lugar de copiar su markup.
-- **Data-attributes para interactividad cliente.** Cuando un componente estático necesite ser manipulado por JS del lado cliente, añadir data-attributes semánticos (`data-instructor`, `data-modalidad`, `data-dia`) en lugar de depender de selectores frágiles como estructuras de clases.
-- **Transiciones CSS** deben definirse en el componente dueño del elemento, no en la página que lo usa.
+- **Schedule** (`src/lib/schedule-filter.client.ts`): `document.dispatchEvent(new CustomEvent("filter-change"))` → las cards tienen `data-instructor`, `data-modalidad`, `data-dia`.
+- **Planner** (inline en `planner/index.astro`): filter buttons con `data-filter`, pill animada. Cards tienen `data-date`.
 
-## Datos
+## Varios
 
-- **Content Collections para datos del curso.** Preferir `src/content/<coleccion>/` con schema Zod sobre archivos JSON planos. Cada semana tiene su propio archivo (`semana-N.json`), validado en build-time con el schema definido en `src/content/config.ts`.
-- **`loadWeeksData()` para datos semanales.** Las semanas se cargan via `await loadWeeksData()` (usa `getCollection('weeks')`) que retorna `Record<number, WeekData>`. Esta función es async y debe usarse con `await` en el frontmatter de páginas/componentes.
-- **Archivos `.json` planos** (tipo `exams.json`) solo para datos que no justifican una colección independiente. Preferir Content Collections cuando los datos tengan una estructura repetitiva y necesiten validación de schema.
-- **Arrays sobre campos planos.** Para colecciones de enlaces o items repetitivos, usar arrays tipados (`ExamLink[]`) en lugar de campos individuales (`instructionsUrl`, `instructionsUrl2`, ...).
-- **JSON keys en kebab-case.**
-
-## CSS y tema
-
-- **CSS custom properties globales** se declaran en `src/styles/base.css`. No duplicarlas en layouts individuales.
-- **Google Fonts** se autohostean con `@fontsource/{nombre}`, importando solo los pesos necesarios. No usar `@import url()` en bloques `<style>`.
-- **`--font-geist-sans`** se define en `base.css` para que la clase `font-sans` de Tailwind use la fuente autohosteada.
-
-## Páginas
-
-- **La raíz (`/`)** es un dashboard, no un redirect. Muestra navegación rápida (`<a>` cards), tarjeta de la semana actual, y stats de evaluaciones.
-- **La semana actual** se determina en build-time desde `COURSE_CONFIG.maxCurrentWeek`. No hay detección client-side de la fecha real.
-- **Página offline personalizada** (`src/pages/offline.astro`) con estilos autónomos (sin dependencias de componentes), dark/light mode, y botones de reintentar/volver al inicio. Configurada via `navigateFallback: '/offline'` en PWA Workbox.
-- **Página de lecturas** (`/lecturas/`) usa `src/pages/lecturas/index.astro` con ShellLayout + lista de enlaces desde `getCollection('docs')`. Las páginas individuales (`/lecturas/semana-1/` etc.) son manejadas por Starlight nativamente, no por `[...slug].astro`.
-- **`[...slug].astro` para lecturas fue eliminado** — Starlight maneja el ruteo y estilos de las páginas individuales de docs.
-
-## View Transitions
-
-- **Activado via `<ViewTransitions />`** en `ShellLayout.astro`. Solo aplica a páginas con ShellLayout (dashboard, planner, schedule, weekly). Starlight no se ve afectado (usa su propio layout).
-- **`transition:animate="morph"`** en el wrapper de contenido de cada página (`<div>` inmediatamente dentro del `<slot>` de ShellLayout).
-- **`transition:persist`** en elementos estáticos: barra superior móvil y botón de colapsar sidebar. No persisten en el sidebar completo (se re-renderiza para actualizar `activeTab`).
-- **`<a>` links sobre botones JS** para navegación entre semanas. `WeekNavigation.astro` y `WeekItem.astro` usan `<a href="/weekly/{n}">` en lugar de `<button>` + `window.location.href`. Semanas bloqueadas: `aria-disabled="true"` + `pointer-events-none`.
-- **`astro:after-swap`** para scripts que necesitan re-inicializarse tras una navegación VT. `ShellLayout.astro`, `planner/index.astro`, `schedule/index.astro`, `weekly/[semana].astro` lo usan.
-- **No usar `window.location.href` para navegación** entre páginas con VT. Preferir `<a>` links nativos o `navigate()` de `astro:transitions/client`.
-
-## Limpieza
-
-- **Eliminar código comentado** antes de commit. No dejar `{/* ... */}` o `<!-- ... -->` en producción.
-- **Eliminar directorios vacíos.**
-- **Eliminar componentes no importados** (`MainLayout.astro` no tenía ningún import — fue eliminado).
-- **Eliminar tipos locales** cuando existe un archivo compartido (`src/types.ts`).
+- `postcss.config.mjs` es legacy — `@astrojs/tailwind` configura PostCSS internamente.
+- `COURSE_CONFIG.maxCurrentWeek` define la semana activa máxima (build-time, no client-side).
+- `public/manifest.json` tiene `start_url: "/weekly"` (sin trailing slash).
+- Deploy automático: `git push origin main` → Vercel.
+- Fuente Inter autohosteada via `@fontsource/inter`, importada en ShellLayout. CSS var `--font-geist-sans` en `src/styles/base.css`.
+- JSON keys en kebab-case. Archivos `.astro` en PascalCase (componentes) o kebab-case (páginas).
