@@ -1,47 +1,54 @@
-# FG1 - Física General I (Astro)
+# FG1 — Física General I
 
-Plataforma educativa para Física General I - I semestre 2026.
+Un sitio web de curso universitario, rápido como una landing page.
 
-Migración de React SPA a Astro (Multiple Page Application) con contenido estático prerenderizado.
+Estudiantes acceden al plan semanal, evaluaciones, horarios de atención y lecturas desde cualquier dispositivo, incluso sin internet. Profesores pueden adaptarlo como plantilla para sus propios cursos.
+
+## Secciones
+
+| Ruta | Qué encontrás |
+|---|---|
+| `/` | Dashboard con la semana actual, stats de evaluaciones y acceso rápido a cada sección |
+| `/weekly/{n}` | Plan detallado de la semana n: objetivos, contenidos, materiales, actividades |
+| `/planner` | Calendario de evaluaciones con filtros (todas, hoy, próximas) |
+| `/schedule` | Horarios de atención estudiantil — filtrá por docente, modalidad o día |
+| `/lecturas/` | Lecturas, prácticas y soluciones organizadas por semana |
 
 ## Características
 
-- ⚡ **Rendimiento**: HTML estático prerenderizado, zero JavaScript en carga inicial
-- 📱 **PWA**: Instalable, offline-first con Workbox (32 assets precacheados, ~1.45 MiB)
-- 🌙 **Tema oscuro/claro**: Con persistencia en localStorage y sin flash (FOUC)
-- 📐 **Responsive**: Sidebar colapsable en desktop, drawer overlay en mobile
-- 📄 **Contenido**: 16 semanas de plan de estudios con objetivos, lecturas, prácticas y evaluaciones
-- 🔍 **Filtros en cliente**: Horarios de atención y evaluaciones con filtrado instantáneo
+- **Sin recarga de página** — View Transitions hacen que la navegación entre secciones sea instantánea y con animación suave
+- **Instalable** — PWA con service worker: agregala a la pantalla de inicio y usala offline
+- **Modo oscuro/claro** — Persiste la preferencia, sin flash al cargar
+- **Responsive** — Sidebar colapsable en desktop, menú drawer en mobile
+- **Filtros en cliente** — Horarios y evaluaciones se filtran al instante sin recargar
+- **Estático** — HTML prerenderizado, cero JavaScript en carga inicial
 
-## Tech Stack
+## Stack técnico
 
 | Capa | Tecnología |
 |---|---|
-| Framework | Astro 5 (static output) |
+| Framework | [Astro 5](https://astro.build) (static output) |
 | UI | Componentes `.astro` + JavaScript vanilla |
-| Estilos | TailwindCSS 3 (darkMode: class) |
+| Estilos | [TailwindCSS 3](https://tailwindcss.com) (dark mode vía clase) |
 | PWA | `@vite-pwa/astro` + Workbox 7 (generateSW) |
-| Iconos | `astro-icon` + Lucide (inline SVG) |
-| Imágenes | `@astrojs/image` + Sharp (WebP optimizado) |
+| Iconos | `astro-icon` + Lucide |
+| Documentación | Starlight (lecturas del curso) |
+| Fuente | Inter (autohosteada con `@fontsource`) |
+| Fórmulas | KaTeX (remark-math + rehype-katex) |
 | Build | Vite 6 + pnpm |
-| Deploy | Vercel (edge redirects + static hosting) |
+| Deploy | Vercel (static hosting) |
 
 ## Desarrollo
 
 ```bash
-pnpm install        # Instalar dependencias
-pnpm dev            # Servidor de desarrollo (localhost:4321)
-pnpm build          # Build producción → dist/
+pnpm install
+pnpm dev            # http://localhost:4321
+pnpm build          # Build → dist/
 pnpm preview        # Preview del build
+pnpm test           # Vitest
+pnpm lint           # ESLint
+pnpm typecheck      # tsc --noEmit
 ```
-
-## Documentación
-
-- [Documentación técnica de migración](./MIGRATION_DOCUMENTATION.md)
-- [Estructura del proyecto](./PROJECT_STRUCTURE.md)
-- [Plan de migración](./MIGRATION_PLAN.md)
-- [Guía de implementación](./IMPLEMENTATION_GUIDE.md)
-- [Configuración de entorno](./ENV_SETUP.md)
 
 ## Deploy
 
@@ -49,16 +56,18 @@ pnpm preview        # Preview del build
 git push origin main   # Vercel deploy automático
 ```
 
----
+## Documentación del proyecto
+
+- [Estructura del proyecto](./PROJECT_STRUCTURE.md)
+- [Convenciones de desarrollo](./AGENTS.md)
+- [Documentación de la migración](./MIGRATION_DOCUMENTATION.md)
 
 ## Licencia
 
-**Dual licensing:**
-
-| Componente | Licencia | Archivo |
-|---|---|---|
-| Código fuente (componentes, layouts, lib, config) | MIT | [`LICENSE`](./LICENSE) |
-| Contenido educativo (lecturas, planes semanales, exámenes, PDFs) | CC BY-SA 4.0 | [`LICENSE-content`](./LICENSE-content) |
+| Componente | Licencia |
+|---|---|
+| Código fuente (componentes, layouts, lib, config) | [MIT](./LICENSE) |
+| Contenido educativo (lecturas, planes semanales, exámenes, PDFs) | [CC BY-SA 4.0](./LICENSE-content) |
 
 ---
 

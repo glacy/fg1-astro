@@ -11,16 +11,15 @@ fg1-astro/
 ├── postcss.config.mjs         # Configuración PostCSS
 ├── pnpm-workspace.yaml       # Configuración workspace (monoproject)
 ├── AGENTS.md                 # Convenciones del proyecto (AI-assisted coding)
+├── LICENSE                   # Licencia MIT (código fuente)
+├── LICENSE-content           # Licencia CC BY-SA 4.0 (contenido educativo)
 ├── vercel.json               # Configuración Vercel (redirects)
 ├── .gitignore                # Archivos ignorados por Git
 ├── .env.example              # Ejemplo de variables de entorno
 ├── .env.local                # Variables de entorno locales
 ├── README.md                 # Documentación del proyecto
-├── MIGRATION_PLAN.md         # Plan de migración
 ├── MIGRATION_DOCUMENTATION.md# Documentación técnica de migración
 ├── PROJECT_STRUCTURE.md      # Este archivo
-├── ENV_SETUP.md              # Guía de configuración de entorno
-├── IMPLEMENTATION_GUIDE.md   # Guía de implementación técnica
 └── setup-astro.sh            # Script de setup
 ```
 
