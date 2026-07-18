@@ -78,7 +78,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		</script>
 		<script is:inline>
 			if ("serviceWorker" in navigator) {
-				navigator.serviceWorker.register("/sw.js").catch(function(){});
+				navigator.serviceWorker
+					.register("/sw.js")
+					.catch(function () {});
 			}
 		</script>
 	</head>
@@ -183,6 +185,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		const menuCloseIcon = document.getElementById("menu-close-icon");
 
 		if (!sidebar || !sidebarWrapper) return;
+		const safeSidebar = sidebar;
+		const safeSidebarWrapper = sidebarWrapper;
 
 		// Desktop sidebar collapse
 		if (toggleBtn && toggleIcon) {
@@ -190,24 +194,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			const isCollapsed = localStorage.getItem(STORAGE_KEY) === "true";
 			let collapsed = isCollapsed;
 
-			sidebar.style.transition = "none";
+			safeSidebar.style.transition = "none";
 			applyState();
 			requestAnimationFrame(() =>
 				requestAnimationFrame(() => {
-					sidebar.style.transition = "";
+					safeSidebar.style.transition = "";
 				}),
 			);
 
 			function applyState() {
-				sidebar.classList.toggle("w-16", collapsed);
-				sidebar.classList.toggle("w-64", !collapsed);
-				sidebar.setAttribute("data-collapsed", String(collapsed));
+				if (!sidebar || !toggleBtn) return;
+				safeSidebar.classList.toggle("w-16", collapsed);
+				safeSidebar.classList.toggle("w-64", !collapsed);
+				safeSidebar.setAttribute("data-collapsed", String(collapsed));
 				toggleBtn.setAttribute("data-collapsed", String(collapsed));
 				toggleBtn.setAttribute(
 					"aria-label",
-					collapsed ? "Expandir barra lateral" : "Colapsar barra lateral",
+					collapsed
+						? "Expandir barra lateral"
+						: "Colapsar barra lateral",
 				);
-				document.body.toggleAttribute("data-sidebar-collapsed", collapsed);
+				document.body.toggleAttribute(
+					"data-sidebar-collapsed",
+					collapsed,
+				);
 				localStorage.setItem(STORAGE_KEY, String(collapsed));
 			}
 
@@ -223,28 +233,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 			function openMobileMenu() {
 				if (isDesktop()) return;
-				sidebarWrapper.setAttribute("data-mobile-open", "true");
-				mobileBackdrop.classList.remove("hidden");
-				menuIcon.classList.add("hidden");
-				menuCloseIcon.classList.remove("hidden");
-				mobileBtn.setAttribute("aria-label", "Cerrar menú");
-				sidebar.setAttribute("data-collapsed", "false");
-				sidebar.classList.remove("w-16");
-				sidebar.classList.add("w-64");
+				safeSidebarWrapper.setAttribute("data-mobile-open", "true");
+				mobileBackdrop!.classList.remove("hidden");
+				menuIcon!.classList.add("hidden");
+				menuCloseIcon!.classList.remove("hidden");
+				mobileBtn!.setAttribute("aria-label", "Cerrar menú");
+				safeSidebar.setAttribute("data-collapsed", "false");
+				safeSidebar.classList.remove("w-16");
+				safeSidebar.classList.add("w-64");
 			}
 
 			function closeMobileMenu() {
-				sidebarWrapper.setAttribute("data-mobile-open", "false");
-				mobileBackdrop.classList.add("hidden");
-				menuIcon.classList.remove("hidden");
-				menuCloseIcon.classList.add("hidden");
-				mobileBtn.setAttribute("aria-label", "Abrir menú");
+				safeSidebarWrapper.setAttribute("data-mobile-open", "false");
+				mobileBackdrop!.classList.add("hidden");
+				menuIcon!.classList.remove("hidden");
+				menuCloseIcon!.classList.add("hidden");
+				mobileBtn!.setAttribute("aria-label", "Abrir menú");
 			}
 
 			mobileBtn.addEventListener("click", (e) => {
 				e.stopPropagation();
 				const isOpen =
-					sidebarWrapper.getAttribute("data-mobile-open") === "true";
+					safeSidebarWrapper.getAttribute("data-mobile-open") === "true";
 				if (isOpen) {
 					closeMobileMenu();
 				} else {
@@ -254,7 +264,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 			mobileBackdrop.addEventListener("click", closeMobileMenu);
 
-			const sidebarCloseBtn = document.getElementById("sidebar-close-btn");
+			const sidebarCloseBtn =
+				document.getElementById("sidebar-close-btn");
 			if (sidebarCloseBtn) {
 				sidebarCloseBtn.addEventListener("click", closeMobileMenu);
 			}
