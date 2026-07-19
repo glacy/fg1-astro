@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Física General I",
   "short_name": "Física General I",
-  "start_url": "/weekly",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone"],

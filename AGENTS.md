@@ -75,7 +75,7 @@ VT reglas:
 
 - `postcss.config.mjs` es legacy — `@astrojs/tailwind` configura PostCSS internamente.
 - `COURSE_CONFIG.maxCurrentWeek` define la semana activa máxima (build-time, no client-side).
-- `public/manifest.json` tiene `start_url: "/weekly"` (sin trailing slash).
+- `public/manifest.json` tiene `start_url: "/"`. Si se cambia, debe coincidir con una ruta precachead por el SW.
 - Deploy automático: `git push origin main` → Vercel.
 - Fuente Inter autohosteada via `@fontsource/inter`, importada en ShellLayout. CSS var `--font-geist-sans` en `src/styles/base.css`.
 - JSON keys en kebab-case. Archivos `.astro` en PascalCase (componentes) o kebab-case (páginas).
