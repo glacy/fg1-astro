@@ -13,15 +13,33 @@ pnpm typecheck  # tsc --noEmit (único verification que funciona)
 
 ## PWA (Service Worker)
 
+- **Modo**: `injectManifest` (vs `generateSW`). SW custom en `src/sw.ts`.
 - **Registro**: `<script is:inline>` en `ShellLayout.astro` — necesario `is:inline` para evitar tree-shaking en producción. No usar `import.meta.env.DEV` condicional.
-- **404 exclusion**: `globIgnores: ['**/404*']` en `astro.config.mjs:42` — Workbox rechaza precacheo de respuestas non-2xx (la página 404 sirve con status 404).
-- **navigateFallback**: `'/offline'` — navegaciones a URLs no precacheadas sirven `src/pages/offline.astro`.
-- **navigateFallbackDenylist**: `[/^\/lecturas/]` — Starlight genera rutas con trailing slash (`/lecturas/semana-1/`) que no matchean precache entries (Workbox `cleanURLs: true` + `directoryIndex` son incompatibles). Excluidas del NavigationRoute para que pasen por red.
+- **404 exclusion**: `globIgnores: ['**/404*']` en `astro.config.mjs` — Workbox rechaza precacheo de respuestas non-2xx (la página 404 sirve con status 404).
+- **Trailing slash normalization**: SW custom (`src/sw.ts`) normaliza trailing slashes en navegaciones antes de buscar en precache (`matchPrecache(pathname.replace(/\/$/, '') || '/')`). Esto resuelve la incompatibilidad entre `cleanURLs: true` de Workbox y los trailing slashes de Starlight (`/lecturas/semana-1/` → busca `lecturas/semana-1` en precache).
+- **Offline fallback**: SW intenta precache → network → `/offline` → `503 "Sin conexión"`. Sin `navigateFallback` ni `navigateFallbackAllowlist` — toda la lógica está en `src/sw.ts`.
 - **Build → Preview**: Probar SW requiere `pnpm build && pnpm preview`. Dev server no sirve `sw.js`.
+
+## Dos sistemas de ruteo
+
+El sitio combina dos sistemas de renderizado independientes bajo el mismo dominio:
+
+| Sistema | Layout | View Transitions | SW precache | Rutas |
+|---|---|---|---|---|
+| **Astro pages** (ShellLayout) | `ShellLayout.astro` | Sí | Sí | `/`, `/weekly/*`, `/planner`, `/schedule`, `/lecturas/` (índice) |
+| **Starlight docs** | Starlight (propio) | No | Sí | `/lecturas/semana-N/` |
+
+**Interacciones entre sistemas:**
+- Navegar desde ShellLayout a Starlight: VT intercepta, hace `fetch()`, SW responde desde precache (trailing slash normalizado vía `matchPrecache`) o red → Starlight renderiza su layout.
+- Navegar desde Starlight a ShellLayout: full page load (Starlight no tiene VT). ShellLayout scripts (theme, SW registration) corren de nuevo.
+- Navegar dentro de ShellLayout: VT + SW precache.
+- Navegar dentro de Starlight: Starlight maneja internamente, sin VT ni SW.
+
+**`disable404Route: true`**: Starlight tiene ruta 404 propia que colisiona con `src/pages/404.astro`. Se deshabilita la de Starlight para que `404.astro` (con variantes dark/light y navegación) sea la única página 404 del sitio.
 
 ## ShellLayout — layout único
 
-`src/layouts/ShellLayout.astro` es el único layout. Contiene:
+`src/layouts/ShellLayout.astro` es el único layout de las páginas Astro. Contiene:
 - `<ViewTransitions />` en `<head>` — activa VT solo en páginas con ShellLayout. Starlight no se ve afectado.
 - Tema dark/light: script `is:inline` que lee `localStorage` antes de renderizar (evita flash).
 - SW registration: script `is:inline` incondicional.
@@ -36,16 +54,16 @@ VT reglas:
 
 ## Rutas
 
-| Ruta | Archivo | Notas |
-|---|---|---|
-| `/` | `src/pages/index.astro` | Dashboard con semana actual, stats, cards |
-| `/weekly/{n}` | `src/pages/weekly/[semana].astro` | `getStaticPaths()` genera 1..`maxCurrentWeek` |
-| `/weekly/` | `src/pages/weekly/index.astro` | Redirect 302 → `/weekly/{maxCurrentWeek}` |
-| `/planner` | `src/pages/planner/index.astro` | Filtros cliente (btn + pill animada) |
-| `/schedule` | `src/pages/schedule/index.astro` | Filtros cliente (CustomEvent + data-attributes) |
-| `/lecturas/` | `src/pages/lecturas/index.astro` | ShellLayout + lista de docs |
-| `/lecturas/semana-N/` | Starlight | Starlight maneja ruteo nativo, NO `[...slug].astro` |
-| `/offline` | `src/pages/offline.astro` | Estilos inline autónomos, sin dep de componentes |
+| Ruta | Sistema | Archivo | Notas |
+|---|---|---|---|
+| `/` | ShellLayout | `src/pages/index.astro` | Dashboard con semana actual, stats, cards |
+| `/weekly/{n}` | ShellLayout | `src/pages/weekly/[semana].astro` | `getStaticPaths()` genera 1..`maxCurrentWeek` |
+| `/weekly/` | ShellLayout | `src/pages/weekly/index.astro` | Redirect 302 → `/weekly/{maxCurrentWeek}` |
+| `/planner` | ShellLayout | `src/pages/planner/index.astro` | Filtros cliente (btn + pill animada) |
+| `/schedule` | ShellLayout | `src/pages/schedule/index.astro` | Filtros cliente (CustomEvent + data-attributes) |
+| `/lecturas/` | ShellLayout | `src/pages/lecturas/index.astro` | ShellLayout + lista de docs |
+| `/lecturas/semana-N/` | Starlight | `src/content/docs/` | Starlight maneja ruteo nativo, NO `[...slug].astro` |
+| `/offline` | ShellLayout | `src/pages/offline.astro` | Estilos inline autónomos, sin dep de componentes |
 
 ## Content Collections
 

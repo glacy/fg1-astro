@@ -43,7 +43,7 @@ src/pages/
 │   └── index.astro          # Horarios de atención (usa ScheduleTable + ScheduleFilters)
 ├── lecturas/
 │   └── index.astro          # Índice de lecturas con lista navegable (ShellLayout)
-├── offline.astro            # Página offline personalizada (PWA navigateFallback)
+├── offline.astro            # Página offline personalizada (PWA offline fallback)
 ├── auth/                    # (vacío — sin implementar)
 └── robots.txt.ts           # Endpoint API de robots.txt
 ```
@@ -100,6 +100,10 @@ src/lib/
 ├── instructors.ts           # Datos de instructores (tipos en src/types.ts)
 └── types.ts                 # Tipos compartidos: Attention, Instructor
 ```
+
+### src/sw.ts
+Service Worker custom (Workbox `injectManifest`). Maneja precache, normalización de trailing slashes y offline fallback.
+Se compila desde `src/sw.ts` → `dist/sw.js` via Vite + `@vite-pwa/astro`.
 
 ### src/styles/
 Estilos globales. CSS custom properties de tema (shadcn/ui) centralizadas aquí.
@@ -164,8 +168,7 @@ dist/
 ├── 404.html                 # Página 404
 ├── favicon.svg
 ├── manifest.json
-├── sw.js                    # Service Worker (Workbox generateSW)
-├── workbox-*.js             # Runtime de Workbox
+├── sw.js                    # Service Worker (Workbox injectManifest, custom desde src/sw.ts)
 ├── registerSW.js            # Script de registro SW (generado automáticamente)
 ├── icon-192.png             # (copiado de public/)
 ├── icon-512.png
@@ -247,7 +250,10 @@ public/ (assets estáticos) ──┘                       ↓
 | **Dashboard en raíz** | `index.astro` es un dashboard con navegación rápida, tarjeta de la semana actual y stats; ya no es un redirect |
 | **Sin código muerto** | `MainLayout.astro` eliminado (0 imports); `src/components/islands/` eliminado (vacío); comentarios de código eliminados |
 | **Página offline** | `src/pages/offline.astro` con estilos inline autónomos, dark/light mode y botones de reintentar/volver al inicio |
-| **PWA navigateFallback** | `navigateFallback: '/offline'` en workbox de `astro.config.mjs`; SW sirve la página offline en navegaciones fallidas |
+| **PWA injectManifest** | Modo `injectManifest` con SW custom en `src/sw.ts`. Reemplaza `generateSW` + `navigateFallback`. Normaliza trailing slashes en navegaciones y ofrece offline fallback con 3 niveles: precache → network → `/offline` → `503` |
+| **PWA 404 exclusion** | `globIgnores: ['**/404*']` — Workbox rechaza precacheo de respuestas non-2xx (404.astro se sirve con status 404) |
+| **Trailing slash normalization** | SW custom (`src/sw.ts`) usa `matchPrecache(url.replace(/\/$/, '') || '/')` para resolver incompatibilidad entre `cleanURLs: true` de Workbox y trailing slashes de Starlight (`/lecturas/semana-1/` → busca `lecturas/semana-1` en precache) |
+| **Starlight 404 deshabilitado** | `disable404Route: true` evita colisión con `src/pages/404.astro` (única página 404 del sitio, con variantes dark/light) |
 | **Lecturas con Starlight** | `[...slug].astro` eliminado; Starlight maneja el ruteo de docs individuales (`/lecturas/semana-1/`). El índice (`/lecturas/`) usa `index.astro` con ShellLayout |
 | **Sidebar "Lecturas"** | Nuevo item de navegación `lecturas` con icono `lucide:book-open`, href a `/lecturas/` |
 | **index.md simplificado** | `src/content/docs/index.md` solo conserva frontmatter (title/description); Starlight no renderiza el body markdown |

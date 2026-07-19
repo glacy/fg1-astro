@@ -35,23 +35,14 @@ export default defineConfig({
     icon(),
     AstroPWA({
       registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
       manifest: false,
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,jpg,webp,woff2,json}'],
         globIgnores: ['**/404*'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-        navigateFallback: '/offline',
-        navigateFallbackDenylist: [/^\/lecturas/],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/images\.unsplash\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'unsplash-images',
-              expiration: { maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 },
-            },
-          },
-        ],
       },
     }),
   ],

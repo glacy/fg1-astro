@@ -30,7 +30,7 @@ Estudiantes acceden al plan semanal, evaluaciones, horarios de atención y lectu
 | Framework | [Astro 5](https://astro.build) (static output) |
 | UI | Componentes `.astro` + JavaScript vanilla |
 | Estilos | [TailwindCSS 3](https://tailwindcss.com) (dark mode vía clase) |
-| PWA | `@vite-pwa/astro` + Workbox 7 (generateSW) |
+| PWA | `@vite-pwa/astro` + Workbox 7 (injectManifest) |
 | Iconos | `astro-icon` + Lucide |
 | Documentación | Starlight (lecturas del curso) |
 | Fuente | Inter (autohosteada con `@fontsource`) |
