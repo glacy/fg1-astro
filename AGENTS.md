@@ -15,7 +15,8 @@ pnpm typecheck  # tsc --noEmit (único verification que funciona)
 
 - **Registro**: `<script is:inline>` en `ShellLayout.astro` — necesario `is:inline` para evitar tree-shaking en producción. No usar `import.meta.env.DEV` condicional.
 - **404 exclusion**: `globIgnores: ['**/404*']` en `astro.config.mjs:42` — Workbox rechaza precacheo de respuestas non-2xx (la página 404 sirve con status 404).
-- **navigateFallback**: `'/offline'` — navegaciones a URLs no precacheadas (offline) sirven `src/pages/offline.astro`.
+- **navigateFallback**: `'/offline'` — navegaciones a URLs no precacheadas sirven `src/pages/offline.astro`.
+- **navigateFallbackDenylist**: `[/^\/lecturas/]` — Starlight genera rutas con trailing slash (`/lecturas/semana-1/`) que no matchean precache entries (Workbox `cleanURLs: true` + `directoryIndex` son incompatibles). Excluidas del NavigationRoute para que pasen por red.
 - **Build → Preview**: Probar SW requiere `pnpm build && pnpm preview`. Dev server no sirve `sw.js`.
 
 ## ShellLayout — layout único

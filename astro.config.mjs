@@ -41,6 +41,7 @@ export default defineConfig({
         globIgnores: ['**/404*'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: '/offline',
+        navigateFallbackDenylist: [/^\/lecturas/],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/images\.unsplash\.com\/.*/i,
