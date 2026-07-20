@@ -6,6 +6,7 @@ import AstroPWA from '@vite-pwa/astro';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import starlight from '@astrojs/starlight';
+import { offlineBanner } from './src/integrations/offline-banner';
 
 export default defineConfig({
   prefetch: true,
@@ -45,6 +46,7 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       },
     }),
+    offlineBanner(),
   ],
   output: 'static',
   site: 'https://fg1-astro.vercel.app',
