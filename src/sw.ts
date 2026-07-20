@@ -1,14 +1,14 @@
-/// <reference types="vite/client" />
-
 import { clientsClaim } from 'workbox-core'
 import { precache, matchPrecache } from 'workbox-precaching'
 import { setDefaultHandler, registerRoute } from 'workbox-routing'
 import { CacheFirst } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
 
-declare const self: ServiceWorkerGlobalScope
+declare const self: ServiceWorkerGlobalScope & {
+  skipWaiting?: () => Promise<void>
+}
 
-self.skipWaiting()
+self.skipWaiting?.()
 clientsClaim()
 
 precache(self.__WB_MANIFEST.filter((e: any) => {
