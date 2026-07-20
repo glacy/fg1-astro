@@ -6,7 +6,7 @@ interface SectionProps {
   delay?: number;
 }
 
-const { title, delay = 0 } = Astro.props;
+const { title, delay: _delay = 0 } = Astro.props;
 
 const iconMap = {
   "Objetivos de aprendizaje": "lucide:target",

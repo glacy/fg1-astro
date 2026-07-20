@@ -10,7 +10,6 @@ import { getExams, getStats } from "../lib/planner";
 const currentWeek = COURSE_CONFIG.maxCurrentWeek;
 const weeksData = await loadWeeksData();
 const weekData = weeksData[currentWeek];
-const totalWeeks = COURSE_CONFIG.totalWeeks;
 const stats = getStats(getExams());
 ---
 

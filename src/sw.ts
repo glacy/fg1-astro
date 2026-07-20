@@ -11,7 +11,7 @@ declare const self: ServiceWorkerGlobalScope & {
 self.skipWaiting?.()
 clientsClaim()
 
-precache(self.__WB_MANIFEST.filter((e: any) => {
+precache(self.__WB_MANIFEST.filter((e: { url: string; revision: string | null } | string) => {
   const u = typeof e === 'string' ? e : e.url
   return u.replace(/^\//, '') !== '404'
 }))

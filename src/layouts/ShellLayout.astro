@@ -18,7 +18,7 @@ interface Props {
 const {
 	title = "Dashboard",
 	description = "Plataforma educativa para Física General I",
-	activeTab = "/",
+	activeTab: _activeTab = "/",
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -62,10 +62,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			}
 		</style>
 		<script is:inline>
-			(function () {
-				var key = "theme";
-				var stored = localStorage.getItem(key);
-				var theme =
+			(() => {
+				const key = "theme";
+				const stored = localStorage.getItem(key);
+				const theme =
 					stored === "light" || stored === "dark"
 						? stored
 						: window.matchMedia("(prefers-color-scheme: dark)")
@@ -80,7 +80,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			if ("serviceWorker" in navigator) {
 				navigator.serviceWorker
 					.register("/sw.js")
-					.catch(function () {});
+					.catch(() => {});
 			}
 		</script>
 	</head>
@@ -91,12 +91,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<div id="sidebar-wrapper" data-mobile-open="false">
 				<slot name="sidebar" />
 				<script is:inline>
-					(function () {
-						var collapsed =
+					(() => {
+						const collapsed =
 							localStorage.getItem("sidebar-collapsed") ===
 							"true";
 						if (!collapsed) return;
-						var s = document.getElementById("sidebar");
+						const s = document.getElementById("sidebar");
 						if (s) {
 							s.style.transition = "none";
 							s.setAttribute("data-collapsed", "true");

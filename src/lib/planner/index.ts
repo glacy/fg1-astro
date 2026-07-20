@@ -19,7 +19,7 @@ export interface Exam {
 }
 
 export const getExams = (): Exam[] => {
-  const exams = (plannerData as any).exams as Exam[];
+  const exams = (plannerData as { exams: Exam[] }).exams;
 
   return [...exams].sort((a, b) =>
     new Date(a.date).getTime() - new Date(b.date).getTime()

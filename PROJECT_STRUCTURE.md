@@ -9,6 +9,7 @@ fg1-astro/
 ├── tsconfig.json              # Configuración TypeScript
 ├── tailwind.config.mjs        # Configuración TailwindCSS (darkMode: 'class')
 ├── postcss.config.mjs         # Configuración PostCSS
+├── eslint.config.mjs          # ESLint flat config (TypeScript + Astro)
 ├── pnpm-workspace.yaml       # Configuración workspace (monoproject)
 ├── AGENTS.md                 # Convenciones del proyecto (AI-assisted coding)
 ├── LICENSE                   # Licencia MIT (código fuente)

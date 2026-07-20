@@ -9,7 +9,7 @@ const { objectives } = Astro.props;
 ---
 
 <ul class="space-y-3">
-  {objectives.map((objective, index) => (
+  {objectives.map((objective) => (
     <li class="flex items-start gap-3">
       <div class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
         <Icon name="lucide:star" size={14} class="text-blue-500 dark:text-blue-400" aria-hidden="true" />

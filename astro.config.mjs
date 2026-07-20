@@ -47,7 +47,6 @@ export default defineConfig({
     offlineBanner(),
   ],
   output: 'static',
-  site: 'https://fg1-astro.vercel.app',
   image: {
     domains: ['images.unsplash.com'],
   },

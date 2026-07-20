@@ -6,10 +6,11 @@
 pnpm dev        # dev server → localhost:4321
 pnpm build      # build → dist/ (incluye PWA SW)
 pnpm preview    # preview del build (necesario para probar SW)
-pnpm typecheck  # tsc --noEmit (único verification que funciona)
+pnpm typecheck  # tsc --noEmit (verificación TypeScript)
+pnpm lint       # ESLint flat config (eslint.config.mjs)
 ```
 
-`pnpm lint` y `pnpm test` fallan — ESLint y Vitest declarados en devDependencies pero sin config.
+`pnpm test` no configurado — Vitest declarado en devDependencies pero sin config. No es necesario actualmente (sitio estático, sin lógica de negocio compleja).
 
 ## PWA (Service Worker)
 
