@@ -41,8 +41,6 @@ export default defineConfig({
       filename: 'sw.ts',
       manifest: false,
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,jpg,webp,woff2,json}'],
-        globIgnores: ['**/404*'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       },
     }),

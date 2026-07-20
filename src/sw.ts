@@ -11,7 +11,10 @@ declare const self: ServiceWorkerGlobalScope
 self.skipWaiting()
 clientsClaim()
 
-precache(self.__WB_MANIFEST)
+precache(self.__WB_MANIFEST.filter((e: any) => {
+  const u = typeof e === 'string' ? e : e.url
+  return u.replace(/^\//, '') !== '404'
+}))
 
 setDefaultHandler(async ({ url, event }) => {
   const normalized = url.pathname.replace(/\/$/, '') || '/'
