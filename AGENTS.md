@@ -16,9 +16,24 @@ pnpm typecheck  # tsc --noEmit (único verification que funciona)
 - **Modo**: `injectManifest` (vs `generateSW`). SW custom en `src/sw.ts`.
 - **Registro**: `<script is:inline>` en `ShellLayout.astro` — necesario `is:inline` para evitar tree-shaking en producción. No usar `import.meta.env.DEV` condicional.
 - **404 exclusion**: `globIgnores: ['**/404*']` en `astro.config.mjs` — Workbox rechaza precacheo de respuestas non-2xx (la página 404 sirve con status 404).
-- **Trailing slash normalization**: SW custom (`src/sw.ts`) normaliza trailing slashes en navegaciones antes de buscar en precache (`matchPrecache(pathname.replace(/\/$/, '') || '/')`). Esto resuelve la incompatibilidad entre `cleanURLs: true` de Workbox y los trailing slashes de Starlight (`/lecturas/semana-1/` → busca `lecturas/semana-1` en precache).
-- **Offline fallback**: SW intenta precache → network → `/offline` → `503 "Sin conexión"`. Sin `navigateFallback` ni `navigateFallbackAllowlist` — toda la lógica está en `src/sw.ts`.
+- **setDefaultHandler vs NavigationRoute**: El handler por defecto (`setDefaultHandler`) reemplazó `NavigationRoute`. Motivo: `NavigationRoute` solo atrapa `request.mode === 'navigate'` (navegación nativa). View Transitions usa `fetch()` con `mode: 'same-origin'`, y sin normalización de trailing slash, el navegador mostraba su error nativo offline. `setDefaultHandler` atrapa todos los modos de request.
+- **precache vs precacheAndRoute**: Se usa `precache` (solo poblado, sin ruteo) en vez de `precacheAndRoute`. `precacheAndRoute` registra una ruta que puede interceptar requests y retornar `undefined` si la entrada de caché falta, impidiendo que el default handler los procese. Con `precache` + `setDefaultHandler`, todos los requests pasan por el mismo handler con normalización de trailing slash.
+- **Trailing slash normalization**: `src/sw.ts` normaliza trailing slashes antes de buscar en precache (`matchPrecache(pathname.replace(/\/$/, '') || '/')`). Resuelve la incompatibilidad entre `cleanURLs: true` de Workbox y los trailing slashes de Starlight (`/lecturas/semana-1/` → busca `lecturas/semana-1` en precache).
+- **Offline fallback**: SW intenta precache → network → `/offline` → `503 "Sin conexión"`. Sin `navigateFallback` ni `navigateFallbackAllowlist` — toda la lógica en `src/sw.ts`.
 - **Build → Preview**: Probar SW requiere `pnpm build && pnpm preview`. Dev server no sirve `sw.js`.
+
+## Banner offline/online
+
+`src/integrations/offline-banner.ts` — Astro integration que inyecta un script inline en todas las páginas vía `injectScript('head-inline')`.
+
+Funciona tanto en ShellLayout como en Starlight (no depende de layouts específicos). Crea un `<div>` fixed en `top:0` con `z-index:9999` y transiciones CSS.
+
+| Transición | Texto | Color | Comportamiento |
+|---|---|---|---|
+| Online → Offline | "Sin conexión — algunos contenidos pueden no estar disponibles" | Ámbar (`#fef3cd`) | Aparece, se desvanece tras 5s |
+| Offline → Online | "Conectado" | Verde (`#d4edda`) | Aparece, sube tras 2.5s |
+
+Usa un flag `r` (previous state, inicializado en `null`) para detectar transiciones reales vs carga inicial. Se re-ejecuta en `astro:after-swap` para VT.
 
 ## Dos sistemas de ruteo
 

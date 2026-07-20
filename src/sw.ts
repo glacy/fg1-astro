@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 import { clientsClaim } from 'workbox-core'
-import { precacheAndRoute, matchPrecache } from 'workbox-precaching'
+import { precache, matchPrecache } from 'workbox-precaching'
 import { setDefaultHandler, registerRoute } from 'workbox-routing'
 import { CacheFirst } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
@@ -11,7 +11,7 @@ declare const self: ServiceWorkerGlobalScope
 self.skipWaiting()
 clientsClaim()
 
-precacheAndRoute(self.__WB_MANIFEST)
+precache(self.__WB_MANIFEST)
 
 setDefaultHandler(async ({ url, event }) => {
   const normalized = url.pathname.replace(/\/$/, '') || '/'
