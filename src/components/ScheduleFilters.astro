@@ -54,8 +54,16 @@ const modalityLabels: Record<string, string> = {
           list="instructor-list"
           placeholder="Buscar docente..."
           value={searchTerm}
-          class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          data-clearable
+          class="w-full pl-9 pr-9 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
         />
+        <button
+          data-clear-btn
+          class="absolute right-2 top-1/2 -translate-y-1/2 hidden items-center justify-center w-5 h-5 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+          aria-label="Limpiar búsqueda de docente"
+        >
+          <Icon name="lucide:x" size={14} aria-hidden="true" />
+        </button>
         <datalist id="instructor-list">
           {instructors.map((name) => <option value={name} />)}
         </datalist>
@@ -188,8 +196,44 @@ const modalityLabels: Record<string, string> = {
     if (btn) activate(btn);
   });
 
+  const docenteInput = document.getElementById("docente-input") as HTMLInputElement | null;
+  const clearBtn = document.querySelector<HTMLButtonElement>("[data-clear-btn]");
+
+  function toggleClearBtn() {
+    if (!clearBtn || !docenteInput) return;
+    clearBtn.style.display = docenteInput.value ? "flex" : "none";
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      if (!docenteInput) return;
+      docenteInput.value = "";
+      toggleClearBtn();
+      dispatch();
+    });
+  }
+
   document.addEventListener("input", (e) => {
     const input = e.target as HTMLInputElement;
-    if (input.id === "docente-input") dispatch();
+    if (input.id === "docente-input") {
+      toggleClearBtn();
+      dispatch();
+    }
   });
+
+  document.addEventListener("astro:after-swap", () => {
+    const input = document.getElementById("docente-input") as HTMLInputElement | null;
+    const btn = document.querySelector<HTMLButtonElement>("[data-clear-btn]");
+    if (input && btn) {
+      btn.style.display = input.value ? "flex" : "none";
+    }
+  });
+
+  toggleClearBtn();
 </script>
+
+<style is:global>
+  #docente-input::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
+</style>
