@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-interface ScheduleFiltersProps {
+interface Props {
   searchTerm: string;
   modalityFilter: string;
   dayFilter: string;
@@ -9,105 +9,132 @@ interface ScheduleFiltersProps {
   days: string[];
 }
 
-const { searchTerm, modalityFilter, dayFilter, instructors, days } =
-  Astro.props;
+const { searchTerm, modalityFilter, dayFilter, instructors, days } = Astro.props;
+const modalities = ["", "presencial", "virtual"] as const;
+const modalityLabels: Record<string, string> = { "": "Todas", presencial: "Presencial", virtual: "Virtual" };
 ---
 
 <div
   class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm"
 >
-  <h2
-    class="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-4 flex items-center gap-2"
-  >
-    <Icon
-      name="lucide:sliders-horizontal"
-      size={20}
-      class="text-blue-600 dark:text-blue-400"
-      aria-hidden="true"
-    />
-    Filtros de búsqueda
-  </h2>
-  <div class="flex flex-wrap gap-4">
-    <div class="flex-1 min-w-[280px]">
-      <label
-        for="docente-select"
-        class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-      >
+  <div class="flex flex-wrap items-end gap-4">
+    <div class="flex-1 min-w-[240px]">
+      <label for="docente-input" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
         Docente
       </label>
-      <select
-        id="docente-select"
-        name="searchTerm"
-        value={searchTerm}
-        class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-      >
-        <option value="">Todos</option>
-        {
-          instructors.map((instructor: string) => (
-            <option value={instructor}>{instructor}</option>
-          ))
-        }
-      </select>
+      <div class="relative">
+        <Icon name="lucide:search" size={16} class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" aria-hidden="true" />
+        <input
+          id="docente-input"
+          type="text"
+          list="instructor-list"
+          placeholder="Buscar docente..."
+          value={searchTerm}
+          class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+        />
+        <datalist id="instructor-list">
+          {instructors.map((name) => <option value={name} />)}
+        </datalist>
+      </div>
     </div>
 
-    <div class="w-48">
-      <label
-        for="modalidad-select"
-        class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-      >
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
         Modalidad
       </label>
-      <select
-        id="modalidad-select"
-        name="modalityFilter"
-        value={modalityFilter}
-        class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-      >
-        <option value="">Todas</option>
-        <option value="presencial">Presencial</option>
-        <option value="virtual">Virtual</option>
-      </select>
+      <div class="flex rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden" role="radiogroup" aria-label="Modalidad">
+        {modalities.map((m) => {
+          const active = (m === "" && modalityFilter === "") || modalityFilter === m
+          return (
+            <button
+              role="radio"
+              aria-checked={active ? "true" : "false"}
+              class:list={[
+                "filter-pill px-4 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0",
+                active
+                  ? "bg-blue-600 text-white shadow-sm"
+                  : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800",
+              ]}
+              data-filter-type="modalidad"
+              data-filter-value={m}
+            >
+              {modalityLabels[m]}
+            </button>
+          )
+        })}
+      </div>
     </div>
 
-    <div class="w-48">
-      <label
-        for="dia-select"
-        class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-      >
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
         Día
       </label>
-      <select
-        id="dia-select"
-        name="dayFilter"
-        value={dayFilter}
-        class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-      >
-        <option value="">Todos</option>
-        {days.map((day: string) => <option value={day}>{day}</option>)}
-      </select>
+      <div class="flex flex-wrap rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden" role="radiogroup" aria-label="Día">
+        {["", ...days].map((d) => {
+          const label = d === "" ? "Todos" : d
+          const active = (d === "" && dayFilter === "") || dayFilter === d
+          return (
+            <button
+              role="radio"
+              aria-checked={active ? "true" : "false"}
+              class:list={[
+                "filter-pill px-3 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0",
+                active
+                  ? "bg-blue-600 text-white shadow-sm"
+                  : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800",
+              ]}
+              data-filter-type="dia"
+              data-filter-value={d}
+            >
+              {label}
+            </button>
+          )
+        })}
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  function dispatchFilterChange() {
-    const docente =
-      (document.getElementById("docente-select") as HTMLSelectElement)?.value ??
-      "";
-    const modalidad =
-      (document.getElementById("modalidad-select") as HTMLSelectElement)
-        ?.value ?? "";
-    const dia =
-      (document.getElementById("dia-select") as HTMLSelectElement)?.value ?? "";
-    document.dispatchEvent(
-      new CustomEvent("filter-change", { detail: { docente, modalidad, dia } }),
-    );
+  function getFilters() {
+    const docente = (document.getElementById("docente-input") as HTMLInputElement)?.value ?? ""
+    const modalidadBtn = document.querySelector<HTMLButtonElement>('.filter-pill[data-filter-type="modalidad"][aria-checked="true"]')
+    const modalidad = modalidadBtn?.getAttribute("data-filter-value") ?? ""
+    const diaBtn = document.querySelector<HTMLButtonElement>('.filter-pill[data-filter-type="dia"][aria-checked="true"]')
+    const dia = diaBtn?.getAttribute("data-filter-value") ?? ""
+    return { docente, modalidad, dia }
   }
 
-  document.addEventListener("change", (e) => {
-    const target = e.target as HTMLElement;
-    if (target.matches("#docente-select, #modalidad-select, #dia-select")) {
-      dispatchFilterChange();
-    }
-  });
+  function dispatch() {
+    const { docente, modalidad, dia } = getFilters()
+    document.dispatchEvent(new CustomEvent("filter-change", { detail: { docente, modalidad, dia } }))
+  }
+
+  function activate(btn: HTMLButtonElement) {
+    const type = btn.getAttribute("data-filter-type")
+    document.querySelectorAll<HTMLButtonElement>(`.filter-pill[data-filter-type="${type}"]`).forEach((b) => {
+      const on = b === btn
+      b.setAttribute("aria-checked", on ? "true" : "false")
+      b.className = [
+        "filter-pill px-4 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0",
+        on
+          ? "bg-blue-600 text-white shadow-sm"
+          : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800",
+      ].join(" ")
+      if (type === "dia") {
+        b.className = b.className.replace("px-4", "px-3")
+      }
+    })
+    dispatch()
+  }
+
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-pill")
+    if (btn) activate(btn)
+  })
+
+  document.addEventListener("input", (e) => {
+    const input = e.target as HTMLInputElement
+    if (input.id === "docente-input") dispatch()
+  })
 </script>
