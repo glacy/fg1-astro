@@ -189,21 +189,26 @@ const menuItems = [
 <script>
   import { toggleTheme, isDarkMode } from "../lib/shared";
 
-  const themeToggleBtn = document.getElementById("theme-toggle");
-  const darkIcon = document.getElementById("theme-toggle-dark-icon");
-  const lightIcon = document.getElementById("theme-toggle-light-icon");
-  const themeText = document.getElementById("theme-toggle-text");
+  let themeToggleInitialized = false;
 
-  if (themeToggleBtn && darkIcon && lightIcon && themeText) {
-    const updateTheme = () => {
-      themeText.textContent = isDarkMode() ? "Modo claro" : "Modo oscuro";
-    };
-
-    themeToggleBtn.addEventListener("click", () => {
-      toggleTheme();
-      updateTheme();
-    });
-
-    updateTheme();
+  function updateThemeText() {
+    const el = document.getElementById("theme-toggle-text");
+    if (el) el.textContent = isDarkMode() ? "Modo claro" : "Modo oscuro";
   }
+
+  function initThemeToggle() {
+    updateThemeText();
+    if (themeToggleInitialized) return;
+    themeToggleInitialized = true;
+
+    document.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest("#theme-toggle");
+      if (!btn) return;
+      toggleTheme();
+      updateThemeText();
+    });
+  }
+
+  initThemeToggle();
+  document.addEventListener("astro:after-swap", initThemeToggle);
 </script>

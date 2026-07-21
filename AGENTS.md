@@ -59,7 +59,7 @@ El sitio combina dos sistemas de renderizado independientes bajo el mismo domini
 - `<ViewTransitions />` en `<head>` — activa VT solo en páginas con ShellLayout. Starlight no se ve afectado.
 - Tema dark/light: script `is:inline` que lee `localStorage` antes de renderizar (evita flash).
 - SW registration: script `is:inline` incondicional.
-- Sidebar: colapsable en desktop, drawer en mobile.
+- Sidebar: colapsable en desktop, drawer en mobile. Theme toggle (`src/components/Sidebar.astro`): usa delegación de eventos en `document` (no listener directo en el botón) para evitar duplicación tras VT. El texto se actualiza con `updateThemeText()` ejecutado tanto en carga inicial como en `astro:after-swap`.
 - Todos los scripts de página se re-inicializan con `document.addEventListener("astro:after-swap", fn)`.
 
 VT reglas:
@@ -104,6 +104,7 @@ VT reglas:
 ## Filtros cliente
 
 - **Schedule** (`src/lib/schedule-filter.client.ts`): `document.dispatchEvent(new CustomEvent("filter-change"))` → las cards tienen `data-instructor`, `data-modalidad`, `data-dia`.
+  - **Pills (modalidad/día)**: `src/components/ScheduleFilters.astro`. Los contenedores no tienen `overflow-hidden` (clipeaba el `focus-visible:ring`). Los extremos usan `rounded-l-lg`/`rounded-r-lg` en el primer/último `<button>`. Cada pill tiene `relative focus-visible:z-10` para que el ring no quede detrás del sibling siguiente.
 - **Planner** (inline en `planner/index.astro`): filter buttons con `data-filter`, pill animada. Cards tienen `data-date`.
 
 ## Varios
