@@ -77,12 +77,12 @@ const modalityLabels: Record<string, string> = {
         Modalidad
       </label>
       <div
-        class="flex rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden"
+        class="flex rounded-lg border border-slate-200 dark:border-slate-700"
         role="radiogroup"
         aria-label="Modalidad"
       >
         {
-          modalities.map((m) => {
+          modalities.map((m, i) => {
             const active =
               (m === "" && modalityFilter === "") || modalityFilter === m;
             return (
@@ -90,7 +90,9 @@ const modalityLabels: Record<string, string> = {
                 role="radio"
                 aria-checked={active ? "true" : "false"}
                 class:list={[
-                  "filter-pill px-4 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0",
+                  "filter-pill px-4 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 relative focus-visible:z-10",
+                  i === 0 && "rounded-l-lg",
+                  i === modalities.length - 1 && "rounded-r-lg",
                   active
                     ? "bg-blue-600 text-white shadow-sm"
                     : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800",
@@ -100,10 +102,9 @@ const modalityLabels: Record<string, string> = {
               >
                 {modalityLabels[m]}
               </button>
-            );
-          })
-        }
-      </div>
+            )
+          })}
+        </div>
     </div>
 
     <div>
@@ -113,12 +114,12 @@ const modalityLabels: Record<string, string> = {
         Día
       </label>
       <div
-        class="flex flex-wrap rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden"
+        class="flex flex-wrap rounded-lg border border-slate-200 dark:border-slate-700"
         role="radiogroup"
         aria-label="Día"
       >
         {
-          ["", ...days].map((d) => {
+          ["", ...days].map((d, i, arr) => {
             const label = d === "" ? "Todos" : d;
             const active = (d === "" && dayFilter === "") || dayFilter === d;
             return (
@@ -126,7 +127,9 @@ const modalityLabels: Record<string, string> = {
                 role="radio"
                 aria-checked={active ? "true" : "false"}
                 class:list={[
-                  "filter-pill px-3 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0",
+                  "filter-pill px-3 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 relative focus-visible:z-10",
+                  i === 0 && "rounded-l-lg",
+                  i === arr.length - 1 && "rounded-r-lg",
                   active
                     ? "bg-blue-600 text-white shadow-sm"
                     : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800",
@@ -169,23 +172,25 @@ const modalityLabels: Record<string, string> = {
 
   function activate(btn: HTMLButtonElement) {
     const type = btn.getAttribute("data-filter-type");
-    document
-      .querySelectorAll<HTMLButtonElement>(
-        `.filter-pill[data-filter-type="${type}"]`,
-      )
-      .forEach((b) => {
-        const on = b === btn;
-        b.setAttribute("aria-checked", on ? "true" : "false");
-        b.className = [
-          "filter-pill px-4 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0",
-          on
-            ? "bg-blue-600 text-white shadow-sm"
-            : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800",
-        ].join(" ");
-        if (type === "dia") {
-          b.className = b.className.replace("px-4", "px-3");
-        }
-      });
+    const pills = document.querySelectorAll<HTMLButtonElement>(
+      `.filter-pill[data-filter-type="${type}"]`,
+    );
+    pills.forEach((b, i) => {
+      const on = b === btn;
+      b.setAttribute("aria-checked", on ? "true" : "false");
+      const classes = [
+        "filter-pill px-4 py-2 text-sm font-medium transition-colors border-r border-slate-200 dark:border-slate-700 last:border-r-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 relative focus-visible:z-10",
+        i === 0 && "rounded-l-lg",
+        i === pills.length - 1 && "rounded-r-lg",
+        on
+          ? "bg-blue-600 text-white shadow-sm"
+          : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800",
+      ];
+      b.className = classes.filter(Boolean).join(" ");
+      if (type === "dia") {
+        b.className = b.className.replace("px-4", "px-3");
+      }
+    });
     dispatch();
   }
 
