@@ -30,11 +30,62 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title} | Física General I</title>
 		<meta name="description" content={description} />
+		<meta name="keywords" content="física general I, TEC Costa Rica, física universitaria, prácticas física, evaluaciones física, horarios académicos, material físico general I, semestre 2026" />
 		<link rel="canonical" href={canonicalURL} />
 		<meta name="robots" content="index, follow" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="manifest" href="/manifest.json" />
 		<meta name="theme-color" content="#000000" />
+		<meta name="referrer" content="no-referrer" />
+		<meta name="permissions-policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+		<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+		<meta http-equiv="X-Frame-Options" content="DENY" />
+
+		<meta property="og:title" content={`${title} | Física General I - TEC Costa Rica`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" href={canonicalURL} />
+		<meta property="og:image" content="https://fg1-astro.vercel.app/screenshot-wide.png" />
+		<meta property="og:image:width" content="1920" />
+		<meta property="og:image:height" content="1080" />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:site_name" content="Física General I - TEC Costa Rica" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={`${title} | Física General I - TEC Costa Rica`} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="https://fg1-astro.vercel.app/screenshot-wide.png" />
+		<meta name="twitter:image:alt" content="Captura de pantalla de Física General I - TEC Costa Rica" />
+
+		<script type="application/ld+json" is:inline>
+		{
+			"@context": "https://schema.org",
+			"@type": "EducationalOrganization",
+			"name": "Física General I",
+			"alternateName": "FG1",
+			"description": "Plataforma educativa para Física General I - Tecnológico de Costa Rica, II semestre 2026. Incluye semanarios, prácticas, evaluaciones, horarios y documentación académica.",
+			"url": "https://fg1-astro.vercel.app",
+			"inLanguage": "es",
+			"educationalLevel": "UniversityLevel",
+			"provider": {
+				"@type": "CollegeOrUniversity",
+				"name": "Tecnológico de Costa Rica",
+				"url": "https://www.tec.ac.cr"
+			},
+			"teaches": "Physics",
+			"offers": {
+				"@type": "Course",
+				"name": "Física General I",
+				"provider": {
+					"@type": "CollegeOrUniversity",
+					"name": "Tecnológico de Costa Rica"
+				},
+				"educationalLevel": "UniversityLevel",
+				"inLanguage": "es"
+			}
+		}
+		</script>
+
 		<ViewTransitions />
 		<style is:global>
 			body[data-sidebar-collapsed] #sidebar-toggle-icon {

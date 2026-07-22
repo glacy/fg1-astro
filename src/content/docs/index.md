@@ -1,4 +1,4 @@
 ---
 title: Volver al Dashboard
-description: Material de lectura, resúmenes y recursos para Física General I.
+description: Documentación, material de lectura, resúmenes y recursos académicos para Física General I del Tecnológico de Costa Rica. Semanales, prácticas, evaluaciones y horarios.
 ---

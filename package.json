@@ -1,7 +1,20 @@
 {
   "name": "fg1-astro",
   "version": "2.0.0",
+  "description": "Plataforma educativa PWA para Física General I del Tecnológico de Costa Rica. Incluye semanarios, prácticas, evaluaciones, horarios y documentación académica.",
   "type": "module",
+  "keywords": [
+    "física-general-I",
+    "tecnológico-de-costa-rica",
+    "educación",
+    "pwa",
+    "astro",
+    "plataforma-educativa",
+    "física-universitaria",
+    "material-académico"
+  ],
+  "author": "Tecnológico de Costa Rica",
+  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

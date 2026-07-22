@@ -115,3 +115,5 @@ VT reglas:
 - Deploy automático: `git push origin main` → Vercel.
 - Fuente Inter autohosteada via `@fontsource/inter`, importada en ShellLayout. CSS var `--font-geist-sans` en `src/styles/base.css`.
 - JSON keys en kebab-case. Archivos `.astro` en PascalCase (componentes) o kebab-case (páginas).
+- Seguridad: `src/middleware.ts` inyecta headers CSP, X-Frame-Options, X-XSS-Protection, etc. En dev, CSP está deshabilitado para evitar bloqueos. Meta tags adicionales en ShellLayout: `referrer`, `permissions-policy`, `X-Content-Type-Options`, `X-Frame-Options`.
+- **SEO**: `ShellLayout.astro` incluye OpenGraph, Twitter Cards, keywords, y Schema.org JSON-LD. `package.json` con metadata descriptiva. `public/manifest.json` con descripción PWA optimizada. `src/content/docs/index.md` con descripción mejorada. Keywords principales: "física general I", "TEC Costa Rica", "física universitaria", "prácticas física", "evaluaciones física", "horarios académicos".
