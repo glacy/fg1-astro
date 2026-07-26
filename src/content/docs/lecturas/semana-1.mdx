@@ -11,80 +11,49 @@ tags: ["fundamentos", "unidades", "vectores", "introducción"]
 category: "fundamentos"
 difficulty: "basic"
 ---
-
-La <span style="font-variant: small-caps;">Física</span> es una ciencia natural que estudia las propiedades y el comportamiento de la energía y la materia, el tiempo, el espacio y las interacciones entre estos cuatro conceptos. Para lograrlo muchas veces se utilizan modelos físicos que abstraen y simplifican con una construcción teórica (muchas veces modelos matemáticos) un sistema físico, generalmente complejo.  
-
-Consideremos por ejemplo el lanzamiento de una bola. En general, para analizar su movimiento es necesario conocer sus características físicas, tales como su masa, su forma y tamaño; así como los agentes externos que actúan sobre ella: dirección del viento, fuerza de lanzamiento, resistencia del aire, etc. Un modelo físico inicial de esta situación omitiría muchas de estas características. Ver Figura 1.1.
-
-Todas estas cantidades (masa, tamaño, velocidad, fuerza, etc.) necesarias para describir un sistema o modelo físico, se llaman cantidades físicas. Esta sesión iniciamos el estudio de las cantidades físicas y sus unidades, sin las cuales la Física no sería posible.
-
-## Cantidades físicas y unidades
-
-Una cantidad física es una cualidad de un sistema físico que es susceptible de cuantificación, es decir, que puede medirse. Al realizar una medición, se compara cierta cantidad física con un estándar de referencia o patrón. Dicho estándar define una unidad de la cantidad. Una medición exacta y confiable requiere un sistema coherente de unidades. El sistema de unidades más utilizado por científicos e ingenieros es el Sistema Internacional de Unidades (SI). 
-
-La siguiente tabla presenta una lista de las cantidades físicas fundamentales del S.I. Otras cantidades físicas se obtienen por medio de relaciones entre las cantidades físicas fundamentales. Algunos ejemplos de cantidades físicas derivadas se muestran más adelante.
+import { Steps } from '@astrojs/starlight/components';
 
 
-| Cantidad física | Símbolo de la cantidad | Unidad fundamental | Símbolo de la unidad |
-|---------------------|---------------------------|----------------------|------------------------|
-| longitud | \(l,x,r\), etc. | metro | m |
-| masa | $m$ | kilogramo | kg |
-| tiempo | $t$ | segundo | s |
-| temperatura termodinámica | $T$ | kelvin | K |
-| intensidad de corriente eléctrica | $I, i$ | amperio | A |
-| cantidad de sustancia | $n$ | mol | mol |
-| intensidad lumínica | $I_\nu$ | candela | cd |
 
 
-| Constante | Símbolo | Valor numérico | Unidad |
-|--------------|------------|-------------------|-----------|
-| Frecuencia hiperfina del cesio | $\Delta \nu_{Cs}$ | 9 192 631 770 | Hz |
-| Velocidad de la luz en el vacío | $c$ | 299 792 458 | m s$^{-1}$ |
-| Constante de Planck | $h$ | $6.626\,070\,15 \times 10^{-34}$ | J s |
-| Carga elemental | $e$ | $1.602\,176\,634 \times 10^{-19}$ | C |
-| Constante de Boltzmann | $k$ | $1.380\,649 \times 10^{-23}$ | J K$^{-1}$ |
-| Constante de Avogadro | $N_A$ | $6.022\,140\,76 \times 10^{23}$ | mol$^{-1}$ |
-| Eficacia lumínica de una radiación visible definida | $K_{cd}$ | 683 | lm W$^{-1}$ |
+<Steps>
 
-: Constantes de definición del SI.
+1. Importa el componente en tu archivo MDX:
 
-| Cantidad física | Símbolo de la cantidad | Unidad derivada | Símbolo de la unidad |
-|--------------------|---------------------------|--------------------|------------------------|
-| velocidad | $\vec{v}$ | — | m/s |
-| aceleración | $\vec{a}$ | — | m/s$^{2}$ |
-| fuerza | $\vec{F}$ | newton | $\text{N} \left(1\ \text{N} = 1\ \frac{kgm}{s^2}\right)$ |
-| energía | $E, K, U$, etc. | joule | $\text{J} \left(1\ \text{J} = 1\ \frac{kgm2}{s^2}\right)$ |
-| potencia | $P$ | watt | $\text{W} \left(1\ \text{W} = 1\ \frac{J}{s}\right)$ |
+   ```js
+   import { Steps } from '@astrojs/starlight/components';
+   ```
 
-Debido a que las cantidades físicas pueden tener rangos de variación de varios órdenes de magnitud respecto a la unidad fundamental, es muy común el uso de prefijos y de notación científica para expresar múltiplos o fracciones de las unidades fundamentales. La siguiente tabla lista los principales prefijos usados en el SI.
 
-Por supuesto, el SI no es el único sistema de unidades disponible. Para transformar cierta cantidad física de un sistema de unidades a otro, es necesario conocer el correspondiente factor de conversión entre los sistemas de unidades para la cantidad física en cuestión. Un factor de conversión es entonces, un término multiplicativo que permite convertir las unidades de una cantidad física de un sistema de unidades a otro, es decir:
+2. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
 
-## Escalares y vectores
+3. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
 
-Las cantidades físicas pueden clasificarse en dos grupos: escalares y vectoriales.
+</Steps>
 
-Cantidad física escalar: cualquier cantidad física que puede ser definida usando únicamente una magnitud. Las magnitudes escalares usualmente se expresan usando una unidad.
+```js {2-3}
+function demo() {
+  // Esta línea (#2) y la siguiente están resaltadas
+  return 'Esta es la línea #3 de este fragmento';
+}
+```
 
-Ejemplo cantidades escalares
+```diff lang="js"
+  function thisIsJavaScript() {
+    // ¡El bloque completo se resalta como JavaScript,
+    // y aún podemos añadir marcadores de diferencias a él!
+-   console.log('Código antiguo a eliminar')
++   console.log('¡Nuevo y brillante código!')
+  }
+```
 
-- La temperatura ambiente es de $25^\circ$ C.
-- La densidad del agua es 
-- La distancia entre San José y Cartago es de 13 km.
-- El índice de refracción del aire es igual a 1.
+```bash title="Instalando dependencias…"
+npm install
+```
 
-Cantidad física vectorial: cualquier cantidad física caracterizada no sólo por una magnitud, sino también por una dirección. Debido a esta propiedad, los vectores suelen representarse por medio de flechas, en donde la longitud de la flecha es proporcional a la magnitud del vector y su dirección apunta en la misma dirección que la cantidad vectorial. Para denotar simbólicamente que cierta cantidad física es un vector, se coloca una flecha sobre el símbolo que representa dicha cantidad. Por ejemplo, si denotamos una cantidad vectorial con la letra V, escribiremos $\vec{V}$ para denotar que dicha cantidad es un vector.
+<details>
+<summary>¿Dónde y cuándo es más visible la constelación de Andrómeda?</summary>
 
-Ejemplos cantidades vectoriales
+La [constelación de Andrómeda](<https://es.wikipedia.org/wiki/Andr%C3%B3meda_(constelaci%C3%B3n)>) es más visible en el cielo nocturno durante el mes de noviembre en latitudes entre `+90°` y `−40°`.
 
-- El viento está soplando con una velocidad máxima de 20 $\text{km}\cdot \text{h}^{-1}$ hacia el Noreste.
-- Mi colegio está a 1 km y $30^\circ$ al sur de mi casa.
-- En la Tierra, los objetos en caída libre experimentan una aceleración de $9.81 \, \text{m}\cdot\text{s}^{-2}$, hacia el centro de la Tierra.
-- El campo magnético terrestre tiene una magnitud de $5\times10^{-5}$ T y está orientado $11^\circ$ respecto al eje de rotación de la Tierra.
-
-Consideremos, por ejemplo, el desplazamiento de un objeto cuando se mueve de un punto A a un punto B. Esta cantidad es un vector, ya que no solo es necesario conocer la distancia entre ambos puntos, si no la ubicación de uno respecto al otro. Ver por ejemplo la situación descrita en la Figura 1.3.  
-Debido al carácter direccional de los vectores, es necesario contar con un sistema o marco de referencia desde el cual establecer su magnitud y su dirección.  
-
-Un sistema de coordenadas o de referencia es un conjunto de convenciones usadas por un observador para poder medir la posición y otras magnitudes físicas de un sistema físico. Por ejemplo, los puntos cardinales (norte, oeste, sur y este) permiten especificar direcciones de una manera consistente.  
-
-El sistema de referencia más utilizado es el sistema rectangular de ejes coordenados (cartesiano); a partir del cual se puede describir cualquier vector a partir de sus componentes cartesianas. Ver Figura 1.3.
+</details>
