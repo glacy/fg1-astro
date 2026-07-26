@@ -44,6 +44,9 @@ importers:
       sharp:
         specifier: ^0.35.3
         version: 0.35.3
+      unist-util-visit:
+        specifier: ^5.1.0
+        version: 5.1.0
       workbox-core:
         specifier: ^7.4.1
         version: 7.4.1

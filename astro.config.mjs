@@ -11,8 +11,12 @@ import { offlineBanner } from './src/integrations/offline-banner';
 export default defineConfig({
   prefetch: true,
   markdown: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    remarkPlugins: [
+      [remarkMath, { singleDollarTextMath: false }]
+    ],
+    rehypePlugins: [
+      [rehypeKatex, { strict: false, throwOnError: false }]
+    ],
   },
   site: 'https://fg1-astro.vercel.app',
   integrations: [
@@ -20,6 +24,7 @@ export default defineConfig({
     starlight({
       title: 'Documentos FG1 - II semestre 2026',
       disable404Route: true,
+      customCss: ['src/styles/starlight-overrides.css'],
       locales: {
         root: {
           label: 'Documentación',

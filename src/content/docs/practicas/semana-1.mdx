@@ -2,29 +2,6 @@
 title: "Semana 1"
 week: 1
 ---
-import { FileTree } from '@astrojs/starlight/components';
-import { Image } from "astro:assets";
-import myImage from "./../../../assets/site_logo.svg"; 
-
-<FileTree>
-- src/
-  - assets/
-    - avatar-1.jpg
-    - avatar-2.png
-    - avatar-3.jpeg
-</FileTree>
-
-:::note
-`assets` es un nombre de carpeta popular para colocar imágenes, pero eres libre de nombrar la carpeta como quieras.
-::: 
-
-<Image
-  src={myImage}
-  alt="asd"
-  width={100}
-  heigth={100}
-  loading="lazy"
-  />
 
 La <span style="font-variant: small-caps;">Física</span> es una ciencia natural que estudia las propiedades y el comportamiento de la energía y la materia, el tiempo, el espacio y las interacciones entre estos cuatro conceptos. Para lograrlo muchas veces se utilizan *modelos físicos* que abstraen y simplifican con una construcción teórica (muchas veces modelos matemáticos) un *sistema físico*, generalmente complejo.  
 
@@ -52,13 +29,13 @@ La siguiente tabla presenta una lista de las **cantidades físicas fundamentales
 
 | **Constante** | **Símbolo** | **Valor numérico** | **Unidad** |
 |--------------|------------|-------------------|-----------|
-| Frecuencia hiperfina del cesio | $\Delta \nu_{\text{Cs}}$ | 9 192 631 770 | Hz |
+| Frecuencia hiperfina del cesio | $\Delta \nu_{Cs}$ | 9 192 631 770 | Hz |
 | Velocidad de la luz en el vacío | $c$ | 299 792 458 | m s$^{-1}$ |
 | Constante de Planck | $h$ | $6.626\,070\,15 \times 10^{-34}$ | J s |
 | Carga elemental | $e$ | $1.602\,176\,634 \times 10^{-19}$ | C |
 | Constante de Boltzmann | $k$ | $1.380\,649 \times 10^{-23}$ | J K$^{-1}$ |
 | Constante de Avogadro | $N_A$ | $6.022\,140\,76 \times 10^{23}$ | mol$^{-1}$ |
-| Eficacia lumínica de una radiación visible definida | $K_{\text{cd}}$ | 683 | lm W$^{-1}$ |
+| Eficacia lumínica de una radiación visible definida | $K_{cd}$ | 683 | lm W$^{-1}$ |
 
 : Constantes de definición del SI.
 

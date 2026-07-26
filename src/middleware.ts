@@ -1,6 +1,8 @@
-import type { MiddlewareResponseHandler } from 'astro';
+import { defineMiddleware } from 'astro:middleware';
 
-export const onRequest: MiddlewareResponseHandler = async ({ response }) => {
+export const onRequest = defineMiddleware(async (_, next) => {
+	const response = await next();
+
 	const isDev = import.meta.env.DEV;
 
 	const cspDirectives = isDev ? [] : [
@@ -28,4 +30,4 @@ export const onRequest: MiddlewareResponseHandler = async ({ response }) => {
 	response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
 
 	return response;
-};
+});

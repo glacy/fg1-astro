@@ -21,7 +21,17 @@ const weeksCollection = defineCollection({
   }),
 });
 
+const docsMetadata = z.object({
+  week: z.number().optional(),
+  keywords: z.array(z.string()).optional(),
+  author: z.string().optional(),
+  readingTime: z.number().optional(),
+  tags: z.array(z.string()).optional(),
+  category: z.string().optional(),
+  difficulty: z.enum(['basic', 'intermediate', 'advanced']).optional(),
+});
+
 export const collections = {
-  docs: defineCollection({ schema: docsSchema() }),
+  docs: defineCollection({ schema: docsSchema({ extend: docsMetadata }) }),
   weeks: weeksCollection,
 };

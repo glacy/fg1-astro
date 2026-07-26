@@ -11,6 +11,7 @@ export function setupScheduleFilters(): void {
   }
 
   function filterSchedule(): void {
+    if (!itemsContainer) return;
     const docente = (document.getElementById("docente-input") as HTMLInputElement)?.value?.toLowerCase() ?? ""
     const modalidad = getActivePillValue("modalidad")
     const dia = getActivePillValue("dia")
