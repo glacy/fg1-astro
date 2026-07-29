@@ -4,6 +4,17 @@ export const DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
 
 export const INSTRUCTORS_DATA: Instructor[] = [
   {
+    docente: "ALVARADO ORTEGA ROMMEL",
+    atenciones: [
+      {
+        dia: "Martes",
+        modalidad: "presencial",
+        hora: "4:30 p.m. a 6:00 p.m.",
+        detalle: "oficina XX, ECNE"
+      }
+    ]
+  },
+  {
     docente: "CAMBRONERO CORDERO MICHAEL",
     atenciones: [
       {
@@ -17,17 +28,6 @@ export const INSTRUCTORS_DATA: Instructor[] = [
         modalidad: "virtual",
         hora: "1:30 p.m. a 3:30 p.m.",
         detalle: "mensaje a prof_mcambronero@estudiantec.cr en TEAMS"
-      }
-    ]
-  },
-  {
-    docente: "CHAVES ALVAREZ MARCELA",
-    atenciones: [
-      {
-        dia: "Martes",
-        modalidad: "presencial",
-        hora: "9:00 a.m. a 11:30 a.m.",
-        detalle: "oficina 10, Escuela de Ciencias Naturales y Exactas"
       }
     ]
   },
@@ -60,20 +60,53 @@ export const INSTRUCTORS_DATA: Instructor[] = [
     ]
   },
   {
-    docente: "LACY MORA GERARDO",
+    docente: "MURILLO ZUMBADO GUSTAVO",
     atenciones: [
-      { dia: "Martes", modalidad: "virtual", hora: "1:30 p.m. a 3:30 p.m.", detalle: "mensaje a prof_glacy@estudiantec.cr en TEAMS" },
-      { dia: "Jueves", modalidad: "virtual", hora: "1:30 p.m. a 3:30 p.m.", detalle: "mensaje a prof_glacy@estudiantec.cr en TEAMS" },
+      {
+        dia: "Jueves",
+        modalidad: "presencial",
+        hora: "7:30 a.m. a 9:20 a.m.",
+        detalle: "oficina 26, edificio C4 (Escuela de Física)"
+      }
     ]
   },
   {
-    docente: "MURILLO SALAZAR DENNIS",
+    docente: "MONTERO ZELEDÓN ERNESTO",
     atenciones: [
+      {
+        dia: "Martes",
+        modalidad: "presencial",
+        hora: "9:30 a.m. a 12:00 m.d.",
+        detalle: "oficina 24, edificio C4 (Escuela de Física)"
+      },
+      {
+        dia: "Jueves",
+        modalidad: "presencial",
+        hora: "11:30 a.m. a 12:00 m.d.",
+        detalle: "oficina 24, edificio C4 (Escuela de Física)"
+      },
+      {
+        dia: "Viernes",
+        modalidad: "presencial",
+        hora: "11:30 a.m. a 12:00 m.d.",
+        detalle: "oficina 24, edificio C4 (Escuela de Física)"
+      }
+    ]
+  },
+  {
+    docente: "MOYA SERRANO ROY DAVID",
+    atenciones: [
+      {
+        dia: "Martes",
+        modalidad: "presencial",
+        hora: "2:00 p.m. a 4:00 p.m.",
+        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
+      },
       {
         dia: "Miércoles",
         modalidad: "presencial",
-        hora: "7:00 a.m. a 9:00 a.m.",
-        detalle: "oficina 05, edificio C4 (Escuela de Física)"
+        hora: "10:00 a.m. a 12:00 m.d.",
+        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
       }
     ]
   },
@@ -110,34 +143,19 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       }
     ]
   },
+
   {
-    docente: "ROJAS SANTAMARÍA FERNANDO",
+    docente: "SEQUEIRA CASTRO DAVID",
     atenciones: [
-      {
-        dia: "Martes",
-        modalidad: "presencial",
-        hora: "2:00 p.m. a 4:00 p.m.",
-        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
-      },
       {
         dia: "Miércoles",
         modalidad: "presencial",
-        hora: "10:00 a.m. a 12:00 m.d.",
-        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
+        hora: "9:30 a.m. a 11:30 a.m.",
+        detalle: "oficina 04, ECNE"
       }
     ]
   },
-  {
-    docente: "SEGURA CARVAJAL MARCOS",
-    atenciones: [
-      {
-        dia: "Martes",
-        modalidad: "presencial",
-        hora: "3:00 p.m. a 5:00 p.m.",
-        detalle: "oficina 14, edificio C4 (Escuela de Física)"
-      }
-    ]
-  },
+
   {
     docente: "SEGURA ZÁRATE ANA YANCY",
     atenciones: [

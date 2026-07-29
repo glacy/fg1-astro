@@ -80,14 +80,17 @@ const stats = getStats(exams);
 
     let currentFilter = "all";
 
-    function updatePillPosition(activeIndex) {
-      const activeButton = filterButtons[activeIndex];
+    function updatePillPosition(activeIndex: number) {
+      if (!pill) return;
+
+      const activeButton = filterButtons[activeIndex] as HTMLElement;
       const buttonWidth = activeButton.offsetWidth;
       const buttonLeft = activeButton.offsetLeft;
+      const pillElement = pill as HTMLElement;
 
-      pill.style.width = `${buttonWidth}px`;
-      pill.style.left = `${buttonLeft}px`;
-      pill.style.transform = "none";
+      pillElement.style.width = `${buttonWidth}px`;
+      pillElement.style.left = `${buttonLeft}px`;
+      pillElement.style.transform = "none";
 
       filterButtons.forEach((btn, index) => {
         if (index === activeIndex) {
@@ -105,7 +108,8 @@ const stats = getStats(exams);
       let visibleCount = 0;
 
       examCards.forEach((card) => {
-        const examDate = card.dataset.date || "";
+        const examElement = card as HTMLElement;
+        const examDate = examElement.dataset.date || "";
 
         let shouldShow = true;
         if (currentFilter === "today") {
@@ -115,10 +119,10 @@ const stats = getStats(exams);
         }
 
         if (shouldShow) {
-          card.style.display = "block";
+          examElement.style.display = "block";
           visibleCount++;
         } else {
-          card.style.display = "none";
+          examElement.style.display = "none";
         }
       });
 
