@@ -2,6 +2,7 @@
   "id": 13,
   "title": "Rotación de cuerpos rígidos",
   "image": "https://images.unsplash.com/photo-1659983637890-fe3ce747ed33?auto=format&fit=crop&q=80&w=1000",
+    "includeInDocs": false,
   "objetivos": [
     "Relacionar la energía cinética de rotación con el momento de inercia de un cuerpo en torno a un eje de rotación.",
     "Relacionar los valores del momento de inercia de un cuerpo para dos ejes de rotación diferentes, pero paralelos.",

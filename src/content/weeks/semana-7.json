@@ -2,6 +2,7 @@
   "id": 7,
   "title": "Aplicación de las Leyes de Newton",
   "image": "https://images.unsplash.com/photo-1569406125624-98ee19b01d4a?auto=format&fit=crop&q=80&w=1000",
+    "includeInDocs": false,
   "objetivos": [
     "Identificar las fuerzas que actúan sobre un cuerpo en un diagrama de cuerpo libre (DCL).",
     "Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio",

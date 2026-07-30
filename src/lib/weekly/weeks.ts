@@ -18,10 +18,10 @@ export interface WeekData {
 }
 
 export async function loadWeeksData(): Promise<Record<number, WeekData>> {
-  const entries = await getCollection('weeks');
+  const entries = (await getCollection('weeks')) as Array<{ data: WeekData }>;
   const data: Record<number, WeekData> = {};
   for (const entry of entries) {
-    data[entry.data.id] = entry.data as unknown as WeekData;
+    data[entry.data.id] = entry.data;
   }
   return data;
 }

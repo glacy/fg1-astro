@@ -2,6 +2,7 @@
   "id": 10,
   "title": "Fuerzas variables, potencia, fuerza y energia potencial",
   "image": "https://images.unsplash.com/photo-1429772011165-0c2e054367b8?auto=format&fit=crop&q=80&w=1000",
+    "includeInDocs": false,
   "objetivos": [
     "Calcular el trabajo efectuado por una fuerza variable.",
     "Comprender el concepto de potencia como la tasa de cambio para efectuar trabajo.",

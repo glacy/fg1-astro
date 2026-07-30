@@ -2,6 +2,7 @@
   "id": 1,
   "title": "Unidades y cantidades físicas",
   "image": "https://images.unsplash.com/photo-1559819614-8e87b90b8e9b?auto=format&fit=crop&q=80&w=1000",
+    "includeInDocs": true,
   "objetivos": [
     "Presentar el programa del curso.",
     "Expresar cantidades físicas usando distintos sistemas de unidades.",
@@ -21,14 +22,14 @@
     },
     {
       "text": "Estudiar el resumen Semana 1.",
-      "url": "./../lecturas/semana-1/",
+      "url": "./../semana-01/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 1",
-      "url": "/practicas/practica_semana1.pdf",
+      "url": "./../semana-01/practica/",
       "icon": "lucide:calculator"
     }
   ]

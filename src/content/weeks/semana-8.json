@@ -2,6 +2,7 @@
   "id": 8,
   "title": "MCU, velocidad relativa y Fuerza gravitacional",
   "image": "https://images.unsplash.com/photo-1711560217836-f42ac4a11a4f?auto=format&fit=crop&q=80&w=1000",
+    "includeInDocs": false,
   "objetivos": [
     "Analizar el movimiento en una trayectoria circular con rapidez constante.",
     "Relacionar la fuerza neta en un movimiento circular uniforme con la aceleración centrípeta.",

@@ -1,28 +1,38 @@
 ---
 import { getCollection } from "astro:content";
+import { getCollection } from "astro:content";
+import { loadWeeksData } from "../../lib/weekly/weeks";
 import ShellLayout from "../../layouts/ShellLayout.astro";
 import Sidebar from "../../components/Sidebar.astro";
 import PageHeader from "../../components/PageHeader.astro";
 const lecturas = await getCollection("docs");
+const weeksData = await loadWeeksData();
 
-const groups: Record<string, { label: string; entries: typeof lecturas }> = {
-  lecturas: { label: "Lecturas", entries: [] },
-  practicas: { label: "Prácticas", entries: [] },
-  soluciones_practicas: { label: "Soluciones de prácticas", entries: [] },
-};
+const weeksToInclude = Object.entries(weeksData)
+  .filter(([_, data]) => data.includeInDocs !== false)
+  .map(([num, _]) => parseInt(num))
+  .sort((a, b) => a - b);
 
+const groups: Record<string, { label: string; entries: typeof lecturas }> = {};
 for (const entry of lecturas) {
-  const cat = entry.slug.includes("/") ? entry.slug.split("/")[0] : null;
-  if (cat && groups[cat]) {
-    groups[cat].entries.push(entry);
+  const match = entry.id.match(/semana-(\d+)/);
+  if (match) {
+    const weekNum = parseInt(match[1]);
+    if (!weeksToInclude.includes(weekNum)) continue;
+    
+    const weekKey = `semana-${weekNum}`;
+    if (!groups[weekKey]) {
+      groups[weekKey] = { label: `Semana ${weekNum}`, entries: [] };
+    }
+    groups[weekKey].entries.push(entry);
   }
 }
 
-const orderedGroups = [
-  "lecturas",
-  "practicas",
-  "soluciones_practicas",
-] as const;
+const orderedGroups = Object.keys(groups).sort((a, b) => {
+  const weekA = parseInt(a.replace('semana-', ''));
+  const weekB = parseInt(b.replace('semana-', ''));
+  return weekA - weekB;
+});
 ---
 
 <ShellLayout title="Lecturas del curso" activeTab="lecturas">
@@ -39,7 +49,7 @@ const orderedGroups = [
       <div class="space-y-8 max-w-7xl mx-auto">
         <PageHeader
           title="Documentos del curso"
-          subtitle="Material de lectura, resúmenes y recursos."
+          subtitle="Material de lectura, prácticas y soluciones organizados por semana."
         />
 
         <div class="space-y-8">
@@ -48,23 +58,23 @@ const orderedGroups = [
               .filter((key) => groups[key].entries.length > 0)
               .map((key) => (
                 <section>
-                  <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-3">
-                    {groups[key].label}
-                  </h2>
-                  <div class="grid gap-3">
-                    {groups[key].entries
-                      .sort((a, b) => a.slug.localeCompare(b.slug))
-                      .map((entry) => (
-                        <a
-                          href={`/${entry.slug}/`}
-                          class="block p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-300 dark:hover:border-sky-700 transition-all hover:shadow-sm"
-                        >
-                          <span class="font-medium text-slate-800 dark:text-slate-200">
-                            {entry.data.title}
-                          </span>
-                        </a>
-                      ))}
-                  </div>
+                    <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-3">
+                      {groups[key].label}
+                    </h2>
+                    <div class="grid gap-3">
+                      {groups[key].entries
+                        .sort((a, b) => a.id.localeCompare(b.id))
+                        .map((entry) => (
+                          <a
+                            href={`/${entry.id.replace(/\.mdx?$/, '')}/`}
+                            class="block p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-300 dark:hover:border-sky-700 transition-all hover:shadow-sm"
+                          >
+                            <span class="font-medium text-slate-800 dark:text-slate-200">
+                              {entry.data.title}
+                            </span>
+                          </a>
+                        ))}
+                    </div>
                 </section>
               ))
           }

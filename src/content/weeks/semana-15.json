@@ -2,6 +2,7 @@
   "id": 15,
   "title": "Equilibrio estático",
   "image": "https://images.unsplash.com/photo-1656090756308-e2cfced43780?auto=format&fit=crop&q=80&w=1000",
+    "includeInDocs": false,
   "objetivos": [
     "Reconocer las condiciones que deben satisfacerse para que un cuerpo o una estructura estén en equilibrio.",
     "Relacionar la posición del centro de gravedad de un objeto con su estabilidad.",

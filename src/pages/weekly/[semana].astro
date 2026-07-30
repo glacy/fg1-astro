@@ -22,9 +22,13 @@ export function getStaticPaths() {
 }
 
 const { semana } = Astro.params;
-const currentWeek = parseInt(semana);
+const currentWeek = Number.parseInt(semana ?? "", 10);
 const maxCurrentWeek = COURSE_CONFIG.maxCurrentWeek;
 const totalWeeks = COURSE_CONFIG.totalWeeks;
+
+if (!Number.isInteger(currentWeek) || currentWeek < 1) {
+  return Astro.redirect("/weekly/1");
+}
 
 if (currentWeek > maxCurrentWeek) {
   return Astro.redirect("/weekly/1");
@@ -33,7 +37,18 @@ if (currentWeek > maxCurrentWeek) {
 // Validación para asegurar que currentWeek sea válido
 const validWeek = Math.max(1, Math.min(currentWeek, totalWeeks));
 const weeksData = await loadWeeksData();
-const weekData = weeksData[validWeek];
+const weekData = weeksData[validWeek] ?? {
+  id: validWeek,
+  title: `Semana ${validWeek}`,
+  image:
+    "https://images.unsplash.com/photo-1559819614-8e87b90b8e9b?auto=format&fit=crop&q=80&w=1000",
+  objetivos: [],
+  contenidos: [],
+  consignas: [],
+  evaluaciones: [],
+  recursos: [],
+};
+
 const isOpen = false;
 const isDesktop = false;
 ---
@@ -72,17 +87,17 @@ const isDesktop = false;
           </aside>
 
           <div class="flex-1 p-6">
-                            <div class="flex items-center gap-2 mb-3">
-                  <div
-                    class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30"
-                  >
-                    <span
-                      class="text-xs font-bold text-blue-400 uppercase tracking-wider"
-                      >Semana {currentWeek}</span
-                    >
-                  </div>
-                </div>
-                
+            <div class="flex items-center gap-2 mb-3">
+              <div
+                class="px-3 py-1 rounded-full bg-blue-500/20 border border-blue-500/30"
+              >
+                <span
+                  class="text-xs font-bold text-blue-400 uppercase tracking-wider"
+                  >Semana {currentWeek}</span
+                >
+              </div>
+            </div>
+
             <div class="flex-1 w-auto mx-auto pb-20" role="main">
               <div
                 class="bg-white dark:bg-[#161d2a] rounded-2xl border border-gray-200 dark:border-white/5 shadow-sm overflow-hidden mb-8"

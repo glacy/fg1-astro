@@ -2,6 +2,7 @@
   "id": 6,
   "title": "Leyes del movimiento de Newton",
   "image": "https://images.unsplash.com/photo-1633493702341-4d04841df53b?auto=format&fit=crop&q=80&w=1000",
+    "includeInDocs": false,
   "objetivos": [
     "Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial.",
     "Describir vectorialmente las fuerzas que actúan sobre un objeto.",
