@@ -162,13 +162,13 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       {
         dia: "Miércoles",
         modalidad: "presencial",
-        hora: "3:00 p.m. a 4:50 p.m.",
+        hora: "1:00 p.m. a 2:50 p.m.",
         detalle: "oficina 22, edificio C4 (Escuela de Física)"
       },
       {
         dia: "Viernes",
         modalidad: "presencial",
-        hora: "3:00 p.m. a 4:50 p.m.",
+        hora: "1:00 p.m. a 2:50 p.m.",
         detalle: "oficina 22, edificio C4 (Escuela de Física)"
       }
     ]
