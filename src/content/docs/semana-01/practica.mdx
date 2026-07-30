@@ -1,0 +1,101 @@
+---
+title: "Práctica"
+week: 1
+keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "constantes fundamentales", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
+---
+import { Steps } from '@astrojs/starlight/components';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import PreCheck from '../../../components/PreCheck.astro';
+
+
+
+<Steps>
+
+1. Importa el componente en tu archivo MDX:
+
+   ```js
+   import { Steps } from '@astrojs/starlight/components';
+   ```
+
+
+2. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
+
+3. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
+
+</Steps>
+
+<Box icon="question-mark">
+
+## Pon a prueba tu conocimiento
+
+Which of the following is...
+1. A code editor, for making changes to your files and their content?
+
+    <MultipleChoice>
+      <Option>
+        web browser
+      </Option>
+      <Option>
+        Terminal
+      </Option>
+      <Option isCorrect>
+        VS Code
+      </Option>
+    </MultipleChoice>
+
+2. An online version control provider for your repository?
+
+    <MultipleChoice>
+      <Option isCorrect>
+        GitHub
+      </Option>
+      <Option>
+        Terminal
+      </Option>
+      <Option>
+        VS Code
+      </Option>
+    </MultipleChoice>
+
+3. An application for running commands?
+    <MultipleChoice>
+      <Option>
+        GitHub
+      </Option>
+      <Option isCorrect>
+        Terminal
+      </Option>
+      <Option>
+        web browser
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+
+<PreCheck>
+  - Define your page title in frontmatter, and use it in your HTML
+  - Conditionally display HTML elements
+  - Add some content about you
+</PreCheck>
+
+<Box icon="puzzle-piece">
+
+## Ejercicio 2
+
+Add the necessary line of code to each `.astro` file in your project to apply your global styles to every page of your site.
+
+<details>
+<summary>✅ Solución ✅</summary>
+
+Add the following import statement to the two other page files: `src/pages/index.astro` and `src/pages/blog.astro`
+
+```astro title="src/pages/index.astro" ins={2}
+---
+import '../styles/global.css';
+---
+```
+</details>
+</Box>

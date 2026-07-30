@@ -1,11 +1,11 @@
-import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
-import icon from 'astro-icon';
-import AstroPWA from '@vite-pwa/astro';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
 import starlight from '@astrojs/starlight';
+import tailwind from '@astrojs/tailwind';
+import AstroPWA from '@vite-pwa/astro';
+import icon from 'astro-icon';
+import { defineConfig } from 'astro/config';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
 import { offlineBanner } from './src/integrations/offline-banner';
 
 export default defineConfig({
@@ -19,18 +19,23 @@ export default defineConfig({
     ],
   },
   site: 'https://fg1-astro.vercel.app',
+  base: '/',
   integrations: [
     sitemap(),
     starlight({
       title: 'Documentos FG1 - II semestre 2026',
+      description: 'Documentación para el curso de Física General I - II semestre 2026',
       disable404Route: true,
       customCss: ['src/styles/starlight-overrides.css'],
+      lastUpdated: true,
       locales: {
         root: {
           label: 'Documentación',
           lang: 'es',
+          dir: 'ltr',
         },
       },
+      defaultLocale: 'root',
       logo: {
         light: './src/assets/site_logo.svg',
         dark: './src/assets/site_logo_dark.svg',

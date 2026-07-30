@@ -1,0 +1,81 @@
+---
+export interface Props {
+  title?: string;
+  id?: string;
+  defaultOpen?: boolean;
+}
+
+const { title = "Solución", id, defaultOpen = false } = Astro.props;
+---
+
+<details id={id} open={defaultOpen} class="exercise-solution">
+  <summary class="solution-trigger">
+    <span class="solution-title">{title}</span>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 7L10 12L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </summary>
+  <div class="solution-content">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .exercise-solution {
+    margin: 2rem 0;
+    border: 2px solid var(--sl-color-purple);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: var(--sl-color-purple-low);
+  }
+
+  .solution-trigger {
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    background-color: var(--sl-color-purple);
+    color: var(--sl-color-purple-low);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .solution-trigger:hover {
+    background-color: var(--sl-color-purple-high);
+  }
+
+  .solution-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .solution-trigger svg {
+    transition: transform 0.2s ease;
+    transform-origin: center;
+  }
+
+  .exercise-solution[open] .solution-trigger svg {
+    transform: rotate(180deg);
+  }
+
+  .solution-content {
+    padding: 1.5rem;
+    background-color: var(--sl-color-purple-low);
+    color: var(--sl-color-purple-high);
+  }
+
+  .solution-content > :first-child {
+    margin-top: 0;
+  }
+
+  .solution-content > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solution-trigger svg {
+      transition: none;
+    }
+  }
+</style>

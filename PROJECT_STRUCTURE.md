@@ -126,10 +126,22 @@ src/content/
 │   ├── ...
 │   └── semana-16.json
 └── docs/
-    ├── index.md             # Índice de lecturas
-    └── lecturas/
-        ├── semana-1.mdx     # Lectura de semana 1 (Markdown + KaTeX)
-        └── semana-2.mdx     # Lectura de semana 2
+    ├── index.md             # Índice general de lecturas
+    ├── semana-01/           # Semana 1: Unidades y cantidades físicas
+    │   ├── index.md         # Página overview de la semana
+    │   ├── lectura.mdx      # Lectura principal de la semana
+    │   ├── practica.mdx     # Práctica de la semana
+    │   └── solucion.mdx     # Solución (opcional, cuando exista)
+    ├── semana-02/           # Semana 2
+    │   ├── index.md
+    │   ├── lectura.mdx      # (próximamente)
+    │   ├── practica.mdx     # (próximamente)
+    │   └── solucion.mdx     # Solución práctica 2
+    └── semana-03..16/       # Semanas 3-16 (estructura similar)
+        ├── index.md         # Página overview
+        ├── lectura.mdx      # (próximamente)
+        ├── practica.mdx     # (próximamente)
+        └── solucion.mdx     # (próximamente)
 ```
 
 ---

@@ -1,0 +1,103 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  label?: string;
+  icon?: "lucide:lightbulb" | "lucide:zap" | "lucide:target" | "lucide:check-circle" | "lucide:alert-triangle" | "lucide:info" | "lucide:book-open";
+  type?: "hint" | "tip" | "note" | "warning" | "important";
+}
+
+const { label, icon = "lucide:lightbulb", type = "hint" } = Astro.props;
+
+const typeConfig = {
+  hint: {
+    color: "var(--sl-color-yellow)",
+    bgColor: "var(--sl-color-yellow-low)",
+    textColor: "var(--sl-color-yellow-high)",
+    defaultLabel: "Pista"
+  },
+  tip: {
+    color: "var(--sl-color-blue)",
+    bgColor: "var(--sl-color-blue-low)",
+    textColor: "var(--sl-color-blue-high)",
+    defaultLabel: "Consejo"
+  },
+  note: {
+    color: "var(--sl-color-purple)",
+    bgColor: "var(--sl-color-purple-low)",
+    textColor: "var(--sl-color-purple-high)",
+    defaultLabel: "Nota"
+  },
+  warning: {
+    color: "var(--sl-color-orange)",
+    bgColor: "var(--sl-color-orange-low)",
+    textColor: "var(--sl-color-orange-high)",
+    defaultLabel: "Advertencia"
+  },
+  important: {
+    color: "var(--sl-color-red)",
+    bgColor: "var(--sl-color-red-low)",
+    textColor: "var(--sl-color-red-high)",
+    defaultLabel: "Importante"
+  }
+};
+
+const config = typeConfig[type];
+const displayLabel = label || config.defaultLabel;
+---
+
+<div class="exercise-hint" data-type={type} style={`--hint-color: ${config.color}; --hint-bg: ${config.bgColor}; --hint-text: ${config.textColor};`}>
+  <div class="hint-header">
+    <span class="hint-icon">
+      <Icon name={icon} size={20} />
+    </span>
+    <span class="hint-title">{displayLabel}</span>
+  </div>
+  <div class="hint-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .exercise-hint {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--hint-color);
+    background-color: var(--hint-bg);
+    color: var(--hint-text);
+  }
+
+  .hint-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .hint-icon {
+    display: flex;
+    align-items: center;
+    color: var(--hint-color);
+  }
+
+  .hint-content {
+    line-height: 1.6;
+  }
+
+  .hint-content > :first-child {
+    margin-top: 0;
+  }
+
+  .hint-content > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 50em) {
+    .exercise-hint {
+      padding: 0.75rem;
+    }
+  }
+</style>

@@ -19,7 +19,7 @@ pnpm lint       # ESLint flat config (eslint.config.mjs)
 - **404 exclusion**: `vite-plugin-pwa` ignora `globPatterns`/`globIgnores` en modo `injectManifest` (usa el build graph de Vite/Rollup). La exclusión se hace en `src/sw.ts` filtrando `self.__WB_MANIFEST` antes de `precache()` — Workbox rechaza precacheo de respuestas non-2xx (la página 404 sirve con status 404).
 - **setDefaultHandler vs NavigationRoute**: El handler por defecto (`setDefaultHandler`) reemplazó `NavigationRoute`. Motivo: `NavigationRoute` solo atrapa `request.mode === 'navigate'` (navegación nativa). View Transitions usa `fetch()` con `mode: 'same-origin'`, y sin normalización de trailing slash, el navegador mostraba su error nativo offline. `setDefaultHandler` atrapa todos los modos de request.
 - **precache vs precacheAndRoute**: Se usa `precache` (solo poblado, sin ruteo) en vez de `precacheAndRoute`. `precacheAndRoute` registra una ruta que puede interceptar requests y retornar `undefined` si la entrada de caché falta, impidiendo que el default handler los procese. Con `precache` + `setDefaultHandler`, todos los requests pasan por el mismo handler con normalización de trailing slash.
-- **Trailing slash normalization**: `src/sw.ts` normaliza trailing slashes antes de buscar en precache (`matchPrecache(pathname.replace(/\/$/, '') || '/')`). Resuelve la incompatibilidad entre `cleanURLs: true` de Workbox y los trailing slashes de Starlight (`/lecturas/semana-1/` → busca `lecturas/semana-1` en precache).
+- **Trailing slash normalization**: `src/sw.ts` normaliza trailing slashes antes de buscar en precache (`matchPrecache(pathname.replace(/\/$/, '') || '/')`). Resuelve la incompatibilidad entre `cleanURLs: true` de Workbox y los trailing slashes de Starlight (`/semana-01/lectura/` → busca `semana-01/lectura` en precache).
 - **Offline fallback**: SW intenta precache → network → `/offline` → `503 "Sin conexión"`. Sin `navigateFallback` ni `navigateFallbackAllowlist` — toda la lógica en `src/sw.ts`.
 - **Build → Preview**: Probar SW requiere `pnpm build && pnpm preview`. Dev server no sirve `sw.js`.
 
@@ -43,7 +43,7 @@ El sitio combina dos sistemas de renderizado independientes bajo el mismo domini
 | Sistema | Layout | View Transitions | SW precache | Rutas |
 |---|---|---|---|---|
 | **Astro pages** (ShellLayout) | `ShellLayout.astro` | Sí | Sí | `/`, `/weekly/*`, `/planner`, `/schedule`, `/lecturas/` (índice) |
-| **Starlight docs** | Starlight (propio) | No | Sí | `/lecturas/semana-N/` |
+| **Starlight docs** | Starlight (propio) | No | Sí | `/semana-N/{lectura|practica|solucion}/` |
 
 **Interacciones entre sistemas:**
 - Navegar desde ShellLayout a Starlight: VT intercepta, hace `fetch()`, SW responde desde precache (trailing slash normalizado vía `matchPrecache`) o red → Starlight renderiza su layout.
@@ -77,8 +77,8 @@ VT reglas:
 | `/weekly/` | ShellLayout | `src/pages/weekly/index.astro` | Redirect 302 → `/weekly/{maxCurrentWeek}` |
 | `/planner` | ShellLayout | `src/pages/planner/index.astro` | Filtros cliente (btn + pill animada) |
 | `/schedule` | ShellLayout | `src/pages/schedule/index.astro` | Filtros cliente (CustomEvent + data-attributes) |
-| `/lecturas/` | ShellLayout | `src/pages/lecturas/index.astro` | ShellLayout + lista de docs |
-| `/lecturas/semana-N/` | Starlight | `src/content/docs/` | Starlight maneja ruteo nativo, NO `[...slug].astro` |
+| `/lecturas/` | ShellLayout | `src/pages/lecturas/index.astro` | ShellLayout + lista de docs agrupados por semana |
+| `/semana-N/{lectura|practica|solucion}/` | Starlight | `src/content/docs/` | Starlight maneja ruteo nativo, NO `[...slug].astro` |
 | `/offline` | ShellLayout | `src/pages/offline.astro` | Estilos inline autónomos, sin dep de componentes |
 
 ## Content Collections
@@ -86,7 +86,10 @@ VT reglas:
 - **Semanas**: `src/content/weeks/semana-N.json` (N = 1..16). Schema Zod en `src/content/config.ts`.
   - Cargar con `await loadWeeksData()` (usa `getCollection('weeks')`) → retorna `Record<number, WeekData>`.
   - Async, requiere `await` en frontmatter de páginas/componentes.
+  - Referencias a docs: `url: "./../semana-0N/lectura/"` (formato por semana)
 - **Lecturas**: Starlight docs en `src/content/docs/`. Schema via `docsSchema()`.
+  - Estructura: `docs/semana-0N/{lectura|practica|solucion}.mdx` + `index.md` por semana
+  - Cada semana tiene `week: N` en frontmatter para agrupación
 - **JSON plano** (`src/lib/planner/exams.json`) solo para datos sin colección propia.
 
 ## Contenido Markdown (lecturas académicas)
@@ -117,4 +120,4 @@ VT reglas:
 - JSON keys en kebab-case. Archivos `.astro` en PascalCase (componentes) o kebab-case (páginas).
 - Seguridad: `src/middleware.ts` inyecta headers CSP, X-Frame-Options, X-XSS-Protection, etc. En dev, CSP está deshabilitado para evitar bloqueos. Meta tags adicionales en ShellLayout: `referrer`, `permissions-policy`, `X-Content-Type-Options`, `X-Frame-Options`.
 - **SEO**: `ShellLayout.astro` incluye OpenGraph, Twitter Cards, keywords, y Schema.org JSON-LD. `package.json` con metadata descriptiva. `public/manifest.json` con descripción PWA optimizada. `src/content/docs/index.md` con descripción mejorada. Keywords principales: "física general I", "TEC Costa Rica", "física universitaria", "prácticas física", "evaluaciones física", "horarios académicos".
-- **Frontmatter en Starlight (lecturas)**: Ejemplo en `src/content/docs/lecturas/semana-1.mdx` incluye `title` (descriptivo), `description` (SEO), `keywords`, `author`, `date`, `lastUpdated`, `readingTime`, `tags`, `category`, `difficulty`. Pattern para futuras lecturas.
+- **Frontmatter en Starlight (lecturas)**: Ejemplo en `src/content/docs/semana-01/lectura.mdx` incluye `title` (descriptivo), `description` (SEO), `keywords`, `author`, `date`, `lastUpdated`, `readingTime`, `tags`, `category`, `difficulty`. Pattern para futuras lecturas.

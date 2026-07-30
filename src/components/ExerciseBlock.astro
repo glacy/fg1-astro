@@ -1,0 +1,119 @@
+---
+export interface Props {
+  difficulty?: "basic" | "intermediate" | "advanced";
+  number?: number;
+  label?: string;
+}
+
+const { difficulty = "basic", number, label } = Astro.props;
+
+const difficultyConfig = {
+  basic: {
+    color: "var(--sl-color-green)",
+    bgColor: "var(--sl-color-green-low)",
+    textColor: "var(--sl-color-green-high)",
+    label: "Básico"
+  },
+  intermediate: {
+    color: "var(--sl-color-orange)",
+    bgColor: "var(--sl-color-orange-low)",
+    textColor: "var(--sl-color-orange-high)",
+    label: "Intermedio"
+  },
+  advanced: {
+    color: "var(--sl-color-red)",
+    bgColor: "var(--sl-color-red-low)",
+    textColor: "var(--sl-color-red-high)",
+    label: "Avanzado"
+  }
+};
+
+const config = difficultyConfig[difficulty];
+---
+
+<div class="exercise-block" data-difficulty={difficulty}>
+  <div class="exercise-header">
+    <div class="exercise-label">
+      {label && <span class="exercise-label-text">{label}</span>}
+      {number && <span class="exercise-number">Ejercicio {number}</span>}
+      <span class="exercise-difficulty" style={`--exercise-color: ${config.color}; --exercise-bg: ${config.bgColor}; --exercise-text: ${config.textColor};`}>
+        {config.label}
+      </span>
+    </div>
+  </div>
+  <div class="exercise-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .exercise-block {
+    margin: 2rem 0;
+    border: 2px solid var(--sl-color-text-accent);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: var(--sl-color-bg);
+  }
+
+  .exercise-header {
+    padding: 1rem 1.5rem;
+    background-color: var(--sl-color-bg-inset);
+    border-bottom: 2px solid var(--sl-color-text-accent);
+  }
+
+  .exercise-label {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .exercise-label-text {
+    font-weight: 600;
+    color: var(--sl-color-text);
+  }
+
+  .exercise-number {
+    font-weight: 700;
+    color: var(--sl-color-text-accent);
+    background-color: var(--sl-color-bg-inset);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+  }
+
+  .exercise-difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--exercise-color);
+    background-color: var(--exercise-bg);
+    color: var(--exercise-text);
+  }
+
+  .exercise-content {
+    padding: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .exercise-content > :first-child {
+    margin-top: 0;
+  }
+
+  .exercise-content > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 50em) {
+    .exercise-header {
+      padding: 0.75rem 1rem;
+    }
+
+    .exercise-content {
+      padding: 1rem 1rem;
+    }
+  }
+</style>
