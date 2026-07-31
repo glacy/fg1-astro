@@ -5,7 +5,6 @@ week: 1
 keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "constantes fundamentales", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
 date: 2026-07-21
-lastUpdated: 2026-07-21
 readingTime: 15
 tags: ["fundamentos", "unidades", "vectores", "introducción"]
 category: "fundamentos"
@@ -17,7 +16,14 @@ objetivos:
   - "Realizar suma y resta de vectores."
 ---
 
-Esta página contiene todo el material de la semana 1.
+import PreCheck from '../../../components/PreCheck.astro';
+
+<PreCheck>
+- Presentar el programa del curso.
+- Expresar cantidades físicas usando distintos sistemas de unidades.
+- Determinar las diferencias entre cantidades físicas escalares y vectoriales.
+- Realizar suma y resta de vectores.
+</PreCheck> 
 
 ## Contenido
 

@@ -74,5 +74,6 @@
   "docsearch.modal.noResultsScreen.noResultsText": "No hay resultados para",
   "docsearch.modal.noResultsScreen.suggestedQueryText": "Intenta buscar",
   "docsearch.modal.noResultsScreen.reportMissingResultsText": "¿Crees que esta consulta debería devolver resultados?",
-  "docsearch.modal.noResultsScreen.reportMissingResultsLinkText": "Háganos saber."
+  "docsearch.modal.noResultsScreen.reportMissingResultsLinkText": "Háganos saber.",
+  "objetivos.semanales": "Objetivos de aprendizaje"
 }

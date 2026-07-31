@@ -5,7 +5,6 @@ week: 8
 keywords: ["física general I", "semana 8", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
 date: 2026-07-21
-lastUpdated: 2026-07-21
 readingTime: 10
 tags: ["semana-8"]
 category: "semana-8"

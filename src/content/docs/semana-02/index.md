@@ -5,7 +5,6 @@ week: 2
 keywords: ["física general I", "semana 2", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
 date: 2026-07-21
-lastUpdated: 2026-07-21
 readingTime: 10
 tags: ["semana-2"]
 category: "semana-2"

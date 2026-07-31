@@ -5,7 +5,6 @@ week: 6
 keywords: ["física general I", "semana 6", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
 date: 2026-07-21
-lastUpdated: 2026-07-21
 readingTime: 10
 tags: ["semana-6"]
 category: "semana-6"
