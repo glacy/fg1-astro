@@ -14,6 +14,7 @@ objetivos:
   - "Relacionar el impulso de la fuerza neta que actúa sobre una partícula y el cambio en su cantidad de movimiento."
   - "Resolver problemas en los que dos o más cuerpos colisionan entre sí, a partir de la conservación de la cantidad de movimiento total del sistema."
   - "Diferenciar entre colisiones elásticas, inelásticas y totalmente inelásticas."
+draft: true
 ---
 
 Esta página contiene todo el material de la semana 11.

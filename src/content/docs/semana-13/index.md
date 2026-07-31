@@ -13,6 +13,7 @@ objetivos:
   - "Relacionar la energía cinética de rotación con el momento de inercia de un cuerpo en torno a un eje de rotación."
   - "Relacionar los valores del momento de inercia de un cuerpo para dos ejes de rotación diferentes, pero paralelos."
   - "Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo."
+draft: true
 ---
 
 Esta página contiene todo el material de la semana 13.

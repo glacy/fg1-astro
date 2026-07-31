@@ -13,6 +13,7 @@ objetivos:
   - "Identificar las fuerzas que actúan sobre un cuerpo en un diagrama de cuerpo libre (DCL)."
   - "Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio"
   - "Usar la segunda ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo con aceleración."
+draft: true
 ---
 
 Esta página contiene todo el material de la semana 7.

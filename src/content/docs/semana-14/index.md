@@ -12,6 +12,7 @@ difficulty: "basic"
 objetivos:
   - "Determinar como la torca neta sobre un cuerpo afecta su movimiento de rotación."
   - "Analizar el movimiento de un cuerpo que gira y se mueve como un todo en el espacio."
+draft: true
 ---
 
 Esta página contiene todo el material de la semana 14.

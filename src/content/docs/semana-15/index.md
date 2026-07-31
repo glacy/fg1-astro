@@ -13,6 +13,7 @@ objetivos:
   - "Reconocer las condiciones que deben satisfacerse para que un cuerpo o una estructura estén en equilibrio."
   - "Relacionar la posición del centro de gravedad de un objeto con su estabilidad."
   - "Resolver problemas que implican cuerpos rígidos en equilibrio."
+draft: true
 ---
 
 Esta página contiene todo el material de la semana 15.

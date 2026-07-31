@@ -13,6 +13,7 @@ objetivos:
   - "Definir los conceptos: momento angular, trabajo y potencia en la rotación."
   - "Explicar el teorema de conservación del momento angular."
   - "Resolver problemas aplicando los conceptos de momento angular."
+draft: true
 ---
 
 Esta página contiene todo el material de la semana 16.

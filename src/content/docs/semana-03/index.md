@@ -14,6 +14,7 @@ objetivos:
   - "Diferenciar entre rapidez y velocidad; así como entre cantidades instantáneas y medias."
   - "Analizar las gráficas de un movimiento."
   - "Resolver problemas que involucren los conceptos de cinemática en 1D, tanto analítica como gráficamente."
+draft: true
 ---
 
 Esta página contiene todo el material de la semana 3.
