@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Física General I - TEC Costa Rica",
   "short_name": "Física General I",
-  "description": "Plataforma educativa para Física General I - Tecnológico de Costa Rica, II semestre 2026. Semanarios, prácticas, evaluaciones y documentación académica.",
+  "description": "Plataforma educativa para Física General I - Tecnológico de Costa Rica, II semestre 2026.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
