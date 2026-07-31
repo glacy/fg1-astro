@@ -15,7 +15,9 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"preset": "recommended"
+			"preset": "recommended",
+			"correctness": {
+        "useParseIntRadix": "error"
 		}
 	},
 	"javascript": {
@@ -31,4 +33,5 @@
 			}
 		}
 	}
+}
 }

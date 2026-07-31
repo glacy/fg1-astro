@@ -1,14 +1,14 @@
 ---
 import { getCollection } from "astro:content";
-import { loadWeeksData, COURSE_CONFIG } from "../../lib/weekly/weeks";
-import ShellLayout from "../../layouts/ShellLayout.astro";
-import Sidebar from "../../components/Sidebar.astro";
+import ContentList from "../../components/ContentList.astro";
+import LinkCard from "../../components/LinkCard.astro";
+import ObjectivesList from "../../components/ObjectivesList.astro";
 import PageHeader from "../../components/PageHeader.astro";
 import Section from "../../components/Section.astro";
-import ContentList from "../../components/ContentList.astro";
-import ObjectivesList from "../../components/ObjectivesList.astro";
-import LinkCard from "../../components/LinkCard.astro";
+import Sidebar from "../../components/Sidebar.astro";
 import WeekNavigation from "../../components/WeekNavigation.astro";
+import ShellLayout from "../../layouts/ShellLayout.astro";
+import { COURSE_CONFIG, loadWeeksData } from "../../lib/weekly/weeks";
 
 const lecturas = await getCollection("docs");
 const weeksData = await loadWeeksData();
@@ -16,29 +16,32 @@ const weeksData = await loadWeeksData();
 const currentWeek = COURSE_CONFIG.maxCurrentWeek;
 const currentWeekData = weeksData[currentWeek];
 
-const groups: Record<string, { label: string; entries: typeof lecturas; weekData: any }> = {};
+const groups: Record<
+	string,
+	{ label: string; entries: typeof lecturas; weekData: any }
+> = {};
 
 for (const entry of lecturas) {
-  const match = entry.id.match(/semana-(\d+)/);
-  if (match) {
-    const weekNum = parseInt(match[1]);
-    
-    const weekKey = `semana-${weekNum}`;
-    if (!groups[weekKey]) {
-      groups[weekKey] = { 
-        label: `Semana ${weekNum}`, 
-        entries: [],
-        weekData: weeksData[weekNum]
-      };
-    }
-    groups[weekKey].entries.push(entry);
-  }
+	const match = entry.id.match(/semana-(\d+)/);
+	if (match) {
+		const weekNum = parseInt(match[1]);
+
+		const weekKey = `semana-${weekNum}`;
+		if (!groups[weekKey]) {
+			groups[weekKey] = {
+				label: `Semana ${weekNum}`,
+				entries: [],
+				weekData: weeksData[weekNum],
+			};
+		}
+		groups[weekKey].entries.push(entry);
+	}
 }
 
 const orderedGroups = Object.keys(groups).sort((a, b) => {
-  const weekA = parseInt(a.replace('semana-', ''));
-  const weekB = parseInt(b.replace('semana-', ''));
-  return weekA - weekB;
+	const weekA = parseInt(a.replace("semana-", ""));
+	const weekB = parseInt(b.replace("semana-", ""));
+	return weekA - weekB;
 });
 ---
 
@@ -157,53 +160,7 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
           </div>
         </Section>
 
-      
-
-        {/* Navegación rápida */}
-        <Section title="Navegación Rápida">
-          <div class="grid md:grid-cols-2 gap-4">
-            <LinkCard
-              href={`/weekly/${currentWeek}/`}
-              icon="lucide:calendar"
-              title="Semana Actual en Dashboard"
-              description="Ver recursos y objetivos de la semana actual"
-            />
-            <LinkCard
-              href="/planner"
-              icon="lucide:calendar-days"
-              title="Calendario de Evaluaciones"
-              description="Ver fechas de exámenes y entregas"
-            />
-            <LinkCard
-              href="/schedule"
-              icon="lucide:clock"
-              title="Horarios de Atención"
-              description="Consultar horarios de profesores"
-            />
-            <LinkCard
-              href="/"
-              icon="lucide:home"
-              title="Volver al Inicio"
-              description="Ir al dashboard principal"
-            />
-          </div>
-        </Section>
-
-        {/* Información adicional */}
-        <Section title="Información de Navegación">
-          <div class="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-            <h3 class="font-semibold text-blue-900 dark:text-blue-100 mb-3">
-              💡 Consejos de Navegación
-            </h3>
-            <ul class="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-              <li>• Cada semana tiene una página principal con todos los recursos disponibles</li>
-              <li>• Las lecturas incluyen objetivos claros y ejemplos prácticos</li>
-              <li>• Las prácticas tienen ejercicios con soluciones paso a paso</li>
-              <li>• Usa el dashboard semanal para ver tu progreso y contenido relacionado</li>
-              <li>• El calendario te ayuda a mantener tus evaluaciones al día</li>
-            </ul>
-          </div>
-        </Section>
+    
       </div>
     </main>
   </div>
