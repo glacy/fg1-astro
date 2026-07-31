@@ -42,7 +42,7 @@ El sitio combina dos sistemas de renderizado independientes bajo el mismo domini
 
 | Sistema | Layout | View Transitions | SW precache | Rutas |
 |---|---|---|---|---|
-| **Astro pages** (ShellLayout) | `ShellLayout.astro` | Sí | Sí | `/`, `/weekly/*`, `/planner`, `/schedule`, `/lecturas/` (índice) |
+| **Astro pages** (ShellLayout) | `ShellLayout.astro` | Sí | Sí | `/`, `/weekly/*`, `/planner`, `/schedule`, `/documentos/` (índice) |
 | **Starlight docs** | Starlight (propio) | No | Sí | `/semana-N/{lectura|practica|solucion}/` |
 
 **Interacciones entre sistemas:**
@@ -77,7 +77,7 @@ VT reglas:
 | `/weekly/` | ShellLayout | `src/pages/weekly/index.astro` | Redirect 302 → `/weekly/{maxCurrentWeek}` |
 | `/planner` | ShellLayout | `src/pages/planner/index.astro` | Filtros cliente (btn + pill animada) |
 | `/schedule` | ShellLayout | `src/pages/schedule/index.astro` | Filtros cliente (CustomEvent + data-attributes) |
-| `/lecturas/` | ShellLayout | `src/pages/lecturas/index.astro` | ShellLayout + lista de docs agrupados por semana |
+| `/documentos/` | ShellLayout | `src/pages/documentos/index.astro` | ShellLayout + lista de docs agrupados por semana |
 | `/semana-N/{lectura|practica|solucion}/` | Starlight | `src/content/docs/` | Starlight maneja ruteo nativo, NO `[...slug].astro` |
 | `/offline` | ShellLayout | `src/pages/offline.astro` | Estilos inline autónomos, sin dep de componentes |
 
@@ -92,7 +92,7 @@ VT reglas:
   - Cada semana tiene `week: N` en frontmatter para agrupación
 - **JSON plano** (`src/lib/planner/exams.json`) solo para datos sin colección propia.
 
-## Contenido Markdown (lecturas académicas)
+## Contenido Markdown (documentación académica)
 
 - Tablas: pipe tables (`\| col1 \| col2 \|`). No grid tables, fenced divs, ni LaTeX `tblr`.
 - Math KaTeX: `$...$` inline, `$$...$$` / `\[...\]` display.
@@ -120,4 +120,4 @@ VT reglas:
 - JSON keys en kebab-case. Archivos `.astro` en PascalCase (componentes) o kebab-case (páginas).
 - Seguridad: `src/middleware.ts` inyecta headers CSP, X-Frame-Options, X-XSS-Protection, etc. En dev, CSP está deshabilitado para evitar bloqueos. Meta tags adicionales en ShellLayout: `referrer`, `permissions-policy`, `X-Content-Type-Options`, `X-Frame-Options`.
 - **SEO**: `ShellLayout.astro` incluye OpenGraph, Twitter Cards, keywords, y Schema.org JSON-LD. `package.json` con metadata descriptiva. `public/manifest.json` con descripción PWA optimizada. `src/content/docs/index.md` con descripción mejorada. Keywords principales: "física general I", "TEC Costa Rica", "física universitaria", "prácticas física", "evaluaciones física", "horarios académicos".
-- **Frontmatter en Starlight (lecturas)**: Ejemplo en `src/content/docs/semana-01/lectura.mdx` incluye `title` (descriptivo), `description` (SEO), `keywords`, `author`, `date`, `lastUpdated`, `readingTime`, `tags`, `category`, `difficulty`. Pattern para futuras lecturas.
+- **Frontmatter en Starlight (documentación)**: Ejemplo en `src/content/docs/semana-01/lectura.mdx` incluye `title` (descriptivo), `description` (SEO), `keywords`, `author`, `date`, `readingTime`, `tags`, `category`, `difficulty`, `objetivos`. Pattern para futuras documentación.

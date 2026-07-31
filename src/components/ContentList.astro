@@ -3,7 +3,7 @@ interface ContentListProps {
   contents: string[];
 }
 
-const { contents } = Astro.props;
+const { contents } = Astro.props as ContentListProps;
 ---
 
 <ul class="space-y-3">

@@ -1,12 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import ContentList from "../../components/ContentList.astro";
 import LinkCard from "../../components/LinkCard.astro";
-import ObjectivesList from "../../components/ObjectivesList.astro";
 import PageHeader from "../../components/PageHeader.astro";
 import Section from "../../components/Section.astro";
 import Sidebar from "../../components/Sidebar.astro";
-import WeekNavigation from "../../components/WeekNavigation.astro";
 import ShellLayout from "../../layouts/ShellLayout.astro";
 import { COURSE_CONFIG, loadWeeksData } from "../../lib/weekly/weeks";
 
@@ -45,9 +42,9 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
 });
 ---
 
-<ShellLayout title="Documentación del curso" activeTab="lecturas">
+<ShellLayout title="Documentación del curso" activeTab="documentos">
   <slot name="sidebar" slot="sidebar">
-    <Sidebar activeTab="lecturas" />
+    <Sidebar activeTab="documentos" />
   </slot>
   <div
     class="w-full h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 flex flex-col"
@@ -62,45 +59,13 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
           subtitle="Estructura organizativa y acceso a contenidos por semana."
         />
 
-        {/* Semana actual destacada */}
-        {currentWeekData && (
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                <span class="text-white font-bold text-xl">{currentWeek}</span>
-              </div>
-              <div>
-                <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100">
-                  Semana Actual: {currentWeekData.title}
-                </h2>
-                <p class="text-blue-700 dark:text-blue-300 text-sm">
-                  Progreso: {currentWeek} de {COURSE_CONFIG.totalWeeks} semanas
-                </p>
-              </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-4">
-              <LinkCard
-                href={`/semana-${String(currentWeek).padStart(2, '0')}/`}
-                icon="lucide:book-open"
-                title="Ir a Semana {currentWeek}"
-                description="Ver documentación completa de la semana actual"
-              />
-              <LinkCard
-                href={`/weekly/${currentWeek}/`}
-                icon="lucide:calendar"
-                title="Ver semana en dashboard"
-                description="Ir al detalle semanal con todos los recursos"
-              />
-            </div>
-          </div>
-        )}
+         
 
         {/* Estructura organizativa */}
         <Section title="Estructura de la Documentación">
           <div class="prose dark:prose-invert max-w-none">
             <p>
-              La documentación del curso está organizada por semanas en una estructura jerárquica que facilita la navegación y el estudio progresivo.
+              La documentación del curso está organizada por semanas para facilitar la navegación y el estudio progresivo. El contenido de cada semana se irá habilitando conforme avance el semestre.
             </p>
 
             <div class="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 p-6 my-6">
@@ -108,40 +73,32 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
                 <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
-                Organización por Semanas
+                Organización por semanas
               </h3>
               
               <div class="space-y-4">
                 <div class="pl-4 border-l-2 border-blue-200 dark:border-blue-800">
-                  <code class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
-                    docs/semana-XX/
-                  </code>
-                  <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                    Cada semana tiene su propia carpeta con contenido específico
+                  <p class="mt-2 text-slate-600 dark:text-slate-400">
+                    Cada semana consta de una lectura principal y una práctica, permitiendo un aprendizaje progresivo y estructurado.
                   </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-4">
+                <div class="grid md:grid-cols-2 gap-4">
                   <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
-                    <h4 class="font-semibold text-blue-600 dark:text-blue-400 mb-2">lectura.mdx</h4>
+                    <h4 class="font-semibold text-blue-600 dark:text-blue-400 mb-2">Lectura</h4>
                     <p class="text-sm text-slate-600 dark:text-slate-400">
                       Contenido principal con objetivos, explicaciones y ejemplos
                     </p>
                   </div>
 
                   <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
-                    <h4 class="font-semibold text-green-600 dark:text-green-400 mb-2">practica.mdx</h4>
+                    <h4 class="font-semibold text-green-600 dark:text-green-400 mb-2">Practica</h4>
                     <p class="text-sm text-slate-600 dark:text-slate-400">
                       Ejercicios prácticos y actividades de aplicación
                     </p>
                   </div>
 
-                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
-                    <h4 class="font-semibold text-purple-600 dark:text-purple-400 mb-2">solucion.mdx</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400">
-                      Soluciones detalladas de los ejercicios (opcional)
-                    </p>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -151,16 +108,31 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
                 <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Componentes Interactivos
+                Componentes interactivos
               </h3>
               <p class="text-sm text-slate-700 dark:text-slate-300">
-                Las prácticas incluyen componentes educativos como ejercicios interactivos, pistas, y soluciones desplegables para mejorar el aprendizaje.
+                Las prácticas y lecturas incluyen componentes educativos como ejercicios interactivos, pistas, y soluciones desplegables para mejorar el aprendizaje.
               </p>
             </div>
           </div>
+
+              <div class="grid md:grid-cols-6 gap-4 p-6">
+              <div class="col-span-4 col-start-2">
+                <LinkCard
+                  url={`/semana-${String(currentWeek).padStart(2, '0')}/`}
+                  icon="lucide:book-open"
+                  text={`Ir a Documentacion de Semana Actual`}
+                  description="Ver documentación completa de la semana actual"
+                />
+              </div>
+            </div>
+
         </Section>
 
-    
+
+
+
+
       </div>
     </main>
   </div>

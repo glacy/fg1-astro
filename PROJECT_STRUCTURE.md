@@ -42,8 +42,8 @@ src/pages/
 │   └── index.astro          # Evaluaciones con filtros cliente (data-attributes)
 ├── schedule/
 │   └── index.astro          # Horarios de atención (usa ScheduleTable + ScheduleFilters)
-├── lecturas/
-│   └── index.astro          # Índice de lecturas con lista navegable (ShellLayout)
+├── documentos/
+│   └── index.astro          # Índice de documentos con lista navegable (ShellLayout)
 ├── offline.astro            # Página offline personalizada (PWA offline fallback)
 ├── auth/                    # (vacío — sin implementar)
 └── robots.txt.ts           # Endpoint API de robots.txt
@@ -115,7 +115,7 @@ src/styles/
 ```
 
 ### src/content/
-Content Collections de Astro para lecturas académicas.
+Content Collections de Astro para documentos académicas.
 
 ```
 src/content/
@@ -126,7 +126,7 @@ src/content/
 │   ├── ...
 │   └── semana-16.json
 └── docs/
-    ├── index.md             # Índice general de lecturas
+    ├── index.md             # Índice general de documentos
     ├── semana-01/           # Semana 1: Unidades y cantidades físicas
     │   ├── index.md         # Página overview de la semana
     │   ├── lectura.mdx      # Lectura principal de la semana
@@ -162,7 +162,7 @@ public/
 ├── screenshot-narrow.png    # PWA screenshot mobile (480x800)
 ├── programa-del-curso.pdf   # Programa del curso
 ├── examenes/                # Exámenes, soluciones, instrucciones (PDF)
-├── lecturas/                # Lecturas semanales (PDF)
+├── documentos/                # Lecturas semanales (PDF)
 ├── practicas/               # Prácticas semanales (PDF)
 ├── soluciones/              # Soluciones de prácticas (PDF)
 ├── tareas/                  # Tareas y soluciones (PDF)
@@ -200,7 +200,7 @@ dist/
 ├── planner/index.html
 ├── schedule/index.html
 ├── examenes/                # (copiado de public/, excepto HTML)
-├── lecturas/
+├── documentos/
 ├── practicas/
 ├── soluciones/
 ├── tareas/
@@ -265,9 +265,9 @@ public/ (assets estáticos) ──┘                       ↓
 | **Página offline** | `src/pages/offline.astro` con estilos inline autónomos, dark/light mode y botones de reintentar/volver al inicio |
 | **PWA injectManifest** | Modo `injectManifest` con SW custom en `src/sw.ts`. Reemplaza `generateSW` + `navigateFallback`. Normaliza trailing slashes en navegaciones y ofrece offline fallback con 3 niveles: precache → network → `/offline` → `503` |
 | **PWA 404 exclusion** | `globIgnores: ['**/404*']` — Workbox rechaza precacheo de respuestas non-2xx (404.astro se sirve con status 404) |
-| **Trailing slash normalization** | SW custom (`src/sw.ts`) usa `matchPrecache(url.replace(/\/$/, '') || '/')` para resolver incompatibilidad entre `cleanURLs: true` de Workbox y trailing slashes de Starlight (`/lecturas/semana-1/` → busca `lecturas/semana-1` en precache) |
+| **Trailing slash normalization** | SW custom (`src/sw.ts`) usa `matchPrecache(url.replace(/\/$/, '') || '/')` para resolver incompatibilidad entre `cleanURLs: true` de Workbox y trailing slashes de Starlight (`/documentos/semana-1/` → busca `documentos/semana-1` en precache) |
 | **Starlight 404 deshabilitado** | `disable404Route: true` evita colisión con `src/pages/404.astro` (única página 404 del sitio, con variantes dark/light) |
-| **Lecturas con Starlight** | `[...slug].astro` eliminado; Starlight maneja el ruteo de docs individuales (`/lecturas/semana-1/`). El índice (`/lecturas/`) usa `index.astro` con ShellLayout |
-| **Sidebar "Lecturas"** | Nuevo item de navegación `lecturas` con icono `lucide:book-open`, href a `/lecturas/` |
+| **Lecturas con Starlight** | `[...slug].astro` eliminado; Starlight maneja el ruteo de docs individuales (`/documentos/semana-1/`). El índice (`/documentos/`) usa `index.astro` con ShellLayout |
+| **Sidebar "Lecturas"** | Nuevo item de navegación `documentos` con icono `lucide:book-open`, href a `/documentos/` |
 | **index.md simplificado** | `src/content/docs/index.md` solo conserva frontmatter (title/description); Starlight no renderiza el body markdown |
 | **View Transitions progresivas** | `<ViewTransitions />` en `ShellLayout.astro` con `transition:animate="morph"` en cada wrapper de contenido. Elementos estáticos (`#sidebar-toggle`, barra móvil) llevan `transition:persist`. WeekNavigation y WeekItem convertidos de `<button>` a `<a>` para navegación nativa VT. `astro:after-swap` para re-inicializar scripts tras navegación. Starlight no se ve afectado. |

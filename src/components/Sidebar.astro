@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { COURSE_CONFIG } from "../lib/shared";
 
 interface Props {
-  activeTab: "weekly" | "planner" | "schedule" | "lecturas" | "dashboard";
+  activeTab: "weekly" | "planner" | "schedule" | "documentos" | "dashboard";
 }
 
 const { activeTab } = Astro.props;
@@ -28,10 +28,10 @@ const menuItems = [
     href: "/schedule",
   },
   {
-    id: "lecturas",
+    id: "documentos",
     label: "Documentos",
     icon: "lucide:book-open",
-    href: "/lecturas/",
+    href: "/documentos/",
   },
 ];
 ---
