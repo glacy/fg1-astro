@@ -1,10 +1,15 @@
 ---
 import { getCollection } from "astro:content";
-import { getCollection } from "astro:content";
-import { loadWeeksData } from "../../lib/weekly/weeks";
+import { loadWeeksData, COURSE_CONFIG } from "../../lib/weekly/weeks";
 import ShellLayout from "../../layouts/ShellLayout.astro";
 import Sidebar from "../../components/Sidebar.astro";
 import PageHeader from "../../components/PageHeader.astro";
+import Section from "../../components/Section.astro";
+import ContentList from "../../components/ContentList.astro";
+import ObjectivesList from "../../components/ObjectivesList.astro";
+import LinkCard from "../../components/LinkCard.astro";
+import WeekNavigation from "../../components/WeekNavigation.astro";
+
 const lecturas = await getCollection("docs");
 const weeksData = await loadWeeksData();
 
@@ -13,7 +18,12 @@ const weeksToInclude = Object.entries(weeksData)
   .map(([num, _]) => parseInt(num))
   .sort((a, b) => a - b);
 
-const groups: Record<string, { label: string; entries: typeof lecturas }> = {};
+const currentWeek = COURSE_CONFIG.maxCurrentWeek;
+const currentWeekData = weeksData[currentWeek];
+
+const availableWeeks = weeksToInclude.filter(w => w <= currentWeek);
+const groups: Record<string, { label: string; entries: typeof lecturas; weekData: any }> = {};
+
 for (const entry of lecturas) {
   const match = entry.id.match(/semana-(\d+)/);
   if (match) {
@@ -22,7 +32,11 @@ for (const entry of lecturas) {
     
     const weekKey = `semana-${weekNum}`;
     if (!groups[weekKey]) {
-      groups[weekKey] = { label: `Semana ${weekNum}`, entries: [] };
+      groups[weekKey] = { 
+        label: `Semana ${weekNum}`, 
+        entries: [],
+        weekData: weeksData[weekNum]
+      };
     }
     groups[weekKey].entries.push(entry);
   }
@@ -35,7 +49,7 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
 });
 ---
 
-<ShellLayout title="Lecturas del curso" activeTab="lecturas">
+<ShellLayout title="Documentación del curso" activeTab="lecturas">
   <slot name="sidebar" slot="sidebar">
     <Sidebar activeTab="lecturas" />
   </slot>
@@ -48,38 +62,229 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
     >
       <div class="space-y-8 max-w-7xl mx-auto">
         <PageHeader
-          title="Documentos del curso"
-          subtitle="Material de lectura, prácticas y soluciones organizados por semana."
+          title="Documentación del curso"
+          subtitle="Estructura organizativa y acceso a contenidos por semana."
         />
 
-        <div class="space-y-8">
-          {
-            orderedGroups
-              .filter((key) => groups[key].entries.length > 0)
-              .map((key) => (
-                <section>
-                    <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-3">
-                      {groups[key].label}
-                    </h2>
-                    <div class="grid gap-3">
+        {/* Semana actual destacada */}
+        {currentWeekData && (
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 border border-blue-200 dark:border-blue-800 rounded-xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold text-xl">{currentWeek}</span>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-blue-900 dark:text-blue-100">
+                  Semana Actual: {currentWeekData.title}
+                </h2>
+                <p class="text-blue-700 dark:text-blue-300 text-sm">
+                  Progreso: {currentWeek} de {COURSE_CONFIG.totalWeeks} semanas
+                </p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <LinkCard
+                href={`/semana-${String(currentWeek).padStart(2, '0')}/`}
+                icon="lucide:book-open"
+                title="Ir a Semana {currentWeek}"
+                description="Ver documentación completa de la semana actual"
+              />
+              <LinkCard
+                href={`/weekly/${currentWeek}/`}
+                icon="lucide:calendar"
+                title="Ver semana en dashboard"
+                description="Ir al detalle semanal con todos los recursos"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Estructura organizativa */}
+        <Section title="Estructura de la Documentación">
+          <div class="prose dark:prose-invert max-w-none">
+            <p>
+              La documentación del curso está organizada por semanas en una estructura jerárquica que facilita la navegación y el estudio progresivo.
+            </p>
+
+            <div class="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 p-6 my-6">
+              <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+                Organización por Semanas
+              </h3>
+              
+              <div class="space-y-4">
+                <div class="pl-4 border-l-2 border-blue-200 dark:border-blue-800">
+                  <code class="text-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
+                    docs/semana-XX/
+                  </code>
+                  <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                    Cada semana tiene su propia carpeta con contenido específico
+                  </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
+                    <h4 class="font-semibold text-blue-600 dark:text-blue-400 mb-2">lectura.mdx</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                      Contenido principal con objetivos, explicaciones y ejemplos
+                    </p>
+                  </div>
+
+                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
+                    <h4 class="font-semibold text-green-600 dark:text-green-400 mb-2">practica.mdx</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                      Ejercicios prácticos y actividades de aplicación
+                    </p>
+                  </div>
+
+                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
+                    <h4 class="font-semibold text-purple-600 dark:text-purple-400 mb-2">solucion.mdx</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">
+                      Soluciones detalladas de los ejercicios (opcional)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-lg p-6">
+              <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Componentes Interactivos
+              </h3>
+              <p class="text-sm text-slate-700 dark:text-slate-300">
+                Las prácticas incluyen componentes educativos como ejercicios interactivos, pistas, y soluciones desplegables para mejorar el aprendizaje.
+              </p>
+            </div>
+          </div>
+        </Section>
+
+        {/* Semanas disponibles */}
+        {orderedGroups.length > 0 && (
+          <Section title="Semanas Disponibles">
+            <div class="space-y-6">
+              {orderedGroups
+                .filter((key) => groups[key].entries.length > 0)
+                .map((key) => (
+                  <div key={key} class="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 p-6">
+                    <div class="flex items-center justify-between mb-4">
+                      <div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200">
+                          {groups[key].label}: {groups[key].weekData?.title}
+                        </h3>
+                        {groups[key].weekData?.objetivos && groups[key].weekData.objetivos.length > 0 && (
+                          <div class="mt-2">
+                            <ObjectivesList 
+                              objectives={groups[key].weekData.objetivos.slice(0, 2)} 
+                              maxShow={2}
+                            />
+                          </div>
+                        )}
+                      </div>
+                      <LinkCard
+                        href={`/semana-${key.replace('semana-', '')}/`}
+                        icon="lucide:arrow-right"
+                        title="Ver documentación"
+                        description="Ir a la página de la semana"
+                      />
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-3">
                       {groups[key].entries
                         .sort((a, b) => a.id.localeCompare(b.id))
-                        .map((entry) => (
-                          <a
-                            href={`/${entry.id.replace(/\.mdx?$/, '')}/`}
-                            class="block p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-300 dark:hover:border-sky-700 transition-all hover:shadow-sm"
-                          >
-                            <span class="font-medium text-slate-800 dark:text-slate-200">
-                              {entry.data.title}
-                            </span>
-                          </a>
-                        ))}
+                        .map((entry) => {
+                          const entryType = entry.id.includes('lectura') ? 'lectura' : 
+                                         entry.id.includes('practica') ? 'práctica' : 'solución';
+                          const iconMap = {
+                            'lectura': 'lucide:book-open',
+                            'práctica': 'lucide:calculator',
+                            'solución': 'lucide:check-circle'
+                          };
+                          
+                          return (
+                            <LinkCard
+                              key={entry.id}
+                              href={`/${entry.id.replace(/\.mdx?$/, '')}/`}
+                              icon={iconMap[entryType] || 'lucide:file-text'}
+                              title={entryType.charAt(0).toUpperCase() + entryType.slice(1)}
+                              description={entry.data.title}
+                              color={entryType === 'lectura' ? 'blue' : entryType === 'práctica' ? 'green' : 'purple'}
+                            />
+                          );
+                        })}
                     </div>
-                </section>
-              ))
-          }
-        </div>
+                  </div>
+                ))}
+            </div>
+          </Section>
+        )}
+
+        {/* Navegación rápida */}
+        <Section title="Navegación Rápida">
+          <div class="grid md:grid-cols-2 gap-4">
+            <LinkCard
+              href={`/weekly/${currentWeek}/`}
+              icon="lucide:calendar"
+              title="Semana Actual en Dashboard"
+              description="Ver recursos y objetivos de la semana actual"
+            />
+            <LinkCard
+              href="/planner"
+              icon="lucide:calendar-days"
+              title="Calendario de Evaluaciones"
+              description="Ver fechas de exámenes y entregas"
+            />
+            <LinkCard
+              href="/schedule"
+              icon="lucide:clock"
+              title="Horarios de Atención"
+              description="Consultar horarios de profesores"
+            />
+            <LinkCard
+              href="/"
+              icon="lucide:home"
+              title="Volver al Inicio"
+              description="Ir al dashboard principal"
+            />
+          </div>
+        </Section>
+
+        {/* Información adicional */}
+        <Section title="Información de Navegación">
+          <div class="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
+            <h3 class="font-semibold text-blue-900 dark:text-blue-100 mb-3">
+              💡 Consejos de Navegación
+            </h3>
+            <ul class="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+              <li>• Cada semana tiene una página principal con todos los recursos disponibles</li>
+              <li>• Las lecturas incluyen objetivos claros y ejemplos prácticos</li>
+              <li>• Las prácticas tienen ejercicios con soluciones paso a paso</li>
+              <li>• Usa el dashboard semanal para ver tu progreso y contenido relacionado</li>
+              <li>• El calendario te ayuda a mantener tus evaluaciones al día</li>
+            </ul>
+          </div>
+        </Section>
       </div>
     </main>
   </div>
 </ShellLayout>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-cols-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
