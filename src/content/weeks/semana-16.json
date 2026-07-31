@@ -2,7 +2,6 @@
   "id": 16,
   "title": "Momentum Angular",
   "image": "https://images.unsplash.com/photo-1682953390639-381112a2c4f0?auto=format&fit=crop&q=80&w=1000",
-    "includeInDocs": false,
   "objetivos": [
     "Definir los conceptos: momento angular, trabajo y potencia en la rotación.",
     "Explicar el teorema de conservación del momento angular.",

@@ -2,7 +2,6 @@
   "id": 12,
   "title": "Cinemática del movimiento rotacional",
   "image": "https://images.unsplash.com/photo-1763393567638-3ab4969974ed?auto=format&fit=crop&q=80&w=1000",
-    "includeInDocs": false,
   "objetivos": [
     "Describir la rotación de un cuerpo rígido en términos de las coordenadas, la velocidad y la aceleración angulares.",
     "Analizar la rotación de un cuerpo rígido cuando la aceleración angular es constante.",

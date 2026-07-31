@@ -2,7 +2,6 @@
   "id": 4,
   "title": "Movimiento rectilíneo",
   "image": "https://images.unsplash.com/photo-1452573992436-6d508f200b30?auto=format&fit=crop&q=80&w=1000",
-    "includeInDocs": false,
   "objetivos": [
     "Definir las características de un movimiento rectilíneo uniforme (MRU).",
     "Definir las características de un movimiento rectilíneo uniformemente acelerado (MRUA), con la caída libre como un caso particular.",
