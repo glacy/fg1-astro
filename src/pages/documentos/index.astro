@@ -59,7 +59,7 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
           subtitle="Estructura organizativa y acceso a contenidos por semana."
         />
 
-         
+         <div class="grid md:grid-cols-6 gap-4 p-6"></div>
 
         {/* Estructura organizativa */}
         <Section title="Estructura de la Documentación">
@@ -114,9 +114,8 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
                 Las prácticas y lecturas incluyen componentes educativos como ejercicios interactivos, pistas, y soluciones desplegables para mejorar el aprendizaje.
               </p>
             </div>
-          </div>
 
-              <div class="grid md:grid-cols-6 gap-4 p-6">
+                          <div class="grid md:grid-cols-6 gap-4 p-6">
               <div class="col-span-4 col-start-2">
                 <LinkCard
                   url={`/semana-${String(currentWeek).padStart(2, '0')}/`}
@@ -126,6 +125,10 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
                 />
               </div>
             </div>
+
+          </div>
+
+
 
         </Section>
 
