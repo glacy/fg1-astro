@@ -11,35 +11,28 @@ const lecturas = await getCollection("docs");
 const weeksData = await loadWeeksData();
 
 const currentWeek = COURSE_CONFIG.maxCurrentWeek;
-const currentWeekData = weeksData[currentWeek];
 
 const groups: Record<
 	string,
 	{ label: string; entries: typeof lecturas; weekData: any }
 > = {};
 
-for (const entry of lecturas) {
-	const match = entry.id.match(/semana-(\d+)/);
-	if (match) {
-		const weekNum = parseInt(match[1]);
+	for (const entry of lecturas) {
+		const match = entry.id.match(/semana-(\d+)/);
+		if (match) {
+			const weekNum = parseInt(match[1]);
 
-		const weekKey = `semana-${weekNum}`;
-		if (!groups[weekKey]) {
-			groups[weekKey] = {
-				label: `Semana ${weekNum}`,
-				entries: [],
-				weekData: weeksData[weekNum],
-			};
+			const weekKey = `semana-${weekNum}`;
+			if (!groups[weekKey]) {
+				groups[weekKey] = {
+					label: `Semana ${weekNum}`,
+					entries: [],
+					weekData: weeksData[weekNum],
+				};
+			}
+			groups[weekKey].entries.push(entry);
 		}
-		groups[weekKey].entries.push(entry);
 	}
-}
-
-const orderedGroups = Object.keys(groups).sort((a, b) => {
-	const weekA = parseInt(a.replace("semana-", ""));
-	const weekB = parseInt(b.replace("semana-", ""));
-	return weekA - weekB;
-});
 ---
 
 <ShellLayout title="Documentación del curso" activeTab="documentos">
@@ -84,18 +77,28 @@ const orderedGroups = Object.keys(groups).sort((a, b) => {
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4">
-                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
-                    <h4 class="font-semibold text-blue-600 dark:text-blue-400 mb-2">Lectura</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400">
-                      Contenido principal con objetivos, explicaciones y ejemplos
-                    </p>
+                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 flex items-start gap-3">
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <div>
+                      <h4 class="font-semibold text-blue-600 dark:text-blue-400 mb-2">Lectura</h4>
+                      <p class="text-sm text-slate-600 dark:text-slate-400">
+                        Contenido principal con objetivos, explicaciones y ejemplos
+                      </p>
+                    </div>
                   </div>
 
-                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
-                    <h4 class="font-semibold text-green-600 dark:text-green-400 mb-2">Practica</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400">
-                      Ejercicios prácticos y actividades de aplicación
-                    </p>
+                  <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 flex items-start gap-3">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <div>
+                      <h4 class="font-semibold text-green-600 dark:text-green-400 mb-2">Práctica</h4>
+                      <p class="text-sm text-slate-600 dark:text-slate-400">
+                        Ejercicios prácticos y actividades de aplicación
+                      </p>
+                    </div>
                   </div>
 
 

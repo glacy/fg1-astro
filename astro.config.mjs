@@ -26,7 +26,7 @@ export default defineConfig({
       title: 'Documentos FG1 - II semestre 2026',
       description: 'Documentación para el curso de Física General I - II semestre 2026',
       disable404Route: true,
-      customCss: ['src/styles/starlight-overrides.css'],
+      customCss: ['src/styles/starlight-overrides.css', 'katex/dist/katex.min.css'],
       lastUpdated: true,
       locales: {
         root: {

@@ -9,8 +9,8 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       {
         dia: "Martes",
         modalidad: "presencial",
-        hora: "4:30 p.m. a 6:00 p.m.",
-        detalle: "oficina XX, ECNE"
+        hora: "4:00 p.m. a 6:00 p.m.",
+        detalle: "Laboratorio de Física General II, ECNE"
       }
     ]
   },
@@ -20,28 +20,44 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       {
         dia: "Martes",
         modalidad: "virtual",
-        hora: "1:30 p.m. a 3:30 p.m.",
+        hora: "1:00 p.m. a 5:00 p.m.",
         detalle: "mensaje a prof_mcambronero@estudiantec.cr en TEAMS"
       },
+    ]
+  },
+  {
+    docente: "CASTILLO FALLAS JOSE CARLOS",
+    atenciones: [
       {
-        dia: "Jueves",
-        modalidad: "virtual",
-        hora: "1:30 p.m. a 3:30 p.m.",
-        detalle: "mensaje a prof_mcambronero@estudiantec.cr en TEAMS"
-      }
+        dia: "Viernes",
+        modalidad: "presencial",
+        hora: "9:30 a.m. a 11:30 a.m.",
+        detalle: "Oficina 3, Edificio Administrativo, CAL"
+      },
+    ]
+  },
+  {
+    docente: "CORDERO GARCIA IVAN GABRIEL",
+    atenciones: [
+      {
+        dia: "Viernes",
+        modalidad: "presencial",
+        hora: "9:30 a.m. a 11:30 a.m.",
+        detalle: "Oficina 3, Edificio Administrativo, CAL"
+      },
     ]
   },
   {
     docente: "CORRALES QUESADA ESTEBAN",
     atenciones: [
       {
-        dia: "Miércoles",
+        dia: "Martes",
         modalidad: "presencial",
         hora: "1:00 p.m. a 2:50 p.m.",
         detalle: "oficina 06, edificio C4 (Escuela de Física)"
       },
       {
-        dia: "Viernes",
+        dia: "Jueves",
         modalidad: "presencial",
         hora: "1:00 p.m. a 2:50 p.m.",
         detalle: "oficina 06, edificio C4 (Escuela de Física)"
@@ -52,9 +68,9 @@ export const INSTRUCTORS_DATA: Instructor[] = [
     docente: "ELIZONDO ZÚÑIGA JENNIFER",
     atenciones: [
       {
-        dia: "Miércoles",
+        dia: "Martes",
         modalidad: "presencial",
-        hora: "7:30 a.m. a 9:30 a.m.",
+        hora: "3:00 p.m. a 5:00 p.m.",
         detalle: "oficina 27, edificio C4 (Escuela de Física)"
       },
     ]
@@ -67,6 +83,17 @@ export const INSTRUCTORS_DATA: Instructor[] = [
         modalidad: "presencial",
         hora: "7:30 a.m. a 9:20 a.m.",
         detalle: "oficina 26, edificio C4 (Escuela de Física)"
+      }
+    ]
+  },
+  {
+    docente: "MOYA SERRANO ROY DAVID",
+    atenciones: [
+       {
+        dia: "Miércoles",
+        modalidad: "presencial",
+        hora: "10:00 a.m. a 12:00 m.d.",
+        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
       }
     ]
   },
@@ -94,19 +121,13 @@ export const INSTRUCTORS_DATA: Instructor[] = [
     ]
   },
   {
-    docente: "MOYA SERRANO ROY DAVID",
+    docente: "MURILLO SALAZAR DENNIS",
     atenciones: [
       {
         dia: "Martes",
         modalidad: "presencial",
-        hora: "2:00 p.m. a 4:00 p.m.",
-        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
-      },
-      {
-        dia: "Miércoles",
-        modalidad: "presencial",
-        hora: "10:00 a.m. a 12:00 m.d.",
-        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
+        hora: "9:30 a.m. a 11:30 a.m.",
+        detalle: "oficina 05, edificio C4 (Escuela de Física)"
       }
     ]
   },
@@ -114,9 +135,9 @@ export const INSTRUCTORS_DATA: Instructor[] = [
     docente: "MURILLO ZUMBADO GUSTAVO",
     atenciones: [
       {
-        dia: "Jueves",
+        dia: "Viernes",
         modalidad: "presencial",
-        hora: "7:30 a.m. a 9:20 a.m.",
+        hora: "9:30 a.m. a 11:30 a.m.",
         detalle: "oficina 26, edificio C4 (Escuela de Física)"
       }
     ]
@@ -125,9 +146,9 @@ export const INSTRUCTORS_DATA: Instructor[] = [
     docente: "PINEDA LIZANO JUAN JOSÉ",
     atenciones: [
       {
-        dia: "Miércoles",
+        dia: "Martes",
         modalidad: "presencial",
-        hora: "1:00 p.m. a 3:00 p.m.",
+        hora: "7:30 a.m. a 9:20 a.m.",
         detalle: "oficina 7, edificio C4 (Escuela de Física)"
       }
     ]
@@ -138,12 +159,28 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       {
         dia: "Viernes",
         modalidad: "virtual",
-        hora: "10:00 a.m. a 12:00 m.d.",
+        hora: "09:30 a.m. a 11:30 a.m.",
         detalle: "mensaje a prof_frojas@estudiantec.cr en TEAMS"
       }
     ]
   },
-
+ {
+    docente: "SEGURA ZÁRATE ANA YANCY",
+    atenciones: [
+      {
+        dia: "Miércoles",
+        modalidad: "presencial",
+        hora: "3:00 p.m. a 4:50 p.m.",
+        detalle: "oficina 22, edificio C4 (Escuela de Física)"
+      },
+      {
+        dia: "Viernes",
+        modalidad: "presencial",
+        hora: "3:00 p.m. a 4:50 p.m.",
+        detalle: "oficina 22, edificio C4 (Escuela de Física)"
+      }
+    ]
+  },
   {
     docente: "SEQUEIRA CASTRO DAVID",
     atenciones: [
@@ -156,23 +193,7 @@ export const INSTRUCTORS_DATA: Instructor[] = [
     ]
   },
 
-  {
-    docente: "SEGURA ZÁRATE ANA YANCY",
-    atenciones: [
-      {
-        dia: "Miércoles",
-        modalidad: "presencial",
-        hora: "1:00 p.m. a 2:50 p.m.",
-        detalle: "oficina 22, edificio C4 (Escuela de Física)"
-      },
-      {
-        dia: "Viernes",
-        modalidad: "presencial",
-        hora: "1:00 p.m. a 2:50 p.m.",
-        detalle: "oficina 22, edificio C4 (Escuela de Física)"
-      }
-    ]
-  },
+ 
   {
     docente: "VARGAS BLANCO IVÁN",
     atenciones: [
@@ -180,13 +201,13 @@ export const INSTRUCTORS_DATA: Instructor[] = [
         dia: "Jueves",
         modalidad: "virtual",
         hora: "4:00 p.m. a 5:00 p.m.",
-        detalle: "https://itcr.zoom.us/j/82619451453?pwd=IEQuahoa2KiBGbWNakxOaCJT7hivcM.1"
+        detalle: ""
       },
       {
         dia: "Jueves",
         modalidad: "virtual",
-        hora: "6:00 p.m. a 7:00 p.m.",
-        detalle: "Zoom: https://itcr.zoom.us/j/85281949494?pwd=X1cG7EWGTXkFYI8ajeaMcbYlW3zzes.1"
+        hora: "por definir",
+        detalle: ""
       }
     ]
   }
