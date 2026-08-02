@@ -10,7 +10,6 @@ tags: ["fundamentos", "unidades", "vectores", "introducción"]
 category: "fundamentos"
 difficulty: "basic"
 objetivos:
-  - "Presentar el programa del curso."
   - "Expresar cantidades físicas usando distintos sistemas de unidades."
   - "Determinar las diferencias entre cantidades físicas escalares y vectoriales."
   - "Realizar suma y resta de vectores."
@@ -18,14 +17,14 @@ objetivos:
 
 import { Steps } from '@astrojs/starlight/components';
 
-$$x^2$$
+$$$$$$$$x^2$$$$$$$$
 
 <Steps>
 
 1. Importa el componente en tu archivo MDX:
 
    ```js
-   import { Steps } from '@astrojs/starlight/components';
+   import \{ Steps \} from '@astrojs/starlight/components';
    ```
 
 
@@ -35,20 +34,20 @@ $$x^2$$
 
 </Steps>
 
-```js {2-3}
-function demo() {
+```js \{2-3\}
+function demo() \{
   // Esta línea (#2) y la siguiente están resaltadas
   return 'Esta es la línea #3 de este fragmento';
-}
+\}
 ```
 
 ```diff lang="js"
-  function thisIsJavaScript() {
+  function thisIsJavaScript() \{
     // ¡El bloque completo se resalta como JavaScript,
     // y aún podemos añadir marcadores de diferencias a él!
   -   console.log('Código antiguo a eliminar')
   +   console.log('¡Nuevo y brillante código!')
-  }
+  \}
 ```
 
 ```bash title="Instalando dependencias…"
@@ -61,3 +60,168 @@ npm install
 La [constelación de Andrómeda](<https://es.wikipedia.org/wiki/Andr%C3%B3meda_(constelaci%C3%B3n)>) es más visible en el cielo nocturno durante el mes de noviembre en latitudes entre `+90°` y `−40°`.
 
 </details>
+
+
+# Unidades, cantidades físicas y vectores 
+
+El objeto de estudio de la Física es tan ambicioso como fascinante: busca comprender las leyes fundamentales que rigen la materia, la energía, el espacio y el tiempo, y cómo interactúan entre sí. Para abordar sistemas que en la práctica son altamente complejos, esta disciplina recurre al arte de modelar. Un modelo físico es una construcción teórica, frecuentemente matemática, que simplifica la realidad sin perder su esencia, permitiéndonos analizar y predecir el comportamiento de la naturaleza.
+
+Para ilustrar esto, consideremos el lanzamiento de una bola. En la realidad, su movimiento está determinado por una gran cantidad de variables: su masa, su forma exacta, la dirección del viento, la fuerza inicial de lanzamiento o la resistencia del aire. Si intentáramos calcularlo todo a la vez, el problema sería inmanejable. Es aquí donde entra nuestro modelo físico inicial: tomaríamos la decisión estratégica de ignorar temporalmente factores como el viento o la fricción, y trataríamos la bola como si fuera un punto sin tamaño. No lo hacemos por ignorancia, sino para aislar el efecto principal (en este caso, la gravedad) y comprender la esencia de su trayectoria antes de añadir capas de complejidad. Ver Figura
+[1.1]
+
+
+A cada una de estas propiedades medibles que caracterizan a un sistema o a un modelo —la masa, la velocidad, la fuerza, entre otras— se las conoce como *cantidades físicas*. Constituyen la base sobre la cual se construye cualquier análisis. No obstante, una cantidad física requiere de una referencia para ser útil, y ahí es donde entran las unidades de medida. En esta sesión comenzaremos a estudiar estas cantidades y sus unidades, los elementos fundamentales sin los cuales la Física, tal como la conocemos, no sería posible.
+
+## Cantidades físicas y unidades
+
+
+En términos prácticos, una cantidad física es un atributo de la realidad que podemos medir. Todo acto de medición implica una comparación. Cuando decimos que algo mide "3 metros", estamos comparando su longitud con un estándar de referencia o patrón previamente acordado. Ese patrón es lo que define una unidad.
+
+Para que la ciencia sea universal y los modelos sean replicables en cualquier lugar del mundo, no podemos inventar unidades al azar. Necesitamos un marco coherente donde todas las unidades estén interconectadas lógicamente. Ese marco es el Sistema Internacional de Unidades (SI). La Tabla 1.1 muestra las cantidades físicas fundamentales del SI.
+
+
+<a id="tab:SI-fund"></a>
+
+**Tabla 1.1.** Cantidades físicas fundamentales del Sistema Internacional (SI).
+
+| Magnitud fundamental | Símbolo de la magnitud | Unidad de medida (SI) | Símbolo de la unidad |
+| :--- | :---: | :--- | :---: |
+| Longitud | $$l, x, r$$ | metro | m |
+| Masa | $$m$$ | kilogramo | kg |
+| Tiempo | $$t$$ | segundo | s |
+| Corriente eléctrica | $$I, i$$ | amperio | A |
+| Temperatura termodinámica | $$T$$ | kelvin | K |
+| Cantidad de sustancia | $$n$$ | mol | mol |
+| Intensidad luminosa | $$I_v$$ | candela | cd |
+
+Sin embargo, la realidad que intentamos modelar es mucho más rica que esas siete magnitudes básicas. Para describir fenómenos como la velocidad de un objeto o la presión de un gas, debemos combinar las cantidades fundamentales mediante relaciones matemáticas. El resultado de estas combinaciones son las cantidades físicas derivadas, cuya lista de ejemplos más representativos se presenta en la Tabla
+
+**Tabla 1.2.** Ejemplos de cantidades físicas derivadas y sus unidades en el SI.
+
+| Magnitud derivada | Símbolo de la magnitud | Unidad de medida (SI) | Símbolo de la unidad |
+| :--- | :---: | :--- | :---: |
+| Área | $$A$$ | metro cuadrado | $$\mathrm{m}^2$$ |
+| Volumen | $$V$$ | metro cúbico | $$\mathrm{m}^3$$ |
+| Velocidad | $$v$$ | metro por segundo | $$\mathrm{m}/\mathrm{s}$$ |
+| Aceleración | $$a$$ | metro por segundo al cuadrado | $$\mathrm{m}/\mathrm{s}^2$$ |
+| Fuerza | $$F$$ | newton | $$\mathrm{N}$$ |
+| Presión | $$p$$ | pascal | $$\mathrm{Pa}$$ |
+| Energía o Trabajo | $$E$$, $$W$$ | julio | $$\mathrm{J}$$ |
+
+
+
+
+La realidad que intentamos modelar escala de manera asombrosa: desde la minúscula distancia entre dos átomos hasta la inmensidad de una galaxia. Estas cantidades varían en múltiples órdenes de magnitud respecto a nuestras unidades fundamentales. Por ello, es indispensable dominar el uso de prefijos y de notación científica, los cuales nos permiten escribir de forma compacta tanto los múltiplos como las fracciones de cualquier unidad. La Tabla [X] lista los principales prefijos utilizados en el SI
+
+**Tabla 1.3.** Prefijos usados en el SI.
+
+| Factor | Nombre | Símbolo | Factor | Nombre | Símbolo |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| $$10^{-1}$$ | deci | $$ \mathrm{d} $$ | $$10^{1}$$ | deca | $$ \mathrm{da} $$ |
+| $$10^{-2}$$ | centi | $$ \mathrm{c} $$ | $$10^{2}$$ | hecto | $$ \mathrm{h} $$ |
+| $$10^{-3}$$ | mili | $$ \mathrm{m} $$ | $$10^{3}$$ | kilo | $$ \mathrm{k} $$ |
+| $$10^{-6}$$ | micro | $$ \mathrm{\mu} $$ | $$10^{6}$$ | mega | $$ \mathrm{M} $$ |
+| $$10^{-9}$$ | nano | $$ \mathrm{n} $$ | $$10^{9}$$ | giga | $$ \mathrm{G} $$ |
+| $$10^{-12}$$ | pico | $$ \mathrm{p} $$ | $$10^{12}$$ | tera | $$ \mathrm{T} $$ |
+| $$10^{-15}$$ | femto | $$ \mathrm{f} $$ | $$10^{15}$$ | peta | $$ \mathrm{P} $$ |
+| $$10^{-18}$$ | atto | $$ \mathrm{a} $$ | $$10^{18}$$ | exa | $$ \mathrm{E} $$ |
+| $$10^{-21}$$ | zepto | $$ \mathrm{z} $$ | $$10^{21}$$ | zetta | $$ \mathrm{Z} $$ |
+| $$10^{-24}$$ | yocto | $$ \mathrm{y} $$ | $$10^{24}$$ | yotta | $$ \mathrm{Y} $$ |
+| $$10^{-27}$$ | ronto | $$ \mathrm{r} $$ | $$10^{27}$$ | ronna | $$ \mathrm{R} $$ |
+| $$10^{-30}$$ | quecto | $$ \mathrm{q} $$ | $$10^{30}$$ | quetta | $$ \mathrm{Q} $$ |
+
+
+
+
+
+
+
+
+
+Por supuesto, el SI no es el único sistema de unidades disponible. Para
+transformar cierta cantidad física de un sistema de unidades a otro, es
+necesario conocer el correspondiente **factor de conversión** entre los
+sistemas de unidades para la cantidad física en cuestión. Un factor de
+conversión es entonces, un término multiplicativo que permite convertir
+las unidades de una cantidad física de un sistema de unidades a otro, es
+decir:
+
+
+
+o de manera equivalente
+
+
+Ejemplo factores de conversión
+
+
+
+
+## Escalares y vectores
+
+Las cantidades físicas pueden clasificarse en dos grupos: *escalares* y
+*vectoriales*.
+**Cantidad física escalar:** cualquier cantidad física que puede ser
+definida usando únicamente una [magnitud]. Las magnitudes
+escalares usualmente se expresan usando una unidad.
+
+
+Ejemplo cantidades escalares
+
+-   La temperatura ambiente es de 25$$$$^\circ$$$$C.
+
+-   La densidad del agua es de 1000 kg/m$$$$^\{3\}$$$$.
+
+-   La distancia entre San José y Cartago es de 13 km.
+
+-   El índice de refracción del aire es igual a 1.
+
+
+**Cantidad física vectorial:** cualquier cantidad física caracterizada
+no sólo por una [magnitud], sino también por una
+[dirección]. Debido a esta propiedad, los vectores suelen
+*representarse* por medio de flechas, en donde la longitud de la flecha
+es proporcional a la magnitud del vector y su dirección apunta en la
+misma dirección que la cantidad vectorial. Para denotar simbólicamente
+que cierta cantidad física es un vector, se coloca una flecha sobre el
+símbolo que representa dicha cantidad. Por ejemplo, si denotamos una
+cantidad vectorial con la letra A, escribiremos $$$$\vec\{A\}$$$$ para denotar
+que dicha cantidad es un vector.\
+
+
+Ejemplos cantidades vectoriales
+
+-   El viento está soplando con una velocidad máxima de 20
+    $$$$\{km\}\{h\}^\{-1\}$$$$ hacia el Noreste.
+
+-   Mi colegio está a 1 km y 30$$$$^\circ$$$$ al sur de mi casa.
+
+-   En la Tierra, los objetos en caída libre experimentan una
+    aceleración de $$$$9.81 \, \{m\}\{s\}^\{-2\}$$$$, hacia el centro
+    de la Tierra.
+
+-   El campo magnético terrestre tiene una magnitud de $$$$5\times10^\{-5\}$$$$
+    T y está orientado 11$$$$^\circ$$$$ respecto al eje de rotación de la
+    Tierra.
+
+
+Consideremos, por ejemplo, el *desplazamiento* de un objeto cuando se
+mueve de un punto A a un punto B. Esta cantidad es un vector, ya que no
+solo es necesario conocer la distancia entre ambos puntos, si no la
+ubicación de uno respecto al otro. Ver por ejemplo la sitación descrita
+en la Figura [1.3].
+
+Debido al caracter direccional de los vectores, es necesario contar con
+un sistema o marco de referencia desde el cual establecer su magnitud y
+su dirección.\
+Un **sistema de coordenadas o de referencia** es un conjunto de
+convenciones usadas por un observador para poder medir la posición y
+otras magnitudes físicas de un sistema físico. Por ejemplo, los puntos
+cardinales (norte, oeste, sur y este) permiten especificar direcciones
+de una manera consistente.\
+El sistema de referencia más utilizado es el **sistema rectangular de
+ejes coordenados** (cartesiano); a partir del cual se puede describir
+cualquier vector a partir de sus *componentes cartesianas*. Ver Figura
+[1.3]
+
+
+## Suma y resta de vectores

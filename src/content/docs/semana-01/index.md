@@ -16,15 +16,6 @@ objetivos:
   - "Realizar suma y resta de vectores."
 ---
 
-import PreCheck from '../../../components/PreCheck.astro';
-
-<PreCheck>
-- Presentar el programa del curso.
-- Expresar cantidades físicas usando distintos sistemas de unidades.
-- Determinar las diferencias entre cantidades físicas escalares y vectoriales.
-- Realizar suma y resta de vectores.
-</PreCheck> 
-
 ## Contenido
 
 - [Lectura](./lectura/) - Introducción a unidades y cantidades físicas
