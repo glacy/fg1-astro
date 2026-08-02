@@ -1,6 +1,6 @@
 /* Starlight pagination button title font size override */
 .link-title {
-  font-size: 0.875rem !important;
+  font-size: 1rem !important;
   line-height: 1.4 !important;
 }
 
@@ -10,6 +10,6 @@
 
 @media (max-width: 640px) {
   .link-title {
-    font-size: 0.8125rem !important;
+    font-size: 1rem !important;
   }
 }

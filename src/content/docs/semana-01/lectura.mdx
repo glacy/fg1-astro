@@ -1,5 +1,5 @@
 ---
-title: "Semana 1: Unidades y Cantidades Físicas"
+title: "Unidades, cantidades físicas y vectores"
 description: "Introducción a la física: estudio de cantidades físicas, sistema internacional de unidades (SI), constantes fundamentales, escalares, vectores y sistemas de coordenadas rectangulares."
 week: 1
 keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "constantes fundamentales", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
@@ -15,67 +15,37 @@ objetivos:
   - "Realizar suma y resta de vectores."
 ---
 
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
 import { Steps } from '@astrojs/starlight/components';
-
-$$$$$$$$x^2$$$$$$$$
-
-<Steps>
-
-1. Importa el componente en tu archivo MDX:
-
-   ```js
-   import \{ Steps \} from '@astrojs/starlight/components';
-   ```
+import SistemaModelo from "../../../assets/sistema_vs_modelo.svg";
+import { Image } from 'astro:assets';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
 
-2. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
+<PreCheck>
+  - Expresar cantidades físicas usando distintos sistemas de unidades.
+  - Determinar las diferencias entre cantidades físicas escalares y vectoriales.
+  - Realizar suma y resta de vectores.
+</PreCheck>
 
-3. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
-
-</Steps>
-
-```js \{2-3\}
-function demo() \{
-  // Esta línea (#2) y la siguiente están resaltadas
-  return 'Esta es la línea #3 de este fragmento';
-\}
-```
-
-```diff lang="js"
-  function thisIsJavaScript() \{
-    // ¡El bloque completo se resalta como JavaScript,
-    // y aún podemos añadir marcadores de diferencias a él!
-  -   console.log('Código antiguo a eliminar')
-  +   console.log('¡Nuevo y brillante código!')
-  \}
-```
-
-```bash title="Instalando dependencias…"
-npm install
-```
-
-<details>
-<summary>¿Dónde y cuándo es más visible la constelación de Andrómeda?</summary>
-
-La [constelación de Andrómeda](<https://es.wikipedia.org/wiki/Andr%C3%B3meda_(constelaci%C3%B3n)>) es más visible en el cielo nocturno durante el mes de noviembre en latitudes entre `+90°` y `−40°`.
-
-</details>
-
-
-# Unidades, cantidades físicas y vectores 
 
 El objeto de estudio de la Física es tan ambicioso como fascinante: busca comprender las leyes fundamentales que rigen la materia, la energía, el espacio y el tiempo, y cómo interactúan entre sí. Para abordar sistemas que en la práctica son altamente complejos, esta disciplina recurre al arte de modelar. Un modelo físico es una construcción teórica, frecuentemente matemática, que simplifica la realidad sin perder su esencia, permitiéndonos analizar y predecir el comportamiento de la naturaleza.
 
-Para ilustrar esto, consideremos el lanzamiento de una bola. En la realidad, su movimiento está determinado por una gran cantidad de variables: su masa, su forma exacta, la dirección del viento, la fuerza inicial de lanzamiento o la resistencia del aire. Si intentáramos calcularlo todo a la vez, el problema sería inmanejable. Es aquí donde entra nuestro modelo físico inicial: tomaríamos la decisión estratégica de ignorar temporalmente factores como el viento o la fricción, y trataríamos la bola como si fuera un punto sin tamaño. No lo hacemos por ignorancia, sino para aislar el efecto principal (en este caso, la gravedad) y comprender la esencia de su trayectoria antes de añadir capas de complejidad. Ver Figura
-[1.1]
+Para ilustrar esto, consideremos el lanzamiento de una bola. En la realidad, su movimiento está determinado por una gran cantidad de variables: su masa, su forma exacta, la dirección del viento, la fuerza inicial de lanzamiento o la resistencia del aire. Si intentáramos calcularlo todo a la vez, el problema sería inmanejable. Es aquí donde entra nuestro modelo físico inicial: tomaríamos la decisión estratégica de ignorar temporalmente factores como el viento o la fricción, y trataríamos la bola como si fuera un punto sin tamaño. No lo hacemos por ignorancia, sino para aislar el efecto principal (en este caso, la gravedad) y comprender la esencia de su trayectoria antes de añadir capas de complejidad. Ver [Figura 1](#fig-esquema).
+
+<figure id="fig-esquema">
+<img src={SistemaModelo.src} alt="Un sistema físico involucra muchas propiedades. Los modelos buscan simplificar el análisis"/>
+ <figcaption>Figura 1: Sistema físico vs modelo físico.</figcaption>
+</figure>
 
 
-A cada una de estas propiedades medibles que caracterizan a un sistema o a un modelo —la masa, la velocidad, la fuerza, entre otras— se las conoce como *cantidades físicas*. Constituyen la base sobre la cual se construye cualquier análisis. No obstante, una cantidad física requiere de una referencia para ser útil, y ahí es donde entran las unidades de medida. En esta sesión comenzaremos a estudiar estas cantidades y sus unidades, los elementos fundamentales sin los cuales la Física, tal como la conocemos, no sería posible.
+A cada una de estas propiedades medibles que caracterizan a un sistema o a un modelo —la masa, la velocidad, la fuerza, entre otras— se las conoce como *cantidades físicas*. Constituyen la base sobre la cual se construye cualquier análisis. No obstante, una cantidad física requiere de una referencia para ser útil, y ahí es donde entran las *unidades* de medida. En esta sesión comenzaremos a estudiar estas cantidades y sus unidades, los elementos fundamentales sin los cuales la Física, tal como la conocemos, no sería posible.
 
 ## Cantidades físicas y unidades
 
-
-En términos prácticos, una cantidad física es un atributo de la realidad que podemos medir. Todo acto de medición implica una comparación. Cuando decimos que algo mide "3 metros", estamos comparando su longitud con un estándar de referencia o patrón previamente acordado. Ese patrón es lo que define una unidad.
+En términos prácticos, una **cantidad física** es un atributo de la realidad que podemos medir. Todo acto de medición implica una comparación. Cuando decimos que algo mide "3 metros", estamos comparando su longitud con un estándar de referencia o patrón previamente acordado. Ese patrón es lo que define una unidad.
 
 Para que la ciencia sea universal y los modelos sean replicables en cualquier lugar del mundo, no podemos inventar unidades al azar. Necesitamos un marco coherente donde todas las unidades estén interconectadas lógicamente. Ese marco es el Sistema Internacional de Unidades (SI). La Tabla 1.1 muestra las cantidades físicas fundamentales del SI.
 
@@ -131,30 +101,111 @@ La realidad que intentamos modelar escala de manera asombrosa: desde la minúscu
 | $$10^{-30}$$ | quecto | $$ \mathrm{q} $$ | $$10^{30}$$ | quetta | $$ \mathrm{Q} $$ |
 
 
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+Elije la opción que completa correctamente cada una de las frases.
+
+1. El ____________ es una unidad fundamental del Sistema Internacional (SI).
+
+    <MultipleChoice>
+      <Option>
+        pie (ft)
+      </Option>
+      <Option>
+        gramo (g)
+      </Option>
+      <Option>
+        newton (N)
+      </Option>
+      <Option isCorrect>
+        kilogramo (kg)
+      </Option>
+    </MultipleChoice>
+
+2. El ____________ es una unidad derivada del Sistema Internacional (SI).
+
+    <MultipleChoice>
+      <Option>
+        pie (ft)
+      </Option>
+      <Option>
+        gramo (g)
+      </Option>
+      <Option isCorrect>
+        newton (N)
+      </Option>
+      <Option>
+        kilogramo (kg)
+      </Option>
+    </MultipleChoice>
+
+3. An application for running commands?
+    <MultipleChoice>
+      <Option>
+        GitHub
+      </Option>
+      <Option isCorrect>
+        Terminal
+      </Option>
+      <Option>
+        web browser
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+Por supuesto, el SI no es el único sistema de unidades disponible. Al cambiar de sistema, necesitamos un factor de conversión. Matemáticamente, un factor de conversión es una fracción construida a partir de una equivalencia. Su gran ventaja es que, al ser igual a la unidad, nos permite multiplicar cualquier cantidad sin cambiar su valor real, solo su expresión. El método se resume en:
 
 
 
 
 
+**Tabla 1.4.** Factores de conversión comunes en Física y en la vida cotidiana.
 
+*(Para convertir de la unidad A a la unidad B, multiplique el valor por el factor de conversión indicado).*
 
-Por supuesto, el SI no es el único sistema de unidades disponible. Para
-transformar cierta cantidad física de un sistema de unidades a otro, es
-necesario conocer el correspondiente **factor de conversión** entre los
-sistemas de unidades para la cantidad física en cuestión. Un factor de
-conversión es entonces, un término multiplicativo que permite convertir
-las unidades de una cantidad física de un sistema de unidades a otro, es
-decir:
+| Magnitud | Unidad A | Unidad B | Factor de conversión |
+| :--- | :--- | :--- | :---: |
+| **LONGITUD** | | | |
+| Longitud | pulgadas $$( \mathrm{in} )$$ | centímetros $$( \mathrm{cm} )$$ | $$2,54$$ |
+| Longitud | pies $$( \mathrm{ft} )$$ | metros $$( \mathrm{m} )$$ | $$0,3048$$ |
+| Longitud | millas $$( \mathrm{mi} )$$ | kilómetros $$( \mathrm{km} )$$ | $$1,609$$ |
+| **MASA** | | | |
+| Masa | libras $$( \mathrm{lb} )$$ | kilogramos $$( \mathrm{kg} )$$ | $$0,4536$$ |
+| Masa | onzas $$( \mathrm{oz} )$$ | gramos $$( \mathrm{g} )$$ | $$28,35$$ |
+| **VOLUMEN** | | | |
+| Volumen | galones $$( \mathrm{gal} )$$ | litros $$( \mathrm{L} )$$ | $$3,785$$ |
+| Volumen | metros cúbicos $$( \mathrm{m}^3 )$$ | litros $$( \mathrm{L} )$$ | $$1\,000$$ |
+| Volumen | tazas $$( \mathrm{cup} )$$ | mililitros $$( \mathrm{mL} )$$ | $$240$$ |
+| Volumen | cucharadas $$( \mathrm{tbsp} )$$ | mililitros $$( \mathrm{mL} )$$ | $$15$$ |
+| Volumen | onzas fluidas $$( \mathrm{fl\,oz} )$$ | mililitros $$( \mathrm{mL} )$$ | $$29,57$$ |
+| **FUERZA Y PRESIÓN** | | | |
+| Fuerza | libras-fuerza $$( \mathrm{lbf} )$$ | Newtons $$( \mathrm{N} )$$ | $$4,448$$ |
+| Presión | atmósferas $$( \mathrm{atm} )$$ | Pascales $$( \mathrm{Pa} )$$ | $$101\,325$$ |
+| Presión | libras/pulg² $$( \mathrm{psi} )$$ | Pascales $$( \mathrm{Pa} )$$ | $$6\,894,76$$ |
+| **ENERGÍA** | | | |
+| Energía | calorías $$( \mathrm{cal} )$$ | Joules $$( \mathrm{J} )$$ | 4,184 |
+| Energía | kilowatt-hora $$( \mathrm{kWh} )$$ | Joules $$( \mathrm{J} )$$ | $$ 3,6 \times 10^6 $$ |
 
+---
 
+<Box icon="check-list">
 
-o de manera equivalente
+Supongamos que queremos expresar una distancia de $$150 \, \mathrm{km}$$ en metros $$(\mathrm{m})$$. 
+Sabemos que $$1 \, \mathrm{km} = 1000 \, \mathrm{m}$$. Construimos dos factores de conversión posibles: 
+ $$ 
+ \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \quad \mathrm{y} \quad \frac{1 \, \mathrm{km}}{1000 \, \mathrm{m}}
+ $$
+ 
+Debemos elegir la fracción que permita cancelar la unidad inicial $$(\mathrm{km})$$:
 
+ $$
+ 150 \,\cancel{\mathrm{km}} \times \left( \displaystyle \frac{1000 \, \mathrm{m}}{1 \, \cancel{\mathrm{km}}} \right) = 150 \, 000 \, \mathrm{m} = 1,5 \times 10^{5} \,\mathrm{m}
+ $$ 
 
-Ejemplo factores de conversión
-
-
-
+</Box>
 
 ## Escalares y vectores
 
@@ -165,17 +216,6 @@ definida usando únicamente una [magnitud]. Las magnitudes
 escalares usualmente se expresan usando una unidad.
 
 
-Ejemplo cantidades escalares
-
--   La temperatura ambiente es de 25$$$$^\circ$$$$C.
-
--   La densidad del agua es de 1000 kg/m$$$$^\{3\}$$$$.
-
--   La distancia entre San José y Cartago es de 13 km.
-
--   El índice de refracción del aire es igual a 1.
-
-
 **Cantidad física vectorial:** cualquier cantidad física caracterizada
 no sólo por una [magnitud], sino también por una
 [dirección]. Debido a esta propiedad, los vectores suelen
@@ -184,44 +224,29 @@ es proporcional a la magnitud del vector y su dirección apunta en la
 misma dirección que la cantidad vectorial. Para denotar simbólicamente
 que cierta cantidad física es un vector, se coloca una flecha sobre el
 símbolo que representa dicha cantidad. Por ejemplo, si denotamos una
-cantidad vectorial con la letra A, escribiremos $$$$\vec\{A\}$$$$ para denotar
-que dicha cantidad es un vector.\
+cantidad vectorial con la letra A, escribiremos $$ \vec{ A } $$ para denotar
+que dicha cantidad es un vector.
 
-
-Ejemplos cantidades vectoriales
-
--   El viento está soplando con una velocidad máxima de 20
-    $$$$\{km\}\{h\}^\{-1\}$$$$ hacia el Noreste.
-
--   Mi colegio está a 1 km y 30$$$$^\circ$$$$ al sur de mi casa.
-
--   En la Tierra, los objetos en caída libre experimentan una
-    aceleración de $$$$9.81 \, \{m\}\{s\}^\{-2\}$$$$, hacia el centro
-    de la Tierra.
-
--   El campo magnético terrestre tiene una magnitud de $$$$5\times10^\{-5\}$$$$
-    T y está orientado 11$$$$^\circ$$$$ respecto al eje de rotación de la
-    Tierra.
 
 
 Consideremos, por ejemplo, el *desplazamiento* de un objeto cuando se
 mueve de un punto A a un punto B. Esta cantidad es un vector, ya que no
 solo es necesario conocer la distancia entre ambos puntos, si no la
 ubicación de uno respecto al otro. Ver por ejemplo la sitación descrita
-en la Figura [1.3].
+en la Figura .
 
 Debido al caracter direccional de los vectores, es necesario contar con
 un sistema o marco de referencia desde el cual establecer su magnitud y
-su dirección.\
+su dirección.
+
 Un **sistema de coordenadas o de referencia** es un conjunto de
 convenciones usadas por un observador para poder medir la posición y
 otras magnitudes físicas de un sistema físico. Por ejemplo, los puntos
 cardinales (norte, oeste, sur y este) permiten especificar direcciones
-de una manera consistente.\
+de una manera consistente.
+
 El sistema de referencia más utilizado es el **sistema rectangular de
 ejes coordenados** (cartesiano); a partir del cual se puede describir
-cualquier vector a partir de sus *componentes cartesianas*. Ver Figura
-[1.3]
-
+cualquier vector a partir de sus *componentes cartesianas*. 
 
 ## Suma y resta de vectores
