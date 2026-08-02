@@ -1,8 +1,10 @@
 ---
 import { getImage } from "astro:assets";
 import HoustonGrad from "../assets/houston_grad.png";
+import HoustonSci from "../assets/houston_researcher.webp";
 
 const { src: houstonGrad } = await getImage({ src: HoustonGrad });
+const { src: houstonSci } = await getImage({ src: HoustonSci });
 
 export interface Props {
     icon?: "puzzle-piece" | "question-mark" | "check-list";
@@ -15,6 +17,8 @@ const { icon } = Astro.props;
     class={`highlight-box content ${icon}`}
     style={icon === "question-mark"
         ? `--box-icon-url: url('${houstonGrad}');`
+        : icon === "check-list"
+        ? `--box-icon-url: url('${houstonSci}');`
         : ""}
 >
     <section>
@@ -36,6 +40,11 @@ const { icon } = Astro.props;
         background-color: var(--sl-color-purple-low);
         color: var(--sl-color-purple-high);
         margin-top: 2.5rem !important;
+    }
+
+    .highlight-box.question-mark {
+        border: 1px solid var(--sl-color-blue);
+        background-color: var(--sl-color-blue-low);
     }
 
     .highlight-box.check-list {
@@ -74,6 +83,10 @@ const { icon } = Astro.props;
 
 <style is:global>
     .highlight-box.question-mark .sl-heading-wrapper:first-child {
+        margin-inline-end: 6rem !important;
+    }
+
+    .highlight-box.check-list .sl-heading-wrapper:first-child {
         margin-inline-end: 6rem !important;
     }
     @media (max-width: 50em) {
