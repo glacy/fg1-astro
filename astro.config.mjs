@@ -1,24 +1,26 @@
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
+import mdx from '@astrojs/mdx';
 import AstroPWA from '@vite-pwa/astro';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
-import rehypeKatex from 'rehype-katex';
+import { unified } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import { offlineBanner } from './src/integrations/offline-banner';
-import { remarkMdxMathBraceFix } from './src/lib/remark-mdx-math-brace-fix.mjs';
 
 export default defineConfig({
   prefetch: true,
   markdown: {
-    remarkPlugins: [
-      [remarkMath, { singleDollarTextMath: false }]
-      // remarkMdxMathBraceFix - Temporarily disabled to test manual fixes
-    ],
-    rehypePlugins: [
-      [rehypeKatex, { strict: false, throwOnError: false }]
-    ],
+    processor: unified({
+      remarkPlugins: [
+        [remarkMath, { singleDollarTextMath: false }]
+      ],
+      rehypePlugins: [
+        [rehypeKatex, { strict: false, throwOnError: false }]
+      ],
+    }),
   },
   site: 'https://fg1-astro.vercel.app',
   base: '/',
@@ -28,7 +30,7 @@ export default defineConfig({
       title: 'Documentos FG1 - II semestre 2026',
       description: 'Documentación para el curso de Física General I - II semestre 2026',
       disable404Route: true,
-      customCss: ['src/styles/starlight-overrides.css', 'katex/dist/katex.min.css'],
+      customCss: ['katex/dist/katex.min.css'],
       lastUpdated: true,
       locales: {
         root: {
@@ -44,6 +46,7 @@ export default defineConfig({
         replacesTitle: true,
       },
     }),
+    mdx(),
     tailwind(),
     icon(),
     AstroPWA({

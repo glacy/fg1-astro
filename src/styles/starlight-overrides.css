@@ -1,4 +1,61 @@
+/* Fix KaTeX alignment and display issues */
+.katex {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1em;
+  max-width: 100%;
+  line-height: 1.2;
+}
+
+.katex-display {
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Fix baseline alignment for inline math */
+span.katex {
+  vertical-align: middle;
+  line-height: 1.2;
+}
+
+/* Fix for accents like \vec{} */
+.katex .accent {
+  position: relative;
+}
+
+.katex .accent-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Fix SVG positioning and visibility for vector arrows */
+.katex .accent-body .overlay {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* Force color for all KaTeX SVG elements */
+.katex .accent-body .overlay svg,
+.katex .accent-body .overlay svg path,
+.katex svg,
+.katex svg path {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  color: currentColor !important;
+}
+
+/* Ensure proper baseline alignment in tables */
+table .katex {
+  vertical-align: baseline;
+}
+
 /* Starlight pagination button title font size override */
+
 .link-title {
   font-size: 1rem !important;
   line-height: 1.4 !important;
@@ -12,35 +69,4 @@
   .link-title {
     font-size: 1rem !important;
   }
-}
-
-/* Fix mathematical overflow on mobile devices */
-.katex {
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: inline-block;
-}
-
-/* Handle long math blocks in tip/note/callout containers */
-.sl-markdown .katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  margin: 1em 0;
-  padding: 0.5em 0;
-}
-
-/* Add scroll styling for better UX on mobile */
-.sl-markdown .katex-display::-webkit-scrollbar {
-  height: 4px;
-}
-
-.sl-markdown .katex-display::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 4px;
-}
-
-.sl-markdown .katex-display::-webkit-scrollbar-track {
-  background: #f3f4f6;
-  border-radius: 4px;
 }
