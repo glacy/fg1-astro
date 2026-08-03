@@ -6,7 +6,7 @@ interface ExamStatsProps {
   today: number;
 }
 
-const { upcoming, today } = Astro.props;
+const { upcoming, today } = Astro.props as ExamStatsProps;
 ---
 
 <div class="flex flex-row mx-auto justify-items-center gap-4 sm:gap-6 lg:gap-8">

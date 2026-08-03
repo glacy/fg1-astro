@@ -7,27 +7,27 @@ import { visit } from 'unist-util-visit';
 export function remarkMdxMathBraceFix() {
   return (tree) => {
     // Pass 1: Find and protect LaTeX commands inside math delimiters
-    visit(tree, (node, index, parent) => {
+    visit(tree, (node) => {
       if (node.type === 'inlineMath' || node.type === 'math') {
         // For math nodes, we need to escape braces in the data directly
         if (node.data && node.data.value) {
-          node.data.value = node.data.value.replace(/\\(\w+)\{([^}]*)\}/g, (match, cmd, content) => {
+          node.data.value = node.data.value.replace(/\\(\w+)\{([^}]*)\}/g, (_match, cmd, content) => {
             return `\\${cmd}🎗️${content}🏷️`;
           });
         }
       }
       if (node.type === 'text') {
         // Replace LaTeX command braces within inline math ($...$)
-        node.value = node.value.replace(/\$([^$]+)\$/g, (match, mathContent) => {
-          const safeContent = mathContent.replace(/\\(\w+)\{([^}]*)\}/g, (m, cmd, content) => {
+        node.value = node.value.replace(/\$([^$]+)\$/g, (_match, mathContent) => {
+          const safeContent = mathContent.replace(/\\(\w+)\{([^}]*)\}/g, (_m, cmd, content) => {
             return `\\${cmd}🎗️${content}🏷️`;
           });
           return `$${safeContent}$`;
         });
         
         // Replace LaTeX command braces within display math ($$...$$)
-        node.value = node.value.replace(/\$\$([^$]+)\$\$/g, (match, mathContent) => {
-          const safeContent = mathContent.replace(/\\(\w+)\{([^}]*)\}/g, (m, cmd, content) => {
+        node.value = node.value.replace(/\$\$([^$]+)\$\$/g, (_match, mathContent) => {
+          const safeContent = mathContent.replace(/\\(\w+)\{([^}]*)\}/g, (_m, cmd, content) => {
             return `\\${cmd}🎗️${content}🏷️`;
           });
           return `$$${safeContent}$$`;

@@ -2,7 +2,7 @@ import { getCollection } from 'astro:content';
 
 export interface LinkItem {
   text: string;
-  url: string;
+  url: string; 
   icon: string;
 }
 

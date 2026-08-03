@@ -7,7 +7,7 @@ interface WeekNavigationProps {
   maxCurrentWeek: number;
 }
 
-const { currentWeek, totalWeeks, maxCurrentWeek } = Astro.props;
+const { currentWeek, totalWeeks, maxCurrentWeek } = Astro.props as WeekNavigationProps;
 const canGoPrevious = currentWeek > 1;
 const canGoNext = currentWeek < maxCurrentWeek;
 ---

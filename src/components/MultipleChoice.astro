@@ -2,7 +2,7 @@
     data-correct-label={Astro.locals.t("multipleChoice.defaultCorrect" as any)}
     data-incorrect-label={Astro.locals.t("multipleChoice.defaultIncorrect" as any)}
 >
-    <form onsubmit="event.preventDefault()">
+    <form onsubmit="return false">
         <ol class="opt-list not-content"><slot /></ol>
         <div class="footer">
             <button class="submit" type="submit" disabled>

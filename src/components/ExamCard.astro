@@ -6,7 +6,7 @@ interface ExamCardProps {
   exam: Exam;
 }
 
-const { exam } = Astro.props;
+const { exam } = Astro.props as ExamCardProps;
 const examDate = new Date(exam.date + "T00:00:00");
 const today = new Date();
 today.setHours(0, 0, 0, 0);
@@ -95,9 +95,8 @@ const formattedDate = examDate.toLocaleDateString("es-ES", {
     {
       exam.links && exam.links.length > 0 && (
         <div class="space-y-2 mb-6">
-          {exam.links.map((link, idx) => (
+          {exam.links.map((link: { url: string; label: string }) => (
             <a
-              key={idx}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -117,9 +116,8 @@ const formattedDate = examDate.toLocaleDateString("es-ES", {
             Temario Principal
           </h4>
           <div class="flex flex-wrap gap-2">
-            {exam.topics.map((topic, idx) => (
+            {exam.topics.map((topic: string) => (
               <span
-                key={idx}
                 class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded text-xs"
               >
                 {topic}

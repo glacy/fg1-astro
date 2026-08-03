@@ -8,7 +8,7 @@ interface LinkCardProps {
   variant?: 'default' | 'evaluation';
 }
 
-const { text, url, icon, variant = 'default' } = Astro.props;
+const { text, url, icon, variant = 'default' } = Astro.props as LinkCardProps;
 ---
 
 <a

@@ -8,15 +8,23 @@ declare const self: ServiceWorkerGlobalScope & {
   skipWaiting?: () => Promise<void>
 }
 
+const isDev = import.meta.env.DEV
+
 self.skipWaiting?.()
 clientsClaim()
 
-precache(self.__WB_MANIFEST.filter((e) => {
-  const u = typeof e === 'string' ? e : e.url
-  return u.replace(/^\//, '') !== '404'
-}))
+if (!isDev) {
+  precache(self.__WB_MANIFEST.filter((e) => {
+    const u = typeof e === 'string' ? e : e.url
+    return u.replace(/^\//, '') !== '404'
+  }))
+}
 
 setDefaultHandler(async ({ url, event }) => {
+  if (isDev) {
+    return await fetch(event.request)
+  }
+
   const normalized = url.pathname.replace(/\/$/, '') || '/'
 
   const cached = await matchPrecache(normalized)

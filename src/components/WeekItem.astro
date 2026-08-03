@@ -12,7 +12,7 @@ interface WeekItemProps {
   maxCurrentWeek: number;
 }
 
-const { week, title, isActive, isPast, isInProgress, isLocked, totalWeeks, maxCurrentWeek } = Astro.props;
+const { week, title, isActive, isPast, isInProgress, isLocked, totalWeeks, maxCurrentWeek } = Astro.props as WeekItemProps;
 
 const showCurrentBadge = isInProgress;
 const nextWeekIsLocked = week + 1 > maxCurrentWeek;

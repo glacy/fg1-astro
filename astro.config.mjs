@@ -2,7 +2,7 @@ import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import AstroPWA from '@vite-pwa/astro';
+import AstroPWA from '@vite-pwa/astro'; 
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
@@ -11,6 +11,9 @@ import rehypeKatex from 'rehype-katex';
 import { offlineBanner } from './src/integrations/offline-banner';
 
 export default defineConfig({
+  legacy: {
+    collectionsBackwardsCompat: true,
+  },
   prefetch: true,
   markdown: {
     processor: unified({
@@ -30,7 +33,7 @@ export default defineConfig({
       title: 'Documentos FG1 - II semestre 2026',
       description: 'Documentación para el curso de Física General I - II semestre 2026',
       disable404Route: true,
-      customCss: ['katex/dist/katex.min.css'],
+      customCss: ['src/styles/katex-import.css'],
       lastUpdated: true,
       locales: {
         root: {

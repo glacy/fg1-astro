@@ -7,7 +7,7 @@ interface ScheduleTableProps {
   instructors: Instructor[];
 }
 
-const { instructors } = Astro.props;
+const { instructors } = Astro.props as ScheduleTableProps;
 ---
 
 {instructors.length === 0 ? (

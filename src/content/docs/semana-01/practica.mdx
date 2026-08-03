@@ -2,38 +2,17 @@
 title: "Práctica"
 week: 1
 keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
+draft: true
 ---
 import { Steps } from '@astrojs/starlight/components';
 import Box from '../../../components/Box.astro';
+import { Aside } from '@astrojs/starlight/components';
 
 
-```bash title="Instalando dependencias…"
-npm install
-```
 
-## Cantidades Físicas, unidades y vectores
 
-:::tip[Ejercicio 1]
-1. Un automóvil tiene un tanque de gasolina cuyas dimensiones son: $$l=80,0 \, \mathrm{cm}$$, $$a=50,0 \, \mathrm{cm}$$ y $$h=12,5 \, \mathrm{cm}$$. ¿Con cuántos litros de gasolina se llena el tanque de dicho automóvil?
-
-<details>
-<summary>Ver solución</summary>
-
-Para saber cuánta gasolina cabe, primero pensamos el tanque como una simple caja geométrica. Multiplicamos sus tres dimensiones para obtener el volumen en centímetros cúbicos:
-$$
-V = a \cdot l \cdot h = (50 \, \mathrm{cm}) \cdot (80 \, \mathrm{cm}) \cdot (12,5 \, \mathrm{cm}) = 50 \times 10^4 \, \mathrm{cm}^3
-$$ 
-
-Ahora viene el truco: el litro y el centímetro cúbico no se relacionan directamente en nuestro sistema base, así que usamos al metro cúbico ($$\mathrm{m}^3$$) como "puente" o traductor intermedio. Construimos nuestros factores de conversión para cancelar los $$\mathrm{cm}^3$$ y dejar todo en litros:
-$$
-V = (50 \times 10^4 \, \mathrm{cm}^3) \cdot \left(\frac{1 \, \mathrm{m}}{100 \, \mathrm{cm}}\right)^3 \cdot \left(\frac{1000 \, \mathrm{L}}{1 \, \mathrm{m}^3}\right) = 50 \, \mathrm{L}
-$$ 
-</details>
-
-:::
-
-:::tip[Ejercicio 2]
-2. La dosis de la inyección contra la influenza es de $$125 \, \mathrm{cm}^3$$. ¿Cuántas dosis se pueden aplicar a partir de $$1 \, \mathrm{gal}$$?
+<Aside type="note" icon="heart" title="Ejercicio 7">
+La dosis de la inyección contra la influenza es de $$125 \, \mathrm{cm}^3$$. ¿Cuántas dosis se pueden aplicar a partir de $$1 \, \mathrm{gal}$$?
 
 <details>
 <summary>Ver solución</summary>
@@ -41,15 +20,13 @@ $$
 Este es un excelente ejemplo de cómo los factores de conversión nos sacan de apuros cuando nos dan unidades de sistemas totalmente distintos (galones del sistema inglés contra centímetros cúbicos del sistema cegesimal). 
 
 Primero, traducimos nuestro galón completo a centímetros cúbicos pasando por litros:
-$$
-1 \, \mathrm{gal} = 3,785 \, \mathrm{L} \cdot \left( \frac{1 \, \mathrm{m}^3}{1000 \, \mathrm{L}} \right) \cdot \left( \frac{100 \, \mathrm{cm}}{1 \, \mathrm{m}} \right)^3 = 3785 \, \mathrm{cm}^3
-$$ 
+ 
 
 Una vez que hablamos el mismo idioma ($$\mathrm{cm}^3$$), la pregunta se reduce a una simple regla de tres: ¿cuántas veces "cabe" la dosis de $$125 \, \mathrm{cm}^3$$ en un volumen total de $$3785 \, \mathrm{cm}^3$$? Podemos usar un último factor de conversión para esto:
 $$ \text{Dosis} = (3785 \, \mathrm{cm}^3) \cdot \left( \frac{1 \, \mathrm{dosis}}{125 \, \mathrm{cm}^3} \right) = 30,3 \, \mathrm{dosis} $$ *(Es decir, tenemos para 30 dosis completas y un pequeño sobrante).*
 
 </details>
-:::
+</Aside>
 
 :::tip[Ejercicio 3]
 3. El microscopio óptico detecta la radiación con longitudes de onda entre los $$400$$ y los $$700 \, \mathrm{nm}$$. ¿Detectaría un microscopio óptico radiación de $$500 \, 000 \, \mathrm{pm}$$ de longitud de onda?
@@ -82,7 +59,7 @@ Una vez que todos hablan el mismo idioma, la respuesta salta a la vista: el inse
 </details>
 :::
 
-:::tip[Ejercicio 5]
+:::tip
 5. El rendimiento de un automóvil es tal que puede recorrer $$500 \, \mathrm{km}$$ con $$35 \, \mathrm{L}$$ de gasolina. ¿Cuántas millas podría recorrer con $$5 \, \mathrm{gal}$$?
 
 <details>
@@ -92,8 +69,6 @@ Este problema demuestra la verdadera potencia del método de factores de convers
 
 Empezamos con lo que sabemos que recorre por litro, cambiamos kilómetros a millas, litros a galones, y al final multiplicamos por los $$5 \, \mathrm{gal}$$ reales que tenemos en el tanque:
 
-$$ 
-\text{Distancia} = \frac{500 \, \mathrm{km}}{35 \, \mathrm{L}} \times \frac{1 \, \mathrm{mi}}{1,61 \, \mathrm{km}} \times \frac{3,785 \, \mathrm{L}}{1 \, \mathrm{gal}} \times 5 \, \mathrm{gal} \approx 167 \, \mathrm{mi}
-$$ 
+
 </details>
 :::
