@@ -1,54 +1,99 @@
 ---
 title: "Práctica"
 week: 1
-keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "constantes fundamentales", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
+keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
 ---
 import { Steps } from '@astrojs/starlight/components';
 import Box from '../../../components/Box.astro';
-import MultipleChoice from '../../../components/MultipleChoice.astro';
-import Option from '../../../components/Option.astro';
-import PreCheck from '../../../components/PreCheck.astro';
 
 
 ```bash title="Instalando dependencias…"
 npm install
 ```
 
-<Steps>
+## Cantidades Físicas, unidades y vectores
 
-1. Importa el componente en tu archivo MDX:
-
-   ```js
-   import { Steps } from '@astrojs/starlight/components';
-   ```
-
-
-2. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
-
-3. Envuelve `<Steps>` alrededor de tus elementos de lista ordenada.
-
-</Steps>
-
-
-
-
-
-
-<Box icon="puzzle-piece">
-
-## Ejercicio 2
-
-Add the necessary line of code to each `.astro` file in your project to apply your global styles to every page of your site.
+:::tip[Ejercicio 1]
+1. Un automóvil tiene un tanque de gasolina cuyas dimensiones son: $$l=80,0 \, \mathrm{cm}$$, $$a=50,0 \, \mathrm{cm}$$ y $$h=12,5 \, \mathrm{cm}$$. ¿Con cuántos litros de gasolina se llena el tanque de dicho automóvil?
 
 <details>
-<summary>✅ Solución ✅</summary>
+<summary>Ver solución</summary>
 
-Add the following import statement to the two other page files: `src/pages/index.astro` and `src/pages/blog.astro`
+Para saber cuánta gasolina cabe, primero pensamos el tanque como una simple caja geométrica. Multiplicamos sus tres dimensiones para obtener el volumen en centímetros cúbicos:
+$$
+V = a \cdot l \cdot h = (50 \, \mathrm{cm}) \cdot (80 \, \mathrm{cm}) \cdot (12,5 \, \mathrm{cm}) = 50 \times 10^4 \, \mathrm{cm}^3
+$$ 
 
-```astro title="src/pages/index.astro" ins={2}
----
-import '../styles/global.css';
----
-```
+Ahora viene el truco: el litro y el centímetro cúbico no se relacionan directamente en nuestro sistema base, así que usamos al metro cúbico ($$\mathrm{m}^3$$) como "puente" o traductor intermedio. Construimos nuestros factores de conversión para cancelar los $$\mathrm{cm}^3$$ y dejar todo en litros:
+$$
+V = (50 \times 10^4 \, \mathrm{cm}^3) \cdot \left(\frac{1 \, \mathrm{m}}{100 \, \mathrm{cm}}\right)^3 \cdot \left(\frac{1000 \, \mathrm{L}}{1 \, \mathrm{m}^3}\right) = 50 \, \mathrm{L}
+$$ 
 </details>
-</Box>
+
+:::
+
+:::tip[Ejercicio 2]
+2. La dosis de la inyección contra la influenza es de $$125 \, \mathrm{cm}^3$$. ¿Cuántas dosis se pueden aplicar a partir de $$1 \, \mathrm{gal}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+Este es un excelente ejemplo de cómo los factores de conversión nos sacan de apuros cuando nos dan unidades de sistemas totalmente distintos (galones del sistema inglés contra centímetros cúbicos del sistema cegesimal). 
+
+Primero, traducimos nuestro galón completo a centímetros cúbicos pasando por litros:
+$$
+1 \, \mathrm{gal} = 3,785 \, \mathrm{L} \cdot \left( \frac{1 \, \mathrm{m}^3}{1000 \, \mathrm{L}} \right) \cdot \left( \frac{100 \, \mathrm{cm}}{1 \, \mathrm{m}} \right)^3 = 3785 \, \mathrm{cm}^3
+$$ 
+
+Una vez que hablamos el mismo idioma ($$\mathrm{cm}^3$$), la pregunta se reduce a una simple regla de tres: ¿cuántas veces "cabe" la dosis de $$125 \, \mathrm{cm}^3$$ en un volumen total de $$3785 \, \mathrm{cm}^3$$? Podemos usar un último factor de conversión para esto:
+$$ \text{Dosis} = (3785 \, \mathrm{cm}^3) \cdot \left( \frac{1 \, \mathrm{dosis}}{125 \, \mathrm{cm}^3} \right) = 30,3 \, \mathrm{dosis} $$ *(Es decir, tenemos para 30 dosis completas y un pequeño sobrante).*
+
+</details>
+:::
+
+:::tip[Ejercicio 3]
+3. El microscopio óptico detecta la radiación con longitudes de onda entre los $$400$$ y los $$700 \, \mathrm{nm}$$. ¿Detectaría un microscopio óptico radiación de $$500 \, 000 \, \mathrm{pm}$$ de longitud de onda?
+
+<details>
+<summary>Ver solución</summary>
+
+El truco aquí es no dejarse intimidar por los números. Comparar nanómetros ($$\mathrm{nm}$$) con picómetros ($$\mathrm{pm}$$) directamente es como comparar manzanas con peras. Para saber si esa radiación "entra" en el rango del microscopio, debemos llevar a las tres cantidades al mismo idioma: el metro ($$\mathrm{m}$$).
+
+$$ 400 \, \mathrm{nm} = 400 \times 10^{-9} \, \mathrm{m} = 4 \times 10^{-7} \, \mathrm{m} $$ $$ 700 \, \mathrm{nm} = 700 \times 10^{-9} \, \mathrm{m} = 7 \times 10^{-7} \, \mathrm{m} $$ $$ 500 \, 000 \, \mathrm{pm} = 500 \, 000 \times 10^{-12} \, \mathrm{m} = 5 \times 10^{-7} \, \mathrm{m} $$ 
+Al poner todo en notación científica y en metros, se hace evidente que $$5 \times 10^{-7} \, \mathrm{m}$$ está justo en el medio del rango que va de $$4 \times 10^{-7} \, \mathrm{m}$$ a $$7 \times 10^{-7} \, \mathrm{m}$$. Por lo tanto, la respuesta es sí, el microscopio la detectaría sin problemas.
+
+</details>
+:::
+
+:::tip[Ejercicio 4]
+4. Cuatro insectos se mueven con las siguientes rapideces: $$v_a=30 \, \mathrm{m/s}$$, $$v_b=100 \, \mathrm{km/h}$$, $$v_c=55 \, \mathrm{mi/h}$$, $$v_d=100 \, \mathrm{ft/s}$$. ¿Cuál de ellos se mueve más rápido?
+
+<details>
+<summary>Ver solución</summary>
+
+Para saber quién gana la carrera, no podemos comparar directamente kilómetros por hora con pies por segundo; sería injusto. Debemos llevar a los cuatro competidores al mismo sistema de referencia. Como el insecto "a" ya está en la unidad estándar ($$\mathrm{m/s}$$), usaremos esa como meta.
+
+$$ v_a = 30 \, \mathrm{m/s} \quad {\text{Ya en la meta}} $$ 
+$$ v_{b} = 100 \, \mathrm{km/h} \cdot \left( \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 27,8 \, \mathrm{m/s} $$ 
+$$ v_{c} = 55 \, \mathrm{mi/h} \cdot \left( \frac{1610 \, \mathrm{m}}{1 \, \mathrm{mi}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 24,6 \, \mathrm{m/s} $$ 
+$$ v_{d} = 100 \, \mathrm{ft/s} \cdot \left( \frac{0,3048 \, \mathrm{m}}{1 \, \mathrm{ft}} \right) = 30,5 \, \mathrm{m/s} $$ 
+Una vez que todos hablan el mismo idioma, la respuesta salta a la vista: el insecto **d** es el más rápido, superando por poco al insecto a.
+
+</details>
+:::
+
+:::tip[Ejercicio 5]
+5. El rendimiento de un automóvil es tal que puede recorrer $$500 \, \mathrm{km}$$ con $$35 \, \mathrm{L}$$ de gasolina. ¿Cuántas millas podría recorrer con $$5 \, \mathrm{gal}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+Este problema demuestra la verdadera potencia del método de factores de conversión: podemos encadenarlos como si fueran piezas de dominó. No necesitamos hacer operaciones separadas; basta con multiplicar nuestro dato inicial por todos los factores necesarios para que las unidades no deseadas se cancelen paulatinamente.
+
+Empezamos con lo que sabemos que recorre por litro, cambiamos kilómetros a millas, litros a galones, y al final multiplicamos por los $$5 \, \mathrm{gal}$$ reales que tenemos en el tanque:
+
+$$ 
+\text{Distancia} = \frac{500 \, \mathrm{km}}{35 \, \mathrm{L}} \times \frac{1 \, \mathrm{mi}}{1,61 \, \mathrm{km}} \times \frac{3,785 \, \mathrm{L}}{1 \, \mathrm{gal}} \times 5 \, \mathrm{gal} \approx 167 \, \mathrm{mi}
+$$ 
+</details>
+:::

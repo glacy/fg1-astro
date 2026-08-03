@@ -7,12 +7,14 @@ import { defineConfig } from 'astro/config';
 import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
 import { offlineBanner } from './src/integrations/offline-banner';
+import { remarkMdxMathBraceFix } from './src/lib/remark-mdx-math-brace-fix.mjs';
 
 export default defineConfig({
   prefetch: true,
   markdown: {
     remarkPlugins: [
       [remarkMath, { singleDollarTextMath: false }]
+      // remarkMdxMathBraceFix - Temporarily disabled to test manual fixes
     ],
     rehypePlugins: [
       [rehypeKatex, { strict: false, throwOnError: false }]
