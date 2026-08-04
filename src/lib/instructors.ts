@@ -75,29 +75,7 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       },
     ]
   },
-  {
-    docente: "MURILLO ZUMBADO GUSTAVO",
-    atenciones: [
-      {
-        dia: "Jueves",
-        modalidad: "presencial",
-        hora: "7:30 a.m. a 9:20 a.m.",
-        detalle: "oficina 26, edificio C4 (Escuela de Física)"
-      }
-    ]
-  },
-  {
-    docente: "MOYA SERRANO ROY DAVID",
-    atenciones: [
-       {
-        dia: "Miércoles",
-        modalidad: "presencial",
-        hora: "10:00 a.m. a 12:00 m.d.",
-        detalle: "Oficina 10 Escuela de Ciencias Naturales y Exactas."
-      }
-    ]
-  },
-  {
+   {
     docente: "MONTERO ZELEDÓN ERNESTO",
     atenciones: [
       {
@@ -117,6 +95,17 @@ export const INSTRUCTORS_DATA: Instructor[] = [
         modalidad: "presencial",
         hora: "11:30 a.m. a 12:00 m.d.",
         detalle: "oficina 24, edificio C4 (Escuela de Física)"
+      }
+    ]
+  },
+  {
+    docente: "MOYA SERRANO ROY DAVID",
+    atenciones: [
+       {
+        dia: "Miércoles",
+        modalidad: "presencial",
+        hora: "10:00 a.m. a 12:00 m.d.",
+        detalle: "oficina 12, edificio C4 (Escuela de Física)"
       }
     ]
   },
