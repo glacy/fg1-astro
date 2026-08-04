@@ -1122,7 +1122,7 @@ Migración de Astro 5 → Astro 7.1.6 con introducción de Starlight para la doc
 | `@astrojs/mdx` | — | `7.0.5` (exacto) | Pinneado por compatibilidad con Astro 7 |
 | `@astrojs/markdown-remark` | — | `^7.2.2` (dev) | Expone `unified()` para el processor custom |
 | `katex` | — | `0.18.1` (exacto) | Ver sección KaTeX más abajo |
-| `remark-math` | — | `^6.0.0` | Requiere `singleDollarTextMath: false` |
+| `remark-math` | — | `^6.0.0` | Requiere `singleDollarTextMath: true` (ver nota KaTeX abajo) |
 | `rehype-katex` | — | `^7.0.1` | — |
 | `unified` | — | `^11.0.5` | Runtime del processor |
 
@@ -1180,6 +1180,8 @@ Los acentos tipo `\vec{F}` quedaban mal posicionados (la flecha se separaba de l
 - `public/katex.min.css` + `public/katex-fonts/` — CSS y fuentes 0.18.1 (vendedos, servidos en `/katex.min.css`)
 
 **Verificación:** Si un acento se renderiza mal de nuevo, comprobar primero que `require.resolve` de rehype-katex apunte a `katex@0.18.1` y que el markup generado use `katex-accent`/`katex-overlay` (no `mord accent`/`overlay`).
+
+**`singleDollarTextMath: true`:** El contenido académico usa math inline de un solo dólar (`$x$`, `$\vec{A}$`, `$\theta$`). Con `singleDollarTextMath: false` (config inicial), `$\vec{A}$` quedaba como texto y MDX interpretaba `{A}` como expresión JSX → `ReferenceError: A is not defined` en el build de `/semana-01/lectura`. Se activa `true` para que remark-math parsee el math antes de que MDX procese las llaves.
 
 ### Carga del CSS de KaTeX vía `customCss`
 

@@ -15,7 +15,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [
-        [remarkMath, { singleDollarTextMath: false }]
+        [remarkMath, { singleDollarTextMath: true }]
       ],
       rehypePlugins: [
         [rehypeKatex, { strict: false, throwOnError: false }]
