@@ -1,5 +1,3 @@
-@import '../../../node_modules/katex/dist/katex.min.css';
-
 /* Fix KaTeX alignment and display issues */
 .katex {
   display: inline-block;
@@ -23,27 +21,28 @@ span.katex {
   line-height: 1.2;
 }
 
-/* Fix for accents like \vec{} */
-.katex .accent {
+/* Fix for accents like \vec{}: position the arrow body natively (0.18.1
+   markup uses .katex-accent + .katex-overlay). Force currentColor so arrows
+   follow the theme color. */
+.katex .katex-accent .katex-overlay {
+  position: relative;
+  top: 0;
+}
+
+.katex .katex-accent .accent-body {
+  width: 0;
   position: relative;
 }
 
-.katex .accent-body {
-  position: absolute;
+.katex .katex-overlay {
+  display: block;
+  position: relative;
   top: 0;
   left: 0;
-  z-index: 1;
 }
 
-/* Fix SVG positioning and visibility for vector arrows */
-.katex .accent-body .overlay {
-  display: inline-block;
-  vertical-align: baseline;
-}
-
-/* Force color for all KaTeX SVG elements */
-.katex .accent-body .overlay svg,
-.katex .accent-body .overlay svg path,
+.katex .katex-overlay svg,
+.katex .katex-overlay svg path,
 .katex svg,
 .katex svg path {
   fill: currentColor !important;
@@ -57,7 +56,6 @@ table .katex {
 }
 
 /* Starlight pagination button title font size override */
-
 .link-title {
   font-size: 1rem !important;
   line-height: 1.4 !important;

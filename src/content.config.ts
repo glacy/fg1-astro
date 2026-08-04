@@ -9,20 +9,6 @@ const linkItemSchema = z.object({
     icon: z.string(),
 });
 
-const weeks = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/weeks' }),
-  schema: z.object({
-            id: z.number(),
-            title: z.string(),
-            image: z.string(),
-            objetivos: z.array(z.string()),
-            contenidos: z.array(z.string()),
-            consignas: z.array(linkItemSchema),
-            evaluaciones: z.array(linkItemSchema),
-            recursos: z.array(linkItemSchema).optional(),
-        }),
-});
-
 // Expose your defined collection to Astro
 // with the `collections` export
 

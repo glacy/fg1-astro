@@ -11,9 +11,6 @@ import rehypeKatex from 'rehype-katex';
 import { offlineBanner } from './src/integrations/offline-banner';
 
 export default defineConfig({
-  legacy: {
-    collectionsBackwardsCompat: true,
-  },
   prefetch: true,
   markdown: {
     processor: unified({
@@ -33,7 +30,7 @@ export default defineConfig({
       title: 'Documentos FG1 - II semestre 2026',
       description: 'Documentación para el curso de Física General I - II semestre 2026',
       disable404Route: true,
-      customCss: ['src/styles/katex-import.css'],
+      customCss: ['src/styles/katex-import.css', 'src/styles/starlight-overrides.css'],
       lastUpdated: true,
       locales: {
         root: {
@@ -50,7 +47,7 @@ export default defineConfig({
       },
     }),
     mdx(),
-    tailwind(),
+    tailwind({ applyBaseStyles: false }),
     icon(),
     AstroPWA({
       registerType: 'autoUpdate',
