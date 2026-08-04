@@ -97,6 +97,7 @@ VT reglas:
 - Tablas: pipe tables (`\| col1 \| col2 \|`). No grid tables, fenced divs, ni LaTeX `tblr`.
 - Math KaTeX: `$...$` inline, `$$...$$` / `\[...\]` display.
 - No `\VEC{}`, `\tentimes`, `\text{\scriptsize{}}`. Usar `\vec{}`, `\times`, estándar KaTeX.
+- **Versión KaTeX única (0.18.1)**: `rehype-katex@7.0.1` declara `katex@^0.16.0`, así que pnpm instalaba su propio `katex@0.16.10` anidado mientras el CSS vendado (`public/katex.min.css`) era 0.18.1. El markup de 0.16.10 (`class="mord accent"`, `class="overlay"`) no coincidía con los selectores CSS de 0.18.1 (`.katex-accent`, `.katex-overlay`), rompiendo acentos tipo `\vec{}`. Se resolvió con `pnpm.overrides: { "katex": "0.18.1" }` en `package.json` para forzar una única versión en todo el árbol. Si se actualiza KaTeX, regenerar/alinear `public/katex.min.css` y las fuentes de `public/katex-fonts/` con la misma versión.
 - Figuras: `<figure>` + `<img>` con `src` relativa a `src/content/` o absoluta desde `public/`.
 - Bloques destacados (`::: note`, `::: wwteorema`) no existen en Astro → `<div class="note">`.
 - `{.smallcaps}` → `<span style="font-variant: small-caps;">`

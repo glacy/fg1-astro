@@ -1106,3 +1106,101 @@ El CSS está en `src/pages/lecturas/[...slug].astro` (`<style is:global>`) y rep
 ## Rama de trabajo
 
 Las funcionalidades experimentales (Content Collections, migración de contenido) se desarrollan en la rama `feat/content-collections`, separada de `main` hasta que el pipeline esté maduro.
+
+---
+
+## Migración a Astro 7 (rama `astro-7-migration`)
+
+Migración de Astro 5 → Astro 7.1.6 con introducción de Starlight para la documentación académica, migración de content collections a Content Layer API (loaders) y unificación del pipeline KaTeX.
+
+### Cambios de dependencias (Astro 7)
+
+| Paquete | Antes | Después | Nota |
+|---|---|---|---|
+| `astro` | `^5.0.0` | `^7.1.6` | — |
+| `@astrojs/starlight` | no presente | `^0.41.6` | Integración para la documentación |
+| `@astrojs/mdx` | — | `7.0.5` (exacto) | Pinneado por compatibilidad con Astro 7 |
+| `@astrojs/markdown-remark` | — | `^7.2.2` (dev) | Expone `unified()` para el processor custom |
+| `katex` | — | `0.18.1` (exacto) | Ver sección KaTeX más abajo |
+| `remark-math` | — | `^6.0.0` | Requiere `singleDollarTextMath: false` |
+| `rehype-katex` | — | `^7.0.1` | — |
+| `unified` | — | `^11.0.5` | Runtime del processor |
+
+### Content Collections → Content Layer API
+
+`src/content.config.ts` (antes `src/content/config.ts`) migra la colección `weeks` de `type: 'data'` al **loader `glob()`** de la Content Layer API de Astro 7:
+
+```ts
+weeks: defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/weeks' }),
+  schema: z.object({ /* id, title, image, objetivos, ... */ }),
+})
+```
+
+- `docs` e `i18n` usan los loaders propios de Starlight (`docsLoader()`, `i18nLoader()`) con `docsSchema()`.
+- El esquema Zod de `weeks` se mantiene idéntico al anterior (`linkItemSchema` incluido).
+- `loadWeeksData()` (`src/lib/weeks.ts` o equivalente) carga vía `getCollection('weeks')` sin cambios de API para las páginas.
+
+### View Transitions → ClientRouter
+
+En `src/layouts/ShellLayout.astro`, `<ViewTransitions />` (deprecado en Astro 7) se reemplaza por `<ClientRouter />` de `astro:transitions`. Misma API de atributos (`transition:persist`, `transition:name`, `astro:after-swap`) en páginas ShellLayout.
+
+### Integración Starlight + Tailwind (`applyBaseStyles`)
+
+**Problema:** `@astrojs/tailwind` inyectaba su `base.css` (preflight) **sin `@layer`** en todas las páginas, incluidas las de Starlight. El CSS sin capa siempre gana sobre `@layer starlight.*`, rompiendo reglas de Starlight: el logo quedaba distorsionado (`img { height: auto }`) y el `dark:sl-hidden` no ocultaba.
+
+**Solución:**
+- `astro.config.mjs`: `tailwind({ applyBaseStyles: false })` — Tailwind ya no inyecta preflight globalmente.
+- `src/layouts/ShellLayout.astro`: `import "@astrojs/tailwind/base.css"` — el preflight vuelve a aplicarse **solo** en las páginas ShellLayout (las páginas Starlight no usan clases Tailwind).
+
+### KaTeX: alineación de versión única (0.18.1)
+
+**Problema:** `rehype-katex@7.0.1` declara `katex@^0.16.0`, por lo que pnpm instalaba un `katex@0.16.10` anidado **dentro** de rehype-katex, mientras el CSS vendado en `public/katex.min.css` era **0.18.1**. Resultado: markup generado por 0.16.10 no coincidía con los selectores CSS de 0.18.1:
+
+| Elemento | Markup 0.16.10 | Selector CSS 0.18.1 |
+|---|---|---|
+| Contenedor de acento | `class="mord accent"` | `.katex-accent` |
+| Overlay del acento | `class="overlay"` | `.katex-overlay` |
+
+Los acentos tipo `\vec{F}` quedaban mal posicionados (la flecha se separaba de la F) porque la única regla que aplicaba era el override `position: absolute` del proyecto.
+
+**Solución:**
+1. **Forzar versión única** con `pnpm.overrides` en `package.json`:
+   ```json
+   "pnpm": {
+     "overrides": { "katex": "0.18.1" }
+   }
+   ```
+   `rehype-katex` resuelve ahora `katex@0.18.1` (verificado con `require.resolve('katex', { paths: [require.resolve('rehype-katex')] })`). La compatibilidad es segura: rehype-katex solo usa `katex.renderToString`, presente en 0.18.1.
+2. **Limpiar el override CSS** en `src/styles/starlight-overrides.css`: se elimina el hack `.accent-body { position: absolute; top: 0; left: 0 }` y se deja posicionamiento nativo 0.18.1 (`.katex-accent .accent-body { position: relative; width: 0 }`). Se conserva el `fill: currentColor` para SVG.
+
+**Archivos modificados:**
+- `package.json` + `pnpm-lock.yaml` — override `katex: 0.18.1`
+- `src/styles/starlight-overrides.css` — reglas de acento alineadas con 0.18.1
+- `public/katex.min.css` + `public/katex-fonts/` — CSS y fuentes 0.18.1 (vendedos, servidos en `/katex.min.css`)
+
+**Verificación:** Si un acento se renderiza mal de nuevo, comprobar primero que `require.resolve` de rehype-katex apunte a `katex@0.18.1` y que el markup generado use `katex-accent`/`katex-overlay` (no `mord accent`/`overlay`).
+
+### Carga del CSS de KaTeX vía `customCss`
+
+El CSS de KaTeX se carga en Starlight con `customCss` en `astro.config.mjs`:
+```js
+customCss: ['src/styles/katex-import.css', 'src/styles/starlight-overrides.css']
+```
+- `src/styles/katex-import.css` hace `@import '/katex.min.css';` — ruta absoluta servida desde `public/` (no `public/katex.min.css`, que es una ruta de build no servible).
+- `starlight-overrides.css` aplica los fixes de KaTeX (alineación, SVG `currentColor`, paginación) junto a los overrides de Starlight.
+
+### Otros cambios
+
+- **SVG de vectores**: nuevo asset `src/assets/magnitud_vector.svg` y modificación de `src/assets/sistema_vs_modelo.svg` (degradado/colores) usados en la documentación.
+- **`src/content/docs/semana-01/lectura.mdx`**: se agregan ejemplos con `\vec{F}` y `\vec{v}` para verificar el renderizado de acentos.
+- **`disable404Route: true`** en Starlight: la ruta 404 propia de Starlight colisiona con `src/pages/404.astro`; se deshabilita la de Starlight para que la página 404 del sitio sea la única.
+- **Dos sistemas de renderizado** conviven bajo el mismo dominio: páginas Astro (ShellLayout + VT) y docs Starlight (sin VT). El Service Worker (`src/sw.ts`) precachea ambos; la normalización de trailing slash en `matchPrecache` cubre las URLs de Starlight (`/semana-01/lectura/`).
+
+### Verificación
+
+```bash
+pnpm typecheck   # tsc --noEmit — sin errores
+pnpm lint        # ESLint — sin errores (5 warnings preexistentes no-explicit-any)
+pnpm build       # build estático a dist/ (incluye PWA)
+```
