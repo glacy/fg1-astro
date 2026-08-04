@@ -246,3 +246,273 @@ Por esta razón, solemos representar los vectores gráficamente mediante flechas
 
 </Box>
 
+## Sistemas de referencia
+
+Aquí surge una pregunta obligada: si un vector necesita una dirección, ¿dirección respecto a qué? No podemos decir "hacia arriba" o "hacia la derecha" sin definir un punto de vista previo. 
+
+Debido a este carácter direccional, los vectores exigen un **marco o sistema de referencia** desde el cual poder medir su magnitud y trazar su dirección. Un sistema de referencia es simplemente un conjunto de convenciones espaciales (como los puntos cardinales o las paredes de un cuarto) que un observador utiliza para ubicar los objetos de manera consistente.
+
+El sistema de referencia más utilizado en Física es el **sistema rectangular de ejes coordenados** (o sistema cartesiano). A partir de este esquema de ejes perpendiculares, podemos descomponer cualquier vector en sus *componentes cartesianas*, lo cual es la herramienta matemática fundamental que nos permitirá sumar, restar y analizar vectores de forma exacta. 
+
+### Sistema de coordenadas polares
+
+Además del sistema cartesiano, existe otro sistema de referencia muy útil en Física: el **sistema de coordenadas polares**. Este sistema es particularmente conveniente cuando trabajamos con problemas que tienen simetría radial o cuando el movimiento natural de un objeto sigue trayectorias circulares o espirales.
+
+En el sistema polar, la posición de un punto en el plano se determina mediante dos cantidades: la distancia desde un punto de referencia fijo (origen) y el ángulo respecto a una dirección de referencia (generalmente el eje $x$ positivo).
+
+Las coordenadas polares se denotan como $$(r, \theta)$$, donde:
+
+- **$$r$$ (radio)**: es la distancia desde el origen hasta el punto. Esta cantidad es siempre positiva o cero: $$r \geq 0$$.
+- **$$\theta$$ (ángulo)**: es el ángulo medido desde el eje $$x$$ positivo hasta el vector de posición del punto, en sentido antihorario. Este ángulo se puede expresar en grados $$0^\circ$$ a $360^\circ$$; o en radianes, $$0$$ a $$2\pi$$ rad.
+
+**Relación con coordenadas cartesianas**
+
+Las coordenadas polares y cartesianas están relacionadas por las siguientes ecuaciones de conversión:
+
+$$
+x = r \cos \theta
+$$
+
+$$
+y = r \sin \theta
+$$
+
+Para convertir de cartesianas a polares:
+
+$$
+r = \sqrt{x^2 + y^2}
+$$
+
+$$
+\theta = \arctan\left(\frac{y}{x}\right)
+$$
+
+Donde el cuadrante correcto de $$\theta$$ se determina por los signos de $$x$$ y $$y$$.
+
+<Box icon="check-list">
+
+**Ejemplo - conversión entre sistemas de coordenadas**
+
+Supongamos que un punto tiene coordenadas cartesianas $(3, 4)$ en metros.
+
+Para convertir a polares:
+
+$$
+r = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5 \, \mathrm{m}
+$$
+
+$$
+\theta = \arctan\left(\frac{4}{3}\right) = 53,13^\circ
+$$
+
+Por lo tanto, las coordenadas polares son $(5, 53,13^\circ)$.
+
+Para verificar la conversión inversa:
+
+$$
+x = 5 \cos(53,13^\circ) = 5 \times 0,6 = 3 \, \mathrm{m}
+$$
+
+$$
+y = 5 \sin(53,13^\circ) = 5 \times 0,8 = 4 \, \mathrm{m}
+$$
+
+</Box>
+
+## Suma y resta de vectores
+
+La suma y resta de vectores son operaciones fundamentales en física, ya que muchas cantidades físicas interactúan de manera vectorial. Existen tres métodos principales para realizar estas operaciones: el método gráfico, el método geométrico y el método analítico (componentes).
+
+### Método gráfico: regla del paralelogramo
+
+La suma de dos vectores $$\vec{A}$$ y $$\vec{B}$$ se puede representar gráficamente usando la **regla del paralelogramo**. Para sumar $$\vec{A} + \vec{B}$$:
+
+1. Coloca ambos vectores con sus orígenes en el mismo punto
+2. Construye un paralelogramo trazando líneas paralelas a cada vector
+3. La diagonal del paralelogramo (desde el origen) representa el vector resultante $$\vec{R}$$
+
+El vector resultante se expresa como:
+
+$$
+\vec{R} = \vec{A} + \vec{B}
+$$
+
+### Método gráfico: regla del polígono o cabeza-cola
+
+Otra forma equivalente de sumar vectores es la **regla del polígono** o **cabeza-cola**:
+
+1. Dibuja el primer vector $$\vec{A}$$ desde un punto de origen
+2. Dibuja el segundo vector $$\vec{B}$$ con su origen en la cabeza (punta) de $$\vec{A}$$
+3. El vector resultante $$\vec{R}$$ va desde el origen de $$\vec{A}$$ hasta la cabeza de $$\vec{B}$$
+
+Este método se extiende fácilmente a la suma de más de dos vectores, simplemente concatenando cada vector al final del anterior.
+
+### Resta de vectores
+
+La resta de vectores $$\vec{A} - \vec{B}$$ es equivalente a la suma de $$\vec{A}$$ con el opuesto de $$\vec{B}$$:
+
+$$
+\vec{A} - \vec{B} = \vec{A} + (-\vec{B})
+$$
+
+Gráficamente, el opuesto de un vector $$\vec{B}$$ se obtiene invirtiendo su dirección (manteniendo la misma magnitud pero apuntando en sentido contrario). Luego se aplica la regla del polígono.
+
+### Método analítico: componentes rectangulares
+
+El método más preciso para sumar y restar vectores utiliza las **componentes rectangulares**. Descomponemos cada vector en sus componentes $x$ y $y$, y luego operamos componente por componente.
+
+Para un vector $\vec{A}$ con magnitud $A$ y ángulo $\theta$ respecto al eje $x$ positivo:
+
+$$
+A_x = A \cos \theta
+$$
+
+$$
+A_y = A \sin \theta
+$$
+
+La suma de dos vectores se realiza así:
+
+$$
+\vec{R} = \vec{A} + \vec{B}
+$$
+
+$$
+R_x = A_x + B_x
+$$
+
+$$
+R_y = A_y + B_y
+$$
+
+La magnitud del vector resultante se obtiene mediante el teorema de Pitágoras:
+
+$$
+R = \sqrt{R_x^2 + R_y^2}
+$$
+
+Y la dirección del vector resultante es:
+
+$$
+\theta_R = \arctan\left(\frac{R_y}{R_x}\right)
+$$
+
+<Box icon="check-list">
+
+**Ejemplo - suma de vectores por componentes**
+
+Un objeto se mueve bajo la acción de dos fuerzas: $$\vec{F}_1 = 50 \, \mathrm{N}$$ en dirección $$37^\circ$$ sobre el eje $$x$$, y $$\vec{F}_2 = 30 \, \mathrm{N}$$ en dirección $$53^\circ$$ sobre el eje $$x$$. Encontrar la fuerza resultante.
+
+Primero calculamos las componentes:
+
+$$
+F_{1x} = 50 \cos(37^\circ) = 50 \times 0,799 = 39,95 \, \mathrm{N}
+$$
+
+$$
+F_{1y} = 50 \sin(37^\circ) = 50 \times 0,601 = 30,05 \, \mathrm{N}
+$$
+
+$$
+F_{2x} = 30 \cos(53^\circ) = 30 \times 0,602 = 18,06 \, \mathrm{N}
+$$
+
+$$
+F_{2y} = 30 \sin(53^\circ) = 30 \times 0,799 = 23,97 \, \mathrm{N}
+$$
+
+Sumamos las componentes:
+
+$$
+R_x = F_{1x} + F_{2x} = 39,95 + 18,06 = 58,01 \, \mathrm{N}
+$$
+
+$$
+R_y = F_{1y} + F_{2y} = 30,05 + 23,97 = 54,02 \, \mathrm{N}
+$$
+
+Magnitud del vector resultante:
+
+$$
+R = \sqrt{58,01^2 + 54,02^2} = \sqrt{3365,16 + 2918,16} = \sqrt{6283,32} = 79,27 \, \mathrm{N}
+$$
+
+Dirección del vector resultante:
+
+$$
+\theta_R = \arctan\left(\frac{54,02}{58,01}\right) = \arctan(0,931) = 42,97^\circ
+$$
+
+Por lo tanto, la fuerza resultante es $$$$\vec{R} = 79,27 \, \mathrm{N}$$$$ en dirección $$$$42,97^\circ$$$$ sobre el eje $$$$x$$$$.
+
+</Box>
+
+### Propiedades de la suma de vectores
+
+La suma de vectores cumple con las siguientes propiedades fundamentales:
+
+**Propiedad conmutativa:**
+$$
+\vec{A} + \vec{B} = \vec{B} + \vec{A}
+$$
+
+**Propiedad asociativa:**
+$$
+(\vec{A} + \vec{B}) + \vec{C} = \vec{A} + (\vec{B} + \vec{C})
+$$
+
+**Elemento neutro:**
+$$
+\vec{A} + \vec{0} = \vec{A}
+$$
+
+**Elemento opuesto:**
+$$
+\vec{A} + (-\vec{A}) = \vec{0}
+$$
+
+### Vectores unitarios
+
+En física, frecuentemente utilizamos **vectores unitarios** para expresar las componentes de un vector de forma compacta. Un vector unitario es un vector con magnitud igual a 1 que indica una dirección específica.
+
+En el sistema cartesiano, los vectores unitarios se denotan como:
+
+- $$\hat{\iota}$$: vector unitario en dirección del eje $$x$$ positivo
+- $$\hat{j}$$: vector unitario en dirección del eje $$y$$ positivo
+- $$\hat{k}$$: vector unitario en dirección del eje $$z$$ positivo (para problemas en tres dimensiones)
+
+Cualquier vector $$\vec{A}$$ puede expresarse como:
+
+$$
+\vec{A} = A_x \hat{i} + A_y \hat{j}
+$$
+
+La suma de vectores en notación de vectores unitarios es:
+
+$$
+\vec{R} = (A_x + B_x) \hat{i} + (A_y + B_y) \hat{j}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo - vectores unitarios**
+
+Dados los vectores $$\vec{A} = 3\hat{i} + 4\hat{j} \, \mathrm{m}$$ y $$\vec{B} = -2\hat{i} + 5\hat{j} \, \mathrm{m}$$, encontrar $$\vec{A} + \vec{B}$$ y $$\vec{A} - \vec{B}$$.
+
+Suma:
+$$
+\vec{A} + \vec{B} = (3 + (-2))\hat{i} + (4 + 5)\hat{j} = 1\hat{i} + 9\hat{j} \, \mathrm{m}
+$$
+
+Resta:
+$$
+\vec{A} - \vec{B} = (3 - (-2))\hat{i} + (4 - 5)\hat{j} = 5\hat{i} - 1\hat{j} \, \mathrm{m}
+$$
+
+Para encontrar la magnitud del vector suma:
+
+$$
+|\vec{A} + \vec{B}| = \sqrt{1^2 + 9^2} = \sqrt{1 + 81} = \sqrt{82} = 9,06 \, \mathrm{m}
+$$
+
+</Box>
