@@ -2,11 +2,12 @@
 title: "Práctica"
 week: 1
 keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
-draft: false
+draft: true
 ---
 import { Steps } from '@astrojs/starlight/components';
 import Box from '../../../components/Box.astro';
 import { Aside } from '@astrojs/starlight/components';
+import SistemaCartesiano from '../../../components/SistemaCartesiano.astro';
 
 
 
@@ -72,3 +73,9 @@ Empezamos con lo que sabemos que recorre por litro, cambiamos kilómetros a mill
 
 </details>
 :::
+
+
+<SistemaCartesiano x={2} y={3} padding={80} />
+<SistemaCartesiano x={2} y={3} />
+<SistemaCartesiano x={-1} y={-2} pointColor="#00FF00" />
+

@@ -18,10 +18,32 @@ objetivos:
 import PreCheck from '../../../components/PreCheck.astro';
 import Box from '../../../components/Box.astro';
 import { Steps } from '@astrojs/starlight/components';
-import SistemaModelo from "../../../assets/sistema_vs_modelo.svg";
 import { Image } from 'astro:assets';
+import SistemaModelo from "../../../assets/sistema_vs_modelo.svg";
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
+import { SistemaCartesiano, SistemaPolar } from '@/components/graph';
+
+
+<SistemaCartesiano 
+  points={[
+    { x: 2, y: 3, label: 'A', color: '#EF4444' },
+    { x: -4, y: 2, label: 'B', color: '#3B82F6' },
+    { x: 0, y: -2, label: 'C', color: '#10B981' }
+    ]}
+  gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
+  showPointLabels={false} 
+ />
+
+<SistemaPolar
+  points={[
+    { r: 3, theta: 45, label: 'P1', color: '#EF4444' },
+    { r: 4, theta: 120, label: 'P2', color: '#3B82F6' },
+    { r: 5, theta: -30, label: 'P3', color: '#10B981' }
+    ]} 
+  showPointLabels={false}
+  gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
+/>
 
 <PreCheck>
   - Expresar cantidades físicas usando distintos sistemas de unidades.
@@ -34,10 +56,11 @@ El objeto de estudio de la Física es tan ambicioso como fascinante: busca compr
 
 Para ilustrar esto, consideremos el lanzamiento de una bola. En la realidad, su movimiento está determinado por una gran cantidad de variables: su masa, su forma exacta, la dirección del viento, la fuerza inicial de lanzamiento o la resistencia del aire. Si intentáramos calcularlo todo a la vez, el problema sería inmanejable. Es aquí donde entra nuestro modelo físico inicial: tomaríamos la decisión estratégica de ignorar temporalmente factores como el viento o la fricción, y trataríamos la bola como si fuera un punto sin tamaño. No lo hacemos por ignorancia, sino para aislar el efecto principal (en este caso, la gravedad) y comprender la esencia de su trayectoria antes de añadir capas de complejidad. Ver [Figura 1](#fig-esquema).
 
-<figure id="fig-esquema">
-<img src={SistemaModelo.src} alt="Un sistema físico involucra muchas propiedades. Los modelos buscan simplificar el análisis"/>
- <figcaption>Figura 1: Sistema físico vs modelo físico.</figcaption>
-</figure>
+<Image src={SistemaModelo} alt="Un sistema físico involucra muchas propiedades. Los modelos buscan simplificar el análisis" layout='constrained' width={800} height={600}/>
+
+
+
+
 
 
 A cada una de estas propiedades medibles que caracterizan a un sistema o a un modelo —la masa, la velocidad, la fuerza, entre otras— se las conoce como *cantidades físicas*. Constituyen la base sobre la cual se construye cualquier análisis. No obstante, una cantidad física requiere de una referencia para ser útil, y ahí es donde entran las *unidades* de medida. En esta sesión comenzaremos a estudiar estas cantidades y sus unidades, los elementos fundamentales sin los cuales la Física, tal como la conocemos, no sería posible.
@@ -197,16 +220,37 @@ Por supuesto, el SI no es el único sistema de unidades disponible. Al cambiar d
 **Ejemplo - conversiones de unidades**
 
 Supongamos que queremos expresar una distancia de $$150 \, \mathrm{km}$$ en metros $$(\mathrm{m})$$. 
-Sabemos que $$1 \, \mathrm{km} = 1000 \, \mathrm{m}$$. Construimos dos factores de conversión posibles: 
- $$ 
- \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \quad \mathrm{y} \quad \frac{1 \, \mathrm{km}}{1000 \, \mathrm{m}}
- $$
- 
+Sabemos que $$\displaystyle 1 \, \mathrm{km} = 1000 \, \mathrm{m}$$. Construimos dos factores de conversión posibles: 
+
+$$ 
+\frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \quad \mathrm{y} \quad \frac{1 \, \mathrm{km}}{1000 \, \mathrm{m}}
+$$
+  
 Debemos elegir la fracción que permita cancelar la unidad inicial $$(\mathrm{km})$$:
 
  $$
- 150 \,\cancel{\mathrm{km}} \times \left( \displaystyle \frac{1000 \, \mathrm{m}}{1 \, \cancel{\mathrm{km}}} \right) = 150 \, 000 \, \mathrm{m} = 1,5 \times 10^{5} \,\mathrm{m}
- $$ 
+  150 \,\cancel{\mathrm{km}} \times \left( \displaystyle \frac{1000 \, \mathrm{m}}{1 \, \cancel{\mathrm{km}}} \right) = 150 \, 000 \, \mathrm{m} = 1,5 \times 10^{5} \,\mathrm{m}
+  $$ 
+
+---
+
+Ahora supongamos que queremos convertir $$2 \, \mathrm{m}$$ a pulgadas $$(\mathrm{in})$$. De la Tabla 1.4, sabemos que $$1 \, \mathrm{in} = 2,54 \, \mathrm{cm}$$. Construimos los factores de conversión necesarios:
+
+$$
+\frac{1 \, \mathrm{in}}{2,54 \, \mathrm{cm}} \quad \mathrm{y} \quad \frac{2,54 \, \mathrm{cm}}{1 \, \mathrm{in}}
+$$
+
+También necesitamos convertir de metros a centímetros: $$1 \, \mathrm{m} = 100 \, \mathrm{cm}$$:
+
+$$
+\displaystyle  \frac{100 \, \mathrm{cm}}{1 \, \mathrm{m}} \quad \mathrm{y} \quad \frac{1 \, \mathrm{m}}{100 \, \mathrm{cm}}
+$$
+
+Combinamos los factores apropiados para cancelar las unidades:
+
+$$
+2 \,\cancel{\mathrm{m}} \times \left( \frac{100 \,\cancel{\mathrm{cm}}}{1 \,\cancel{\mathrm{m}}} \right) \times \left( \frac{1 \, \mathrm{in}}{2,54 \,\cancel{\mathrm{cm}}} \right) = \frac{200}{2,54} \, \mathrm{in} \approx 78,7 \, \mathrm{in}
+$$
 
 </Box>
 
@@ -230,7 +274,7 @@ Una **cantidad escalar** queda completamente definida con un número (su magnitu
 
 Por otro lado, una **cantidad vectorial** es más rica en información. Para definirla por completo, no basta con conocer su magnitud; necesitamos especificar explícitamente su *dirección* y su *sentido*. 
 
-Por esta razón, solemos representar los vectores gráficamente mediante flechas: la longitud de la flecha es proporcional a la magnitud, y la punta indica la dirección y el sentido de la cantidad. Para denotarlos simbólicamente en las ecuaciones, se coloca una pequeña flecha sobre la letra que representa la cantidad. Por ejemplo, si una cantidad se llama A, escribiremos $$......$$ para indicar que es un vector.
+Por esta razón, solemos representar los vectores gráficamente mediante flechas: la longitud de la flecha es proporcional a la magnitud, y la punta indica la dirección y el sentido de la cantidad. Para denotarlos simbólicamente en las ecuaciones, se coloca una pequeña flecha sobre la letra que representa la cantidad. Por ejemplo, si una cantidad se llama $$A$$, escribiremos $$\vec{A}$$ para indicar que es un vector.
 
 <Box icon="check-list">
 
@@ -249,7 +293,11 @@ Aquí surge una pregunta obligada: si un vector necesita una dirección, ¿direc
 
 Debido a este carácter direccional, los vectores exigen un **marco o sistema de referencia** desde el cual poder medir su magnitud y trazar su dirección. Un sistema de referencia es simplemente un conjunto de convenciones espaciales (como los puntos cardinales o las paredes de un cuarto) que un observador utiliza para ubicar los objetos de manera consistente.
 
+### Sistema cartesiano rectangular
+
 El sistema de referencia más utilizado en Física es el **sistema rectangular de ejes coordenados** (o sistema cartesiano). A partir de este esquema de ejes perpendiculares, podemos descomponer cualquier vector en sus *componentes cartesianas*, lo cual es la herramienta matemática fundamental que nos permitirá sumar, restar y analizar vectores de forma exacta. 
+
+
 
 ### Sistema de coordenadas polares
 
@@ -257,10 +305,11 @@ Además del sistema cartesiano, existe otro sistema de referencia muy útil en F
 
 En el sistema polar, la posición de un punto en el plano se determina mediante dos cantidades: la distancia desde un punto de referencia fijo (origen) y el ángulo respecto a una dirección de referencia (generalmente el eje $x$ positivo).
 
+
 Las coordenadas polares se denotan como $$(r, \theta)$$, donde:
 
 - **$$r$$ (radio)**: es la distancia desde el origen hasta el punto. Esta cantidad es siempre positiva o cero: $$r \geq 0$$.
-- **$$\theta$$ (ángulo)**: es el ángulo medido desde el eje $$x$$ positivo hasta el vector de posición del punto, en sentido antihorario. Este ángulo se puede expresar en grados $$0^\circ$$ a $360^\circ$$; o en radianes, $$0$$ a $$2\pi$$ rad.
+- **$$\theta$$ (ángulo)**: es el ángulo medido desde el eje $$x$$ positivo hasta el vector de posición del punto, en sentido antihorario. Este ángulo se puede expresar en grados $$0^\circ$$ a $$360^\circ$$; o en radianes, $$0$$ a $$2\pi$$ rad.
 
 **Relación con coordenadas cartesianas**
 
@@ -277,7 +326,7 @@ $$
 Para convertir de cartesianas a polares:
 
 $$
-r = \sqrt{x^2 + y^2}
+\displaystyle r = \sqrt{x^2 + y^2}
 $$
 
 $$
@@ -322,7 +371,7 @@ La suma y resta de vectores son operaciones fundamentales en física, ya que muc
 
 ### Método gráfico: regla del paralelogramo
 
-La suma de dos vectores $$\vec{A}$$ y $$\vec{b}$$ se puede representar gráficamente usando la **regla del paralelogramo**. Para sumar $$\vec{A} + \vec{B}$$:
+La suma de dos vectores $$\vec{A}$$ y $$\vec{B}$$ se puede representar gráficamente usando la **regla del paralelogramo**. Para sumar $$\vec{A} + \vec{B}$$:
 
 1. Coloca ambos vectores con sus orígenes en el mismo punto
 2. Construye un paralelogramo trazando líneas paralelas a cada vector

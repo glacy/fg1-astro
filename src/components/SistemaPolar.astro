@@ -1,0 +1,134 @@
+---
+interface Props {
+	r: number;
+	theta: number;
+	width?: number;
+	height?: number;
+	gridSize?: number;
+	pointColor?: string;
+	showLabels?: boolean;
+	showGrid?: boolean;
+	padding?: number;
+	angleInDegrees?: boolean;
+}
+
+const {
+	r,
+	theta,
+	width = 561,
+	height = 560,
+	gridSize = 35,
+	pointColor = "#FF0000",
+	showLabels = true,
+	showGrid = true,
+	padding = 40,
+	angleInDegrees = false,
+} = Astro.props;
+
+const originX = width / 2;
+const originY = height / 2;
+
+function polarToCartesian(r: number, theta: number): { x: number; y: number } {
+	const thetaRad = angleInDegrees ? (theta * Math.PI) / 180 : theta;
+	return {
+		x: r * Math.cos(thetaRad),
+		y: r * Math.sin(thetaRad),
+	};
+}
+
+function gridToPixel(gridX: number, gridY: number): { x: number; y: number } {
+	return {
+		x: originX + gridX * gridSize,
+		y: originY - gridY * gridSize,
+	};
+}
+
+const cartesian = polarToCartesian(r, theta);
+const point = gridToPixel(cartesian.x, cartesian.y);
+
+const maxGridX = Math.ceil((width - padding - originX) / gridSize);
+const maxGridY = Math.ceil((originY - padding) / gridSize);
+
+const maxRadius = Math.min(maxGridX, maxGridY);
+const circles = Array.from({ length: maxRadius }, (_, i) => i + 1);
+
+const angleSteps = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
+const radialLines = angleSteps.map((angle) => {
+	const rad = (angle * Math.PI) / 180;
+	return polarToCartesian(maxRadius, rad);
+});
+---
+
+<svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg" class="inline-block">
+	<rect width={width} height={height} fill="white"/>
+	
+	{showGrid && (
+		<g>
+			{circles.map((radius) => (
+				<circle
+					cx={originX}
+					cy={originY}
+					r={radius * gridSize}
+					fill="none"
+					stroke={radius === Math.floor(r) ? "#000000" : "#D9D9D9"}
+					stroke-width={radius === Math.floor(r) ? "2" : "1"}
+				/>
+			))}
+			
+			{radialLines.map((endPoint, index) => {
+				const pixelEnd = gridToPixel(endPoint.x, endPoint.y);
+				const angle = angleSteps[index];
+				const isAxis = angle % 90 === 0;
+				return (
+					<line
+						x1={originX}
+						y1={originY}
+						x2={pixelEnd.x}
+						y2={pixelEnd.y}
+						stroke={isAxis ? "#000000" : "#D9D9D9"}
+						stroke-width={isAxis ? "2" : "1"}
+					/>
+				);
+			})}
+		</g>
+	)}
+	
+
+	
+	<circle cx={point.x} cy={point.y} r="5.5" fill={pointColor}/>
+	
+	{showLabels && (
+		<g font-family="Arial, sans-serif" font-size="12" fill="black" text-anchor="middle">
+			{circles
+				.filter((radius) => radius !== 0)
+				.map((radius) => (
+					<text
+						x={originX + radius * gridSize + 5}
+						y={originY - 4}
+					>
+						{radius}
+					</text>
+				))}
+			
+			{radialLines.map((endPoint, index) => {
+				const angle = angleSteps[index];
+				if (angle % 90 !== 0) {
+					const labelRadius = maxRadius * 0.85;
+					const labelPos = polarToCartesian(labelRadius, (angle * Math.PI) / 180);
+					const pixelPos = gridToPixel(labelPos.x, labelPos.y);
+					return (
+						<text
+							x={pixelPos.x}
+							y={pixelPos.y + 4}
+						>
+							{angle}°
+						</text>
+					);
+				}
+			})}
+			
+			<text x={width - padding - 10} y={originY + 20} font-weight="bold">x</text>
+			<text x={originX + 15} y={padding + 15} font-weight="bold">y</text>
+		</g>
+	)}
+</svg>

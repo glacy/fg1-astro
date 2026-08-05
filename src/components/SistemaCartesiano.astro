@@ -1,0 +1,158 @@
+---
+import katex from "katex";
+
+interface Props {
+	x: number;
+	y: number;
+	width?: number;
+	height?: number;
+	gridSize?: number;
+	pointColor?: string;
+	showLabels?: boolean;
+	showGrid?: boolean;
+	showGuideLines?: boolean;
+	padding?: number;
+}
+
+const {
+	x,
+	y,
+	width = 561,
+	height = 560,
+	gridSize = 35,
+	pointColor = "#FF0000",
+	showLabels = true,
+	showGrid = true,
+	showGuideLines = true,
+	padding = 40,
+} = Astro.props;
+
+const originX = width / 2;
+const originY = height / 2;
+
+function gridToPixel(gridX: number, gridY: number): { x: number; y: number } {
+	return {
+		x: originX + gridX * gridSize,
+		y: originY - gridY * gridSize,
+	};
+}
+
+const point = gridToPixel(x, y);
+
+const maxGridX = Math.ceil((width - padding - originX) / gridSize);
+const minGridX = Math.floor((padding - originX) / gridSize);
+const maxGridY = Math.ceil((originY - padding) / gridSize);
+const minGridY = Math.floor((originY - height + padding) / gridSize);
+
+const verticalLines = Array.from({ length: maxGridX - minGridX + 1 }, (_, i) => minGridX + i);
+const horizontalLines = Array.from({ length: maxGridY - minGridY + 1 }, (_, i) => minGridY + i);
+---
+<style>
+	.katex-wrapper {
+		font-size: 14px;
+		line-height: 1.2;
+	}
+	.katex-wrapper :global(.katex) {
+		font-size: 1em;
+	}
+</style>
+
+
+<svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="red" xmlns="http://www.w3.org/2000/svg" class="inline-block">
+	<rect width={width} height={height} fill="white"/>
+	
+	{showGrid && (
+		<g>
+			{verticalLines.map((gridX) => {
+				const pixelX = gridToPixel(gridX, 0).x;
+				return (
+					<line
+						x1={pixelX}
+						y1={padding}
+						x2={pixelX}
+						y2={height - padding}
+						stroke={gridX === 0 ? "#000000" : "#D9D9D9"}
+						stroke-width={gridX === 0 ? "2" : "1"}
+					/>
+				);
+			})}
+			
+			{horizontalLines.map((gridY) => {
+				const pixelY = gridToPixel(0, gridY).y;
+				return (
+					<line
+						x1={padding}
+						y1={pixelY}
+						x2={width - padding}
+						y2={pixelY}
+						stroke={gridY === 0 ? "#000000" : "#D9D9D9"}
+						stroke-width={gridY === 0 ? "2" : "1"}
+					/>
+				);
+			})}
+		</g>
+	)}
+	
+	{showGuideLines && (
+		<g>
+			<line
+				x1={point.x}
+				y1={originY}
+				x2={point.x}
+				y2={point.y}
+				stroke="black"
+				stroke-dasharray="5 5"
+			/>
+			<line
+				x1={originX}
+				y1={point.y}
+				x2={point.x}
+				y2={point.y}
+				stroke="black"
+				stroke-dasharray="5 5"
+			/>
+		</g>
+	)}
+	
+	<circle cx={point.x} cy={point.y} r="5.5" fill={pointColor}/>
+	
+	{showLabels && (
+		<g font-family="Arial, sans-serif" font-size="12" fill="black" text-anchor="middle">
+			{verticalLines
+				.filter((gridX) => gridX !== 0)
+				.map((gridX) => {
+					const labelY = originY + 15;
+					return (
+						<text
+							x={gridToPixel(gridX, 0).x}
+							y={labelY}
+						>
+							{gridX}
+						</text>
+					);
+				})}
+			
+			{horizontalLines
+				.filter((gridY) => gridY !== 0)
+				.map((gridY) => {
+					const labelX = originX - 10;
+					return (
+						<text
+							x={labelX}
+							y={gridToPixel(0, gridY).y + 4}
+							text-anchor="end"
+						>
+							{gridY}
+						</text>
+					);
+				})}
+			
+			<foreignObject x={width - padding - 25} y={originY + 15} width={40} height={40}>
+				<div class="katex-wrapper" set:html={katex.renderToString("x", { displayMode: false })} />
+			</foreignObject>
+			<foreignObject x={originX+10} y={padding} width={30} height={30}>
+				<div class="katex-wrapper" set:html={katex.renderToString("y", { displayMode: false })} />
+			</foreignObject>
+		</g>
+	)}
+</svg>

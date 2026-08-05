@@ -1,0 +1,444 @@
+---
+import katex from "katex";
+import type { GraphConfig, PolarPoint } from './types';
+import { getTheme, mergeThemes } from './themes';
+import { createCoordinateSystem, polarToCartesian, formatCoordinate } from './utils';
+
+export interface Props extends GraphConfig {
+  points: PolarPoint[];
+  showLabels?: boolean;
+  showGrid?: boolean;
+  showRadialLine?: boolean;
+  showRadiusLabel?: boolean;
+  showPointLabels?: boolean;
+  angleInDegrees?: boolean;
+  maxRadius?: number;
+  className?: string;
+  id?: string;
+}
+
+const {
+  width = 561,
+  height = 560,
+  padding = 50,
+  gridSize = 35,
+  theme = 'auto',
+  colors: customColors = {},
+  animatePoints = true,
+  showTooltips = true,
+  interactive = true,
+  points,
+  showLabels = true,
+  showGrid = true,
+  showRadialLine = true,
+  showRadiusLabel = true,
+  showPointLabels = true,
+  angleInDegrees = true,
+  maxRadius,
+  className = '',
+  id,
+} = Astro.props;
+
+const colors = mergeThemes(getTheme(theme), customColors);
+const coordSystem = createCoordinateSystem(width, height, padding, gridSize);
+
+const maxGridX = Math.ceil((width - padding - coordSystem.originX) / gridSize);
+const maxGridY = Math.ceil((coordSystem.originY - padding) / gridSize);
+const effectiveMaxRadius = maxRadius || Math.min(maxGridX, maxGridY);
+
+const circles = Array.from({ length: effectiveMaxRadius }, (_, i) => i + 1);
+const angleSteps = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330, 345];
+
+const radialLines = angleSteps.map((angle) => {
+  const rad = (angle * Math.PI) / 180;
+  return polarToCartesian(effectiveMaxRadius, rad);
+});
+
+const pointsWithPixel = points.map((point, index) => {
+  const cartesian = polarToCartesian(point.r, point.theta, angleInDegrees);
+  const pixel = coordSystem.gridToPixel(cartesian.x, cartesian.y);
+
+  return {
+    ...point,
+    pixel,
+    cartesian,
+    id: point.id || `polar-point-${index}`,
+    color: point.color || colors.primary,
+    inBounds: point.r <= effectiveMaxRadius,
+  };
+});
+
+const description = `Sistema de coordenadas polares con ${points.length} punto${points.length !== 1 ? 's' : ''}. Navegue con Tab para seleccionar puntos individuales y ver sus coordenadas específicas.`;
+
+const svgId = id || 'polar-system';
+---
+
+<style>
+  .polar-container {
+    display: inline-block;
+    position: relative;
+  }
+
+  .point-circle {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .point-circle:hover {
+    r: 7;
+    filter: brightness(1.1);
+  }
+
+  .point-circle:focus {
+    outline: none;
+  }
+
+  .point-ring {
+    transition: all 0.3s ease;
+  }
+
+  .tooltip-group {
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .tooltip-rect {
+    rx: 4;
+    ry: 4;
+  }
+
+  .angle-arc {
+    transition: all 0.3s ease;
+  }
+
+  .radial-line {
+    transition: all 0.3s ease;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    transform-origin: center;
+    animation: spin-slow 3s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .point-circle,
+    .point-ring,
+    .tooltip-group,
+    .radial-line {
+      transition: none;
+    }
+
+    .animate-pulse,
+    .animate-spin-slow {
+      animation: none;
+    }
+  }
+
+  :global(.katex-wrapper) {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  :global(.katex-wrapper .katex) {
+    font-size: 1em;
+  }
+
+  .point-label :global(.katex) {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .tooltip-content :global(.katex) {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--tooltip-text-color, white);
+  }
+</style>
+
+<div class={`polar-container ${className}`}>
+  <svg
+    id={svgId}
+    width={width}
+    height={height}
+    viewBox={`0 0 ${width} ${height}`}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-label={`Sistema polar con ${points.length} punto${points.length !== 1 ? 's' : ''}`}
+    aria-describedby={`${svgId}-description`}
+    focusable={interactive ? "true" : "false"}
+    tabindex={interactive ? 0 : -1}
+    class="polar-svg"
+  >
+    <title>Sistema polar con {points.length} punto{points.length !== 1 ? 's' : ''}</title>
+    <desc id={`${svgId}-description`}>{description}</desc>
+
+    <rect width={width} height={height} fill={colors.background}/>
+
+    {showGrid && (
+      <g aria-label="Cuadrícula polar con círculos y líneas radiales">
+        {circles.map((radius) => (
+          <circle
+            cx={coordSystem.originX}
+            cy={coordSystem.originY}
+            r={radius * gridSize}
+            fill="none"
+            stroke={radius === Math.floor(effectiveMaxRadius) ? colors.axis : colors.grid}
+            stroke-width={radius === Math.floor(effectiveMaxRadius) ? "2" : "1"}
+            stroke-dasharray="none"
+            aria-hidden="true"
+          />
+        ))}
+
+        {radialLines.map((endPoint, index) => {
+          const pixelEnd = coordSystem.gridToPixel(endPoint.x, endPoint.y);
+          const angle = angleSteps[index];
+          const isAxis = angle % 90 === 0;
+          return (
+            <line
+              x1={coordSystem.originX}
+              y1={coordSystem.originY}
+              x2={pixelEnd.x}
+              y2={pixelEnd.y}
+              stroke={isAxis ? colors.axis : colors.grid}
+              stroke-width={isAxis ? "2" : "1"}
+              stroke-dasharray={isAxis ? "none" : "4 2"}
+              aria-hidden="true"
+            />
+          );
+        })}
+      </g>
+    )}
+
+    {pointsWithPixel.map((pointData) => (
+      <g>
+        {showRadialLine && (
+          <line
+            x1={coordSystem.originX}
+            y1={coordSystem.originY}
+            x2={pointData.pixel.x}
+            y2={pointData.pixel.y}
+            stroke={pointData.color}
+            stroke-width="1"
+            stroke-dasharray="4 4"
+            class="radial-line"
+            aria-hidden="true"
+          />
+        )}
+
+        {showRadiusLabel && pointData.r > 0 && (
+          <foreignObject
+            x={(coordSystem.originX + pointData.pixel.x) / 2}
+            y={(coordSystem.originY + pointData.pixel.y) / 2 - 15}
+            width={60}
+            height={20}
+            aria-hidden="true"
+          >
+            <div class="katex-wrapper" set:html={katex.renderToString(`r=${formatCoordinate(pointData.r)}`, { displayMode: false })} />
+          </foreignObject>
+        )}
+
+        {!pointData.inBounds && (
+          <g aria-label={`Punto fuera de rango: (r=${formatCoordinate(pointData.r)}, θ=${formatCoordinate(pointData.theta, 1)}°)`}>
+            <circle
+              cx={pointData.pixel.x}
+              cy={pointData.pixel.y}
+              r="12"
+              fill="none"
+              stroke={colors.warning}
+              stroke-width="2"
+              stroke-dasharray="4 4"
+              class={animatePoints ? 'animate-spin-slow' : ''}
+            />
+            <text
+              x={pointData.pixel.x}
+              y={pointData.pixel.y - 18}
+              fill={colors.warning}
+              font-size="10"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              Fuera de rango
+            </text>
+          </g>
+        )}
+
+        <g class="point-group">
+          <circle
+            cx={pointData.pixel.x}
+            cy={pointData.pixel.y}
+            r="10"
+            fill={pointData.color}
+            opacity="0.2"
+            class={animatePoints ? 'point-ring animate-pulse' : 'point-ring'}
+            aria-hidden="true"
+          />
+          <circle
+            cx={pointData.pixel.x}
+            cy={pointData.pixel.y}
+            r="5.5"
+            fill={pointData.color}
+            class="point-circle"
+            aria-label={`Coordenadas polares: radio = ${formatCoordinate(pointData.r)}, ángulo = ${formatCoordinate(pointData.theta, 1)}°`}
+            tabindex={interactive ? 0 : -1}
+            data-point-id={pointData.id}
+            data-coordinates={`(r=${formatCoordinate(pointData.r)}, θ=${formatCoordinate(pointData.theta, 1)}°)`}
+          />
+          {showPointLabels && pointData.label && (
+            <foreignObject
+              x={pointData.pixel.x - 20}
+              y={pointData.pixel.y - 35}
+              width={40}
+              height={20}
+              aria-hidden="true"
+            >
+              <div class="katex-wrapper point-label" set:html={katex.renderToString(pointData.label, { displayMode: false })} />
+            </foreignObject>
+          )}
+        </g>
+
+        {showTooltips && interactive && (
+          <g
+            class="tooltip-group opacity-0"
+            aria-hidden="true"
+          >
+            <rect
+              x={pointData.pixel.x + 10}
+              y={pointData.pixel.y - 32}
+              width={100}
+              height={26}
+              class="tooltip-rect"
+              fill={colors.tooltip}
+            />
+            <foreignObject
+              x={pointData.pixel.x + 15}
+              y={pointData.pixel.y - 30}
+              width={90}
+              height={22}
+            >
+              <div class="katex-wrapper tooltip-content" set:html={katex.renderToString(`r=${formatCoordinate(pointData.r)}, \\theta=${formatCoordinate(pointData.theta, 1)}^\\circ`, { displayMode: false })} />
+            </foreignObject>
+          </g>
+        )}
+      </g>
+    ))}
+
+    {showLabels && (
+      <g
+        font-family="Arial, sans-serif"
+        font-size="12"
+        fill={colors.text}
+        text-anchor="middle"
+        aria-label="Etiquetas de los ejes y números"
+      >
+        {circles
+          .filter((radius) => radius !== 0)
+          .map((radius) => (
+            <text
+              x={coordSystem.originX + radius * gridSize + 5}
+              y={coordSystem.originY - 4}
+            >
+              {radius}
+            </text>
+          ))}
+
+        {radialLines.map((endPoint, index) => {
+          const angle = angleSteps[index];
+          if (angle % 90 !== 0) {
+            const labelRadius = effectiveMaxRadius * 0.88;
+            const labelPos = polarToCartesian(labelRadius, (angle * Math.PI) / 180);
+            const pixelPos = coordSystem.gridToPixel(labelPos.x, labelPos.y);
+            return (
+              <text
+                x={pixelPos.x}
+                y={pixelPos.y + 4}
+                font-size="11"
+              >
+                {angle}°
+              </text>
+            );
+          }
+        })}
+
+        
+      </g>
+    )}
+  </svg>
+</div>
+
+<script define:vars={{ svgId, interactive }}>
+  function initializePolarSystem() {
+    if (!interactive) return;
+
+    const svg = document.getElementById(svgId);
+    if (!svg) return;
+
+    const pointCircles = svg.querySelectorAll('.point-circle');
+    const tooltipGroups = svg.querySelectorAll('.tooltip-group');
+
+    function showTooltip(pointId) {
+      const pointCircle = svg.querySelector(`[data-point-id="${pointId}"]`);
+      const tooltipGroup = pointCircle?.closest('.point-group')?.querySelector('.tooltip-group');
+
+      if (tooltipGroup) {
+        tooltipGroup.classList.remove('opacity-0');
+        tooltipGroup.classList.add('opacity-100');
+      }
+    }
+
+    function hideTooltip(pointId) {
+      const pointCircle = svg.querySelector(`[data-point-id="${pointId}"]`);
+      const tooltipGroup = pointCircle?.closest('.point-group')?.querySelector('.tooltip-group');
+
+      if (tooltipGroup) {
+        tooltipGroup.classList.remove('opacity-100');
+        tooltipGroup.classList.add('opacity-0');
+      }
+    }
+
+    function hideAllTooltips() {
+      tooltipGroups.forEach(group => {
+        group.classList.remove('opacity-100');
+        group.classList.add('opacity-0');
+      });
+    }
+
+    pointCircles.forEach(circle => {
+      const pointId = circle.getAttribute('data-point-id');
+      if (!pointId) return;
+
+      circle.addEventListener('mouseenter', () => showTooltip(pointId));
+      circle.addEventListener('mouseleave', () => hideTooltip(pointId));
+      circle.addEventListener('focus', () => showTooltip(pointId));
+      circle.addEventListener('blur', () => hideTooltip(pointId));
+
+      circle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const coordinates = circle.getAttribute('data-coordinates');
+          if (coordinates) {
+            alert(`Coordenadas: ${coordinates}`);
+          }
+        }
+      });
+    });
+
+    svg.addEventListener('mouseleave', hideAllTooltips);
+  }
+
+  initializePolarSystem();
+</script>
