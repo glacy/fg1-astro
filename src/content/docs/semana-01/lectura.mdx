@@ -20,6 +20,10 @@ import Box from '../../../components/Box.astro';
 import { Steps } from '@astrojs/starlight/components';
 import { Image } from 'astro:assets';
 import SistemaModelo from "../../../assets/sistema_vs_modelo.svg";
+import MagnitudVector from "../../../assets/magnitud_vector.svg";
+import SumaParalelogramo from "../../../assets/suma_paralelogramo.svg";
+import SumaPoligono from "../../../assets/suma_poligono.svg";
+
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import { SistemaCartesiano, SistemaPolar } from '@/components/graph';
@@ -37,11 +41,6 @@ Para ilustrar esto, consideremos el lanzamiento de una bola. En la realidad, su 
 
 <Image src={SistemaModelo} alt="Un sistema físico involucra muchas propiedades. Los modelos buscan simplificar el análisis" layout='constrained' width={800} height={600}/>
 
-
-
-
-
-
 A cada una de estas propiedades medibles que caracterizan a un sistema o a un modelo —la masa, la velocidad, la fuerza, entre otras— se las conoce como *cantidades físicas*. Constituyen la base sobre la cual se construye cualquier análisis. No obstante, una cantidad física requiere de una referencia para ser útil, y ahí es donde entran las *unidades* de medida. En esta sesión comenzaremos a estudiar estas cantidades y sus unidades, los elementos fundamentales sin los cuales la Física, tal como la conocemos, no sería posible.
 
 ## Cantidades físicas y unidades
@@ -51,7 +50,6 @@ En términos prácticos, una **cantidad física** es un atributo de la realidad 
 Para que la ciencia sea universal y los modelos sean replicables en cualquier lugar del mundo, no podemos inventar unidades al azar. Necesitamos un marco coherente donde todas las unidades estén interconectadas lógicamente. Ese marco es el Sistema Internacional de Unidades (SI). La Tabla 1.1 muestra las cantidades físicas fundamentales del SI.
 
 
-<a id="tab:SI-fund"></a>
 
 **Tabla 1.1.** Cantidades físicas fundamentales del Sistema Internacional (SI).
 
@@ -65,7 +63,7 @@ Para que la ciencia sea universal y los modelos sean replicables en cualquier lu
 | Cantidad de sustancia | $$n$$ | mol | mol |
 | Intensidad luminosa | $$I_v$$ | candela | cd |
 
-Sin embargo, la realidad que intentamos modelar es mucho más rica que esas siete magnitudes básicas. Para describir fenómenos como la velocidad de un objeto o la presión de un gas, debemos combinar las cantidades fundamentales mediante relaciones matemáticas. El resultado de estas combinaciones son las cantidades físicas derivadas, cuya lista de ejemplos más representativos se presenta en la Tabla
+Sin embargo, la realidad que intentamos modelar es mucho más rica que esas siete magnitudes básicas. Para describir fenómenos como la velocidad de un objeto o la presión de un gas, debemos combinar las cantidades fundamentales mediante relaciones matemáticas. El resultado de estas combinaciones son las cantidades físicas derivadas, cuya lista de ejemplos más representativos se presenta en la Tabla 1.2.
 
 **Tabla 1.2.** Ejemplos de cantidades físicas derivadas y sus unidades en el SI.
 
@@ -82,7 +80,7 @@ Sin embargo, la realidad que intentamos modelar es mucho más rica que esas siet
 
 
 
-La realidad que intentamos modelar escala de manera asombrosa: desde la minúscula distancia entre dos átomos hasta la inmensidad de una galaxia. Estas cantidades varían en múltiples órdenes de magnitud respecto a nuestras unidades fundamentales. Por ello, es indispensable dominar el uso de prefijos y de notación científica, los cuales nos permiten escribir de forma compacta tanto los múltiplos como las fracciones de cualquier unidad. La Tabla [X] lista los principales prefijos utilizados en el SI
+La realidad que intentamos modelar escala de manera asombrosa: desde la minúscula distancia entre dos átomos hasta la inmensidad de una galaxia. Estas cantidades varían en múltiples órdenes de magnitud respecto a nuestras unidades fundamentales. Por ello, es indispensable dominar el uso de prefijos y de notación científica, los cuales nos permiten escribir de forma compacta tanto los múltiplos como las fracciones de cualquier unidad. La Tabla 1.3 lista los principales prefijos utilizados en el SI
 
 **Tabla 1.3.** Prefijos usados en el SI.
 
@@ -253,7 +251,12 @@ Una **cantidad escalar** queda completamente definida con un número (su magnitu
 
 Por otro lado, una **cantidad vectorial** es más rica en información. Para definirla por completo, no basta con conocer su magnitud; necesitamos especificar explícitamente su *dirección* y su *sentido*. 
 
-Por esta razón, solemos representar los vectores gráficamente mediante flechas: la longitud de la flecha es proporcional a la magnitud, y la punta indica la dirección y el sentido de la cantidad. Para denotarlos simbólicamente en las ecuaciones, se coloca una pequeña flecha sobre la letra que representa la cantidad. Por ejemplo, si una cantidad se llama $$A$$, escribiremos $$\vec{A}$$ para indicar que es un vector.
+Por esta razón, solemos representar los vectores gráficamente mediante flechas: la longitud de la flecha es proporcional a la magnitud, y la punta indica la dirección y el sentido de la cantidad. Para denotarlos simbólicamente en las ecuaciones, se coloca una pequeña flecha sobre la letra que representa la cantidad. Por ejemplo, si una cantidad se llama $$A$$, escribiremos $$\vec{A}$$ para indicar que es un vector. También se utiliza la letra que representa el vector para indicar su magnitud, lo cual se escribe 
+$$
+|\vec{A}|=A
+$$
+
+<Image src={MagnitudVector} alt="los vectores se representan por flechas: la longitud representa la magnitud y la orientacion la dirección" layout='constrained'/>
 
 <Box icon="check-list">
 
@@ -274,7 +277,40 @@ Debido a este carácter direccional, los vectores exigen un **marco o sistema de
 
 ### Sistema cartesiano rectangular
 
-El sistema de referencia más utilizado en Física es el **sistema rectangular de ejes coordenados** (o sistema cartesiano). A partir de este esquema de ejes perpendiculares, podemos descomponer cualquier vector en sus *componentes cartesianas*, lo cual es la herramienta matemática fundamental que nos permitirá sumar, restar y analizar vectores de forma exacta. 
+El sistema de referencia más utilizado en Física es el **sistema rectangular de ejes coordenados** (o sistema cartesiano). A partir de este esquema de ejes perpendiculares, podemos descomponer cualquier vector en sus *componentes cartesianas*, lo cual es la herramienta matemática fundamental que nos permitirá sumar, restar y analizar vectores de forma exacta.
+
+#### Entendiendo las coordenadas $$x$$ y $$y$$
+
+Imagina que estás en el centro de una cuadrícula infinita, como si estuvieras de pie en el cruce de dos avenidas perpendiculares. Este punto central se llama **origen** y se denota como $$O$$. Desde aquí, puedes moverte en cuatro direcciones fundamentales:
+
+- **Eje $$x$$ (horizontal)**: La avenida que corre de izquierda a derecha. Moviéndote hacia la derecha, aumentamos el valor de $$x$$ (valores positivos). Moviéndote hacia la izquierda, disminuimos el valor de $$x$$ (valores negativos).
+- **Eje $$y$$ (vertical)**: La calle perpendicular que sube y baja. Moviéndote hacia arriba, aumentamos el valor de $$y$$ (valores positivos). Moviéndote hacia abajo, disminuimos el valor de $$y$$ (valores negativos).
+
+Cualquier punto en este plano queda perfectamente localizado por un par ordenado $$(x, y)$$, donde:
+
+- **$$x$$ (coordenada horizontal)**: Indica qué tan lejos estás  en dirección horizontal. Si $$x = 3$$, estás 3 unidades a la derecha . Si $$x = -2$$, estás 2 unidades a la izquierda.
+- **$$y$$ (coordenada vertical)**: Indica qué tan lejos estás  en dirección vertical. Si $$y = 4$$, estás 4 unidades arriba . Si $$y = -5$$, estás 5 unidades abajo.
+
+<Box icon="check-list">
+
+**Piénsalo como dar instrucciones a un amigo**
+
+Si tuviera que decirle a un amigo tu ubicación en un campus universitario usando este sistema:
+- "Estoy en las coordenadas $$(2, 3)$$" significa: camina 2 pasos a la derecha ($$x$$ positivo) y luego 3 pasos hacia arriba ($$y$$ positivo).
+- "Estoy en las coordenadas $$(-1, -4)$$" significa: camina 1 paso a la izquierda ($$x$$ negativo) y luego 4 pasos hacia abajo ($$y$$ negativo).
+
+</Box>
+
+#### Los cuatro cuadrantes
+
+El sistema cartesiano divide el plano en cuatro regiones llamadas **cuadrantes**, que funcionan como los cuatro cuartos del campus:
+
+- **Primer cuadrante** ($$x > 0$$, $$y > 0$$): Derecha y arriba 
+- **Segundo cuadrante** ($$x < 0$$, $$y > 0$$): Izquierda y arriba   
+- **Tercer cuadrante** ($$x < 0$$, $$y < 0$$): Izquierda y abajo 
+- **Cuarto cuadrante** ($$x > 0$$, $$y < 0$$): Derecha y abajo 
+
+Esta estructura nos permite calcular distancias, ángulos y realizar cualquier operación matemática necesaria para resolver problemas de física con precisión.
 
 
 <SistemaCartesiano 
@@ -287,8 +323,81 @@ El sistema de referencia más utilizado en Física es el **sistema rectangular d
   gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
   showPointLabels={false} 
   showTooltips={true} 
- />
+/>
 
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+Elije la opción que completa correctamente cada una de las frases.
+
+1. En el sistema cartesiano rectangular, un punto con coordenadas $$(-3, 4)$$ se encuentra ________ del origen.
+
+    <MultipleChoice>
+      <Option>
+        3 unidades a la derecha y 4 unidades arriba 
+      </Option>
+      <Option>
+        3 unidades a la izquierda y 4 unidades abajo 
+      </Option>
+      <Option isCorrect>
+        3 unidades a la izquierda y 4 unidades arriba 
+      </Option>
+      <Option>
+        3 unidades a la derecha y 4 unidades abajo 
+      </Option>
+    </MultipleChoice>
+
+Observa el siguiente sistema cartesiano e identifica la respuesta correcta.
+
+<SistemaCartesiano 
+  points={[
+    { x: 2, y: 3, label: 'P', color: '#EF4444' },
+    { x: -2, y: -3, label: 'Q', color: '#3B82F6' }
+    ]}
+  gridRange={{ minX: -5, maxX: 5, minY: -5, maxY: 5 }}
+  maxRange={{ x: 4, y: 4 }}
+  showPointLabels={true} 
+  showTooltips={false} 
+  width={500}
+  height={500}
+/>
+
+2. El punto $$P$$ se encuentra en el ________ cuadrante.
+
+    <MultipleChoice>
+      <Option>
+        segundo cuadrante; $$(2, 3)$$
+      </Option>
+      <Option>
+        cuarto cuadrante; $$(2, 3)$$
+      </Option>
+      <Option isCorrect>
+        primer cuadrante; $$(2, 3)$$
+      </Option>
+      <Option>
+        tercer cuadrante; $$(2, 3)$$
+      </Option>
+    </MultipleChoice>
+
+3. El punto $$Q$$ tiene coordenadas cartesianas ________.
+
+    <MultipleChoice>
+      <Option>
+        $$(-3, -2)$$
+      </Option>
+      <Option>
+        $$(2, -3)$$
+      </Option>
+      <Option isCorrect>
+        $$(-2, -3)$$
+      </Option>
+      <Option>
+        $$(-3, 2)$$
+      </Option>
+    </MultipleChoice>
+</Box>
 
 ### Sistema de coordenadas polares
 
@@ -386,6 +495,9 @@ $$
 \vec{R} = \vec{A} + \vec{B}
 $$
 
+<Image src={SumaParalelogramo} alt="La suma de dos vectores es igual a la diagonal del paralelogramo que forma cuando se dibujan respecto al mismo punto" layout='constrained' width={1018} height={259}/>
+
+
 ### Método gráfico: regla del polígono o cabeza-cola
 
 Otra forma equivalente de sumar vectores es la **regla del polígono** o **cabeza-cola**:
@@ -395,6 +507,9 @@ Otra forma equivalente de sumar vectores es la **regla del polígono** o **cabez
 3. El vector resultante $$\vec{R}$$ va desde el origen de $$\vec{A}$$ hasta la cabeza de $$\vec{B}$$
 
 Este método se extiende fácilmente a la suma de más de dos vectores, simplemente concatenando cada vector al final del anterior.
+
+<Image src={SumaPoligono} alt="La suma de dos vectores es igual a la diagonal del paralelogramo que forma cuando se dibujan respecto al mismo punto" layout='constrained' width={551} height={259}/>
+
 
 ### Resta de vectores
 

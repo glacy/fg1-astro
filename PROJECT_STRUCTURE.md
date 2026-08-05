@@ -58,7 +58,7 @@ src/layouts/
 ```
 
 ### src/components/
-Componentes Astro (estáticos, renderizados en servidor). Se prefiere composición sobre duplicación inline.
+Componentes Astro (estáticos, renderizados en servidor) y Web Components nativos. Se prefiere composición sobre duplicación inline.
 
 ```
 src/components/
@@ -78,7 +78,17 @@ src/components/
 ├── NavCard.astro            # Tarjeta de navegación del dashboard (href, icon, title, description, color)
 ├── ScheduleFilters.astro    # Filtros de horario (docente, modalidad, día)
 ├── ScheduleTable.astro      # Tabla de horarios de atención (data-attributes para filtro cliente)
-├── ScheduleTable.astro      # Tabla de horarios de atención (data-attributes para filtro cliente)
+├── MultipleChoice.astro     # Web Component nativo: preguntas de selección múltiple con validación instantánea
+├── Option.astro             # Componente Astro: opción individual para <MultipleChoice> con template de feedback
+├── Exercise.astro           # Web Component nativo: ejercicios interactivos con hints y soluciones
+├── ExerciseHint.astro       # Componente Astro: hint/pista para ejercicios
+├── ExerciseBlock.astro      # Componente Astro: bloque contenedor de ejercicios
+├── Box.astro                # Componente Astro: contenedores reutilizables (icon: question-mark | check-list)
+├── PreCheck.astro           # Componente Astro: lista de objetivos de pre-evaluación
+├── KaTeXStyles.astro        # Estilos optimizados para fórmulas matemáticas KaTeX 0.18.1
+├── SistemaCartesiano.astro  # Diagrama interactivo del sistema de coordenadas rectangulares
+├── SistemaPolar.astro       # Diagrama interactivo del sistema de coordenadas polares
+└── graph/                   # Directorio para componentes gráficos (vacío, para extender)
 ```
 
 ### src/lib/
@@ -99,7 +109,16 @@ src/lib/
 ├── schedule.ts              # Lógica de horarios (formatLocation, filterInstructors)
 ├── schedule-filter.client.ts # Filtrado cliente de horarios (CustomEvent + data-attributes)
 ├── instructors.ts           # Datos de instructores (tipos en src/types.ts)
-└── types.ts                 # Tipos compartidos: Attention, Instructor
+├── types.ts                 # Tipos compartidos: Attention, Instructor
+└── remark-mdx-math-brace-fix.mjs # Plugin MDX para corregir sintaxis KaTeX en brace expressions
+```
+
+### src/integrations/
+Integraciones Astro personalizadas.
+
+```
+src/integrations/
+└── offline-banner.ts        # Banner de conexión online/offline con transiciones suaves (5s offline, 2.5s online)
 ```
 
 ### src/sw.ts
@@ -115,7 +134,7 @@ src/styles/
 ```
 
 ### src/content/
-Content Collections de Astro para documentos académicas.
+Content Collections de Astro para documentos académicos. Soporta MDX con componentes (Box, PreCheck, MultipleChoice, Exercise) y matemáticas KaTeX.
 
 ```
 src/content/
@@ -129,8 +148,8 @@ src/content/
     ├── index.md             # Índice general de documentos
     ├── semana-01/           # Semana 1: Unidades y cantidades físicas
     │   ├── index.md         # Página overview de la semana
-    │   ├── lectura.mdx      # Lectura principal de la semana
-    │   ├── practica.mdx     # Práctica de la semana
+    │   ├── lectura.mdx      # Lectura principal de la semana (MDX + KaTeX + componentes)
+    │   ├── practica.mdx     # Práctica de la semana (MDX + componentes interactivos)
     │   └── solucion.mdx     # Solución (opcional, cuando exista)
     ├── semana-02/           # Semana 2
     │   ├── index.md

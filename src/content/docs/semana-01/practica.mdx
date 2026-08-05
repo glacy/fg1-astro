@@ -2,80 +2,298 @@
 title: "Práctica"
 week: 1
 keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
-draft: true
+draft: false
 ---
+import { Badge } from '@astrojs/starlight/components';
 import { Steps } from '@astrojs/starlight/components';
 import Box from '../../../components/Box.astro';
 import { Aside } from '@astrojs/starlight/components';
-import SistemaCartesiano from '../../../components/SistemaCartesiano.astro';
 
-
-
-
-<Aside type="note" icon="heart" title="Ejercicio 7">
-La dosis de la inyección contra la influenza es de $$125 \, \mathrm{cm}^3$$. ¿Cuántas dosis se pueden aplicar a partir de $$1 \, \mathrm{gal}$$?
+<Aside type="note" icon="pencil" title="Ejercicio 1">
+Decidiste comprar un mini-refrigerador para tu cuarto. En la página web dice que las dimensiones internas son $45,0 \, \mathrm{cm}$ de ancho, $50,0 \, \mathrm{cm}$ de profundidad y $60,0 \, \mathrm{cm}$ de alto. ¿Cuántos litros de espacio útil tienes realmente para guardar tus bebidas y comida?
 
 <details>
 <summary>Ver solución</summary>
 
-Este es un excelente ejemplo de cómo los factores de conversión nos sacan de apuros cuando nos dan unidades de sistemas totalmente distintos (galones del sistema inglés contra centímetros cúbicos del sistema cegesimal). 
+Para saber cuántas cosas le caben al fridge, primero lo tratamos como una simple caja geométrica. Multiplicamos sus tres dimensiones para obtener el volumen en centímetros cúbicos:
+$$
+V = a \cdot l \cdot h = (45 \, \mathrm{cm}) \cdot (50 \, \mathrm{cm}) \cdot (60 \, \mathrm{cm}) = 135 \times 10^3 \, \mathrm{cm}^3
+$$ 
+Ahora viene el truco: aunque el refrigerador nos dice "litros" por fuera, matemáticamente es más fácil convertir los $\mathrm{cm}^3$ a metros cúbicos ($\mathrm{m}^3$) primero, porque de ahí a litros es directo. Usamos nuestros factores como "puentes":
+$$
+V = (135 \times 10^3 \, \mathrm{cm}^3) \cdot \left(\frac{1 \, \mathrm{m}}{100 \, \mathrm{cm}}\right)^3 \cdot \left(\frac{1000 \, \mathrm{L}}{1 \, \mathrm{m}^3}\right) = 135 \, \mathrm{L}
+$$
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2">
+Estás organizando una reunión y compraste un galón de tu bebida favorita. Si cada vaso de plástico que vas a servir tiene una capacidad de $250 \, \mathrm{cm}^3$, ¿a cuántos vasos exactos les alcanza a servir?
+
+<details>
+<summary>Ver solución</summary>
+
+Este es un ejemplo clásico de cómo los factores de conversión nos sacan de apuros cuando mezclamos sistemas (el galón es inglés, el vaso está en centímetros cúbicos del sistema métrico). 
 
 Primero, traducimos nuestro galón completo a centímetros cúbicos pasando por litros:
- 
+$$
+1 \, \mathrm{gal} = 3,785 \, \mathrm{L} \cdot \left( \frac{1 \, \mathrm{m}^3}{1000 \, \mathrm{L}} \right) \cdot \left( \frac{100 \, \mathrm{cm}}{1 \, \mathrm{m}} \right)^3 = 3785 \, \mathrm{cm}^3
+$$
 
-Una vez que hablamos el mismo idioma ($$\mathrm{cm}^3$$), la pregunta se reduce a una simple regla de tres: ¿cuántas veces "cabe" la dosis de $$125 \, \mathrm{cm}^3$$ en un volumen total de $$3785 \, \mathrm{cm}^3$$? Podemos usar un último factor de conversión para esto:
-$$ \text{Dosis} = (3785 \, \mathrm{cm}^3) \cdot \left( \frac{1 \, \mathrm{dosis}}{125 \, \mathrm{cm}^3} \right) = 30,3 \, \mathrm{dosis} $$ *(Es decir, tenemos para 30 dosis completas y un pequeño sobrante).*
+Una vez que hablamos el mismo idioma ($\mathrm{cm}^3$), la pregunta se reduce a una simple regla de tres: ¿cuántas veces "cabe" el vaso de $250 \, \mathrm{cm}^3$ en el galón? Podemos usar un último factor de conversión para esto:
+$$
+\text{Vasos} = (3785 \, \mathrm{cm}^3) \cdot \left( \frac{1 \, \mathrm{vaso}}{250 \, \mathrm{cm}^3} \right) = 15,14 \, \mathrm{vasos} 
+$$ 
+*(Es decir, tienes para servirle a 15 amigos un vaso lleno, y te sobra un poquito para ti).*
 
 </details>
 </Aside>
 
-:::tip[Ejercicio 3]
-3. El microscopio óptico detecta la radiación con longitudes de onda entre los $$400$$ y los $$700 \, \mathrm{nm}$$. ¿Detectaría un microscopio óptico radiación de $$500 \, 000 \, \mathrm{pm}$$ de longitud de onda?
+<Aside type="note" icon="pencil" title="Ejercicio 3">
+Sabemos que la luz visible (lo que ven tus ojos al mirar la pantalla del celular) tiene longitudes de onda entre $400$ y $700 \, \mathrm{nm}$. Si compras una lámpara de luz negra (UV) para tu cuarto que emite radiación de $400 \, 000 \, \mathrm{pm}$, ¿podrás ver el brillo de esa lámpara con tus propios ojos?
 
 <details>
 <summary>Ver solución</summary>
 
-El truco aquí es no dejarse intimidar por los números. Comparar nanómetros ($$\mathrm{nm}$$) con picómetros ($$\mathrm{pm}$$) directamente es como comparar manzanas con peras. Para saber si esa radiación "entra" en el rango del microscopio, debemos llevar a las tres cantidades al mismo idioma: el metro ($$\mathrm{m}$$).
+El truco aquí es no dejarse intimidar por los números grandes. Comparar nanómetros ($\mathrm{nm}$) con picómetros ($\mathrm{pm}$) es como comparar metros con centímetros. Para saber si esa luz UV "entra" en lo que tu ojo puede ver, llevamos a las tres cantidades al mismo idioma: el metro ($\mathrm{m}$).
 
-$$ 400 \, \mathrm{nm} = 400 \times 10^{-9} \, \mathrm{m} = 4 \times 10^{-7} \, \mathrm{m} $$ $$ 700 \, \mathrm{nm} = 700 \times 10^{-9} \, \mathrm{m} = 7 \times 10^{-7} \, \mathrm{m} $$ $$ 500 \, 000 \, \mathrm{pm} = 500 \, 000 \times 10^{-12} \, \mathrm{m} = 5 \times 10^{-7} \, \mathrm{m} $$ 
-Al poner todo en notación científica y en metros, se hace evidente que $$5 \times 10^{-7} \, \mathrm{m}$$ está justo en el medio del rango que va de $$4 \times 10^{-7} \, \mathrm{m}$$ a $$7 \times 10^{-7} \, \mathrm{m}$$. Por lo tanto, la respuesta es sí, el microscopio la detectaría sin problemas.
+$$
+400 \, \mathrm{nm} = 400 \times 10^{-9} \, \mathrm{m} = 4 \times 10^{-7} \, \mathrm{m} \quad \text{(Límite inferior visible)}
+$$
+
+$$700 \, \mathrm{nm} = 700 \times 10^{-9} \, \mathrm{m} = 7 \times 10^{-7} \, \mathrm{m} \quad \text{(Límite superior visible)}
+$$
+
+$$
+400 \, 000 \, \mathrm{pm} = 400 \, 000 \times 10^{-12} \, \mathrm{m} = 4 \times 10^{-7} \, \mathrm{m} \quad \text{(Tu lámpara UV)}
+$$ 
+
+Al poner todo en notación científica, vemos que $4 \times 10^{-7} \, \mathrm{m}$ está *exactamente* en el límite inferior de lo que el ojo humano puede ver (el color violeta extremo). En la práctica, tu ojo apenas y logrará percibir un brillo muy tenue y morado; la mayor parte de la energía de esa lámpara es invisible para ti.
 
 </details>
-:::
+</Aside>
 
-:::tip[Ejercicio 4]
-4. Cuatro insectos se mueven con las siguientes rapideces: $$v_a=30 \, \mathrm{m/s}$$, $$v_b=100 \, \mathrm{km/h}$$, $$v_c=55 \, \mathrm{mi/h}$$, $$v_d=100 \, \mathrm{ft/s}$$. ¿Cuál de ellos se mueve más rápido?
+<Aside type="note" icon="pencil" title="Ejercicio 4">
+Estás comparando distintas formas de llegar a la universidad por la mañana. Tienes las siguientes rapideces: caminando a paso normal a $1,5 \, \mathrm{m/s}$, en tu bicicleta a $20 \, \mathrm{km/h}$, en el autobús a $60 \, \mathrm{km/h}$, y corriendo a sprint como $15 \, \mathrm{ft/s}$. ¿Cuál es realmente el método más rápido?
 
 <details>
 <summary>Ver solución</summary>
 
-Para saber quién gana la carrera, no podemos comparar directamente kilómetros por hora con pies por segundo; sería injusto. Debemos llevar a los cuatro competidores al mismo sistema de referencia. Como el insecto "a" ya está en la unidad estándar ($$\mathrm{m/s}$$), usaremos esa como meta.
+Para saber quién gana la carrera matutina, no podemos comparar directamente kilómetros por hora con pies por segundo; sería injusto. Debemos llevar a los cuatro métodos al mismo sistema de referencia. Como caminar ya está en la unidad estándar ($\mathrm{m/s}$), usaremos esa como meta.
 
-$$ v_a = 30 \, \mathrm{m/s} \quad {\text{Ya en la meta}} $$ 
-$$ v_{b} = 100 \, \mathrm{km/h} \cdot \left( \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 27,8 \, \mathrm{m/s} $$ 
-$$ v_{c} = 55 \, \mathrm{mi/h} \cdot \left( \frac{1610 \, \mathrm{m}}{1 \, \mathrm{mi}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 24,6 \, \mathrm{m/s} $$ 
-$$ v_{d} = 100 \, \mathrm{ft/s} \cdot \left( \frac{0,3048 \, \mathrm{m}}{1 \, \mathrm{ft}} \right) = 30,5 \, \mathrm{m/s} $$ 
-Una vez que todos hablan el mismo idioma, la respuesta salta a la vista: el insecto **d** es el más rápido, superando por poco al insecto a.
+$$
+v_{\text{caminando}} = 1,5 \, \mathrm{m/s} \quad \text{(Ya en la meta)}
+$$ 
+
+$$
+ v_{\text{bicicleta}} = 20 \, \mathrm{km/h} \cdot \left( \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 5,55 \, \mathrm{m/s} 
+$$
+
+$$
+v_{\text{autobús}} = 60 \, \mathrm{km/h} \cdot \left( \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 16,67 \, \mathrm{m/s}
+$$ 
+
+$$
+v_{\text{sprint}} = 15 \, \mathrm{ft/s} \cdot \left( \frac{0,3048 \, \mathrm{m}}{1 \, \mathrm{ft}} \right) = 4,57 \, \mathrm{m/s}
+$$ 
+
+Una vez que todos hablan el mismo idioma, la respuesta es clara: el autobús es por lejos el más rápido, aunque en la vida real el tráfico hace que la bicicleta sea muchas veces más eficiente.
 
 </details>
-:::
+</Aside>
 
-:::tip
-5. El rendimiento de un automóvil es tal que puede recorrer $$500 \, \mathrm{km}$$ con $$35 \, \mathrm{L}$$ de gasolina. ¿Cuántas millas podría recorrer con $$5 \, \mathrm{gal}$$?
+<Aside type="note" icon="pencil" title="Ejercicio 5">
+El recibo de tu último viaje en Uber o DiDi muestra que el carro recorrió una distancia de $8,5 \, \mathrm{km}$. Si la aplicación cobra la tarifa base a razón de $450$ colones por cada milla recorrida, ¿cuánto te cobraron *solamente* por el tramo de distancia?
 
 <details>
 <summary>Ver solución</summary>
 
-Este problema demuestra la verdadera potencia del método de factores de conversión: podemos encadenarlos como si fueran piezas de dominó. No necesitamos hacer operaciones separadas; basta con multiplicar nuestro dato inicial por todos los factores necesarios para que las unidades no deseadas se cancelen paulatinamente.
+Este problema demuestra la verdadera potencia del método de factores de conversión: podemos encadenarlos como si fueran piezas de dominó. No necesitamos hacer reglas de tres por separado; basta con multiplicar nuestros datos iniciales por los factores necesarios para que las unidades no deseadas se cancelen.
 
-Empezamos con lo que sabemos que recorre por litro, cambiamos kilómetros a millas, litros a galones, y al final multiplicamos por los $$5 \, \mathrm{gal}$$ reales que tenemos en el tanque:
+Empezamos con los kilómetros que viajamos, los convertimos a millas (porque la tarifa está en millas) y finalmente multiplicamos por el costo en colones:
 
+$$
+\text{Costo} = 8,5 \, \mathrm{km} \times \left( \frac{1 \, \mathrm{mi}}{1,61 \, \mathrm{km}} \right) \times \left( \frac{450 \, \mathrm{colones}}{1 \, \mathrm{mi}} \right) \approx 2375,7 \, \mathrm{colones}
+$$
+*(Por eso a veces ves en el recibo un monto extra que no cuadra con los kilómetros totales: ¡la app te estaba cobrando en millas todo el tiempo!)*
 
 </details>
-:::
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6">
+Determine vectorialmente:
+1. La posición del TEC respecto a tu casa.
+2. La distancia (en línea recta) desde tu casa al TEC.
+
+<details>
+<summary>Ver sugerencia de resolución</summary>
+
+Este ejercicio es de carácter práctico y abierto, diseñado para que aplique la diferencia fundamental que vimos en la teoría entre escalares y vectores usando su propia realidad. 
+
+*   **Para el inciso a (Posición):** Recuerde que la posición es un vector. Para definirla, debe elegir un origen (su casa) y establecer un sistema de referencia (por ejemplo, usar el Norte como eje $y$ positivo y el Este como eje $x$ positivo). Luego, usando Google Maps, puede extraer los componentes cartesianos o la notación polar (distancia y ángulo) desde su casa hasta el campus del TEC.
+*   **Para el inciso b (Distancia):** Tenga cuidado aquí. La distancia "en línea recta" es la magnitud del vector posición (un escalar). Asegúrese de no confundirlo con la distancia que recorre el autobús por la carretera, que al seguir las curvas es mucho mayor.
+
+</details>
+</Aside>
 
 
-<SistemaCartesiano x={2} y={3} padding={80} />
-<SistemaCartesiano x={2} y={3} />
-<SistemaCartesiano x={-1} y={-2} pointColor="#00FF00" />
+ <Aside type="note" icon="pencil" title="Ejercicio 7">
+ Un estudiante camina del punto $A = (2, 3)$ al punto $B = (5, -1)$ en el sistema de coordenadas del campus (distancias en metros). Determine:
+ 1. El vector desplazamiento $\vec{d}$ en notación de componentes.
+ 2. La magnitud del desplazamiento.
+ 3. La dirección del vector (ángulo respecto al eje $x$ positivo).
 
+ <details>
+ <summary>Ver solución</summary>
+
+ El vector desplazamiento se obtiene restando las coordenadas del punto inicial del punto final:
+
+ $$
+ \vec{d} = (x_B - x_A) \hat{\iota} + (y_B - y_A) \hat{\jmath} = (5 - 2) \hat{\iota} + (-1 - 3) \hat{\jmath} = (3\,\mathrm{m}) \hat{\iota} - (4\,\mathrm{m}) \hat{\jmath} 
+ $$
+
+ Para encontrar la magnitud, usamos el teorema de Pitágoras:
+
+ $$
+ |\vec{d}| = \sqrt{d_x^2 + d_y^2} = \sqrt{(3)^2 + (-4)^2} = \sqrt{9 + 16} = \sqrt{25} = 5 \, \mathrm{m}
+ $$
+
+ La dirección se encuentra usando la tangente inversa. Notamos que el vector está en el cuarto cuadrante ($x$ positivo, $y$ negativo):
+
+ $$
+ \theta = \tan^{-1}\left(\frac{d_y}{d_x}\right) = \tan^{-1}\left(\frac{-4}{3}\right) \approx -53,1^\circ
+ $$
+
+ Por lo tanto, el vector tiene una magnitud de $5 \, \mathrm{m}$ y apunta en una dirección de $53,1^\circ$ por debajo del eje $x$ positivo (o $53,1^\circ$ al sur del este).
+
+ </details>
+ </Aside>
+
+ <Aside type="note" icon="pencil" title="Ejercicio 8">
+ Dos estudiantes empujan una caja en el laboratorio. El estudiante A aplica una fuerza $\vec{F}_A = 15 \, \mathrm{N}$ hacia el este (dirección $+x$), mientras que el estudiante B aplica una fuerza $\vec{F}_B = 20 \, \mathrm{N}$ hacia el norte (dirección $+y$). Determine la fuerza resultante $\vec{F}_R$ ejercida sobre la caja.
+
+ <details>
+ <summary>Ver solución</summary>
+
+ Primero expresamos cada fuerza en notación de componentes:
+
+ $$
+ \vec{F}_A = (15\, \mathrm{N})\, \hat{\iota}  \quad \text{(hacia el este)}
+ $$
+ $$
+ \vec{F}_B = (20\, \mathrm{N})\, \hat{\jmath}  \quad \text{(hacia el norte)}
+ $$
+
+ La fuerza resultante es la suma vectorial de ambas fuerzas:
+
+ $$
+ \vec{F}_R = \vec{F}_A + \vec{F}_B = (15\, \mathrm{N})\, \hat{\iota} + (20\, \mathrm{N})\, \hat{\jmath}
+ $$
+
+ Para caracterizar completamente el resultado, calculamos la magnitud y dirección:
+
+ **Magnitud:**
+ $$
+ |\vec{F}_R| = \sqrt{F_{Rx}^2 + F_{Ry}^2} = \sqrt{(15)^2 + (20)^2} = \sqrt{225 + 400} = \sqrt{625} = 25 \, \mathrm{N}
+ $$
+
+ **Dirección:**
+ $$
+ \theta = \tan^{-1}\left(\frac{F_{Ry}}{F_{Rx}}\right) = \tan^{-1}\left(\frac{20}{15}\right) = \tan^{-1}\left(\frac{4}{3}\right) \approx 53,1^\circ
+ $$
+
+ Por lo tanto, la fuerza resultante tiene una magnitud de $25 \, \mathrm{N}$ y apunta en una dirección de $53,1^\circ$ al norte del este.
+
+ </details>
+ </Aside>
+
+ <Aside type="note" icon="pencil" title="Ejercicio 9">
+ Un avión vuela con una velocidad respecto al aire de $\vec{v}_{\mathrm{avi\'on}} = 200 \, \mathrm{km/h}$ hacia el norte. Sin embargo, el viento sopla con una velocidad $\vec{v}_{\mathrm{viento}} = 50 \, \mathrm{km/h}$ hacia el este. Determine:
+ 1. La velocidad resultante del avión respecto al suelo $\vec{v}_{\mathrm{resultante}}$.
+ 2. ¿En qué dirección real viaja el avión respecto al norte?
+ 3. ¿Cuál es la rapidez real del avión respecto al suelo?
+
+ <details>
+ <summary>Ver solución</summary>
+
+ Primero expresamos las velocidades en notación de componentes, tomando el norte como dirección $+y$ y el este como $+x$:
+
+ $$
+ \vec{v}_{\mathrm{avi\'on}} = (0 \, \mathrm{km/h})\hat{\iota} + (200 \, \mathrm{km/h}) \hat{\jmath} 
+ $$
+ $$
+ \vec{v}_{\mathrm{viento}} = 50 \hat{\iota} + 0 \hat{\jmath} \, \mathrm{km/h}
+ $$
+
+ La velocidad resultante es la suma vectorial:
+
+ $$
+ \vec{v}_{\mathrm{resultante}} = \vec{v}_{\mathrm{avi\'on}} + \vec{v}_{\mathrm{viento}} = (0 + 50) \hat{\iota} + (200 + 0) \hat{\jmath} = (50\, \mathrm{km/h})\, \hat{\iota} + (200 \, \mathrm{km/h})\,)\hat{\jmath} 
+ $$
+
+ **Rapidez real (magnitud):**
+ $$
+ |\vec{v}_{\mathrm{resultante}}| = \sqrt{(50)^2 + (200)^2} = \sqrt{2500 + 40000} = \sqrt{42500} \approx 206,16 \, \mathrm{km/h}
+ $$
+
+ **Dirección real (ángulo respecto al norte):**
+ El ángulo se mide desde el norte hacia el este:
+
+ $$
+ \theta = \tan^{-1}\left(\frac{v_x}{v_y}\right) = \tan^{-1}\left(\frac{50}{200}\right) = \tan^{-1}(0,25) \approx 14,0^\circ
+ $$
+
+ Por lo tanto, el avión viaja con una rapidez de aproximadamente $206 \, \mathrm{km/h}$ en una dirección de $14,0^\circ$ al este del norte.
+
+ </details>
+ </Aside>
+
+ <Aside type="note" icon="pencil" title="Ejercicio 10">
+ Un caminante recorre $100 \, \mathrm{m}$ hacia el este, luego $50 \, \mathrm{m}$ hacia el norte, y finalmente $30 \, \mathrm{m}$ hacia el oeste. Determine:
+ 1. El desplazamiento total del caminante en notación de componentes.
+ 2. La distancia total recorrida (escalar).
+ 3. El desplazamiento total (vector) expresado en magnitud y dirección.
+
+ <details>
+ <summary>Ver solución</summary>
+
+ Analizamos cada tramo del recorrido usando notación de componentes (este = $+x$, norte = $+y$):
+
+ **Tramo 1:** $100 \, \mathrm{m}$ hacia el este:
+ $$
+ \vec{d}_1 = (100 \, \mathrm{m} ) \, \hat{\iota} 
+ $$
+
+ **Tramo 2:** $50 \, \mathrm{m}$ hacia el norte:
+ $$
+ \vec{d}_2 = (50 \, \mathrm{m}) \, \hat{\jmath} 
+ $$
+
+ **Tramo 3:** $30 \, \mathrm{m}$ hacia el oeste:
+ $$
+ \vec{d}_3 = (-30 \, \mathrm{m} )\, \hat{\iota} 
+ $$
+
+ **Desplazamiento total (suma vectorial):**
+ $$
+ \vec{d}_{\mathrm{total}} = \vec{d}_1 + \vec{d}_2 + \vec{d}_3 = (100 - 30) \hat{\iota} + 50 \hat{\jmath} = (70 \, \mathrm{m}) \, \hat{\iota} + (50 \, \mathrm{m})\,  \hat{\jmath} 
+ $$
+
+ **Distancia total recorrida (suma escalar):**
+ $$
+ d_{\mathrm{recorrida}} = 100 + 50 + 30 = 180 \, \mathrm{m}
+ $$
+
+ **Magnitud del desplazamiento:**
+ $$
+ |\vec{d}_{total}| = \sqrt{(70)^2 + (50)^2} = \sqrt{4900 + 2500} = \sqrt{7400} \approx 86,02 \, \mathrm{m}
+ $$
+
+ **Dirección del desplazamiento:**
+ $$
+ \theta = \tan^{-1}\left(\frac{50}{70}\right) = \tan^{-1}(0,7143) \approx 35,5^\circ
+ $$
+
+ Por lo tanto, aunque el caminante recorrió una distancia total de $180 \, \mathrm{m}$, su desplazamiento neto es de aproximadamente $86 \, \mathrm{m}$ en una dirección de $35,5^\circ$ al norte del este. Note la diferencia importante entre distancia (escalar) y desplazamiento (vector).
+
+ </details>
+ </Aside>
