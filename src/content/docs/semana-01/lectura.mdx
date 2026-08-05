@@ -24,31 +24,6 @@ import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import { SistemaCartesiano, SistemaPolar } from '@/components/graph';
 
-
-<SistemaCartesiano 
-  points={[
-    { x: 3, y: 0, label: 'A', color: '#EF4444' },
-    { x: -4, y: 2, label: 'B', color: '#3B82F6' },
-    { x: 5, y: -5, label: 'C', color: '#10B981' },
-    { x: -5, y: -4, label: 'D', color: '#eb8b32' }
-    ]}
-  gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
-  showPointLabels={false} 
-  showTooltips={false} 
- />
-
-<SistemaPolar
-  points={[
-    { r: 3, theta: 45, label: 'P1', color: '#EF4444' },
-    { r: 2, theta: 130, label: 'P2', color: '#3B82F6' , tooltipOffset: { x: -80, y: -30 }},
-    { r: 4, theta: -60, label: 'P3', color: '#10B981' , tooltipOffset: { x: 10, y: -30 }},
-    { r: 4, theta: 210, label: 'P4', color: '#eb8b32', tooltipOffset: { x: 0, y: +15 } }
-    ]} 
-  showPointLabels={false}
-  maxRadius={7}
-  showRadiusLabel={false}
-/>
-
 <PreCheck>
   - Expresar cantidades físicas usando distintos sistemas de unidades.
   - Determinar las diferencias entre cantidades físicas escalares y vectoriales.
@@ -302,6 +277,18 @@ Debido a este carácter direccional, los vectores exigen un **marco o sistema de
 El sistema de referencia más utilizado en Física es el **sistema rectangular de ejes coordenados** (o sistema cartesiano). A partir de este esquema de ejes perpendiculares, podemos descomponer cualquier vector en sus *componentes cartesianas*, lo cual es la herramienta matemática fundamental que nos permitirá sumar, restar y analizar vectores de forma exacta. 
 
 
+<SistemaCartesiano 
+  points={[
+    { x: 3, y: 0, label: 'A', color: '#EF4444' },
+    { x: -4, y: 2, label: 'B', color: '#3B82F6' },
+    { x: 5, y: -5, label: 'C', color: '#10B981' },
+    { x: -5, y: -4, label: 'D', color: '#eb8b32' }
+    ]}
+  gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
+  showPointLabels={false} 
+  showTooltips={true} 
+ />
+
 
 ### Sistema de coordenadas polares
 
@@ -315,6 +302,18 @@ Las coordenadas polares se denotan como $$(r, \theta)$$, donde:
 - **$$r$$ (radio)**: es la distancia desde el origen hasta el punto. Esta cantidad es siempre positiva o cero: $$r \geq 0$$.
 - **$$\theta$$ (ángulo)**: es el ángulo medido desde el eje $$x$$ positivo hasta el vector de posición del punto, en sentido antihorario. Este ángulo se puede expresar en grados $$0^\circ$$ a $$360^\circ$$; o en radianes, $$0$$ a $$2\pi$$ rad.
 
+
+<SistemaPolar
+  points={[
+    { r: 3, theta: 45, label: 'P1', color: '#EF4444' },
+    { r: 2, theta: 130, label: 'P2', color: '#3B82F6' , tooltipOffset: { x: -80, y: -30 }},
+    { r: 4, theta: -60, label: 'P3', color: '#10B981' , tooltipOffset: { x: 10, y: -30 }},
+    { r: 4, theta: 210, label: 'P4', color: '#eb8b32', tooltipOffset: { x: 0, y: +15 } }
+    ]} 
+  showPointLabels={false}
+  maxRadius={7}
+  showRadiusLabel={false}
+/>
 **Relación con coordenadas cartesianas**
 
 Las coordenadas polares y cartesianas están relacionadas por las siguientes ecuaciones de conversión:

@@ -70,7 +70,7 @@ const ariaLabel = `Sistema cartesiano con ${points.length} punto${points.length 
   .map((p) => `(${formatCoordinate(p.x)}, ${formatCoordinate(p.y)})`)
   .join(', ')}`;
 
-const description = `Sistema de coordenadas cartesiano con ${points.length} punto${points.length !== 1 ? 's' : ''}. Navegue con Tab para seleccionar puntos individuales y ver sus coordenadas específicas.`;
+const description = `Sistema de coordenadas cartesiano con ${points.length} punto${points.length !== 1 ? 's' : ''}.`;
 
 const svgId = id || 'cartesian-system';
 ---
