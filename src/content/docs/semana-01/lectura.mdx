@@ -27,22 +27,26 @@ import { SistemaCartesiano, SistemaPolar } from '@/components/graph';
 
 <SistemaCartesiano 
   points={[
-    { x: 2, y: 3, label: 'A', color: '#EF4444' },
+    { x: 3, y: 0, label: 'A', color: '#EF4444' },
     { x: -4, y: 2, label: 'B', color: '#3B82F6' },
-    { x: 0, y: -2, label: 'C', color: '#10B981' }
+    { x: 5, y: -5, label: 'C', color: '#10B981' },
+    { x: -5, y: -4, label: 'D', color: '#eb8b32' }
     ]}
   gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
   showPointLabels={false} 
+  showTooltips={false} 
  />
 
 <SistemaPolar
   points={[
     { r: 3, theta: 45, label: 'P1', color: '#EF4444' },
-    { r: 4, theta: 120, label: 'P2', color: '#3B82F6' },
-    { r: 5, theta: -30, label: 'P3', color: '#10B981' }
+    { r: 2, theta: 130, label: 'P2', color: '#3B82F6' , tooltipOffset: { x: -80, y: -30 }},
+    { r: 4, theta: -60, label: 'P3', color: '#10B981' , tooltipOffset: { x: 10, y: -30 }},
+    { r: 4, theta: 210, label: 'P4', color: '#eb8b32', tooltipOffset: { x: 0, y: +15 } }
     ]} 
   showPointLabels={false}
-  gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
+  maxRadius={7}
+  showRadiusLabel={false}
 />
 
 <PreCheck>

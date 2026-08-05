@@ -9,8 +9,8 @@ export const themes: Record<string, ColorTheme> = {
     primary: '#EF4444',
     secondary: '#3B82F6',
     guide: '#9CA3AF',
-    tooltip: 'rgba(0, 0, 0, 0.8)',
-    tooltipText: 'white',
+    tooltip: 'rgba(134, 175, 187, 0.44)',
+    tooltipText: 'rgba(8, 8, 8, 0.99)',
     warning: '#EF4444',
   },
   dark: {

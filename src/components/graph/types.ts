@@ -12,6 +12,7 @@ export interface PolarPoint {
   label?: string;
   color?: string;
   id?: string;
+  tooltipOffset?: { x: number; y: number };
 }
 
 export interface GraphConfig {

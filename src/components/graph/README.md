@@ -127,6 +127,7 @@ interface PolarPoint {
   label?: string;         // Etiqueta del punto
   color?: string;         // Color personalizado
   id?: string;            // ID único (opcional)
+  tooltipOffset?: { x: number; y: number };  // Desplazamiento del tooltip (px, default: {x: 15, y: -20})
 }
 ```
 
@@ -243,6 +244,19 @@ interface PolarPoint {
   ]}
   showPointLabels={false}
   showLabels={true}
+/>
+```
+
+### Posición Personalizada del Tooltip
+
+```astro
+<!-- Sistema Polar con offset de tooltip personalizado por punto -->
+<SistemaPolar
+  points={[
+    { r: 3, theta: 45, label: 'P_1', color: '#EF4444', tooltipOffset: { x: 30, y: -40 } },
+    { r: 2, theta: 120, label: 'P_2', color: '#3B82F6', tooltipOffset: { x: -80, y: 20 } },
+    { r: 4, theta: 270, label: 'P_3', color: '#10B981' }  // usa default {x: 15, y: -20}
+  ]}
 />
 ```
 

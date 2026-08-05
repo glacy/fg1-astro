@@ -65,6 +65,7 @@ const pointsWithPixel = points.map((point, index) => {
     id: point.id || `polar-point-${index}`,
     color: point.color || colors.primary,
     inBounds: point.r <= effectiveMaxRadius,
+    tooltipOffset: point.tooltipOffset || { x: 15, y: -20 },
   };
 });
 
@@ -165,7 +166,80 @@ const svgId = id || 'polar-system';
   .tooltip-content :global(.katex) {
     font-size: 13px;
     font-weight: 500;
-    color: var(--tooltip-text-color, white);
+    color: var(--tooltipText-color, rgb(8, 8, 8));
+  }
+
+  .radius-label {
+    fill: var(--axis-color, #374151);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .angle-label {
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    :global(.katex-wrapper) {
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    :global(.katex-wrapper .katex) {
+      font-size: 1em;
+    }
+
+    .point-label :global(.katex) {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .tooltip-content :global(.katex) {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .radius-label {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .angle-label {
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :global(.katex-wrapper) {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    :global(.katex-wrapper .katex) {
+      font-size: 1em;
+    }
+
+    .point-label :global(.katex) {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .tooltip-content :global(.katex) {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .radius-label {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .angle-label {
+      font-size: 15px;
+      font-weight: 600;
+    }
   }
 </style>
 
@@ -316,21 +390,14 @@ const svgId = id || 'polar-system';
             class="tooltip-group opacity-0"
             aria-hidden="true"
           >
-            <rect
-              x={pointData.pixel.x + 10}
-              y={pointData.pixel.y - 32}
-              width={100}
-              height={26}
-              class="tooltip-rect"
-              fill={colors.tooltip}
-            />
+            
             <foreignObject
-              x={pointData.pixel.x + 15}
-              y={pointData.pixel.y - 30}
-              width={90}
-              height={22}
+              x={pointData.pixel.x + pointData.tooltipOffset.x}
+              y={pointData.pixel.y + pointData.tooltipOffset.y}
+              width={150}
+              height={40}
             >
-              <div class="katex-wrapper tooltip-content" set:html={katex.renderToString(`r=${formatCoordinate(pointData.r)}, \\theta=${formatCoordinate(pointData.theta, 1)}^\\circ`, { displayMode: false })} />
+              <div class="katex-wrapper tooltip-content" set:html={katex.renderToString(`r=${formatCoordinate(pointData.r)}; \\theta=${formatCoordinate(pointData.theta, 1)}^\\circ`, { displayMode: false })} />
             </foreignObject>
           </g>
         )}
@@ -338,44 +405,52 @@ const svgId = id || 'polar-system';
     ))}
 
     {showLabels && (
-      <g
-        font-family="Arial, sans-serif"
-        font-size="12"
-        fill={colors.text}
-        text-anchor="middle"
-        aria-label="Etiquetas de los ejes y números"
-      >
-        {circles
-          .filter((radius) => radius !== 0)
-          .map((radius) => (
-            <text
-              x={coordSystem.originX + radius * gridSize + 5}
-              y={coordSystem.originY - 4}
-            >
-              {radius}
-            </text>
-          ))}
+      <>
+        <g
+          font-family="Arial, sans-serif"
+          font-size="12"
+          fill={colors.text}
+          text-anchor="middle"
+          aria-label="Etiquetas de los ángulos"
+        >
+          {radialLines.map((endPoint, index) => {
+            const angle = angleSteps[index];
+            if (angle % 90 !== 0) {
+              const labelRadius = effectiveMaxRadius * 0.88;
+              const labelPos = polarToCartesian(labelRadius, (angle * Math.PI) / 180);
+              const pixelPos = coordSystem.gridToPixel(labelPos.x, labelPos.y);
+              return (
+                <text
+                  x={pixelPos.x}
+                  y={pixelPos.y + 4}
+                  class="angle-label"
+                >
+                  {angle}°
+                </text>
+              );
+            }
+          })}
+        </g>
 
-        {radialLines.map((endPoint, index) => {
-          const angle = angleSteps[index];
-          if (angle % 90 !== 0) {
-            const labelRadius = effectiveMaxRadius * 0.88;
-            const labelPos = polarToCartesian(labelRadius, (angle * Math.PI) / 180);
-            const pixelPos = coordSystem.gridToPixel(labelPos.x, labelPos.y);
-            return (
+        <g
+          font-family="Arial, sans-serif"
+          font-size="14"
+          font-weight="bold"
+          aria-label="Etiquetas de los radios"
+        >
+          {circles
+            .filter((radius) => radius !== 0)
+            .map((radius) => (
               <text
-                x={pixelPos.x}
-                y={pixelPos.y + 4}
-                font-size="11"
+                x={coordSystem.originX + radius * gridSize + 5}
+                y={coordSystem.originY - 4}
+                class="radius-label"
               >
-                {angle}°
+                {radius}
               </text>
-            );
-          }
-        })}
-
-        
-      </g>
+            ))}
+        </g>
+      </>
     )}
   </svg>
 </div>

@@ -141,13 +141,52 @@ const svgId = id || 'cartesian-system';
     }
   }
 
-  :global(.katex-wrapper) {
+  .katex-wrapper {
     font-size: 14px;
     line-height: 1.2;
   }
 
   :global(.katex-wrapper .katex) {
     font-size: 1em;
+  }
+
+  :global(.katex-wrapper .katex-html) {
+    color: inherit;
+  }
+
+  :global(.katex-wrapper .katex-mathml) {
+    color: inherit;
+  }
+
+  :global(.katex-wrapper .katex-mathml .mtext) {
+    color: inherit;
+  }
+
+  :global(.katex-wrapper .katex-mathml .msupsub) {
+    color: inherit;
+  }
+
+  .axis-label :global(.katex) {
+    color: var(--axis-color, #374151) !important;
+  }
+
+  .axis-label :global(.katex .katex) {
+    color: var(--axis-color, #374151) !important;
+  }
+
+  .tooltip-content :global(.katex .katex) {
+    color: var(--tooltipText-color, rgb(8, 8, 8));
+  }
+
+  .katex-wrapper {
+    font-size: 14px;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--text-color, #111827);
   }
 
   .point-label :global(.katex) {
@@ -158,7 +197,82 @@ const svgId = id || 'cartesian-system';
   .tooltip-content :global(.katex) {
     font-size: 13px;
     font-weight: 500;
-    color: var(--tooltip-text-color, white);
+    color: var(--tooltipText-color, rgb(8, 8, 8));
+  }
+
+  .axis-label :global(.katex) {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--axis-color, #374151);
+  }
+
+  .grid-number {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    :global(.katex-wrapper) {
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    :global(.katex-wrapper .katex) {
+      font-size: 1em;
+    }
+
+    .point-label :global(.katex) {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .tooltip-content :global(.katex) {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--tooltipText-color, rgb(8, 8, 8));
+    }
+
+    .axis-label :global(.katex) {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .grid-number {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :global(.katex-wrapper) {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    :global(.katex-wrapper .katex) {
+      font-size: 1em;
+    }
+
+    .point-label :global(.katex) {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .tooltip-content :global(.katex) {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--tooltipText-color, rgb(8, 8, 8));
+    }
+
+    .axis-label :global(.katex) {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .grid-number {
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
 </style>
 
@@ -177,7 +291,7 @@ const svgId = id || 'cartesian-system';
     tabindex={interactive ? 0 : -1}
     class="cartesian-svg"
   >
-    <title>{ariaLabel}</title>
+    <title>{description}</title>
     <desc id={`${svgId}-description`}>{description}</desc>
 
     <rect width={width} height={height} fill={colors.background}/>
@@ -295,8 +409,8 @@ const svgId = id || 'cartesian-system';
             <foreignObject
               x={pointData.pixel.x - 20}
               y={pointData.pixel.y - 35}
-              width={40}
-              height={20}
+              width={60}
+              height={40}
               aria-hidden="true"
             >
               <div class="katex-wrapper point-label" set:html={katex.renderToString(pointData.label, { displayMode: false })} />
@@ -309,21 +423,14 @@ const svgId = id || 'cartesian-system';
             class="tooltip-group opacity-0"
             aria-hidden="true"
           >
-            <rect
-              x={pointData.pixel.x + 10}
-              y={pointData.pixel.y - 32}
-              width={85}
-              height={26}
-              class="tooltip-rect"
-              fill={colors.tooltip}
-            />
+            
             <foreignObject
-              x={pointData.pixel.x + 15}
-              y={pointData.pixel.y - 30}
-              width={75}
-              height={22}
+              x={pointData.pixel.x - 50}
+              y={pointData.pixel.y - 40}
+              width={100}
+              height={35}
             >
-              <div class="katex-wrapper tooltip-content" set:html={katex.renderToString(`(${formatCoordinate(pointData.x)}, ${formatCoordinate(pointData.y)})`, { displayMode: false })} />
+              <div class="katex-wrapper tooltip-content " set:html={katex.renderToString(`(${formatCoordinate(pointData.x)}, ${formatCoordinate(pointData.y)})`, { displayMode: false })} />
             </foreignObject>
           </g>
         )}
@@ -336,6 +443,7 @@ const svgId = id || 'cartesian-system';
         font-size="12"
         fill={colors.text}
         text-anchor="middle"
+        class="grid-labels"
         aria-label="Etiquetas de los ejes y números"
       >
         {verticalLines
@@ -344,6 +452,7 @@ const svgId = id || 'cartesian-system';
             <text
               x={coordSystem.gridToPixel(gridX, 0).x}
               y={coordSystem.originY + 20}
+              class="grid-number"
             >
               {gridX}
             </text>
@@ -356,16 +465,26 @@ const svgId = id || 'cartesian-system';
               x={coordSystem.originX - 12}
               y={coordSystem.gridToPixel(0, gridY).y + 4}
               text-anchor="end"
+              class="grid-number"
             >
               {gridY}
             </text>
           ))}
+      </g>
+    )}
 
-        <foreignObject x={width - padding} y={coordSystem.originY - 10} width={30} height={30}>
-          <div class="katex-wrapper" set:html={katex.renderToString("x", { displayMode: false })} />
+    {showLabels && (
+      <g
+        font-family="Arial, sans-serif"
+        font-size="14"
+        font-weight="bold"
+        aria-label="Etiquetas de los ejes y números"
+      >
+        <foreignObject x={width - padding - 10} y={coordSystem.originY - 20} width={40} height={40}>
+          <div class="katex-wrapper axis-label" set:html={katex.renderToString("x", { displayMode: false })} />
         </foreignObject>
-        <foreignObject x={coordSystem.originX + 5} y={padding - 5} width={30} height={30}>
-          <div class="katex-wrapper" set:html={katex.renderToString("y", { displayMode: false })} />
+        <foreignObject x={coordSystem.originX-20} y={padding - 30} width={40} height={40}>
+          <div class="katex-wrapper axis-label" set:html={katex.renderToString("y", { displayMode: false })} />
         </foreignObject>
       </g>
     )}

@@ -1,25 +1,31 @@
 {
-   "extends": "astro/tsconfigs/strict",
-   "compilerOptions": {
-     "module": "ESNext",
-     "moduleResolution": "Bundler",
-     "types": ["astro/client"],
-     "jsx": "react-jsx",
-     "jsxImportSource": "react",
-     "noUnusedLocals": false,
-     "noUnusedParameters": false,
-     "baseUrl": ".",
-     "paths": {
-       "@/*": [
-         "./src/*"
-       ],
-       "@components/*": [
-         "./src/components/*"
-       ],
-       "@lib/*": [
-         "./src/lib/*"
-       ]
-     }
-   },
-  "exclude": ["node_modules", "dist"]
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": [
+      "astro/client"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
