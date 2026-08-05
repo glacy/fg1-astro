@@ -291,15 +291,18 @@ Cualquier punto en este plano queda perfectamente localizado por un par ordenado
 - **$$x$$ (coordenada horizontal)**: Indica qué tan lejos estás  en dirección horizontal. Si $$x = 3$$, estás 3 unidades a la derecha . Si $$x = -2$$, estás 2 unidades a la izquierda.
 - **$$y$$ (coordenada vertical)**: Indica qué tan lejos estás  en dirección vertical. Si $$y = 4$$, estás 4 unidades arriba . Si $$y = -5$$, estás 5 unidades abajo.
 
-<Box icon="check-list">
 
-**Piénsalo como dar instrucciones a un amigo**
-
-Si tuviera que decirle a un amigo tu ubicación en un campus universitario usando este sistema:
-- "Estoy en las coordenadas $$(2, 3)$$" significa: camina 2 pasos a la derecha ($$x$$ positivo) y luego 3 pasos hacia arriba ($$y$$ positivo).
-- "Estoy en las coordenadas $$(-1, -4)$$" significa: camina 1 paso a la izquierda ($$x$$ negativo) y luego 4 pasos hacia abajo ($$y$$ negativo).
-
-</Box>
+<SistemaCartesiano 
+  points={[
+    { x: 3, y: 0, label: 'A', color: '#EF4444' },
+    { x: -4, y: 2, label: 'B', color: '#3B82F6' },
+    { x: 5, y: -5, label: 'C', color: '#10B981' },
+    { x: -5, y: -4, label: 'D', color: '#eb8b32' }
+    ]}
+  gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
+  showPointLabels={false} 
+  showTooltips={true} 
+/>
 
 #### Los cuatro cuadrantes
 
@@ -313,17 +316,6 @@ El sistema cartesiano divide el plano en cuatro regiones llamadas **cuadrantes**
 Esta estructura nos permite calcular distancias, ángulos y realizar cualquier operación matemática necesaria para resolver problemas de física con precisión.
 
 
-<SistemaCartesiano 
-  points={[
-    { x: 3, y: 0, label: 'A', color: '#EF4444' },
-    { x: -4, y: 2, label: 'B', color: '#3B82F6' },
-    { x: 5, y: -5, label: 'C', color: '#10B981' },
-    { x: -5, y: -4, label: 'D', color: '#eb8b32' }
-    ]}
-  gridRange={{ minX: -6, maxX: 6, minY: -6, maxY: 6 }}
-  showPointLabels={false} 
-  showTooltips={true} 
-/>
 
 
 <Box icon="question-mark">
