@@ -37,17 +37,6 @@ export const INSTRUCTORS_DATA: Instructor[] = [
     ]
   },
   {
-    docente: "CORDERO GARCIA IVAN GABRIEL",
-    atenciones: [
-      {
-        dia: "Viernes",
-        modalidad: "presencial",
-        hora: "9:30 a.m. a 11:30 a.m.",
-        detalle: "Oficina 3, Edificio Administrativo, CAL"
-      },
-    ]
-  },
-  {
     docente: "CORRALES QUESADA ESTEBAN",
     atenciones: [
       {
@@ -181,24 +170,5 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       }
     ]
   },
-
- 
-  {
-    docente: "VARGAS BLANCO IVÁN",
-    atenciones: [
-      {
-        dia: "Jueves",
-        modalidad: "virtual",
-        hora: "4:00 p.m. a 5:00 p.m.",
-        detalle: ""
-      },
-      {
-        dia: "Jueves",
-        modalidad: "virtual",
-        hora: "por definir",
-        detalle: ""
-      }
-    ]
-  }
 ];
 
