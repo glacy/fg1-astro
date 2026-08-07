@@ -1,7 +1,7 @@
 {
   "id": 2,
   "title": "Vectores y operaciones vectoriales",
-  "image": "https://images.unsplash.com/photo-1516503424803-708327384b90?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1563705883268-eb58ab6f505d?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
     "Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección.",
     "Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas.",
@@ -20,23 +20,18 @@
     },
     {
       "text": "Estudiar el resumen Semana 2.",
-      "url": "././../documentos/semana-2/",
+      "url": "./../semana02/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 2",
-      "url": "/practicas/practica_semana2.pdf",
+      "url": "./../semana02/practica/",
       "icon": "lucide:calculator"
     }
   ],
   "recursos": [
-    {
-      "text": "Solución Práctica Semana 1",
-      "url": "/soluciones/solucion_practica_semana1.pdf",
-      "icon": "lucide:calculator"
-    },
     {
       "text": "PhET: Vectores",
       "url": "https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_all.html?locale=es",
