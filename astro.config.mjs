@@ -51,11 +51,6 @@ export default defineConfig({
           collapsed: true,
           items: [{ autogenerate: { "directory": "semana01" } }]
         },
-        {
-          label: 'Semana 2',
-          collapsed: true,
-          items: [{ autogenerate: { "directory": "semana02" } }]
-        }
       ],
     }),
     mdx(),
