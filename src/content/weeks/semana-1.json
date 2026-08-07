@@ -20,14 +20,14 @@
     },
     {
       "text": "Estudiar el resumen Semana 1.",
-      "url": "./../semana-01/lectura/",
+      "url": "./../semana01/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 1",
-      "url": "./../semana-01/practica/",
+      "url": "./../semana01/practica/",
       "icon": "lucide:calculator"
     }
   ]

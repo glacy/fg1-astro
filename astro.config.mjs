@@ -45,6 +45,18 @@ export default defineConfig({
         dark: './src/assets/site_logo_dark.svg',
         replacesTitle: true,
       },
+      sidebar: [
+        {
+          label: 'Semana 1',
+          collapsed: true,
+          items: [{ autogenerate: { "directory": "semana01" } }]
+        },
+        {
+          label: 'Semana 2',
+          collapsed: true,
+          items: [{ autogenerate: { "directory": "semana02" } }]
+        }
+      ],
     }),
     mdx(),
     tailwind({ applyBaseStyles: false }),
