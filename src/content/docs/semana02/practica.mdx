@@ -1,282 +1,332 @@
 ---
 title: "Práctica"
-week: 1
-keywords: ["unidades físicas", "sistema internacional SI", "cantidades físicas", "escalares y vectores", "conversion de unidades", "sistema de coordenadas", "física general I", "TEC Costa Rica"]
+week: 2
+keywords: ["producto escalar", "producto punto", "producto vectorial", "producto cruz", "puntos cardinales", "vectores 3D", "notación polar", "notación cartesiana", "trabajo y torque", "física general I", "TEC Costa Rica"]
 draft: false
 ---
-import { Badge } from '@astrojs/starlight/components';
-import { Steps } from '@astrojs/starlight/components';
-import Box from '../../../components/Box.astro';
 import { Aside } from '@astrojs/starlight/components';
 
 <Aside type="note" icon="pencil" title="Ejercicio 1">
-Decidiste comprar un mini-refrigerador para tu cuarto. En la página web dice que las dimensiones internas son $45,0 \, \mathrm{cm}$ de ancho, $50,0 \, \mathrm{cm}$ de profundidad y $60,0 \, \mathrm{cm}$ de alto. ¿Cuántos litros de espacio útil tienes realmente para guardar tus bebidas y comida?
+Considere los vectores:
+
+$$
+\vec{A} = (2 \, \mathrm{m}) \hat{\iota} + (-5 \, \mathrm{m}) \hat{\jmath} - (1 \, \mathrm{m}) \hat{\kappa} \qquad \mathrm{y} \qquad \vec{B} = (6 \, \mathrm{m}) \hat{\iota} - (2 \, \mathrm{m}) \hat{\jmath} + (0 \, \mathrm{m}) \hat{\kappa}
+$$
+
+1. Determine la magnitud de cada vector.
+2. Calcule el ángulo que se forma entre los dos vectores.
 
 <details>
 <summary>Ver solución</summary>
 
-Para saber cuántas cosas le caben al fridge, primero lo tratamos como una simple caja geométrica. Multiplicamos sus tres dimensiones para obtener el volumen en centímetros cúbicos:
+**Magnitudes:**
+
 $$
-V = a \cdot l \cdot h = (45 \, \mathrm{cm}) \cdot (50 \, \mathrm{cm}) \cdot (60 \, \mathrm{cm}) = 135 \times 10^3 \, \mathrm{cm}^3
-$$ 
-Ahora viene el truco: aunque el refrigerador nos dice "litros" por fuera, matemáticamente es más fácil convertir los $\mathrm{cm}^3$ a metros cúbicos ($\mathrm{m}^3$) primero, porque de ahí a litros es directo. Usamos nuestros factores como "puentes":
+A = \sqrt{(2)^2 + (-5)^2 + (-1)^2} = \sqrt{4 + 25 + 1} = \sqrt{30} \approx 5,48 \, \mathrm{m}
 $$
-V = (135 \times 10^3 \, \mathrm{cm}^3) \cdot \left(\frac{1 \, \mathrm{m}}{100 \, \mathrm{cm}}\right)^3 \cdot \left(\frac{1000 \, \mathrm{L}}{1 \, \mathrm{m}^3}\right) = 135 \, \mathrm{L}
+
 $$
+B = \sqrt{(6)^2 + (-2)^2 + (0)^2} = \sqrt{36 + 4} = \sqrt{40} \approx 6,32 \, \mathrm{m}
+$$
+
+**Ángulo entre los vectores:**
+
+Primero calculamos el producto punto:
+
+$$
+\vec{A} \cdot \vec{B} = (2)(6) + (-5)(-2) + (-1)(0) = 12 + 10 + 0 = 22 \, \mathrm{m}^2
+$$
+
+Luego usamos la relación geométrica $$\vec{A} \cdot \vec{B} = A B \cos \theta$$:
+
+$$
+\theta = \arccos\left(\frac{22}{(5,48)(6,32)}\right) = \arccos\left(\frac{22}{34,63}\right) = \arccos(0,635) \approx 50,6^\circ
+$$
+
+El ángulo entre los vectores es aproximadamente $$50,6^\circ$$.
+
 </details>
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 2">
-Estás organizando una reunión y compraste un galón de tu bebida favorita. Si cada vaso de plástico que vas a servir tiene una capacidad de $250 \, \mathrm{cm}^3$, ¿a cuántos vasos exactos les alcanza a servir?
+Exprese en notación polar (magnitud + dirección) cada uno de los siguientes vectores, dados por sus componentes cartesianas. Indique también la dirección cardinal correspondiente.
+
+1. $A_x = -8{,}60 \, \mathrm{cm}$, $A_y = -5{,}20 \, \mathrm{cm}$.
+2. $B_x = -9{,}70 \, \mathrm{m}$, $B_y = 2{,}45 \, \mathrm{m}$.
+3. $C_x = 7{,}75 \, \mathrm{km}$, $C_y = -2{,}70 \, \mathrm{km}$.
 
 <details>
 <summary>Ver solución</summary>
 
-Este es un ejemplo clásico de cómo los factores de conversión nos sacan de apuros cuando mezclamos sistemas (el galón es inglés, el vaso está en centímetros cúbicos del sistema métrico). 
+**Inciso a)** El vector $$\vec{A}$$ tiene ambas componentes negativas, por lo que está en el **tercer cuadrante**.
 
-Primero, traducimos nuestro galón completo a centímetros cúbicos pasando por litros:
 $$
-1 \, \mathrm{gal} = 3,785 \, \mathrm{L} \cdot \left( \frac{1 \, \mathrm{m}^3}{1000 \, \mathrm{L}} \right) \cdot \left( \frac{100 \, \mathrm{cm}}{1 \, \mathrm{m}} \right)^3 = 3785 \, \mathrm{cm}^3
+A = \sqrt{(-8{,}60)^2 + (-5{,}20)^2} = \sqrt{73{,}96 + 27{,}04} = \sqrt{101{,}0} \approx 10{,}0 \, \mathrm{cm}
 $$
 
-Una vez que hablamos el mismo idioma ($\mathrm{cm}^3$), la pregunta se reduce a una simple regla de tres: ¿cuántas veces "cabe" el vaso de $250 \, \mathrm{cm}^3$ en el galón? Podemos usar un último factor de conversión para esto:
 $$
-\text{Vasos} = (3785 \, \mathrm{cm}^3) \cdot \left( \frac{1 \, \mathrm{vaso}}{250 \, \mathrm{cm}^3} \right) = 15,14 \, \mathrm{vasos} 
-$$ 
-*(Es decir, tienes para servirle a 15 amigos un vaso lleno, y te sobra un poquito para ti).*
+\theta = \arctan\left(\frac{5{,}20}{8{,}60}\right) \approx 31{,}1^\circ
+$$
+
+Como está en el tercer cuadrante: $$\theta_{\text{polar}} = 180^\circ + 31{,}1^\circ = 211{,}1^\circ$$. En notación cardinal, es $$31{,}1^\circ$$ SO.
+
+**Resultado:** $$\vec{A} \approx (10{,}0 \, \mathrm{cm}; \, 31{,}1^\circ \, \mathrm{SO})$$
+
+---
+
+**Inciso b)** El vector $$\vec{B}$$ tiene $$B_x < 0$$ e $$B_y > 0$$: **segundo cuadrante**.
+
+$$
+B = \sqrt{(-9{,}70)^2 + (2{,}45)^2} = \sqrt{94{,}09 + 6{,}00} = \sqrt{100{,}09} \approx 10{,}0 \, \mathrm{m}
+$$
+
+$$
+\theta = \arctan\left(\frac{2{,}45}{9{,}70}\right) \approx 14{,}2^\circ
+$$
+
+En el segundo cuadrante: $$\theta_{\text{polar}} = 180^\circ - 14{,}2^\circ = 165{,}8^\circ$$. Cardinal: $$14{,}2^\circ$$ NO.
+
+**Resultado:** $$\vec{B} \approx (10{,}0 \, \mathrm{m}; \, 14{,}2^\circ \, \mathrm{NO})$$
+
+---
+
+**Inciso c)** El vector $$\vec{C}$$ tiene $$C_x > 0$$ e $$C_y < 0$$: **cuarto cuadrante**.
+
+$$
+C = \sqrt{(7{,}75)^2 + (-2{,}70)^2} = \sqrt{60{,}06 + 7{,}29} = \sqrt{67{,}35} \approx 8{,}21 \, \mathrm{km}
+$$
+
+$$
+\theta = \arctan\left(\frac{2{,}70}{7{,}75}\right) \approx 19{,}2^\circ
+$$
+
+En el cuarto cuadrante: $$\theta_{\text{polar}} = 360^\circ - 19{,}2^\circ = 340{,}8^\circ$$. Cardinal: $$19{,}2^\circ$$ SE.
+
+**Resultado:** $$\vec{C} \approx (8{,}21 \, \mathrm{km}; \, 19{,}2^\circ \, \mathrm{SE})$$
 
 </details>
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 3">
-Sabemos que la luz visible (lo que ven tus ojos al mirar la pantalla del celular) tiene longitudes de onda entre $400$ y $700 \, \mathrm{nm}$. Si compras una lámpara de luz negra (UV) para tu cuarto que emite radiación de $400 \, 000 \, \mathrm{pm}$, ¿podrás ver el brillo de esa lámpara con tus propios ojos?
+En una carrera de orientación, una joven realiza los siguientes desplazamientos:
+
+1. Primero corre $1{,}5 \, \mathrm{km}$ en dirección $35^\circ$ SE.
+2. Luego corre $1{,}3 \, \mathrm{km}$ en dirección $15^\circ$ NO.
+3. Realiza un tercer desplazamiento y termina exactamente a $2{,}4 \, \mathrm{km}$ al NE de su punto de partida.
+
+Determine el tercer desplazamiento en magnitud y dirección.
 
 <details>
 <summary>Ver solución</summary>
 
-El truco aquí es no dejarse intimidar por los números grandes. Comparar nanómetros ($\mathrm{nm}$) con picómetros ($\mathrm{pm}$) es como comparar metros con centímetros. Para saber si esa luz UV "entra" en lo que tu ojo puede ver, llevamos a las tres cantidades al mismo idioma: el metro ($\mathrm{m}$).
+Primero convertimos las direcciones cardinales a ángulos polares y calculamos las componentes de cada desplazamiento. Tomamos: Este = $$+x$$, Norte = $$+y$$.
+
+**Primer desplazamiento** ($$35^\circ$$ SE): desde el Sur, $$35^\circ$$ hacia el Este. Ángulo polar: $$270^\circ + 35^\circ = 305^\circ$$.
 
 $$
-400 \, \mathrm{nm} = 400 \times 10^{-9} \, \mathrm{m} = 4 \times 10^{-7} \, \mathrm{m} \quad \text{(Límite inferior visible)}
-$$
-
-$$700 \, \mathrm{nm} = 700 \times 10^{-9} \, \mathrm{m} = 7 \times 10^{-7} \, \mathrm{m} \quad \text{(Límite superior visible)}
+d_{1x} = 1{,}5 \cos(305^\circ) \approx 1{,}5 \times 0{,}574 = 0{,}860 \, \mathrm{km}
 $$
 
 $$
-400 \, 000 \, \mathrm{pm} = 400 \, 000 \times 10^{-12} \, \mathrm{m} = 4 \times 10^{-7} \, \mathrm{m} \quad \text{(Tu lámpara UV)}
-$$ 
+d_{1y} = 1{,}5 \sin(305^\circ) \approx 1{,}5 \times (-0{,}819) = -1{,}229 \, \mathrm{km}
+$$
 
-Al poner todo en notación científica, vemos que $4 \times 10^{-7} \, \mathrm{m}$ está *exactamente* en el límite inferior de lo que el ojo humano puede ver (el color violeta extremo). En la práctica, tu ojo apenas y logrará percibir un brillo muy tenue y morado; la mayor parte de la energía de esa lámpara es invisible para ti.
+**Segundo desplazamiento** ($$15^\circ$$ NO): desde el Norte, $$15^\circ$$ hacia el Oeste. Ángulo polar: $$90^\circ + 15^\circ = 105^\circ$$.
+
+$$
+d_{2x} = 1{,}3 \cos(105^\circ) \approx 1{,}3 \times (-0{,}259) = -0{,}336 \, \mathrm{km}
+$$
+
+$$
+d_{2y} = 1{,}3 \sin(105^\circ) \approx 1{,}3 \times 0{,}966 = 1{,}256 \, \mathrm{km}
+$$
+
+**Posición después de los dos primeros desplazamientos:**
+
+$$
+x = 0{,}860 + (-0{,}336) = 0{,}524 \, \mathrm{km}
+$$
+
+$$
+y = -1{,}229 + 1{,}256 = 0{,}027 \, \mathrm{km}
+$$
+
+**Posición final deseada** ($$2{,}4 \, \mathrm{km}$$ al NE, es decir $$45^\circ$$):
+
+$$
+x_f = 2{,}4 \cos(45^\circ) = 1{,}697 \, \mathrm{km} \qquad y_f = 2{,}4 \sin(45^\circ) = 1{,}697 \, \mathrm{km}
+$$
+
+**Tercer desplazamiento** (vectorialmente: $$\vec{d}_3 = \vec{r}_{\text{final}} - (\vec{d}_1 + \vec{d}_2)$$):
+
+$$
+d_{3x} = 1{,}697 - 0{,}524 = 1{,}173 \, \mathrm{km}
+$$
+
+$$
+d_{3y} = 1{,}697 - 0{,}027 = 1{,}670 \, \mathrm{km}
+$$
+
+$$
+|\vec{d}_3| = \sqrt{(1{,}173)^2 + (1{,}670)^2} = \sqrt{1{,}376 + 2{,}789} = \sqrt{4{,}165} \approx 2{,}04 \, \mathrm{km}
+$$
+
+$$
+\theta = \arctan\left(\frac{1{,}670}{1{,}173}\right) \approx 54{,}9^\circ
+$$
+
+El tercer desplazamiento es de aproximadamente **$$2{,}04 \, \mathrm{km}$$ a $$54{,}9^\circ$$** (dirección NE, medido desde el Este).
 
 </details>
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 4">
-Estás comparando distintas formas de llegar a la universidad por la mañana. Tienes las siguientes rapideces: caminando a paso normal a $1,5 \, \mathrm{m/s}$, en tu bicicleta a $20 \, \mathrm{km/h}$, en el autobús a $60 \, \mathrm{km/h}$, y corriendo a sprint como $15 \, \mathrm{ft/s}$. ¿Cuál es realmente el método más rápido?
+Un edificio de apartamentos tiene una base cuadrada de $20{,}0 \, \mathrm{m}$ de lado y una altura de $40{,}0 \, \mathrm{m}$. La base está alineada en el sentido Norte-Sur. Un inquilino se ubica en la esquina Noroeste de la azotea, mientras que otro se encuentra asomado en la ventana de su habitación, en el centro de la cara lateral Este, a media altura del edificio.
+
+Tomando el origen de coordenadas en la esquina Suroeste de la base, con el eje $$x$$ hacia el Este, el eje $$y$$ hacia el Norte y el eje $$z$$ hacia arriba, calcule:
+
+1. Los vectores de posición de cada inquilino.
+2. El desplazamiento que debería realizar el inquilino de la ventana para llegar hasta el de la azotea.
 
 <details>
 <summary>Ver solución</summary>
 
-Para saber quién gana la carrera matutina, no podemos comparar directamente kilómetros por hora con pies por segundo; sería injusto. Debemos llevar a los cuatro métodos al mismo sistema de referencia. Como caminar ya está en la unidad estándar ($\mathrm{m/s}$), usaremos esa como meta.
+**Sistema de coordenadas:**
+
+La base cuadrada tiene esquinas en el plano $$z = 0$$:
+- Esquina SO (origen): $$(0, \, 0, \, 0)$$
+- Esquina SE: $$(20, \, 0, \, 0)$$
+- Esquina NO: $$(0, \, 20, \, 0)$$
+- Esquina NE: $$(20, \, 20, \, 0)$$
+
+La azotea está en $$z = 40 \, \mathrm{m}$$.
+
+**Inciso a) Vectores de posición:**
+
+- **Inquilino 1** (esquina NO de la azotea): $$x = 0$$, $$y = 20$$, $$z = 40$$
 
 $$
-v_{\text{caminando}} = 1,5 \, \mathrm{m/s} \quad \text{(Ya en la meta)}
-$$ 
-
-$$
- v_{\text{bicicleta}} = 20 \, \mathrm{km/h} \cdot \left( \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 5,55 \, \mathrm{m/s} 
+\vec{r}_1 = (0 \, \mathrm{m}) \hat{\iota} + (20 \, \mathrm{m}) \hat{\jmath} + (40 \, \mathrm{m}) \hat{\kappa}
 $$
 
-$$
-v_{\text{autobús}} = 60 \, \mathrm{km/h} \cdot \left( \frac{1000 \, \mathrm{m}}{1 \, \mathrm{km}} \right) \cdot \left( \frac{1 \, \mathrm{h}}{3600 \, \mathrm{s}} \right) = 16,67 \, \mathrm{m/s}
-$$ 
+- **Inquilino 2** (centro de la cara lateral Este, a media altura): la cara Este está en $$x = 20$$, su centro en $$y = 10$$, y a media altura $$z = 20$$
 
 $$
-v_{\text{sprint}} = 15 \, \mathrm{ft/s} \cdot \left( \frac{0,3048 \, \mathrm{m}}{1 \, \mathrm{ft}} \right) = 4,57 \, \mathrm{m/s}
-$$ 
+\vec{r}_2 = (20 \, \mathrm{m}) \hat{\iota} + (10 \, \mathrm{m}) \hat{\jmath} + (20 \, \mathrm{m}) \hat{\kappa}
+$$
 
-Una vez que todos hablan el mismo idioma, la respuesta es clara: el autobús es por lejos el más rápido, aunque en la vida real el tráfico hace que la bicicleta sea muchas veces más eficiente.
+**Inciso b) Desplazamiento del inquilino 2 al inquilino 1:**
+
+$$
+\Delta \vec{r} = \vec{r}_1 - \vec{r}_2 = (0 - 20) \hat{\iota} + (20 - 10) \hat{\jmath} + (40 - 20) \hat{\kappa}
+$$
+
+$$
+\Delta \vec{r} = (-20 \, \mathrm{m}) \hat{\iota} + (10 \, \mathrm{m}) \hat{\jmath} + (20 \, \mathrm{m}) \hat{\kappa}
+$$
+
+La magnitud del desplazamiento es:
+
+$$
+|\Delta \vec{r}| = \sqrt{(-20)^2 + (10)^2 + (20)^2} = \sqrt{400 + 100 + 400} = \sqrt{900} = 30 \, \mathrm{m}
+$$
+
+El inquilino de la ventana debe desplazarse **$$30 \, \mathrm{m}$$** en dirección Noroeste y hacia arriba.
 
 </details>
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 5">
-El recibo de tu último viaje en Uber o DiDi muestra que el carro recorrió una distancia de $8,5 \, \mathrm{km}$. Si la aplicación cobra la tarifa base a razón de $450$ colones por cada milla recorrida, ¿cuánto te cobraron *solamente* por el tramo de distancia?
+La constelación de Orión es una de las más reconocibles en el cielo de Costa Rica. Desde la Tierra, la estrella Betelgeuse se encuentra a $643$ años luz de distancia, mientras que Rigel está a $860$ años luz. La separación angular entre ambas estrellas, vista desde la Tierra, es de $$16^\circ$$. Utilizando métodos vectoriales, calcule la distancia entre Betelgeuse y Rigel.
 
 <details>
 <summary>Ver solución</summary>
 
-Este problema demuestra la verdadera potencia del método de factores de conversión: podemos encadenarlos como si fueran piezas de dominó. No necesitamos hacer reglas de tres por separado; basta con multiplicar nuestros datos iniciales por los factores necesarios para que las unidades no deseadas se cancelen.
+Podemos modelar este problema vectorialmente. Sea la Tierra en el origen, Betelgeuse en el extremo del vector $$\vec{r}_B$$ y Rigel en el extremo de $$\vec{r}_R$$. El ángulo entre ambos vectores de posición es $$\theta = 16^\circ$$.
 
-Empezamos con los kilómetros que viajamos, los convertimos a millas (porque la tarifa está en millas) y finalmente multiplicamos por el costo en colones:
+La distancia entre las dos estrellas es la magnitud del vector diferencia:
 
 $$
-\text{Costo} = 8,5 \, \mathrm{km} \times \left( \frac{1 \, \mathrm{mi}}{1,61 \, \mathrm{km}} \right) \times \left( \frac{450 \, \mathrm{colones}}{1 \, \mathrm{mi}} \right) \approx 2375,7 \, \mathrm{colones}
+d = |\vec{r}_R - \vec{r}_B| = \sqrt{r_B^2 + r_R^2 - 2 r_B r_R \cos \theta}
 $$
-*(Por eso a veces ves en el recibo un monto extra que no cuadra con los kilómetros totales: ¡la app te estaba cobrando en millas todo el tiempo!)*
+
+Esta es la **ley de los cosenos**, que se deriva del producto punto: $$|\Delta \vec{r}|^2 = (\vec{r}_R - \vec{r}_B) \cdot (\vec{r}_R - \vec{r}_B)$$.
+
+Sustituyendo valores:
+
+$$
+d^2 = (643)^2 + (860)^2 - 2(643)(860)\cos(16^\circ)
+$$
+
+$$
+d^2 = 413\,449 + 739\,600 - 1\,105\,960 \times 0{,}9613
+$$
+
+$$
+d^2 = 1\,153\,049 - 1\,063\,059 = 89\,990
+$$
+
+$$
+d = \sqrt{89\,990} \approx 300 \, \mathrm{años \, luz}
+$$
+
+Aunque desde la Tierra Betelgeuse y Rigel parecen estar muy cerca (solo $$16^\circ$$ de separación), en realidad están separadas por aproximadamente **$$300$$ años luz**. Esto ilustra cómo la percepción angular puede ser engañosa cuando las distancias son enormes.
 
 </details>
 </Aside>
 
- <Aside type="note" icon="pencil" title="Ejercicio 6">
- Un estudiante camina del punto $A = (2, 3)$ al punto $B = (5, -1)$ en el sistema de coordenadas del campus (distancias en metros). Determine:
- 1. El vector desplazamiento $\vec{d}$ en notación de componentes.
- 2. La magnitud del desplazamiento.
- 3. La dirección del vector (ángulo respecto al eje $x$ positivo).
+<Aside type="note" icon="pencil" title="Ejercicio 6">
+Una fuerza $\vec{F} = (50 \hat{\iota} - 20 \hat{\jmath} + 30 \hat{\kappa}) \, \mathrm{N}$ actúa sobre un objeto que se desplaza $\vec{s} = (4 \hat{\iota} + 3 \hat{\jmath}) \, \mathrm{m}$. Calcule el trabajo realizado por esta fuerza.
 
- <details>
- <summary>Ver solución</summary>
+<details>
+<summary>Ver solución</summary>
 
- El vector desplazamiento se obtiene restando las coordenadas del punto inicial del punto final:
+El trabajo se define como el producto punto entre la fuerza y el desplazamiento:
 
- $$
- \vec{d} = (x_B - x_A) \hat{\iota} + (y_B - y_A) \hat{\jmath} = (5 - 2) \hat{\iota} + (-1 - 3) \hat{\jmath} = (3\,\mathrm{m}) \hat{\iota} - (4\,\mathrm{m}) \hat{\jmath} 
- $$
+$$
+W = \vec{F} \cdot \vec{s}
+$$
 
- Para encontrar la magnitud, usamos el teorema de Pitágoras:
+Calculamos componente por componente:
 
- $$
- |\vec{d}| = \sqrt{d_x^2 + d_y^2} = \sqrt{(3)^2 + (-4)^2} = \sqrt{9 + 16} = \sqrt{25} = 5 \, \mathrm{m}
- $$
+$$
+W = (50)(4) + (-20)(3) + (30)(0)
+$$
 
- La dirección se encuentra usando la tangente inversa. Notamos que el vector está en el cuarto cuadrante ($x$ positivo, $y$ negativo):
+$$
+W = 200 - 60 + 0 = 140 \, \mathrm{J}
+$$
 
- $$
- \theta = \tan^{-1}\left(\frac{d_y}{d_x}\right) = \tan^{-1}\left(\frac{-4}{3}\right) \approx -53,1^\circ
- $$
+El trabajo realizado es de **$$140 \, \mathrm{J}$$**. Como el resultado es positivo, la fuerza favorece el desplazamiento (componente de la fuerza en la dirección del movimiento es mayor que la que se opone).
 
- Por lo tanto, el vector tiene una magnitud de $5 \, \mathrm{m}$ y apunta en una dirección de $53,1^\circ$ por debajo del eje $x$ positivo (o $53,1^\circ$ al sur del este).
+</details>
+</Aside>
 
- </details>
- </Aside>
+<Aside type="note" icon="pencil" title="Ejercicio 7">
+Para abrir una puerta, una persona aplica una fuerza de $15 \, \mathrm{N}$ perpendicular a la superficie de la puerta, a $0{,}80 \, \mathrm{m}$ de las bisagras. Posteriormente, empuja con la misma fuerza pero ahora formando un ángulo de $30^\circ$ con la superficie de la puerta. Determine:
 
- <Aside type="note" icon="pencil" title="Ejercicio 7">
- Dos estudiantes empujan una caja en el laboratorio. El estudiante A aplica una fuerza $\vec{F}_A = 15 \, \mathrm{N}$ hacia el este (dirección $+x$), mientras que el estudiante B aplica una fuerza $\vec{F}_B = 20 \, \mathrm{N}$ hacia el norte (dirección $+y$). Determine la fuerza resultante $\vec{F}_R$ ejercida sobre la caja.
+1. El torque en el primer caso.
+2. El torque en el segundo caso.
+3. ¿Por qué es más difícil abrir la puerta en el segundo caso?
 
- <details>
- <summary>Ver solución</summary>
+<details>
+<summary>Ver solución</summary>
 
- Primero expresamos cada fuerza en notación de componentes:
+El torque se calcula como $$\tau = r F \sin \theta$$, donde $$\theta$$ es el ángulo entre $$\vec{r}$$ (del eje de giro al punto de aplicación) y $$\vec{F}$$.
 
- $$
- \vec{F}_A = (15\, \mathrm{N})\, \hat{\iota}  \quad \text{(hacia el este)}
- $$
- $$
- \vec{F}_B = (20\, \mathrm{N})\, \hat{\jmath}  \quad \text{(hacia el norte)}
- $$
+**Inciso a)** La fuerza es perpendicular a la puerta, por lo que $$\theta = 90^\circ$$:
 
- La fuerza resultante es la suma vectorial de ambas fuerzas:
+$$
+\tau = (0{,}80 \, \mathrm{m})(15 \, \mathrm{N}) \sin(90^\circ) = 12 \times 1 = 12 \, \mathrm{N \cdot m}
+$$
 
- $$
- \vec{F}_R = \vec{F}_A + \vec{F}_B = (15\, \mathrm{N})\, \hat{\iota} + (20\, \mathrm{N})\, \hat{\jmath}
- $$
+**Inciso b)** Ahora la fuerza forma $$30^\circ$$ con la superficie de la puerta. El ángulo entre $$\vec{r}$$ (que está a lo largo de la puerta) y $$\vec{F}$$ es $$90^\circ - 30^\circ = 60^\circ$$:
 
- Para caracterizar completamente el resultado, calculamos la magnitud y dirección:
+$$
+\tau = (0{,}80 \, \mathrm{m})(15 \, \mathrm{N}) \sin(60^\circ) = 12 \times 0{,}866 = 10{,}4 \, \mathrm{N \cdot m}
+$$
 
- **Magnitud:**
- $$
- |\vec{F}_R| = \sqrt{F_{Rx}^2 + F_{Ry}^2} = \sqrt{(15)^2 + (20)^2} = \sqrt{225 + 400} = \sqrt{625} = 25 \, \mathrm{N}
- $$
+**Inciso c)** En el segundo caso el torque es menor ($$10{,}4 < 12 \, \mathrm{N \cdot m}$$) porque parte de la fuerza se "desperdicia" en una dirección que no produce rotación. Esto confirma la intuición cotidiana: siempre empujamos las puertas perpendicularmente para abrirlas con menor esfuerzo.
 
- **Dirección:**
- $$
- \theta = \tan^{-1}\left(\frac{F_{Ry}}{F_{Rx}}\right) = \tan^{-1}\left(\frac{20}{15}\right) = \tan^{-1}\left(\frac{4}{3}\right) \approx 53,1^\circ
- $$
-
- Por lo tanto, la fuerza resultante tiene una magnitud de $25 \, \mathrm{N}$ y apunta en una dirección de $53,1^\circ$ al norte del este.
-
- </details>
- </Aside>
-
- <Aside type="note" icon="pencil" title="Ejercicio 8">
- Un avión vuela con una velocidad respecto al aire de $\vec{v}_{\mathrm{avi\'on}} = 200 \, \mathrm{km/h}$ hacia el norte. Sin embargo, el viento sopla con una velocidad $\vec{v}_{\mathrm{viento}} = 50 \, \mathrm{km/h}$ hacia el este. Determine:
- 1. La velocidad resultante del avión respecto al suelo $\vec{v}_{\mathrm{resultante}}$.
- 2. ¿En qué dirección real viaja el avión respecto al norte?
- 3. ¿Cuál es la rapidez real del avión respecto al suelo?
-
- <details>
- <summary>Ver solución</summary>
-
- Primero expresamos las velocidades en notación de componentes, tomando el norte como dirección $+y$ y el este como $+x$:
-
- $$
- \vec{v}_{\mathrm{avi\'on}} = (0 \, \mathrm{km/h})\hat{\iota} + (200 \, \mathrm{km/h}) \hat{\jmath} 
- $$
- $$
- \vec{v}_{\mathrm{viento}} = 50 \hat{\iota} + 0 \hat{\jmath} \, \mathrm{km/h}
- $$
-
- La velocidad resultante es la suma vectorial:
-
- $$
- \vec{v}_{\mathrm{resultante}} = \vec{v}_{\mathrm{avi\'on}} + \vec{v}_{\mathrm{viento}} = (0 + 50) \hat{\iota} + (200 + 0) \hat{\jmath} = (50\, \mathrm{km/h})\, \hat{\iota} + (200 \, \mathrm{km/h})\,)\hat{\jmath} 
- $$
-
- **Rapidez real (magnitud):**
- $$
- |\vec{v}_{\mathrm{resultante}}| = \sqrt{(50)^2 + (200)^2} = \sqrt{2500 + 40000} = \sqrt{42500} \approx 206,16 \, \mathrm{km/h}
- $$
-
- **Dirección real (ángulo respecto al norte):**
- El ángulo se mide desde el norte hacia el este:
-
- $$
- \theta = \tan^{-1}\left(\frac{v_x}{v_y}\right) = \tan^{-1}\left(\frac{50}{200}\right) = \tan^{-1}(0,25) \approx 14,0^\circ
- $$
-
- Por lo tanto, el avión viaja con una rapidez de aproximadamente $206 \, \mathrm{km/h}$ en una dirección de $14,0^\circ$ al este del norte.
-
- </details>
- </Aside>
-
- <Aside type="note" icon="pencil" title="Ejercicio 9">
- Un caminante recorre $100 \, \mathrm{m}$ hacia el este, luego $50 \, \mathrm{m}$ hacia el norte, y finalmente $30 \, \mathrm{m}$ hacia el oeste. Determine:
- 1. El desplazamiento total del caminante en notación de componentes.
- 2. La distancia total recorrida (escalar).
- 3. El desplazamiento total (vector) expresado en magnitud y dirección.
-
- <details>
- <summary>Ver solución</summary>
-
- Analizamos cada tramo del recorrido usando notación de componentes (este = $+x$, norte = $+y$):
-
- **Tramo 1:** $100 \, \mathrm{m}$ hacia el este:
- $$
- \vec{d}_1 = (100 \, \mathrm{m} ) \, \hat{\iota} 
- $$
-
- **Tramo 2:** $50 \, \mathrm{m}$ hacia el norte:
- $$
- \vec{d}_2 = (50 \, \mathrm{m}) \, \hat{\jmath} 
- $$
-
- **Tramo 3:** $30 \, \mathrm{m}$ hacia el oeste:
- $$
- \vec{d}_3 = (-30 \, \mathrm{m} )\, \hat{\iota} 
- $$
-
- **Desplazamiento total (suma vectorial):**
- $$
- \vec{d}_{\mathrm{total}} = \vec{d}_1 + \vec{d}_2 + \vec{d}_3 = (100 - 30) \hat{\iota} + 50 \hat{\jmath} = (70 \, \mathrm{m}) \, \hat{\iota} + (50 \, \mathrm{m})\,  \hat{\jmath} 
- $$
-
- **Distancia total recorrida (suma escalar):**
- $$
- d_{\mathrm{recorrida}} = 100 + 50 + 30 = 180 \, \mathrm{m}
- $$
-
- **Magnitud del desplazamiento:**
- $$
- |\vec{d}_{total}| = \sqrt{(70)^2 + (50)^2} = \sqrt{4900 + 2500} = \sqrt{7400} \approx 86,02 \, \mathrm{m}
- $$
-
- **Dirección del desplazamiento:**
- $$
- \theta = \tan^{-1}\left(\frac{50}{70}\right) = \tan^{-1}(0,7143) \approx 35,5^\circ
- $$
-
- Por lo tanto, aunque el caminante recorrió una distancia total de $180 \, \mathrm{m}$, su desplazamiento neto es de aproximadamente $86 \, \mathrm{m}$ en una dirección de $35,5^\circ$ al norte del este. Note la diferencia importante entre distancia (escalar) y desplazamiento (vector).
-
- </details>
- </Aside>
+</details>
+</Aside>
