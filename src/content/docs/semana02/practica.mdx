@@ -4,329 +4,271 @@ week: 2
 keywords: ["producto escalar", "producto punto", "producto vectorial", "producto cruz", "puntos cardinales", "vectores 3D", "notación polar", "notación cartesiana", "trabajo y torque", "física general I", "TEC Costa Rica"]
 draft: false
 ---
+
 import { Aside } from '@astrojs/starlight/components';
 
-<Aside type="note" icon="pencil" title="Ejercicio 1">
-Considere los vectores:
-
-$$
-\vec{A} = (2 \, \mathrm{m}) \hat{\iota} + (-5 \, \mathrm{m}) \hat{\jmath} - (1 \, \mathrm{m}) \hat{\kappa} \qquad \mathrm{y} \qquad \vec{B} = (6 \, \mathrm{m}) \hat{\iota} - (2 \, \mathrm{m}) \hat{\jmath} + (0 \, \mathrm{m}) \hat{\kappa}
-$$
-
-1. Determine la magnitud de cada vector.
-2. Calcule el ángulo que se forma entre los dos vectores.
+<Aside type="note" icon="pencil" title="Ejercicio 1 — Navegando hasta el laboratorio">
+Es tu primera semana en el TEC. Google Maps te indica que debes caminar $500 \, \mathrm{m}$ en dirección $37^\circ$ NE desde la parada de bus hasta llegar al laboratorio de Física. ¿Cuánto te desplazas hacia el este y cuánto hacia el norte?
 
 <details>
 <summary>Ver solución</summary>
 
-**Magnitudes:**
+La dirección "$37^\circ$ NE" significa: partiendo del Norte, girar $$37^\circ$$ hacia el Este. En ángulo polar (medido desde el eje $$x$$ positivo) esto equivale a $$90^\circ - 37^\circ = 53^\circ$$.
+
+Usamos las fórmulas de conversión de polar a cartesiano:
 
 $$
-A = \sqrt{(2)^2 + (-5)^2 + (-1)^2} = \sqrt{4 + 25 + 1} = \sqrt{30} \approx 5,48 \, \mathrm{m}
+d_x = d \cos \theta = 500 \cos(53^\circ) \approx 500 \times 0{,}60 = 300 \, \mathrm{m}
 $$
 
 $$
-B = \sqrt{(6)^2 + (-2)^2 + (0)^2} = \sqrt{36 + 4} = \sqrt{40} \approx 6,32 \, \mathrm{m}
+d_y = d \sin \theta = 500 \sin(53^\circ) \approx 500 \times 0{,}80 = 400 \, \mathrm{m}
 $$
 
-**Ángulo entre los vectores:**
-
-Primero calculamos el producto punto:
-
-$$
-\vec{A} \cdot \vec{B} = (2)(6) + (-5)(-2) + (-1)(0) = 12 + 10 + 0 = 22 \, \mathrm{m}^2
-$$
-
-Luego usamos la relación geométrica $$\vec{A} \cdot \vec{B} = A B \cos \theta$$:
-
-$$
-\theta = \arccos\left(\frac{22}{(5,48)(6,32)}\right) = \arccos\left(\frac{22}{34,63}\right) = \arccos(0,635) \approx 50,6^\circ
-$$
-
-El ángulo entre los vectores es aproximadamente $$50,6^\circ$$.
+Te desplazas aproximadamente $$300 \, \mathrm{m}$$ al este y $$400 \, \mathrm{m}$$ al norte. Puedes verificar que $$\sqrt{300^2 + 400^2} = 500 \, \mathrm{m}$$, como debe ser (¡es un triángulo 3-4-5!).
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 2">
-Exprese en notación polar (magnitud + dirección) cada uno de los siguientes vectores, dados por sus componentes cartesianas. Indique también la dirección cardinal correspondiente.
-
-1. $A_x = -8{,}60 \, \mathrm{cm}$, $A_y = -5{,}20 \, \mathrm{cm}$.
-2. $B_x = -9{,}70 \, \mathrm{m}$, $B_y = 2{,}45 \, \mathrm{m}$.
-3. $C_x = 7{,}75 \, \mathrm{km}$, $C_y = -2{,}70 \, \mathrm{km}$.
+<Aside type="note" icon="pencil" title="Ejercicio 2 — ¿Dónde está el dron de la entrega?">
+Pediste comida por una app de delivery con dron. El sistema muestra que el dron está a $90 \, \mathrm{m}$ al este y $120 \, \mathrm{m}$ al sur de tu ubicación. ¿A qué distancia y en qué dirección cardinal se encuentra el dron respecto a ti?
 
 <details>
 <summary>Ver solución</summary>
 
-**Inciso a)** El vector $$\vec{A}$$ tiene ambas componentes negativas, por lo que está en el **tercer cuadrante**.
+Tenemos las componentes cartesianas: $$d_x = 90 \, \mathrm{m}$$, $$d_y = -120 \, \mathrm{m}$$.
+
+**Magnitud (distancia):**
 
 $$
-A = \sqrt{(-8{,}60)^2 + (-5{,}20)^2} = \sqrt{73{,}96 + 27{,}04} = \sqrt{101{,}0} \approx 10{,}0 \, \mathrm{cm}
+d = \displaystyle \sqrt{d_x^2 + d_y^2} = \sqrt{90^2 + (-120)^2} = \sqrt{8\,100 + 14\,400} = \sqrt{22\,500} = 150 \, \mathrm{m}
 $$
 
-$$
-\theta = \arctan\left(\frac{5{,}20}{8{,}60}\right) \approx 31{,}1^\circ
-$$
+**Dirección:**
 
-Como está en el tercer cuadrante: $$\theta_{\text{polar}} = 180^\circ + 31{,}1^\circ = 211{,}1^\circ$$. En notación cardinal, es $$31{,}1^\circ$$ SO.
-
-**Resultado:** $$\vec{A} \approx (10{,}0 \, \mathrm{cm}; \, 31{,}1^\circ \, \mathrm{SO})$$
-
----
-
-**Inciso b)** El vector $$\vec{B}$$ tiene $$B_x < 0$$ e $$B_y > 0$$: **segundo cuadrante**.
+Como $$d_x > 0$$ y $$d_y < 0$$, el vector está en el cuarto cuadrante (sureste). El ángulo respecto al sur es:
 
 $$
-B = \sqrt{(-9{,}70)^2 + (2{,}45)^2} = \sqrt{94{,}09 + 6{,}00} = \sqrt{100{,}09} \approx 10{,}0 \, \mathrm{m}
+\alpha = \arctan\left(\frac{90}{120}\right) = \arctan(0{,}75) \approx 36{,}9^\circ
 $$
 
-$$
-\theta = \arctan\left(\frac{2{,}45}{9{,}70}\right) \approx 14{,}2^\circ
-$$
+El dron está a $$150 \, \mathrm{m}$$ en dirección $$36{,}9^\circ$$ SE (es decir, $$36{,}9^\circ$$ desde el Sur hacia el Este).
 
-En el segundo cuadrante: $$\theta_{\text{polar}} = 180^\circ - 14{,}2^\circ = 165{,}8^\circ$$. Cardinal: $$14{,}2^\circ$$ NO.
-
-**Resultado:** $$\vec{B} \approx (10{,}0 \, \mathrm{m}; \, 14{,}2^\circ \, \mathrm{NO})$$
-
----
-
-**Inciso c)** El vector $$\vec{C}$$ tiene $$C_x > 0$$ e $$C_y < 0$$: **cuarto cuadrante**.
-
-$$
-C = \sqrt{(7{,}75)^2 + (-2{,}70)^2} = \sqrt{60{,}06 + 7{,}29} = \sqrt{67{,}35} \approx 8{,}21 \, \mathrm{km}
-$$
-
-$$
-\theta = \arctan\left(\frac{2{,}70}{7{,}75}\right) \approx 19{,}2^\circ
-$$
-
-En el cuarto cuadrante: $$\theta_{\text{polar}} = 360^\circ - 19{,}2^\circ = 340{,}8^\circ$$. Cardinal: $$19{,}2^\circ$$ SE.
-
-**Resultado:** $$\vec{C} \approx (8{,}21 \, \mathrm{km}; \, 19{,}2^\circ \, \mathrm{SE})$$
+*(De nuevo un triángulo 3-4-5: las distancias 90, 120 y 150 están en proporción 3:4:5.)*
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 3">
-En una carrera de orientación, una joven realiza los siguientes desplazamientos:
-
-1. Primero corre $1{,}5 \, \mathrm{km}$ en dirección $35^\circ$ SE.
-2. Luego corre $1{,}3 \, \mathrm{km}$ en dirección $15^\circ$ NO.
-3. Realiza un tercer desplazamiento y termina exactamente a $2{,}4 \, \mathrm{km}$ al NE de su punto de partida.
-
-Determine el tercer desplazamiento en magnitud y dirección.
+<Aside type="note" icon="pencil" title="Ejercicio 3 — Encontrando a tu grupo en el festival">
+En un festival al aire libre, tú estás parado en la posición $\vec{r}_A = (20 \hat{\iota} + 40 \hat{\jmath}) \, \mathrm{m}$ desde el escenario principal. Tu grupo de amigos está en $\vec{r}_B = (50 \hat{\iota}) \, \mathrm{m}$ (justo frente al escenario, junto a la valla). ¿Qué desplazamiento en magnitud y dirección debes realizar para reunirte con ellos?
 
 <details>
 <summary>Ver solución</summary>
 
-Primero convertimos las direcciones cardinales a ángulos polares y calculamos las componentes de cada desplazamiento. Tomamos: Este = $$+x$$, Norte = $$+y$$.
-
-**Primer desplazamiento** ($$35^\circ$$ SE): desde el Sur, $$35^\circ$$ hacia el Este. Ángulo polar: $$270^\circ + 35^\circ = 305^\circ$$.
+El desplazamiento desde tu posición hasta la de tus amigos es la resta de vectores de posición:
 
 $$
-d_{1x} = 1{,}5 \cos(305^\circ) \approx 1{,}5 \times 0{,}574 = 0{,}860 \, \mathrm{km}
+\Delta \vec{r} = \vec{r}_B - \vec{r}_A = (50 - 20) \hat{\iota} + (0 - 40) \hat{\jmath} = (30 \hat{\iota} - 40 \hat{\jmath}) \, \mathrm{m}
 $$
 
-$$
-d_{1y} = 1{,}5 \sin(305^\circ) \approx 1{,}5 \times (-0{,}819) = -1{,}229 \, \mathrm{km}
-$$
-
-**Segundo desplazamiento** ($$15^\circ$$ NO): desde el Norte, $$15^\circ$$ hacia el Oeste. Ángulo polar: $$90^\circ + 15^\circ = 105^\circ$$.
+**Magnitud:**
 
 $$
-d_{2x} = 1{,}3 \cos(105^\circ) \approx 1{,}3 \times (-0{,}259) = -0{,}336 \, \mathrm{km}
+|\Delta \vec{r}| = \sqrt{30^2 + (-40)^2} = \sqrt{900 + 1\,600} = \sqrt{2\,500} = 50 \, \mathrm{m}
 $$
 
-$$
-d_{2y} = 1{,}3 \sin(105^\circ) \approx 1{,}3 \times 0{,}966 = 1{,}256 \, \mathrm{km}
-$$
+**Dirección:**
 
-**Posición después de los dos primeros desplazamientos:**
+El vector tiene $$\Delta x > 0$$ e $$\Delta y < 0$$: cuarto cuadrante (sureste).
 
 $$
-x = 0{,}860 + (-0{,}336) = 0{,}524 \, \mathrm{km}
+\alpha = \arctan\left(\frac{40}{30}\right) \approx 53{,}1^\circ
 $$
 
-$$
-y = -1{,}229 + 1{,}256 = 0{,}027 \, \mathrm{km}
-$$
-
-**Posición final deseada** ($$2{,}4 \, \mathrm{km}$$ al NE, es decir $$45^\circ$$):
-
-$$
-x_f = 2{,}4 \cos(45^\circ) = 1{,}697 \, \mathrm{km} \qquad y_f = 2{,}4 \sin(45^\circ) = 1{,}697 \, \mathrm{km}
-$$
-
-**Tercer desplazamiento** (vectorialmente: $$\vec{d}_3 = \vec{r}_{\text{final}} - (\vec{d}_1 + \vec{d}_2)$$):
-
-$$
-d_{3x} = 1{,}697 - 0{,}524 = 1{,}173 \, \mathrm{km}
-$$
-
-$$
-d_{3y} = 1{,}697 - 0{,}027 = 1{,}670 \, \mathrm{km}
-$$
-
-$$
-|\vec{d}_3| = \sqrt{(1{,}173)^2 + (1{,}670)^2} = \sqrt{1{,}376 + 2{,}789} = \sqrt{4{,}165} \approx 2{,}04 \, \mathrm{km}
-$$
-
-$$
-\theta = \arctan\left(\frac{1{,}670}{1{,}173}\right) \approx 54{,}9^\circ
-$$
-
-El tercer desplazamiento es de aproximadamente **$$2{,}04 \, \mathrm{km}$$ a $$54{,}9^\circ$$** (dirección NE, medido desde el Este).
+Debes caminar $$50 \, \mathrm{m}$$ en dirección $$53{,}1^\circ$$ SE (desde el Sur, $$53{,}1^\circ$$ hacia el Este).
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 4">
-Un edificio de apartamentos tiene una base cuadrada de $20{,}0 \, \mathrm{m}$ de lado y una altura de $40{,}0 \, \mathrm{m}$. La base está alineada en el sentido Norte-Sur. Un inquilino se ubica en la esquina Noroeste de la azotea, mientras que otro se encuentra asomado en la ventana de su habitación, en el centro de la cara lateral Este, a media altura del edificio.
+<Aside type="note" icon="pencil" title="Ejercicio 4 — Empujando el carrito del supermercado">
+Tú y tu compañero de cuarto van de compras. Tú empujas el carrito con una fuerza de $24 \, \mathrm{N}$ hacia el norte, mientras tu compañero lo empuja con $32 \, \mathrm{N}$ hacia el este. El carrito cargado tiene una masa de $12 \, \mathrm{kg}$.
 
-Tomando el origen de coordenadas en la esquina Suroeste de la base, con el eje $$x$$ hacia el Este, el eje $$y$$ hacia el Norte y el eje $$z$$ hacia arriba, calcule:
-
-1. Los vectores de posición de cada inquilino.
-2. El desplazamiento que debería realizar el inquilino de la ventana para llegar hasta el de la azotea.
+1. ¿Cuál es la fuerza resultante sobre el carrito (magnitud y dirección)?
+2. ¿Cuál es la aceleración del carrito?
 
 <details>
 <summary>Ver solución</summary>
 
-**Sistema de coordenadas:**
+**a) Fuerza resultante:**
 
-La base cuadrada tiene esquinas en el plano $$z = 0$$:
-- Esquina SO (origen): $$(0, \, 0, \, 0)$$
-- Esquina SE: $$(20, \, 0, \, 0)$$
-- Esquina NO: $$(0, \, 20, \, 0)$$
-- Esquina NE: $$(20, \, 20, \, 0)$$
-
-La azotea está en $$z = 40 \, \mathrm{m}$$.
-
-**Inciso a) Vectores de posición:**
-
-- **Inquilino 1** (esquina NO de la azotea): $$x = 0$$, $$y = 20$$, $$z = 40$$
+Sumamos las fuerzas por componentes (Este $$= +x$$, Norte $$= +y$$):
 
 $$
-\vec{r}_1 = (0 \, \mathrm{m}) \hat{\iota} + (20 \, \mathrm{m}) \hat{\jmath} + (40 \, \mathrm{m}) \hat{\kappa}
+\vec{F}_R = 32 \hat{\iota} + 24 \hat{\jmath} \, \mathrm{N}
 $$
 
-- **Inquilino 2** (centro de la cara lateral Este, a media altura): la cara Este está en $$x = 20$$, su centro en $$y = 10$$, y a media altura $$z = 20$$
+Magnitud:
 
 $$
-\vec{r}_2 = (20 \, \mathrm{m}) \hat{\iota} + (10 \, \mathrm{m}) \hat{\jmath} + (20 \, \mathrm{m}) \hat{\kappa}
+|\vec{F}_R| = \sqrt{32^2 + 24^2} = \sqrt{1\,024 + 576} = \sqrt{1\,600} = 40 \, \mathrm{N}
 $$
 
-**Inciso b) Desplazamiento del inquilino 2 al inquilino 1:**
+Dirección (está en el primer cuadrante, se referencia desde el Norte):
 
 $$
-\Delta \vec{r} = \vec{r}_1 - \vec{r}_2 = (0 - 20) \hat{\iota} + (20 - 10) \hat{\jmath} + (40 - 20) \hat{\kappa}
+\alpha = \arctan\left(\frac{32}{24}\right) \approx 53{,}1^\circ
 $$
 
+La fuerza resultante es de $$40 \, \mathrm{N}$$ en dirección $$53{,}1^\circ$$ NE (desde el Norte hacia el Este).
+
+**b) Aceleración:**
+
+Por la segunda ley de Newton, $$\vec{a} = \frac{1}{m}\vec{F}_R$$, que es multiplicar el vector por el escalar $$1/m$$:
+
 $$
-\Delta \vec{r} = (-20 \, \mathrm{m}) \hat{\iota} + (10 \, \mathrm{m}) \hat{\jmath} + (20 \, \mathrm{m}) \hat{\kappa}
+|\vec{a}| = \frac{|\vec{F}_R|}{m} = \frac{40 \, \mathrm{N}}{12 \, \mathrm{kg}} \approx 3{,}33 \, \mathrm{m/s^2}
 $$
 
-La magnitud del desplazamiento es:
-
-$$
-|\Delta \vec{r}| = \sqrt{(-20)^2 + (10)^2 + (20)^2} = \sqrt{400 + 100 + 400} = \sqrt{900} = 30 \, \mathrm{m}
-$$
-
-El inquilino de la ventana debe desplazarse **$$30 \, \mathrm{m}$$** en dirección Noroeste y hacia arriba.
+La aceleración tiene la misma dirección que la fuerza resultante: $$3{,}33 \, \mathrm{m/s^2}$$ a $$53{,}1^\circ$$ NE.
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 5">
-La constelación de Orión es una de las más reconocibles en el cielo de Costa Rica. Desde la Tierra, la estrella Betelgeuse se encuentra a $643$ años luz de distancia, mientras que Rigel está a $860$ años luz. La separación angular entre ambas estrellas, vista desde la Tierra, es de $$16^\circ$$. Utilizando métodos vectoriales, calcule la distancia entre Betelgeuse y Rigel.
+<Aside type="note" icon="pencil" title="Ejercicio 5 — Arrastrando la maleta en el aeropuerto">
+Para no cansarte el brazo, llevas tu maleta de mano con una correa que forma un ángulo de $60^\circ$ con el piso. Tiras con una fuerza constante de $40 \, \mathrm{N}$ mientras caminas $150 \, \mathrm{m}$ por el pasillo hacia la sala de abordaje.
+
+1. ¿Cuánto trabajo realizas sobre la maleta?
+2. ¿Qué componente de la fuerza es la que realmente "hace el trabajo" de mover la maleta hacia adelante?
 
 <details>
 <summary>Ver solución</summary>
 
-Podemos modelar este problema vectorialmente. Sea la Tierra en el origen, Betelgeuse en el extremo del vector $$\vec{r}_B$$ y Rigel en el extremo de $$\vec{r}_R$$. El ángulo entre ambos vectores de posición es $$\theta = 16^\circ$$.
+**a) Trabajo:**
 
-La distancia entre las dos estrellas es la magnitud del vector diferencia:
-
-$$
-d = |\vec{r}_R - \vec{r}_B| = \sqrt{r_B^2 + r_R^2 - 2 r_B r_R \cos \theta}
-$$
-
-Esta es la **ley de los cosenos**, que se deriva del producto punto: $$|\Delta \vec{r}|^2 = (\vec{r}_R - \vec{r}_B) \cdot (\vec{r}_R - \vec{r}_B)$$.
-
-Sustituyendo valores:
+El trabajo es el producto punto entre la fuerza y el desplazamiento:
 
 $$
-d^2 = (643)^2 + (860)^2 - 2(643)(860)\cos(16^\circ)
+W = \vec{F} \cdot \vec{s} = F \, s \, \cos \theta = (40 \, \mathrm{N})(150 \, \mathrm{m}) \cos(60^\circ)
 $$
 
 $$
-d^2 = 413\,449 + 739\,600 - 1\,105\,960 \times 0{,}9613
+W = 6\,000 \times 0{,}5 = 3\,000 \, \mathrm{J}
 $$
 
-$$
-d^2 = 1\,153\,049 - 1\,063\,059 = 89\,990
-$$
+El trabajo realizado es de **$$3\,000 \, \mathrm{J}$$**.
+
+**b) Componente eficaz:**
+
+La fuerza se puede descomponer en dos partes:
+
+- **Paralela al piso** (la que mueve la maleta): $$F_{\parallel} = F \cos(60^\circ) = 40 \times 0{,}5 = 20 \, \mathrm{N}$$
+- **Vertical** (la que levanta el asa, no mueve la maleta hacia adelante): $$F_{\perp} = F \sin(60^\circ) = 40 \times 0{,}866 = 34{,}6 \, \mathrm{N}$$
+
+Solo la componente paralela contribuye al trabajo:
 
 $$
-d = \sqrt{89\,990} \approx 300 \, \mathrm{años \, luz}
+W = F_{\parallel} \times s = 20 \times 150 = 3\,000 \, \mathrm{J}
 $$
 
-Aunque desde la Tierra Betelgeuse y Rigel parecen estar muy cerca (solo $$16^\circ$$ de separación), en realidad están separadas por aproximadamente **$$300$$ años luz**. Esto ilustra cómo la percepción angular puede ser engañosa cuando las distancias son enormes.
+La componente vertical "gasta" fuerza en levantar el asa, pero no produce desplazamiento horizontal, así que **no realiza trabajo**. Por eso conviene tirar lo más paralelo posible al piso para aprovechar toda tu fuerza.
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 6">
-Una fuerza $\vec{F} = (50 \hat{\iota} - 20 \hat{\jmath} + 30 \hat{\kappa}) \, \mathrm{N}$ actúa sobre un objeto que se desplaza $\vec{s} = (4 \hat{\iota} + 3 \hat{\jmath}) \, \mathrm{m}$. Calcule el trabajo realizado por esta fuerza.
+<Aside type="note" icon="pencil" title="Ejercicio 6 — ¿Cabe el escritorio en la esquina?">
+Estás midiendo tu cuarto nuevo para acomodar los muebles. Un borde de la pared va del origen al punto $(6, \, 8) \, \mathrm{m}$, y el otro borde va del origen al punto $(-4, \, 3) \, \mathrm{m}$. Quieres colocar un escritorio en forma de L justo en la esquina, así que necesitas confirmar que las paredes son perpendiculares. Verifícalo usando el producto punto.
 
 <details>
 <summary>Ver solución</summary>
 
-El trabajo se define como el producto punto entre la fuerza y el desplazamiento:
+Representamos cada borde como un vector desde el origen:
 
 $$
-W = \vec{F} \cdot \vec{s}
+\vec{A} = (6\, \mathrm{m}) \hat{\iota} + (8\, \mathrm{m}) \hat{\jmath}  \qquad \vec{B} = (-4\, \mathrm{m}) \hat{\iota} + (3\, \mathrm{m}) \hat{\jmath} 
 $$
 
-Calculamos componente por componente:
+Calculamos el producto punto:
 
 $$
-W = (50)(4) + (-20)(3) + (30)(0)
+\vec{A} \cdot \vec{B} = (6)(-4) + (8)(3) = -24 + 24 = 0
 $$
 
-$$
-W = 200 - 60 + 0 = 140 \, \mathrm{J}
-$$
-
-El trabajo realizado es de **$$140 \, \mathrm{J}$$**. Como el resultado es positivo, la fuerza favorece el desplazamiento (componente de la fuerza en la dirección del movimiento es mayor que la que se opone).
+Como el producto punto es **cero**, las paredes son **perpendiculares**. El escritorio en L encajará perfectamente.
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 7">
-Para abrir una puerta, una persona aplica una fuerza de $15 \, \mathrm{N}$ perpendicular a la superficie de la puerta, a $0{,}80 \, \mathrm{m}$ de las bisagras. Posteriormente, empuja con la misma fuerza pero ahora formando un ángulo de $30^\circ$ con la superficie de la puerta. Determine:
+<Aside type="note" icon="pencil" title="Ejercicio 7 — Recorrido por el campus">
+Durante una jornada de orientación, un grupo de estudiantes nuevos realiza el siguiente recorrido desde la entrada principal del campus:
 
-1. El torque en el primer caso.
-2. El torque en el segundo caso.
-3. ¿Por qué es más difícil abrir la puerta en el segundo caso?
+1. Caminan $200 \, \mathrm{m}$ al norte hasta el centro de estudiantes.
+2. Luego $150 \, \mathrm{m}$ al este hasta la biblioteca.
+3. Finalmente $100 \, \mathrm{m}$ al sur hasta el comedor.
+
+¿A qué distancia y en qué dirección (cardinal) se encuentra el comedor respecto a la entrada principal?
 
 <details>
 <summary>Ver solución</summary>
 
-El torque se calcula como $$\tau = r F \sin \theta$$, donde $$\theta$$ es el ángulo entre $$\vec{r}$$ (del eje de giro al punto de aplicación) y $$\vec{F}$$.
+Expresamos cada tramo en componentes cartesianas (Este $$= +x$$, Norte $$= +y$$):
 
-**Inciso a)** La fuerza es perpendicular a la puerta, por lo que $$\theta = 90^\circ$$:
+**Tramo 1:** $200 \, \mathrm{m}$ al norte → $$\vec{d}_1 = 200 \hat{\jmath} \, \mathrm{m}$$
+
+**Tramo 2:** $150 \, \mathrm{m}$ al este → $$\vec{d}_2 = 150 \hat{\iota} \, \mathrm{m}$$
+
+**Tramo 3:** $100 \, \mathrm{m}$ al sur → $$\vec{d}_3 = -100 \hat{\jmath} \, \mathrm{m}$$
+
+**Desplazamiento total** (suma vectorial):
 
 $$
-\tau = (0{,}80 \, \mathrm{m})(15 \, \mathrm{N}) \sin(90^\circ) = 12 \times 1 = 12 \, \mathrm{N \cdot m}
+\vec{d}_{\text{total}} = (0 + 150 + 0) \hat{\iota} + (200 + 0 - 100) \hat{\jmath} = 150 \hat{\iota} + 100 \hat{\jmath} \, \mathrm{m}
 $$
 
-**Inciso b)** Ahora la fuerza forma $$30^\circ$$ con la superficie de la puerta. El ángulo entre $$\vec{r}$$ (que está a lo largo de la puerta) y $$\vec{F}$$ es $$90^\circ - 30^\circ = 60^\circ$$:
+**Magnitud:**
 
 $$
-\tau = (0{,}80 \, \mathrm{m})(15 \, \mathrm{N}) \sin(60^\circ) = 12 \times 0{,}866 = 10{,}4 \, \mathrm{N \cdot m}
+|\vec{d}_{\text{total}}| = \sqrt{150^2 + 100^2} = \sqrt{22\,500 + 10\,000} = \sqrt{32\,500} \approx 180 \, \mathrm{m}
 $$
 
-**Inciso c)** En el segundo caso el torque es menor ($$10{,}4 < 12 \, \mathrm{N \cdot m}$$) porque parte de la fuerza se "desperdicia" en una dirección que no produce rotación. Esto confirma la intuición cotidiana: siempre empujamos las puertas perpendicularmente para abrirlas con menor esfuerzo.
+**Dirección** (primer cuadrante, se referencia desde el Norte):
+
+$$
+\alpha = \arctan\left(\frac{150}{100}\right) \approx 56{,}3^\circ
+$$
+
+El comedor está a aproximadamente $$180 \, \mathrm{m}$$ en dirección $$56{,}3^\circ$$ NE (desde el Norte hacia el Este). Aunque el grupo de estudiantes caminaron un total de $$450 \, \mathrm{m}$$, en línea recta solo se alejaron $$180 \, \mathrm{m}$$ de la entrada.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — Abriendo la puerta del camión de mudanza">
+Estás ayudando a un amigo a mudarse. Para abrir la puerta corrediza del camión, la empujas perpendicularmente con una fuerza de $20 \, \mathrm{N}$, agarrándola a $0{,}90 \, \mathrm{m}$ de las bisagras.
+
+1. ¿Cuánto torque produces sobre la puerta?
+2. Si tu amigo, que es más bajo, solo puede agarrar la puerta a $0{,}30 \, \mathrm{m}$ de las bisagras, ¿qué fuerza debe aplicar para generar el mismo torque?
+
+<details>
+<summary>Ver solución</summary>
+
+**a) Torque:**
+
+Como la fuerza es perpendicular a la puerta, el ángulo entre $$\vec{r}$$ y $$\vec{F}$$ es $$\theta = 90^\circ$$, y $$\sin(90^\circ) = 1$$:
+
+$$
+\tau = r F \sin \theta = (0{,}90 \, \mathrm{m})(20 \, \mathrm{N})(1) = 18 \, \mathrm{N \cdot m}
+$$
+
+El torque que produces es de **$$18 \, \mathrm{N \cdot m}$$**.
+
+**b) Fuerza de tu amigo:**
+
+Para producir el mismo torque $$\tau = 18 \, \mathrm{N \cdot m}$$ a una distancia menor, tu amigo necesita más fuerza:
+
+$$
+F = \frac{\tau}{r} = \frac{18 \, \mathrm{N \cdot m}}{0{,}30 \, \mathrm{m}} = 60 \, \mathrm{N}
+$$
+
+Tu amigo necesita aplicar **$$60 \, \mathrm{N}$$**: el triple de fuerza. Esto explica por qué las manijas de las puertas siempre están en el extremo opuesto a las bisagras: cuanto mayor es el brazo de palanca ($$r_{\perp}$$), menos esfuerzo cuesta abrirlas.
 
 </details>
 </Aside>

@@ -4,16 +4,17 @@ description: "Operaciones con vectores: notación polar y cartesiana en 2D y 3D,
 week: 2
 keywords: ["producto escalar", "producto punto", "producto vectorial", "producto cruz", "puntos cardinales", "vectores 3D", "cosenos directores", "trabajo y fuerza", "torque", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-28
+date: 2026-08-09
 readingTime: 18
 tags: ["vectores", "producto punto", "producto cruz", "operaciones vectoriales"]
 category: "vectores"
 difficulty: "intermediate"
 objetivos:
-  - "Expresar vectores en notación polar y cartesiana, e intercambiar entre ambos sistemas."
+  - "Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección."
+  - "Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas."
+  - "Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar."
   - "Interpretar direcciones cardinales y relacionarlas con ángulos polares."
-  - "Calcular el producto escalar (punto) y el producto vectorial (cruz) de dos vectores."
-  - "Aplicar las operaciones vectoriales a situaciones físicas como trabajo y torque."
+  - "Aplicar el producto vectorial (cruz) a situaciones físicas como el torque."
 ---
 
 import PreCheck from '../../../components/PreCheck.astro';
@@ -21,12 +22,18 @@ import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import { SistemaCartesiano, SistemaPolar } from '@/components/graph';
+import { Image } from 'astro:assets';
+import NorEste from "../../../assets/NE.svg";
+import SurOeste from "../../../assets/SO.svg";
+import RosaVientos from "../../../assets/rosa_vientos.svg";
+
+
 
 <PreCheck>
-  - Expresar vectores en notación polar y cartesiana, e intercambiar entre ambos sistemas.
+  - Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección.
+  - Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas.
   - Interpretar direcciones cardinales y relacionarlas con ángulos polares.
-  - Calcular el producto escalar (punto) y el producto vectorial (cruz) de dos vectores.
-  - Aplicar las operaciones vectoriales a situaciones físicas como trabajo y torque.
+  - Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar.
 </PreCheck>
 
 En la sesión anterior aprendimos qué es un vector, cómo representarlo con flechas y cómo sumarlo y restarlo por componentes. Esas operaciones son apenas el comienzo. Los vectores aparecen por todas partes en la física: describen fuerzas, velocidades, campos eléctricos y magnéticos, y muchas otras cantidades. Para modelar estos fenómenos necesitamos herramientas más potentes.
@@ -51,7 +58,17 @@ A partir de estos cuatro puntos surgen las direcciones intermedias: noreste (NE)
 - Si la ubicación está en el **primer o segundo cuadrante** (mitad norte), se toma el **Norte** como referencia.
 - Si la ubicación está en el **tercer o cuarto cuadrante** (mitad sur), se toma el **Sur** como referencia.
 
-Por ejemplo, la dirección "$$35^\circ$$ SE" significa: partiendo del Sur, girar $$35^\circ$$ hacia el Este. De forma equivalente, en ángulo polar sería $$270^\circ + 35^\circ = 305^\circ$$.
+<Image src={RosaVientos} alt="La rosa de los vientos es un símbolo en forma de círculo que tiene marcado alrededor los rumbos en que se divide la circunferencia del horizonte: norte, sur, este y oeste" layout='constrained' width={406} height={416}/>
+
+
+Por ejemplo, la dirección "$$70^\circ$$ SO" significa: partiendo del Sur, girar $$70^\circ$$ hacia el Oeste. De forma equivalente, en ángulo polar sería $$270^\circ - 75^\circ = 200^\circ$$.
+
+<Image src={SurOeste} alt="La direccion polar 70 grados sureste corresponde con el angulo polar de 200 grados" layout='constrained' width={394} height={485}/>
+
+De manera similar, la dirección "$$30^\circ$$ NE" significa: partiendo del Norte, girar $$30^\circ$$ hacia el Este.
+
+<Image src={NorEste} alt="La direccion polar 30 grados sureste corresponde con el angulo polar de 200 grados" layout='constrained' width={394} height={485}/>
+
 
 <Box icon="check-list">
 
@@ -133,8 +150,8 @@ En dos dimensiones, $$\theta$$ es el ángulo respecto al eje $$x$$ positivo. Hay
 
 <SistemaPolar
   points={[
-    { r: 4, theta: 55, label: 'P', color: '#EF4444', tooltipOffset: { x: 10, y: -30 } },
-    { r: 3.5, theta: 145, label: 'Q', color: '#3B82F6', tooltipOffset: { x: -70, y: -20 } },
+    { r: 4, theta: 55, label: 'P', color: '#EF4444', tooltipOffset: { x: 10, y: +30 } },
+    { r: 3.5, theta: 145, label: 'Q', color: '#3B82F6', tooltipOffset: { x: -70, y: +20 } },
     { r: 3, theta: 310, label: 'R', color: '#10B981', tooltipOffset: { x: 10, y: 10 } }
   ]}
   showPointLabels={true}
@@ -273,11 +290,11 @@ $$
 Luego las magnitudes:
 
 $$
-A = \sqrt{2^2 + (-5)^2 + (-1)^2} = \sqrt{4 + 25 + 1} = \sqrt{30} \approx 5,48 \, \mathrm{m}
+A = \displaystyle \sqrt{2^2 + (-5)^2 + (-1)^2} = \sqrt{4 + 25 + 1} = \sqrt{30} \approx 5,48 \, \mathrm{m}
 $$
 
 $$
-B = \sqrt{6^2 + (-2)^2 + 0^2} = \sqrt{36 + 4} = \sqrt{40} \approx 6,32 \, \mathrm{m}
+B = \displaystyle  \sqrt{6^2 + (-2)^2 + 0^2} = \sqrt{36 + 4} = \sqrt{40} \approx 6,32 \, \mathrm{m}
 $$
 
 Finalmente, el ángulo:
@@ -475,4 +492,4 @@ donde $$r_{\perp} = r \sin \theta$$ se conoce como **brazo de palanca**: es la d
 | Producto punto | Escalar | $$\vec{A} \cdot \vec{B} = A_xB_x + A_yB_y + A_zB_z$$ | $$AB\cos\theta$$ |
 | Producto cruz | Vector | Ver fórmula de componentes | Magnitud: $$AB\sin\theta$$ |
 
-Estas cuatro operaciones son la base del cálculo vectorial que usaremos durante todo el curso. En las próximas semanas las aplicaremos al estudio del movimiento, las fuerzas, la energía y el momento angular. Domínalas ahora y te serán naturales cuando el físico se complique.
+Estas cuatro operaciones son la base del cálculo vectorial que usaremos durante todo el curso. En las próximas semanas las aplicaremos al estudio del movimiento, las fuerzas, la energía y el momento angular. Domínalas ahora y te serán naturales más adelante.

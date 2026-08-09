@@ -5,7 +5,8 @@
   "objetivos": [
     "Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección.",
     "Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas.",
-    "Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar."
+    "Interpretar direcciones cardinales y relacionarlas con ángulos polares.",
+    "Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar y producto vectorial."
   ],
   "contenidos": [
     "Componentes de vectores (Sección 1.8).",
