@@ -21,15 +21,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen Semana 7.",
-      "url": "././../documentos/semana-7/",
+      "text": "Estudiar el material de Semana 7.",
+      "url": "./../semana07/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 7",
-      "url": "/practicas/practica_semana7.pdf",
+      "url": "./../semana07/practica/",
       "icon": "lucide:calculator"
     }
   ],

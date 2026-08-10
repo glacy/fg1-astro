@@ -1,31 +1,368 @@
 ---
 title: "Cantidades cinemáticas"
-description: "Material de lectura para la semana 3."
+description: "Introducción a la cinemática: vector de posición, velocidad y rapidez, aceleración, distancia vs desplazamiento, velocidades medias e instantáneas, e interpretación de gráficas de posición, velocidad y aceleración en función del tiempo."
 week: 3
-keywords: ["física general I", "semana 3", "TEC Costa Rica"]
+keywords: ["cinemática", "posición", "desplazamiento", "velocidad", "rapidez", "aceleración", "velocidad media", "velocidad instantánea", "gráficas x vs t", "gráficas v vs t", "área bajo la curva", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-3"]
-category: "semana-3"
-difficulty: "basic"
+date: 2026-08-04
+readingTime: 18
+tags: ["cinemática", "movimiento", "velocidad", "aceleración", "gráficas"]
+category: "cinemática"
+difficulty: "intermediate"
 objetivos:
-  - "Definir las cantidades físicas de interés como la posición, velocidad, aceleración, rapidez, entre otros."
-  - "Diferenciar entre rapidez y velocidad; así como entre cantidades instantáneas y medias."
-  - "Analizar las gráficas de un movimiento."
-  - "Resolver problemas que involucren los conceptos de cinemática en 1D, tanto analítica como gráficamente."
-draft: true
+  - "Definir la posición, el desplazamiento, la distancia, la velocidad, la rapidez y la aceleración de un objeto en movimiento."
+  - "Distinguir entre rapidez y velocidad, y entre cantidades instantáneas y medias."
+  - "Interpretar gráficas de posición, velocidad y aceleración en función del tiempo, extrayendo pendientes y áreas."
+  - "Resolver problemas de cinemática en una dimensión, tanto de forma analítica como gráfica."
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Definir la posición, el desplazamiento, la distancia, la velocidad, la rapidez y la aceleración de un objeto en movimiento.
+  - Distinguir entre rapidez y velocidad, y entre cantidades instantáneas y medias.
+  - Interpretar gráficas de posición, velocidad y aceleración en función del tiempo, extrayendo pendientes y áreas.
+  - Resolver problemas de cinemática en una dimensión, tanto de forma analítica como gráfica.
+</PreCheck>
 
-- Definir las cantidades físicas de interés como la posición, velocidad, aceleración, rapidez, entre otros.
-- Diferenciar entre rapidez y velocidad; así como entre cantidades instantáneas y medias.
-- Analizar las gráficas de un movimiento.
-- Resolver problemas que involucren los conceptos de cinemática en 1D, tanto analítica como gráficamente.
+¿Cómo se mueven las cosas? Esta pregunta, tan simple de formular, es una de las más antiguas de la ciencia. Todos los días observamos movimiento: el bus que llega a la parada, la pelota que lanzas, el celular que se desliza sobre la mesa. Pero describir el movimiento con precisión matemática es otra historia. En esta semana empezaremos a hacerlo.
 
-## Contenido
+El estudio del movimiento pertenece a la **mecánica**, la rama de la física que se ocupa de cómo se mueven los cuerpos. La mecánica se divide en dos grandes campos:
 
-Contenido de la semana 3 próximamente disponible.
+- La **cinemática**, que se encarga de *describir* el movimiento sin preguntarse por qué ocurre. Es como describir un video de un carro en la autopista: ¿dónde estaba, a qué velocidad iba, cómo cambió su velocidad?
+- La **dinámica**, que analiza las *causas* del movimiento, es decir, las fuerzas que lo producen. Es como preguntarse: ¿qué empujó al carro para que se moviera así?
+
+En esta semana nos concentraremos en la cinemática. Nuestro objetivo es construir un "vocabulario" matemático preciso para responder las preguntas básicas del movimiento: ¿dónde está el objeto? ¿Qué tan rápido se mueve? ¿Cómo cambia su velocidad?
+
+## Funciones y gráficas: el idioma del movimiento
+
+Antes de hablar de movimiento, necesitamos un lenguaje común. En matemáticas, una **función** es una relación que asigna a cada elemento de un conjunto de entrada (el **dominio**) un único elemento de un conjunto de salida (el **rango**). Gráficamente, representamos una función en un sistema de coordenadas cartesianas, donde:
+
+- El **eje horizontal** (abscisas, eje $$x$$) representa la **variable independiente**. En cinemática, esta variable suele ser el **tiempo** ($$t$$).
+- El **eje vertical** (ordenadas, eje $$y$$) representa la **variable dependiente**, cuyo valor cambia en función de la variable independiente. En cinemática, puede ser la **posición** ($$x$$), la **velocidad** ($$v$$) o la **aceleración** ($$a$$).
+
+Si $$y$$ representa la variable dependiente y $$x$$ la independiente, escribimos:
+
+$$
+y = y(x)
+$$
+
+Esto se lee: "$$y$$ es función de $$x$$". En cinemática, leeremos expresiones como $$x(t)$$, que significa "la posición en función del tiempo". Esta pequeña notación es la clave de todo: nos dice que la posición depende del instante en que la midamos.
+
+## El vector de posición
+
+Para describir dónde está un objeto, usamos su **vector de posición** $$\vec{r}(t)$$, que nos indica su ubicación respecto al origen del sistema de referencia en cada instante:
+
+$$
+\vec{r}(t) = x(t) \hat{\iota} + y(t) \hat{\jmath} + z(t) \hat{\kappa}
+$$
+
+Aquí, $$x(t)$$, $$y(t)$$ y $$z(t)$$ son las coordenadas del objeto en cualquier instante $$t$$. Cada coordenada es, a su vez, una función del tiempo: el objeto se mueve, así que sus coordenadas cambian.
+
+<Box icon="check-list">
+
+**Ejemplo — una cámara lenta de la posición**
+
+Imagina que dejas caer una pelota desde una torre y tomas una foto cada segundo. El vector de posición de la pelota en cada instante es un dato distinto:
+
+| Tiempo $$t$$ (s) | Posición $$\vec{r}(t)$$ |
+| :---: | :--- |
+| $$0$$ | $$(0 \, \mathrm{m}) \hat{\jmath}$$ |
+| $$1$$ | $$(-4,9 \, \mathrm{m}) \hat{\jmath}$$ |
+| $$2$$ | $$(-19,6 \, \mathrm{m}) \hat{\jmath}$$ |
+| $$3$$ | $$(-44,1 \, \mathrm{m}) \hat{\jmath}$$ |
+
+La pelota solo se mueve en el eje $$y$$, así que su posición es $$y(t) = -\tfrac{1}{2} (9,8) t^2$$. Cada instante tiene una posición bien definida: eso es una función del tiempo.
+
+</Box>
+
+Cuando el movimiento ocurre a lo largo de una línea recta, conviene elegir el sistema de referencia de modo que el movimiento se realice sobre un solo eje. Decimos entonces que el movimiento es **unidimensional** (1D) y la posición queda descrita por una única función, por ejemplo $$x(t)$$. Este es el caso más simple y el que estudiaremos en esta semana.
+
+## Velocidad y rapidez
+
+Saber dónde está un objeto no basta; también necesitamos saber **qué tan rápido** se mueve y **hacia dónde**. Esas dos ideas se combinan en el concepto de **velocidad**.
+
+Matemáticamente, la velocidad es la **tasa de cambio de la posición respecto al tiempo**, es decir, la derivada de la posición:
+
+$$
+v_x(t) = \frac{dx(t)}{dt}
+$$
+
+En tres dimensiones, cada componente de la velocidad es la derivada de la componente correspondiente de la posición:
+
+$$
+\vec{v}(t) = \frac{dx(t)}{dt} \hat{\iota} + \frac{dy(t)}{dt} \hat{\jmath} + \frac{dz(t)}{dt} \hat{\kappa}
+$$
+
+o de forma compacta:
+
+$$
+\vec{v}(t) = \frac{d\vec{r}(t)}{dt}
+$$
+
+A la **magnitud** del vector velocidad se le llama **rapidez**:
+
+$$
+v = |\vec{v}|
+$$
+
+Esta es una distinción que repetiremos a lo largo de todo el curso: la velocidad es un vector (tiene dirección y sentido), mientras que la rapidez es un escalar (solo dice qué tan rápido). Un carro que da vueltas en una rotonda tiene rapidez constante, pero su velocidad cambia de dirección continuamente.
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. La velocidad de un objeto es:
+
+    <MultipleChoice>
+      <Option>
+        La distancia total recorrida dividida entre el tiempo
+      </Option>
+      <Option>
+        Un escalar que indica qué tan rápido se mueve
+      </Option>
+      <Option isCorrect>
+        La tasa de cambio de la posición respecto al tiempo
+      </Option>
+      <Option>
+        La derivada de la aceleración respecto al tiempo
+      </Option>
+    </MultipleChoice>
+
+2. ¿Qué diferencia a la velocidad de la rapidez?
+
+    <MultipleChoice>
+      <Option>
+        La velocidad es siempre mayor que la rapidez
+      </Option>
+      <Option isCorrect>
+        La velocidad incluye dirección y sentido; la rapidez solo la magnitud
+      </Option>
+      <Option>
+        La rapidez es un vector y la velocidad es un escalar
+      </Option>
+      <Option>
+        No existe ninguna diferencia
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Aceleración
+
+Los objetos rara vez se mueven a velocidad constante. Los buses frenan, los carros aceleran, las pelotas cambian de dirección. Para describir estos cambios necesitamos la **aceleración**, definida como la **tasa de cambio de la velocidad respecto al tiempo**:
+
+$$
+\vec{a}(t) = \frac{d\vec{v}(t)}{dt} = \frac{d^2\vec{r}(t)}{dt^2}
+$$
+
+Observa la notación: la aceleración es la derivada de la velocidad (o la segunda derivada de la posición). En la práctica:
+
+- Si la velocidad **aumenta**, la aceleración tiene el mismo signo que la velocidad.
+- Si la velocidad **disminuye**, la aceleración tiene signo opuesto (el objeto **desacelera** o frena).
+- Si la velocidad es **constante**, la aceleración es **cero**.
+
+<Box icon="check-list">
+
+**Ejemplo — en el bus del campus**
+
+Cuando el bus del campus frena ante una parada, su velocidad pasa de $$12 \, \mathrm{m/s}$$ hacia adelante a $$0$$. Como la velocidad cambia, el bus tiene una aceleración negativa (en dirección contraria a su movimiento). Si en cambio el bus mantiene una velocidad constante de $$10 \, \mathrm{m/s}$$ en un tramo de autopista, su aceleración es cero: la velocidad no está cambiando.
+
+</Box>
+
+## Distancia y desplazamiento
+
+Cuando un objeto se mueve de un punto $$\vec{r}_1$$ a un punto $$\vec{r}_2$$, usamos dos conceptos que a menudo se confunden:
+
+- El **desplazamiento** es el vector que va de la posición inicial a la final:
+
+$$
+\Delta \vec{r} = \vec{r}_2 - \vec{r}_1
+$$
+
+- La **distancia** (o distancia recorrida) es la **magnitud** de ese vector, cuando el movimiento es rectilíneo:
+
+$$
+d = |\Delta \vec{r}| = |\vec{r}_2 - \vec{r}_1|
+$$
+
+La diferencia clave es esta: el desplazamiento es un **vector** y solo depende de los puntos inicial y final; la distancia es un **escalar** y, cuando el camino no es recto, puede ser mucho mayor que la magnitud del desplazamiento.
+
+Si un movimiento está compuesto de varios desplazamientos consecutivos, el desplazamiento total es la suma de los desplazamientos parciales:
+
+$$
+\Delta \vec{r} = \Delta \vec{r}_1 + \Delta \vec{r}_2 + \cdots + \Delta \vec{r}_N = \vec{r}_N - \vec{r}_1
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — el bus del campus, parte 2**
+
+Un bus universitario sale de la estación Cartago y se desplaza $$2 \, \mathrm{km}$$ hacia el oeste hasta llegar al campus. Después regresa $$1 \, \mathrm{km}$$ hacia el este para dejar estudiantes en un centro educativo.
+
+- **Distancia recorrida:** $$2 \, \mathrm{km} + 1 \, \mathrm{km} = 3 \, \mathrm{km}$$
+- **Desplazamiento neto:** $$2 \, \mathrm{km} - 1 \, \mathrm{km} = 1 \, \mathrm{km}$$ hacia el oeste
+
+El desplazamiento final es de $$1 \, \mathrm{km}$$ hacia el oeste, aunque el bus recorrió $$3 \, \mathrm{km}$$ en total. La distancia es un número; el desplazamiento tiene dirección.
+
+</Box>
+
+## Velocidad media
+
+En la práctica, rara vez medimos la velocidad instante a instante. Lo común es conocer cuánto se desplazó un objeto en un intervalo de tiempo dado. La **velocidad media** es la razón entre el desplazamiento y el intervalo de tiempo:
+
+$$
+\vec{v}_{\text{med}} = \frac{\Delta \vec{r}}{\Delta t} = \frac{\vec{r}_2 - \vec{r}_1}{t_2 - t_1}
+$$
+
+En movimiento a lo largo del eje $$x$$:
+
+$$
+v_{\text{med},x} = \frac{\Delta x}{\Delta t} = \frac{x_2 - x_1}{t_2 - t_1}
+$$
+
+La velocidad media usa el **desplazamiento** (no la distancia). Por eso, si un objeto termina donde empezó, su velocidad media es **cero**, aunque haya corrido mucho en el proceso.
+
+<Box icon="check-list">
+
+**Ejemplo — viaje de San José a Cartago**
+
+Viajas de San José a Cartago en un bus que se mueve en línea recta. A las $$t_1 = 0$$, el bus está en la posición $$x_1 = 0$$. A las $$t_2 = 60 \, \mathrm{min} = 3600 \, \mathrm{s}$$, llega a la posición $$x_2 = 22 \, \mathrm{km} = 22\,000 \, \mathrm{m}$$.
+
+La velocidad media del viaje es:
+
+$$
+v_{\text{med},x} = \frac{22\,000 \, \mathrm{m} - 0}{3600 \, \mathrm{s} - 0} \approx 6,1 \, \mathrm{m/s}
+$$
+
+Note que el bus no se movió a $$6,1 \, \mathrm{m/s}$$ todo el tiempo: a veces frenaba, a veces aceleraba. La velocidad media es un promedio de todo el trayecto, no la velocidad de ningún instante particular.
+
+</Box>
+
+## Interpretación gráfica: la pendiente
+
+Las gráficas son una de las herramientas más poderosas de la cinemática, porque convierten números en formas visuales. La gráfica de la posición en función del tiempo, $$x(t)$$, nos permite "ver" el movimiento.
+
+En una gráfica $$x$$ vs $$t$$:
+
+- La **pendiente** de la curva en un instante dado es la **velocidad instantánea** en ese instante.
+- Una pendiente constante significa velocidad constante (movimiento uniforme).
+- Una pendiente que cambia significa que la velocidad está cambiando (hay aceleración).
+
+Si queremos la velocidad media entre dos instantes $$t_1$$ y $$t_2$$, tomamos los puntos correspondientes en la gráfica, trazamos la línea recta que los une (la secante), y calculamos su pendiente:
+
+$$
+v_{\text{med},x} = \frac{x_2 - x_1}{t_2 - t_1} = \text{pendiente de la secante}
+$$
+
+## Interpretación gráfica: el área bajo la curva
+
+Si la pendiente de la gráfica $$x(t)$$ nos da la velocidad, ¿qué nos dice una gráfica de velocidad en función del tiempo? La respuesta es notablemente simétrica:
+
+En una gráfica $$v_x$$ vs $$t$$, el **área bajo la curva** en un intervalo de tiempo representa el **desplazamiento** del objeto en ese intervalo.
+
+Para un movimiento a velocidad constante, esta relación es intuitiva: si viajas a $$v = 10 \, \mathrm{m/s}$$ durante $$t = 5 \, \mathrm{s}$$, el desplazamiento es:
+
+$$
+\Delta x = v \, \Delta t = (10 \, \mathrm{m/s})(5 \, \mathrm{s}) = 50 \, \mathrm{m}
+$$
+
+que es exactamente el área del rectángulo bajo la curva horizontal de velocidad. Si la velocidad cambia, el desplazamiento sigue siendo el área bajo la curva, pero hay que calcularla por tramos (rectángulos, triángulos o trapecios).
+
+## Aceleración media
+
+Del mismo modo que definimos la velocidad media, podemos definir la **aceleración media** como el cambio de velocidad en un intervalo de tiempo:
+
+$$
+\vec{a}_{\text{med}} = \frac{\Delta \vec{v}}{\Delta t} = \frac{\vec{v}_2 - \vec{v}_1}{t_2 - t_1}
+$$
+
+La interpretación gráfica es análoga a la de la velocidad: en una gráfica $$v_x$$ vs $$t$$, la **pendiente** en un instante es la **aceleración instantánea**, y la pendiente de la secante entre dos puntos es la aceleración media.
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En una gráfica de posición en función del tiempo, la pendiente de la curva representa:
+
+    <MultipleChoice>
+      <Option>
+        La aceleración del objeto
+      </Option>
+      <Option isCorrect>
+        La velocidad instantánea del objeto
+      </Option>
+      <Option>
+        El desplazamiento total
+      </Option>
+      <Option>
+        La distancia recorrida
+      </Option>
+    </MultipleChoice>
+
+2. En una gráfica de velocidad en función del tiempo, el área bajo la curva representa:
+
+    <MultipleChoice>
+      <Option>
+        La aceleración media
+      </Option>
+      <Option>
+        La velocidad media
+      </Option>
+      <Option isCorrect>
+        El desplazamiento del objeto
+      </Option>
+      <Option>
+        La rapidez media
+      </Option>
+    </MultipleChoice>
+
+3. Un objeto se mueve en línea recta y termina en el mismo punto donde empezó. Su velocidad media es:
+
+    <MultipleChoice>
+      <Option isCorrect>
+        Cero
+      </Option>
+      <Option>
+        Igual a su rapidez media
+      </Option>
+      <Option>
+        Máxima
+      </Option>
+      <Option>
+        No se puede determinar
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Signos de velocidad y aceleración
+
+En movimiento unidimensional, los signos de la velocidad y la aceleración cuentan una historia completa:
+
+| Signo de $$v_x$$ | Signo de $$a_x$$ | ¿Qué hace el objeto? |
+| :---: | :---: | :--- |
+| $$+$$ | $$+$$ | Se mueve hacia adelante y **acelera** |
+| $$+$$ | $$-$$ | Se mueve hacia adelante y **desacelera** |
+| $$-$$ | $$-$$ | Se mueve hacia atrás y **acelera** (en su dirección) |
+| $$-$$ | $$+$$ | Se mueve hacia atrás y **desacelera** |
+
+La regla general es sencilla: si la velocidad y la aceleración tienen el **mismo signo**, el objeto acelera (su rapidez aumenta); si tienen **signos opuestos**, el objeto desacelera (su rapidez disminuye). Note que "desacelerar" no significa moverse más lento en general: significa que la rapidez está disminuyendo en ese momento.
+
+## Resumen de la semana
+
+| Cantidad | Símbolo | Definición | Naturaleza |
+| :--- | :--- | :--- | :---: |
+| Posición | $$\vec{r}(t)$$ | Ubicación respecto al origen | Vector |
+| Desplazamiento | $$\Delta \vec{r}$$ | $$\vec{r}_2 - \vec{r}_1$$ | Vector |
+| Distancia | $$d$$ | $$\| \Delta \vec{r} \|$$ | Escalar |
+| Velocidad | $$\vec{v}(t)$$ | $$d\vec{r}/dt$$ | Vector |
+| Rapidez | $$v$$ | $$\|\vec{v}\|$$ | Escalar |
+| Aceleración | $$\vec{a}(t)$$ | $$d\vec{v}/dt$$ | Vector |
+| Velocidad media | $$\vec{v}_{\text{med}}$$ | $$\Delta \vec{r}/\Delta t$$ | Vector |
+| Aceleración media | $$\vec{a}_{\text{med}}$$ | $$\Delta \vec{v}/\Delta t$$ | Vector |
+
+Las ideas centrales de esta semana —posición, velocidad, aceleración y sus interpretaciones gráficas— son los cimientos de todo lo que viene. En las próximas semanas las usaremos para estudiar los movimientos con aceleración constante y, después, los movimientos en dos y tres dimensiones. Asegúrate de sentirte cómodo con la idea de pendiente y área bajo la curva: las usaremos constantemente.

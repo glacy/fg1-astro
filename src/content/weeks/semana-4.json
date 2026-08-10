@@ -18,15 +18,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen de Semana 4.",
-      "url": "././../documentos/semana-4/",
+      "text": "Estudiar el material de Semana 4.",
+      "url": "./../semana04/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 4",
-      "url": "/practicas/practica_semana4.pdf",
+      "url": "./../semana04/practica/",
       "icon": "lucide:calculator"
     }
   ],

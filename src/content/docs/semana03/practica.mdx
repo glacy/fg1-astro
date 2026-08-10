@@ -1,0 +1,349 @@
+---
+title: "Práctica"
+week: 3
+keywords: ["cinemática", "posición", "desplazamiento", "velocidad media", "velocidad instantánea", "aceleración", "rapidez", "gráficas x vs t", "área bajo la curva", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — El autobús del campus">
+Un autobús de la ruta interna del campus viaja en dirección $+x$ por una recta nivelada. En los primeros $4,00 \, \mathrm{s}$ de su movimiento, su velocidad media es $v_{\text{med},x} = 6,25 \, \mathrm{m/s}$. ¿Qué distancia recorre el autobús en esos $4,00 \, \mathrm{s}$?
+
+<details>
+<summary>Ver solución</summary>
+
+La velocidad media se define como el desplazamiento entre el tiempo:
+
+$$
+v_{\text{med},x} = \frac{\Delta x}{\Delta t}
+$$
+
+Despejamos el desplazamiento (que en este caso coincide con la distancia, pues el movimiento es rectilíneo y sin cambios de sentido):
+
+$$
+\Delta x = v_{\text{med},x} \cdot \Delta t = (6,25 \, \mathrm{m/s})(4,00 \, \mathrm{s}) = 25,0 \, \mathrm{m}
+$$
+
+El autobús recorre **$25,0 \, \mathrm{m}$** en los primeros $4,00 \, \mathrm{s}$.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — De pilar a poste">
+Partiendo de un poste del campus, corres $200 \, \mathrm{m}$ hacia el este (en la dirección $+x$) con una rapidez media de $5,0 \, \mathrm{m/s}$, y luego $280 \, \mathrm{m}$ hacia el oeste con una rapidez media de $4,0 \, \mathrm{m/s}$, hasta llegar a otro poste. Calcula:
+
+1. Tu rapidez media de un poste al otro.
+2. Tu velocidad media de un poste al otro.
+
+<details>
+<summary>Ver solución</summary>
+
+**Tiempo de cada tramo:**
+
+$$
+t_1 = \frac{200 \, \mathrm{m}}{5,0 \, \mathrm{m/s}} = 40 \, \mathrm{s} \qquad t_2 = \frac{280 \, \mathrm{m}}{4,0 \, \mathrm{m/s}} = 70 \, \mathrm{s}
+$$
+
+Tiempo total: $$t_{\text{total}} = 40 + 70 = 110 \, \mathrm{s}$$
+
+**Inciso a) Rapidez media:**
+
+La rapidez media usa la **distancia total** recorrida:
+
+$$
+\text{rapidez media} = \frac{\text{distancia total}}{\text{tiempo total}} = \frac{200 + 280}{110} = \frac{480}{110} \approx 4,36 \, \mathrm{m/s}
+$$
+
+**Inciso b) Velocidad media:**
+
+La velocidad media usa el **desplazamiento neto**. Tomando el este como positivo:
+
+$$
+\Delta x = x_{\text{final}} - x_{\text{inicial}} = 200 \, \mathrm{m} - 280 \, \mathrm{m} = -80 \, \mathrm{m}
+$$
+
+$$
+v_{\text{med},x} = \frac{\Delta x}{\Delta t} = \frac{-80 \, \mathrm{m}}{110 \, \mathrm{s}} \approx -0,73 \, \mathrm{m/s}
+$$
+
+El signo negativo indica que la velocidad media apunta **hacia el oeste**.
+
+**Conclusión:** tu rapidez media fue $4,36 \, \mathrm{m/s}$, pero tu velocidad media fue solo $0,73 \, \mathrm{m/s}$ hacia el oeste. ¡La diferencia entre rapidez y velocidad se nota cuando caminas de un lado a otro!
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — El carro que se aleja del letrero">
+Un carro viaja en línea recta por una carretera. Su distancia $x$ a partir de un letrero de alto está dada en función del tiempo por:
+
+$$
+x(t) = \alpha t^2 - \beta t^3
+$$
+
+donde $\alpha = 1,50 \, \mathrm{m/s^2}$ y $\beta = 0,0500 \, \mathrm{m/s^3}$. Calcula la velocidad media del carro para los intervalos:
+
+1. De $t = 0$ a $t = 2,00 \, \mathrm{s}$.
+2. De $t = 0$ a $t = 4,00 \, \mathrm{s}$.
+3. De $t = 2,00 \, \mathrm{s}$ a $t = 4,00 \, \mathrm{s}$.
+
+<details>
+<summary>Ver solución</summary>
+
+Primero evaluamos la posición en los tiempos de interés:
+
+$$
+x(0) = \alpha(0)^2 - \beta(0)^3 = 0
+$$
+
+$$
+x(2) = 1,50(2,00)^2 - 0,0500(2,00)^3 = 1,50(4) - 0,0500(8) = 6,00 - 0,400 = 5,60 \, \mathrm{m}
+$$
+
+$$
+x(4) = 1,50(4,00)^2 - 0,0500(4,00)^3 = 1,50(16) - 0,0500(64) = 24,0 - 3,20 = 20,8 \, \mathrm{m}
+$$
+
+**Inciso a) Intervalo $0 \to 2 \, \mathrm{s}$:**
+
+$$
+v_{\text{med}} = \frac{x(2) - x(0)}{2 - 0} = \frac{5,60 - 0}{2,00} = 2,80 \, \mathrm{m/s}
+$$
+
+**Inciso b) Intervalo $0 \to 4 \, \mathrm{s}$:**
+
+$$
+v_{\text{med}} = \frac{x(4) - x(0)}{4 - 0} = \frac{20,8 - 0}{4,00} = 5,20 \, \mathrm{m/s}
+$$
+
+**Inciso c) Intervalo $2 \to 4 \, \mathrm{s}$:**
+
+$$
+v_{\text{med}} = \frac{x(4) - x(2)}{4 - 2} = \frac{20,8 - 5,60}{2,00} = \frac{15,2}{2,00} = 7,60 \, \mathrm{m/s}
+$$
+
+Note que la velocidad media crece a medida que el intervalo se aleja del inicio: el término $-\beta t^3$ es cada vez más importante, pero en este tramo la posición sigue aumentando cada vez más rápido.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — Frente a la luz roja">
+Un carro está detenido ante un semáforo. Cuando la luz cambia a verde, viaja en línea recta y su distancia respecto al semáforo está dada por:
+
+$$
+x(t) = bt^2 - ct^3
+$$
+
+donde $b = 2,40 \, \mathrm{m/s^2}$ y $c = 0,120 \, \mathrm{m/s^3}$.
+
+1. Calcula la velocidad media del carro entre $t = 0$ y $t = 10,0 \, \mathrm{s}$.
+2. Calcula la velocidad instantánea del carro en $t = 0$, $t = 5,0 \, \mathrm{s}$ y $t = 10,0 \, \mathrm{s}$.
+3. ¿Cuánto tiempo después de que el carro arrancó vuelve a estar detenido?
+
+<details>
+<summary>Ver solución</summary>
+
+**Inciso a) Velocidad media $0 \to 10 \, \mathrm{s}$:**
+
+$$
+x(10) = 2,40(10,0)^2 - 0,120(10,0)^3 = 2,40(100) - 0,120(1000) = 240 - 120 = 120 \, \mathrm{m}
+$$
+
+$$
+v_{\text{med}} = \frac{x(10) - x(0)}{10 - 0} = \frac{120 - 0}{10,0} = 12,0 \, \mathrm{m/s}
+$$
+
+**Inciso b) Velocidad instantánea:**
+
+Derivamos la posición:
+
+$$
+v(t) = \frac{dx}{dt} = 2bt - 3ct^2 = 2(2,40)t - 3(0,120)t^2
+$$
+
+$$
+v(t) = 4,80t - 0,360t^2
+$$
+
+Evaluamos:
+
+$$
+v(0) = 4,80(0) - 0,360(0)^2 = 0
+$$
+
+$$
+v(5) = 4,80(5) - 0,360(25) = 24,0 - 9,00 = 15,0 \, \mathrm{m/s}
+$$
+
+$$
+v(10) = 4,80(10) - 0,360(100) = 48,0 - 36,0 = 12,0 \, \mathrm{m/s}
+$$
+
+**Inciso c) ¿Cuándo vuelve a detenerse?**
+
+Buscamos cuándo la velocidad es cero:
+
+$$
+v(t) = 4,80t - 0,360t^2 = 0
+$$
+
+$$
+t(4,80 - 0,360t) = 0
+$$
+
+Esto da dos soluciones: $$t = 0$$ (cuando arranca) y:
+
+$$
+4,80 - 0,360t = 0 \quad \Rightarrow \quad t = \frac{4,80}{0,360} = 13,3 \, \mathrm{s}
+$$
+
+El carro vuelve a detenerse **$13,3 \, \mathrm{s}$** después de arrancar. El término $-ct^3$ gana la partida al término $+bt^2$ y el carro termina frenando.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — El auto de pruebas">
+Un automóvil de pruebas controlado por computadora se usa para estudiar la cinemática de choques a baja velocidad. La posición del parachoques frontal está dada por:
+
+$$
+x(t) = 2,17 \, \mathrm{m} + (4,80 \, \mathrm{m/s^2}) t^2 - (0,100 \, \mathrm{m/s^6}) t^6
+$$
+
+1. Determina la posición y la aceleración en los instantes en que el auto tiene velocidad cero.
+2. ¿Entre qué valores de $t$ conviene graficar para ver todo el movimiento descrito por la ecuación?
+
+<details>
+<summary>Ver solución</summary>
+
+**Paso 1: velocidad**
+
+Derivamos la posición:
+
+$$
+v(t) = \frac{dx}{dt} = 2(4,80)t - 6(0,100)t^5 = 9,60t - 0,600t^5
+$$
+
+**Paso 2: instantes con velocidad cero**
+
+$$
+v(t) = 9,60t - 0,600t^5 = 0
+$$
+
+$$
+t(9,60 - 0,600t^4) = 0
+$$
+
+Soluciones: $$t = 0$$ y:
+
+$$
+9,60 - 0,600t^4 = 0 \quad \Rightarrow \quad t^4 = \frac{9,60}{0,600} = 16,0 \quad \Rightarrow \quad t = 2,00 \, \mathrm{s}
+$$
+
+**Paso 3: posición en esos instantes**
+
+$$
+x(0) = 2,17 \, \mathrm{m}
+$$
+
+$$
+x(2) = 2,17 + 4,80(2,00)^2 - 0,100(2,00)^6 = 2,17 + 19,2 - 6,40 = 14,97 \, \mathrm{m} \approx 15,0 \, \mathrm{m}
+$$
+
+**Paso 4: aceleración**
+
+Derivamos la velocidad:
+
+$$
+a(t) = \frac{dv}{dt} = 9,60 - 5(0,600)t^4 = 9,60 - 3,00t^4
+$$
+
+Evaluamos en los instantes de velocidad cero:
+
+$$
+a(0) = 9,60 \, \mathrm{m/s^2}
+$$
+
+$$
+a(2) = 9,60 - 3,00(16) = 9,60 - 48,0 = -38,4 \, \mathrm{m/s^2}
+$$
+
+**Resultados:**
+
+| Instante | Posición | Aceleración |
+| :---: | :---: | :---: |
+| $t = 0$ | $2,17 \, \mathrm{m}$ | $9,60 \, \mathrm{m/s^2}$ |
+| $t = 2,00 \, \mathrm{s}$ | $15,0 \, \mathrm{m}$ | $-38,4 \, \mathrm{m/s^2}$ |
+
+En $t = 0$ el auto arranca (posición $2,17 \, \mathrm{m}$, aceleración positiva). En $t = 2,00 \, \mathrm{s}$ se detiene de nuevo, pero ahora con una aceleración negativa fuerte: está frenando bruscamente para dar la vuelta. Entre $t = 0$ y $t = 2,00 \, \mathrm{s}$ el auto se mueve hacia adelante y luego frena.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — Leyendo la gráfica del bus">
+Una gráfica de velocidad en función del tiempo para un bus del campus muestra el siguiente comportamiento, con la velocidad en $\mathrm{m/s}$ y el tiempo en segundos:
+
+- De $t = 0$ a $t = 2,0 \, \mathrm{s}$: la velocidad sube de $0$ a $8,0 \, \mathrm{m/s}$ en línea recta.
+- De $t = 2,0 \, \mathrm{s}$ a $t = 6,0 \, \mathrm{s}$: la velocidad se mantiene constante en $8,0 \, \mathrm{m/s}$.
+- De $t = 6,0 \, \mathrm{s}$ a $t = 8,0 \, \mathrm{s}$: la velocidad baja de $8,0 \, \mathrm{m/s}$ a $0$ en línea recta.
+
+Determina:
+
+1. El desplazamiento total del bus en los $8,0 \, \mathrm{s}$.
+2. La aceleración en cada tramo.
+
+<details>
+<summary>Ver solución</summary>
+
+**Inciso a) Desplazamiento = área bajo la curva**
+
+Dividimos la gráfica en tres figuras geométricas:
+
+**Tramo 1 ($0 \to 2 \, \mathrm{s}$):** triángulo de base $2 \, \mathrm{s}$ y altura $8 \, \mathrm{m/s}$.
+
+$$
+\Delta x_1 = \frac{1}{2}(2,0)(8,0) = 8,0 \, \mathrm{m}
+$$
+
+**Tramo 2 ($2 \to 6 \, \mathrm{s}$):** rectángulo de base $4 \, \mathrm{s}$ y altura $8 \, \mathrm{m/s}$.
+
+$$
+\Delta x_2 = (4,0)(8,0) = 32,0 \, \mathrm{m}
+$$
+
+**Tramo 3 ($6 \to 8 \, \mathrm{s}$):** triángulo de base $2 \, \mathrm{s}$ y altura $8 \, \mathrm{m/s}$.
+
+$$
+\Delta x_3 = \frac{1}{2}(2,0)(8,0) = 8,0 \, \mathrm{m}
+$$
+
+**Desplazamiento total:**
+
+$$
+\Delta x = 8,0 + 32,0 + 8,0 = 48,0 \, \mathrm{m}
+$$
+
+**Inciso b) Aceleración en cada tramo:**
+
+La aceleración es la pendiente de la gráfica $$v$$ vs $$t$$.
+
+**Tramo 1:**
+
+$$
+a_1 = \frac{8,0 - 0}{2,0 - 0} = 4,0 \, \mathrm{m/s^2}
+$$
+
+**Tramo 2:** velocidad constante, pendiente cero:
+
+$$
+a_2 = 0
+$$
+
+**Tramo 3:**
+
+$$
+a_3 = \frac{0 - 8,0}{8,0 - 6,0} = \frac{-8,0}{2,0} = -4,0 \, \mathrm{m/s^2}
+$$
+
+**Resumen:** el bus acelera a $4,0 \, \mathrm{m/s^2}$ al arrancar, avanza a velocidad constante $8,0 \, \mathrm{m/s}$, y frena con aceleración $-4,0 \, \mathrm{m/s^2}$ hasta detenerse, recorriendo **$48,0 \, \mathrm{m}$** en total.
+
+</details>
+</Aside>

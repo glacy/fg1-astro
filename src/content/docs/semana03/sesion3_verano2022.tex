@@ -1,0 +1,170 @@
+\setcounter{page}{22}
+\setcounter{chapter}{2}
+\chapter{Cantidades cinemáticas}
+\label{cap:cap3}
+
+
+
+
+
+\raggedright
+
+El estudio del movimiento es una de las áreas fundamentales de la Física y se aborda dentro de la \textsf{mecánica}, la cual se divide en dos grandes ramas: la \textsf{cinemática}, encargada de describir el movimiento sin considerar sus causas, y la \textsf{dinámica}, que analiza las fuerzas responsables de dicho movimiento. \\[.35cm]
+
+El análisis gráfico es una herramienta poderosa en la cinemática porque nos permite interpretar la relación entre distintas cantidades de manera visual. 
+\section{Gr\'aficas y funciones}
+%Para movimientos a lo largo de una l\'inea recta suele tomarse, como convenci\'on, la componente $x$ como la direcci\'on del movimiento. \\
+En matemáticas y física, una \textbf{función} es una relación que asigna a cada elemento de un conjunto de entrada (dominio) un único elemento de un conjunto de salida (rango). Gráficamente, una función se representa en un sistema de coordenadas cartesianas, donde
+
+\begin{itemize}
+    \item el \textbf{eje horizontal} (abscisas, eje $x$) representa la variable independiente. En cinemática, esta variable suele ser el \textbf{tiempo} ($t$).
+    \item el \textbf{eje vertical} (ordenadas, eje $y$) representa la variable dependiente, cuyo valor cambia en función de la variable independiente. En cinemática, pueden ser la \textbf{posición} ($x$), la \textbf{velocidad} ($v$) o la \textbf{aceleración} ($a$).
+\end{itemize}
+
+Si $y$ representa a la variable dependiente y $x$ la variable independiente, escribimos 
+\begin{equation}
+    y=y(x).
+\end{equation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=400px]{planeamiento_didactico/figuras/y_vs_x.pdf}
+    \caption{Gr\'afica de $y$ vs $x$. $y_1=y(x=x_1)$; $y_2=y(x=x_2)$}
+    \label{fig:y_vs_x}
+\end{figure}
+
+\section{Cantidades cinem\'aticas}
+
+La posición de un objeto en un sistema de referencia tridimensional se describe mediante el \textbf{vector de posición}:
+\begin{equation}
+\displaystyle\vec{r}(t)=x(t)\HAT{\iota}+y(t)\HAT{\jmath}+z(t)\HAT{\kappa}.
+\end{equation}
+
+Aquí, $x(t)$, $y(t)$ y $z(t)$ representan las coordenadas espaciales del objeto en cualquier instante $t$. Este vector nos permite determinar su trayectoria y analizar distintos aspectos de su movimiento.\\[.35cm]
+
+Por ejemplo, si un objeto se mueve en línea recta, su posición puede expresarse como una función del tiempo $x(t)$. Su representación gráfica nos permite visualizar \textbf{cómo cambia la posición en función del tiempo} y extraer información clave, como la \textbf{velocidad} del objeto en distintos momentos. \\[.35cm]
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=300px]{planeamiento_didactico/figuras/x_vs_t_0.pdf}
+    \caption{Gr\'afica de $x$ vs $t$. Posici\'on de un objeto en funci\'on del tiempo.}
+    \label{fig:x_vs_t_0}
+\end{figure}
+
+Matem\'aticamente, la variaci\'on temporal de una funci\'on  se expresa mediante la derivaci\'on respecto al tiempo $\displaystyle \frac{d}{dt}$.\\[.35cm]
+
+La \textbf{tasa de cambio de la posici\'on} define la \textbf{velocidad}:
+\begin{equation}
+    v_x(t)=\frac{dx(t)}{dt}.
+\end{equation}
+
+
+En t\'erminos generales
+
+\begin{equation}
+    v_x(t)=\frac{d x(t)}{dt},\quad v_y(t)=\frac{d y(t)}{dt},\quad v_z(t)=\frac{d z(t)}{dt};
+\end{equation}
+es decir, la componente de la velocidad en una direcci\'on dada es la variaci\'on temporal de la posici\'on en esa direcci\'on:
+\begin{equation}
+    \vec{v}(t)=\frac{dx(t)}{dt}\hat
+    {\iota}+\frac{dy(t)}{dt}\hat{\jmath}+\frac{dz(t)}{dt}\hat{\kappa}
+\end{equation}
+\'o
+\begin{equation}
+\displaystyle\vec{v}(t)=\frac{d\vec{r}(t)}{dt}.
+\label{eq:vt}
+\end{equation}
+ A la magnitud del vector de velocidad se le llama \textit{rapidez}; es decir, $v=|\vec{v}|$.\\[.35cm]
+
+
+
+Por \'ultimo, se define la \textbf{tasa de cambio de la velocidad} en el movimiento de un objeto como la \textbf{aceleraci\'on} 
+\begin{equation}
+\vec{a}(t)=\frac{d\vec{v}(t)}{dt}=\frac{d^{2}\vec{r}(t)}{dt^{2}}.
+\label{eq:at}
+\end{equation}
+
+\newpage
+
+\subsection{Distancia y desplazamiento}
+
+Cuando un objeto se mueve de un punto $\vec{r}_1$ a un punto $\vec{r}_2$, la \textbf{distancia} entre dichos puntos es la magnitud del \textbf{vector desplazamiento}
+
+\begin{equation}
+    d=|\Delta \vec{r}|=|\vec{r}_2-\vec{r}_1|.
+\end{equation}
+Si un movimiento est\'a compuesto de desplazamientos consecutivos, 
+\begin{equation}
+    \Delta \vec{r}=\Delta \vec{r}_1+\Delta \vec{r}_2+\cdots +\Delta \vec{r}_N = \vec{r}_N - \vec{r}_1.
+\end{equation}
+\begin{wwteorema}{Ejemplo distancia recorrida vs desplazamiento}
+    \input{ejemplo_distancia_recorrida}
+\end{wwteorema}
+\newpage
+\subsection{Velocidad media}
+
+Consideremos el movimiento de un objeto a lo largo de una l\'inea recta. A partir de la gr\'afica de  posici\'on en funci\'on del tiempo es posible extraer informaci\'on, como la velocidad, distancia recorrida y desplazamiento. \\[.35cm]
+
+ En una gráfica $x(t)$, la pendiente en un punto dado corresponde a la velocidad en ese instante.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=350px]{planeamiento_didactico/figuras/x_vs_t.pdf}
+    \caption{Gr\'afica de $x$ vs $t$. Posici\'on de un objeto en funci\'on del tiempo.}
+    \label{fig:x_vs_t}
+\end{figure} 
+
+A la raz\'on entre el desplazamiento y el intervalo de tiempo de un movimiento dado se le conoce como \textbf{velocidad media}:
+
+\begin{equation}
+\vec{v}_{\text{med}}=\frac{\Delta \vec{r}}{\Delta t}=\frac{\vec{r}_{2}-\vec{r}_{1}}{\Delta t}. 
+\label{eq:vmed}
+\end{equation}
+
+En el caso de un movimiento a lo largo de la direcci\'on $x$,
+\begin{equation}
+v_{\text{med},x}=\frac{\Delta x}{\Delta t}=\frac{x_{2}-x_{1}}{\Delta t}. 
+\label{eq:vmed-x}
+\end{equation}
+
+\begin{wwteorema}{Ejemplo velocidad media}
+    \input{ejemplo_velocidad}
+\end{wwteorema}
+
+\newpage
+En una gráfica $v_x(t)$, el área bajo la curva en un intervalo de tiempo representa el desplazamiento del objeto.
+\begin{figure}[ht!]
+\hspace{-3ex} 
+%\centering
+\includegraphics[width=425px]{planeamiento_didactico/figuras/area_bajo_curva.pdf}
+\caption{El área bajo la curva en una gr\'afica $v_{x}$ vs $t$ representa el desplazamiento.}
+\label{fig:area_bajo_curva}
+\end{figure}
+
+\newpage
+\subsection{Aceleraci\'on media}
+
+La \textbf{aceleraci\'on media} se define como el  cambio de velocidad en un intervalo de tiempo:
+\begin{equation}
+\vec{a}_{\text{med}}=\frac{\Delta \vec{v}}{\Delta t}=\frac{\vec{v}_2-\vec{v}_1}{\Delta t}.
+\end{equation}
+
+
+A partir de la gr\'afica de  velocidad en funci\'on del tiempo es posible extraer informaci\'on, como el 
+ desplazamiento, la velocidad instant\'anea y aceleraci\'on. \\[.35cm]
+\begin{figure}[ht!]
+\hspace{-5ex} 
+%\centering
+\includegraphics[width=500px]{../figuras/grafica_v_vs_t}
+\caption{Interpretación gráfica de aceleraci\'on media y aceleraci\'on instant\'anea en gr\'afica $v_{x}$ vs $t$.}
+\label{fig:at}
+\end{figure}
+
+
+\newpage
+\begin{figure}[ht!]
+\centering
+%\hspace{-5ex} 
+\includegraphics[width=300px]{../figuras/grafica_v_vs_t-1}
+\caption{En una gr\'afica $v_{x}$ vs $t$ el signo de la velocidad indica la direcci\'on de movimiento. Si los signos de $v_x$ y $a_x$ son iguales el objeto acelera; si son contrarias se dice que desacelera.}
+\label{fig:vt}
+\end{figure}
