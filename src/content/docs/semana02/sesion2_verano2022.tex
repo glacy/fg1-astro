@@ -1,0 +1,220 @@
+\setcounter{page}{11}
+\chapter{Operaciones vectoriales}
+\label{cap:cap2}
+\vspace{-15ex}
+
+\raggedright
+
+
+En SEMANA \ref{cap:cap1} mencionamos que aquellas cantidades f\'isicas que requieren no solo de una magnitud, sino de una direcci\'on para especificarse, se llaman \textit{cantidades vectoriales}, o simplemente \textit{vectores}. En esta sesi\'on estudiaremos la manera en la cual se expresan y representan los vectores; así como la manera de realizar operaciones matemáticas con ellos.
+
+\section{Notaci\'on vectorial y vectores unitarios}
+
+\begin{comment}
+Si observamos, por ejemplo, una imagen satelital del campus central del TEC (Figura \ref{fig:campus}), podemos decir que \underline{respecto} al \textsf{Cajero BCR}, el \textsf{Centro de las Artes} se encuentra aproximadamente hacia el noreste (NE). Utilizando la escala que aparece en el margen inferior derecho de la imagen, podemos agregar que el \textsf{Centro de las Artes} se encuentra a una distancia de aproximadamente 275 m del \textsf{Cajero BCR}.\\[.35cm]
+\begin{figure}
+\input{ejemplo_vector_posicion}
+\caption{Campus Central del TEC, Cartago.}
+\label{fig:campus}
+\end{figure}
+\end{comment}
+
+%Por lo tanto, la posici\'on de un objeto (respecto a alg\'un punto de referencia) es un vector. Llamemos $\vec{r}$ al vector que representa la posici\'on. 
+%Para el caso ejemplificado $$\vec{r}_{\Mbox{\textsc{Centro de las Artes}}}=(275\U{m};45^{\circ}), \quad \mbox{respecto al \textsc{Cajero BCR.}}$$
+
+%Se le coloca una flecha ($\vec{\phantom{a}}$) encima del s\'imbolo que representa una cantidad f\'isica vectorial para indicar su naturaleza direccional.\\[.35cm]
+ 
+Podemos representar un vector haciendo uso de las dos propiedades b\'asicas de un vector: su magnitud y su direcci\'on. Si ``A'' es una cantidad vectorial, de magnitud $A$ y direcci\'on $\theta$, respecto a un sistema de referencia, entonces 
+$$\vec{A}=(A;\theta) \qquad \mbox{(\textsf{notaci\'on polar de un vector)}}. $$
+
+En la Figura \ref{fig:polar} se muestra un \textit{sistema de referencia polar}.\\[.35cm]
+
+\begin{figure}[!ht]
+%\begin{center}
+%\begin{tabular}[cc]
+\input{polar}  % \input{polarplane}
+%\end{tabular}
+\caption{Sistema de coordenadas polar.}
+\label{fig:polar}
+%\end{center}
+\end{figure}
+
+
+Otra manera de representar un vector, es indicando sus \textit{componentes cartesianas} o \textit{rectangulares} respecto a un \textit{sistema de referencia cartesiano}. \\[.35cm]
+
+ Un \textit{sistema cartesiano} es un conjunto de ejes mutuamente perpendiculares. En la Figura \ref{fig:sist} se muestra un \textit{sistema de coordenadas cartesiano} y el \textit{vector de posici\'on} de un punto con coordenadas ($x_0,y_0,z_0$). Las cantidades $\hat{\iota}$, $\hat{\jmath}$ y $\hat{\kappa}$ se llaman \textit{vectores directores unitarios} y son vectores de magnitud uno y direcci\'on a lo largo de los ejes $x$, $y$ y $z$, respectivamente.  \\[.35cm]
+ 
+ \begin{figure}[!ht]
+\begin{center}
+\input{marco_referencia}
+\caption{Sistema de coordenadas cartesiano. $\vec{r}$  es el \textit{vector posici\'on} del punto ($x_0,y_0,z_0$).}
+\label{fig:sist}
+\end{center}
+\end{figure}
+
+ 
+ Por lo tanto, para el caso del vector de posici\'on de un punto con coordenadas cartesiandas $(x_{0},y_{0},z_{0})$ se denota 
+$$\vec{r}=x_{0}\hat{\iota}+y_{0}\hat{\jmath}+z_{0}\hat{\kappa} \qquad \mbox{\textsf{(notaci\'on cartesiana, vector de posici\'on).}} $$
+
+
+
+Dado un punto en un plano (espacio 2D) con coordenadas cartesianas $(x,y)$, es posible obtener las correspondientes coordenadas polares mediante la transformaci\'on
+$$ r=\sqrt{x^2+y^2} \qquad \mbox{y} \qquad \theta= \arctan \left( \frac{y}{x}\right), $$
+
+o de forma inversa
+
+$$x=r \cos \theta \qquad \mbox{y} \qquad y=r \sin \theta.$$
+
+Los puntos cardinales son las cuatro direcciones principales que se utilizan para la navegación y la orientación: Norte (\textbf{N}), Sur (\textbf{S}), Este (\textbf{E}) y Oeste (\textbf{O}):
+
+\begin{itemize}
+    \item Norte (N): Es la dirección hacia el Polo Norte. En los mapas, el norte suele estar en la parte superior.
+    \item Sur (S): Es la dirección hacia el Polo Sur, opuesta al norte.
+    \item Este (E): Es la dirección por donde sale el sol. En los mapas, el este está a la derecha.
+    \item Oeste (O): Es la dirección por donde se pone el sol, opuesta al este. En los mapas, el oeste está a la izquierda.
+\end{itemize}
+\begin{comment}
+Para el ejemplo del $\vec{r}_{\Mbox{\textsc{Centro de las Artes}}}$ ver Figura \ref{fig:ca}.
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}
+\input{ejemplo_componentes}
+\end{tikzpicture}
+\caption{Relaci\'on entre notaci\'on polar y cartesiana.}
+\label{fig:ca}
+\end{figure}
+\end{comment}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=5in]{planeamiento_didactico/figuras/rosa_vientos.pdf}
+    \caption{Rosa de los vientos.}
+    \label{fig:rosa-vientos}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=5in]{planeamiento_didactico/figuras/puntos_cardinales.pdf}
+    \caption{Direcci\'on cardinal vs direcci\'on polar. Para ubicaciones en el I y II cuadrantes, se toma el N como referencia.}
+    \label{fig:puntos-cardinales}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=5in]{planeamiento_didactico/figuras/puntos_cardinales-2.pdf}
+    \caption{Direcci\'on cardinal vs direcci\'on polar.  Para ubicaciones en el III y IV cuadrantes, se toma el S como referencia.}
+    \label{fig:puntos-cardinales-2}
+\end{figure}
+\section{Operaciones vectoriales}
+
+Partiendo de la notaci\'on cartesiana
+\begin{align*}
+\vec{A}=&(A_x,A_y,A_z)\\[.35cm]
+=&A_x\hat{\iota}+A_y\hat{\jmath}+A_z\hat{\kappa}.
+\end{align*}
+definimos las siguientes operaciones vectoriales:
+\resp{.75\textwidth}{\textbf{Producto de un escalar y un vector:}
+\begin{align*}
+a\vec{A}=&a(A_x,A_y,A_z)\\[.35cm]
+=&(aA_x,aA_y,aA_z) \\[.35cm]
+=&aA_x\hat{\iota}+aA_y\hat{\jmath}+aA_z\hat{\kappa},
+\end{align*}}{white}{noticias}
+
+\begin{wwteorema}{Ejemplo}
+La fuerza neta ($\vec{F}_{\Mbox{neta}}$) que experimenta un cuerpo de masa $m$ se relaciona con la aceleraci\'on ($\vec{a}$): $$\vec{F}_{\Mbox{neta}}=m\vec{a}$$
+Si sobre un cuerpo de $m=$10 kg act\'ua una fuerza neta de $$\vec{F}_{\Mbox{neta}}=(25\U{N})\hat{\iota}-(75\U{N})\hat{\jmath}+(100\U{N})\hat{\kappa},$$
+este experimentar\'a una aceleraci\'on de 
+$$\vec{a}=\left(\frac{1}{m}\right)\vec{F}_{\Mbox{neta}}=(2.5\U{m/s}^2)\hat{\iota}-(7.5\U{m/s}^2)\hat{\jmath}+(10\U{m/s}^2)\hat{\kappa}$$
+\end{wwteorema}
+
+
+\resp{.75\textwidth}{
+%\begin{itemize}
+%\item 
+\textbf{Suma (resta) de vectores}, $\vec{A} \pm \vec{B}:$
+\begin{align*}
+\vec{A} \pm \vec{B}=&(A_x,A_y,A_z)\pm(B_x,B_y,B_z)\\[.35cm]
+=&(A_x \pm B_x,A_y \pm B_y,A_z \pm B_z) \\[.35cm]
+=&(A_x \pm B_x)\hat{\iota}+(A_y \pm B_y)\hat{\jmath}+(A_z \pm B_z)\hat{\kappa}.
+\end{align*}}{white}{noticias}
+
+\begin{wwteorema}{Ejemplo}
+La fuerza neta ($\vec{F}_{\Mbox{neta}}$) que experimenta un cuerpo est\'a dada por 
+$$\vec{F}_{\Mbox{neta}}=\sum \vec{F}_i=\vec{F}_1+\vec{F}_2+\cdots + \vec{F}_N$$
+Si sobre un objeto act\'uan dos fuerzas:
+\begin{align*}
+\vec{F}_1&=&(5\U{N})&\hat{\iota}&-&(15\U{N})\hat{\jmath}&+&(10\U{N})\hat{\kappa} \\[.35cm]
+\vec{F}_2&=&(-15\U{N})&\hat{\iota}&+&(25\U{N})\hat{\jmath}&+&(10\U{N})\hat{\kappa} \\[.35cm]
+\Rightarrow \vec{F}_{\Mbox{neta}}&=&(-10\U{N})&\hat{\iota}&+&(10\U{N})\hat{\jmath}&+&(20\U{N})\hat{\kappa} \\[.35cm]
+\end{align*}
+\end{wwteorema}
+
+\resp{.75\textwidth}{
+%\begin{itemize}
+%\item 
+\textbf{Producto escalar de dos vectores}, $\vec{A}\cdot\vec{B}:$
+\begin{align*}
+\vec{A}\cdot\vec{B}=&A_xB_x+A_yB_y+A_zB_z\\[.35cm]
+=&|\vec{A}||\vec{B}|\cos \theta\\[.35cm]
+=&\vec{B}\cdot\vec{A}.
+\end{align*}
+}{white}{noticias} 
+
+donde $|\vec{A}|$ y $|\vec{B}|$ representan las magnitudes de $\vec{A}$ y $\vec{B}$ respectivamente, y $\theta$ el \'angulo entre ellos (ver Figura \ref{fig:apb}). Tambi\'en puede escribirse $|\vec{A}|=A$.\\[.35cm]
+
+El producto escalar entre dos vectores, tambi\'en llamado \textbf{producto punto} es una cantidad escalar. \\[.35cm]
+\begin{figure}[h!]
+\begin{center}
+\input{angulo_entre_vectores}
+\end{center}
+\caption{\'Angulo entre dos vectores.}
+\label{fig:apb}
+\end{figure}
+
+\begin{wwteorema}{Ejemplo}
+El trabajo ($W$) de un fuerza ($\vec{F}$) cuando act\'ua a lo largo de un desplazamiento ($\vec{s}$) est\'a dado por 
+$$W=\vec{F}\cdot \vec{s}=Fs\cos \theta,$$
+donde $\theta$ es el \'angulo entre $\vec{F}$ y $\vec{s}$.
+\end{wwteorema}
+
+Note que 
+$$|\vec{A}|=\sqrt{\vec{A}\cdot\vec{A}}= \sqrt{A_x^{2}+A_y^{2}+A_z^{2}}.$$
+Adem\'as, si dos vectores son perpendiculares, es decir si $\theta=90^{\circ}$, $\vec{A}\cdot\vec{B}=0$. \\[.35cm] 
+A partir de esta operaci\'on, se pueden calcular los \textit{\textcolor{c5}{cosenos directores}} de un vector
+\begin{align*}
+\vec{A}\cdot\hat{\iota}=&|\vec{A}||\hat{\iota}|\textcolor{c5}{\cos\theta_{x}}=A\textcolor{c5}{\cos\theta_{x}}=A_{x}, \\[.35cm]
+\vec{A}\cdot\hat{\jmath}=&|\vec{A}||\hat{\jmath}|\textcolor{c5}{\cos\theta_{y}}=A\textcolor{c5}{\cos\theta_{y}}=A_{y}, \\[.35cm]
+\vec{A}\cdot\hat{\kappa}=&|\vec{A}||\hat{\kappa}|\textcolor{c5}{\cos\theta_{z}}=A\textcolor{c5}{\cos\theta_{z}}=A_{z},
+\end{align*}
+donde $\theta_{x}$, $\theta_{y}$ y $\theta_{z}$, llamados \textit{\'angulos directores}, son los \'angulos que forma el vector  con los ejes $x$, $y$ y $z$ respectivamente.
+
+
+
+
+
+\resp{.75\textwidth}{\textbf{Producto vectorial de dos vectores}, $\vec{A}\times\vec{B}=\vec{C}:$
+\begin{align*}
+C_x=&A_yB_z-A_zB_y,\\[.35cm]
+C_y=&A_zB_x-A_xB_z,\\[.35cm]
+C_z=&A_xB_y-A_yB_z.
+\end{align*}}{white}{noticias}
+
+%\item 
+
+El producto vectorial (tambi\'en llamado \textbf{producto cruz}) entre dos vectores produce un vector que es perpendicular al plano que contiene a ambos vectores (ver Figura \ref{fig:axb}). \\[.35cm] 
+Se cumple adem\'as que 
+$$ |\vec{A}\times\vec{B}|=|\vec{A}||\vec{B}|\sin \theta,$$
+siendo $\theta$ el \'angulo entre $\vec{A}$ y $\vec{B}$.  Geom\'etricamente,  esta magnitud equivale al \'area del paralelogramo que se forma entre $\vec{A}$ y $\vec{B}$ (ver Figura \ref{fig:axb}). \\[.35cm] 
+
+\input{producto_cruz}
+
+Note que el producto cruz entre vectores paralelos $(\theta=0)$ es nulo. \\[.35cm] 
+
+\begin{wwteorema}{Ejemplo}
+La torca ($\vec{\tau}$) de un fuerza ($\vec{F}$) cuando act\'ua a una distancia ($\vec{r}$) del eje de giro de un cuerpo r\'igido est[a dado por 
+$$\vec{\tau}=\vec{F}\times \vec{r}$$ \\[.35cm]
+Si el eje de giro ($z$) permanece constante, 
+$$\tau_z=Fr\sin \theta=Fr_{\perp},$$
+donde $r_{\perp}$ se conoce como \textit{brazo de palanca} de la fuerza.
+\end{wwteorema}

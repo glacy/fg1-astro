@@ -1,298 +1,495 @@
 ---
 title: "Vectores y operaciones vectoriales"
-description: "Material de lectura para la semana 2."
+description: "Operaciones con vectores: notación polar y cartesiana en 2D y 3D, puntos cardinales, producto de escalar por vector, producto escalar (punto) y producto vectorial (cruz), con aplicaciones físicas como trabajo y torque."
 week: 2
-keywords: ["física general I", "semana 2", "TEC Costa Rica"]
+keywords: ["producto escalar", "producto punto", "producto vectorial", "producto cruz", "puntos cardinales", "vectores 3D", "cosenos directores", "trabajo y fuerza", "torque", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-2"]
-category: "semana-2"
-difficulty: "basic"
+date: 2026-08-09
+readingTime: 18
+tags: ["vectores", "producto punto", "producto cruz", "operaciones vectoriales"]
+category: "vectores"
+difficulty: "intermediate"
 objetivos:
   - "Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección."
   - "Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas."
   - "Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar."
-draft: true
+  - "Interpretar direcciones cardinales y relacionarlas con ángulos polares."
+  - "Aplicar el producto vectorial (cruz) a situaciones físicas como el torque."
 ---
 
+import PreCheck from '../../../components/PreCheck.astro';
 import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import { SistemaCartesiano, SistemaPolar } from '@/components/graph';
+import { Image } from 'astro:assets';
+import NorEste from "../../../assets/NE.svg";
+import SurOeste from "../../../assets/SO.svg";
+import RosaVientos from "../../../assets/rosa_vientos.svg";
 
-## Objetivos de Aprendizaje
 
-Al finalizar esta semana, serás capaz de:
 
-- Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección.
-- Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas.
-- Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar.
+<PreCheck>
+  - Calcular las componentes cartesianas de un vector, dadas su magnitud y dirección.
+  - Calcular la magnitud y dirección de un vector, dadas sus componentes cartesianas.
+  - Interpretar direcciones cardinales y relacionarlas con ángulos polares.
+  - Realizar distintas operaciones vectoriales: suma y resta de vectores, multiplicación de un vector por un escalar, producto escalar.
+</PreCheck>
 
-## Sistemas de referencia
+En la sesión anterior aprendimos qué es un vector, cómo representarlo con flechas y cómo sumarlo y restarlo por componentes. Esas operaciones son apenas el comienzo. Los vectores aparecen por todas partes en la física: describen fuerzas, velocidades, campos eléctricos y magnéticos, y muchas otras cantidades. Para modelar estos fenómenos necesitamos herramientas más potentes.
 
-Aquí surge una pregunta obligada: si un vector necesita una dirección, ¿dirección respecto a qué? No podemos decir "hacia arriba" o "hacia la derecha" sin definir un punto de vista previo. 
+En esta sesión ampliaremos nuestro arsenal vectorial con dos operaciones nuevas y de enorme importancia física: el **producto escalar** (o producto punto) y el **producto vectorial** (o producto cruz). Antes de llegar ahí, sin embargo, necesitamos dominar una habilidad práctica que usaremos una y otra vez: expresar direcciones con los puntos cardinales.
 
-Debido a este carácter direccional, los vectores exigen un **marco o sistema de referencia** desde el cual poder medir su magnitud y trazar su dirección. Un sistema de referencia es simplemente un conjunto de convenciones espaciales (como los puntos cardinales o las paredes de un cuarto) que un observador utiliza para ubicar los objetos de manera consistente.
+## Direcciones cardinales
 
-El sistema de referencia más utilizado en Física es el **sistema rectangular de ejes coordenados** (o sistema cartesiano). A partir de este esquema de ejes perpendiculares, podemos descomponer cualquier vector en sus *componentes cartesianas*, lo cual es la herramienta matemática fundamental que nos permitirá sumar, restar y analizar vectores de forma exacta. 
+Hasta ahora hemos medido direcciones con ángulos respecto al eje $$x$$ positivo, creciendo en sentido antihorario. Ese es el **sistema de medición angular polar** y funciona perfectamente en problemas de libro de texto. Pero en la vida cotidiana, nadie dice "el supermercado está a $$37^\circ$$"; decimos "está al noreste".
 
-### Sistema de coordenadas polares
+Los **puntos cardinales** son las cuatro direcciones principales de la navegación:
 
-Además del sistema cartesiano, existe otro sistema de referencia muy útil en Física: el **sistema de coordenadas polares**. Este sistema es particularmente conveniente cuando trabajamos con problemas que tienen simetría radial o cuando el movimiento natural de un objeto sigue trayectorias circulares o espirales.
+| Punto cardinal | Símbolo | Referencia | En un plano cartesiano |
+| :--- | :---: | :--- | :--- |
+| Norte | **N** | Hacia arriba | Eje $$y$$ positivo |
+| Sur | **S** | Hacia abajo | Eje $$y$$ negativo |
+| Este | **E** | A la derecha | Eje $$x$$ positivo |
+| Oeste | **O** | A la izquierda | Eje $$x$$ negativo |
 
-En el sistema polar, la posición de un punto en el plano se determina mediante dos cantidades: la distancia desde un punto de referencia fijo (origen) y el ángulo respecto a una dirección de referencia (generalmente el eje $x$ positivo).
+A partir de estos cuatro puntos surgen las direcciones intermedias: noreste (NE), sureste (SE), noroeste (NO) y suroeste (SO). Para direcciones más precisas se combina un punto cardinal con un ángulo. La convención es:
 
-Las coordenadas polares se denotan como $$(r, \theta)$$, donde:
+- Si la ubicación está en el **primer o segundo cuadrante** (mitad norte), se toma el **Norte** como referencia.
+- Si la ubicación está en el **tercer o cuarto cuadrante** (mitad sur), se toma el **Sur** como referencia.
 
-- **$$r$$ (radio)**: es la distancia desde el origen hasta el punto. Esta cantidad es siempre positiva o cero: $$r \geq 0$$.
-- **$$\theta$$ (ángulo)**: es el ángulo medido desde el eje $$x$$ positivo hasta el vector de posición del punto, en sentido antihorario. Este ángulo se puede expresar en grados $$0^\circ$$ a $360^\circ$$; o en radianes, $$0$$ a $$2\pi$$ rad.
+<Image src={RosaVientos} alt="La rosa de los vientos es un símbolo en forma de círculo que tiene marcado alrededor los rumbos en que se divide la circunferencia del horizonte: norte, sur, este y oeste" layout='constrained' width={406} height={416}/>
 
-**Relación con coordenadas cartesianas**
 
-Las coordenadas polares y cartesianas están relacionadas por las siguientes ecuaciones de conversión:
+Por ejemplo, la dirección "$$70^\circ$$ SO" significa: partiendo del Sur, girar $$70^\circ$$ hacia el Oeste. De forma equivalente, en ángulo polar sería $$270^\circ - 70^\circ = 200^\circ$$.
 
-$$
-x = r \cos \theta
-$$
+<Image src={SurOeste} alt="La direccion polar 70 grados sureste corresponde con el angulo polar de 200 grados" layout='constrained' width={394} height={485}/>
 
-$$
-y = r \sin \theta
-$$
+De manera similar, la dirección "$$30^\circ$$ NE" significa: partiendo del Norte, girar $$30^\circ$$ hacia el Este.
 
-Para convertir de cartesianas a polares:
+<Image src={NorEste} alt="La direccion polar 30 grados sureste corresponde con el angulo polar de 200 grados" layout='constrained' width={394} height={485}/>
 
-$$
-r = \sqrt{x^2 + y^2}
-$$
-
-$$
-\theta = \arctan\left(\frac{y}{x}\right)
-$$
-
-Donde el cuadrante correcto de $$\theta$$ se determina por los signos de $$x$$ y $$y$$.
-
-<Box icon="check-list">
-
-**Ejemplo - conversión entre sistemas de coordenadas**
-
-Supongamos que un punto tiene coordenadas cartesianas $(3, 4)$ en metros.
-
-Para convertir a polares:
-
-$$
-r = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5 \, \mathrm{m}
-$$
-
-$$
-\theta = \arctan\left(\frac{4}{3}\right) = 53,13^\circ
-$$
-
-Por lo tanto, las coordenadas polares son $(5, 53,13^\circ)$.
-
-Para verificar la conversión inversa:
-
-$$
-x = 5 \cos(53,13^\circ) = 5 \times 0,6 = 3 \, \mathrm{m}
-$$
-
-$$
-y = 5 \sin(53,13^\circ) = 5 \times 0,8 = 4 \, \mathrm{m}
-$$
-
-</Box>
-
-## Suma y resta de vectores
-
-La suma y resta de vectores son operaciones fundamentales en física, ya que muchas cantidades físicas interactúan de manera vectorial. Existen tres métodos principales para realizar estas operaciones: el método gráfico, el método geométrico y el método analítico (componentes).
-
-### Método gráfico: regla del paralelogramo
-
-La suma de dos vectores $$\vec{A}$$ y $$\vec{B}$$ se puede representar gráficamente usando la **regla del paralelogramo**. Para sumar $$\vec{A} + \vec{B}$$:
-
-1. Coloca ambos vectores con sus orígenes en el mismo punto
-2. Construye un paralelogramo trazando líneas paralelas a cada vector
-3. La diagonal del paralelogramo (desde el origen) representa el vector resultante $$\vec{R}$$
-
-El vector resultante se expresa como:
-
-$$
-\vec{R} = \vec{A} + \vec{B}
-$$
-
-### Método gráfico: regla del polígono o cabeza-cola
-
-Otra forma equivalente de sumar vectores es la **regla del polígono** o **cabeza-cola**:
-
-1. Dibuja el primer vector $$\vec{A}$$ desde un punto de origen
-2. Dibuja el segundo vector $$\vec{B}$$ con su origen en la cabeza (punta) de $$\vec{A}$$
-3. El vector resultante $$\vec{R}$$ va desde el origen de $$\vec{A}$$ hasta la cabeza de $$\vec{B}$$
-
-Este método se extiende fácilmente a la suma de más de dos vectores, simplemente concatenando cada vector al final del anterior.
-
-### Resta de vectores
-
-La resta de vectores $$\vec{A} - \vec{B}$$ es equivalente a la suma de $$\vec{A}$$ con el opuesto de $$\vec{B}$$:
-
-$$
-\vec{A} - \vec{B} = \vec{A} + (-\vec{B})
-$$
-
-Gráficamente, el opuesto de un vector $$\vec{B}$$ se obtiene invirtiendo su dirección (manteniendo la misma magnitud pero apuntando en sentido contrario). Luego se aplica la regla del polígono.
-
-### Método analítico: componentes rectangulares
-
-El método más preciso para sumar y restar vectores utiliza las **componentes rectangulares**. Descomponemos cada vector en sus componentes $x$ y $y$, y luego operamos componente por componente.
-
-Para un vector $\vec{A}$ con magnitud $A$ y ángulo $\theta$ respecto al eje $x$ positivo:
-
-$$
-A_x = A \cos \theta
-$$
-
-$$
-A_y = A \sin \theta
-$$
-
-La suma de dos vectores se realiza así:
-
-$$
-\vec{R} = \vec{A} + \vec{B}
-$$
-
-$$
-R_x = A_x + B_x
-$$
-
-$$
-R_y = A_y + B_y
-$$
-
-La magnitud del vector resultante se obtiene mediante el teorema de Pitágoras:
-
-$$
-R = \sqrt{R_x^2 + R_y^2}
-$$
-
-Y la dirección del vector resultante es:
-
-$$
-\theta_R = \arctan\left(\frac{R_y}{R_x}\right)
-$$
 
 <Box icon="check-list">
 
-**Ejemplo - suma de vectores por componentes**
+**Ejemplos de conversión entre direcciones cardinales y ángulos polares**
 
-Un objeto se mueve bajo la acción de dos fuerzas: $$\vec{F}_1 = 50 \, \mathrm{N}$$ en dirección $$37^\circ$$ sobre el eje $$x$$, y $$\vec{F}_2 = 30 \, \mathrm{N}$$ en dirección $$53^\circ$$ sobre el eje $$x$$. Encontrar la fuerza resultante.
-
-Primero calculamos las componentes:
-
-$$
-F_{1x} = 50 \cos(37^\circ) = 50 \times 0,799 = 39,95 \, \mathrm{N}
-$$
-
-$$
-F_{1y} = 50 \sin(37^\circ) = 50 \times 0,601 = 30,05 \, \mathrm{N}
-$$
-
-$$
-F_{2x} = 30 \cos(53^\circ) = 30 \times 0,602 = 18,06 \, \mathrm{N}
-$$
-
-$$
-F_{2y} = 30 \sin(53^\circ) = 30 \times 0,799 = 23,97 \, \mathrm{N}
-$$
-
-Sumamos las componentes:
-
-$$
-R_x = F_{1x} + F_{2x} = 39,95 + 18,06 = 58,01 \, \mathrm{N}
-$$
-
-$$
-R_y = F_{1y} + F_{2y} = 30,05 + 23,97 = 54,02 \, \mathrm{N}
-$$
-
-Magnitud del vector resultante:
-
-$$
-R = \sqrt{58,01^2 + 54,02^2} = \sqrt{3365,16 + 2918,16} = \sqrt{6283,32} = 79,27 \, \mathrm{N}
-$$
-
-Dirección del vector resultante:
-
-$$
-\theta_R = \arctan\left(\frac{54,02}{58,01}\right) = \arctan(0,931) = 42,97^\circ
-$$
-
-Por lo tanto, la fuerza resultante es $$$$\vec{R} = 79,27 \, \mathrm{N}$$$$ en dirección $$$$42,97^\circ$$$$ sobre el eje $$$$x$$$$.
+| Dirección cardinal | Descripción | Ángulo polar equivalente |
+| :--- | :--- | :---: |
+| $$45^\circ$$ NE | Desde el N, girar $$45^\circ$$ hacia el E | $$45^\circ$$ |
+| $$30^\circ$$ SE | Desde el S, girar $$30^\circ$$ hacia el E | $$300^\circ$$ |
+| $$60^\circ$$ NO | Desde el N, girar $$60^\circ$$ hacia el O | $$150^\circ$$ |
+| $$20^\circ$$ SO | Desde el S, girar $$20^\circ$$ hacia el O | $$200^\circ$$ |
 
 </Box>
 
-### Propiedades de la suma de vectores
+<Box icon="question-mark">
 
-La suma de vectores cumple con las siguientes propiedades fundamentales:
+**Pon a prueba tu conocimiento**
 
-**Propiedad conmutativa:**
+1. Una persona camina en dirección $$55^\circ$$ NO. Si expresamos esta dirección como un ángulo polar medido desde el eje $$x$$ positivo, ¿cuál es el valor correcto?
+
+    <MultipleChoice>
+      <Option>
+        $$55^\circ$$
+      </Option>
+      <Option>
+        $$125^\circ$$
+      </Option>
+      <Option isCorrect>
+        $$145^\circ$$
+      </Option>
+      <Option>
+        $$215^\circ$$
+      </Option>
+    </MultipleChoice>
+
+2. Un barco navega en dirección $$40^\circ$$ SE. ¿Cuál es el ángulo polar equivalente?
+
+    <MultipleChoice>
+      <Option>
+        $$140^\circ$$
+      </Option>
+      <Option>
+        $$220^\circ$$
+      </Option>
+      <Option>
+        $$130^\circ$$
+      </Option>
+      <Option isCorrect>
+        $$310^\circ$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Notación polar y cartesiana: un repaso
+
+Recordemos que un vector $$\vec{A}$$ se puede expresar de dos formas equivalentes:
+
+- **Notación polar:** se especifica la magnitud $$A$$ y la dirección $$\theta$$:
+
 $$
-\vec{A} + \vec{B} = \vec{B} + \vec{A}
+\vec{A} = (A; \, \theta)
 $$
 
-**Propiedad asociativa:**
-$$
-(\vec{A} + \vec{B}) + \vec{C} = \vec{A} + (\vec{B} + \vec{C})
-$$
-
-**Elemento neutro:**
-$$
-\vec{A} + \vec{0} = \vec{A}
-$$
-
-**Elemento opuesto:**
-$$
-\vec{A} + (-\vec{A}) = \vec{0}
-$$
-
-### Vectores unitarios
-
-En física, frecuentemente utilizamos **vectores unitarios** para expresar las componentes de un vector de forma compacta. Un vector unitario es un vector con magnitud igual a 1 que indica una dirección específica.
-
-En el sistema cartesiano, los vectores unitarios se denotan como:
-
-- $$\hat{\iota}$$: vector unitario en dirección del eje $$x$$ positivo
-- $$\hat{j}$$: vector unitario en dirección del eje $$y$$ positivo
-- $$\hat{k}$$: vector unitario en dirección del eje $$z$$ positivo (para problemas en tres dimensiones)
-
-Cualquier vector $$\vec{A}$$ puede expresarse como:
+- **Notación cartesiana:** se especifican las componentes $$A_x$$, $$A_y$$ (y $$A_z$$ en 3D):
 
 $$
-\vec{A} = A_x \hat{i} + A_y \hat{j}
+\vec{A} = A_x \hat{\iota} + A_y \hat{\jmath} + A_z \hat{\kappa}
 $$
 
-La suma de vectores en notación de vectores unitarios es:
+La conversión entre ambos sistemas se realiza con las fórmulas que ya conocemos:
+
+| De cartesiano a polar | De polar a cartesiano |
+| :--- | :--- |
+| $$A = \sqrt{A_x^2 + A_y^2}$$ | $$A_x = A \cos \theta$$ |
+| $$\theta = \arctan\left(\dfrac{A_y}{A_x}\right)$$ | $$A_y = A \sin \theta$$ |
+
+En dos dimensiones, $$\theta$$ es el ángulo respecto al eje $$x$$ positivo. Hay que prestar atención al cuadrante: la calculadora devuelve valores entre $$-90^\circ$$ y $$90^\circ$$, así que si el vector está en el segundo o tercer cuadrante ($$A_x < 0$$), hay que sumar $$180^\circ$$ al resultado.
+
+<SistemaPolar
+  points={[
+    { r: 4, theta: 55, label: 'P', color: '#EF4444', tooltipOffset: { x: 10, y: +30 } },
+    { r: 3, theta: 145, label: 'Q', color: '#3B82F6', tooltipOffset: { x: -70, y: +20 } },
+    { r: 3, theta: 225, label: 'R', color: '#10B981', tooltipOffset: { x: -20, y: 10 } }
+  ]}
+  showPointLabels={true}
+  maxRadius={7}
+  showRadiusLabel={false}
+/>
+
+En el gráfico superior, observa los tres puntos. El punto $$P$$ está en el primer cuadrante, así que su ángulo polar es directo: $$55^\circ$$. El punto $$Q$$ está en el segundo cuadrante: su ángulo polar es $$145^\circ$$. Y el punto $$R$$ está en el tercer cuadrante, con un ángulo de $$225^\circ$$ (equivalente a $$45^\circ$$ SE).
+
+### Vectores en tres dimensiones
+
+Hasta ahora hemos trabajado en un plano (2D), pero el mundo real tiene tres dimensiones espaciales. Para describir vectores en 3D añadimos un tercer eje, el eje $$z$$, perpendicular al plano $$xy$$. El vector unitario en esta dirección es $$\hat{\kappa}$$.
+
+Un vector de posición en 3D se escribe:
 
 $$
-\vec{R} = (A_x + B_x) \hat{i} + (A_y + B_y) \hat{j}
+\vec{r} = x \hat{\iota} + y \hat{\jmath} + z \hat{\kappa}
+$$
+
+y su magnitud se calcula extendiendo el teorema de Pitágoras:
+
+$$
+|\vec{r}| = \sqrt{x^2 + y^2 + z^2}
 $$
 
 <Box icon="check-list">
 
-**Ejemplo - vectores unitarios**
+**Ejemplo — magnitud de un vector en 3D**
 
-Dados los vectores $$\vec{A} = 3\hat{i} + 4\hat{j} \, \mathrm{m}$$ y $$\vec{B} = -2\hat{i} + 5\hat{j} \, \mathrm{m}$$, encontrar $$\vec{A} + \vec{B}$$ y $$\vec{A} - \vec{B}$$.
-
-Suma:
-$$
-\vec{A} + \vec{B} = (3 + (-2))\hat{i} + (4 + 5)\hat{j} = 1\hat{i} + 9\hat{j} \, \mathrm{m}
-$$
-
-Resta:
-$$
-\vec{A} - \vec{B} = (3 - (-2))\hat{i} + (4 - 5)\hat{j} = 5\hat{i} - 1\hat{j} \, \mathrm{m}
-$$
-
-Para encontrar la magnitud del vector suma:
+Un dron despega del origen y se desplaza hasta la posición $$(3, -4, 12) \, \mathrm{m}$$. ¿A qué distancia del punto de partida se encuentra?
 
 $$
-|\vec{A} + \vec{B}| = \sqrt{1^2 + 9^2} = \sqrt{1 + 81} = \sqrt{82} = 9,06 \, \mathrm{m}
+|\vec{r}| = \sqrt{3^2 + (-4)^2 + 12^2} = \sqrt{9 + 16 + 144} = \sqrt{169} = 13 \, \mathrm{m}
+$$
+
+El dron está a $$13 \, \mathrm{m}$$ de su punto de partida.
+
+</Box>
+
+## Producto de un escalar por un vector
+
+La operación más sencilla con vectores es multiplicarlos por un número (escalar). Si $$a$$ es un escalar y $$\vec{A}$$ es un vector, entonces:
+
+$$
+a \vec{A} = a A_x \hat{\iota} + a A_y \hat{\jmath} + a A_z \hat{\kappa}
+$$
+
+El escalar multiplica cada componente. Geométricamente, esto tiene dos efectos:
+
+- Si $$|a| > 1$$: el vector se "estira" (su magnitud aumenta).
+- Si $$|a| < 1$$: el vector se "encoge".
+- Si $$a < 0$$: el vector se invierte (apunta en sentido contrario).
+
+La nueva magnitud es $$|a \vec{A}| = |a| \cdot A$$.
+
+<Box icon="check-list">
+
+**Ejemplo — la segunda ley de Newton**
+
+La fuerza neta sobre un cuerpo de masa $$m = 10 \, \mathrm{kg}$$ es:
+
+$$
+\vec{F}_{\text{neta}} = (25 \, \mathrm{N}) \hat{\iota} - (75 \, \mathrm{N}) \hat{\jmath} + (100 \, \mathrm{N}) \hat{\kappa}
+$$
+
+Por la segunda ley de Newton, $$\vec{F}_{\text{neta}} = m \vec{a}$$, la aceleración es:
+
+$$
+\vec{a} = \frac{1}{m} \vec{F}_{\text{neta}} = \frac{1}{10 \, \mathrm{kg}} \left[ (25) \hat{\iota} - (75) \hat{\jmath} + (100) \hat{\kappa} \right] \mathrm{N}
+$$
+
+$$
+\vec{a} = (2,5 \, \mathrm{m/s^2}) \hat{\iota} - (7,5 \, \mathrm{m/s^2}) \hat{\jmath} + (10 \, \mathrm{m/s^2}) \hat{\kappa}
+$$
+
+Aquí multiplicamos el vector fuerza por el escalar $$1/m = 0,1 \, \mathrm{kg}^{-1}$$, y cada componente se reduce a la décima parte.
+
+</Box>
+
+## Producto escalar (producto punto)
+
+El **producto escalar**, también llamado **producto punto**, es una operación que toma dos vectores y produce un escalar (un número). Se denota con un punto entre los vectores: $$\vec{A} \cdot \vec{B}$$.
+
+### Definición por componentes
+
+En notación cartesiana, el producto punto se calcula sumando los productos de las componentes correspondientes:
+
+$$
+\vec{A} \cdot \vec{B} = A_x B_x + A_y B_y + A_z B_z
+$$
+
+Es decir: componente $$x$$ por componente $$x$$, más componente $$y$$ por componente $$y$$, más componente $$z$$ por componente $$z$$.
+
+### Definición geométrica
+
+Existe una forma alternativa, igualmente importante, que involucre el ángulo $$\theta$$ entre los dos vectores:
+
+$$
+\vec{A} \cdot \vec{B} = A B \cos \theta
+$$
+
+donde $$A = |\vec{A}|$$ y $$B = |\vec{B}|$$ son las magnitudes, y $$\theta$$ es el ángulo entre ellos (medido de cola a cola, $$0 \leq \theta \leq 180^\circ$$).
+
+Esta fórmula nos permite despejar el ángulo entre dos vectores cualesquiera:
+
+$$
+\theta = \arccos\left(\frac{\vec{A} \cdot \vec{B}}{A B}\right)
+$$
+
+### Propiedades del producto punto
+
+- **Conmutativo:** $$\vec{A} \cdot \vec{B} = \vec{B} \cdot \vec{A}$$
+- **Distributivo:** $$\vec{A} \cdot (\vec{B} + \vec{C}) = \vec{A} \cdot \vec{B} + \vec{A} \cdot \vec{C}$$
+- **Ortogonalidad:** Si $$\vec{A} \cdot \vec{B} = 0$$ y ninguno es el vector nulo, entonces los vectores son **perpendiculares** ($$\theta = 90^\circ$$, pues $$\cos 90^\circ = 0$$).
+
+<Box icon="check-list">
+
+**Ejemplo — ángulo entre dos vectores**
+
+Considere los vectores:
+
+$$
+\vec{A} = (2 \, \mathrm{m}) \hat{\iota} + (-5 \, \mathrm{m}) \hat{\jmath} - (1 \, \mathrm{m}) \hat{\kappa}
+$$
+
+$$
+\vec{B} = (6 \, \mathrm{m}) \hat{\iota} - (2 \, \mathrm{m}) \hat{\jmath} + (0 \, \mathrm{m}) \hat{\kappa}
+$$
+
+Primero calculamos el producto punto:
+
+$$
+\vec{A} \cdot \vec{B} = (2)(6) + (-5)(-2) + (-1)(0) = 12 + 10 + 0 = 22 \, \mathrm{m}^2
+$$
+
+Luego las magnitudes:
+
+$$
+A = \displaystyle \sqrt{2^2 + (-5)^2 + (-1)^2} = \sqrt{4 + 25 + 1} = \sqrt{30} \approx 5,48 \, \mathrm{m}
+$$
+
+$$
+B = \displaystyle  \sqrt{6^2 + (-2)^2 + 0^2} = \sqrt{36 + 4} = \sqrt{40} \approx 6,32 \, \mathrm{m}
+$$
+
+Finalmente, el ángulo:
+
+$$
+\theta = \arccos\left(\frac{22}{5,48 \times 6,32}\right) = \arccos\left(\frac{22}{34,63}\right) = \arccos(0,635) \approx 50,6^\circ
 $$
 
 </Box>
+
+### Aplicación física: el trabajo mecánico
+
+El producto punto no es una curiosidad matemática; describe una de las cantidades físicas más importantes: el **trabajo**. Cuando una fuerza $$\vec{F}$$ actúa sobre un objeto que se desplaza una distancia $$\vec{s}$$, el trabajo realizado es:
+
+$$
+W = \vec{F} \cdot \vec{s} = F s \cos \theta
+$$
+
+donde $$\theta$$ es el ángulo entre la fuerza y el desplazamiento. Note algo crucial: si la fuerza es perpendicular al desplazamiento ($$\theta = 90^\circ$$), el trabajo es **cero**. Por ejemplo, si cargas un libro horizontalmente, la fuerza de gravedad (vertical) no realiza trabajo sobre él.
+
+### Cosenos directores
+
+El producto punto con los vectores unitarios nos permite hallar los ángulos que un vector forma con cada eje. Estos ángulos $$\theta_x$$, $$\theta_y$$, $$\theta_z$$ se llaman **ángulos directores**, y sus cosenos se conocen como **cosenos directores**:
+
+$$
+\cos \theta_x = \frac{A_x}{A}, \qquad \cos \theta_y = \frac{A_y}{A}, \qquad \cos \theta_z = \frac{A_z}{A}
+$$
+
+Una propiedad útil de los cosenos directores es:
+
+$$
+\cos^2 \theta_x + \cos^2 \theta_y + \cos^2 \theta_z = 1
+$$
+
+## Producto vectorial (producto cruz)
+
+Mientras que el producto punto produce un escalar, el **producto vectorial** o **producto cruz** produce un **vector**. Se denota con una equis: $$\vec{A} \times \vec{B}$$.
+
+### Definición por componentes
+
+Para vectores en 3D:
+
+$$
+\vec{A} \times \vec{B} = (A_y B_z - A_z B_y) \hat{\iota} + (A_z B_x - A_x B_z) \hat{\jmath} + (A_x B_y - A_y B_x) \hat{\kappa}
+$$
+
+Una forma de recordar este patrón es mediante el determinante de una matriz:
+
+$$
+\vec{A} \times \vec{B} = \begin{vmatrix} \hat{\iota} & \hat{\jmath} & \hat{\kappa} \\ A_x & A_y & A_z \\ B_x & B_y & B_z \end{vmatrix}
+$$
+
+### Definición geométrica
+
+El resultado de $$\vec{A} \times \vec{B}$$ es un vector con las siguientes características:
+
+1. **Magnitud:** es proporcional al seno del ángulo entre los vectores:
+
+$$
+|\vec{A} \times \vec{B}| = A B \sin \theta
+$$
+
+Geométricamente, esta magnitud equivale al **área del paralelogramo** que se forma con $$\vec{A}$$ y $$\vec{B}$$ como lados adyacentes.
+
+2. **Dirección:** el vector resultante es **perpendicular** al plano que contiene a $$\vec{A}$$ y $$\vec{B}$$. La orientación (hacia arriba o hacia abajo) se determina con la **regla de la mano derecha**: si curvas los dedos de tu mano derecha desde $$\vec{A}$$ hacia $$\vec{B}$$, tu pulgar apunta en la dirección de $$\vec{A} \times \vec{B}$$.
+
+### Propiedades del producto cruz
+
+- **NO es conmutativo:** $$\vec{A} \times \vec{B} = -(\vec{B} \times \vec{A})$$ (el orden importa; cambia el sentido).
+- **Vectores paralelos:** si $$\vec{A}$$ y $$\vec{B}$$ son paralelos ($$\theta = 0^\circ$$), entonces $$\vec{A} \times \vec{B} = \vec{0}$$ (pues $$\sin 0^\circ = 0$$).
+- **Vectores perpendiculares:** si $$\theta = 90^\circ$$, la magnitud es máxima: $$|\vec{A} \times \vec{B}| = A B$$.
+
+<Box icon="check-list">
+
+**Ejemplo — cálculo del producto cruz**
+
+Dados $$\vec{A} = 3\hat{\iota} + 2\hat{\jmath} + \hat{\kappa}$$ y $$\vec{B} = \hat{\iota} - \hat{\jmath} + 2\hat{\kappa}$$:
+
+$$
+C_x = (A_y)(B_z) - (A_z)(B_y) = (2)(2) - (1)(-1) = 4 + 1 = 5
+$$
+
+$$
+C_y = (A_z)(B_x) - (A_x)(B_z) = (1)(1) - (3)(2) = 1 - 6 = -5
+$$
+
+$$
+C_z = (A_x)(B_y) - (A_y)(B_x) = (3)(-1) - (2)(1) = -3 - 2 = -5
+$$
+
+$$
+\vec{A} \times \vec{B} = 5\hat{\iota} - 5\hat{\jmath} - 5\hat{\kappa}
+$$
+
+Podemos verificar que este vector es perpendicular tanto a $$\vec{A}$$ como a $$\vec{B}$$ calculando los productos punto (deben dar cero).
+
+</Box>
+
+### Aplicación física: el torque
+
+El producto cruz describe otra cantidad física fundamental: el **torque** (o momento de fuerza). Cuando aplicas una fuerza $$\vec{F}$$ a una llave o una puerta, a una distancia $$\vec{r}$$ del eje de giro, el torque producido es:
+
+$$
+\vec{\tau} = \vec{r} \times \vec{F}
+$$
+
+Si el eje de giro se mantiene fijo (por ejemplo, el eje $$z$$), la magnitud del torque es:
+
+$$
+\tau = r F \sin \theta = F r_{\perp}
+$$
+
+donde $$r_{\perp} = r \sin \theta$$ se conoce como **brazo de palanca**: es la distancia perpendicular desde el eje de giro hasta la línea de acción de la fuerza.
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. El producto punto de dos vectores perpendiculares es igual a:
+
+    <MultipleChoice>
+      <Option>
+        El producto de sus magnitudes
+      </Option>
+      <Option isCorrect>
+        Cero
+      </Option>
+      <Option>
+        La unidad
+      </Option>
+      <Option>
+        El área del paralelogramo que forman
+      </Option>
+    </MultipleChoice>
+
+2. El producto cruz de dos vectores paralelos tiene magnitud:
+
+    <MultipleChoice>
+      <Option>
+        Máxima ($$AB$$)
+      </Option>
+      <Option isCorrect>
+        Cero
+      </Option>
+      <Option>
+        Igual al producto punto
+      </Option>
+      <Option>
+        Igual a $$AB \cos\theta$$
+      </Option>
+    </MultipleChoice>
+
+3. ¿Cuál de las siguientes cantidades físicas se calcula con un producto punto?
+
+    <MultipleChoice>
+      <Option>
+        El torque
+      </Option>
+      <Option isCorrect>
+        El trabajo
+      </Option>
+      <Option>
+        La fuerza neta
+      </Option>
+      <Option>
+        La aceleración
+      </Option>
+    </MultipleChoice>
+
+4. El vector resultante del producto cruz $$\vec{A} \times \vec{B}$$ es perpendicular a:
+
+    <MultipleChoice>
+      <Option>
+        Solo a $$\vec{A}$$
+      </Option>
+      <Option>
+        Solo a $$\vec{B}$$
+      </Option>
+      <Option isCorrect>
+        Tanto a $$\vec{A}$$ como a $$\vec{B}$$
+      </Option>
+      <Option>
+        Al eje $$x$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de operaciones vectoriales
+
+| Operación | Resultado | Fórmula (componentes) | Fórmula (geométrica) |
+| :--- | :---: | :--- | :--- |
+| Escalar × Vector | Vector | $$a\vec{A} = (aA_x, \, aA_y, \, aA_z)$$ | Magnitud: $$\|a\| \cdot A$$ |
+| Suma / Resta | Vector | $$\vec{A} \pm \vec{B} = (A_x \pm B_x, \, \ldots)$$ | Regla del paralelogramo |
+| Producto punto | Escalar | $$\vec{A} \cdot \vec{B} = A_xB_x + A_yB_y + A_zB_z$$ | $$AB\cos\theta$$ |
+| Producto cruz | Vector | Ver fórmula de componentes | Magnitud: $$AB\sin\theta$$ |
+
+Estas cuatro operaciones son la base del cálculo vectorial que usaremos durante todo el curso. En las próximas semanas las aplicaremos al estudio del movimiento, las fuerzas, la energía y el momento angular. Domínalas ahora y te serán naturales más adelante.
