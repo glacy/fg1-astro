@@ -61,7 +61,7 @@ A partir de estos cuatro puntos surgen las direcciones intermedias: noreste (NE)
 <Image src={RosaVientos} alt="La rosa de los vientos es un símbolo en forma de círculo que tiene marcado alrededor los rumbos en que se divide la circunferencia del horizonte: norte, sur, este y oeste" layout='constrained' width={406} height={416}/>
 
 
-Por ejemplo, la dirección "$$70^\circ$$ SO" significa: partiendo del Sur, girar $$70^\circ$$ hacia el Oeste. De forma equivalente, en ángulo polar sería $$270^\circ - 75^\circ = 200^\circ$$.
+Por ejemplo, la dirección "$$70^\circ$$ SO" significa: partiendo del Sur, girar $$70^\circ$$ hacia el Oeste. De forma equivalente, en ángulo polar sería $$270^\circ - 70^\circ = 200^\circ$$.
 
 <Image src={SurOeste} alt="La direccion polar 70 grados sureste corresponde con el angulo polar de 200 grados" layout='constrained' width={394} height={485}/>
 
@@ -143,7 +143,7 @@ La conversión entre ambos sistemas se realiza con las fórmulas que ya conocemo
 
 | De cartesiano a polar | De polar a cartesiano |
 | :--- | :--- |
-| $$A = \sqrt{A_x^2 + A_y^2 + A_z^2}$$ | $$A_x = A \cos \theta$$ |
+| $$A = \sqrt{A_x^2 + A_y^2}$$ | $$A_x = A \cos \theta$$ |
 | $$\theta = \arctan\left(\dfrac{A_y}{A_x}\right)$$ | $$A_y = A \sin \theta$$ |
 
 En dos dimensiones, $$\theta$$ es el ángulo respecto al eje $$x$$ positivo. Hay que prestar atención al cuadrante: la calculadora devuelve valores entre $$-90^\circ$$ y $$90^\circ$$, así que si el vector está en el segundo o tercer cuadrante ($$A_x < 0$$), hay que sumar $$180^\circ$$ al resultado.
@@ -151,15 +151,15 @@ En dos dimensiones, $$\theta$$ es el ángulo respecto al eje $$x$$ positivo. Hay
 <SistemaPolar
   points={[
     { r: 4, theta: 55, label: 'P', color: '#EF4444', tooltipOffset: { x: 10, y: +30 } },
-    { r: 3.5, theta: 145, label: 'Q', color: '#3B82F6', tooltipOffset: { x: -70, y: +20 } },
-    { r: 3, theta: 310, label: 'R', color: '#10B981', tooltipOffset: { x: 10, y: 10 } }
+    { r: 3, theta: 145, label: 'Q', color: '#3B82F6', tooltipOffset: { x: -70, y: +20 } },
+    { r: 3, theta: 225, label: 'R', color: '#10B981', tooltipOffset: { x: -20, y: 10 } }
   ]}
   showPointLabels={true}
   maxRadius={7}
   showRadiusLabel={false}
 />
 
-En el gráfico superior, observa los tres puntos. El punto $$P$$ está en el primer cuadrante, así que su ángulo polar es directo: $$55^\circ$$. El punto $$Q$$ está en el segundo cuadrante: su ángulo polar es $$145^\circ$$. Y el punto $$R$$ está en el cuarto cuadrante, con un ángulo de $$310^\circ$$ (equivalente a $$40^\circ$$ SE).
+En el gráfico superior, observa los tres puntos. El punto $$P$$ está en el primer cuadrante, así que su ángulo polar es directo: $$55^\circ$$. El punto $$Q$$ está en el segundo cuadrante: su ángulo polar es $$145^\circ$$. Y el punto $$R$$ está en el tercer cuadrante, con un ángulo de $$225^\circ$$ (equivalente a $$45^\circ$$ SE).
 
 ### Vectores en tres dimensiones
 
