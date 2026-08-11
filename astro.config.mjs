@@ -82,6 +82,7 @@ export default defineConfig({
   output: 'static',
   image: {
     domains: ['images.unsplash.com'],
+    responsiveStyles: true,
   },
   vite: {
     define: {

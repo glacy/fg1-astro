@@ -20,6 +20,13 @@ import PreCheck from '../../../components/PreCheck.astro';
 import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
+import { Image } from 'astro:assets';
+import XvsT from "../../../assets/x_vs_t.svg";
+import XvsTv from "../../../assets/x_vs_t_v.svg";
+import AreaBajoCurva from "../../../assets/area_bajo_curva.svg";
+import GraficaVelocidadTiempo from "../../../assets/grafica_v_vs_t.svg";
+import GraficaVelocidadTiempoAnotacion from "../../../assets/grafica_v_vs_t-1.svg";
+import YvsX from "../../../assets/y_vs_x.svg";
 
 <PreCheck>
   - Definir la posición, el desplazamiento, la distancia, la velocidad, la rapidez y la aceleración de un objeto en movimiento.
@@ -49,8 +56,12 @@ Si $$y$$ representa la variable dependiente y $$x$$ la independiente, escribimos
 $$
 y = y(x)
 $$
-
+ 
 Esto se lee: "$$y$$ es función de $$x$$". En cinemática, leeremos expresiones como $$x(t)$$, que significa "la posición en función del tiempo". Esta pequeña notación es la clave de todo: nos dice que la posición depende del instante en que la midamos.
+
+<Image src={YvsX} alt="representación gráfica de una función en un plano cartesiano" layout='constrained' width={629} height={537}/>
+
+
 
 ## El vector de posición
 
@@ -115,34 +126,37 @@ Esta es una distinción que repetiremos a lo largo de todo el curso: la velocida
 
 **Pon a prueba tu conocimiento**
 
-1. La velocidad de un objeto es:
+Elije la opción que completa correctamente cada una de las frases.
+
+1. La velocidad de un objeto es __________.
 
     <MultipleChoice>
       <Option>
-        La distancia total recorrida dividida entre el tiempo
+        un escalar que indica qué tan rápido se mueve
       </Option>
       <Option>
-        Un escalar que indica qué tan rápido se mueve
+        la derivada de la aceleración respecto al tiempo
+      </Option>
+      <Option>
+        la distancia total recorrida dividida entre el tiempo
       </Option>
       <Option isCorrect>
-        La tasa de cambio de la posición respecto al tiempo
+        la tasa de cambio de la posición respecto al tiempo
       </Option>
-      <Option>
-        La derivada de la aceleración respecto al tiempo
-      </Option>
+      
     </MultipleChoice>
 
 2. ¿Qué diferencia a la velocidad de la rapidez?
 
     <MultipleChoice>
-      <Option>
-        La velocidad es siempre mayor que la rapidez
-      </Option>
       <Option isCorrect>
         La velocidad incluye dirección y sentido; la rapidez solo la magnitud
       </Option>
-      <Option>
+       <Option>
         La rapidez es un vector y la velocidad es un escalar
+      </Option>
+      <Option>
+        La velocidad es siempre mayor que la rapidez
       </Option>
       <Option>
         No existe ninguna diferencia
@@ -246,11 +260,15 @@ Note que el bus no se movió a $$6,1 \, \mathrm{m/s}$$ todo el tiempo: a veces f
 
 Las gráficas son una de las herramientas más poderosas de la cinemática, porque convierten números en formas visuales. La gráfica de la posición en función del tiempo, $$x(t)$$, nos permite "ver" el movimiento.
 
+<Image src={XvsT} alt="gráfica de la posición en función del tiempo" layout='constrained' width={589} height={493}/>
+
 En una gráfica $$x$$ vs $$t$$:
 
 - La **pendiente** de la curva en un instante dado es la **velocidad instantánea** en ese instante.
 - Una pendiente constante significa velocidad constante (movimiento uniforme).
 - Una pendiente que cambia significa que la velocidad está cambiando (hay aceleración).
+
+
 
 Si queremos la velocidad media entre dos instantes $$t_1$$ y $$t_2$$, tomamos los puntos correspondientes en la gráfica, trazamos la línea recta que los une (la secante), y calculamos su pendiente:
 
@@ -258,11 +276,16 @@ $$
 v_{\text{med},x} = \frac{x_2 - x_1}{t_2 - t_1} = \text{pendiente de la secante}
 $$
 
+<Image src={XvsTv} alt="La pendiente de la curva en un instante dado es la velocidad instantánea en ese instante" layout='constrained' width={589} height={493}/>
+
+
 ## Interpretación gráfica: el área bajo la curva
 
 Si la pendiente de la gráfica $$x(t)$$ nos da la velocidad, ¿qué nos dice una gráfica de velocidad en función del tiempo? La respuesta es notablemente simétrica:
 
 En una gráfica $$v_x$$ vs $$t$$, el **área bajo la curva** en un intervalo de tiempo representa el **desplazamiento** del objeto en ese intervalo.
+
+<Image src={AreaBajoCurva} alt="En una gráfica v vs t, el área bajo la curva en un intervalo de tiempo representa el desplazamiento del objeto en ese intervalo" layout='constrained' width={571} height={444}/>
 
 Para un movimiento a velocidad constante, esta relación es intuitiva: si viajas a $$v = 10 \, \mathrm{m/s}$$ durante $$t = 5 \, \mathrm{s}$$, el desplazamiento es:
 
@@ -282,58 +305,64 @@ $$
 
 La interpretación gráfica es análoga a la de la velocidad: en una gráfica $$v_x$$ vs $$t$$, la **pendiente** en un instante es la **aceleración instantánea**, y la pendiente de la secante entre dos puntos es la aceleración media.
 
+<Image src={GraficaVelocidadTiempo} alt="en una gráfica v_x vs t, la pendiente en un instante es la aceleración instantánea y la pendiente de la secante entre dos puntos es la aceleración media" layout='constrained' width={749} height={435}/>
+
+
 <Box icon="question-mark">
 
 **Pon a prueba tu conocimiento**
 
-1. En una gráfica de posición en función del tiempo, la pendiente de la curva representa:
+Elije la opción que completa correctamente cada una de las frases.
+
+
+1. En una gráfica de posición en función del tiempo, la pendiente de la curva representa __________.
 
     <MultipleChoice>
-      <Option>
-        La aceleración del objeto
-      </Option>
       <Option isCorrect>
-        La velocidad instantánea del objeto
+        la velocidad instantánea del objeto
       </Option>
       <Option>
-        El desplazamiento total
+        la aceleración del objeto
       </Option>
       <Option>
-        La distancia recorrida
+        el desplazamiento total
+      </Option>
+      <Option>
+        la distancia recorrida
       </Option>
     </MultipleChoice>
 
-2. En una gráfica de velocidad en función del tiempo, el área bajo la curva representa:
+2. En una gráfica de velocidad en función del tiempo, el área bajo la curva representa __________.
 
     <MultipleChoice>
       <Option>
-        La aceleración media
+        la rapidez media
       </Option>
       <Option>
-        La velocidad media
+        la velocidad media
+      </Option>
+      <Option>
+        la aceleración media
       </Option>
       <Option isCorrect>
-        El desplazamiento del objeto
-      </Option>
-      <Option>
-        La rapidez media
+        el desplazamiento del objeto
       </Option>
     </MultipleChoice>
 
-3. Un objeto se mueve en línea recta y termina en el mismo punto donde empezó. Su velocidad media es:
+3. Un objeto se mueve en línea recta y termina en el mismo punto donde empezó. Su velocidad media es __________.
 
     <MultipleChoice>
+      <Option>
+        igual a su aceleración media
+      </Option>
+      <Option>
+        igual a su rapidez media
+      </Option>
+      <Option>
+        máxima
+      </Option>
       <Option isCorrect>
-        Cero
-      </Option>
-      <Option>
-        Igual a su rapidez media
-      </Option>
-      <Option>
-        Máxima
-      </Option>
-      <Option>
-        No se puede determinar
+        nula
       </Option>
     </MultipleChoice>
 
@@ -351,6 +380,10 @@ En movimiento unidimensional, los signos de la velocidad y la aceleración cuent
 | $$-$$ | $$+$$ | Se mueve hacia atrás y **desacelera** |
 
 La regla general es sencilla: si la velocidad y la aceleración tienen el **mismo signo**, el objeto acelera (su rapidez aumenta); si tienen **signos opuestos**, el objeto desacelera (su rapidez disminuye). Note que "desacelerar" no significa moverse más lento en general: significa que la rapidez está disminuyendo en ese momento.
+
+<Image src={GraficaVelocidadTiempoAnotacion} alt="si la velocidad y la aceleración tienen el mismo signo el objeto acelera mientras si tienen signos opuestos el objeto desacelera" layout='constrained' width={511} height={797}/>
+
+
 
 ## Resumen de la semana
 
