@@ -177,9 +177,8 @@ export const INSTRUCTORS_DATA: Instructor[] = [
         dia: "Viernes",
         modalidad: "virtual",
         hora: "7:30 a.m. a 9:30 a.m.",
-        detalle: "https://itcr.zoom.us/j/87461021770?pwd=4RkVXPyVeQ9GsgrdRH3XAZynTwk2VP.1"
+        detalle: "ZOOM: https://itcr.zoom.us/j/87461021770?pwd=4RkVXPyVeQ9GsgrdRH3XAZynTwk2VP.1"
       }
     ]
   },
 ];
-
