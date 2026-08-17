@@ -22,15 +22,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen Semana 9.",
-      "url": "././../documentos/semana-9/",
+      "text": "Estudiar el material de Semana 9.",
+      "url": "./../semana09/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 9",
-      "url": "/practicas/practica_semana9.pdf",
+      "url": "./../semana09/practica/",
       "icon": "lucide:calculator"
     }
   ],

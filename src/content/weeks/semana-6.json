@@ -22,15 +22,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen Semana 6.",
-      "url": "././../documentos/semana-6/",
+      "text": "Estudiar el material de Semana 6.",
+      "url": "./../semana06/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 6",
-      "url": "/practicas/practica_semana6.pdf",
+      "url": "./../semana06/practica/",
       "icon": "lucide:calculator"
     }
   ],

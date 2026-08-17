@@ -1,12 +1,12 @@
 {
   "id": 3,
   "title": "Cantidades cinemáticas",
-  "image": "https://images.unsplash.com/photo-1767177375224-c46fc0b50dcf?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1771979407741-d2534777517b?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
-    "Definir las cantidades físicas de interés como la posición, velocidad, aceleración, rapidez, entre otros.",
-    "Diferenciar entre rapidez y velocidad; así como entre cantidades instantáneas y medias.",
-    "Analizar las gráficas de un movimiento.",
-    "Resolver problemas que involucren los conceptos de cinemática en 1D, tanto analítica como gráficamente."
+    "Definir la posición, el desplazamiento, la distancia, la velocidad, la rapidez y la aceleración de un objeto en movimiento.",
+    "Distinguir entre rapidez y velocidad, y entre cantidades instantáneas y medias.",
+    "Interpretar gráficas de posición, velocidad y aceleración en función del tiempo, extrayendo pendientes y áreas.",
+    "Resolver problemas de cinemática en una dimensión, tanto de forma analítica como gráfica."
   ],
   "contenidos": [
     "Desplazamiento, tiempo y velocidad media (sección 2.1).",
@@ -20,23 +20,18 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen de Semana 3.",
-      "url": "././../documentos/semana-3/",
+      "text": "Estudiar el material de Semana 3.",
+      "url": "./../semana03/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 3",
-      "url": "/practicas/practica_semana3.pdf",
+      "url": "./../semana03/practica/",
       "icon": "lucide:calculator"
     }
   ],
   "recursos": [
-    {
-      "text": "Solución Práctica Semana 2",
-      "url": "/soluciones/solucion_practica_semana2.pdf",
-      "icon": "lucide:calculator"
-    }
   ]
 }

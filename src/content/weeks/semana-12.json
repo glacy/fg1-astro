@@ -19,15 +19,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen SEMANA 12.",
-      "url": "././../documentos/semana-12/",
+      "text": "Estudiar el material de Semana 12.",
+      "url": "./../semana12/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 12",
-      "url": "/practicas/practica_semana12.pdf",
+      "url": "./../semana12/practica/",
       "icon": "lucide:calculator"
     }
   ],

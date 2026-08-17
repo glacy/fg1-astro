@@ -19,8 +19,8 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen Semana 10.",
-      "url": "././../documentos/semana-10/",
+      "text": "Estudiar el material de Semana 10.",
+      "url": "./../semana10/lectura/",
       "icon": "lucide:file-text"
     }
   ],

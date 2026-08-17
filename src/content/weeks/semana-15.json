@@ -19,15 +19,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen SEMANA 15.",
-      "url": "././../documentos/semana-15/",
+      "text": "Estudiar el material de Semana 15.",
+      "url": "./../semana15/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 15",
-      "url": "/practicas/practica_semana15.pdf",
+      "url": "./../semana15/practica/",
       "icon": "lucide:calculator"
     }
   ],

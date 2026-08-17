@@ -18,15 +18,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen SEMANA 14.",
-      "url": "././../documentos/semana-14/",
+      "text": "Estudiar el material de Semana 14.",
+      "url": "./../semana14/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 14",
-      "url": "/practicas/practica_semana14.pdf",
+      "url": "./../semana14/practica/",
       "icon": "lucide:calculator"
     }
   ],

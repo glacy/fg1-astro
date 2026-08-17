@@ -19,8 +19,8 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen de Semana 16.",
-      "url": "././../documentos/semana-16/",
+      "text": "Estudiar el material de Semana 16.",
+      "url": "./../semana16/lectura/",
       "icon": "lucide:file-text"
     }
   ],

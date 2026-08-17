@@ -22,15 +22,15 @@
       "icon": "lucide:book-open"
     },
     {
-      "text": "Estudiar el resumen de sesión 11.",
-      "url": "././../documentos/semana-11/",
+      "text": "Estudiar el material de Semana 11.",
+      "url": "./../semana11/lectura/",
       "icon": "lucide:file-text"
     }
   ],
   "evaluaciones": [
     {
       "text": "Práctica 11",
-      "url": "/practicas/practica_semana11.pdf",
+      "url": "./../semana11/practica/",
       "icon": "lucide:calculator"
     }
   ],
