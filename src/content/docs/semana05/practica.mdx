@@ -1,0 +1,252 @@
+---
+title: "Práctica"
+week: 5
+keywords: ["movimiento parabólico", "movimiento de proyectiles", "vector aceleración", "componente tangencial", "componente normal", "tiro parabólico", "altura máxima", "alcance horizontal", "tiro libre", "lanzamiento horizontal", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — El balón del tiro libre">
+Un jugador patea un balón con una velocidad inicial de $$20 \, \mathrm{m/s}$$ y una elevación de $$30^\circ$$.
+
+1. Determina las componentes horizontal y vertical de la velocidad inicial.
+2. ¿Cuánto tarda el balón en alcanzar su punto más alto?
+3. ¿Qué altura máxima alcanza y qué alcance horizontal tiene (hasta volver al nivel del lanzamiento)?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Componentes de la velocidad inicial**
+
+$$
+v_{0x} = v_0 \cos \alpha_0 = (20 \, \mathrm{m/s}) \cos 30^\circ \approx 17,32 \, \mathrm{m/s}
+$$
+
+$$
+v_{0y} = v_0 \sin \alpha_0 = (20 \, \mathrm{m/s}) \sin 30^\circ = 10 \, \mathrm{m/s}
+$$
+
+**2. Tiempo hasta el punto más alto**
+
+En el punto más alto, la velocidad vertical es cero:
+
+$$
+v_y = v_{0y} - g t = 0 \quad \Rightarrow \quad t = \frac{v_{0y}}{g} = \frac{10 \, \mathrm{m/s}}{9,81 \, \mathrm{m/s^2}} \approx 1,02 \, \mathrm{s}
+$$
+
+**3. Altura máxima y alcance**
+
+$$
+H = \frac{v_{0y}^2}{2g} = \frac{(10 \, \mathrm{m/s})^2}{2(9,81 \, \mathrm{m/s^2})} \approx 5,10 \, \mathrm{m}
+$$
+
+$$
+R = \frac{v_0^2 \sin (2\alpha_0)}{g} = \frac{(20 \, \mathrm{m/s})^2 \sin 60^\circ}{9,81 \, \mathrm{m/s^2}} \approx 35,3 \, \mathrm{m}
+$$
+
+El balón sube **$$1,02 \, \mathrm{s}$$**, alcanza **$$5,10 \, \mathrm{m}$$** de altura y recorre unos **$$35,3 \, \mathrm{m}$$** hasta volver al suelo.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — El tiro libre del portero">
+Un jugador ejecuta un tiro libre con $$\vec{v}_0 = (20 \, \mathrm{m/s};\, 35^\circ)$$.
+
+1. Verifica que el alcance del balón es de aproximadamente $$38,32 \, \mathrm{m}$$.
+2. ¿Qué altura máxima alcanza?
+3. Si el portero está parado a $$39 \, \mathrm{m}$$ del punto de lanzamiento, ¿debe moverse para detener el balón?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Alcance**
+
+$$
+R = \frac{v_0^2 \sin (2\alpha_0)}{g} = \frac{(20 \, \mathrm{m/s})^2 \sin 70^\circ}{9,81 \, \mathrm{m/s^2}} \approx 38,32 \, \mathrm{m}
+$$
+
+**2. Altura máxima**
+
+$$
+H = \frac{v_0^2 \sin^2 \alpha_0}{2g} = \frac{(20 \, \mathrm{m/s})^2 \sin^2 35^\circ}{2(9,81 \, \mathrm{m/s^2})} \approx 6,71 \, \mathrm{m}
+$$
+
+**3. ¿Debe moverse el portero?**
+
+El balón aterriza a $$38,32 \, \mathrm{m}$$ del punto de lanzamiento, es decir, a solo $$0,68 \, \mathrm{m}$$ antes de la posición del portero. En la práctica, el portero deberá reaccionar para desviarlo, ya que el balón cae muy cerca de él.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — La pelota que rueda y cae de la mesa">
+Una pelota rueda por una mesa horizontal a $$3,0 \, \mathrm{m/s}$$ y cae por el borde. La superficie de la mesa está a $$4,905 \, \mathrm{m}$$ del suelo (una mesa muy alta de laboratorio).
+
+1. ¿Cuánto tarda la pelota en llegar al suelo?
+2. ¿A qué distancia horizontal del borde de la mesa cae?
+3. ¿Con qué rapidez impacta el suelo?
+
+<details>
+<summary>Ver solución</summary>
+
+Al caer del borde, la pelota tiene una velocidad inicial puramente horizontal: $$v_{0x} = 3,0 \, \mathrm{m/s}$$ y $$v_{0y} = 0$$.
+
+**1. Tiempo de caída**
+
+El movimiento vertical es caída libre desde $$4,905 \, \mathrm{m}$$:
+
+$$
+y = \frac{1}{2} g t^2 \quad \Rightarrow \quad t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(4,905)}{9,81}} = 1,0 \, \mathrm{s}
+$$
+
+**2. Distancia horizontal**
+
+Como la componente horizontal de la velocidad es constante:
+
+$$
+x = v_{0x} t = (3,0 \, \mathrm{m/s})(1,0 \, \mathrm{s}) = 3,0 \, \mathrm{m}
+$$
+
+**3. Rapidez de impacto**
+
+La componente vertical de la velocidad al llegar al suelo es:
+
+$$
+v_y = -g t = -(9,81 \, \mathrm{m/s^2})(1,0 \, \mathrm{s}) = -9,81 \, \mathrm{m/s}
+$$
+
+La rapidez es la magnitud del vector velocidad:
+
+$$
+v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(3,0)^2 + (9,81)^2} \approx 10,3 \, \mathrm{m/s}
+$$
+
+La pelota tarda **$$1,0 \, \mathrm{s}$$** en caer, aterriza a **$$3,0 \, \mathrm{m}$$** del borde e impacta el suelo a unos **$$10,3 \, \mathrm{m/s}$$**. Fíjate que el tiempo de caída depende solo de la altura, no de la velocidad horizontal.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — El paquete del dron">
+Un dron sobrevuela el campus a una altura constante de $$19,62 \, \mathrm{m}$$, moviéndose horizontalmente a $$5,0 \, \mathrm{m/s}$$. En cierto instante suelta un paquete con velocidad inicial nula respecto al dron.
+
+1. ¿Cuánto tarda el paquete en llegar al suelo?
+2. ¿A qué distancia horizontal del punto en que se soltó cae?
+3. ¿Con qué rapidez impacta el suelo?
+
+<details>
+<summary>Ver solución</summary>
+
+Al soltarse, el paquete hereda la velocidad horizontal del dron: $$v_{0x} = 5,0 \, \mathrm{m/s}$$ y $$v_{0y} = 0$$.
+
+**1. Tiempo de caída**
+
+$$
+t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(19,62)}{9,81}} = 2,0 \, \mathrm{s}
+$$
+
+**2. Distancia horizontal**
+
+$$
+x = v_{0x} t = (5,0 \, \mathrm{m/s})(2,0 \, \mathrm{s}) = 10,0 \, \mathrm{m}
+$$
+
+**3. Rapidez de impacto**
+
+La componente vertical al llegar al suelo es:
+
+$$
+v_y = -g t = -(9,81)(2,0) = -19,62 \, \mathrm{m/s}
+$$
+
+La rapidez de impacto es:
+
+$$
+v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(5,0)^2 + (19,62)^2} \approx 20,2 \, \mathrm{m/s}
+$$
+
+El paquete tarda **$$2,0 \, \mathrm{s}$$** en caer, aterriza a **$$10,0 \, \mathrm{m}$$** del punto en que se soltó y llega al suelo a unos **$$20,2 \, \mathrm{m/s}$$**. Mientras cae, avanza horizontalmente con la misma velocidad que llevaba el dron.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — ¿Quién llega primero al suelo?">
+Desde el borde de una mesa de $$4,905 \, \mathrm{m}$$ de altura, se deja caer una pelota desde el reposo y, al mismo tiempo, se lanza horizontalmente otra pelota con $$v_{0x} = 2,0 \, \mathrm{m/s}$$.
+
+1. ¿Cuál de las dos pelotas llega primero al suelo?
+2. ¿A qué distancia horizontal del borde cae la segunda pelota?
+3. Compara las rapideces de impacto de ambas pelotas.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. ¿Quién llega primero?**
+
+Ambas pelotas tienen la misma velocidad vertical inicial ($$v_{0y} = 0$$) y caen la misma altura. El tiempo de caída depende solo del movimiento vertical, así que **ambas llegan al suelo al mismo tiempo**:
+
+$$
+t = \sqrt{\frac{2(4,905)}{9,81}} = 1,0 \, \mathrm{s}
+$$
+
+Este es el principio de independencia de los movimientos: la velocidad horizontal no afecta el tiempo de caída.
+
+**2. Distancia horizontal de la segunda pelota**
+
+$$
+x = v_{0x} t = (2,0 \, \mathrm{m/s})(1,0 \, \mathrm{s}) = 2,0 \, \mathrm{m}
+$$
+
+**3. Rapideces de impacto**
+
+- **Pelota soltada:** solo tiene componente vertical: $$v_y = -9,81 \, \mathrm{m/s}$$, por lo que su rapidez es $$v = 9,81 \, \mathrm{m/s}$$.
+- **Pelota lanzada:** tiene ambas componentes:
+  $$
+  v = \sqrt{(2,0)^2 + (9,81)^2} \approx 10,0 \, \mathrm{m/s}
+  $$
+
+La pelota lanzada impacta con una rapidez ligeramente mayor, porque conserva su componente horizontal. La dirección del vector velocidad es distinta, pero el tiempo de vuelo es el mismo para ambas.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — El ángulo del alcance máximo">
+Una pelota se lanza desde el suelo con una rapidez de $$15 \, \mathrm{m/s}$$.
+
+1. ¿Con qué ángulo de elevación se obtiene el alcance horizontal máximo? ¿Cuánto vale ese alcance?
+2. Compara los alcances para elevaciones de $$30^\circ$$ y $$60^\circ$$. ¿Qué observas?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Ángulo del alcance máximo**
+
+El alcance es:
+
+$$
+R = \frac{v_0^2 \sin (2\alpha_0)}{g}
+$$
+
+El seno alcanza su valor máximo ($$1$$) cuando su argumento es $$90^\circ$$:
+
+$$
+2\alpha_0 = 90^\circ \quad \Rightarrow \quad \alpha_0 = 45^\circ
+$$
+
+Con ese ángulo:
+
+$$
+R = \frac{(15 \, \mathrm{m/s})^2 \sin 90^\circ}{9,81 \, \mathrm{m/s^2}} = \frac{225}{9,81} \approx 22,9 \, \mathrm{m}
+$$
+
+**2. Comparación de alcances para $$30^\circ$$ y $$60^\circ$$**
+
+$$
+R(30^\circ) = \frac{225 \sin 60^\circ}{9,81} = \frac{225 \times 0,866}{9,81} \approx 19,9 \, \mathrm{m}
+$$
+
+$$
+R(60^\circ) = \frac{225 \sin 120^\circ}{9,81} = \frac{225 \times 0,866}{9,81} \approx 19,9 \, \mathrm{m}
+$$
+
+**Observación:** los ángulos $$30^\circ$$ y $$60^\circ$$ son complementarios (suman $$90^\circ$$) y producen el **mismo alcance**. En general, dos elevaciones complementarias $$\alpha_0$$ y $$90^\circ - \alpha_0$$ dan el mismo alcance, porque $$\sin (2\alpha_0) = \sin (180^\circ - 2\alpha_0)$$. La elevación de $$45^\circ$$ da el alcance máximo, de unos **$$22,9 \, \mathrm{m}$$**.
+
+</details>
+</Aside>

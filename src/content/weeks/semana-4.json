@@ -1,11 +1,11 @@
 {
   "id": 4,
   "title": "Movimiento rectilíneo",
-  "image": "https://images.unsplash.com/photo-1452573992436-6d508f200b30?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1721131981992-a5ce8ca75511?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
-    "Definir las características de un movimiento rectilíneo uniforme (MRU).",
-    "Definir las características de un movimiento rectilíneo uniformemente acelerado (MRUA), con la caída libre como un caso particular.",
-    "Resolver, analítica y gráficamente, problemas que involucren tanto MRU como MRUA y caída libre."
+    "Describir el movimiento rectilíneo uniforme (MRU) mediante su ecuación de posición e interpretar su gráfica.",
+    "Describir el movimiento rectilíneo uniformemente acelerado (MRUA) mediante sus ecuaciones, identificando la caída libre como un caso particular.",
+    "Resolver, analítica y gráficamente, problemas de MRU, MRUA y caída libre."
   ],
   "contenidos": [
     "Movimiento con aceleración constante (sección 2.4).",
@@ -31,10 +31,5 @@
     }
   ],
   "recursos": [
-    {
-      "text": "Solución Práctica Semana 3",
-      "url": "/soluciones/solucion_practica_semana3.pdf",
-      "icon": "lucide:calculator"
-    }
   ]
 }
