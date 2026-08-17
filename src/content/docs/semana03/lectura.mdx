@@ -21,6 +21,7 @@ import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import { Image } from 'astro:assets';
+import VectorPosicion from "../../../assets/posicion.svg";
 import XvsT from "../../../assets/x_vs_t.svg";
 import XvsTv from "../../../assets/x_vs_t_v.svg";
 import AreaBajoCurva from "../../../assets/area_bajo_curva.svg";
@@ -71,13 +72,23 @@ $$
 \vec{r}(t) = x(t) \hat{\iota} + y(t) \hat{\jmath} + z(t) \hat{\kappa}
 $$
 
+<Image src={VectorPosicion} alt="La posición de un objeto se describe por medio de sus coordenadas en cada instante" layout='constrained' width={600} height={283}/>
+
 Aquí, $$x(t)$$, $$y(t)$$ y $$z(t)$$ son las coordenadas del objeto en cualquier instante $$t$$. Cada coordenada es, a su vez, una función del tiempo: el objeto se mueve, así que sus coordenadas cambian.
 
 <Box icon="check-list">
 
 **Ejemplo — una cámara lenta de la posición**
 
-Imagina que dejas caer una pelota desde una torre y tomas una foto cada segundo. El vector de posición de la pelota en cada instante es un dato distinto:
+Imagina que dejas caer una pelota desde una torre y tomas una foto cada segundo. El vector de posición de la pelota en cada instante es un dato distinto. 
+
+Más adelante estudiaremos este movimiento (llamado _caída libre_) en detalle, el cual se puede describir por medio de
+
+$$
+y(t) = -\displaystyle \frac{1}{2} (9,8\,\text{m/s}^2) t^2,
+$$
+donde $$y$$ es la posición vertical y $$t$$ es el tiempo. Esto quiere decir que cada instante tiene una posición bien definida: eso es una función del tiempo.
+
 
 | Tiempo $$t$$ (s) | Posición $$\vec{r}(t)$$ |
 | :---: | :--- |
@@ -86,7 +97,7 @@ Imagina que dejas caer una pelota desde una torre y tomas una foto cada segundo.
 | $$2$$ | $$(-19,6 \, \mathrm{m}) \hat{\jmath}$$ |
 | $$3$$ | $$(-44,1 \, \mathrm{m}) \hat{\jmath}$$ |
 
-La pelota solo se mueve en el eje $$y$$, así que su posición es $$y(t) = -\tfrac{1}{2} (9,8) t^2$$. Cada instante tiene una posición bien definida: eso es una función del tiempo.
+> La cantidad $$9,8\,\text{m/s}^2$$ corresponde con la _aceleración de la gravedad_
 
 </Box>
 
@@ -96,7 +107,7 @@ Cuando el movimiento ocurre a lo largo de una línea recta, conviene elegir el s
 
 Saber dónde está un objeto no basta; también necesitamos saber **qué tan rápido** se mueve y **hacia dónde**. Esas dos ideas se combinan en el concepto de **velocidad**.
 
-Matemáticamente, la velocidad es la **tasa de cambio de la posición respecto al tiempo**, es decir, la derivada de la posición:
+Matemáticamente, la velocidad es la **tasa de cambio de la posición respecto al tiempo**, es decir, la derivada de la posición
 
 $$
 v_x(t) = \frac{dx(t)}{dt}
@@ -197,19 +208,23 @@ $$
 \Delta \vec{r} = \vec{r}_2 - \vec{r}_1
 $$
 
-- La **distancia** (o distancia recorrida) es la **magnitud** de ese vector, cuando el movimiento es rectilíneo:
 
-$$
-d = |\Delta \vec{r}| = |\vec{r}_2 - \vec{r}_1|
-$$
-
-La diferencia clave es esta: el desplazamiento es un **vector** y solo depende de los puntos inicial y final; la distancia es un **escalar** y, cuando el camino no es recto, puede ser mucho mayor que la magnitud del desplazamiento.
 
 Si un movimiento está compuesto de varios desplazamientos consecutivos, el desplazamiento total es la suma de los desplazamientos parciales:
 
 $$
 \Delta \vec{r} = \Delta \vec{r}_1 + \Delta \vec{r}_2 + \cdots + \Delta \vec{r}_N = \vec{r}_N - \vec{r}_1
 $$
+
+
+- La **distancia** (o distancia recorrida) es la suma de la **magnitud** de cada vector:
+
+$$
+d = |\vec{r}_1|+|\vec{r}_2|+\cdots +|\vec{r}_N|
+$$
+
+La diferencia clave es esta: el desplazamiento es un **vector** y solo depende de los puntos inicial y final; la distancia es un **escalar** y, cuando el camino no es recto, puede ser mucho mayor que la magnitud del desplazamiento.
+
 
 <Box icon="check-list">
 
@@ -398,4 +413,4 @@ La regla general es sencilla: si la velocidad y la aceleración tienen el **mism
 | Velocidad media | $$\vec{v}_{\text{med}}$$ | $$\Delta \vec{r}/\Delta t$$ | Vector |
 | Aceleración media | $$\vec{a}_{\text{med}}$$ | $$\Delta \vec{v}/\Delta t$$ | Vector |
 
-Las ideas centrales de esta semana —posición, velocidad, aceleración y sus interpretaciones gráficas— son los cimientos de todo lo que viene. En las próximas semanas las usaremos para estudiar los movimientos con aceleración constante y, después, los movimientos en dos y tres dimensiones. Asegúrate de sentirte cómodo con la idea de pendiente y área bajo la curva: las usaremos constantemente.
+Las ideas centrales de esta semana —posición, velocidad, aceleración y sus interpretaciones gráficas— son los cimientos de todo lo que viene. En las próximas semanas las usaremos para estudiar los movimientos con aceleración constante y, después, los movimientos en dos y tres dimensiones. 
