@@ -17,6 +17,11 @@ draft: true
 ---
 
 import PreCheck from '../../../components/PreCheck.astro';
+import { Image } from 'astro:assets';
+import MRU from "../../../assets/MRU.svg";
+import MRUA from "../../../assets/MRUA.svg";
+import MRUAv from "../../../assets/MRUA-v.svg";
+
 import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
@@ -66,6 +71,8 @@ Como la ecuación es lineal, la gráfica de $$x$$ vs $$t$$ es una **línea recta
 - Si $$v_x < 0$$, la línea tiene **pendiente negativa**: el objeto se mueve en dirección decreciente de $$x$$ (hacia atrás).
 - Si $$v_x = 0$$, la línea es **horizontal**: el objeto permanece en reposo.
 
+<Image src={MRU} alt="En un MRU la gráfica de $$x$$ vs $$t$$ es una **línea recta**" layout='constrained' width={432} height={346}/>
+
 <Box icon="check-list">
 
 **Ejemplo — leer la gráfica de un MRU**
@@ -92,55 +99,58 @@ El signo negativo de la pendiente nos dice que el objeto se mueve hacia atrás (
 
 **Pon a prueba tu conocimiento**
 
-1. En un MRU, la aceleración del objeto es:
+Elije la opción que completa correctamente cada una de las frases.
+
+1. En un MRU, la aceleración del objeto es __________.
 
     <MultipleChoice>
       <Option>
-        Constante y distinta de cero
+        constante y distinta de cero
+      </Option>
+      <Option>
+        proporcional a la velocidad
+      </Option>
+      <Option>
+        variable en el tiempo
       </Option>
       <Option isCorrect>
-        Cero
-      </Option>
-      <Option>
-        Proporcional a la velocidad
-      </Option>
-      <Option>
-        Variable en el tiempo
+        cero
       </Option>
     </MultipleChoice>
 
-2. En una gráfica de $$x$$ vs $$t$$ para un MRU, la pendiente de la recta representa:
+2. En una gráfica de $$x$$ vs $$t$$ para un MRU, la pendiente de la recta representa la __________.
 
     <MultipleChoice>
-      <Option>
-        La aceleración
-      </Option>
       <Option isCorrect>
-        La velocidad
+        velocidad
       </Option>
       <Option>
-        La posición inicial
+        aceleración
       </Option>
       <Option>
-        El tiempo transcurrido
+        posición inicial
+      </Option>
+      <Option>
+        distancia recorrida
       </Option>
     </MultipleChoice>
 
-3. Si la recta de un MRU tiene pendiente negativa, el objeto:
+3. Si la recta de un MRU tiene pendiente negativa, el objeto __________.
 
     <MultipleChoice>
       <Option isCorrect>
-        Se mueve en dirección decreciente de $$x$$
+        se mueve en dirección decreciente de $$x$$
       </Option>
       <Option>
-        Se mueve en dirección creciente de $$x$$
+        se mueve en dirección creciente de $$x$$
       </Option>
       <Option>
-        Está en reposo
+        está acelerando
       </Option>
       <Option>
-        Está acelerando
+        está en reposo
       </Option>
+
     </MultipleChoice>
 
 </Box>
@@ -182,7 +192,11 @@ Cada ecuación es útil en distintos contextos. La primera y la segunda están l
 Las gráficas del MRUA tienen formas muy reconocibles:
 
 - **Gráfica de $$x$$ vs $$t$$:** como la posición es cuadrática en el tiempo, la gráfica es una **parábola**. La pendiente de la recta tangente en cada punto representa la velocidad instantánea en ese instante.
+<Image src={MRUA} alt="En un MRUA la gráfica de $$x$$ vs $$t$$ es una **parábola**" layout='constrained' width={416} height={338}/>
+
 - **Gráfica de $$v_x$$ vs $$t$$:** como la velocidad varía linealmente, la gráfica es una **línea recta** cuya pendiente es la aceleración.
+
+<Image src={MRUAv} alt="En un MRUA la gráfica de $$v$$ vs $$t$$ es una **linea recta**" layout='constrained' width={501} height={358}/>
 
 Esta simetría es valiosa: saber qué forma esperar te permite reconocer el tipo de movimiento con solo mirar una gráfica.
 
@@ -240,73 +254,55 @@ $$
 
 **Pon a prueba tu conocimiento**
 
-1. En una gráfica de $$x$$ vs $$t$$ para un MRUA, la curva es:
+1. En una gráfica de $$x$$ vs $$t$$ para un MRUA, la curva es una __________.
 
     <MultipleChoice>
       <Option>
-        Una línea recta
+        línea horizontal
+      </Option>
+      <Option>
+        circunferencia
+      </Option>
+      <Option>
+        línea recta
       </Option>
       <Option isCorrect>
-        Una parábola
-      </Option>
-      <Option>
-        Una circunferencia
-      </Option>
-      <Option>
-        Una línea horizontal
+        parábola
       </Option>
     </MultipleChoice>
 
-2. En una gráfica de $$v_x$$ vs $$t$$ para un MRUA, la pendiente de la recta representa:
+2. En una gráfica de $$v_x$$ vs $$t$$ para un MRUA, la pendiente de la recta representa la __________.
 
     <MultipleChoice>
       <Option>
-        La velocidad inicial
-      </Option>
-      <Option>
-        La posición
+        velocidad inicial
       </Option>
       <Option isCorrect>
-        La aceleración
+        aceleración
       </Option>
       <Option>
-        La rapidez
+        posición
+      </Option>
+      <Option>
+        rapidez
       </Option>
     </MultipleChoice>
-
-3. ¿Cuál de las siguientes ecuaciones de MRUA NO involucra explícitamente el tiempo?
-
-    <MultipleChoice>
-      <Option>
-        $$x(t) = x_0 + v_{0x} t + \tfrac{1}{2} a_x t^2$$
-      </Option>
-      <Option>
-        $$v_x(t) = v_{0x} + a_x t$$
-      </Option>
-      <Option isCorrect>
-        $$v_x^2 = v_{0x}^2 + 2 a_x (x - x_0)$$
-      </Option>
-      <Option>
-        Todas involucran el tiempo
-      </Option>
-    </MultipleChoice>
-
 </Box>
 
 ## Cuerpos en caída libre
 
-Ahora estudiaremos uno de los casos más cotidianos del MRUA: la **caída libre**. Cuando sueltas tu celular (¡esperemos que no!), un objeto cae verticalmente bajo la influencia exclusiva de la gravedad, sin resistencia del aire. Este es un MRUA con una aceleración especial: la de la gravedad.
+Ahora estudiaremos uno de los casos más cotidianos del MRUA: la **caída libre**. Cuando sueltas tu celular (¡esperemos que no!), este cae verticalmente bajo la influencia exclusiva de la gravedad, sin resistencia del aire. Este es un MRUA con una aceleración especial: la de la gravedad.
 
 En la superficie de la Tierra, todo objeto en caída libre experimenta una aceleración vertical dirigida hacia abajo de magnitud:
 
 $$
-g = 9,81 \, \mathrm{m/s^2}
+g = 9,8 \, \mathrm{m/s^2}
 $$
 
 Vectorialmente, si el eje $$y$$ apunta hacia arriba, la aceleración es:
 
 $$
-\vec{a} = a_y \hat{\jmath} = -(9,81 \, \mathrm{m/s^2}) \hat{\jmath}
+\vec{a} = a_y \hat{\jmath} = -(9,8 \, \mathrm{m/s^2}) \hat{\jmath}
 $$
 
 El signo negativo indica que la aceleración apunta hacia abajo. Un aspecto fascinante de la caída libre es que la aceleración es la misma para todos los objetos, sin importar su masa: una pluma y un martillo caen igual en el vacío.

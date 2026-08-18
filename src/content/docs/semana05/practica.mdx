@@ -250,3 +250,186 @@ $$
 
 </details>
 </Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — La piedra que cae al mar">
+Una persona se encuentra en el borde de un acantilado sobre el mar, a una altura de $$91,44 \, \mathrm{m}$$ (unos $$300 \, \mathrm{ft}$$). Lanza una piedra con una elevación de $$30^\circ$$ sobre la horizontal. La piedra tarda $$5,00 \, \mathrm{s}$$ en llegar al mar.
+
+1. ¿Con qué rapidez fue lanzada inicialmente la piedra?
+2. ¿Qué distancia horizontal recorre la piedra hasta que cae al mar?
+3. ¿Qué altura máxima sobre el nivel del mar alcanza la piedra?
+
+<details>
+<summary>Ver solución</summary>
+
+Tomamos el origen en el punto de lanzamiento, con el eje $$y$$ positivo hacia arriba. El mar está en $$y = -91,44 \, \mathrm{m}$$. La piedra parte con $$v_{0x} = v_0 \cos 30^\circ$$ y $$v_{0y} = v_0 \sin 30^\circ$$.
+
+**1. Rapidez inicial**
+
+El movimiento vertical es $$y(t) = v_{0y} t - \frac{1}{2} g t^2$$. La piedra llega al mar ($$y = -91,44 \, \mathrm{m}$$) en $$t = 5,00 \, \mathrm{s}$$:
+
+$$
+-91,44 = v_0 \sin 30^\circ (5,00) - \frac{1}{2}(9,81)(5,00)^2
+$$
+
+$$
+-91,44 = 2,5 \, v_0 - 122,625
+$$
+
+$$
+2,5 \, v_0 = 31,185 \quad \Rightarrow \quad v_0 \approx 12,5 \, \mathrm{m/s}
+$$
+
+**2. Distancia horizontal**
+
+Como la componente horizontal de la velocidad es constante:
+
+$$
+x = v_{0x} t = v_0 \cos 30^\circ \, t = (12,5)(0,8660)(5,00) \approx 54,0 \, \mathrm{m}
+$$
+
+**3. Altura máxima sobre el nivel del mar**
+
+La altura máxima respecto al punto de lanzamiento es:
+
+$$
+H = \frac{v_{0y}^2}{2g} = \frac{(v_0 \sin 30^\circ)^2}{2g} = \frac{(12,5 \times 0,5)^2}{2(9,81)} \approx 1,98 \, \mathrm{m}
+$$
+
+Sobre el nivel del mar:
+
+$$
+y_{\text{máx}} = 91,44 \, \mathrm{m} + 1,98 \, \mathrm{m} \approx 93,4 \, \mathrm{m}
+$$
+
+La piedra fue lanzada a unos **$$12,5 \, \mathrm{m/s}$$**, cae al mar a **$$54,0 \, \mathrm{m}$$** del borde y alcanza **$$93,4 \, \mathrm{m}$$** sobre el nivel del mar.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — El paquete que cae del helicóptero">
+Un helicóptero viaja a una altura constante de $$490,5 \, \mathrm{m}$$ a una velocidad de $$360 \, \mathrm{km/h}$$ cuando libera un paquete con velocidad inicial nula respecto al helicóptero.
+
+1. ¿Cuánto tarda el paquete en impactar el suelo?
+2. ¿Qué distancia horizontal recorre el paquete mientras cae?
+3. Determina la velocidad del paquete al impactar el suelo (magnitud **y dirección**).
+
+<details>
+<summary>Ver solución</summary>
+
+El paquete hereda la velocidad horizontal del helicóptero:
+
+$$
+v_{0x} = 360 \, \mathrm{km/h} = \frac{360}{3,6} \, \mathrm{m/s} = 100 \, \mathrm{m/s}, \qquad v_{0y} = 0
+$$
+
+**1. Tiempo de caída**
+
+El movimiento vertical es caída libre desde $$490,5 \, \mathrm{m}$$:
+
+$$
+t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(490,5)}{9,81}} = \sqrt{100} = 10,0 \, \mathrm{s}
+$$
+
+**2. Distancia horizontal**
+
+$$
+x = v_{0x} t = (100 \, \mathrm{m/s})(10,0 \, \mathrm{s}) = 1000 \, \mathrm{m}
+$$
+
+**3. Velocidad de impacto (magnitud y dirección)**
+
+La componente vertical de la velocidad al llegar al suelo es:
+
+$$
+v_y = -g t = -(9,81)(10,0) = -98,1 \, \mathrm{m/s}
+$$
+
+La magnitud de la velocidad es:
+
+$$
+v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(100)^2 + (98,1)^2} \approx 140 \, \mathrm{m/s}
+$$
+
+La dirección, respecto a la horizontal, es:
+
+$$
+\theta = \arctan\left(\frac{|v_y|}{v_{0x}}\right) = \arctan\left(\frac{98,1}{100}\right) \approx 44,5^\circ
+$$
+
+dirigida **hacia abajo** (porque $$v_y < 0$$). El paquete tarda **$$10,0 \, \mathrm{s}$$** en caer, recorre **$$1000 \, \mathrm{m}$$** horizontalmente e impacta el suelo a unos **$$140 \, \mathrm{m/s}$$**, con un ángulo de **$$44,5^\circ$$** bajo la horizontal.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 9 — Los amigos que saltan entre edificios">
+Tres amigos corren a través de los tejados de la ciudad a una rapidez de $$5 \, \mathrm{m/s}$$ cuando llegan a un espacio vacío entre dos edificios. El espacio tiene $$4 \, \mathrm{m}$$ de anchura y presenta un desnivel de $$3 \, \mathrm{m}$$ por debajo del tejado del primer edificio.
+
+El primero salta con una elevación de $$45^\circ$$. El segundo salta horizontalmente. Determina, usando la ecuación de la trayectoria:
+
+1. ¿A qué distancia del borde del primer edificio llega el primer amigo? ¿Cruza el espacio vacío?
+2. ¿Logrará el segundo amigo cruzar el espacio vacío entre los edificios?
+3. ¿Qué condición debe cumplir la elevación del salto del tercer amigo para lograr caer sobre el segundo edificio?
+
+<details>
+<summary>Ver solución</summary>
+
+La trayectoria de un proyectil que parte del origen con rapidez $$v_0$$ y elevación $$\alpha_0$$ es:
+
+$$
+y(x) = x \tan \alpha_0 - \frac{g}{2 v_0^2 \cos^2 \alpha_0} x^2
+$$
+
+El segundo edificio está $$3 \, \mathrm{m}$$ por debajo del primero, así que el amigo aterriza cuando $$y(x) = -3 \, \mathrm{m}$$. Con $$v_0 = 5 \, \mathrm{m/s}$$:
+
+$$
+\frac{g}{2 v_0^2} = \frac{9,81}{2(5)^2} = 0,1962 \, \mathrm{s^2/m}
+$$
+
+**1. El primer amigo ($$\alpha_0 = 45^\circ$$)**
+
+Con $$\tan 45^\circ = 1$$ y $$\cos^2 45^\circ = 0,5$$:
+
+$$
+-3 = x(1) - \frac{0,1962}{0,5} x^2 = x - 0,3924 x^2
+$$
+
+$$
+0,3924 x^2 - x - 3 = 0
+$$
+
+Resolviendo la cuadrática (tomando la raíz positiva):
+
+$$
+x = \frac{1 + \sqrt{1 + 4(0,3924)(3)}}{2(0,3924)} \approx 4,32 \, \mathrm{m}
+$$
+
+Como el espacio mide $$4 \, \mathrm{m}$$, el primer amigo cae a **$$4,32 \, \mathrm{m}$$** del borde: **sí cruza**, aterrizando unos $$32 \, \mathrm{cm}$$ sobre el segundo edificio.
+
+**2. El segundo amigo ($$\alpha_0 = 0^\circ$$)**
+
+Con $$\tan 0^\circ = 0$$ y $$\cos^2 0^\circ = 1$$:
+
+$$
+-3 = -0,1962 x^2 \quad \Rightarrow \quad x = \sqrt{\frac{3}{0,1962}} \approx 3,91 \, \mathrm{m}
+$$
+
+El segundo amigo cae a **$$3,91 \, \mathrm{m}$$**: **no cruza** el espacio de $$4 \, \mathrm{m}$$, le faltan unos $$9 \, \mathrm{cm}$$.
+
+**3. La condición para el tercer amigo**
+
+Para caer sobre el segundo edificio, el tercer amigo debe llegar al borde del segundo edificio ($$x = 4 \, \mathrm{m}$$) a una altura mayor o igual que el nivel de ese tejado ($$y(4) \geq -3 \, \mathrm{m}$$):
+
+$$
+y(4) = 4 \tan \alpha_0 - \frac{0,1962}{\cos^2 \alpha_0}(4)^2 \geq -3
+$$
+
+Usando $$1/\cos^2 \alpha_0 = 1 + \tan^2 \alpha_0$$ y resolviendo la desigualdad para $$\tan \alpha_0$$, obtenemos que la elevación debe cumplir aproximadamente:
+
+$$
+2,1^\circ \lesssim \alpha_0 \lesssim 51,1^\circ
+$$
+
+En particular, el salto horizontal del segundo amigo ($$\alpha_0 = 0^\circ$$) queda fuera de ese intervalo, lo que confirma que no cruza. El tercer amigo logra caer sobre el segundo edificio con una elevación entre unos **$$2^\circ$$ y $$51^\circ$$**.
+
+</details>
+</Aside>
