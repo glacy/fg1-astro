@@ -21,6 +21,8 @@ import { Image } from 'astro:assets';
 import MRU from "../../../assets/MRU.svg";
 import MRUA from "../../../assets/MRUA.svg";
 import MRUAv from "../../../assets/MRUA-v.svg";
+import GraficaMRU from "../../../assets/grafica_mru_1.svg";
+import GraficaMRUA from "../../../assets/grafica_mrua_1.svg";
 
 import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
@@ -77,7 +79,11 @@ Como la ecuación es lineal, la gráfica de $$x$$ vs $$t$$ es una **línea recta
 
 **Ejemplo — leer la gráfica de un MRU**
 
-El movimiento de un objeto está descrito por la siguiente gráfica de posición en función del tiempo. Para $$t = 0 \, \mathrm{s}$$, la posición es $$x = 20 \, \mathrm{m}$$, así que $$x_0 = 20 \, \mathrm{m}$$.
+El movimiento de un objeto está descrito por la siguiente gráfica de posición en función del tiempo. 
+
+<Image src={GraficaMRU} alt="Gráfica de un MRU**" layout='constrained' width={737} height={554}/>
+
+Para $$t = 0 \, \mathrm{s}$$, la posición es $$x = 20 \, \mathrm{m}$$, así que $$x_0 = 20 \, \mathrm{m}$$.
 
 Para calcular la velocidad, determinamos la pendiente de la recta. Observamos que en $$t = 2 \, \mathrm{s}$$ la posición es $$x = -40 \, \mathrm{m}$$:
 
@@ -204,7 +210,11 @@ Esta simetría es valiosa: saber qué forma esperar te permite reconocer el tipo
 
 **Ejemplo — recuperar la ecuación desde la gráfica**
 
-Un objeto se mueve con aceleración constante. Su gráfica de posición en función del tiempo muestra que para $$t = 0 \, \mathrm{s}$$ la posición es $$x = 50 \, \mathrm{m}$$, así que $$x_0 = 50 \, \mathrm{m}$$.
+Un objeto se mueve con aceleración constante.
+
+<Image src={GraficaMRUA} alt="Gráfica de un MRUA**" layout='constrained' width={716} height={539}/>
+
+ Su gráfica de posición en función del tiempo muestra que para $$t = 0 \, \mathrm{s}$$ la posición es $$x = 50 \, \mathrm{m}$$, así que $$x_0 = 50 \, \mathrm{m}$$.
 
 Para encontrar $$v_{0x}$$ y $$a_x$$, usamos dos puntos de la gráfica. En $$t = 6 \, \mathrm{s}$$, la posición es $$x = -40 \, \mathrm{m}$$:
 
@@ -332,7 +342,7 @@ $$
 Para el tiempo de vuelo total, resolvemos la ecuación cuadrática que resulta de imponer la posición final. Como es una ecuación de la forma $$at^2 + bt + c = 0$$, usamos la fórmula general:
 
 $$
-t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+t_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
 
 <Box icon="check-list">
@@ -365,7 +375,7 @@ $$
 t \approx 1,19 \, \mathrm{s}
 $$
 
-**Resumen:** el objeto sube hasta $$2,27 \, \mathrm{m}$$ del suelo, y tarda aproximadamente **$$1,19 \, \mathrm{s}$$** en subir y volver a tocar el suelo.
+**Resumen:** el objeto sube hasta $$2,27 \, \mathrm{m}$$ del suelo, y tarda aproximadamente **$$1,19 \, \mathrm{s}$$** en subir y caer al suelo.
 
 </Box>
 
