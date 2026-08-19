@@ -29,7 +29,7 @@ export default defineConfig({
     sitemap(),
     starlight({
       plugins: [
-        starlightFullViewMode({leftSidebarEnabled: false, rightSidebarEnabled: true}), 
+        starlightFullViewMode({leftSidebarEnabled: true, rightSidebarEnabled: true}), 
       ],
       title: 'Documentos FG1 - II semestre 2026',
       description: 'Documentación para el curso de Física General I - II semestre 2026',
