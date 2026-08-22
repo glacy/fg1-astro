@@ -70,7 +70,7 @@ export default defineConfig({
         badge: 'Nuevo',
         collapsed: true,
         items: [{ autogenerate: { "directory": "semana04" } }]
-      },s
+      },
       ],
     }),
     mdx(),
