@@ -64,6 +64,23 @@ export const INSTRUCTORS_DATA: Instructor[] = [
       },
     ]
   },
+  {
+    docente: "LACY MORA GERARDO",
+    atenciones: [
+      {
+        dia: "Miércoles",
+        modalidad: "presencial",
+        hora: "10:00 a.m  . a 11:00 a.m.",
+        detalle: "Aula 202, CAA"
+      },
+      {
+        dia: "Viernes",
+        modalidad: "virtual",
+        hora: "10:00 a.m  . a 11:00 a.m.",
+        detalle: "mensaje a prof_glacy@estudiantec.cr en TEAMS"
+      }
+    ]
+  },
    {
     docente: "MONTERO ZELEDÓN ERNESTO",
     atenciones: [

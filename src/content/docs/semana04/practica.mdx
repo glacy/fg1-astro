@@ -1,0 +1,343 @@
+---
+title: "Práctica"
+week: 4
+keywords: ["movimiento rectilíneo", "MRU", "MRUA", "caída libre", "aceleración constante", "ecuaciones de movimiento", "gráficas x vs t", "gráficas v vs t", "altura máxima", "tiempo de vuelo", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — El bus del campus">
+Un bus de la ruta interna del campus viaja por una recta con velocidad constante. En $$t = 0$$ pasa por el punto $$x = 0$$ y en $$t = 2,5 \, \mathrm{s}$$ se encuentra en $$x = 62,5 \, \mathrm{m}$$.
+
+1. Determina la velocidad del bus.
+2. Escribe su ecuación de posición $$x(t)$$.
+3. ¿En qué posición estará el bus en $$t = 10 \, \mathrm{s}$$? ¿En qué instante pasa por $$x = 200 \, \mathrm{m}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad del bus**
+
+Como la velocidad es constante (MRU), usamos la pendiente de la recta entre los dos puntos:
+
+$$
+v_x = \frac{\Delta x}{\Delta t} = \frac{62,5 \, \mathrm{m} - 0}{2,5 \, \mathrm{s} - 0} = 25 \, \mathrm{m/s}
+$$
+
+**2. Ecuación de posición**
+
+La ecuación general del MRU es $$x(t) = x_0 + v_x t$$. Como $$x_0 = 0$$ y $$v_x = 25 \, \mathrm{m/s}$$:
+
+$$
+x(t) = (25 \, \mathrm{m/s}) \, t
+$$
+
+**3. Posición en $$t = 10 \, \mathrm{s}$$ y tiempo para llegar a $$x = 200 \, \mathrm{m}$$**
+
+$$
+x(10) = (25 \, \mathrm{m/s})(10 \, \mathrm{s}) = 250 \, \mathrm{m}
+$$
+
+Despejamos el tiempo de la ecuación de posición:
+
+$$
+t = \frac{x}{v_x} = \frac{200 \, \mathrm{m}}{25 \, \mathrm{m/s}} = 8 \, \mathrm{s}
+$$
+
+El bus estará en **$$250 \, \mathrm{m}$$** a los $$10 \, \mathrm{s}$$ y pasa por $$x = 200 \, \mathrm{m}$$ en **$$t = 8 \, \mathrm{s}$$**.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — El tren de vuelta a casa">
+Un tren se mueve con velocidad constante. En $$t = 0$$ se encuentra en $$x = 100 \, \mathrm{m}$$ y en $$t = 4,0 \, \mathrm{s}$$ está en $$x = 20 \, \mathrm{m}$$.
+
+1. Determina su velocidad e interpreta su signo.
+2. Escribe su ecuación de posición.
+3. ¿En qué posición estará en $$t = 10 \, \mathrm{s}$$? ¿En qué instante pasa por $$x = 0$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad del tren**
+
+$$
+v_x = \frac{\Delta x}{\Delta t} = \frac{20 \, \mathrm{m} - 100 \, \mathrm{m}}{4,0 \, \mathrm{s} - 0} = \frac{-80 \, \mathrm{m}}{4,0 \, \mathrm{s}} = -20 \, \mathrm{m/s}
+$$
+
+El signo **negativo** indica que el tren se mueve en la dirección decreciente de $$x$$ (hacia atrás, en este sistema de referencia).
+
+**2. Ecuación de posición**
+
+Con $$x_0 = 100 \, \mathrm{m}$$ y $$v_x = -20 \, \mathrm{m/s}$$:
+
+$$
+x(t) = (100 \, \mathrm{m}) - (20 \, \mathrm{m/s}) \, t
+$$
+
+**3. Posición en $$t = 10 \, \mathrm{s}$$ y cruce por $$x = 0$$**
+
+$$
+x(10) = 100 - 20(10) = -100 \, \mathrm{m}
+$$
+
+El tren estará en **$$x = -100 \, \mathrm{m}$$** a los $$10 \, \mathrm{s}$$ (ya habrá cruzado el origen y continuado hacia atrás). Pasa por $$x = 0$$ cuando:
+
+$$
+0 = 100 - 20 t \quad \Rightarrow \quad t = 5 \, \mathrm{s}
+$$
+
+El tren cruza el punto $$x = 0$$ en **$$t = 5 \, \mathrm{s}$$**.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — Recuperando la ecuación desde la gráfica">
+Un objeto se mueve con aceleración constante. Su gráfica de $$x$$ vs $$t$$ es una parábola. En $$t = 0$$ la posición es $$x = 50 \, \mathrm{m}$$; en $$t = 6 \, \mathrm{s}$$ la posición es $$x = -40 \, \mathrm{m}$$ y en $$t = 10 \, \mathrm{s}$$ la posición es $$x = 0$$.
+
+1. Determina la velocidad inicial $$v_{0x}$$ y la aceleración $$a_x$$.
+2. Escribe las ecuaciones de posición $$x(t)$$ y de velocidad $$v_x(t)$$.
+3. ¿En qué instante el objeto se detiene? ¿Qué posición tiene en ese momento?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad inicial y aceleración**
+
+Usamos la ecuación de posición del MRUA $$x(t) = x_0 + v_{0x} t + \tfrac{1}{2} a_x t^2$$ con $$x_0 = 50 \, \mathrm{m}$$.
+
+En $$t = 6 \, \mathrm{s}$$, con $$x = -40 \, \mathrm{m}$$:
+
+$$
+-40 = 50 + v_{0x}(6) + \frac{1}{2} a_x (6)^2 \quad \Rightarrow \quad 6 v_{0x} + 18 a_x = -90
+$$
+
+En $$t = 10 \, \mathrm{s}$$, con $$x = 0$$:
+
+$$
+0 = 50 + v_{0x}(10) + \frac{1}{2} a_x (10)^2 \quad \Rightarrow \quad 10 v_{0x} + 50 a_x = -50
+$$
+
+Resolvemos el sistema de dos ecuaciones. De la primera: $$v_{0x} + 3 a_x = -15$$. De la segunda: $$v_{0x} + 5 a_x = -5$$. Restando:
+
+$$
+2 a_x = 10 \quad \Rightarrow \quad a_x = 5 \, \mathrm{m/s^2} \qquad \text{y} \qquad v_{0x} = -30 \, \mathrm{m/s}
+$$
+
+**2. Ecuaciones de movimiento**
+
+$$
+x(t) = (50 \, \mathrm{m}) - (30 \, \mathrm{m/s}) t + \frac{1}{2}(5 \, \mathrm{m/s^2}) t^2
+$$
+
+$$
+v_x(t) = -(30 \, \mathrm{m/s}) + (5 \, \mathrm{m/s^2}) t
+$$
+
+**3. Instante en que se detiene**
+
+El objeto se detiene cuando $$v_x = 0$$:
+
+$$
+0 = -30 + 5 t \quad \Rightarrow \quad t = 6 \, \mathrm{s}
+$$
+
+En ese instante su posición es:
+
+$$
+x(6) = 50 - 30(6) + 2,5(6)^2 = 50 - 180 + 90 = -40 \, \mathrm{m}
+$$
+
+El objeto parte de $$x = 50 \, \mathrm{m}$$ moviéndose hacia atrás a $$30 \, \mathrm{m/s}$$, frena uniformemente y se detiene en **$$t = 6 \, \mathrm{s}$$** en **$$x = -40 \, \mathrm{m}$$** (el vértice de la parábola). A partir de ahí invierte el sentido y comienza a moverse hacia adelante.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — El bus que frena en la parada">
+Un bus viaja a $$54 \, \mathrm{km/h}$$ (es decir, $$15 \, \mathrm{m/s}$$) cuando el conductor ve la parada y frena con aceleración constante. El bus se detiene en $$6,0 \, \mathrm{s}$$.
+
+1. Determina la aceleración del bus durante el frenado.
+2. ¿Qué distancia recorre mientras frena?
+3. ¿Qué distancia recorre durante los primeros $$3,0 \, \mathrm{s}$$ del frenado?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Aceleración**
+
+Usamos $$v_x(t) = v_{0x} + a_x t$$. En el momento de detenerse, $$v_x = 0$$:
+
+$$
+0 = 15 + a_x (6,0) \quad \Rightarrow \quad a_x = -2,5 \, \mathrm{m/s^2}
+$$
+
+La aceleración es de **$$-2,5 \, \mathrm{m/s^2}$$**: negativa porque se opone al movimiento (frenado).
+
+**2. Distancia de frenado**
+
+Usamos la ecuación de posición:
+
+$$
+x(6,0) = v_{0x} t + \frac{1}{2} a_x t^2 = 15(6,0) + \frac{1}{2}(-2,5)(6,0)^2 = 90 - 45 = 45 \, \mathrm{m}
+$$
+
+El bus recorre **$$45 \, \mathrm{m}$$** hasta detenerse.
+
+**3. Distancia en los primeros $$3,0 \, \mathrm{s}$$**
+
+$$
+x(3,0) = 15(3,0) + \frac{1}{2}(-2,5)(3,0)^2 = 45 - 11,25 = 33,75 \, \mathrm{m}
+$$
+
+En los primeros $$3,0 \, \mathrm{s}$$ el bus recorre **$$33,75 \, \mathrm{m}$$**, mucho más que en los últimos $$3,0 \, \mathrm{s}$$ ($$45 - 33,75 = 11,25 \, \mathrm{m}$$). Esto refleja que, al frenar, la velocidad va disminuyendo: se avanza más rápido al principio.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — El celular que se cae de la mano">
+Suelta tu celular desde una altura de $$19,62 \, \mathrm{m}$$ (¡imagina una torre de observación!) con velocidad inicial nula. Considera la caída libre con $$g = 9,8 \, \mathrm{m/s^2}$$.
+
+1. ¿Cuánto tarda en llegar al suelo?
+2. ¿Con qué velocidad impacta el suelo?
+
+<details>
+<summary>Ver solución</summary>
+
+Tomamos el eje $$y$$ hacia arriba y el origen en el punto de lanzamiento, de modo que el suelo está en $$y = -19,62 \, \mathrm{m}$$ y la aceleración es $$a_y = -g$$.
+
+**1. Tiempo de caída**
+
+Partiendo del reposo ($$v_{0y} = 0$$), la ecuación de posición es:
+
+$$
+y(t) = -\frac{1}{2} g t^2
+$$
+
+El celular llega al suelo cuando $$y = -19,62 \, \mathrm{m}$$:
+
+$$
+-19,62 = -\frac{1}{2}(9,81) t^2 \quad \Rightarrow \quad t^2 = \frac{2(19,62)}{9,81} = 4,0
+$$
+
+$$
+t = 2,0 \, \mathrm{s}
+$$
+
+**2. Velocidad de impacto**
+
+$$
+v_y = v_{0y} - g t = -(9,81)(2,0) = -19,62 \, \mathrm{m/s}
+$$
+
+El celular tarda **$$2,0 \, \mathrm{s}$$** en caer e impacta el suelo a **$$19,62 \, \mathrm{m/s}$$** (el signo negativo indica que va hacia abajo). Fíjate que la caída libre no depende de la masa: cualquier objeto soltado desde esa altura tarda lo mismo.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — La pelota que lanzas hacia arriba">
+Lanzas una pelota verticalmente hacia arriba desde el suelo ($$y_0 = 0$$) con una velocidad inicial de $$12 \, \mathrm{m/s}$$.
+
+1. ¿Qué altura máxima alcanza la pelota?
+2. ¿Cuánto tarda en llegar al punto más alto?
+3. ¿Cuánto tarda en volver al suelo? ¿Con qué velocidad regresa?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Altura máxima**
+
+La altura máxima respecto al punto de lanzamiento es:
+
+$$
+h_{\text{máx}} = \frac{v_{0y}^2}{2g} = \frac{(12 \, \mathrm{m/s})^2}{2(9,81 \, \mathrm{m/s^2})} = \frac{144}{19,62} \approx 7,34 \, \mathrm{m}
+$$
+
+**2. Tiempo hasta el punto más alto**
+
+En el punto más alto la velocidad es cero:
+
+$$
+v_y = v_{0y} - g t = 0 \quad \Rightarrow \quad t = \frac{v_{0y}}{g} = \frac{12}{9,81} \approx 1,22 \, \mathrm{s}
+$$
+
+**3. Tiempo de vuelo y velocidad de regreso**
+
+Como la pelota sale y llega al mismo nivel ($$y = 0$$), la subida y la bajada son simétricas. El tiempo de vuelo total es el doble del tiempo de subida:
+
+$$
+t_{\text{vuelo}} = 2 \times 1,22 \approx 2,45 \, \mathrm{s}
+$$
+
+La velocidad con la que regresa al suelo tiene la misma magnitud que la inicial pero sentido opuesto:
+
+$$
+v_y = v_{0y} - g t_{\text{vuelo}} = 12 - 9,81(2,45) \approx -12 \, \mathrm{m/s}
+$$
+
+La pelota alcanza **$$7,34 \, \mathrm{m}$$** de altura, tarda **$$1,22 \, \mathrm{s}$$** en subir y **$$2,45 \, \mathrm{s}$$** en total hasta volver al suelo, llegando con velocidad **$$-12 \, \mathrm{m/s}$$**.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — La moto que alcanza al carro">
+En una avenida recta, un carro pasa frente a una moto detenida en un semáforo justo cuando este cambia a verde. El carro mantiene una velocidad constante de $$20 \, \mathrm{m/s}$$ y la moto arranca desde el reposo con aceleración constante de $$4,0 \, \mathrm{m/s^2}$$, en la misma dirección.
+
+1. ¿Cuánto tiempo tarda la moto en alcanzar al carro?
+2. ¿Qué distancia recorren ambos hasta ese instante?
+3. ¿Qué velocidad lleva la moto en ese momento?
+
+<details>
+<summary>Ver solución</summary>
+
+Tomamos el origen en el semáforo ($$x = 0$$ cuando se pone verde).
+
+**Ecuaciones de movimiento:**
+
+El carro se mueve con MRU:
+
+$$
+x_{\text{carro}}(t) = v_{\text{carro}} t = 20 t
+$$
+
+La moto arranca del reposo con MRUA:
+
+$$
+x_{\text{moto}}(t) = \frac{1}{2} a t^2 = \frac{1}{2}(4,0) t^2 = 2,0 \, t^2
+$$
+
+**1. Instante en que la moto alcanza al carro**
+
+Igualamos las posiciones:
+
+$$
+20 t = 2,0 \, t^2 \quad \Rightarrow \quad t(20 - 2,0 \, t) = 0
+$$
+
+Las soluciones son $$t = 0$$ (cuando se ponen en verde) y:
+
+$$
+t = \frac{20}{2,0} = 10 \, \mathrm{s}
+$$
+
+La moto alcanza al carro en **$$t = 10 \, \mathrm{s}$$**.
+
+**2. Distancia recorrida hasta el encuentro**
+
+Evaluamos cualquiera de las dos posiciones en $$t = 10 \, \mathrm{s}$$:
+
+$$
+x = 20(10) = 200 \, \mathrm{m}
+$$
+
+Ambos han recorrido **$$200 \, \mathrm{m}$$**.
+
+**3. Velocidad de la moto en el encuentro**
+
+$$
+v_{\text{moto}} = a t = 4,0(10) = 40 \, \mathrm{m/s}
+$$
+
+La moto lleva **$$40 \, \mathrm{m/s}$$** (el doble de la velocidad del carro) en el instante en que lo alcanza. Esto es esperable: al arrancar desde reposo, su velocidad media hasta ese instante debe igualar la del carro, y como acelera uniformemente, su velocidad final es el doble de la media.
+
+</details>
+</Aside>

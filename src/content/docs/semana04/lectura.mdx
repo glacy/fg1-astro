@@ -1,29 +1,449 @@
 ---
 title: "Movimiento rectilíneo"
-description: "Material de lectura para la semana 4."
+description: "Movimiento rectilíneo uniforme (MRU) y movimiento rectilíneo uniformemente acelerado (MRUA): ecuaciones de movimiento, interpretación gráfica y caída libre como caso particular de aceleración constante."
 week: 4
-keywords: ["física general I", "semana 4", "TEC Costa Rica"]
+keywords: ["movimiento rectilíneo", "MRU", "MRUA", "caída libre", "aceleración constante", "ecuaciones de movimiento", "gráficas x vs t", "gráficas v vs t", "altura máxima", "tiempo de vuelo", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-4"]
-category: "semana-4"
-difficulty: "basic"
+date: 2026-08-17
+readingTime: 18
+tags: ["MRU", "MRUA", "caída libre", "aceleración constante", "movimiento"]
+category: "cinemática"
+difficulty: "intermediate"
 objetivos:
-  - "Definir las características de un movimiento rectilíneo uniforme (MRU)."
-  - "Definir las características de un movimiento rectilíneo uniformemente acelerado (MRUA), con la caída libre como un caso particular."
-  - "Resolver, analítica y gráficamente, problemas que involucren tanto MRU como MRUA y caída libre."
-draft: true
+  - "Describir el movimiento rectilíneo uniforme (MRU) mediante su ecuación de posición e interpretar su gráfica."
+  - "Describir el movimiento rectilíneo uniformemente acelerado (MRUA) mediante sus ecuaciones, identificando la caída libre como un caso particular."
+  - "Resolver, analítica y gráficamente, problemas de MRU, MRUA y caída libre."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import { Image } from 'astro:assets';
+import MRU from "../../../assets/MRU.svg";
+import MRUA from "../../../assets/MRUA.svg";
+import MRUAv from "../../../assets/MRUA-v.svg";
+import GraficaMRU from "../../../assets/grafica_mru_1.svg";
+import GraficaMRUA from "../../../assets/grafica_mrua_1.svg";
 
-Al finalizar esta semana, serás capaz de:
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-- Definir las características de un movimiento rectilíneo uniforme (MRU).
-- Definir las características de un movimiento rectilíneo uniformemente acelerado (MRUA), con la caída libre como un caso particular.
-- Resolver, analítica y gráficamente, problemas que involucren tanto MRU como MRUA y caída libre.
+<PreCheck>
+  - Describir el movimiento rectilíneo uniforme (MRU) mediante su ecuación de posición e interpretar su gráfica.
+  - Describir el movimiento rectilíneo uniformemente acelerado (MRUA) mediante sus ecuaciones, identificando la caída libre como un caso particular.
+  - Resolver, analítica y gráficamente, problemas de MRU, MRUA y caída libre.
+</PreCheck>
 
-## Contenido
+En la semana anterior construimos el vocabulario de la cinemática: posición, desplazamiento, velocidad, aceleración y sus interpretaciones gráficas. Ahora daremos el siguiente paso: en lugar de estudiar movimientos arbitrarios, nos enfocaremos en dos casos muy especiales que aparecen constantemente en la física y en la vida cotidiana.
 
-Contenido de la semana 4 próximamente disponible.
+El **movimiento rectilíneo** es aquel en el que un objeto se desplaza a lo largo de una trayectoria recta. Es la forma más simple de movimiento y, a la vez, la base para comprender situaciones más complejas. Dentro de este estudio se destacan dos casos fundamentales:
+
+- El **Movimiento Rectilíneo Uniforme (MRU)**, donde la velocidad es constante.
+- El **Movimiento Rectilíneo Uniformemente Acelerado (MRUA)**, donde la aceleración es constante.
+
+Estos dos casos no son arbitrarios: juntos nos permiten modelar una enorme cantidad de situaciones reales, desde un bus que avanza sin prisa por una autopista hasta una moneda que cae de tu bolsillo.
+
+## Movimiento Rectilíneo Uniforme (MRU)
+
+Imagina que vas en un bus por una recta larga y despejada, con el crucero activado. El bus se mueve con **velocidad constante**: ni acelera ni frena, y mantiene la misma dirección. Ese es un **Movimiento Rectilíneo Uniforme**.
+
+Las características del MRU son simples:
+
+- La velocidad es **constante** en magnitud y dirección.
+- Por lo tanto, la **aceleración es cero**.
+- La posición cambia de forma uniforme con el tiempo.
+
+Matemáticamente, la posición en función del tiempo se describe con una ecuación lineal:
+
+$$
+x(t) = x_0 + v_x t
+$$
+
+donde:
+
+- $$x_0$$ es la **posición inicial** del objeto respecto al sistema de referencia (en $$t = 0$$),
+- $$v_x$$ es la **velocidad** (constante) del movimiento,
+- $$x(t)$$ es la posición en el instante $$t$$.
+
+### La gráfica de un MRU
+
+Como la ecuación es lineal, la gráfica de $$x$$ vs $$t$$ es una **línea recta**. La pendiente de esa recta es exactamente la velocidad. Esto nos da una lectura visual inmediata del movimiento:
+
+- Si $$v_x > 0$$, la línea tiene **pendiente positiva**: el objeto se mueve en dirección creciente de $$x$$ (hacia adelante).
+- Si $$v_x < 0$$, la línea tiene **pendiente negativa**: el objeto se mueve en dirección decreciente de $$x$$ (hacia atrás).
+- Si $$v_x = 0$$, la línea es **horizontal**: el objeto permanece en reposo.
+
+<Image src={MRU} alt="En un MRU la gráfica de $$x$$ vs $$t$$ es una **línea recta**" layout='constrained' width={432} height={346}/>
+
+<Box icon="check-list">
+
+**Ejemplo — leer la gráfica de un MRU**
+
+El movimiento de un objeto está descrito por la siguiente gráfica de posición en función del tiempo. 
+
+<Image src={GraficaMRU} alt="Gráfica de un MRU**" layout='constrained' width={737} height={554}/>
+
+Para $$t = 0 \, \mathrm{s}$$, la posición es $$x = 20 \, \mathrm{m}$$, así que $$x_0 = 20 \, \mathrm{m}$$.
+
+Para calcular la velocidad, determinamos la pendiente de la recta. Observamos que en $$t = 2 \, \mathrm{s}$$ la posición es $$x = -40 \, \mathrm{m}$$:
+
+$$
+v_x = \text{pendiente} = \frac{x(t=2 \, \mathrm{s}) - x(t=0 \, \mathrm{s})}{2 \, \mathrm{s} - 0 \, \mathrm{s}} = \frac{-40 \, \mathrm{m} - 20 \, \mathrm{m}}{2 \, \mathrm{s}} = -30 \, \mathrm{m/s}
+$$
+
+La función de posición correspondiente es:
+
+$$
+x(t) = (20 \, \mathrm{m}) - (30 \, \mathrm{m/s}) \, t
+$$
+
+El signo negativo de la pendiente nos dice que el objeto se mueve hacia atrás (en dirección decreciente de $$x$$).
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+Elije la opción que completa correctamente cada una de las frases.
+
+1. En un MRU, la aceleración del objeto es __________.
+
+    <MultipleChoice>
+      <Option>
+        constante y distinta de cero
+      </Option>
+      <Option>
+        proporcional a la velocidad
+      </Option>
+      <Option>
+        variable en el tiempo
+      </Option>
+      <Option isCorrect>
+        cero
+      </Option>
+    </MultipleChoice>
+
+2. En una gráfica de $$x$$ vs $$t$$ para un MRU, la pendiente de la recta representa la __________.
+
+    <MultipleChoice>
+      <Option isCorrect>
+        velocidad
+      </Option>
+      <Option>
+        aceleración
+      </Option>
+      <Option>
+        posición inicial
+      </Option>
+      <Option>
+        distancia recorrida
+      </Option>
+    </MultipleChoice>
+
+3. Si la recta de un MRU tiene pendiente negativa, el objeto __________.
+
+    <MultipleChoice>
+      <Option isCorrect>
+        se mueve en dirección decreciente de $$x$$
+      </Option>
+      <Option>
+        se mueve en dirección creciente de $$x$$
+      </Option>
+      <Option>
+        está acelerando
+      </Option>
+      <Option>
+        está en reposo
+      </Option>
+
+    </MultipleChoice>
+
+</Box>
+
+## Movimiento Rectilíneo Uniformemente Acelerado (MRUA)
+
+El MRU es un caso ideal: en la vida real, casi todo acelera o frena. Cuando un carro arranca en un semáforo, un bus frena en una parada o una pelota rueda cuesta abajo, la velocidad no es constante. Si la aceleración es constante, tenemos un **Movimiento Rectilíneo Uniformemente Acelerado**.
+
+Las características del MRUA son:
+
+- La **aceleración es constante** (no cambia en el tiempo).
+- La velocidad **varía de forma uniforme** (cambia en la misma cantidad cada segundo).
+- La posición cambia de forma cuadrática con el tiempo.
+
+El MRUA se describe con tres ecuaciones fundamentales que relacionan posición, velocidad, aceleración y tiempo:
+
+$$
+x(t) = x_0 + v_{0x} t + \frac{1}{2} a_x t^2
+$$
+
+$$
+v_x(t) = v_{0x} + a_x t
+$$
+
+$$
+v_x^2 = v_{0x}^2 + 2 a_x (x - x_0)
+$$
+
+donde:
+
+- $$x_0$$ es la **posición inicial**,
+- $$v_{0x}$$ es la **velocidad inicial**,
+- $$a_x$$ es la **aceleración** (constante).
+
+Cada ecuación es útil en distintos contextos. La primera y la segunda están ligadas al tiempo; la tercera (sin tiempo explícito) es muy práctica cuando no conocemos ni necesitamos el tiempo.
+
+### Las gráficas de un MRUA
+
+Las gráficas del MRUA tienen formas muy reconocibles:
+
+- **Gráfica de $$x$$ vs $$t$$:** como la posición es cuadrática en el tiempo, la gráfica es una **parábola**. La pendiente de la recta tangente en cada punto representa la velocidad instantánea en ese instante.
+<Image src={MRUA} alt="En un MRUA la gráfica de $$x$$ vs $$t$$ es una **parábola**" layout='constrained' width={416} height={338}/>
+
+- **Gráfica de $$v_x$$ vs $$t$$:** como la velocidad varía linealmente, la gráfica es una **línea recta** cuya pendiente es la aceleración.
+
+<Image src={MRUAv} alt="En un MRUA la gráfica de $$v$$ vs $$t$$ es una **linea recta**" layout='constrained' width={501} height={358}/>
+
+Esta simetría es valiosa: saber qué forma esperar te permite reconocer el tipo de movimiento con solo mirar una gráfica.
+
+<Box icon="check-list">
+
+**Ejemplo — recuperar la ecuación desde la gráfica**
+
+Un objeto se mueve con aceleración constante.
+
+<Image src={GraficaMRUA} alt="Gráfica de un MRUA**" layout='constrained' width={716} height={539}/>
+
+ Su gráfica de posición en función del tiempo muestra que para $$t = 0 \, \mathrm{s}$$ la posición es $$x = 50 \, \mathrm{m}$$, así que $$x_0 = 50 \, \mathrm{m}$$.
+
+Para encontrar $$v_{0x}$$ y $$a_x$$, usamos dos puntos de la gráfica. En $$t = 6 \, \mathrm{s}$$, la posición es $$x = -40 \, \mathrm{m}$$:
+
+$$
+-40 = 50 + v_{0x}(6) + \frac{1}{2} a_x (6)^2
+$$
+
+que simplificamos a:
+
+$$
+6 v_{0x} + 18 a_x = -90
+$$
+
+En $$t = 10 \, \mathrm{s}$$, la posición es $$x = 0 \, \mathrm{m}$$:
+
+$$
+0 = 50 + v_{0x}(10) + \frac{1}{2} a_x (10)^2
+$$
+
+$$
+10 v_{0x} + 50 a_x = -50
+$$
+
+Resolviendo este sistema de dos ecuaciones, obtenemos:
+
+$$
+v_{0x} = -30 \, \mathrm{m/s} \qquad \text{y} \qquad a_x = 5 \, \mathrm{m/s^2}
+$$
+
+La ecuación de movimiento es:
+
+$$
+x(t) = (50 \, \mathrm{m}) - (30 \, \mathrm{m/s}) t + \frac{1}{2} (5 \, \mathrm{m/s^2}) t^2
+$$
+
+y la velocidad:
+
+$$
+v_x(t) = -(30 \, \mathrm{m/s}) + (5 \, \mathrm{m/s^2}) t
+$$
+
+**Interpretación:** el objeto parte de la posición $$50 \, \mathrm{m}$$ moviéndose hacia atrás a $$30 \, \mathrm{m/s}$$, pero va frenando (la aceleración es positiva, opuesta a la velocidad). En algún momento se detiene y luego comienza a moverse hacia adelante.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+Elije la opción que completa correctamente cada una de las frases.
+
+1. En una gráfica de $$x$$ vs $$t$$ para un MRUA, la curva es una __________.
+
+    <MultipleChoice>
+      <Option>
+        línea horizontal
+      </Option>
+      <Option>
+        circunferencia
+      </Option>
+      <Option>
+        línea recta
+      </Option>
+      <Option isCorrect>
+        parábola
+      </Option>
+    </MultipleChoice>
+
+2. En una gráfica de $$v_x$$ vs $$t$$ para un MRUA, la pendiente de la recta representa la __________.
+
+    <MultipleChoice>
+      <Option>
+        velocidad inicial
+      </Option>
+      <Option isCorrect>
+        aceleración
+      </Option>
+      <Option>
+        posición
+      </Option>
+      <Option>
+        rapidez
+      </Option>
+    </MultipleChoice>
+</Box>
+
+## Cuerpos en caída libre
+
+Ahora estudiaremos uno de los casos más cotidianos del MRUA: la **caída libre**. Cuando sueltas tu celular (¡esperemos que no!), este cae verticalmente bajo la influencia exclusiva de la gravedad, sin resistencia del aire. Este es un MRUA con una aceleración especial: la de la gravedad.
+
+En la superficie de la Tierra, todo objeto en caída libre experimenta una aceleración vertical dirigida hacia abajo de magnitud:
+
+$$
+g = 9,8 \, \mathrm{m/s^2}
+$$
+
+Vectorialmente, si el eje $$y$$ apunta hacia arriba, la aceleración es:
+
+$$
+\vec{a} = a_y \hat{\jmath} = -(9,8 \, \mathrm{m/s^2}) \hat{\jmath}
+$$
+
+El signo negativo indica que la aceleración apunta hacia abajo. Un aspecto fascinante de la caída libre es que la aceleración es la misma para todos los objetos, sin importar su masa: una pluma y un martillo caen igual en el vacío.
+
+### Lanzamiento vertical
+
+Si lanzas un objeto verticalmente hacia arriba con velocidad inicial $$v_{0y}$$, su velocidad disminuirá conforme sube, se detendrá momentáneamente en el punto más alto (donde $$v_y = 0$$), y luego caerá de nuevo.
+
+El tiempo que tarda en alcanzar el punto más alto se obtiene imponiendo $$v_y = 0$$:
+
+$$
+v_y(t) = 0 = v_{0y} - g t
+$$
+
+$$
+t = \frac{v_{0y}}{g}
+$$
+
+La **altura máxima** respecto al punto de lanzamiento se obtiene evaluando la posición en ese instante:
+
+$$
+h_{\text{máx}} = \frac{v_{0y}^2}{2g}
+$$
+
+Para el tiempo de vuelo total, resolvemos la ecuación cuadrática que resulta de imponer la posición final. Como es una ecuación de la forma $$at^2 + bt + c = 0$$, usamos la fórmula general:
+
+$$
+t_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — lanzamiento vertical**
+
+Considera un lanzamiento vertical con una velocidad de $$5 \, \mathrm{m/s}$$ desde una altura de $$1 \, \mathrm{m}$$ respecto al suelo.
+
+**Altura máxima:** la altura máxima por encima de los $$1 \, \mathrm{m}$$ es:
+
+$$
+h_{\text{máx}} = \frac{v_{0y}^2}{2g} = \frac{(5 \, \mathrm{m/s})^2}{2(9,8 \, \mathrm{m/s^2})} \approx 1,27 \, \mathrm{m}
+$$
+
+Es decir, la posición del punto más alto es:
+
+$$
+y_{\text{máx}} = 1 \, \mathrm{m} + 1,27 \, \mathrm{m} = 2,27 \, \mathrm{m}
+$$
+
+**Tiempo de vuelo:** el objeto cae al suelo cuando $$y(t) = 0$$:
+
+$$
+0 = 1 + 5t - \frac{1}{2}(9,8) t^2
+$$
+
+Resolviendo con la fórmula general (tomando la raíz positiva, que corresponde al momento en que el objeto llega al suelo), obtenemos:
+
+$$
+t \approx 1,19 \, \mathrm{s}
+$$
+
+**Resumen:** el objeto sube hasta $$2,27 \, \mathrm{m}$$ del suelo, y tarda aproximadamente **$$1,19 \, \mathrm{s}$$** en subir y caer al suelo.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+Elije la opción que completa correctamente cada una de las frases.
+
+1. En caída libre, la aceleración de un objeto __________.
+
+    <MultipleChoice>
+      <Option>
+        depende de su masa
+      </Option>
+      <Option>
+        aumenta con la altura
+      </Option>
+      <Option>
+        es cero en el punto más alto
+      </Option>
+      <Option isCorrect>
+        es constante e igual a $$g = 9,8 \, \mathrm{m/s^2}$$ hacia abajo
+      </Option>
+    </MultipleChoice>
+
+2. En el punto más alto de un lanzamiento vertical, la velocidad del objeto es __________.
+
+    <MultipleChoice>
+      <Option>
+        igual a la velocidad inicial
+      </Option>
+      <Option>
+        igual a $$g$$
+      </Option>
+      <Option>
+        máxima
+      </Option>
+      <Option isCorrect>
+        cero
+      </Option>
+    </MultipleChoice>
+
+3. La altura máxima de un lanzamiento vertical con velocidad inicial $$v_{0y}$$ es:
+
+    <MultipleChoice>
+      <Option>
+        $$ \displaystyle \frac{v_{0y}}{g}$$
+      </Option>
+      <Option>
+        $$ \displaystyle \frac{v_{0y}^2}{g}$$
+      </Option>
+      <Option isCorrect>
+        $$\displaystyle  \frac{v_{0y}^2}{2g}$$
+      </Option>
+      <Option>
+        $$v_{0y} g$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Tipo de movimiento | Aceleración | Ecuación de posición | Gráfica de $$x$$ vs $$t$$ | Gráfica de $$v_x$$ vs $$t$$ |
+| :--- | :---: | :--- | :---: | :---: |
+| **MRU** | $$0$$ | $$x(t) = x_0 + v_x t$$ | Línea recta (pendiente = velocidad) | Línea horizontal |
+| **MRUA** | Constante | $$x(t) = x_0 + v_{0x}t + \tfrac{1}{2}a_x t^2$$ | Parábola | Línea recta (pendiente = aceleración) |
+| **Caída libre** | $$-g$$ | $$y(t) = y_0 + v_{0y}t - \tfrac{1}{2}gt^2$$ | Parábola | Línea recta |
+
+Las tres ecuaciones del MRUA son tu caja de herramientas para esta semana. La clave del éxito es leer cada problema con calma, identificar qué datos te dan y qué incógnita te piden, y elegir la ecuación que conecte directamente esas cantidades. En la práctica de la semana pondremos esto a prueba con situaciones cotidianas: buses, carros, pelotas y objetos que caen.

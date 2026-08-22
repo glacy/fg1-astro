@@ -9,6 +9,7 @@ import { unified } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { offlineBanner } from './src/integrations/offline-banner';
+import starlightFullViewMode from 'starlight-fullview-mode'
 
 export default defineConfig({
   prefetch: true,
@@ -27,6 +28,9 @@ export default defineConfig({
   integrations: [
     sitemap(),
     starlight({
+      plugins: [
+        starlightFullViewMode({leftSidebarEnabled: true, rightSidebarEnabled: true}), 
+      ],
       title: 'Documentos FG1 - II semestre 2026',
       description: 'Documentación para el curso de Física General I - II semestre 2026',
       disable404Route: true,
@@ -56,12 +60,17 @@ export default defineConfig({
           collapsed: true,
           items: [{ autogenerate: { "directory": "semana02" } }]
         },
-         {
-          label: 'Semana 3',
-          badge: 'Nuevo',
-          collapsed: true,
-          items: [{ autogenerate: { "directory": "semana03" } }]
-        }
+        {
+        label: 'Semana 3',
+        collapsed: true,
+        items: [{ autogenerate: { "directory": "semana03" } }]
+      },
+      {
+        label: 'Semana 4',
+        badge: 'Nuevo',
+        collapsed: true,
+        items: [{ autogenerate: { "directory": "semana04" } }]
+      },
       ],
     }),
     mdx(),

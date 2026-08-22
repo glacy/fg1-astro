@@ -1,7 +1,7 @@
 {
   "id": 5,
   "title": "Movimiento parabólico",
-  "image": "https://images.unsplash.com/photo-1457364887197-9150188c107b?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
     "Describir un movimiento general en 2 ó 3 dimensiones, mediante cantidades cinemáticas vectoriales.",
     "Definir las características del movimiento parabólico.",
@@ -32,11 +32,6 @@
     }
   ],
   "recursos": [
-    {
-      "text": "Solución Práctica Semana 4",
-      "url": "/soluciones/solucion_practica_semana4.pdf",
-      "icon": "lucide:calculator"
-    },
     {
       "text": "Phet: Proyectiles",
       "url": "https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_all.html?locale=es",

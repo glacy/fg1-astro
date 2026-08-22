@@ -1,14 +1,14 @@
 ---
 title: "Movimiento parabólico"
-description: "Material de lectura para la semana 5."
+description: "El vector aceleración y sus componentes tangencial y normal, y el movimiento de proyectiles: descomposición del movimiento en dos dimensiones, ecuaciones de posición y velocidad, trayectoria parabólica, altura máxima y alcance horizontal."
 week: 5
-keywords: ["física general I", "semana 5", "TEC Costa Rica"]
+keywords: ["movimiento parabólico", "movimiento de proyectiles", "vector aceleración", "componente tangencial", "componente normal", "tiro parabólico", "altura máxima", "alcance horizontal", "movimiento bidimensional", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
+date: 2026-08-17
 readingTime: 15
-tags: ["semana-5"]
-category: "semana-5"
-difficulty: "basic"
+tags: ["movimiento parabólico", "proyectiles", "aceleración", "movimiento bidimensional"]
+category: "cinemática"
+difficulty: "intermediate"
 objetivos:
   - "Describir un movimiento general en 2 ó 3 dimensiones, mediante cantidades cinemáticas vectoriales."
   - "Definir las características del movimiento parabólico."
@@ -16,14 +16,262 @@ objetivos:
 draft: true
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Describir un movimiento general en 2 ó 3 dimensiones, mediante cantidades cinemáticas vectoriales.
+  - Definir las características del movimiento parabólico.
+  - Resolver, analítica y gráficamente, problemas que involucren movimiento parabólico.
+</PreCheck>
 
-- Describir un movimiento general en 2 ó 3 dimensiones, mediante cantidades cinemáticas vectoriales.
-- Definir las características del movimiento parabólico.
-- Resolver, analítica y gráficamente, problemas que involucren movimiento parabólico.
+En las semanas anteriores estudiamos el movimiento a lo largo de una línea recta: el MRU y el MRUA, y la caída libre como caso particular. Pero el mundo real no se mueve solo en líneas rectas: la pelota que lanzas hacia el aro, el balón de un tiro libre y el agua que sale de una manguera describen curvas. En esta semana estudiaremos el caso más importante de movimiento en dos dimensiones: el **movimiento parabólico**.
 
-## Contenido
+## El vector aceleración
 
-Contenido de la semana 5 próximamente disponible.
+En la semana 3 definimos formalmente la aceleración como la tasa de cambio de la velocidad:
+
+$$
+\vec{a} = \frac{d\vec{v}}{dt}
+$$
+
+Como la velocidad es una cantidad vectorial, es muy conveniente analizar la aceleración en términos de las direcciones tangente y normal a la trayectoria. Considera una partícula que se mueve en una trayectoria curva con velocidad $$\vec{v}$$ y aceleración $$\vec{a}$$. La aceleración se puede descomponer en dos componentes:
+
+- La componente **paralela** a la trayectoria (a lo largo de la tangente), que denotamos $$a_{||}$$, llamada **componente tangencial**.
+- La componente **perpendicular** a la trayectoria (a lo largo de la normal), que denotamos $$a_{\perp}$$, llamada **componente normal**.
+
+Esta descomposición es clave para comprender el movimiento en dos dimensiones:
+
+- La componente **tangencial** $$a_{||}$$ puede **aumentar o disminuir la rapidez** (cambiar la magnitud de la velocidad), sin necesariamente cambiar su dirección.
+- La componente **normal** $$a_{\perp}$$ puede **cambiar la dirección** de la velocidad, sin cambiar su magnitud.
+
+<Box icon="check-list">
+
+**Ejemplo — un carro que toma una curva**
+
+Imagina que un carro entra a una curva. Al girar el volante, aparece una componente de aceleración perpendicular a la trayectoria (la componente normal) que desvía la velocidad hacia el interior de la curva: la dirección del movimiento cambia.
+
+Si además el carro está acelerando o frenando dentro de la curva, hay una componente tangencial que aumenta o disminuye su rapidez. Si el carro toma la curva a velocidad constante, la componente tangencial es cero y solo existe la componente normal: la rapidez no cambia, pero la dirección de la velocidad sí.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. La componente normal de la aceleración es responsable de:
+
+    <MultipleChoice>
+      <Option>
+        Cambiar la magnitud de la velocidad
+      </Option>
+      <Option isCorrect>
+        Cambiar la dirección de la velocidad
+      </Option>
+      <Option>
+        Aumentar la rapidez del objeto
+      </Option>
+      <Option>
+        Disminuir la rapidez del objeto
+      </Option>
+    </MultipleChoice>
+
+2. Un carro toma una curva a rapidez constante. En ese momento:
+
+    <MultipleChoice>
+      <Option isCorrect>
+        Tiene aceleración (normal) aunque su rapidez no cambie
+      </Option>
+      <Option>
+        No tiene aceleración porque la rapidez es constante
+      </Option>
+      <Option>
+        Solo tiene aceleración tangencial
+      </Option>
+      <Option>
+        Su aceleración es cero siempre
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Movimiento de proyectiles
+
+El **movimiento de proyectiles** es un caso particular de movimiento bidimensional en el cual un objeto es lanzado con una velocidad inicial y se mueve bajo la influencia exclusiva de la aceleración gravitacional. Este tipo de movimiento es fundamental en la física y tiene aplicaciones en diversas áreas, desde la ingeniería balística hasta el análisis de trayectorias deportivas y la exploración espacial.
+
+El estudio del movimiento de proyectiles se basa en la **descomposición del movimiento en dos componentes independientes**:
+
+- **Movimiento horizontal ($$x$$):** se asume que la velocidad en esta dirección es **constante**, ya que no hay fuerzas actuando en ausencia de resistencia del aire. El movimiento horizontal es, entonces, un MRU.
+- **Movimiento vertical ($$y$$):** está influenciado por la aceleración gravitacional $$g$$, lo que produce una variación en la velocidad en esta dirección. El movimiento vertical es, entonces, un MRUA (la caída libre que estudiamos la semana pasada).
+
+La independencia de los movimientos horizontal y vertical es la idea central de esta semana: aunque ocurren simultáneamente, se pueden analizar por separado. El tiempo es la única variable que los conecta.
+
+Dado que ambos movimientos ocurren simultáneamente pero son independientes, podemos analizar cada uno por separado utilizando las ecuaciones de cinemática:
+
+$$
+x(t) = x_0 + v_{0x} t, \qquad v_{0x} = v_0 \cos \alpha_0
+$$
+
+$$
+y(t) = y_0 + v_{0y} t - \frac{1}{2} g t^2, \qquad v_{0y} = v_0 \sin \alpha_0
+$$
+
+$$
+v_y(t) = v_{0y} - g t
+$$
+
+donde:
+
+- $$(x_0, y_0)$$ define el **punto de lanzamiento**,
+- $$v_0$$ representa la **rapidez del lanzamiento**,
+- $$\alpha_0$$ su **elevación** (el ángulo con la horizontal).
+
+### La trayectoria parabólica
+
+El movimiento de proyectiles también recibe el nombre de *movimiento parabólico*, ya que si se observa la trayectoria de un proyectil, esta traza una **parábola**. La trayectoria queda descrita por los parámetros del lanzamiento, $$v_0$$ y $$\alpha_0$$, mediante la ecuación:
+
+$$
+y(x) = y_0 + x \tan \alpha_0 - \frac{g}{2 v_0^2 \cos^2 \alpha_0} x^2
+$$
+
+Esta ecuación surge de eliminar el tiempo entre las ecuaciones de posición: expresa directamente la altura $$y$$ en función de la distancia horizontal $$x$$.
+
+### Altura máxima y alcance
+
+El movimiento de proyectiles suele caracterizarse por sus alcances máximos, tanto horizontal como vertical. Se define **altura máxima** del proyectil, $$H$$, como la distancia máxima vertical que alcanza el proyectil respecto al nivel del lanzamiento:
+
+$$
+H = \frac{v_0^2 \sin^2 \alpha_0}{2g}
+$$
+
+y **alcance máximo horizontal** (o simplemente **alcance**), $$R$$, como la distancia máxima que recorre un proyectil horizontalmente hasta alcanzar de nuevo el nivel del lanzamiento:
+
+$$
+R = \frac{v_0^2 \sin (2\alpha_0)}{g}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — un tiro libre**
+
+En un tiro libre, se le imprime a un balón una velocidad inicial de:
+
+$$
+\vec{v}_0 = (20 \, \mathrm{m/s};\, 35^\circ)
+$$
+
+Las componentes de la velocidad inicial son:
+
+$$
+v_{0x} = v_0 \cos \alpha_0 = (20 \, \mathrm{m/s}) \cos 35^\circ \approx 16,38 \, \mathrm{m/s}
+$$
+
+$$
+v_{0y} = v_0 \sin \alpha_0 = (20 \, \mathrm{m/s}) \sin 35^\circ \approx 11,47 \, \mathrm{m/s}
+$$
+
+La distancia horizontal que recorre el balón (su alcance) es:
+
+$$
+R = \frac{v_0^2 \sin (2\alpha_0)}{g} = \frac{(20 \, \mathrm{m/s})^2 \sin (70^\circ)}{9,81 \, \mathrm{m/s^2}} \approx 38,32 \, \mathrm{m}
+$$
+
+La altura máxima que alcanza es:
+
+$$
+H = \frac{v_0^2 \sin^2 \alpha_0}{2g} = \frac{(20 \, \mathrm{m/s})^2 \sin^2 35^\circ}{2 (9,81 \, \mathrm{m/s^2})} \approx 6,71 \, \mathrm{m}
+$$
+
+El balón recorre entonces unos **$$38,32 \, \mathrm{m}$$** horizontalmente y se eleva hasta **$$6,71 \, \mathrm{m}$$** sobre el punto de lanzamiento.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En el movimiento de proyectiles (sin resistencia del aire), la componente horizontal de la velocidad:
+
+    <MultipleChoice>
+      <Option isCorrect>
+        Es constante durante todo el vuelo
+      </Option>
+      <Option>
+        Aumenta con el tiempo
+      </Option>
+      <Option>
+        Disminuye con el tiempo
+      </Option>
+      <Option>
+        Es cero en el punto más alto
+      </Option>
+    </MultipleChoice>
+
+2. La componente vertical de la velocidad de un proyectil:
+
+    <MultipleChoice>
+      <Option>
+        Es constante durante todo el vuelo
+      </Option>
+      <Option isCorrect>
+        Cambia de forma uniforme por la aceleración gravitacional
+      </Option>
+      <Option>
+        Solo existe en el lanzamiento
+      </Option>
+      <Option>
+        Es igual a la componente horizontal
+      </Option>
+    </MultipleChoice>
+
+3. La altura máxima de un proyectil lanzado con rapidez $$v_0$$ y elevación $$\alpha_0$$ es:
+
+    <MultipleChoice>
+      <Option>
+        $$\dfrac{v_0^2}{2g}$$
+      </Option>
+      <Option isCorrect>
+        $$\dfrac{v_0^2 \sin^2 \alpha_0}{2g}$$
+      </Option>
+      <Option>
+        $$\dfrac{v_0^2 \sin (2\alpha_0)}{g}$$
+      </Option>
+      <Option>
+        $$\dfrac{v_0^2 \cos \alpha_0}{2g}$$
+      </Option>
+    </MultipleChoice>
+
+4. El alcance horizontal máximo de un proyectil se obtiene cuando la elevación es:
+
+    <MultipleChoice>
+      <Option>
+        $$30^\circ$$
+      </Option>
+      <Option>
+        $$60^\circ$$
+      </Option>
+      <Option isCorrect>
+        $$45^\circ$$
+      </Option>
+      <Option>
+        $$90^\circ$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Cantidad | Expresión | Movimiento asociado |
+| :--- | :--- | :--- |
+| Componente horizontal de la velocidad | $$v_{0x} = v_0 \cos \alpha_0$$, constante | MRU |
+| Componente vertical de la velocidad | $$v_{0y} = v_0 \sin \alpha_0$$ | MRUA (caída libre) |
+| Posición horizontal | $$x(t) = x_0 + v_{0x} t$$ | MRU |
+| Posición vertical | $$y(t) = y_0 + v_{0y} t - \tfrac{1}{2} g t^2$$ | MRUA |
+| Velocidad vertical | $$v_y(t) = v_{0y} - g t$$ | MRUA |
+| Altura máxima | $$H = \dfrac{v_0^2 \sin^2 \alpha_0}{2g}$$ | — |
+| Alcance horizontal | $$R = \dfrac{v_0^2 \sin (2\alpha_0)}{g}$$ | — |
+
+La idea clave de esta semana es la **independencia de los movimientos horizontal y vertical**: el proyectil se mueve horizontalmente con velocidad constante, mientras que verticalmente cae con aceleración constante. Al descomponer el lanzamiento en sus componentes $$v_{0x}$$ y $$v_{0y}$$, reutilizas las herramientas de las semanas anteriores (MRU y caída libre) para resolver problemas de dos dimensiones. En la práctica de la semana pondremos esto a prueba con situaciones cotidianas: tiros libres, mangueras y pelotas lanzadas con ángulo.
