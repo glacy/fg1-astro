@@ -2,11 +2,13 @@
 title: "Práctica"
 week: 5
 keywords: ["movimiento parabólico", "movimiento de proyectiles", "vector aceleración", "componente tangencial", "componente normal", "tiro parabólico", "altura máxima", "alcance horizontal", "tiro libre", "lanzamiento horizontal", "física general I", "TEC Costa Rica"]
-draft: true
+draft: false
 ---
 import { Aside } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+import TiroBaloncesto from "../../../assets/tiro_libre_baloncesto.svg";
 
-<Aside type="note" icon="pencil" title="Ejercicio 1 — El balón del tiro libre">
+<Aside type="note" icon="pencil" title="Ejercicio 1 — ⚽ El balón del tiro libre">
 Un jugador patea un balón con una velocidad inicial de $$20 \, \mathrm{m/s}$$ y una elevación de $$30^\circ$$.
 
 1. Determina las componentes horizontal y vertical de la velocidad inicial.
@@ -31,55 +33,94 @@ $$
 En el punto más alto, la velocidad vertical es cero:
 
 $$
-v_y = v_{0y} - g t = 0 \quad \Rightarrow \quad t = \frac{v_{0y}}{g} = \frac{10 \, \mathrm{m/s}}{9,81 \, \mathrm{m/s^2}} \approx 1,02 \, \mathrm{s}
+v_y = v_{0y} - g t = 0 \quad \Rightarrow \quad t^*= \frac{v_{0y}}{g} = \frac{10 \, \mathrm{m/s}}{9,8 \, \mathrm{m/s^2}} \approx 1,02 \, \mathrm{s}
 $$
 
 **3. Altura máxima y alcance**
 
-$$
-H = \frac{v_{0y}^2}{2g} = \frac{(10 \, \mathrm{m/s})^2}{2(9,81 \, \mathrm{m/s^2})} \approx 5,10 \, \mathrm{m}
-$$
+La altura máxima, $$H$$ corresponde con la posición vertical en el instante que la componente vertical de la velocidad es cero, de manera que 
 
 $$
-R = \frac{v_0^2 \sin (2\alpha_0)}{g} = \frac{(20 \, \mathrm{m/s})^2 \sin 60^\circ}{9,81 \, \mathrm{m/s^2}} \approx 35,3 \, \mathrm{m}
+H=y(t=t^*)=v_{0y}t-\frac{1}{2}gt^2=(10 \, \mathrm{m/s})(1,02\text{ s})-(4,9\text{ m/s}^2)(1,02\text{ s})^2\approx5,10\text{ m}
 $$
+
+Ahora, dada la simetría del movimiento, el alcance es la distancia horizontal que recorre mientras sube y baja; es decir, la posición horizontal cuando ha transcurrido **el doble** del tiempo que tarda en llegar a la altura máxima (😳 _uff, ¡¡¡¡que buen trabalenguas!!!!_), de manera que 
+
+$$ 
+R=x(t=2t^*)=v_{0x}(2t^*)=(17,32 \, \mathrm{m/s})(2\times 1,02\text{ s}) \approx 35,3 \, \mathrm{m}
+$$
+
 
 El balón sube **$$1,02 \, \mathrm{s}$$**, alcanza **$$5,10 \, \mathrm{m}$$** de altura y recorre unos **$$35,3 \, \mathrm{m}$$** hasta volver al suelo.
 
+---
+
+Note que estos resultados coinciden con 
+$$
+H = \frac{v_{0y}^2}{2g} = \frac{(10 \, \mathrm{m/s})^2}{2(9,8 \, \mathrm{m/s^2})} \approx 5,10 \, \mathrm{m}
+$$
+
+$$
+R = \frac{v_0^2 \sin (2\alpha_0)}{g} = \frac{(20 \, \mathrm{m/s})^2 \sin 60^\circ}{9,8 \, \mathrm{m/s^2}} \approx 35,3 \, \mathrm{m}
+$$
+
+
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 2 — El tiro libre del portero">
-Un jugador ejecuta un tiro libre con $$\vec{v}_0 = (20 \, \mathrm{m/s};\, 35^\circ)$$.
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🏀 El tiro de tres puntos">
+Una jugadora de basketball ejecuta un tiro libre, imprimiéndole una velocidad a la bola de $$\vec{v}_0 = (2,62 \, \mathrm{m/s})\hat{\iota}+(9,13\, \mathrm{m/s})\hat{\jmath}$$. El lanzamiento se realiza desde una altura de 2,0 m respecto del suelo.
 
-1. Verifica que el alcance del balón es de aproximadamente $$38,32 \, \mathrm{m}$$.
-2. ¿Qué altura máxima alcanza?
-3. Si el portero está parado a $$39 \, \mathrm{m}$$ del punto de lanzamiento, ¿debe moverse para detener el balón?
+1. ¿Qué altura máxima alcanza?
+2. Determina el alcance del balón.
+3. Grafique la trayectoria.
 
 <details>
 <summary>Ver solución</summary>
+**1. Altura máxima**
 
-**1. Alcance**
+
+En este caso, note que la velocidad de lanzamiento está expresada mediante sus componentes cartesianas; de manera que la rapidez del lanzamiento es 
+
+$$ 
+v_0=\displaystyle \sqrt{{v_{0x}}^2+{v_{0y}}^2}\approx 9,5 \text{ m/s},
+$$
+y su ángulo de elevación de 
+$$ 
+\alpha_0=\tan^{-1}\left(\frac{v_{0y}}{v_{0x}} \right)\approx 74^\circ
+$$
+
+Como el lanzamiento se realiza desde una altura de 2,0 m respecto del suelo, la altura máxima que alcanza la bola es
+$$
+y_\text{m\'ax}=y_0 +H=y_0 +\frac{v_0^2 \sin^2 \alpha_0}{2g} =2,0\text{ m} + \frac{(9,5 \, \mathrm{m/s})^2 \sin^2 (74^\circ)}{2(9,8 \, \mathrm{m/s^2})} \approx 6,25 \, \mathrm{m}
+$$
+
+**2. Alcance**
+
+Para determinar el alcance (es decir, la distancia horizontal que recorre la bola hasta caer al suelo) debemos resolver la ecuación de la tratectoria para encontrar cual $x$ satisface que $$y(x)=0$$; de manera que 
 
 $$
-R = \frac{v_0^2 \sin (2\alpha_0)}{g} = \frac{(20 \, \mathrm{m/s})^2 \sin 70^\circ}{9,81 \, \mathrm{m/s^2}} \approx 38,32 \, \mathrm{m}
+y=(2,0\text{ m})+x\tan(74^\circ)-\frac{4,9\text{ m/s}^2}{(9,5 \text{ m/s})^2(\cos(74^\circ))^2}x^2=0
+$$
+que resulta en la ecuación cuadrática
+$$
+-0,714x^2+\tan(74^\circ) x+2=0
+$$
+que tiene por solución (positiva) 
+$$ 
+x\approx 5,4\text{ m}
 $$
 
-**2. Altura máxima**
+**3. Gráfica de la trayectoria**
 
-$$
-H = \frac{v_0^2 \sin^2 \alpha_0}{2g} = \frac{(20 \, \mathrm{m/s})^2 \sin^2 35^\circ}{2(9,81 \, \mathrm{m/s^2})} \approx 6,71 \, \mathrm{m}
-$$
+<Image src={TiroBaloncesto} alt="grafica de la trayectoria del lanzamiento" layout='constrained' width={756} height={526}/>
 
-**3. ¿Debe moverse el portero?**
-
-El balón aterriza a $$38,32 \, \mathrm{m}$$ del punto de lanzamiento, es decir, a solo $$0,68 \, \mathrm{m}$$ antes de la posición del portero. En la práctica, el portero deberá reaccionar para desviarlo, ya que el balón cae muy cerca de él.
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 3 — La pelota que rueda y cae de la mesa">
-Una pelota rueda por una mesa horizontal a $$3,0 \, \mathrm{m/s}$$ y cae por el borde. La superficie de la mesa está a $$4,905 \, \mathrm{m}$$ del suelo (una mesa muy alta de laboratorio).
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🛞 La rueda que cae de la azotea">
+Una rueda gira por una azotea a $$3,0 \, \mathrm{m/s}$$ y cae por el borde a una altura de $$4,9 \, \mathrm{m}$$ del suelo.
 
 1. ¿Cuánto tarda la pelota en llegar al suelo?
 2. ¿A qué distancia horizontal del borde de la mesa cae?
@@ -88,14 +129,14 @@ Una pelota rueda por una mesa horizontal a $$3,0 \, \mathrm{m/s}$$ y cae por el 
 <details>
 <summary>Ver solución</summary>
 
-Al caer del borde, la pelota tiene una velocidad inicial puramente horizontal: $$v_{0x} = 3,0 \, \mathrm{m/s}$$ y $$v_{0y} = 0$$.
+Al caer del borde, la rueda tiene una velocidad inicial puramente horizontal: $$v_{0x} = 3,0 \, \mathrm{m/s}$$ y $$v_{0y} = 0$$.
 
 **1. Tiempo de caída**
 
-El movimiento vertical es caída libre desde $$4,905 \, \mathrm{m}$$:
+El movimiento vertical es caída libre desde $$4,9 \, \mathrm{m}$$:
 
 $$
-y = \frac{1}{2} g t^2 \quad \Rightarrow \quad t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(4,905)}{9,81}} = 1,0 \, \mathrm{s}
+y = \frac{1}{2} g t^2 \quad \Rightarrow \quad t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(4,905)}{9,8}} = 1,0 \, \mathrm{s}
 $$
 
 **2. Distancia horizontal**
@@ -111,26 +152,26 @@ $$
 La componente vertical de la velocidad al llegar al suelo es:
 
 $$
-v_y = -g t = -(9,81 \, \mathrm{m/s^2})(1,0 \, \mathrm{s}) = -9,81 \, \mathrm{m/s}
+v_y = -g t = -(9,8 \, \mathrm{m/s^2})(1,0 \, \mathrm{s}) = -9,8 \, \mathrm{m/s}
 $$
 
 La rapidez es la magnitud del vector velocidad:
 
 $$
-v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(3,0)^2 + (9,81)^2} \approx 10,3 \, \mathrm{m/s}
+v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(3,0)^2 + (9,8)^2} \approx 10,3 \, \mathrm{m/s}
 $$
 
-La pelota tarda **$$1,0 \, \mathrm{s}$$** en caer, aterriza a **$$3,0 \, \mathrm{m}$$** del borde e impacta el suelo a unos **$$10,3 \, \mathrm{m/s}$$**. Fíjate que el tiempo de caída depende solo de la altura, no de la velocidad horizontal.
+La rueda tarda **$$1,0 \, \mathrm{s}$$** en caer, aterriza a **$$3,0 \, \mathrm{m}$$** del borde e impacta el suelo a unos **$$10,3 \, \mathrm{m/s}$$**. Fíjate que el tiempo de caída depende solo de la altura, no de la velocidad horizontal.
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 4 — El paquete del dron">
-Un dron sobrevuela el campus a una altura constante de $$19,62 \, \mathrm{m}$$, moviéndose horizontalmente a $$5,0 \, \mathrm{m/s}$$. En cierto instante suelta un paquete con velocidad inicial nula respecto al dron.
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🎮 El paquete del dron">
+Un dron sobrevuela el campus a una altura constante de $$19,6 \, \mathrm{m}$$, moviéndose horizontalmente a $$5,0 \, \mathrm{m/s}$$. En cierto instante suelta un paquete con velocidad inicial nula respecto al dron.
 
 1. ¿Cuánto tarda el paquete en llegar al suelo?
 2. ¿A qué distancia horizontal del punto en que se soltó cae?
-3. ¿Con qué rapidez impacta el suelo?
+3. ¿Con qué velocidad impacta el suelo?
 
 <details>
 <summary>Ver solución</summary>
@@ -140,7 +181,7 @@ Al soltarse, el paquete hereda la velocidad horizontal del dron: $$v_{0x} = 5,0 
 **1. Tiempo de caída**
 
 $$
-t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(19,62)}{9,81}} = 2,0 \, \mathrm{s}
+t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(19,6)}{9,8}} = 2,0 \, \mathrm{s}
 $$
 
 **2. Distancia horizontal**
@@ -154,60 +195,30 @@ $$
 La componente vertical al llegar al suelo es:
 
 $$
-v_y = -g t = -(9,81)(2,0) = -19,62 \, \mathrm{m/s}
+v_y = -g t = -(9,8)(2,0) = -19,6 \, \mathrm{m/s}
 $$
 
 La rapidez de impacto es:
 
 $$
-v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(5,0)^2 + (19,62)^2} \approx 20,2 \, \mathrm{m/s}
+v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(5,0)^2 + (19,6)^2} \approx 20,2 \, \mathrm{m/s}
 $$
+mientras que el ángulo de impacto
 
+
+La dirección, respecto a la horizontal, es:
+
+$$
+\theta = \arctan\left(\frac{v_y}{v_{0x}}\right) = \arctan\left(\frac{-19,6}{5}\right) \approx -76^\circ
+$$
 El paquete tarda **$$2,0 \, \mathrm{s}$$** en caer, aterriza a **$$10,0 \, \mathrm{m}$$** del punto en que se soltó y llega al suelo a unos **$$20,2 \, \mathrm{m/s}$$**. Mientras cae, avanza horizontalmente con la misma velocidad que llevaba el dron.
 
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 5 — ¿Quién llega primero al suelo?">
-Desde el borde de una mesa de $$4,905 \, \mathrm{m}$$ de altura, se deja caer una pelota desde el reposo y, al mismo tiempo, se lanza horizontalmente otra pelota con $$v_{0x} = 2,0 \, \mathrm{m/s}$$.
 
-1. ¿Cuál de las dos pelotas llega primero al suelo?
-2. ¿A qué distancia horizontal del borde cae la segunda pelota?
-3. Compara las rapideces de impacto de ambas pelotas.
 
-<details>
-<summary>Ver solución</summary>
-
-**1. ¿Quién llega primero?**
-
-Ambas pelotas tienen la misma velocidad vertical inicial ($$v_{0y} = 0$$) y caen la misma altura. El tiempo de caída depende solo del movimiento vertical, así que **ambas llegan al suelo al mismo tiempo**:
-
-$$
-t = \sqrt{\frac{2(4,905)}{9,81}} = 1,0 \, \mathrm{s}
-$$
-
-Este es el principio de independencia de los movimientos: la velocidad horizontal no afecta el tiempo de caída.
-
-**2. Distancia horizontal de la segunda pelota**
-
-$$
-x = v_{0x} t = (2,0 \, \mathrm{m/s})(1,0 \, \mathrm{s}) = 2,0 \, \mathrm{m}
-$$
-
-**3. Rapideces de impacto**
-
-- **Pelota soltada:** solo tiene componente vertical: $$v_y = -9,81 \, \mathrm{m/s}$$, por lo que su rapidez es $$v = 9,81 \, \mathrm{m/s}$$.
-- **Pelota lanzada:** tiene ambas componentes:
-  $$
-  v = \sqrt{(2,0)^2 + (9,81)^2} \approx 10,0 \, \mathrm{m/s}
-  $$
-
-La pelota lanzada impacta con una rapidez ligeramente mayor, porque conserva su componente horizontal. La dirección del vector velocidad es distinta, pero el tiempo de vuelo es el mismo para ambas.
-
-</details>
-</Aside>
-
-<Aside type="note" icon="pencil" title="Ejercicio 6 — El ángulo del alcance máximo">
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 📐 El ángulo del alcance máximo">
 Una pelota se lanza desde el suelo con una rapidez de $$15 \, \mathrm{m/s}$$.
 
 1. ¿Con qué ángulo de elevación se obtiene el alcance horizontal máximo? ¿Cuánto vale ese alcance?
@@ -233,17 +244,17 @@ $$
 Con ese ángulo:
 
 $$
-R = \frac{(15 \, \mathrm{m/s})^2 \sin 90^\circ}{9,81 \, \mathrm{m/s^2}} = \frac{225}{9,81} \approx 22,9 \, \mathrm{m}
+R = \frac{(15 \, \mathrm{m/s})^2 \sin 90^\circ}{9,8 \, \mathrm{m/s^2}} = \frac{225}{9,8} \approx 22,9 \, \mathrm{m}
 $$
 
 **2. Comparación de alcances para $$30^\circ$$ y $$60^\circ$$**
 
 $$
-R(30^\circ) = \frac{225 \sin 60^\circ}{9,81} = \frac{225 \times 0,866}{9,81} \approx 19,9 \, \mathrm{m}
+R(30^\circ) = \frac{225 \sin 60^\circ}{9,8} = \frac{225 \times 0,866}{9,8} \approx 19,9 \, \mathrm{m}
 $$
 
 $$
-R(60^\circ) = \frac{225 \sin 120^\circ}{9,81} = \frac{225 \times 0,866}{9,81} \approx 19,9 \, \mathrm{m}
+R(60^\circ) = \frac{225 \sin 120^\circ}{9,8} = \frac{225 \times 0,866}{9,8} \approx 19,9 \, \mathrm{m}
 $$
 
 **Observación:** los ángulos $$30^\circ$$ y $$60^\circ$$ son complementarios (suman $$90^\circ$$) y producen el **mismo alcance**. En general, dos elevaciones complementarias $$\alpha_0$$ y $$90^\circ - \alpha_0$$ dan el mismo alcance, porque $$\sin (2\alpha_0) = \sin (180^\circ - 2\alpha_0)$$. La elevación de $$45^\circ$$ da el alcance máximo, de unos **$$22,9 \, \mathrm{m}$$**.
@@ -251,7 +262,7 @@ $$
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 7 — La piedra que cae al mar">
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🌊 La piedra que cae al mar">
 Una persona se encuentra en el borde de un acantilado sobre el mar, a una altura de $$91,44 \, \mathrm{m}$$ (unos $$300 \, \mathrm{ft}$$). Lanza una piedra con una elevación de $$30^\circ$$ sobre la horizontal. La piedra tarda $$5,00 \, \mathrm{s}$$ en llegar al mar.
 
 1. ¿Con qué rapidez fue lanzada inicialmente la piedra?
@@ -268,7 +279,7 @@ Tomamos el origen en el punto de lanzamiento, con el eje $$y$$ positivo hacia ar
 El movimiento vertical es $$y(t) = v_{0y} t - \frac{1}{2} g t^2$$. La piedra llega al mar ($$y = -91,44 \, \mathrm{m}$$) en $$t = 5,00 \, \mathrm{s}$$:
 
 $$
--91,44 = v_0 \sin 30^\circ (5,00) - \frac{1}{2}(9,81)(5,00)^2
+-91,44 = v_0 \sin 30^\circ (5,00) - \frac{1}{2}(9,8)(5,00)^2
 $$
 
 $$
@@ -292,7 +303,7 @@ $$
 La altura máxima respecto al punto de lanzamiento es:
 
 $$
-H = \frac{v_{0y}^2}{2g} = \frac{(v_0 \sin 30^\circ)^2}{2g} = \frac{(12,5 \times 0,5)^2}{2(9,81)} \approx 1,98 \, \mathrm{m}
+H = \frac{v_{0y}^2}{2g} = \frac{(v_0 \sin 30^\circ)^2}{2g} = \frac{(12,5 \times 0,5)^2}{2(9,8)} \approx 1,98 \, \mathrm{m}
 $$
 
 Sobre el nivel del mar:
@@ -306,130 +317,3 @@ La piedra fue lanzada a unos **$$12,5 \, \mathrm{m/s}$$**, cae al mar a **$$54,0
 </details>
 </Aside>
 
-<Aside type="note" icon="pencil" title="Ejercicio 8 — El paquete que cae del helicóptero">
-Un helicóptero viaja a una altura constante de $$490,5 \, \mathrm{m}$$ a una velocidad de $$360 \, \mathrm{km/h}$$ cuando libera un paquete con velocidad inicial nula respecto al helicóptero.
-
-1. ¿Cuánto tarda el paquete en impactar el suelo?
-2. ¿Qué distancia horizontal recorre el paquete mientras cae?
-3. Determina la velocidad del paquete al impactar el suelo (magnitud **y dirección**).
-
-<details>
-<summary>Ver solución</summary>
-
-El paquete hereda la velocidad horizontal del helicóptero:
-
-$$
-v_{0x} = 360 \, \mathrm{km/h} = \frac{360}{3,6} \, \mathrm{m/s} = 100 \, \mathrm{m/s}, \qquad v_{0y} = 0
-$$
-
-**1. Tiempo de caída**
-
-El movimiento vertical es caída libre desde $$490,5 \, \mathrm{m}$$:
-
-$$
-t = \sqrt{\frac{2y}{g}} = \sqrt{\frac{2(490,5)}{9,81}} = \sqrt{100} = 10,0 \, \mathrm{s}
-$$
-
-**2. Distancia horizontal**
-
-$$
-x = v_{0x} t = (100 \, \mathrm{m/s})(10,0 \, \mathrm{s}) = 1000 \, \mathrm{m}
-$$
-
-**3. Velocidad de impacto (magnitud y dirección)**
-
-La componente vertical de la velocidad al llegar al suelo es:
-
-$$
-v_y = -g t = -(9,81)(10,0) = -98,1 \, \mathrm{m/s}
-$$
-
-La magnitud de la velocidad es:
-
-$$
-v = \sqrt{v_{0x}^2 + v_y^2} = \sqrt{(100)^2 + (98,1)^2} \approx 140 \, \mathrm{m/s}
-$$
-
-La dirección, respecto a la horizontal, es:
-
-$$
-\theta = \arctan\left(\frac{|v_y|}{v_{0x}}\right) = \arctan\left(\frac{98,1}{100}\right) \approx 44,5^\circ
-$$
-
-dirigida **hacia abajo** (porque $$v_y < 0$$). El paquete tarda **$$10,0 \, \mathrm{s}$$** en caer, recorre **$$1000 \, \mathrm{m}$$** horizontalmente e impacta el suelo a unos **$$140 \, \mathrm{m/s}$$**, con un ángulo de **$$44,5^\circ$$** bajo la horizontal.
-
-</details>
-</Aside>
-
-<Aside type="note" icon="pencil" title="Ejercicio 9 — Los amigos que saltan entre edificios">
-Tres amigos corren a través de los tejados de la ciudad a una rapidez de $$5 \, \mathrm{m/s}$$ cuando llegan a un espacio vacío entre dos edificios. El espacio tiene $$4 \, \mathrm{m}$$ de anchura y presenta un desnivel de $$3 \, \mathrm{m}$$ por debajo del tejado del primer edificio.
-
-El primero salta con una elevación de $$45^\circ$$. El segundo salta horizontalmente. Determina, usando la ecuación de la trayectoria:
-
-1. ¿A qué distancia del borde del primer edificio llega el primer amigo? ¿Cruza el espacio vacío?
-2. ¿Logrará el segundo amigo cruzar el espacio vacío entre los edificios?
-3. ¿Qué condición debe cumplir la elevación del salto del tercer amigo para lograr caer sobre el segundo edificio?
-
-<details>
-<summary>Ver solución</summary>
-
-La trayectoria de un proyectil que parte del origen con rapidez $$v_0$$ y elevación $$\alpha_0$$ es:
-
-$$
-y(x) = x \tan \alpha_0 - \frac{g}{2 v_0^2 \cos^2 \alpha_0} x^2
-$$
-
-El segundo edificio está $$3 \, \mathrm{m}$$ por debajo del primero, así que el amigo aterriza cuando $$y(x) = -3 \, \mathrm{m}$$. Con $$v_0 = 5 \, \mathrm{m/s}$$:
-
-$$
-\frac{g}{2 v_0^2} = \frac{9,81}{2(5)^2} = 0,1962 \, \mathrm{s^2/m}
-$$
-
-**1. El primer amigo ($$\alpha_0 = 45^\circ$$)**
-
-Con $$\tan 45^\circ = 1$$ y $$\cos^2 45^\circ = 0,5$$:
-
-$$
--3 = x(1) - \frac{0,1962}{0,5} x^2 = x - 0,3924 x^2
-$$
-
-$$
-0,3924 x^2 - x - 3 = 0
-$$
-
-Resolviendo la cuadrática (tomando la raíz positiva):
-
-$$
-x = \frac{1 + \sqrt{1 + 4(0,3924)(3)}}{2(0,3924)} \approx 4,32 \, \mathrm{m}
-$$
-
-Como el espacio mide $$4 \, \mathrm{m}$$, el primer amigo cae a **$$4,32 \, \mathrm{m}$$** del borde: **sí cruza**, aterrizando unos $$32 \, \mathrm{cm}$$ sobre el segundo edificio.
-
-**2. El segundo amigo ($$\alpha_0 = 0^\circ$$)**
-
-Con $$\tan 0^\circ = 0$$ y $$\cos^2 0^\circ = 1$$:
-
-$$
--3 = -0,1962 x^2 \quad \Rightarrow \quad x = \sqrt{\frac{3}{0,1962}} \approx 3,91 \, \mathrm{m}
-$$
-
-El segundo amigo cae a **$$3,91 \, \mathrm{m}$$**: **no cruza** el espacio de $$4 \, \mathrm{m}$$, le faltan unos $$9 \, \mathrm{cm}$$.
-
-**3. La condición para el tercer amigo**
-
-Para caer sobre el segundo edificio, el tercer amigo debe llegar al borde del segundo edificio ($$x = 4 \, \mathrm{m}$$) a una altura mayor o igual que el nivel de ese tejado ($$y(4) \geq -3 \, \mathrm{m}$$):
-
-$$
-y(4) = 4 \tan \alpha_0 - \frac{0,1962}{\cos^2 \alpha_0}(4)^2 \geq -3
-$$
-
-Usando $$1/\cos^2 \alpha_0 = 1 + \tan^2 \alpha_0$$ y resolviendo la desigualdad para $$\tan \alpha_0$$, obtenemos que la elevación debe cumplir aproximadamente:
-
-$$
-2,1^\circ \lesssim \alpha_0 \lesssim 51,1^\circ
-$$
-
-En particular, el salto horizontal del segundo amigo ($$\alpha_0 = 0^\circ$$) queda fuera de ese intervalo, lo que confirma que no cruza. El tercer amigo logra caer sobre el segundo edificio con una elevación entre unos **$$2^\circ$$ y $$51^\circ$$**.
-
-</details>
-</Aside>
