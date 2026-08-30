@@ -4,7 +4,7 @@ description: "El vector aceleración y sus componentes tangencial y normal, y el
 week: 5
 keywords: ["movimiento parabólico", "movimiento de proyectiles", "vector aceleración", "componente tangencial", "componente normal", "tiro parabólico", "altura máxima", "alcance horizontal", "movimiento bidimensional", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-08-17
+date: 2026-08-29
 readingTime: 15
 tags: ["movimiento parabólico", "proyectiles", "aceleración", "movimiento bidimensional"]
 category: "cinemática"
@@ -13,13 +13,18 @@ objetivos:
   - "Describir un movimiento general en 2 ó 3 dimensiones, mediante cantidades cinemáticas vectoriales."
   - "Definir las características del movimiento parabólico."
   - "Resolver, analítica y gráficamente, problemas que involucren movimiento parabólico."
-draft: true
+draft: false
 ---
 
+import { Image } from 'astro:assets';
 import PreCheck from '../../../components/PreCheck.astro';
 import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
+import ComponentesAceleracion from "../../../assets/componentes_a.svg";
+import EcuacionTrayectoria from "../../../assets/trayectoria.svg";
+import ProyectilComponentes from "../../../assets/proyectil.svg";
+
 
 <PreCheck>
   - Describir un movimiento general en 2 ó 3 dimensiones, mediante cantidades cinemáticas vectoriales.
@@ -47,6 +52,9 @@ Esta descomposición es clave para comprender el movimiento en dos dimensiones:
 - La componente **tangencial** $$a_{||}$$ puede **aumentar o disminuir la rapidez** (cambiar la magnitud de la velocidad), sin necesariamente cambiar su dirección.
 - La componente **normal** $$a_{\perp}$$ puede **cambiar la dirección** de la velocidad, sin cambiar su magnitud.
 
+<Image src={ComponentesAceleracion} alt="componentes de la aceleración**" layout='constrained' width={590} height={540}/>
+
+
 <Box icon="check-list">
 
 **Ejemplo — un carro que toma una curva**
@@ -57,26 +65,29 @@ Si además el carro está acelerando o frenando dentro de la curva, hay una comp
 
 </Box>
 
+
 <Box icon="question-mark">
 
 **Pon a prueba tu conocimiento**
 
-1. La componente normal de la aceleración es responsable de:
+1. La componente normal de la aceleración es responsable de __________.
 
     <MultipleChoice>
       <Option>
-        Cambiar la magnitud de la velocidad
+        cambiar la magnitud de la velocidad
       </Option>
       <Option isCorrect>
-        Cambiar la dirección de la velocidad
+        cambiar la dirección de la velocidad
       </Option>
       <Option>
-        Aumentar la rapidez del objeto
+        aumentar la rapidez del objeto
       </Option>
       <Option>
-        Disminuir la rapidez del objeto
+        disminuir la rapidez del objeto
       </Option>
     </MultipleChoice>
+
+
 
 2. Un carro toma una curva a rapidez constante. En ese momento:
 
@@ -106,6 +117,8 @@ El estudio del movimiento de proyectiles se basa en la **descomposición del mov
 - **Movimiento horizontal ($$x$$):** se asume que la velocidad en esta dirección es **constante**, ya que no hay fuerzas actuando en ausencia de resistencia del aire. El movimiento horizontal es, entonces, un MRU.
 - **Movimiento vertical ($$y$$):** está influenciado por la aceleración gravitacional $$g$$, lo que produce una variación en la velocidad en esta dirección. El movimiento vertical es, entonces, un MRUA (la caída libre que estudiamos la semana pasada).
 
+<Image src={ProyectilComponentes} alt="el movimiento horizontal de un proyectil es uniforme, miestras vertical es acelerado" layout='constrained' width={756} height={526}/>
+
 La independencia de los movimientos horizontal y vertical es la idea central de esta semana: aunque ocurren simultáneamente, se pueden analizar por separado. El tiempo es la única variable que los conecta.
 
 Dado que ambos movimientos ocurren simultáneamente pero son independientes, podemos analizar cada uno por separado utilizando las ecuaciones de cinemática:
@@ -133,10 +146,12 @@ donde:
 El movimiento de proyectiles también recibe el nombre de *movimiento parabólico*, ya que si se observa la trayectoria de un proyectil, esta traza una **parábola**. La trayectoria queda descrita por los parámetros del lanzamiento, $$v_0$$ y $$\alpha_0$$, mediante la ecuación:
 
 $$
-y(x) = y_0 + x \tan \alpha_0 - \frac{g}{2 v_0^2 \cos^2 \alpha_0} x^2
+y(x)=y_0+(\tan\alpha_0)x  -\frac{g}{2v_0^{2}\cos^{2}\alpha_0}x^2
 $$
 
 Esta ecuación surge de eliminar el tiempo entre las ecuaciones de posición: expresa directamente la altura $$y$$ en función de la distancia horizontal $$x$$.
+
+<Image src={EcuacionTrayectoria} alt="la trayectoria de un proyectil es una parábola" layout='constrained' width={751} height={584}/>
 
 ### Altura máxima y alcance
 
@@ -192,41 +207,59 @@ El balón recorre entonces unos **$$38,32 \, \mathrm{m}$$** horizontalmente y se
 
 **Pon a prueba tu conocimiento**
 
-1. En el movimiento de proyectiles (sin resistencia del aire), la componente horizontal de la velocidad:
+1. En el movimiento de proyectiles (sin resistencia del aire), la componente horizontal de la velocidad __________.
 
     <MultipleChoice>
-      <Option isCorrect>
-        Es constante durante todo el vuelo
+     
+      <Option>
+        aumenta con el tiempo
       </Option>
       <Option>
-        Aumenta con el tiempo
+        disminuye con el tiempo
       </Option>
       <Option>
-        Disminuye con el tiempo
+        ss cero en el punto más alto
       </Option>
-      <Option>
-        Es cero en el punto más alto
+       <Option isCorrect>
+        es constante durante todo el vuelo
       </Option>
     </MultipleChoice>
 
-2. La componente vertical de la velocidad de un proyectil:
+2. La componente vertical de la velocidad de un proyectil __________.
 
     <MultipleChoice>
       <Option>
-        Es constante durante todo el vuelo
-      </Option>
-      <Option isCorrect>
-        Cambia de forma uniforme por la aceleración gravitacional
+        solo existe en el lanzamiento
       </Option>
       <Option>
-        Solo existe en el lanzamiento
+        es constante durante todo el vuelo
       </Option>
       <Option>
-        Es igual a la componente horizontal
+        es igual a la componente horizontal
+      </Option>
+       <Option isCorrect>
+        cambia de forma uniforme por la aceleración gravitacional
       </Option>
     </MultipleChoice>
 
-3. La altura máxima de un proyectil lanzado con rapidez $$v_0$$ y elevación $$\alpha_0$$ es:
+3. En el punto más alto de la trayectoria parabólica __________.
+
+    <MultipleChoice>
+      <Option isCorrect>
+        la velocidad es horizontal y la aceleración es completamente normal
+      </Option>
+      <Option>
+        la velocidad es vertical y la aceleración es completamente tangencial
+      </Option>
+      <Option>
+        la velocidad es cero y la aceleración es cero
+      </Option> 
+      <Option>
+        la componente normal de la aceleración es cero
+      </Option>
+    </MultipleChoice>
+
+4. La altura máxima de un proyectil lanzado con rapidez $$v_0$$ y elevación $$\alpha_0$$ es __________.
 
     <MultipleChoice>
       <Option>
@@ -243,7 +276,7 @@ El balón recorre entonces unos **$$38,32 \, \mathrm{m}$$** horizontalmente y se
       </Option>
     </MultipleChoice>
 
-4. El alcance horizontal máximo de un proyectil se obtiene cuando la elevación es:
+5. El alcance horizontal máximo de un proyectil se obtiene cuando la elevación es:
 
     <MultipleChoice>
       <Option>
