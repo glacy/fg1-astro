@@ -1,0 +1,215 @@
+---
+title: "Práctica"
+week: 6
+keywords: ["leyes de Newton", "primera ley de Newton", "equilibrio", "ley de la inercia", "segunda ley de Newton", "fuerza neta", "normal", "peso", "tercera ley de Newton", "acción y reacción", "marco de referencia inercial", "newton", "dinámica", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🧱 La caja en equilibrio">
+Sobre una caja en reposo actúan dos fuerzas: $$F_1 = 100\,\mathrm{N}$$ dirigida a lo largo del eje $$x$$, y $$F_2 = 200\,\mathrm{N}$$ que forma un ángulo $$\theta$$ con el eje $$x$$, con componente horizontal opuesta a $$F_1$$.
+
+1. ¿Qué valor de $$\theta$$ mantiene el equilibrio en la dirección $$x$$?
+2. La componente $$y$$ de $$F_2$$ no está equilibrada. ¿Qué tercera fuerza se necesita para que la caja permanezca en reposo?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Equilibrio en la dirección x**
+
+La caja está en reposo, así que es un marco de referencia inercial y la fuerza neta debe ser cero componente a componente. En $$x$$:
+
+$$
+F_{\text{neta},x} = F_1 - F_2\cos\theta = 0 \quad \Rightarrow \quad \cos\theta = \frac{F_1}{F_2} = \frac{100}{200} = 0{,}5
+$$
+
+$$
+\theta = \arccos(0{,}5) = 60^\circ
+$$
+
+**2. Tercera fuerza**
+
+La componente $$y$$ de $$F_2$$ vale:
+
+$$
+F_{2y} = F_2 \mathrm{sen}\,\theta = (200\,\mathrm{N})\mathrm{sen}\,60^\circ \approx 173\,\mathrm{N} \quad \text{(hacia arriba)}
+$$
+
+Para el equilibrio total se requiere una tercera fuerza de **$$173\,\mathrm{N}$$ dirigida hacia abajo** (por ejemplo, el peso de la caja o el soporte de una cuerda).
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🛗 El ascensor">
+Una persona de $$60\,\mathrm{kg}$$ viaja en un ascensor. Determina la fuerza normal que el piso ejerce sobre ella cuando:
+
+1. el ascensor está en reposo;
+2. sube con una aceleración de $$1{,}5\,\mathrm{m/s^2}$$;
+3. baja con una aceleración de $$1{,}5\,\mathrm{m/s^2}$$.
+
+¿En qué caso se siente "más pesada"? Usa $$g = 9{,}81\,\mathrm{m/s^2}$$.
+
+<details>
+<summary>Ver solución</summary>
+
+La Segunda Ley aplicada a la dirección $$y$$ (positiva hacia arriba) da $$F_{\text{neta},y} = N - mg = ma$$, de modo que $$N = m(g + a)$$.
+
+**1. En reposo** ($$a = 0$$):
+
+$$
+N = mg = (60\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2}) \approx 589\,\mathrm{N}
+$$
+
+**2. Subiendo con aceleración hacia arriba** ($$a = +1{,}5\,\mathrm{m/s^2}$$):
+
+$$
+N = (60\,\mathrm{kg})(9{,}81 + 1{,}5)\,\mathrm{m/s^2} = (60)(11{,}31) \approx 679\,\mathrm{N}
+$$
+
+**3. Bajando con aceleración hacia abajo** ($$a = -1{,}5\,\mathrm{m/s^2}$$):
+
+$$
+N = (60\,\mathrm{kg})(9{,}81 - 1{,}5)\,\mathrm{m/s^2} = (60)(8{,}31) \approx 499\,\mathrm{N}
+$$
+
+La persona se siente **más pesada cuando el ascensor acelera hacia arriba** ($$679\,\mathrm{N}$$) y más ligera cuando acelera hacia abajo ($$499\,\mathrm{N}$$): lo que sentimos como "peso" es la fuerza normal, no $$mg$$.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🛒 El carrito del supermercado">
+Se empuja un carrito de $$15\,\mathrm{kg}$$ con una fuerza horizontal de $$40\,\mathrm{N}$$. La fricción con el piso opone una fuerza de $$10\,\mathrm{N}$$. El carrito parte del reposo.
+
+1. ¿Cuál es su aceleración?
+2. ¿Qué rapidez tiene a los $$3{,}0\,\mathrm{s}$$?
+3. ¿Qué distancia recorre en ese tiempo?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Aceleración**
+
+La fuerza neta a lo largo del movimiento es la diferencia entre el empuje y la fricción:
+
+$$
+a = \frac{F_{\text{neta}}}{m} = \frac{40\,\mathrm{N} - 10\,\mathrm{N}}{15\,\mathrm{kg}} = \frac{30\,\mathrm{N}}{15\,\mathrm{kg}} = 2{,}0\,\mathrm{m/s^2}
+$$
+
+**2. Rapidez a los 3,0 s**
+
+Como la aceleración es constante (MRUA):
+
+$$
+v = v_0 + at = 0 + (2{,}0\,\mathrm{m/s^2})(3{,}0\,\mathrm{s}) = 6{,}0\,\mathrm{m/s}
+$$
+
+**3. Distancia recorrida**
+
+$$
+x = \frac{1}{2}at^2 = \frac{1}{2}(2{,}0\,\mathrm{m/s^2})(3{,}0\,\mathrm{s})^2 = 9{,}0\,\mathrm{m}
+$$
+
+La dinámica (Segunda Ley) entrega la aceleración; a partir de ahí, el movimiento se describe con las herramientas cinemáticas de las semanas anteriores.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🧊 El trineo sobre el hielo">
+Un trineo de $$5{,}0\,\mathrm{kg}$$ se mueve sobre hielo sin fricción. Sobre él actúan dos cuerdas: una lo jala con $$12\,\mathrm{N}$$ en la dirección $$+x$$ y otra con $$16\,\mathrm{N}$$ en la dirección $$+y$$.
+
+1. Determine la magnitud y la dirección de la aceleración del trineo.
+2. ¿Qué tercera fuerza mantendría al trineo en equilibrio?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Aceleración**
+
+Las fuerzas son perpendiculares, así que la fuerza neta se obtiene con el teorema de Pitágoras:
+
+$$
+F_{\text{neta}} = \sqrt{F_1^2 + F_2^2} = \sqrt{(12\,\mathrm{N})^2 + (16\,\mathrm{N})^2} = \sqrt{144 + 256}\,\mathrm{N} = 20\,\mathrm{N}
+$$
+
+$$
+a = \frac{F_{\text{neta}}}{m} = \frac{20\,\mathrm{N}}{5{,}0\,\mathrm{kg}} = 4{,}0\,\mathrm{m/s^2}
+$$
+
+La dirección de la aceleración es la de la fuerza neta:
+
+$$
+\theta = \arctan\left(\frac{F_2}{F_1}\right) = \arctan\left(\frac{16}{12}\right) \approx 53^\circ
+$$
+
+El trineo acelera a **$$4{,}0\,\mathrm{m/s^2}$$**, unos $$53^\circ$$ por encima del eje $$x$$.
+
+**2. Fuerza de equilibrio**
+
+Para que la fuerza neta sea cero, la tercera fuerza debe tener la **misma magnitud ($$20\,\mathrm{N}$$) y sentido opuesto** a la resultante: $$12\,\mathrm{N}$$ en $$-x$$ y $$16\,\mathrm{N}$$ en $$-y$$ (es decir, apuntando a unos $$53^\circ$$ por debajo del eje $$-x$$).
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 📚 El libro sobre la mesa">
+Un libro de $$1{,}5\,\mathrm{kg}$$ descansa en reposo sobre una mesa horizontal. Usa $$g = 9{,}81\,\mathrm{m/s^2}$$.
+
+1. ¿Cuál es el peso del libro?
+2. ¿Cuál es la fuerza normal que ejerce la mesa?
+3. Identifica los pares acción-reacción en esta situación. ¿La normal y el peso forman un par acción-reacción?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Peso**
+
+$$
+P = mg = (1{,}5\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2}) \approx 15\,\mathrm{N}
+$$
+
+**2. Fuerza normal**
+
+El libro está en reposo, así que la fuerza neta es cero:
+
+$$
+\sum F_y = N - mg = 0 \quad \Rightarrow \quad N = mg \approx 15\,\mathrm{N}
+$$
+
+**3. Pares acción-reacción**
+
+Los pares de la tercera ley son:
+
+- el **peso**: la Tierra atrae al libro ($$P = 15\,\mathrm{N}$$, hacia abajo) y el libro atrae a la Tierra con $$15\,\mathrm{N}$$ hacia arriba;
+- la **normal**: la mesa empuja al libro ($$N = 15\,\mathrm{N}$$, hacia arriba) y el libro empuja a la mesa con $$15\,\mathrm{N}$$ hacia abajo.
+
+La normal y el peso **no** forman un par acción-reacción: aunque tienen la misma magnitud, **ambas actúan sobre el mismo cuerpo** (el libro), mientras que cada par de la tercera ley actúa siempre sobre cuerpos diferentes.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — ⛸️ Los patinadores">
+Dos patinadores están en reposo sobre hielo sin fricción: ella tiene una masa de $$50\,\mathrm{kg}$$ y él de $$70\,\mathrm{kg}$$. Ella empuja a su compañero con una fuerza horizontal de $$35\,\mathrm{N}$$.
+
+1. ¿Qué aceleración adquiere él?
+2. ¿Qué fuerza experimenta ella y qué aceleración adquiere?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Aceleración de él**
+
+$$
+a_{\text{él}} = \frac{F}{m_{\text{él}}} = \frac{35\,\mathrm{N}}{70\,\mathrm{kg}} = 0{,}50\,\mathrm{m/s^2}
+$$
+
+**2. Fuerza y aceleración de ella**
+
+Por la tercera ley, él ejerce sobre ella una fuerza de **$$35\,\mathrm{N}$$ en sentido opuesto** al empuje. Con esa fuerza neta sobre su cuerpo:
+
+$$
+a_{\text{ella}} = \frac{F}{m_{\text{ella}}} = \frac{35\,\mathrm{N}}{50\,\mathrm{kg}} = 0{,}70\,\mathrm{m/s^2}
+$$
+
+Ambos experimentan fuerzas de igual magnitud y sentido opuesto, pero ella acelera más (**$$0{,}70\,\mathrm{m/s^2}$$** contra **$$0{,}50\,\mathrm{m/s^2}$$**) porque su masa es menor: la aceleración es inversamente proporcional a la masa.
+
+</details>
+</Aside>

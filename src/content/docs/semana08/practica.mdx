@@ -1,0 +1,262 @@
+---
+title: "Práctica"
+week: 8
+keywords: ["movimiento circular uniforme", "MCU", "aceleración centrípeta", "período", "frecuencia", "hertz", "movimiento relativo", "velocidad relativa", "bote cruzando río", "gravitación", "ley de gravitación universal", "constante de gravitación", "peso", "satélites", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🎡 La rueda de la fortuna">
+Una rueda de la fortuna tiene un radio de $$12\,\mathrm{m}$$ y completa una vuelta cada $$24\,\mathrm{s}$$.
+
+1. Determine la rapidez de una cabina.
+2. Determine la frecuencia de la rueda, en hertz.
+3. ¿Cuál es la aceleración centrípeta de una cabina?
+4. ¿Cuántas vueltas completa la rueda en $$5{,}0\,\mathrm{min}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez de una cabina**
+
+En una vuelta completa la cabina recorre la circunferencia completa, $$2\pi R$$, en un tiempo igual al período $$T$$:
+
+$$
+v = \frac{2\pi R}{T} = \frac{2\pi (12\,\mathrm{m})}{24\,\mathrm{s}} \approx 3{,}1\,\mathrm{m/s}
+$$
+
+**2. Frecuencia**
+
+La frecuencia es el inverso del período:
+
+$$
+f = \frac{1}{T} = \frac{1}{24\,\mathrm{s}} \approx 0{,}042\,\mathrm{Hz}
+$$
+
+**3. Aceleración centrípeta**
+
+$$
+a_{\text{rad}} = \frac{v^2}{R} = \frac{(3{,}1\,\mathrm{m/s})^2}{12\,\mathrm{m}} \approx 0{,}82\,\mathrm{m/s^2}
+$$
+
+(que también puede obtenerse como $$a_{\text{rad}} = 4\pi^2 R/T^2$$).
+
+**4. Vueltas en 5 minutos**
+
+$$
+N = \frac{5{,}0\,\mathrm{min} \times 60\,\mathrm{s/min}}{24\,\mathrm{s/vuelta}} = \frac{300\,\mathrm{s}}{24\,\mathrm{s}} = 12{,}5\ \text{vueltas}
+$$
+
+Las cabinas giran a solo **$$3{,}1\,\mathrm{m/s}$$**, con una aceleración centrípeta de apenas **$$0{,}82\,\mathrm{m/s^2}$$**: menos del $$10\%$$ de $$g$$. Por eso el paseo se siente suave.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🚗 La curva de la montaña">
+Un carro de $$1200\,\mathrm{kg}$$ toma una curva circular de radio $$50\,\mathrm{m}$$ con una rapidez constante de $$72\,\mathrm{km/h}$$.
+
+1. Exprese la rapidez en m/s.
+2. ¿Cuál es la aceleración centrípeta del carro?
+3. ¿Cuál es la magnitud de la fuerza neta que lo mantiene en la curva?
+4. ¿Qué ocurre con esa fuerza si el carro duplica su rapidez?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Conversión de unidades**
+
+$$
+v = 72\,\frac{\mathrm{km}}{\mathrm{h}} \times \frac{1000\,\mathrm{m}}{1\,\mathrm{km}} \times \frac{1\,\mathrm{h}}{3600\,\mathrm{s}} = 20\,\mathrm{m/s}
+$$
+
+**2. Aceleración centrípeta**
+
+$$
+a_{\text{rad}} = \frac{v^2}{R} = \frac{(20\,\mathrm{m/s})^2}{50\,\mathrm{m}} = 8{,}0\,\mathrm{m/s^2}
+$$
+
+**3. Fuerza neta**
+
+La Segunda Ley de Newton aplicada al MCU indica que la fuerza neta apunta hacia el centro de la curva:
+
+$$
+\sum F = m\, a_{\text{rad}} = (1200\,\mathrm{kg})(8{,}0\,\mathrm{m/s^2}) = 9600\,\mathrm{N}
+$$
+
+**4. Si la rapidez se duplica**
+
+Con $$v' = 40\,\mathrm{m/s}$$:
+
+$$
+a_{\text{rad}}' = \frac{(40\,\mathrm{m/s})^2}{50\,\mathrm{m}} = 32\,\mathrm{m/s^2}, \qquad \sum F' = (1200\,\mathrm{kg})(32\,\mathrm{m/s^2}) = 38\,400\,\mathrm{N}
+$$
+
+La aceleración centrípeta es proporcional al **cuadrado** de la rapidez: al duplicar $$v$$, la fuerza neta requerida **se cuadruplica** (de $$9600\,\mathrm{N}$$ a $$38\,400\,\mathrm{N}$$). Si los neumáticos no pueden suministrar esa fuerza, el carro derrapa; de ahí los límites de velocidad en curvas.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🚂 El pasajero que cruza el vagón">
+Un tren avanza en línea recta a $$25\,\mathrm{m/s}$$ respecto al suelo. Un pasajero cruza el vagón, perpendicularmente a la dirección del movimiento, caminando a $$3{,}0\,\mathrm{m/s}$$ respecto al tren. El vagón tiene $$6{,}0\,\mathrm{m}$$ de ancho.
+
+1. ¿Cuánto tarda el pasajero en cruzar?
+2. ¿Cuál es la rapidez del pasajero respecto al suelo?
+3. ¿Qué distancia avanza el tren mientras el pasajero cruza?
+
+<details>
+<summary>Ver solución</summary>
+
+Tomamos $$x$$ a lo largo del tren y $$y$$ a lo ancho del vagón. Respecto al tren, el pasajero se mueve con $$\vec{v}_{\text{P/B}} = (3{,}0\,\mathrm{m/s})\,\hat{\jmath}$$, y el tren se mueve respecto al suelo con $$\vec{v}_{\text{B/A}} = (25\,\mathrm{m/s})\,\hat{\iota}$$.
+
+**1. Tiempo de cruce**
+
+El cruce depende únicamente de la componente transversal:
+
+$$
+t = \frac{6{,}0\,\mathrm{m}}{3{,}0\,\mathrm{m/s}} = 2{,}0\,\mathrm{s}
+$$
+
+**2. Rapidez respecto al suelo**
+
+La velocidad del pasajero respecto al suelo es:
+
+$$
+\vec{v}_{\text{P/A}} = \vec{v}_{\text{P/B}} + \vec{v}_{\text{B/A}} = (25\,\mathrm{m/s})\,\hat{\iota} + (3{,}0\,\mathrm{m/s})\,\hat{\jmath}
+$$
+
+$$
+v_{\text{P/A}} = \sqrt{(25)^2 + (3{,}0)^2}\,\mathrm{m/s} \approx 25{,}2\,\mathrm{m/s}
+$$
+
+**3. Avance del tren**
+
+$$
+x = (25\,\mathrm{m/s})(2{,}0\,\mathrm{s}) = 50\,\mathrm{m}
+$$
+
+El pasajero se mueve respecto al suelo a unos **$$25{,}2\,\mathrm{m/s}$$** (a un ángulo de $$\arctan(3{,}0/25) \approx 6{,}8^\circ$$ respecto de la dirección del tren) mientras el tren avanza **$$50\,\mathrm{m}$$**. El movimiento perpendicular es independiente: el tiempo de cruce no depende de la velocidad del tren.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🛶 El bote y el río">
+Un río de $$60\,\mathrm{m}$$ de ancho fluye con una corriente de $$2{,}0\,\mathrm{m/s}$$. Un bote puede moverse a $$4{,}0\,\mathrm{m/s}$$ respecto al agua.
+
+1. Si el bote apunta perpendicularmente a la orilla, ¿cuánto tarda en cruzar y a qué distancia, corriente abajo, llega?
+2. ¿Cuál es la rapidez del bote respecto a la orilla en ese caso?
+3. ¿Hacia dónde debe apuntar el bote para llegar exactamente al frente de su punto de partida? ¿Cuánto tarda entonces?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Apuntando perpendicular a la orilla**
+
+La corriente es perpendicular a la travesía, así que el tiempo de cruce solo depende de la componente perpendicular:
+
+$$
+t = \frac{60\,\mathrm{m}}{4{,}0\,\mathrm{m/s}} = 15\,\mathrm{s}
+$$
+
+mientras la corriente lo arrastra:
+
+$$
+x = (2{,}0\,\mathrm{m/s})(15\,\mathrm{s}) = 30\,\mathrm{m}
+$$
+
+El bote llega **$$30\,\mathrm{m}$$ corriente abajo**.
+
+**2. Rapidez respecto a la orilla**
+
+$$
+v = \sqrt{(4{,}0)^2 + (2{,}0)^2}\,\mathrm{m/s} = \sqrt{20}\,\mathrm{m/s} \approx 4{,}5\,\mathrm{m/s}
+$$
+
+**3. Para cruzar derecho**
+
+El bote debe apuntar contra la corriente con un ángulo $$\theta$$ tal que la componente de su velocidad anule a la corriente:
+
+$$
+v_{\text{bote}}\,\mathrm{sen}\,\theta = v_{\text{corriente}} \quad \Rightarrow \quad \mathrm{sen}\,\theta = \frac{2{,}0}{4{,}0} = 0{,}50 \quad \Rightarrow \quad \theta = 30^\circ
+$$
+
+La velocidad de cruce se reduce a $$4{,}0\cos 30^\circ \approx 3{,}46\,\mathrm{m/s}$$, de modo que:
+
+$$
+t = \frac{60\,\mathrm{m}}{3{,}46\,\mathrm{m/s}} \approx 17\,\mathrm{s}
+$$
+
+Apuntando $$30^\circ$$ contra la corriente, el bote cruza derecho pero tarda un poco más (**$$17\,\mathrm{s}$$** en vez de $$15\,\mathrm{s}$$).
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 🌍 La masa de la Tierra">
+Utilice $$g = 9{,}81\,\mathrm{m/s^2}$$, $$R_{\text{T}} = 6380\,\mathrm{km}$$ y $$G = 6{,}67\times 10^{-11}\,\mathrm{N\cdot m^2/kg^2}$$.
+
+1. Despeje y calcule la masa de la Tierra a partir de la expresión $$g = Gm_{\text{T}}/R_{\text{T}}^2$$.
+2. Con el resultado, calcule la fuerza gravitacional que la Tierra ejerce sobre una persona de $$70\,\mathrm{kg}$$ en la superficie y compárela con su peso $$mg$$.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Masa de la Tierra**
+
+Despejando $$m_{\text{T}}$$ (con $$R_{\text{T}} = 6{,}38\times 10^6\,\mathrm{m}$$):
+
+$$
+m_{\text{T}} = \frac{g R_{\text{T}}^2}{G} = \frac{(9{,}81\,\mathrm{m/s^2})(6{,}38\times 10^6\,\mathrm{m})^2}{6{,}67\times 10^{-11}\,\mathrm{N\cdot m^2/kg^2}} \approx 5{,}99\times 10^{24}\,\mathrm{kg}
+$$
+
+¡Es posible "pesar" el planeta desde su superficie! El valor coincide con el dato conocido, $$m_{\text{T}} \approx 5{,}98\times 10^{24}\,\mathrm{kg}$$.
+
+**2. Fuerza sobre una persona de 70 kg**
+
+$$
+F_{\text{g}} = \frac{G m_{\text{T}} m}{R_{\text{T}}^2} = \frac{(6{,}67\times 10^{-11})(5{,}99\times 10^{24}\,\mathrm{kg})(70\,\mathrm{kg})}{(6{,}38\times 10^6\,\mathrm{m})^2} \approx 687\,\mathrm{N}
+$$
+
+que coincide, por construcción, con el peso:
+
+$$
+P = mg = (70\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2}) = 687\,\mathrm{N}
+$$
+
+El peso **es** la fuerza gravitacional que el planeta ejerce sobre el cuerpo: la ley de gravitación universal y la relación $$P = mg$$ son la misma física vista desde dos ángulos.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🛰️ La gravedad en órbita">
+Un satélite de comunicaciones gira a unos $$35\,800\,\mathrm{km}$$ de altura sobre la superficie terrestre, mientras que la Estación Espacial Internacional orbita a unos $$400\,\mathrm{km}$$ de altura. Utilice $$m_{\text{T}} = 5{,}98\times 10^{24}\,\mathrm{kg}$$ y $$R_{\text{T}} = 6380\,\mathrm{km}$$.
+
+1. ¿Cuánto vale $$g$$ a la altura del satélite?
+2. ¿Cuánto vale $$g$$ a la altura de la estación?
+3. Si la gravedad a $$400\,\mathrm{km}$$ casi no ha disminuido, ¿por qué los astronautas flotan?
+
+<details>
+<summary>Ver solución</summary>
+
+La distancia se mide siempre desde el **centro** de la Tierra: $$r = R_{\text{T}} + h$$.
+
+**1. $$g$$ a la altura del satélite**
+
+Con $$r = 6380\,\mathrm{km} + 35\,800\,\mathrm{km} = 4{,}218\times 10^7\,\mathrm{m}$$:
+
+$$
+g = \frac{G m_{\text{T}}}{r^2} = \frac{(6{,}67\times 10^{-11})(5{,}98\times 10^{24}\,\mathrm{kg})}{(4{,}218\times 10^7\,\mathrm{m})^2} \approx 0{,}22\,\mathrm{m/s^2}
+$$
+
+**2. $$g$$ a la altura de la estación**
+
+Con $$r = 6380\,\mathrm{km} + 400\,\mathrm{km} = 6{,}78\times 10^6\,\mathrm{m}$$:
+
+$$
+g = \frac{(6{,}67\times 10^{-11})(5{,}98\times 10^{24}\,\mathrm{kg})}{(6{,}78\times 10^6\,\mathrm{m})^2} \approx 8{,}7\,\mathrm{m/s^2}
+$$
+
+**3. ¿Por qué flotan los astronautas?**
+
+A $$400\,\mathrm{km}$$ de altura la gravedad aún vale casi el $$89\%$$ de su valor en la superficie. Los astronautas no flotan porque "no haya gravedad", sino porque la estación y ellos están en **caída libre** permanente alrededor de la Tierra: la fuerza gravitacional es exactamente la fuerza centrípeta que produce su movimiento circular. Al caer todos juntos, no se empujan entre sí y aparentan ingravidez.
+
+</details>
+</Aside>

@@ -1,31 +1,344 @@
 ---
 title: "Leyes del movimiento de Newton"
-description: "Material de lectura para la semana 6."
+description: "Las cuatro fuerzas fundamentales de la naturaleza y las tres leyes del movimiento de Newton: fuerza neta, ley de la inercia y marcos de referencia inerciales, segunda ley (F = ma), la masa como medida de la inercia y tercera ley (acción y reacción)."
 week: 6
-keywords: ["física general I", "semana 6", "TEC Costa Rica"]
+keywords: ["leyes de Newton", "primera ley de Newton", "ley de la inercia", "segunda ley de Newton", "tercera ley de Newton", "acción y reacción", "fuerza neta", "fuerza", "masa", "inercia", "marco de referencia inercial", "newton", "dinámica", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-6"]
-category: "semana-6"
-difficulty: "basic"
+date: 2026-08-31
+readingTime: 16
+tags: ["leyes de Newton", "fuerza", "masa", "dinámica"]
+category: "dinámica"
+difficulty: "intermediate"
 objetivos:
   - "Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial."
   - "Describir vectorialmente las fuerzas que actúan sobre un objeto."
   - "Explicar las tres leyes de Newton y su relación con el análisis del movimiento de los cuerpos en diferentes contextos físicos."
   - "Determinar la aceleración de un objeto a partir de la fuerza neta que actúa sobre éste y su masa."
-draft: true
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial.
+  - Describir vectorialmente las fuerzas que actúan sobre un objeto.
+  - Explicar las tres leyes de Newton y su relación con el análisis del movimiento de los cuerpos en diferentes contextos físicos.
+  - Determinar la aceleración de un objeto a partir de la fuerza neta que actúa sobre éste y su masa.
+</PreCheck>
 
-- Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial.
-- Describir vectorialmente las fuerzas que actúan sobre un objeto.
-- Explicar las tres leyes de Newton y su relación con el análisis del movimiento de los cuerpos en diferentes contextos físicos.
-- Determinar la aceleración de un objeto a partir de la fuerza neta que actúa sobre éste y su masa.
+En las semanas anteriores estudiamos cómo se mueven los cuerpos: el MRU, el MRUA, la caída libre y el movimiento parabólico. Todo eso es **cinemática**: la descripción del movimiento en términos de posición, velocidad y aceleración, sin preguntarse por sus causas. En esta semana damos el paso a la **dinámica**: el estudio de *por qué* ocurre el movimiento, a través de las **fuerzas** que lo provocan o lo modifican. Las **leyes del movimiento de Newton** nos permiten comprender y predecir cómo se mueve un objeto siempre que conozcamos las fuerzas que actúan sobre él.
 
-## Contenido
+## Fuerzas e interacciones
 
-Contenido de la semana 6 próximamente disponible.
+La idea de que la naturaleza está regida por un pequeño número de fuerzas fundamentales ha evolucionado a lo largo de los siglos. Isaac Newton fue pionero en este enfoque con su ley de gravitación universal (siglo XVII), al unificar el movimiento de los cuerpos celestes con el de los objetos en la Tierra. Más tarde, James Clerk Maxwell unificó los fenómenos eléctricos y magnéticos en una sola teoría del electromagnetismo (siglo XIX), y ya en el siglo XX la física nuclear y de partículas identificó dos interacciones nuevas.
+
+En Física se reconoce la existencia de **cuatro fuerzas fundamentales**, que representan los distintos tipos de interacciones posibles entre partículas:
+
+- **Fuerza gravitacional:** la interacción entre cuerpos con masa. Es responsable del fenómeno que percibimos como peso y explica por qué los objetos caen hacia la superficie terrestre con una aceleración de aproximadamente $$9{,}81\,\mathrm{m/s^2}$$.
+- **Fuerza electromagnética:** se manifiesta entre partículas con carga eléctrica. Está asociada a numerosos fenómenos cotidianos: electricidad, magnetismo, fricción, luz, ondas de radio y el funcionamiento de dispositivos tecnológicos.
+- **Fuerza nuclear débil:** responsable de ciertos procesos de desintegración nuclear, como los que ocurren en materiales radiactivos. Desempeña un papel esencial en las transformaciones de partículas subatómicas.
+- **Fuerza nuclear fuerte:** mantiene unidos a los quarks dentro de protones y neutrones, y cohesiona estos nucleones dentro del núcleo atómico.
+
+## Primera ley de Newton: la ley de la inercia
+
+Planteadas por Isaac Newton en 1687 en su obra *Philosophiae Naturalis Principia Mathematica* (los *Principia*), las leyes de Newton son tres principios que permiten explicar la mayoría de los problemas relacionados con el movimiento de cuerpos masivos. Todas se basan en el concepto de **fuerza**: cualquier fenómeno que modifique el movimiento de un cuerpo, es decir, que le produzca una aceleración.
+
+Antes de enunciar la primera ley necesitamos un concepto central. La **fuerza neta** es el resultado (suma vectorial) de todas las fuerzas que actúan sobre un objeto:
+
+$$
+\vec{F}_{\text{neta}} = \sum_{i=1}^{N}\vec{F}_i = \vec{F}_1 + \vec{F}_2 + \cdots + \vec{F}_N
+$$
+
+Con esto, la **primera ley de Newton** —o *ley de la inercia*— establece:
+
+> *"Un cuerpo sobre el que **no** actúa fuerza neta mantendrá su estado de movimiento constante."*
+
+Cuando hablamos de *movimiento constante* se incluye tanto el estado de **reposo** ($$\vec{v} = \vec{0}$$) como el de **velocidad constante** ($$\vec{a} = \vec{0}$$). Un objeto o sistema que no experimenta fuerza neta (y por lo tanto no experimenta aceleración) define un **marco de referencia inercial**, en cuyo caso:
+
+$$
+\vec{F}_{\text{neta}} = \vec{0}
+$$
+
+Esta expresión, al ser una ecuación vectorial, puede expresarse *por componentes*:
+
+$$
+F_{\text{neta},x} = 0, \qquad F_{\text{neta},y} = 0, \qquad F_{\text{neta},z} = 0
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — dos fuerzas en equilibrio**
+
+Sobre un objeto en reposo actúan dos fuerzas: $$F_1 = 100\,\mathrm{N}$$ dirigida a lo largo del eje $$x$$, y $$F_2 = 200\,\mathrm{N}$$ que forma un ángulo $$\theta$$ con ese mismo eje, de modo que su componente horizontal se opone a $$F_1$$. Como el objeto permanece en reposo, la componente $$x$$ de la fuerza neta debe ser cero:
+
+$$
+F_{\text{neta},x} = F_1 - F_2\cos\theta = 0
+$$
+
+de donde:
+
+$$
+\theta = \arccos\left(\frac{F_1}{F_2}\right) = \arccos\left(\frac{100\,\mathrm{N}}{200\,\mathrm{N}}\right) = 60^\circ
+$$
+
+El ángulo que mantiene el equilibrio es de **$$60^\circ$$**.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Un objeto sobre el que no actúa fuerza neta __________.
+
+    <MultipleChoice>
+      <Option>
+        está necesariamente en reposo
+      </Option>
+      <Option isCorrect>
+        mantiene su estado de movimiento: reposo o velocidad constante
+      </Option>
+      <Option>
+        desacelera gradualmente hasta detenerse
+      </Option>
+      <Option>
+        cambia de dirección con el tiempo
+      </Option>
+    </MultipleChoice>
+
+2. Un **marco de referencia inercial** es aquel en el que __________.
+
+    <MultipleChoice>
+      <Option>
+        todos los objetos están en reposo
+      </Option>
+      <Option>
+        la gravedad no actúa
+      </Option>
+      <Option isCorrect>
+        un objeto sin fuerza neta no experimenta aceleración
+      </Option>
+      <Option>
+        la velocidad de todos los objetos es constante
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Segunda ley de Newton: la fuerza y la masa
+
+Cuando la fuerza neta sobre un objeto **es distinta de cero**, el objeto experimenta una aceleración. La **segunda ley de Newton** establece:
+
+> *"La aceleración que experimenta un objeto al someterse a una fuerza neta es proporcional a dicha fuerza."*
+
+$$
+\vec{F}_{\text{neta}} = m\vec{a}
+$$
+
+donde $$\vec{a}$$ es la aceleración que experimenta un objeto de masa $$m$$ cuando está sujeto a una fuerza neta $$\vec{F}_{\text{neta}}$$. Esta relación encierra dos ideas:
+
+- La aceleración es **proporcional a la fuerza neta** y tiene su **misma dirección**: una fuerza neta diferente de cero produce una aceleración en la dirección de la fuerza.
+- La aceleración es **inversamente proporcional a la masa**: a igual fuerza, un objeto más masivo acelera menos. Por eso la **masa es una medida cuantitativa de la inercia**, la tendencia natural de los cuerpos a permanecer en su estado de movimiento.
+
+Como toda ecuación vectorial, la Segunda Ley puede analizarse por componentes:
+
+$$
+F_{\text{neta},x} = ma_x, \qquad F_{\text{neta},y} = ma_y, \qquad F_{\text{neta},z} = ma_z
+$$
+
+Para movimientos a lo largo de una línea recta, suele considerarse "$$x$$" como la dirección a lo largo del movimiento y "$$y$$" la dirección perpendicular a este. En el S.I. las fuerzas se miden en **newtons** (N):
+
+$$
+1\,\mathrm{N} = 1\,\frac{\mathrm{kg}\cdot\mathrm{m}}{\mathrm{s}^2}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — dos fuerzas y una aceleración**
+
+Sobre un objeto de masa $$m = 20\,\mathrm{kg}$$ actúan dos fuerzas: $$F_1 = 100\,\mathrm{N}$$ a lo largo del eje $$x$$, y $$F_2 = 200\,\mathrm{N}$$ que forma un ángulo $$\theta = 30^\circ$$ con ese eje, oponiéndose a $$F_1$$ en la dirección horizontal. La componente $$x$$ de la fuerza neta produce una aceleración:
+
+$$
+a_x = \frac{F_1 - F_2\cos\theta}{m} = \frac{100\,\mathrm{N} - (200\,\mathrm{N})\cos 30^\circ}{20\,\mathrm{kg}} = \frac{100\,\mathrm{N} - 173{,}2\,\mathrm{N}}{20\,\mathrm{kg}} \approx -3{,}7\,\mathrm{m/s^2}
+$$
+
+El signo negativo indica que el objeto **acelera en el sentido negativo** del eje $$x$$: la componente horizontal de $$F_2$$ supera a $$F_1$$.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Si la fuerza neta sobre un objeto se duplica (sin cambiar su masa), su aceleración __________.
+
+    <MultipleChoice>
+      <Option>
+        no cambia
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+      <Option isCorrect>
+        se duplica
+      </Option>
+      <Option>
+        se cuadruplica
+      </Option>
+    </MultipleChoice>
+
+2. Una fuerza neta de $$10\,\mathrm{N}$$ actúa sobre un objeto de masa $$2{,}0\,\mathrm{kg}$$. Su aceleración es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$20\,\mathrm{m/s^2}$$
+      </Option>
+      <Option isCorrect>
+        $$5{,}0\,\mathrm{m/s^2}$$
+      </Option>
+      <Option>
+        $$0{,}20\,\mathrm{m/s^2}$$
+      </Option>
+      <Option>
+        $$12\,\mathrm{m/s^2}$$
+      </Option>
+    </MultipleChoice>
+
+3. La dirección de la aceleración de un objeto es __________.
+
+    <MultipleChoice>
+      <Option>
+        siempre la misma que la de su velocidad
+      </Option>
+      <Option isCorrect>
+        la misma que la de la fuerza neta
+      </Option>
+      <Option>
+        opuesta a la de la fuerza neta
+      </Option>
+      <Option>
+        perpendicular a la de la fuerza neta
+      </Option>
+    </MultipleChoice>
+
+4. En el Sistema Internacional, $$1\,\mathrm{N}$$ equivale a __________.
+
+    <MultipleChoice>
+      <Option>
+        $$1\,\mathrm{kg}\cdot\mathrm{m/s}$$
+      </Option>
+      <Option>
+        $$1\,\mathrm{kg}\cdot\mathrm{m^2/s^2}$$
+      </Option>
+      <Option isCorrect>
+        $$1\,\mathrm{kg}\cdot\mathrm{m/s^2}$$
+      </Option>
+      <Option>
+        $$1\,\mathrm{kg/m}\cdot\mathrm{s^2}$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Tercera ley de Newton: acción y reacción
+
+La **tercera ley de Newton** —o *ley de acción y reacción*— establece:
+
+> *"A toda (fuerza de) acción corresponde una (fuerza de) reacción, de igual magnitud pero de sentido opuesto."*
+
+Las fuerzas siempre surgen de **interacciones**: si un cuerpo $$A$$ ejerce una fuerza sobre un cuerpo $$B$$, entonces $$B$$ ejerce sobre $$A$$ una fuerza de igual magnitud y sentido opuesto:
+
+$$
+\vec{F}_{A \to B} = -\vec{F}_{B \to A}
+$$
+
+Un detalle esencial: las fuerzas de un par acción-reacción **actúan sobre cuerpos diferentes**. Por eso no se cancelan entre sí: cada fuerza actúa sobre un objeto distinto, y solo las fuerzas que actúan *sobre el mismo objeto* se suman para formar la fuerza neta.
+
+<Box icon="check-list">
+
+**Ejemplo — un libro sobre la mesa**
+
+Sobre un libro de masa $$m$$ apoyado en reposo sobre una mesa horizontal actúan dos fuerzas: el **peso** $$\vec{P} = m\vec{g}$$ (hacia abajo) y la **normal** $$\vec{N}$$ (hacia arriba), que ejerce la mesa. Como el libro está en equilibrio:
+
+$$
+\sum F_y = N - mg = 0 \quad \Rightarrow \quad N = mg
+$$
+
+Es tentador decir que la normal es "la reacción" del peso, pero **no** forman un par acción-reacción: ambas actúan sobre el mismo cuerpo (el libro). Los verdaderos pares de la tercera ley son:
+
+- el peso del libro (la Tierra atrae al libro) y la fuerza con que el libro atrae a la Tierra;
+- la normal de la mesa sobre el libro y la fuerza con que el libro empuja hacia abajo a la mesa.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Las fuerzas de un par acción-reacción __________.
+
+    <MultipleChoice>
+      <Option>
+        actúan sobre el mismo cuerpo y se cancelan entre sí
+      </Option>
+      <Option isCorrect>
+        actúan sobre cuerpos diferentes
+      </Option>
+      <Option>
+        tienen magnitudes ligeramente distintas
+      </Option>
+      <Option>
+        apuntan en el mismo sentido
+      </Option>
+    </MultipleChoice>
+
+2. El par acción-reacción del **peso** de un libro es __________.
+
+    <MultipleChoice>
+      <Option>
+        la fuerza normal que ejerce la mesa sobre el libro
+      </Option>
+      <Option>
+        el peso de la mesa
+      </Option>
+      <Option isCorrect>
+        la fuerza con que el libro atrae a la Tierra
+      </Option>
+      <Option>
+        la fricción entre el libro y la mesa
+      </Option>
+    </MultipleChoice>
+
+3. Un libro descansa en reposo sobre una mesa. La normal $$N$$ y el peso $$mg$$ __________.
+
+    <MultipleChoice>
+      <Option>
+        forman un par acción-reacción
+      </Option>
+      <Option isCorrect>
+        tienen la misma magnitud, pero no forman un par acción-reacción
+      </Option>
+      <Option>
+        tienen magnitudes distintas porque el libro pesa más
+      </Option>
+      <Option>
+        se suman para dar una fuerza neta hacia arriba
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Enunciado | Expresión |
+| :--- | :--- | :--- |
+| Fuerza neta | suma vectorial de todas las fuerzas sobre un objeto | $$\vec{F}_{\text{neta}} = \sum_{i=1}^{N}\vec{F}_i$$ |
+| Primera ley (inercia) | sin fuerza neta, el estado de movimiento se mantiene (reposo o $$\vec{v}$$ constante) | $$\vec{F}_{\text{neta}} = \vec{0}$$ |
+| Segunda ley (fuerza y masa) | la aceleración es proporcional a la fuerza neta e inversamente proporcional a la masa | $$\vec{F}_{\text{neta}} = m\vec{a}$$ |
+| Tercera ley (acción-reacción) | fuerzas mutuas de igual magnitud y sentido opuesto, sobre cuerpos distintos | $$\vec{F}_{A \to B} = -\vec{F}_{B \to A}$$ |
+| Unidad de fuerza | el newton (N) | $$1\,\mathrm{N} = 1\,\mathrm{kg}\cdot\mathrm{m/s^2}$$ |
+
+La idea clave de esta semana es que **las fuerzas explican los cambios de movimiento**: un objeto solo acelera cuando sobre él actúa una fuerza neta diferente de cero. El método general de la dinámica consiste en identificar todas las fuerzas que actúan sobre un cuerpo, sumarlas vectorialmente y aplicar la Segunda Ley por componentes. En la práctica de esta semana pondremos esto a trabajar con cajas, ascensores y patinadores, y en la próxima semana lo sistematizaremos con el **diagrama de cuerpo libre**.
