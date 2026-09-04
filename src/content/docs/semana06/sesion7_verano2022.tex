@@ -1,0 +1,140 @@
+\setcounter{page}{49}
+\setcounter{chapter}{5}
+
+\chapter{Leyes del movimiento de Newton}
+\label{cap:cap6}
+\vspace{-15ex}
+
+
+\raggedright
+
+Hasta ahora hemos descrito casos como el movimiento rectilíneo uniforme (M.R.U.) o el movimiento rectilíneo uniformemente acelerado (M.R.U.A.), sin profundizar en lo que genera dicho movimiento. \\[.35cm]
+
+Las leyes del movimiento de Newton nos permiten comprender y predecir cómo se mueve un objeto, especialmente en lo que respecta a su aceleración, siempre que se conozcan las fuerzas que actúan sobre él y modifican su estado de movimiento.\\[.35cm]
+
+En este contexto, es importante distinguir entre cinemática y dinámica. La cinemática se ocupa de describir el movimiento de los cuerpos sin considerar sus causas, es decir, analiza cómo se mueven los objetos en términos de posición, velocidad y aceleración. Por otro lado, la dinámica se enfoca en entender por qué ocurre el movimiento, estudiando las fuerzas que lo provocan o lo modifican. Es a través de la dinámica que se puede establecer una conexión entre el comportamiento observado de un objeto y las interacciones físicas que lo afectan
+
+\section{Fuerzas e interacciones}
+La idea de que la naturaleza está regida por un pequeño número de fuerzas fundamentales ha evolucionado a lo largo de los siglos. Isaac Newton fue pionero en este enfoque con su formulación de la ley de gravitación universal en el siglo XVII, al unificar el movimiento de los cuerpos celestes con el de los objetos en la Tierra. Más tarde, en el siglo XIX, James Clerk Maxwell unificó los fenómenos eléctricos y magnéticos en una sola teoría del electromagnetismo. Ya en el siglo XX, el desarrollo de la física nuclear y de partículas permitió identificar dos nuevas interacciones: la fuerza nuclear fuerte y la fuerza nuclear débil, fundamentales para entender la estructura del núcleo atómico y los procesos de decaimiento radiactivo. El esfuerzo por unificar todas estas interacciones en una teoría coherente continúa hoy en día como uno de los mayores desafíos de la física teórica.\\[.35cm  ]
+
+En Física, se reconoce la existencia de cuatro fuerzas fundamentales, que representan los distintos tipos de interacciones posibles entre partículas, según su naturaleza. Estas fuerzas son:
+
+\begin{itemize} \item[$\bullet$] \textbf{Fuerza gravitacional:} es la interacción que se da entre cuerpos con masa. Es la responsable del fenómeno que comúnmente percibimos como peso y explica por qué los objetos tienden a caer hacia la superficie terrestre. Esta fuerza genera una aceleración dirigida hacia el centro del planeta, cuyo valor es aproximadamente 9,81 m/s$^{2}$ en la superficie de la Tierra.
+
+\item[$\bullet$] \textbf{Fuerza electromagnética:} esta interacción se manifiesta entre partículas que poseen carga eléctrica. La fuerza electromagnética está asociada a numerosos fenómenos del entorno cotidiano, como la electricidad, el magnetismo, la fricción, la luz, las ondas de radio y el funcionamiento de dispositivos tecnológicos.
+
+\item[$\bullet$] \textbf{Fuerza nuclear débil:} esta fuerza es responsable de ciertos procesos de desintegración nuclear, como los que ocurren en materiales radiactivos. Desempeña un papel esencial en las transformaciones de partículas subatómicas.
+
+\item[$\bullet$] \textbf{Fuerza nuclear fuerte:} es la interacción encargada de mantener unidos a los quarks dentro de protones y neutrones, y de mantener cohesionados estos nucleones dentro del núcleo atómico. \end{itemize}
+
+\section{Leyes del movimiento de Newton}
+
+Planteadas por Isaac Newton en 1687 en su obra \textit{Philosophiae Naturalis Principia Mathematica}\footnote{``\textit{Principios matem\'aticos de la filosof\'ia natural}'', tambi\'en conocido simplemente como Principia.}, las \textit{leyes de Newton} son 3 principios que permiten explicar la mayor\'ia de problemas relacionados con el movimiento de  cuerpos masivos. \\[.35cm]
+
+Las leyes del movimiento de Newton se basan en el concepto de \textit{fuerza}. Este concepto representa, en general, cualquier fen\'omeno que modifique el movimiento de un cuerpo; es decir, que le produzca una aceleraci\'on.
+
+
+\resp{.75\textwidth}{
+\textbf{Primera ley de Newton $-$ Ley de la inercia} \\[.35cm]
+
+\textit{``Un cuerpo sobre el que \textbf{NO} act\'ua  fuerza neta mantendr\'a su estado de movimiento constante.''}}{white}{uno_turquesa} 
+
+ La \textbf{fuerza neta}, $\vec{F}_{\text{neta}}$, se define como el resultado (suma vectorial) de todas las fuerzas $\vec{F}_1,\vec{F}_2,\ldots,\vec{F}_N$ que act\'uan sobre un objeto:
+\begin{equation}
+\vec{F}_{\text{neta}}=\sum_{i=1}^N \vec{F}_i=\vec{F}_{1}+\vec{F}_{2}+\cdots +\vec{F}_{N}.
+\end{equation}
+(Figura \ref{fig:fneta}.)\\[.35cm]
+Cuando se hace referencia a \textit{movimiento constante} al enunciar la Primer Ley de Newton, se incluye tanto el estado de reposo (equilibrio, $\vec{v}=\vec{0}$) como el de velocidad constante ($\vec{a}=\vec{0}$).\\[.35cm]
+
+Un objeto o sistema que experimenta una fuerza neta nula (y por lo tanto no experimenta aceleraci\'on) define un \textit{marco de referencia inercial}; en cuyo caso  podemos decir que\\[.35cm]
+$$ \vec{F}_\text{neta}=\vec{0}.  $$
+Esta expresi\'on, al ser una ecuaci\'on vectorial, puede expresarse \textit{por componentes}:
+\begin{equation}
+F_{\text{neta,}x}=0,\quad F_{\text{neta,}y}=0,\quad F_{\text{neta,}z}=0
+\end{equation}
+\begin{wwteorema}{Ejemplo Primera ley de Newton}
+Dos fuerzas $F_1= 100\U{N}$ y $F_2= 200\U{N}$ act\'uan sobre un objeto que se mantiene en reposo.
+\begin{center}
+    \includegraphics[width=3.5in]{planeamiento_didactico/figuras/fuerzas1.png}
+\end{center}
+
+Esta condici\'on implica que $$F_{\text{neta,}x}=F_1-F_2\cos\theta=0,$$
+de donde se obtiene que el valor de $\theta$ que satisface la condici\'on es $$\theta=\arccos \left(\frac{F_1}{F_2}\right)=60^\circ $$
+\end{wwteorema}   
+
+Cuando la fuerza neta sobre un objeto o sistema es distinta de cero, este experimentar\'a una aceleraci\'on:
+
+\resp{.75\textwidth}{
+ \textbf{Segunda ley de Newton $-$ La fuerza y la masa} \\[.35cm]
+ 
+ \textit{``La aceleraci\'on que experimenta un objeto al someterse a una fuerza neta es proporcional a dicha fuerza.''}
+\begin{equation}
+\vec{F}_\text{neta}=m\vec{a},
+\label{eq:newton00}
+\end{equation} 
+ }{white}{dos_naranja}
+
+ donde $\vec{a}$ es la aceleraci\'on que experimenta un objeto de masa $m$ cuando est\'a sujeto a una fuerza neta $\vec{F}_\text{neta}$. \\[.35cm]
+ 
+ Ya que en ausencia de fuerzas, el movimiento de un cuerpo es uniforme y rectil\'ineo; la acci\'on de una fuerza debe ser la de producir aceleraciones, modificando las trayectorias o velocidades que este tendr\'ia si estuviese libre. La segunda ley de Newton establece la relaci\'on que existe entre las fuerzas que act\'uan sobre un objeto y la aceleraci\'on que este experimenta. Note adem\'as que la aceleraci\'on es inversamente proporcional a la masa del objeto; raz\'on por la cual la \textit{masa} es una medida cuantitativa de la inercia, la tendencia natural de los cuerpos de permanecer en su estado de movimiento. \\[.35cm] 
+ 
+Esto también quiere decir que una fuerza neta diferente de cero actuando sobre un cuerpo produce una aceleración en la misma dirección de la fuerza neta.\\[.35cm]
+
+De nuevo, podemos expresar la Segunda Ley de Newton por componentes:
+Cabe recalcar que la ecuaci\'on \eqref{eq:newton00} es una ecuaci\'on vectorial, de manera puede analizarse por componentes:
+\begin{equation}
+F_{\text{neta},x}=ma_{x},\quad 
+F_{\text{neta},y}=ma_{y},\quad
+F_{\text{neta},z}=ma_{z};
+\end{equation}
+
+donde $F_{\text{neta},i}$ y  $a_{i}$ representan la fuerza neta y la aceleraci\'on en la direcci\'on $i$, respectivamente. Por ejemplo, en la Figura \ref{fig:fnetaescalar} se muestra que el efecto de una fuerza sobre un objeto puede analizarse considerando las componentes de dicha fuerza a lo largo de las distintas direcciones. \\[.35cm] 
+\begin{wwteorema}{Ejemplo Segunda ley de Newton}
+Dos fuerzas $F_1= 100\U{N}$ y $F_2= 200\U{N}$, $\theta=30^\circ$ act\'uan sobre un objeto de masa $m=20\U{kg}$.
+\begin{center}
+    \includegraphics[width=3.5in]{planeamiento_didactico/figuras/fuerzas1.png}
+\end{center}
+
+Esta condici\'on implica que $$\sum F_{x}=F_1-F_2\cos\theta=ma_x,$$
+de donde  $$a_x=\frac{F_1-F_2\cos\theta}{m}=-3.7\U{m/s}^2$$
+\end{wwteorema}  
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=3in]{planeamiento_didactico/figuras/fuerza3.png}
+\caption{La \textit{fuerza neta} es la \textbf{suma vectorial} de las fuerzas que act\'uan sobre un objeto/sistema.}
+\label{fig:fneta}
+\end{figure}
+
+En el S.I, las fuerzas se miden en Newtons (N): $$1\units{N}=1\frac{\units{kg}\cdot\mbox{m}}{\mbox{s}^{2}}. $$
+
+
+
+\begin{figure}[h!]
+\centering
+\begin{tabular}{cc}
+\hspace{-5ex}\includegraphics[width=3in]{planeamiento_didactico/figuras/fuerza1.png}&\includegraphics[width=3in]{planeamiento_didactico/figuras/fuerza2.png}
+\end{tabular}
+\caption{El efecto de una fuerza puede analizarse ``por componentes''.}
+\label{fig:fnetaescalar}
+\end{figure}
+
+Para movimientos a lo largo de una l\'inea recta, suele considerarse ``$x$''  como la direcci\'on a lo largo del movimiento y ``$y$'' la direcci\'on perpendicular a este.  \\[.35cm]
+
+\resp{.75\textwidth}{
+ \textbf{Tercer Ley de Newton $-$ Ley de acci\'on-reacci\'on} \\[.35cm]
+
+\textit{``A toda (fuerza de) acci\'on corresponde un (fuerza de) reacci\'on, de igual magnitud pero de sentido opuesto.''}
+ }{white}{tres_turquesa}
+
+\begin{wwteorema}{Ejemplo Tercer ley de Newton}
+Sobre un objeto de masa $m=20\U{kg}$ act\'ua una fuerza $\vec{P}=m\vec{g}$, llamada \textit{peso}.
+\begin{center}
+    \includegraphics[width=3.5in]{planeamiento_didactico/figuras/normal1.png}
+\end{center}
+
+Si el cuerpo se encuentra en reposo sobre una superficie horizontal, debe existir una \textit{reacci\'on} que "equilibre" el sistema, de manera que
+$$\sum F_{y}=-mg+N=0,$$
+de donde $N=mg$.
+\end{wwteorema} 
