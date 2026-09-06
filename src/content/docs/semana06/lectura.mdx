@@ -23,6 +23,8 @@ import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import FuerzaComponentes from "../../../assets/fuerza_componentes.svg";
+import CajonFuerzas from "../../../assets/cajon.svg";
+import DiagramaCuerpoLibre from "../../../assets/DCL.svg";
 
 
 <PreCheck>
@@ -475,7 +477,12 @@ Para construirlo, siga estos pasos:
 4. **Dibuje una flecha por cada fuerza**, que salga del objeto y apunte en la dirección de la fuerza, rotulada con su nombre: $$\vec{P}$$, $$\vec{N}$$, $$\vec{T}$$, $$\vec{f}$$, $$\vec{F}$$.
 5. **Elija ejes convenientes** (por ejemplo, $$x$$ a lo largo del movimiento): con ellos podrá aplicar la Segunda Ley componente a componente.
 
-Considere un cajón que una persona jala con una cuerda sobre un piso áspero. El DCL del cajón contiene exactamente cuatro fuerzas:
+Considere un cajón que una persona jala con una cuerda sobre un piso áspero.
+
+<Image src={CajonFuerzas} alt="Un cajón sobre una superficie horizontal, se señalan las fuerzas que actúan sobre el." layout='constrained' width={435} height={334}/>
+
+
+El DCL del cajón contiene exactamente cuatro fuerzas:
 
 | Fuerza | ¿Quién la ejerce? | ¿Hacia dónde apunta? |
 | :--- | :--- | :--- |
@@ -483,6 +490,9 @@ Considere un cajón que una persona jala con una cuerda sobre un piso áspero. E
 | Peso $$\vec{P}$$ | la Tierra | verticalmente hacia abajo |
 | Normal $$\vec{N}$$ | el piso | perpendicular al piso, hacia arriba |
 | Fricción $$\vec{f}$$ | el piso | paralela al piso, opuesta al movimiento |
+
+
+<Image src={DiagramaCuerpoLibre} alt="El diagrama de cuerpo libre representa todas las fuerzas que actuan sobre un objeto como si actuaran en el mismo punto" layout='constrained' width={320} height={333}/>
 
 Dos errores clásicos que el DCL ayuda a evitar:
 
