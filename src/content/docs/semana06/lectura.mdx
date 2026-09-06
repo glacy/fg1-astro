@@ -25,7 +25,7 @@ import Option from '../../../components/Option.astro';
 import FuerzaComponentes from "../../../assets/fuerza_componentes.svg";
 import CajonFuerzas from "../../../assets/cajon.svg";
 import DiagramaCuerpoLibre from "../../../assets/DCL.svg";
-
+import { Steps } from '@astrojs/starlight/components';
 
 <PreCheck>
   - Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial.
@@ -220,7 +220,7 @@ $$
 a_x = \frac{F_1 - F_2\cos\theta}{m} = \frac{100\,\mathrm{N} - (200\,\mathrm{N})\cos 30^\circ}{20\,\mathrm{kg}} = \frac{100\,\mathrm{N} - 173{,}2\,\mathrm{N}}{20\,\mathrm{kg}} \approx -3{,}7\,\mathrm{m/s^2}
 $$
 
-El signo negativo indica que el objeto **acelera en el sentido negativo** del eje $$x$$: la componente horizontal de $$F_2$$ supera a $$F_1$$.
+El signo negativo indica que el objeto **acelera en el sentido negativo** del eje $$x$$: la componente horizontal de $$F_2$$ supera a $$F_1.$$
 
 </Box>
 
@@ -345,16 +345,16 @@ Su masa es la misma en ambos lugares; lo que cambia es la fuerza gravitacional q
 
     <MultipleChoice>
       <Option>
-        su masa y su peso no cambian
+        su masa y su peso se anulan
       </Option>
       <Option>
+        su masa y su peso no cambian
+      </Option>
+       <Option>
         su masa cambia, pero su peso no
       </Option>
       <Option isCorrect>
         su masa no cambia, pero su peso sí
-      </Option>
-      <Option>
-        su masa y su peso se anulan
       </Option>
     </MultipleChoice>
 
@@ -475,11 +475,15 @@ Un DCL es un dibujo simplificado en el que el objeto de interés aparece **aisla
 
 Para construirlo, siga estos pasos:
 
+<Steps>
 1. **Elija el objeto** cuyo movimiento quiere analizar: el libro, el ascensor con su pasajero, el cajón que se arrastra.
-2. **Dibújelo aislado**: un recuadro o un punto, sin mesas, cuerdas ni manos a su alrededor.
+Si el sistema contiene mas de un objeto, deberá realizar un dcL por cada objeto.
+
+2. **Dibújelo aislado**: un recuadro o un punto, sin mesas, cuerdas ni manos a su alrededor. 
 3. **Pregúntese qué objetos interactúan con él**: los que lo tocan (superficies, cuerdas, manos → fuerzas de contacto) y la Tierra (→ peso).
 4. **Dibuje una flecha por cada fuerza**, que salga del objeto y apunte en la dirección de la fuerza, rotulada con su nombre: $$\vec{P}$$, $$\vec{N}$$, $$\vec{T}$$, $$\vec{f}$$, $$\vec{F}$$.
 5. **Elija ejes convenientes** (por ejemplo, $$x$$ a lo largo del movimiento): con ellos podrá aplicar la Segunda Ley componente a componente.
+</Steps>
 
 Considere un cajón que una persona jala con una cuerda sobre un piso áspero.
 
