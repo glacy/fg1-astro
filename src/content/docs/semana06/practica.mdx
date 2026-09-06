@@ -1,7 +1,7 @@
 ---
 title: "Práctica"
 week: 6
-keywords: ["leyes de Newton", "primera ley de Newton", "equilibrio", "ley de la inercia", "segunda ley de Newton", "fuerza neta", "normal", "peso", "tercera ley de Newton", "acción y reacción", "marco de referencia inercial", "newton", "dinámica", "física general I", "TEC Costa Rica"]
+keywords: ["leyes de Newton", "primera ley de Newton", "equilibrio", "ley de la inercia", "segunda ley de Newton", "fuerza neta", "normal", "peso", "masa y peso", "peso aparente", "tercera ley de Newton", "acción y reacción", "marco de referencia inercial", "newton", "dinámica", "física general I", "TEC Costa Rica"]
 draft: false
 ---
 import { Aside } from '@astrojs/starlight/components';
@@ -47,7 +47,7 @@ Una persona de $$60\,\mathrm{kg}$$ viaja en un ascensor. Determina la fuerza nor
 2. sube con una aceleración de $$1{,}5\,\mathrm{m/s^2}$$;
 3. baja con una aceleración de $$1{,}5\,\mathrm{m/s^2}$$.
 
-¿En qué caso se siente "más pesada"? Usa $$g = 9{,}81\,\mathrm{m/s^2}$$.
+¿En qué caso se siente "más pesada"? Usa $$g = 9{,}8\,\mathrm{m/s^2}$$.
 
 <details>
 <summary>Ver solución</summary>
@@ -57,22 +57,22 @@ La Segunda Ley aplicada a la dirección $$y$$ (positiva hacia arriba) da $$F_{\t
 **1. En reposo** ($$a = 0$$):
 
 $$
-N = mg = (60\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2}) \approx 589\,\mathrm{N}
+N = mg = (60\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2}) \approx 588\,\mathrm{N}
 $$
 
 **2. Subiendo con aceleración hacia arriba** ($$a = +1{,}5\,\mathrm{m/s^2}$$):
 
 $$
-N = (60\,\mathrm{kg})(9{,}81 + 1{,}5)\,\mathrm{m/s^2} = (60)(11{,}31) \approx 679\,\mathrm{N}
+N = (60\,\mathrm{kg})(9{,}8 + 1{,}5)\,\mathrm{m/s^2} = (60)(11{,}3) \approx 678\,\mathrm{N}
 $$
 
 **3. Bajando con aceleración hacia abajo** ($$a = -1{,}5\,\mathrm{m/s^2}$$):
 
 $$
-N = (60\,\mathrm{kg})(9{,}81 - 1{,}5)\,\mathrm{m/s^2} = (60)(8{,}31) \approx 499\,\mathrm{N}
+N = (60\,\mathrm{kg})(9{,}8 - 1{,}5)\,\mathrm{m/s^2} = (60)(8{,}3) \approx 498\,\mathrm{N}
 $$
 
-La persona se siente **más pesada cuando el ascensor acelera hacia arriba** ($$679\,\mathrm{N}$$) y más ligera cuando acelera hacia abajo ($$499\,\mathrm{N}$$): lo que sentimos como "peso" es la fuerza normal, no $$mg$$.
+La persona se siente **más pesada cuando el ascensor acelera hacia arriba** ($$678\,\mathrm{N}$$) y más ligera cuando acelera hacia abajo ($$498\,\mathrm{N}$$): lo que sentimos como "peso" es la fuerza normal, no $$mg$$.
 
 </details>
 </Aside>
@@ -151,7 +151,7 @@ Para que la fuerza neta sea cero, la tercera fuerza debe tener la **misma magnit
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 5 — 📚 El libro sobre la mesa">
-Un libro de $$1{,}5\,\mathrm{kg}$$ descansa en reposo sobre una mesa horizontal. Usa $$g = 9{,}81\,\mathrm{m/s^2}$$.
+Un libro de $$1{,}5\,\mathrm{kg}$$ descansa en reposo sobre una mesa horizontal. Usa $$g = 9{,}8\,\mathrm{m/s^2}$$.
 
 1. ¿Cuál es el peso del libro?
 2. ¿Cuál es la fuerza normal que ejerce la mesa?
@@ -163,7 +163,7 @@ Un libro de $$1{,}5\,\mathrm{kg}$$ descansa en reposo sobre una mesa horizontal.
 **1. Peso**
 
 $$
-P = mg = (1{,}5\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2}) \approx 15\,\mathrm{N}
+P = mg = (1{,}5\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2}) \approx 15\,\mathrm{N}
 $$
 
 **2. Fuerza normal**
@@ -210,6 +210,39 @@ a_{\text{ella}} = \frac{F}{m_{\text{ella}}} = \frac{35\,\mathrm{N}}{50\,\mathrm{
 $$
 
 Ambos experimentan fuerzas de igual magnitud y sentido opuesto, pero ella acelera más (**$$0{,}70\,\mathrm{m/s^2}$$** contra **$$0{,}50\,\mathrm{m/s^2}$$**) porque su masa es menor: la aceleración es inversamente proporcional a la masa.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🚀 El viajero espacial">
+Una estudiante de masa $$55\,\mathrm{kg}$$ participa en un programa de entrenamiento espacial. Use los valores de la aceleración gravitacional: Tierra $$g_T = 9{,}8\,\mathrm{m/s^2}$$, Marte $$g_M = 3{,}71\,\mathrm{m/s^2}$$, Luna $$g_L = 1{,}62\,\mathrm{m/s^2}$$.
+
+1. ¿Cuál es su masa y cuál su peso en la Tierra?
+2. Calcule su peso en Marte y en la Luna. ¿Cambian su masa o su inercia en alguno de estos lugares?
+3. Durante el viaje, la nave flota en órbita y la estudiante "flota" dentro de ella, como si no pesara. ¿Significa esto que su masa se anuló? Explique con el concepto de peso aparente.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. En la Tierra**
+
+La masa es una propiedad del cuerpo: $$m = 55\,\mathrm{kg}$$, sin importar el lugar. El peso, en cambio, es la fuerza gravitacional del astro:
+
+$$
+P_T = mg_T = (55\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2}) \approx 540\,\mathrm{N}
+$$
+
+**2. En Marte y en la Luna**
+
+$$
+P_M = (55\,\mathrm{kg})(3{,}71\,\mathrm{m/s^2}) \approx 204\,\mathrm{N}, \qquad P_L = (55\,\mathrm{kg})(1{,}62\,\mathrm{m/s^2}) \approx 89\,\mathrm{N}
+$$
+
+Su masa —y con ella su inercia— es la misma en los tres lugares.
+
+**3. Flotar en órbita**
+
+No, su masa no se anuló. La estudiante conserva su inercia: si viniera flotando hacia usted, costaría trabajo detenerla. Lo que ocurre es que la nave y ella *caen juntos* hacia la Tierra con la misma aceleración $$g$$, de modo que la nave no ejerce fuerza normal sobre su cuerpo y una báscula marcaría cero. Lo que se hace cero es su **peso aparente** (la fuerza normal), no su masa ni la atracción gravitacional de la Tierra.
 
 </details>
 </Aside>
