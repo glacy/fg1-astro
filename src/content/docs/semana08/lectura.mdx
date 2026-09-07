@@ -1,33 +1,404 @@
 ---
-title: "MCU, velocidad relativa y Fuerza gravitacional"
-description: "Material de lectura para la semana 8."
+title: "Movimiento circular y gravitación"
+description: "Movimiento circular uniforme: aceleración centrípeta, período y frecuencia; movimiento relativo entre observadores; y ley de gravitación universal de Newton: fuerza gravitacional, cuerpos esféricamente simétricos, peso y variación de g con la altura."
 week: 8
-keywords: ["física general I", "semana 8", "TEC Costa Rica"]
+keywords: ["movimiento circular uniforme", "MCU", "aceleración centrípeta", "período", "frecuencia", "hertz", "movimiento relativo", "velocidad relativa", "marco de referencia", "gravitación", "ley de gravitación universal", "constante de gravitación", "peso", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-8"]
-category: "semana-8"
-difficulty: "basic"
+date: 2026-08-31
+readingTime: 18
+tags: ["movimiento circular", "aceleración centrípeta", "movimiento relativo", "gravitación"]
+category: "dinámica"
+difficulty: "intermediate"
 objetivos:
-  - "Analizar el movimiento en una trayectoria circular con rapidez constante."
-  - "Relacionar la fuerza neta en un movimiento circular uniforme con la aceleración centrípeta."
-  - "Relacionar la velocidad de un cuerpo en movimiento visto desde dos marcos de referencia distintos."
-  - "Calcular las fuerzas gravitacionales que dos cuerpos cualesquiera ejercen uno sobre el otro."
-  - "Relacionar el peso de un objeto con la expresión general de la fuerza gravitacional."
-draft: true
+  - "Describir el movimiento circular uniforme en términos de su rapidez, período y frecuencia."
+  - "Aplicar la Segunda Ley de Newton al movimiento circular uniforme mediante la aceleración centrípeta."
+  - "Relacionar las velocidades y posiciones medidas por dos observadores que se mueven con velocidad relativa constante."
+  - "Aplicar la ley de gravitación universal al cálculo de fuerzas gravitacionales, el peso y la variación de g con la altura."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Describir el movimiento circular uniforme en términos de su rapidez, período y frecuencia.
+  - Aplicar la Segunda Ley de Newton al movimiento circular uniforme mediante la aceleración centrípeta.
+  - Relacionar las velocidades y posiciones medidas por dos observadores que se mueven con velocidad relativa constante.
+  - Aplicar la ley de gravitación universal al cálculo de fuerzas gravitacionales, el peso y la variación de g con la altura.
+</PreCheck>
 
-- Analizar el movimiento en una trayectoria circular con rapidez constante.
-- Relacionar la fuerza neta en un movimiento circular uniforme con la aceleración centrípeta.
-- Relacionar la velocidad de un cuerpo en movimiento visto desde dos marcos de referencia distintos.
-- Calcular las fuerzas gravitacionales que dos cuerpos cualesquiera ejercen uno sobre el otro.
-- Relacionar el peso de un objeto con la expresión general de la fuerza gravitacional.
+En las semanas anteriores estudiamos el movimiento a lo largo de una línea recta (MRU y MRUA) y el movimiento parabólico como el caso bidimensional más importante. En esta semana damos dos pasos más: primero, el **movimiento circular uniforme**, el movimiento sobre una trayectoria curva con rapidez constante, presente desde los planetas y satélites artificiales hasta los mecanismos rotatorios de la maquinaria industrial. Luego veremos cómo **relacionar las descripciones** que hacen dos observadores que se mueven uno respecto al otro. Finalmente conoceremos la **ley de gravitación universal** de Newton: la fuerza que mantiene a los planetas en órbita y que explica el peso de los cuerpos.
 
-## Contenido
+## Movimiento circular uniforme (MCU)
 
-Contenido de la semana 8 próximamente disponible.
+El **Movimiento Circular Uniforme (MCU)** es un tipo de movimiento en el que un objeto describe una trayectoria circular con **rapidez constante**. Aunque la magnitud de la velocidad no cambia, la dirección del movimiento sí lo hace constantemente, lo que implica la existencia de una **aceleración centrípeta** dirigida siempre hacia el centro del círculo.
+
+La aceleración centrípeta es la responsable de este cambio de dirección. Se trata de una aceleración que:
+
+- siempre apunta hacia el **centro** del círculo;
+- **no cambia la rapidez** del objeto, solo la dirección de su velocidad;
+- es esencial para mantener al objeto en movimiento circular.
+
+Si denotamos por $$v$$ la rapidez constante del movimiento y por $$R$$ el radio de la trayectoria circular, la magnitud de la aceleración centrípeta, denotada $$a_{\text{rad}}$$, está dada por:
+
+$$
+a_{\text{rad}} = \frac{v^2}{R}
+$$
+
+El MCU es el resultado de cualquier combinación de fuerzas que produzca una fuerza neta $$\sum \vec{F}$$ de magnitud constante y dirigida siempre hacia el centro del círculo; por lo tanto, al aplicar la Segunda Ley de Newton a un MCU, tenemos que:
+
+$$
+\sum \vec{F} = m \vec{a}_{\text{rad}}, \qquad \left|\sum \vec{F}\right| = m\frac{v^2}{R}
+$$
+
+En el contexto del MCU, el **período** se define como el tiempo que tarda un objeto en dar una vuelta completa alrededor de la trayectoria circular. Se representa con la letra $$T$$ y su unidad en el Sistema Internacional es el segundo (s). El período puede determinarse a partir de los parámetros del MCU:
+
+$$
+T = \frac{2\pi R}{v}
+$$
+
+de manera que la aceleración centrípeta puede escribirse también como:
+
+$$
+a_{\text{rad}} = \frac{4\pi^2 R}{T^2}
+$$
+
+Al inverso del período se le llama **frecuencia**:
+
+$$
+f = \frac{1}{T}
+$$
+
+y representa el número de revoluciones que completa el móvil por unidad de tiempo. Si el período se expresa en segundos, la frecuencia tiene unidades de $$\mathrm{s}^{-1}$$, lo cual recibe el nombre de *hertz* (Hz):
+
+$$
+1\,\mathrm{s}^{-1} = 1\,\mathrm{Hz}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — un punto del borde de un CD**
+
+Un CD gira a $$200\,\mathrm{rpm}$$ (revoluciones por minuto) y tiene un radio de $$R = 6{,}0\,\mathrm{cm}$$. La frecuencia y el período son:
+
+$$
+f = \frac{200}{60\,\mathrm{s}} \approx 3{,}33\,\mathrm{Hz}, \qquad T = \frac{1}{f} = 0{,}30\,\mathrm{s}
+$$
+
+La rapidez de un punto del borde es:
+
+$$
+v = 2\pi R f = 2\pi (0{,}060\,\mathrm{m})(3{,}33\,\mathrm{Hz}) \approx 1{,}26\,\mathrm{m/s}
+$$
+
+y su aceleración centrípeta vale:
+
+$$
+a_{\text{rad}} = \frac{v^2}{R} = \frac{(1{,}26\,\mathrm{m/s})^2}{0{,}060\,\mathrm{m}} \approx 26\,\mathrm{m/s^2}
+$$
+
+Es decir, un punto del borde del CD lleva una aceleración de unas **$$2{,}7$$ veces $$g$$**, únicamente para cambiar de dirección: su rapidez es constante.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En un MCU, la aceleración centrípeta es responsable de __________.
+
+    <MultipleChoice>
+      <Option>
+        aumentar la rapidez del objeto
+      </Option>
+      <Option>
+        disminuir la rapidez del objeto
+      </Option>
+      <Option isCorrect>
+        cambiar la dirección de la velocidad
+      </Option>
+      <Option>
+        mantener constante la dirección de la velocidad
+      </Option>
+    </MultipleChoice>
+
+2. Si la rapidez de una partícula en MCU se duplica sin cambiar el radio de la trayectoria, la aceleración centrípeta __________.
+
+    <MultipleChoice>
+      <Option>
+        no cambia
+      </Option>
+      <Option>
+        se duplica
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+      <Option isCorrect>
+        se cuadruplica
+      </Option>
+    </MultipleChoice>
+
+3. Un móvil completa una vuelta cada $$4{,}0\,\mathrm{s}$$. Su frecuencia es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$4{,}0\,\mathrm{Hz}$$
+      </Option>
+      <Option>
+        $$2{,}0\,\mathrm{Hz}$$
+      </Option>
+      <Option isCorrect>
+        $$0{,}25\,\mathrm{Hz}$$
+      </Option>
+      <Option>
+        $$0{,}50\,\mathrm{Hz}$$
+      </Option>
+    </MultipleChoice>
+
+4. La fuerza neta sobre una partícula que se mueve con MCU __________.
+
+    <MultipleChoice>
+      <Option>
+        es cero, porque la rapidez es constante
+      </Option>
+      <Option isCorrect>
+        tiene magnitud constante y apunta hacia el centro del círculo
+      </Option>
+      <Option>
+        es tangente a la trayectoria
+      </Option>
+      <Option>
+        apunta hacia afuera del círculo
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Movimiento relativo
+
+Cuando un mismo movimiento es descrito por medio de dos sistemas de referencia distintos, es posible relacionar ambas descripciones si se conoce el *movimiento relativo* de un sistema de referencia respecto al otro.
+
+Considere dos observadores $$A$$ y $$B$$. Por simplicidad, considere que $$A$$ está en reposo y $$B$$ se mueve con una velocidad constante $$\vec{v}_{\text{B/A}}$$ respecto a $$A$$. Si $$B$$ observa el movimiento de un objeto $$P$$ con velocidad constante $$\vec{v}_{\text{P/B}}$$, $$A$$ observará a $$P$$ moverse con una velocidad:
+
+$$
+\vec{v}_{\text{P/A}} = \vec{v}_{\text{P/B}} + \vec{v}_{\text{B/A}}
+$$
+
+Equivalentemente, se puede conocer la posición de $$P$$ respecto a $$A$$, si se conoce la posición de $$P$$ respecto a $$B$$:
+
+$$
+\vec{r}_{\text{P/A}} = \vec{r}_{\text{P/B}} + \vec{r}_{\text{B/A}}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — dos autos en la carretera**
+
+Un auto $$A$$ viaja a $$80\,\mathrm{km/h}$$ y un auto $$B$$ viaja a $$60\,\mathrm{km/h}$$ en el **mismo sentido**, en el carril contiguo. Para el conductor de $$A$$, el auto $$B$$ se aleja hacia atrás con una rapidez de:
+
+$$
+v_{\text{B/A}} = 60\,\mathrm{km/h} - 80\,\mathrm{km/h} = -20\,\mathrm{km/h}
+$$
+
+es decir, $$B$$ *retrocede* a $$20\,\mathrm{km/h}$$ vista desde $$A$$, aunque para alguien parado en la acera $$B$$ avanza a $$60\,\mathrm{km/h}$$.
+
+Si en cambio los autos circularan en **sentidos opuestos**, la rapidez relativa entre ellos sería $$60\,\mathrm{km/h} + 80\,\mathrm{km/h} = 140\,\mathrm{km/h}$$: por eso los encuentros frontales son mucho más peligrosos.
+
+</Box>
+
+**NOTA:** Al ser las ecuaciones anteriores expresiones **vectoriales**, estas se pueden expresar además como tres ecuaciones escalares; por ejemplo, se tiene que cumplir que:
+
+$$
+x_{\text{P/A}} = x_{\text{P/B}} + x_{\text{B/A}}, \qquad y_{\text{P/A}} = y_{\text{P/B}} + y_{\text{B/A}}, \qquad z_{\text{P/A}} = z_{\text{P/B}} + z_{\text{B/A}}
+$$
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Un pasajero camina hacia adelante dentro de un tren con una rapidez de $$2{,}0\,\mathrm{m/s}$$ respecto al tren, que se mueve a $$30\,\mathrm{m/s}$$ respecto al suelo. La rapidez del pasajero respecto al suelo es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$60\,\mathrm{m/s}$$
+      </Option>
+      <Option>
+        $$30\,\mathrm{m/s}$$
+      </Option>
+      <Option isCorrect>
+        $$32\,\mathrm{m/s}$$
+      </Option>
+      <Option>
+        $$28\,\mathrm{m/s}$$
+      </Option>
+    </MultipleChoice>
+
+2. La ecuación $$\vec{v}_{\text{P/A}} = \vec{v}_{\text{P/B}} + \vec{v}_{\text{B/A}}$$ __________.
+
+    <MultipleChoice>
+      <Option>
+        solo vale si el observador $$A$$ está en reposo absoluto
+      </Option>
+      <Option>
+        relaciona únicamente las magnitudes de las velocidades
+      </Option>
+      <Option isCorrect>
+        implica que cada componente se cumple por separado ($$x$$, $$y$$ y $$z$$)
+      </Option>
+      <Option>
+        solo es válida para el movimiento circular uniforme
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Ley de gravitación universal
+
+La *ley de gravitación universal* de Newton establece la relación que caracteriza la interacción entre dos masas ($$m_1$$ y $$m_2$$) separadas cierta distancia ($$r$$). Esta interacción es una fuerza **atractiva**: las masas se atraen mutuamente a lo largo de la línea que las une. La magnitud de la fuerza gravitacional que ejerce $$m_1$$ sobre $$m_2$$ está dada por:
+
+$$
+F_{\text{g}} = \frac{G m_1 m_2}{r^2}
+$$
+
+donde $$G$$ es una constante de proporcionalidad llamada *constante de gravitación universal*. El término *universal* hace referencia a que se considera constante en todo el universo. En el S.I.:
+
+$$
+G = 6{,}67\times 10^{-11}\,\frac{\mathrm{N}\cdot\mathrm{m}^2}{\mathrm{kg}^2}
+$$
+
+Las fuerzas gravitacionales siempre actúan a lo largo de la línea que une las dos partículas y forman un **par acción-reacción**: la fuerza que $$m_1$$ ejerce sobre $$m_2$$ tiene la misma magnitud que la que $$m_2$$ ejerce sobre $$m_1$$, con sentido opuesto. La fuerza gravitacional permite explicar tanto el movimiento de los planetas alrededor del Sol como el de los satélites naturales y artificiales alrededor de los planetas.
+
+### Gravitación y cuerpos esféricamente simétricos
+
+La interacción gravitacional entre dos cuerpos con distribuciones de masa esféricamente simétricas (ya sean sólidas o huecas) es la misma que si toda la masa estuviera **concentrada en el centro** de cada cuerpo. Si modelamos la Tierra como un cuerpo esféricamente simétrico de masa $$m_{\text{T}}$$, la fuerza que ejerce sobre una partícula (o sobre otro cuerpo esféricamente simétrico) de masa $$m$$, a una distancia $$r$$ entre los centros, es:
+
+$$
+F_{\text{g}} = \frac{G m_{\text{T}} m}{r^2}
+$$
+
+siempre y cuando el cuerpo se encuentre en el **exterior** de la Tierra.
+
+### Peso y gravedad
+
+Considere un objeto de masa $$m$$ en la superficie terrestre, a una distancia $$R_{\text{T}}$$ del centro del planeta:
+
+$$
+F_{\text{g}} = \frac{G m_{\text{T}} m}{R_{\text{T}}^2} = mg \quad \Rightarrow \quad g = \frac{G m_{\text{T}}}{R_{\text{T}}^2} = 9{,}81\,\mathrm{m/s^2}
+$$
+
+donde $$m_{\text{T}} = 5{,}98\times 10^{24}\,\mathrm{kg}$$ es la masa del planeta Tierra y $$R_{\text{T}} = 6380\,\mathrm{km}$$ es su radio. Conforme el objeto se aleja de la superficie terrestre, su peso irá disminuyendo; de forma tal que, a una altura $$h$$ sobre la superficie:
+
+$$
+g(h) = \frac{G m_{\text{T}}}{(R_{\text{T}} + h)^2}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — la atracción entre la Tierra y la Luna**
+
+La Luna tiene una masa de $$m_{\text{L}} = 7{,}35\times 10^{22}\,\mathrm{kg}$$ y su centro está a una distancia de $$r = 3{,}84\times 10^{8}\,\mathrm{m}$$ del centro de la Tierra. La fuerza gravitacional entre ambos cuerpos tiene por magnitud:
+
+$$
+F_{\text{g}} = \frac{G m_{\text{T}} m_{\text{L}}}{r^2} = \frac{(6{,}67\times 10^{-11})(5{,}98\times 10^{24}\,\mathrm{kg})(7{,}35\times 10^{22}\,\mathrm{kg})}{(3{,}84\times 10^{8}\,\mathrm{m})^2}
+$$
+
+$$
+F_{\text{g}} \approx 2{,}0\times 10^{20}\,\mathrm{N}
+$$
+
+Es esta fuerza la que mantiene a la Luna en su órbita casi circular alrededor de la Tierra: la fuerza neta que produce su movimiento circular uniforme es, precisamente, la fuerza gravitacional.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Si se duplica la distancia entre dos masas puntuales, la fuerza gravitacional entre ellas __________.
+
+    <MultipleChoice>
+      <Option>
+        se duplica
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+      <Option isCorrect>
+        se reduce a la cuarta parte
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+    </MultipleChoice>
+
+2. La fuerza que la Tierra ejerce sobre la Luna y la que la Luna ejerce sobre la Tierra __________.
+
+    <MultipleChoice>
+      <Option>
+        tienen distinta magnitud porque la Tierra es más masiva
+      </Option>
+      <Option isCorrect>
+        tienen la misma magnitud y sentidos opuestos (par acción-reacción)
+      </Option>
+      <Option>
+        tienen la misma magnitud y el mismo sentido
+      </Option>
+      <Option>
+        actúan sobre el mismo cuerpo
+      </Option>
+    </MultipleChoice>
+
+3. Conforme un objeto se aleja de la superficie terrestre, el valor de $$g$$ __________.
+
+    <MultipleChoice>
+      <Option>
+        aumenta
+      </Option>
+      <Option isCorrect>
+        disminuye
+      </Option>
+      <Option>
+        permanece constante
+      </Option>
+      <Option>
+        cambia de signo
+      </Option>
+    </MultipleChoice>
+
+4. El valor de la masa de la Tierra puede despejarse de la expresión $$g = \dfrac{G m_{\text{T}}}{R_{\text{T}}^2}$$ como __________.
+
+    <MultipleChoice>
+      <Option>
+        $$m_{\text{T}} = \dfrac{g R_{\text{T}}}{G}$$
+      </Option>
+      <Option>
+        $$m_{\text{T}} = g R_{\text{T}}^2\, G$$
+      </Option>
+      <Option isCorrect>
+        $$m_{\text{T}} = \dfrac{g R_{\text{T}}^2}{G}$$
+      </Option>
+      <Option>
+        $$m_{\text{T}} = \dfrac{G R_{\text{T}}^2}{g}$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Cantidad | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Aceleración centrípeta | $$a_{\text{rad}} = \dfrac{v^2}{R} = \dfrac{4\pi^2 R}{T^2}$$ | apunta al centro; no cambia la rapidez |
+| Fuerza neta en el MCU | $$\left\|\sum \vec{F}\right\| = m\dfrac{v^2}{R}$$ | Segunda Ley de Newton |
+| Período | $$T = \dfrac{2\pi R}{v}$$ | tiempo de una vuelta (s) |
+| Frecuencia | $$f = \dfrac{1}{T}$$ | vueltas por segundo (Hz) |
+| Velocidad relativa | $$\vec{v}_{\text{P/A}} = \vec{v}_{\text{P/B}} + \vec{v}_{\text{B/A}}$$ | observadores $$A$$ y $$B$$ |
+| Posición relativa | $$\vec{r}_{\text{P/A}} = \vec{r}_{\text{P/B}} + \vec{r}_{\text{B/A}}$$ | se cumple componente a componente |
+| Gravitación universal | $$F_{\text{g}} = \dfrac{G m_1 m_2}{r^2}$$ | atractiva, a lo largo de la línea que une las masas |
+| Gravedad en la superficie | $$g = \dfrac{G m_{\text{T}}}{R_{\text{T}}^2} = 9{,}81\,\mathrm{m/s^2}$$ | peso $$P = mg$$ |
+| Gravedad a una altura $$h$$ | $$g(h) = \dfrac{G m_{\text{T}}}{(R_{\text{T}} + h)^2}$$ | disminuye con la altura |
+
+La idea clave de esta semana es que un movimiento con **rapidez constante puede tener aceleración**: en el MCU la fuerza neta no cambia la rapidez, sino que únicamente desvía la velocidad hacia el centro de la trayectoria. Y la fuerza que en la naturaleza suele cumplir ese papel en gran escala es la **gravitación universal**, la misma fuerza que hace que una manzana caiga y que la Luna no se escape. En la práctica de la semana aplicaremos estas ideas a ruedas de la fortuna, curvas en carretera, botes cruzando ríos y satélites en órbita.

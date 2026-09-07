@@ -17,6 +17,8 @@ const isPast = diffDays < 0;
 const isToday = diffDays === 0;
 const isUpcoming = diffDays > 0 && diffDays <= 10;
 const isExtraordinario = exam.subject.includes("Extraordinario");
+const isDownloadLink = (value: unknown): boolean =>
+  value === true || value === "true";
 
 const formattedDate = examDate.toLocaleDateString("es-ES", {
   weekday: "long",
@@ -95,13 +97,18 @@ const formattedDate = examDate.toLocaleDateString("es-ES", {
     {
       exam.links && exam.links.length > 0 && (
         <div class="space-y-2 mb-6">
-          {exam.links.map((link: { url: string; label: string }) => (
+          {exam.links.map((link: { url: string; label: string; download?: boolean | string }) => (
             <a
               href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(isDownloadLink(link.download) ? { download: "" } : { target: "_blank", rel: "noopener noreferrer" })}
               class="flex items-center justify-center w-full p-2 text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-4 focus:ring-slate-500/30"
             >
+              <Icon
+                name={isDownloadLink(link.download) ? "lucide:download" : "lucide:external-link"}
+                size={16}
+                class="mr-2"
+                aria-hidden="true"
+              />
               <span>{link.label}</span>
             </a>
           ))}

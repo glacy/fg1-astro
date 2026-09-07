@@ -1,19 +1,20 @@
 {
   "id": 6,
   "title": "Leyes del movimiento de Newton",
-  "image": "https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1734630341082-0fec0e10126c?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
     "Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial.",
-    "Describir vectorialmente las fuerzas que actúan sobre un objeto.",
-    "Explicar las tres leyes de Newton y su relación con el análisis del movimiento de los cuerpos en diferentes contextos físicos.",
-    "Determinar la aceleración de un objeto a partir de la fuerza neta que actúa sobre éste y su masa."
+   "Explicar las tres leyes de Newton y su papel en el análisis del movimiento.",
+    "Aplicar la segunda ley de Newton para determinar la aceleración de un objeto a partir de la fuerza neta y su masa, distinguiendo entre masa y peso.",
+    "Construir el diagrama de cuerpo libre de un objeto, describiendo vectorialmente todas las fuerzas que actúan sobre él."
   ],
   "contenidos": [
     "Fuerza e interacciones (sección 4.1).",
     "Primera ley de Newton (sección 4.2).",
     "Segunda ley de Newton (sección 4.3).",
     "Masa y peso (sección 4.4).",
-    "Tercera ley de Newton (sección 4.5)"
+    "Tercera ley de Newton (sección 4.5)",
+    "Diagramas de cuerpo libre (sección 4.6)."
   ],
   "consignas": [
     {

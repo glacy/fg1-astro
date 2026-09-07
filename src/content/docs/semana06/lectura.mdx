@@ -1,31 +1,521 @@
 ---
 title: "Leyes del movimiento de Newton"
-description: "Material de lectura para la semana 6."
+description: "Las cuatro fuerzas fundamentales de la naturaleza y las tres leyes del movimiento de Newton: fuerza neta, ley de la inercia y marcos de referencia inerciales, segunda ley (F = ma), la diferencia entre masa y peso, tercera ley (acción y reacción) e introducción al diagrama de cuerpo libre."
 week: 6
-keywords: ["física general I", "semana 6", "TEC Costa Rica"]
+keywords: ["leyes de Newton", "primera ley de Newton", "ley de la inercia", "segunda ley de Newton", "tercera ley de Newton", "acción y reacción", "fuerza neta", "fuerza", "masa", "inercia", "marco de referencia inercial", "newton", "dinámica", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-6"]
-category: "semana-6"
-difficulty: "basic"
+date: 2026-09-06
+readingTime: 18
+tags: ["leyes de Newton", "fuerza", "masa", "dinámica"]
+category: "dinámica"
+difficulty: "intermediate"
 objetivos:
   - "Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial."
-  - "Describir vectorialmente las fuerzas que actúan sobre un objeto."
-  - "Explicar las tres leyes de Newton y su relación con el análisis del movimiento de los cuerpos en diferentes contextos físicos."
-  - "Determinar la aceleración de un objeto a partir de la fuerza neta que actúa sobre éste y su masa."
-draft: true
+  - "Explicar las tres leyes de Newton y su papel en el análisis del movimiento."
+  - "Aplicar la segunda ley de Newton para determinar la aceleración de un objeto a partir de la fuerza neta y su masa, distinguiendo entre masa y peso."
+  - "Construir el diagrama de cuerpo libre de un objeto, describiendo vectorialmente todas las fuerzas que actúan sobre él."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import { Image } from 'astro:assets';
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import FuerzaComponentes from "../../../assets/fuerza_componentes.svg";
+import CajonFuerzas from "../../../assets/cajon.svg";
+import DiagramaCuerpoLibre from "../../../assets/DCL.svg";
+import { Steps } from '@astrojs/starlight/components';
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial.
+  - Explicar las tres leyes de Newton y su papel en el análisis del movimiento.
+  - Aplicar la segunda ley de Newton para determinar la aceleración de un objeto a partir de la fuerza neta y su masa, distinguiendo entre masa y peso.
+  - Construir el diagrama de cuerpo libre de un objeto, describiendo vectorialmente todas las fuerzas que actúan sobre él.
+</PreCheck>
 
-- Definir el significado de fuerza, fuerza neta sobre un objeto y marco de referencia inercial.
-- Describir vectorialmente las fuerzas que actúan sobre un objeto.
-- Explicar las tres leyes de Newton y su relación con el análisis del movimiento de los cuerpos en diferentes contextos físicos.
-- Determinar la aceleración de un objeto a partir de la fuerza neta que actúa sobre éste y su masa.
+En las semanas anteriores estudiamos varios tipos de movimiento: el MRU, el MRUA, la caída libre y el movimiento parabólico. Todo eso es **cinemática**: la descripción del movimiento en términos de posición, velocidad y aceleración, sin preguntarse por sus causas. En esta semana damos el paso a la **dinámica**: el estudio de *por qué* ocurre el movimiento, a través de las **fuerzas** que lo provocan o lo modifican. Las **leyes del movimiento de Newton** nos permiten comprender y predecir cómo se mueve un objeto siempre que conozcamos las fuerzas que actúan sobre él.
 
-## Contenido
+## Fuerzas e interacciones
 
-Contenido de la semana 6 próximamente disponible.
+En la vida cotidiana usamos la palabra *fuerza* todo el tiempo: empujamos un carrito de supermercado, jalamos una cuerda, sentimos el peso de la mochila. En física, todas esas situaciones comparten una idea central: una **fuerza** es una **interacción** entre dos cuerpos, que se manifiesta como un empuje o un jalón capaz de modificar el estado de movimiento del receptor. Esta palabra clave —*interacción*— subraya que ninguna fuerza existe de manera aislada: siempre hay dos objetos involucrados, y la fuerza es la relación entre ellos.
+
+Ahora bien, la variedad de fuerzas que experimentamos a diario parece enorme: la fricción, el empuje del agua, la tensión de un cable, el viento… ¿Cuántos tipos de fuerza existen realmente? La respuesta, uno de los grandes hallazgos de la física, es sorprendente: **todas** esas aparentes fuerzas distintas son manifestaciones de un número muy reducido de interacciones fundamentales. La idea de que la naturaleza está regida por este pequeño número de fuerzas ha evolucionado a lo largo de los siglos. Isaac Newton fue pionero en este enfoque con su ley de gravitación universal (siglo XVII), al unificar el movimiento de los cuerpos celestes con el de los objetos en la Tierra. Más tarde, James Clerk Maxwell unificó los fenómenos eléctricos y magnéticos en una sola teoría del electromagnetismo (siglo XIX), y ya en el siglo XX la física nuclear y de partículas identificó dos interacciones nuevas.
+
+En física se reconocen **cuatro fuerzas fundamentales**: todo empuje, jalón o atracción en el universo —desde el enlace entre dos protones dentro de un núcleo hasta la órbita de un planeta alrededor del Sol— es manifestación de una de ellas:
+
+- **Fuerza gravitacional:** la interacción entre cuerpos con masa. Es responsable del fenómeno que percibimos como peso y explica por qué los objetos caen hacia la superficie terrestre con una aceleración de aproximadamente $$9{,}8\,\mathrm{m/s^2}$$.
+- **Fuerza electromagnética:** se manifiesta entre partículas con carga eléctrica. Está asociada a numerosos fenómenos cotidianos: electricidad, magnetismo, fricción, luz, ondas de radio y el funcionamiento de dispositivos tecnológicos.
+- **Fuerza nuclear débil:** responsable de ciertos procesos de desintegración nuclear, como los que ocurren en materiales radiactivos. Es la más débil de las cuatro, pero sin ella el Sol no podría brillar: la fusión nuclear que lo alimenta depende de ella.
+- **Fuerza nuclear fuerte:** mantiene unidos a los quarks para formar protones y neutrones, y es tan intensa que logra mantener unido el núcleo atómico a pesar de que los protones, todos con carga positiva, se repelen entre sí.
+
+**¿Qué tan grandes son las fuerzas en la naturaleza?** Para calibrar la intuición conviene tener referencias de orden de magnitud. La tabla siguiente compara fuerzas típicas, desde las ínfimas hasta las colosales:
+
+| Situación | Fuerza aproximada |
+|---|---|
+| Peso de un mosquito ($$\approx 2{,}5\,\mathrm{mg}$$) | $$2{,}5\times 10^{-5}\,\mathrm{N}$$ |
+| Peso de una manzana mediana ($$\approx 100\,\mathrm{g}$$) | $$1\,\mathrm{N}$$ |
+| Peso de un balón de fútbol reglamentario ($$\approx 430\,\mathrm{g}$$) | $$4{,}2\,\mathrm{N}$$ |
+| Peso de una persona adulta ($$\approx 70\,\mathrm{kg}$$) | $$6{,}9\times 10^{2}\,\mathrm{N}$$ |
+| Fuerza de mordida humana (en los molares) | $$\approx 7\times 10^{2}\,\mathrm{N}$$ |
+| Fuerza nuclear fuerte entre dos protones del núcleo | $$\approx 1\times 10^{4}\,\mathrm{N}$$ |
+| Empuje de un motor de avión comercial (turbofán grande) | $$\approx 4\times 10^{5}\,\mathrm{N}$$ |
+| Empuje del transbordador espacial al despegue | $$\approx 3\times 10^{7}\,\mathrm{N}$$ |
+| Atracción gravitacional entre la Tierra y la Luna | $$\approx 2\times 10^{20}\,\mathrm{N}$$ |
+
+Observe el rango asombroso que abarcan: desde el peso de un mosquito hasta la atracción entre la Tierra y la Luna hay veinticinco órdenes de magnitud —es decir, habría que multiplicar la fuerza más débil de la tabla por un 1 seguido de 25 ceros para llegar a la más intensa—. En los problemas de este curso trabajaremos sobre todo con fuerzas cotidianas —pesos, normales, tensiones, fricciones—, que se ubican típicamente entre fracciones de newton y algunos miles de newtons. Una referencia útil para desarrollar esa intuición: **1 newton es aproximadamente el peso de una manzana pequeña**.
+
+**Las fuerzas comunes: el "catálogo" de los problemas de mecánica.** Aunque en la naturaleza solo operan cuatro interacciones fundamentales, en los problemas de mecánica nos encontraremos una y otra vez con un pequeño grupo de fuerzas que conviene aprender a reconocer a simple vista. Con una sola excepción —el peso—, todas son manifestaciones de la interacción electromagnética:
+
+- **Peso ($$\vec{P}$$):** la fuerza gravitacional con que la Tierra atrae al cuerpo. Apunta verticalmente hacia abajo y su magnitud es $$P = mg$$; la analizaremos con detalle en la sección de masa y peso.
+- **Normal ($$\vec{N}$$):** la fuerza de contacto que una superficie ejerce sobre un cuerpo apoyado en ella. Siempre es **perpendicular** a la superficie —de ahí su nombre—: el piso que lo sostiene a usted, la mesa que sostiene un libro. Es la respuesta de la superficie a ser comprimida, y evita que los cuerpos se atraviesen.
+- **Tensión ($$\vec{T}$$):** la fuerza que transmite una cuerda, cable o cadena cuando se estira. Actúa a lo largo de la cuerda y siempre **tira** del cuerpo al que está sujeta: una cuerda puede jalar un cajón, pero no empujarlo.
+- **Fricción ($$\vec{f}$$):** la fuerza de contacto que una superficie ejerce **paralela** a ella, oponiéndose al deslizamiento (o a la tendencia de deslizar) de un cuerpo sobre otro. Gracias a ella usted puede caminar sin resbalar y un carro puede frenar; por ella también se desgastan las piezas de una máquina.
+- **Empuje ($$\vec{F}$$):** la fuerza que ejerce directamente una persona u otro objeto sobre un cuerpo: la mano que empuja un carrito, el pie que patea una pelota, un remolcador que jala un barco.
+
+Reconocer cuáles de estas fuerzas actúan sobre un cuerpo —y en qué dirección apunta cada una— es la primera habilidad práctica del análisis dinámico. Para poder describir el efecto de dichas fuerzas, requerimos contar con reglas precisas que nos digan *cómo* esas fuerzas determinan el movimiento. Ese es precisamente el aporte de Isaac Newton.
+
+## Primera ley de Newton: la ley de la inercia
+
+Isaac Newton planteó estas tres reglas en 1687, en su obra *Philosophiae Naturalis Principia Mathematica* (los *Principia*), y con ellas se puede explicar y predecir el movimiento de casi cualquier objeto que pueda ver o tocar: una pelota que rueda, un carro que frena, un ascensor que sube, un balón que se patea. Todas giran alrededor de un mismo concepto, la **fuerza**: cualquier cosa capaz de cambiar el movimiento de un objeto, es decir, de acelerarlo.
+
+Antes de enunciar la primera ley necesitamos un concepto central. La **fuerza neta** es el resultado (suma vectorial) de todas las fuerzas que actúan sobre un objeto:
+
+$$
+\vec{F}_{\text{neta}} = \sum_{i=1}^{N}\vec{F}_i = \vec{F}_1 + \vec{F}_2 + \cdots + \vec{F}_N
+$$
+
+Para fijar la idea, imagine un jalonamiento de cuerda: si un equipo tira con $$500\,\mathrm{N}$$ hacia la izquierda y el otro con $$500\,\mathrm{N}$$ hacia la derecha, las dos fuerzas se cancelan y la fuerza neta es cero.
+
+Con esto, la **primera ley de Newton** —o *ley de la inercia*— establece:
+
+> *"Un cuerpo sobre el que **no** actúa fuerza neta mantendrá su estado de movimiento constante."*
+
+Cuando hablamos de *movimiento constante* se incluye tanto el estado de **reposo** ($$\vec{v} = \vec{0}$$) como el de **velocidad constante** ($$\vec{a} = \vec{0}$$). Y aquí aparece por primera vez un término que usaremos durante todo el curso: cuando observamos un objeto así —sin fuerza neta y, por lo tanto, sin aceleración— decimos que estamos trabajando en un **marco de referencia inercial**, en cuyo caso:
+
+$$
+\vec{F}_{\text{neta}} = \vec{0}
+$$
+
+Esta expresión, al ser una ecuación vectorial, puede expresarse *por componentes*:
+
+$$
+F_{\text{neta},x} = 0, \qquad F_{\text{neta},y} = 0, \qquad F_{\text{neta},z} = 0
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — dos fuerzas en equilibrio**
+
+Sobre un objeto en reposo actúan dos fuerzas: $$F_1 = 100\,\mathrm{N}$$ dirigida a lo largo del eje $$x$$, y $$F_2 = 200\,\mathrm{N}$$ que forma un ángulo $$\theta$$ con ese mismo eje, de modo que su componente horizontal se opone a $$F_1$$. Como el objeto permanece en reposo, la componente $$x$$ de la fuerza neta debe ser cero:
+
+$$
+F_{\text{neta},x} = F_1 - F_2\cos\theta = 0
+$$
+
+de donde:
+
+$$
+\theta = \arccos\left(\frac{F_1}{F_2}\right) = \arccos\left(\frac{100\,\mathrm{N}}{200\,\mathrm{N}}\right) = 60^\circ
+$$
+
+El ángulo que mantiene el equilibrio es de **$$60^\circ$$**.
+
+</Box>
+
+**¿Qué es exactamente un marco de referencia?** 
+
+Para describir el movimiento siempre necesitamos un punto de vista: un sistema de coordenadas (con un origen y unos ejes) desde el cual *observamos y medimos* las posiciones, velocidades y aceleraciones. Ese sistema de observación es el **marco de referencia**. No existe un marco "absoluto" desde el cual el movimiento sea absoluto: decir que un pasajero está en reposo es cierto para quien viaja junto a él en el mismo bus, pero falso para un peatón que lo ve pasar. Preguntarse "¿se mueve o está en reposo?" solo tiene sentido si especificamos *respecto a qué* lo medimos.
+
+La dificultad conceptual aparece cuando el propio observador se mueve de manera acelerada. Considere un bus que frena bruscamente: desde la acera (marco ligado al suelo), los pasajeros que no se sostienen se lanzan hacia adelante porque su cuerpo tiende a conservar su velocidad —exactamente lo que predice la inercia—. Pero desde adentro del bus, un pasajero ve que su mochila "acelera" hacia el frente *sin que ninguna fuerza la empuje*: sin empuje, sin jalón, sin fricción visible. Si las leyes de Newton afirmaran que sin fuerza neta no hay aceleración, este observador concluiría que ¡la primera ley se viola! El problema no está en la ley, sino en el marco de referencia acelerado: desde él, aparecen "fuerzas falsas" (a veces llamadas *ficticias* o de inercia) que no corresponden a ninguna interacción real con otro cuerpo.
+
+Aquí es donde entra el concepto clave. Un **marco de referencia inercial** es aquel en el que la primera ley de Newton se cumple *sin excepciones*: cualquier objeto sobre el que no actúe fuerza neta se observa con velocidad constante (reposo o movimiento rectilíneo uniforme). Esta definición trae consigo una prueba práctica: para saber si su marco es inercial, observe objetos libres (sin fuerza neta) y verifique si mantienen su velocidad. De esa prueba se desprenden tres consecuencias:
+
+- **Un marco que se mueve con velocidad constante respecto a otro inercial también es inercial.** Si viaja en un tren que avanza a $$90\,\mathrm{km/h}$$ en línea recta y a velocidad constante, puede dejar un café sobre la mesita y permanecer inmóvil, igual que en su sala: dentro de ese marco, las leyes de Newton funcionan igual que en el suelo.
+- **Un marco acelerado (o que gira) no es inercial.** El bus que frena, el que arranca o toma una curva, un carrusel giratorio o un elevador que acelera: en todos ellos los objetos "se mueven solos" o cambian su movimiento sin fuerza neta real, y las leyes de Newton, aplicadas ingenuamente, fallan.
+- **Ningún marco inercial es privilegiado.** El suelo y el tren a velocidad constante son igualmente válidos para hacer física: las leyes de Newton tienen la misma forma en todos los marcos inerciales. Solo el movimiento *relativo* entre ellos importa.
+
+En la práctica, la superficie terrestre constituye un marco inercial *aproximado*: la Tierra rota y orbita alrededor del Sol, así que en rigor no lo es, pero esas aceleraciones son tan pequeñas comparadas con las de los movimientos que estudiamos en el curso que podemos tratar el suelo como inercial sin cometer error medible. Salvo que un problema indique lo contrario, en este curso asumiremos que el suelo es un marco de referencia inercial.
+
+
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Un objeto sobre el que no actúa fuerza neta __________.
+
+    <MultipleChoice>
+      <Option>
+        cambia de dirección con el tiempo
+      </Option>
+      <Option>
+        está necesariamente en reposo
+      </Option>
+      <Option>
+        desacelera gradualmente hasta detenerse
+      </Option>
+      <Option isCorrect>
+        mantiene su estado de movimiento: reposo o velocidad constante
+      </Option>
+    </MultipleChoice>
+
+2. Un **marco de referencia inercial** es aquel en el que __________.
+
+    <MultipleChoice>
+      <Option isCorrect>
+        un objeto sin fuerza neta no experimenta aceleración
+      </Option>
+      <Option>
+        la velocidad de todos los objetos es constante
+      </Option>
+      <Option>
+        todos los objetos están en reposo
+      </Option>
+      <Option>
+        la gravedad no actúa
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Segunda ley de Newton: la fuerza y la masa
+
+Cuando la fuerza neta sobre un objeto **es distinta de cero**, el objeto experimenta una aceleración. La **segunda ley de Newton** establece:
+
+> *"Cuando una fuerza neta actúa sobre un objeto, la aceleración que este experimenta es proporcional a dicha fuerza."*
+
+$$
+\vec{F}_{\text{neta}} = m\vec{a}
+$$
+
+donde $$\vec{a}$$ es la aceleración que experimenta un objeto de masa $$m$$ cuando está sujeto a una fuerza neta $$\vec{F}_{\text{neta}}$$. Esta relación encierra dos ideas:
+
+- La aceleración es **proporcional a la fuerza neta** y tiene su **misma dirección**: una fuerza neta diferente de cero produce una aceleración en la dirección de la fuerza.
+- La aceleración es **inversamente proporcional a la masa**: a igual fuerza, un objeto más masivo acelera menos. Piénselo con un ejemplo cotidiano: detener una pelota de fútbol que rueda hacia usted es fácil; detener una bola de boliche a la misma velocidad, no tanto. Esa "terquedad" de los cuerpos para conservar su estado de movimiento es la **inercia**, y la masa es justamente el número que la cuantifica: **cuanto mayor la masa, mayor la inercia**.
+
+Como toda ecuación vectorial, la Segunda Ley puede analizarse por componentes:
+
+$$
+F_{\text{neta},x} = ma_x, \qquad F_{\text{neta},y} = ma_y, \qquad F_{\text{neta},z} = ma_z
+$$
+
+<Image src={FuerzaComponentes} alt="Para aplicar la segunda ley de newton, cada fuerza se analiza por componentes" layout='constrained' width={526} height={342}/>
+
+Para movimientos a lo largo de una línea recta, suele considerarse "$$x$$" como la dirección a lo largo del movimiento y "$$y$$" la dirección perpendicular a este. 
+
+En el Sistema Internacional de unidades, las fuerzas se miden en **newtons** (N):
+
+$$
+1\,\mathrm{N} = 1\,\frac{\mathrm{kg}\cdot\mathrm{m}}{\mathrm{s}^2}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — dos fuerzas y una aceleración**
+
+Sobre un objeto de masa $$m = 20\,\mathrm{kg}$$ actúan dos fuerzas: $$F_1 = 100\,\mathrm{N}$$ a lo largo del eje $$x$$, y $$F_2 = 200\,\mathrm{N}$$ que forma un ángulo $$\theta = 30^\circ$$ con ese eje, oponiéndose a $$F_1$$ en la dirección horizontal. La componente $$x$$ de la fuerza neta produce una aceleración:
+
+$$
+a_x = \frac{F_1 - F_2\cos\theta}{m} = \frac{100\,\mathrm{N} - (200\,\mathrm{N})\cos 30^\circ}{20\,\mathrm{kg}} = \frac{100\,\mathrm{N} - 173{,}2\,\mathrm{N}}{20\,\mathrm{kg}} \approx -3{,}7\,\mathrm{m/s^2}
+$$
+
+El signo negativo indica que el objeto **acelera en el sentido negativo** del eje $$x$$: la componente horizontal de $$F_2$$ supera a $$F_1.$$
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Si la fuerza neta sobre un objeto se duplica (sin cambiar su masa), su aceleración __________.
+
+    <MultipleChoice>
+      <Option>
+        permanece constante
+      </Option>
+            <Option>
+        se reduce a la mitad
+      </Option>
+            <Option>
+        se cuadruplica
+      </Option>
+      <Option isCorrect>
+        se duplica
+      </Option>
+    </MultipleChoice>
+
+2. Una fuerza neta de $$10\,\mathrm{N}$$ actúa sobre un objeto de masa $$2{,}0\,\mathrm{kg}$$. Su aceleración es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$20\,\mathrm{m/s^2}$$
+      </Option>
+      <Option isCorrect>
+        $$5{,}0\,\mathrm{m/s^2}$$
+      </Option>
+      <Option>
+        $$0{,}20\,\mathrm{m/s^2}$$
+      </Option>
+      <Option>
+        $$12\,\mathrm{m/s^2}$$
+      </Option>
+    </MultipleChoice>
+
+3. La dirección de la aceleración de un objeto es __________.
+
+    <MultipleChoice>
+      <Option>
+        siempre la misma que la de su velocidad
+      </Option>
+      <Option>
+        perpendicular a la de la fuerza neta
+      </Option>
+      <Option isCorrect>
+        la misma que la de la fuerza neta
+      </Option>
+      <Option>
+        opuesta a la de la fuerza neta
+      </Option>
+
+    </MultipleChoice>
+
+4. En el Sistema Internacional, $$1\,\mathrm{N}$$ equivale a __________.
+
+    <MultipleChoice>
+      <Option>
+        $$1\,\mathrm{kg}\cdot\mathrm{m/s}$$
+      </Option>
+      <Option>
+        $$1\,\mathrm{kg}\cdot\mathrm{m^2/s^2}$$
+      </Option>
+      <Option isCorrect>
+        $$1\,\mathrm{kg}\cdot\mathrm{m/s^2}$$
+      </Option>
+      <Option>
+        $$1\,\mathrm{kg/m}\cdot\mathrm{s^2}$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Masa y peso: dos conceptos que no son lo mismo
+
+En el lenguaje cotidiano usamos *masa* y *peso* como si fueran sinónimos —solemos decir "peso 70 kilos"—, pero en física son conceptos diferentes, y confundirlos es una de las fuentes más comunes de errores en los problemas de dinámica.
+
+La **masa** ($$m$$) es una propiedad del cuerpo mismo: mide su **inercia**, es decir, su resistencia a cambiar su estado de movimiento. Es un **escalar**, se expresa en **kilogramos** (kg) y no depende del lugar: un objeto tiene la misma masa en San José, en la Luna o en el espacio profundo.
+
+El **peso** ($$\vec{P}$$), en cambio, es una **fuerza**: la atracción gravitacional que un astro (la Tierra, en nuestro caso) ejerce sobre el cuerpo. Por ser fuerza, es un **vector**, se expresa en **newtons** (N) y su magnitud depende del lugar, pues apunta hacia el centro del astro y vale:
+
+$$
+P = mg
+$$
+
+donde $$g$$ es la aceleración de la gravedad del lugar: $$g \approx 9{,}8\,\mathrm{m/s^2}$$ cerca de la superficie terrestre, pero solo $$g \approx 1{,}62\,\mathrm{m/s^2}$$ en la Luna. La diferencia se aprecia bien en una tabla comparativa:
+
+| Criterio | Masa | Peso |
+| :--- | :--- | :--- |
+| Naturaleza | escalar | vectorial (fuerza) |
+| Unidad en el S.I. | kilogramo (kg) | newton (N) |
+| Qué mide | la inercia del cuerpo | la atracción gravitacional |
+| ¿Varía con la ubicación? | no | sí (depende de $$g$$) |
+| Instrumento típico | balanza | dinamómetro |
+
+**¿Es $$g$$ realmente constante?** En rigor, no. Su valor varía con la **altitud** (a mayor distancia del centro de la Tierra, menor atracción: en la cima del Chirripó $$g$$ es unas centésimas menor que al nivel del mar) y con la **latitud** (es mayor en los polos, $$\approx 9{,}83\,\mathrm{m/s^2}$$, que en el ecuador, $$\approx 9{,}78\,\mathrm{m/s^2}$$, debido a la rotación terrestre y al leve achatamiento del planeta). Son variaciones pequeñas —menores al 1 %—, por lo que en los cálculos del curso adoptamos el **valor estándar** $$g = 9{,}8\,\mathrm{m/s^2}$$, un promedio representativo de la superficie terrestre: la diferencia con el valor local es despreciable frente a la precisión con que trabajamos.
+
+<Box icon="check-list">
+
+**Ejemplo — la misma persona, dos mundos**
+
+Una persona de masa $$m = 70\,\mathrm{kg}$$ tiene un peso distinto según donde se encuentre:
+
+$$
+P_{\text{Tierra}} = (70\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2}) \approx 686\,\mathrm{N}, \qquad P_{\text{Luna}} = (70\,\mathrm{kg})(1{,}62\,\mathrm{m/s^2}) \approx 113\,\mathrm{N}
+$$
+
+Su masa es la misma en ambos lugares; lo que cambia es la fuerza gravitacional que la atrae. Y una observación final: una báscula de baño en realidad no mide su masa, sino la **fuerza normal** con que la sostiene. Por eso, dentro de una nave en órbita, donde no hay normal que la empuje, la báscula marcaría cero aunque su masa siga intacta: los astronautas no son "sin masa", sino sin *peso aparente*.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Un astronauta viaja de la Tierra a la Luna. Durante el trayecto __________.
+
+    <MultipleChoice>
+      <Option>
+        su masa y su peso se anulan
+      </Option>
+      <Option>
+        su masa y su peso no cambian
+      </Option>
+       <Option>
+        su masa cambia, pero su peso no
+      </Option>
+      <Option isCorrect>
+        su masa no cambia, pero su peso sí
+      </Option>
+    </MultipleChoice>
+
+2. ¿Cuál es el peso de un objeto de masa $$5{,}0\,\mathrm{kg}$$ cerca de la superficie terrestre?
+
+    <MultipleChoice>
+      <Option>
+        $$5{,}0\,\mathrm{N}$$
+      </Option>
+      <Option>
+        $$0{,}51\,\mathrm{N}$$
+      </Option>
+      <Option isCorrect>
+        $$49\,\mathrm{N}$$
+      </Option>
+      <Option>
+        $$9{,}8\,\mathrm{N}$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Tercera ley de Newton: acción y reacción
+
+La **tercera ley de Newton** —o *ley de acción y reacción*— establece:
+
+> *"A toda (fuerza de) acción corresponde una (fuerza de) reacción, de igual magnitud pero de sentido opuesto."*
+
+Las fuerzas siempre surgen de **interacciones**: si un cuerpo $$A$$ ejerce una fuerza sobre un cuerpo $$B$$, entonces $$B$$ ejerce sobre $$A$$ una fuerza de igual magnitud y sentido opuesto:
+
+$$
+\vec{F}_{A \to B} = -\vec{F}_{B \to A}
+$$
+
+Lo puede comprobar ahora mismo: empuje una pared con la palma de la mano y sentirá la pared empujar de vuelta, con la misma firmeza con la que usted empuja.
+
+Un detalle esencial: las fuerzas de un par acción-reacción **actúan sobre cuerpos diferentes**. Por eso no se cancelan entre sí: cada fuerza actúa sobre un objeto distinto, y solo las fuerzas que actúan *sobre el mismo objeto* se suman para formar la fuerza neta.
+
+<Box icon="check-list">
+
+**Ejemplo — un libro sobre la mesa**
+
+Sobre un libro de masa $$m$$ apoyado en reposo sobre una mesa horizontal actúan dos fuerzas: el **peso** $$\vec{P} = m\vec{g}$$ (hacia abajo) y la **normal** $$\vec{N}$$ (hacia arriba), que ejerce la mesa. Como el libro está en equilibrio:
+
+$$
+\sum F_y = N - mg = 0 \quad \Rightarrow \quad N = mg
+$$
+
+Es tentador decir que la normal es "la reacción" del peso, pero **no** forman un par acción-reacción: ambas actúan sobre el mismo cuerpo (el libro). Los verdaderos pares de la tercera ley son:
+
+- el peso del libro (la Tierra atrae al libro) y la fuerza con que el libro atrae a la Tierra;
+- la normal de la mesa sobre el libro y la fuerza con que el libro empuja hacia abajo a la mesa.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Las fuerzas de un par acción-reacción __________.
+
+    <MultipleChoice>
+      <Option>
+        actúan sobre el mismo cuerpo y se cancelan entre sí
+      </Option>
+      <Option>
+        tienen magnitudes ligeramente distintas
+      </Option>
+      <Option isCorrect>
+        actúan sobre cuerpos diferentes
+      </Option>
+      <Option>
+        apuntan en el mismo sentido
+      </Option>
+    </MultipleChoice>
+
+2. El par acción-reacción del **peso** de un libro es __________.
+
+    <MultipleChoice>
+      <Option>
+        la fuerza normal que ejerce la mesa sobre el libro
+      </Option>
+      <Option isCorrect>
+        la fuerza con que el libro atrae a la Tierra
+      </Option>
+      <Option>
+        la fricción entre el libro y la mesa
+      </Option>
+      <Option>
+        el peso de la mesa
+      </Option>
+    </MultipleChoice>
+
+3. Un libro descansa en reposo sobre una mesa. La normal $$N$$ y el peso $$mg$$ __________.
+
+    <MultipleChoice>
+      <Option>
+        forman un par acción-reacción
+      </Option>
+      <Option>
+        se suman para dar una fuerza neta hacia arriba
+      </Option>
+      <Option>
+        tienen magnitudes distintas porque la mesa pesa más
+      </Option>
+      <Option isCorrect>
+        tienen la misma magnitud, pero no forman un par acción-reacción
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## El diagrama de cuerpo libre: el mapa de las fuerzas
+
+Todo análisis dinámico empieza con la misma pregunta: ¿qué fuerzas actúan sobre este objeto y en qué dirección apunta cada una? El **diagrama de cuerpo libre** (DCL) es la herramienta que nos permite responderla con orden y sin olvidos.
+
+Un DCL es un dibujo simplificado en el que el objeto de interés aparece **aislado** de su entorno —reducido a un recuadro o incluso a un punto— y sobre él se dibujan, como flechas que salen del objeto, **todas las fuerzas que otros cuerpos ejercen sobre él**. Nada más y nada menos: cada fuerza que falte arruinará el cálculo, y cada fuerza de más —que en realidad actúa sobre otro cuerpo— también.
+
+Para construirlo, siga estos pasos:
+
+<Steps>
+1. **Elija el objeto** cuyo movimiento quiere analizar: el libro, el ascensor con su pasajero, el cajón que se arrastra.
+Si el sistema contiene mas de un objeto, deberá realizar un dcL por cada objeto.
+
+2. **Dibújelo aislado**: un recuadro o un punto, sin mesas, cuerdas ni manos a su alrededor. 
+3. **Pregúntese qué objetos interactúan con él**: los que lo tocan (superficies, cuerdas, manos → fuerzas de contacto) y la Tierra (→ peso).
+4. **Dibuje una flecha por cada fuerza**, que salga del objeto y apunte en la dirección de la fuerza, rotulada con su nombre: $$\vec{P}$$, $$\vec{N}$$, $$\vec{T}$$, $$\vec{f}$$, $$\vec{F}$$.
+5. **Elija ejes convenientes** (por ejemplo, $$x$$ a lo largo del movimiento): con ellos podrá aplicar la Segunda Ley componente a componente.
+</Steps>
+
+Considere un cajón que una persona jala con una cuerda sobre un piso áspero.
+
+<Image src={CajonFuerzas} alt="Un cajón sobre una superficie horizontal, se señalan las fuerzas que actúan sobre el." layout='constrained' width={435} height={334}/>
+
+
+El DCL del cajón contiene exactamente cuatro fuerzas:
+
+| Fuerza | ¿Quién la ejerce? | ¿Hacia dónde apunta? |
+| :--- | :--- | :--- |
+| Tensión $$\vec{T}$$ | la cuerda | a lo largo de la cuerda, hacia la persona |
+| Peso $$\vec{P}$$ | la Tierra | verticalmente hacia abajo |
+| Normal $$\vec{N}$$ | el piso | perpendicular al piso, hacia arriba |
+| Fricción $$\vec{f}$$ | el piso | paralela al piso, opuesta al movimiento |
+
+
+<Image src={DiagramaCuerpoLibre} alt="El diagrama de cuerpo libre representa todas las fuerzas que actuan sobre un objeto como si actuaran en el mismo punto" layout='constrained' width={320} height={333}/>
+
+Dos errores clásicos que el DCL ayuda a evitar:
+
+- **Dibujar fuerzas que el objeto ejerce sobre otros.** La fuerza con que el cajón jala la cuerda hacia adelante pertenece al diagrama de la cuerda, no al del cajón: los pares acción-reacción nunca conviven en el mismo diagrama.
+- **Dibujar "la fuerza de la aceleración" o la fuerza neta como si fueran una fuerza más.** La aceleración es el *resultado* de las fuerzas, no una fuerza: aparece en $$\vec{F}_{\text{neta}} = m\vec{a}$$, no en el diagrama.
+
+## Resumen de la semana
+
+| Concepto | Enunciado | Expresión |
+| :--- | :--- | :--- |
+| Fuerza neta | suma vectorial de todas las fuerzas sobre un objeto | $$\vec{F}_{\text{neta}} = \sum_{i=1}^{N}\vec{F}_i$$ |
+| Primera ley (inercia) | sin fuerza neta, el estado de movimiento se mantiene (reposo o $$\vec{v}$$ constante) | $$\vec{F}_{\text{neta}} = \vec{0}$$ |
+| Segunda ley (fuerza y masa) | la aceleración es proporcional a la fuerza neta e inversamente proporcional a la masa | $$\vec{F}_{\text{neta}} = m\vec{a}$$ |
+| Peso | fuerza gravitacional que un astro ejerce sobre un cuerpo; se distingue de la masa (inercia, en kg) | $$P = mg$$ |
+| Tercera ley (acción-reacción) | fuerzas mutuas de igual magnitud y sentido opuesto, sobre cuerpos distintos | $$\vec{F}_{A \to B} = -\vec{F}_{B \to A}$$ |
+| Unidad de fuerza | el newton (N) | $$1\,\mathrm{N} = 1\,\mathrm{kg}\cdot\mathrm{m/s^2}$$ |
+
+La idea clave de esta semana es que **las fuerzas explican los cambios de movimiento**: un objeto solo acelera cuando sobre él actúa una fuerza neta diferente de cero. El método general de la dinámica consiste en identificar todas las fuerzas que actúan sobre un cuerpo —para lo cual el **diagrama de cuerpo libre** es la herramienta central—, sumarlas vectorialmente y aplicar la Segunda Ley por componentes. En la práctica de esta semana pondremos esto a trabajar con cajas, ascensores y patinadores, y en la próxima semana usaremos el DCL para resolver sistemáticamente problemas de equilibrio y de movimiento.
