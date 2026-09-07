@@ -3,122 +3,67 @@
 ## Comandos
 
 ```bash
-pnpm dev        # dev server → localhost:4321
-pnpm build      # build → dist/ (incluye PWA SW)
-pnpm preview    # preview del build (necesario para probar SW)
-pnpm typecheck  # tsc --noEmit (verificación TypeScript)
-pnpm lint       # ESLint flat config (eslint.config.mjs)
+pnpm dev        # localhost:4321
+pnpm build      # → dist/ (incluye SW PWA)
+pnpm preview    # probar SW (dev no sirve sw.js)
+pnpm typecheck  # tsc --noEmit
+pnpm lint       # ESLint flat config
 ```
 
-`pnpm test` no configurado — Vitest declarado en devDependencies pero sin config. No es necesario actualmente (sitio estático, sin lógica de negocio compleja).
+No hay `pnpm test` (Vitest en devDeps sin config; sitio estático).
 
-## PWA (Service Worker)
+## Arquitectura: dos sistemas de ruteo
 
-- **Modo**: `injectManifest` (vs `generateSW`). SW custom en `src/sw.ts`.
-- **Registro**: `<script is:inline>` en `ShellLayout.astro` — necesario `is:inline` para evitar tree-shaking en producción. No usar `import.meta.env.DEV` condicional.
-- **404 exclusion**: `vite-plugin-pwa` ignora `globPatterns`/`globIgnores` en modo `injectManifest` (usa el build graph de Vite/Rollup). La exclusión se hace en `src/sw.ts` filtrando `self.__WB_MANIFEST` antes de `precache()` — Workbox rechaza precacheo de respuestas non-2xx (la página 404 sirve con status 404).
-- **setDefaultHandler vs NavigationRoute**: El handler por defecto (`setDefaultHandler`) reemplazó `NavigationRoute`. Motivo: `NavigationRoute` solo atrapa `request.mode === 'navigate'` (navegación nativa). View Transitions usa `fetch()` con `mode: 'same-origin'`, y sin normalización de trailing slash, el navegador mostraba su error nativo offline. `setDefaultHandler` atrapa todos los modos de request.
-- **precache vs precacheAndRoute**: Se usa `precache` (solo poblado, sin ruteo) en vez de `precacheAndRoute`. `precacheAndRoute` registra una ruta que puede interceptar requests y retornar `undefined` si la entrada de caché falta, impidiendo que el default handler los procese. Con `precache` + `setDefaultHandler`, todos los requests pasan por el mismo handler con normalización de trailing slash.
-- **Trailing slash normalization**: `src/sw.ts` normaliza trailing slashes antes de buscar en precache (`matchPrecache(pathname.replace(/\/$/, '') || '/')`). Resuelve la incompatibilidad entre `cleanURLs: true` de Workbox y los trailing slashes de Starlight (`/semana-01/lectura/` → busca `semana-01/lectura` en precache).
-- **Offline fallback**: SW intenta precache → network → `/offline` → `503 "Sin conexión"`. Sin `navigateFallback` ni `navigateFallbackAllowlist` — toda la lógica en `src/sw.ts`.
-- **Build → Preview**: Probar SW requiere `pnpm build && pnpm preview`. Dev server no sirve `sw.js`.
-
-## Banner offline/online
-
-`src/integrations/offline-banner.ts` — Astro integration que inyecta un script inline en todas las páginas vía `injectScript('head-inline')`.
-
-Funciona tanto en ShellLayout como en Starlight (no depende de layouts específicos). Crea un `<div>` fixed en `top:0` con `z-index:9999` y transiciones CSS.
-
-| Transición | Texto | Color | Comportamiento |
+| Sistema | Rutas | VT | SW |
 |---|---|---|---|
-| Online → Offline | "Sin conexión — algunos contenidos pueden no estar disponibles" | Ámbar (`#fef3cd`) | Aparece, se desvanece tras 5s |
-| Offline → Online | "Conectado" | Verde (`#d4edda`) | Aparece, sube tras 2.5s |
+| Astro pages → `ShellLayout.astro` | `/`, `/weekly/*`, `/planner`, `/schedule`, `/documentos/`, `/offline` | Sí | Sí |
+| Starlight → `src/content/docs/` | `/semana-N/{lectura,practica,solucion}/` | No | Sí |
 
-Usa un flag `r` (previous state, inicializado en `null`) para detectar transiciones reales vs carga inicial. Se re-ejecuta en `astro:after-swap` para VT.
+- Starlight rutea nativo — NO crear `[...slug].astro`.
+- `disable404Route: true`: `src/pages/404.astro` es la única 404 del sitio.
+- Starlight → ShellLayout: full page load. ShellLayout → Starlight: VT hace `fetch()` + SW responde.
 
-## Dos sistemas de ruteo
+## PWA / SW (`src/sw.ts`, modo `injectManifest`)
 
-El sitio combina dos sistemas de renderizado independientes bajo el mismo dominio:
+- Registro: `<script is:inline>` en ShellLayout, incondicional (sin `import.meta.env.DEV`).
+- 404: filtrar `self.__WB_MANIFEST` antes de `precache()` (Workbox rechaza non-2xx).
+- `precache` + `setDefaultHandler` (NO `precacheAndRoute` ni `NavigationRoute`): atrapa todos los request modes (VT usa fetch `same-origin`) y permite normalizar trailing slash: `matchPrecache(pathname.replace(/\/$/, '') || '/')` (requerido por URLs de Starlight).
+- Offline: precache → network → `/offline` → 503. Sin `navigateFallback`.
+- `public/manifest.json` `start_url: "/"` debe coincidir con ruta precacheada.
 
-| Sistema | Layout | View Transitions | SW precache | Rutas |
-|---|---|---|---|---|
-| **Astro pages** (ShellLayout) | `ShellLayout.astro` | Sí | Sí | `/`, `/weekly/*`, `/planner`, `/schedule`, `/documentos/` (índice) |
-| **Starlight docs** | Starlight (propio) | No | Sí | `/semana-N/{lectura|practica|solucion}/` |
+## ShellLayout (único layout de páginas Astro)
 
-**Interacciones entre sistemas:**
-- Navegar desde ShellLayout a Starlight: VT intercepta, hace `fetch()`, SW responde desde precache (trailing slash normalizado vía `matchPrecache`) o red → Starlight renderiza su layout.
-- Navegar desde Starlight a ShellLayout: full page load (Starlight no tiene VT). ShellLayout scripts (theme, SW registration) corren de nuevo.
-- Navegar dentro de ShellLayout: VT + SW precache.
-- Navegar dentro de Starlight: Starlight maneja internamente, sin VT ni SW.
-
-**`disable404Route: true`**: Starlight tiene ruta 404 propia que colisiona con `src/pages/404.astro`. Se deshabilita la de Starlight para que `404.astro` (con variantes dark/light y navegación) sea la única página 404 del sitio.
-
-## ShellLayout — layout único
-
-`src/layouts/ShellLayout.astro` es el único layout de las páginas Astro. Contiene:
-- `<ViewTransitions />` en `<head>` — activa VT solo en páginas con ShellLayout. Starlight no se ve afectado.
-- Tema dark/light: script `is:inline` que lee `localStorage` antes de renderizar (evita flash).
-- SW registration: script `is:inline` incondicional.
-- Sidebar: colapsable en desktop, drawer en mobile. Theme toggle (`src/components/Sidebar.astro`): usa delegación de eventos en `document` (no listener directo en el botón) para evitar duplicación tras VT. El texto se actualiza con `updateThemeText()` ejecutado tanto en carga inicial como en `astro:after-swap`.
-- Todos los scripts de página se re-inicializan con `document.addEventListener("astro:after-swap", fn)`.
-
-VT reglas:
-- `transition:persist` en barra móvil y botón colapsar sidebar (elementos estáticos).
-- `transition:name="page-content"` en el scroll container.
-- Navegación entre semanas: `<a href="/weekly/{n}">`, no `<button>` + `location.href`.
-- Semanas bloqueadas: `aria-disabled="true"` + `pointer-events-none`.
-
-## Rutas
-
-| Ruta | Sistema | Archivo | Notas |
-|---|---|---|---|
-| `/` | ShellLayout | `src/pages/index.astro` | Dashboard con semana actual, stats, cards |
-| `/weekly/{n}` | ShellLayout | `src/pages/weekly/[semana].astro` | `getStaticPaths()` genera 1..`maxCurrentWeek` |
-| `/weekly/` | ShellLayout | `src/pages/weekly/index.astro` | Redirect 302 → `/weekly/{maxCurrentWeek}` |
-| `/planner` | ShellLayout | `src/pages/planner/index.astro` | Filtros cliente (btn + pill animada) |
-| `/schedule` | ShellLayout | `src/pages/schedule/index.astro` | Filtros cliente (CustomEvent + data-attributes) |
-| `/documentos/` | ShellLayout | `src/pages/documentos/index.astro` | ShellLayout + lista de docs agrupados por semana |
-| `/semana-N/{lectura|practica|solucion}/` | Starlight | `src/content/docs/` | Starlight maneja ruteo nativo, NO `[...slug].astro` |
-| `/offline` | ShellLayout | `src/pages/offline.astro` | Estilos inline autónomos, sin dep de componentes |
+- `<ViewTransitions />` en head. Scripts de página se re-inicializan con `astro:after-swap`.
+- Tema dark/light: script `is:inline` lee `localStorage` pre-render (evita flash).
+- Theme toggle (`src/components/Sidebar.astro`): delegación de eventos en `document` (listener directo en botón se duplica tras VT).
+- VT: `transition:persist` en elementos estáticos (barra móvil, botón sidebar); `transition:name="page-content"` en scroll container; navegar con `<a>` (nunca `<button>` + `location.href`); semanas bloqueadas: `aria-disabled` + `pointer-events-none`.
 
 ## Content Collections
 
-- **Semanas**: `src/content/weeks/semana-N.json` (N = 1..16). Schema Zod en `src/content/config.ts`.
-  - Cargar con `await loadWeeksData()` (usa `getCollection('weeks')`) → retorna `Record<number, WeekData>`.
-  - Async, requiere `await` en frontmatter de páginas/componentes.
-  - Referencias a docs: `url: "./../semana-0N/lectura/"` (formato por semana)
-- **Lecturas**: Starlight docs en `src/content/docs/`. Schema via `docsSchema()`.
-  - Estructura: `docs/semana-0N/{lectura|practica|solucion}.mdx` + `index.md` por semana
-  - Cada semana tiene `week: N` en frontmatter para agrupación
-- **JSON plano** (`src/lib/planner/exams.json`) solo para datos sin colección propia.
+- Semanas: `src/content/weeks/semana-N.json` (1..16), schema Zod en `src/content/config.ts`. Cargar con `await loadWeeksData()` → `Record<number, WeekData>` (async: await en frontmatter). Refs a docs: `url: "./../semana-0N/lectura/"`.
+- Docs: `docs/semana-0N/{lectura,practica,solucion}.mdx` + `index.md`, con `week: N` en frontmatter; schema `docsSchema()`.
+- Datos sin colección: JSON plano (ej. `src/lib/planner/exams.json`).
+- `COURSE_CONFIG.maxCurrentWeek`: semana activa máxima (build-time).
 
-## Contenido Markdown (documentación académica)
+## Markdown/KaTeX (docs académicas)
 
-- Tablas: pipe tables (`\| col1 \| col2 \|`). No grid tables, fenced divs, ni LaTeX `tblr`.
-- Math KaTeX: `$...$` inline, `$$...$$` / `\[...\]` display.
-- No `\VEC{}`, `\tentimes`, `\text{\scriptsize{}}`. Usar `\vec{}`, `\times`, estándar KaTeX.
-- **Versión KaTeX única (0.18.1)**: `rehype-katex@7.0.1` declara `katex@^0.16.0`, así que pnpm instalaba su propio `katex@0.16.10` anidado mientras el CSS vendado (`public/katex.min.css`) era 0.18.1. El markup de 0.16.10 (`class="mord accent"`, `class="overlay"`) no coincidía con los selectores CSS de 0.18.1 (`.katex-accent`, `.katex-overlay`), rompiendo acentos tipo `\vec{}`. Se resolvió con `pnpm.overrides: { "katex": "0.18.1" }` en `package.json` para forzar una única versión en todo el árbol. Si se actualiza KaTeX, regenerar/alinear `public/katex.min.css` y las fuentes de `public/katex-fonts/` con la misma versión.
-- Figuras: `<figure>` + `<img>` con `src` relativa a `src/content/` o absoluta desde `public/`.
-- Bloques destacados (`::: note`, `::: wwteorema`) no existen en Astro → `<div class="note">`.
-- `{.smallcaps}` → `<span style="font-variant: small-caps;">`
-- `{.underline}` → `<u>`
-- Referencias cruzadas (`{#etiqueta}`, `{reference-type="ref"}`) no tienen soporte → texto plano.
-- Títulos usar `##` (no `{#cap:cap1}`).
+- Tablas: pipe tables. Sin grid tables, fenced divs ni LaTeX `tblr`.
+- Math: `$...$` inline, `$$...$$` display. Usar `\vec{}`, `\times` (NO `\VEC{}`, `\tentimes`).
+- KaTeX pinned a 0.18.1 via `pnpm.overrides` (CSS vendado: `public/katex.min.css` + `public/katex-fonts/`). Si se actualiza, alinear CSS/fuentes a la misma versión.
+- Conversiones: `::: note` → `<div class="note">`; `{.smallcaps}` → `style="font-variant: small-caps;"`; `{.underline}` → `<u>`; refs cruzadas (`{#id}`) → texto plano; títulos `##` sin `{#cap:x}`.
+- Figuras: `<figure>` + `<img>`, src relativa a `src/content/` o desde `public/`.
+- Frontmatter docs: pattern en `src/content/docs/semana-01/lectura.mdx`.
 
 ## Filtros cliente
 
-- **Schedule** (`src/lib/schedule-filter.client.ts`): `document.dispatchEvent(new CustomEvent("filter-change"))` → las cards tienen `data-instructor`, `data-modalidad`, `data-dia`.
-  - **Pills (modalidad/día)**: `src/components/ScheduleFilters.astro`. Los contenedores no tienen `overflow-hidden` (clipeaba el `focus-visible:ring`). Los extremos usan `rounded-l-lg`/`rounded-r-lg` en el primer/último `<button>`. Cada pill tiene `relative focus-visible:z-10` para que el ring no quede detrás del sibling siguiente.
-- **Planner** (inline en `planner/index.astro`): filter buttons con `data-filter`, pill animada. Cards tienen `data-date`.
+- Schedule (`src/lib/schedule-filter.client.ts`): `document.dispatchEvent(new CustomEvent("filter-change"))`; cards con `data-instructor|modalidad|dia`. Pills (`ScheduleFilters.astro`): sin `overflow-hidden` en contenedores (clipea ring), extremos `rounded-l/r-lg`, cada pill `relative focus-visible:z-10`.
+- Planner (inline en `planner/index.astro`): botones `data-filter`, cards `data-date`.
 
 ## Varios
 
-- `postcss.config.mjs` es legacy — `@astrojs/tailwind` configura PostCSS internamente.
-- `COURSE_CONFIG.maxCurrentWeek` define la semana activa máxima (build-time, no client-side).
-- `public/manifest.json` tiene `start_url: "/"`. Si se cambia, debe coincidir con una ruta precachead por el SW.
-- Deploy automático: `git push origin main` → Vercel.
-- Fuente Inter autohosteada via `@fontsource/inter`, importada en ShellLayout. CSS var `--font-geist-sans` en `src/styles/base.css`.
-- JSON keys en kebab-case. Archivos `.astro` en PascalCase (componentes) o kebab-case (páginas).
-- Seguridad: `src/middleware.ts` inyecta headers CSP, X-Frame-Options, X-XSS-Protection, etc. En dev, CSP está deshabilitado para evitar bloqueos. Meta tags adicionales en ShellLayout: `referrer`, `permissions-policy`, `X-Content-Type-Options`, `X-Frame-Options`.
-- **SEO**: `ShellLayout.astro` incluye OpenGraph, Twitter Cards, keywords, y Schema.org JSON-LD. `package.json` con metadata descriptiva. `public/manifest.json` con descripción PWA optimizada. `src/content/docs/index.md` con descripción mejorada. Keywords principales: "física general I", "TEC Costa Rica", "física universitaria", "prácticas física", "evaluaciones física", "horarios académicos".
-- **Frontmatter en Starlight (documentación)**: Ejemplo en `src/content/docs/semana-01/lectura.mdx` incluye `title` (descriptivo), `description` (SEO), `keywords`, `author`, `date`, `readingTime`, `tags`, `category`, `difficulty`, `objetivos`. Pattern para futuras documentación.
+- Banner offline: `src/integrations/offline-banner.ts`, script inline global vía `injectScript('head-inline')` (funciona en ambos sistemas), re-ejecuta en `astro:after-swap`.
+- `postcss.config.mjs` legacy — `@astrojs/tailwind` configura PostCSS internamente.
+- Seguridad: `src/middleware.ts` (CSP deshabilitada en dev).
+- Deploy: `git push origin main` → Vercel.
+- Fuente Inter via `@fontsource/inter` importada en ShellLayout; var CSS `--font-geist-sans` en `src/styles/base.css`.
+- Naming: JSON keys kebab-case; `.astro` PascalCase (componentes) / kebab-case (páginas).
