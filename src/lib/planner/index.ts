@@ -3,6 +3,7 @@ import plannerData from './exams.json';
 export interface ExamLink {
   label: string;
   url: string;
+  download?: boolean | string;
 }
 
 export interface Exam {

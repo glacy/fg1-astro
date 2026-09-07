@@ -5,13 +5,31 @@
       "id": "80f35105-c3b7-43ee-8669-3f5cda551735",
       "title": "Bitácora e informe",
       "subject": "Proyecto",
-      "date": "2026-09-18",
+      "date": "2026-09-25",
       "time": "23:59",
       "topics": [
-        "Trabajo en equipo"
+        "Trabajo en equipo",
+        "proyectiles",
+        "FizziQ",
+        "análisis cinemático"
       ],
-      "notes": "",
-      "links": []
+      "notes": "Se deben entregar DOS documentos separados: 1. Informe técnico del proyecto. 2. Bitácora de trabajo (según plantilla oficial de la cátedra)",
+      "links":[
+        {
+          "label": "Instrucciones",
+          "url": "/FG1_IIS-2026_proyecto.pdf",
+          "download": true
+        },
+        {
+          "label": "Plantilla de la bitácora",
+          "url": "/FG1_IIS-2026_proyecto_bitacora_trabajo_en_equipo.docx",
+          "download": true
+        },
+        {
+          "label": "Presentación sobre la bitácora",
+          "url": "https://presentaciones-nine-delta.vercel.app/"
+        }
+      ]
     },
     {
       "id": "1",
