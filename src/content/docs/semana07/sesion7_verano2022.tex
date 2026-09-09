@@ -1,0 +1,235 @@
+\setcounter{page}{57}
+\setcounter{figure}{0}
+\setcounter{chapter}{6}
+
+\chapter{Aplicación de las Leyes de Newton}
+\label{cap:cap8}
+\vspace{-15ex}
+\RaggedRight
+
+
+En SEMANA \ref{cap:cap6} analizamos que la fuerza neta que experimenta un cuerpo est\'a relacionada con la aceleraci\'on que experimenta, mediante $$ \vec{F}_\text{neta}=m\vec{a}.$$
+Para emplear esta relación en un sistema específico, es fundamental identificar las principales fuerzas que actúan sobre él. Esta SEMANA, presentamos las fuerzas más comunes en sistemas mecánicos, entre ellas:
+\begin{itemize}
+\item[$-$] peso,
+\item[$-$] normal,
+\item[$-$] fricci\'on,
+\item[$-$] tensi\'on,
+\item[$-$] fuerza centr\'ipeta.
+\end{itemize}
+
+
+\section{Peso}
+
+\textit{El peso}, $\vec{P}$, es la fuerza que ejerce la gravedad (fuerza gravitacional) sobre cualquier objeto con masa
+\begin{equation}
+\vec{P}=m\vec{g},
+\end{equation}
+donde $m$ es la masa del objeto y $\vec{g}$ la acelerecaci\'on de la gravedad. El peso siempre act\'ua ``hacia abajo''.\\[.35cm]
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3.5in]{planeamiento_didactico/figuras/PESO.pdf}
+\end{center}
+\caption{Peso}
+\label{fig:normal}
+\end{figure}
+La fuerza gravitacional es la causa por la cual los objetos siempre caen hacia abajo. De manera similar, explica por qué un objeto lanzado hacia arriba alcanza una altura máxima antes de descender.  \\[.35cm]
+
+\section{Fuerza normal}
+La \textbf{fuerza normal} es una fuerza de reacción que surge cuando un objeto está en contacto con una superficie. Según la Tercera Ley de Newton, esta fuerza es la respuesta de la superficie a la presión ejercida por el objeto sobre ella. \\[.35cm]
+
+La fuerza normal siempre es perpendicular a la superficie de contacto y su magnitud depende de la naturaleza de la interacción entre el objeto y la superficie. En superficies horizontales y sin fuerzas adicionales en la dirección vertical, la normal es igual en magnitud al peso del objeto, es decir, $N=mg$. Sin embargo, en superficies inclinadas o en presencia de fuerzas externas, su valor puede cambiar.\\[.35cm]
+
+Este tipo de fuerza es crucial en el estudio del equilibrio de cuerpos y el análisis de fuerzas en mecánica, ya que afecta otros fenómenos como la fricción y la estabilidad de estructuras. (ver Figura \ref{fig:normal}).  \\[.35cm]
+ %\newpage
+\begin{figure}[h!]
+\begin{center}
+\begin{comment}
+\begin{tabular}{ccc}
+\begin{tikzpicture}[scale=.8]
+\fill [pattern = north east lines] (0,0) rectangle (5,.25);
+\draw (0,.25)--(5,.25);
+\draw[very thick,fill=red!20] (1.5,.25) rectangle(3.5,2);
+\draw[very thick,->,blue] (2.5,.25)--(2.5,2.5);
+\node at (2.5,2.5) [above] {$\vec{N}$};
+\draw[very thin] (2.5,.25)rectangle(2.7,.5);
+\end{tikzpicture} &
+\begin{tikzpicture}[rotate=30,scale=.8]
+\fill [pattern = north east lines] (0,0) rectangle (5,.25);
+\draw (0,.25)--(5,.25);
+\draw[very thick,fill=red!20] (1.5,.25) rectangle(3.5,2);
+\draw[very thick,->,blue] (2.5,.25)--(2.5,2.5);
+\node at (2.5,2.5) [above] {$\vec{N}$};
+\draw[very thin] (2.5,.25)rectangle(2.7,.5);
+\end{tikzpicture}&
+\begin{tikzpicture}[rotate=90,scale=.8]
+\fill [pattern = north east lines] (0,0) rectangle (5,.25);
+\draw (0,.25)--(5,.25);
+\draw[very thick,fill=red!20] (1.5,.25) rectangle(3.5,2);
+\draw[very thick,->,blue] (2.5,.25)--(2.5,2.5);
+\node at (2.5,2.5) [above] {$\vec{N}$};
+\draw[very thin] (2.5,.25)rectangle(2.7,.5);
+\end{tikzpicture}
+\includegraphics[width=2in]{figura-12-1}&\includegraphics[width=2in]{figura-12-2}&\includegraphics[width=1.6in]{figura-12-3}
+\end{tabular}
+\end{comment}
+\includegraphics[width=5in]{planeamiento_didactico/figuras/normal2.png}
+\end{center}
+\caption{Fuerza normal en distintas situaciones, esta fuerza siempre es perpendicular a la superficie de contacto. (\textbf{s\'olo se muestra la fuerza normal})}
+\label{fig:normal}
+\end{figure}
+%\vspace{-3ex}
+Manteniendo la convenci\'on de tomar la direcci\'on $y$ como la direcci\'on perpendicular al movimiento, la normal siempre se determina a partir de $$\sum F_{y}=0. $$
+
+\begin{wwteorema}{Ejemplo Normal}
+
+\textcolor{c4}{Ejemplo 1}
+\begin{center}
+    \includegraphics[width=3.5in]{planeamiento_didactico/figuras/fuerzas1.png}
+\end{center}
+
+
+
+$$\sum F_{y}=-mg+N-F_2\sin\theta=0,$$
+de donde $$N=mg+F_2\sin\theta.$$
+
+\textcolor{c4}{Ejemplo 2}
+\begin{center}
+    \includegraphics[width=3.5in]{planeamiento_didactico/figuras/normal3.png}
+\end{center}
+En este caso $$\sum F_{y}=-m_{\Mbox{total}}g+N+F\sin(35^\circ)=0,$$
+de donde $$N=m_{\Mbox{total}}g-F\sin(35^\circ).$$
+
+\textcolor{c4}{Ejemplo 3}
+\begin{center}
+    \includegraphics[width=3.5in]{planeamiento_didactico/figuras/bola-caja.png}
+\end{center}
+
+%\begin{tabular}{cc}
+%\begin{minipage}[t]{.5\textwidth}
+  \begin{tikzpicture}[scale=1.2,rotate=-30]
+\draw[very thin, <->] (-2,0)--(2,0);
+\node at (0,2) [above] {\scriptsize{$y$}};
+\node at (2,0) [right] {\scriptsize{$x$}};
+\draw[very thin, <->] (0,-2)--(0,2);
+\draw[->,c2,very thick] (0,0)--(-1,0);
+\node at (-1,0)[above] {\textcolor{c2}{$\vec{T}$}};
+\draw[->,c5,very thick] (0,0)--(0,1.5);
+\node at (0,1.8)[left] {\textcolor{c5}{$\vec{N}$}};
+\draw[->,c4,very thick] (0,0)--(300:1.5);
+\node at (300:1.75) {\textcolor{c4}{$m\vec{g}$}};
+\filldraw[fill=black!20,draw=black] (0,0) -- (0mm,-5mm)
+arc [start angle=270, end angle=300, radius=5mm] -- cycle;
+\node at (285:.8) {\textcolor{black}{\scriptsize{$\theta$}}};
+%\draw[->,black,very thick] (0,0)--(15:1.5cm);
+%\node at (15:1.5cm) [above] {\textcolor{black}{$\vec{F}$}};
+\node (a) at (4,2) {
+    $\sum F_{y}=0=N-mg\cos \theta $};
+ \node[below of=a] {
+    $\R  N=mg\cos \theta. $};
+\end{tikzpicture} 
+
+\end{wwteorema} 
+
+\section{Fuerzas de fricci\'on o de rozamiento}
+
+ \textit{La fricci\'on} es la fuerza que se opone el movimiento (o deslizamiento) entre dos superficies; tambi\'en conocida como \textit{fuerza de rozamiento}. Hay dos tipos de fricci\'on:
+\begin{itemize}
+\item[$-$] \textbf{fricci\'on est\'atica:} es la que se opone al inicio del deslizamiento entre dos superficies:
+\begin{equation}
+f_{\Mbox{s}}\le\mu_{\Mbox{s}}N,
+\end{equation}
+donde $\mu_{\Mbox{s}}$ se llama \textit{coeficiente de fricci\'on est\'atica} y es un par\'ametro caracter\'istico de la fricci\'on est\'atica entre cada par de superficies y $N$ es la fuerza normal que una superficie experimenta debido a la otra.
+\item[$-$] \textbf{fricci\'on din\'amica (o cin\'etica):} es la resistencia que existe cuando una superfice se desliza sobre otra:
+\begin{equation}
+f_{\Mbox{k}}=\mu_{\Mbox{k}}N,
+\end{equation}
+donde $\mu_{\Mbox{k}}$ se llama \textit{coeficiente de fricci\'on din\'amica} y es un par\'ametro caracter\'istico de la fricci\'on din\'amica entre cada par de superficies y $N$ es la fuerza normal que experimenta una superficie debido a la otra.
+\end{itemize}
+
+\section{Fuerzas de tensi\'on}
+
+La fuerza de tensión es la que permite que una cuerda permanezca estirada cuando está sometida a una fuerza en sus extremos. En el caso de cuerdas ideales, es decir, aquellas que se consideran inextensibles y de masa despreciable, la tensión se distribuye de manera uniforme a lo largo de toda su longitud y siempre se orienta a lo largo de la cuerda, en dirección opuesta a la fuerza que la estira.\\[.35cm]
+
+Esta fuerza es fundamental en diversos sistemas mecánicos, como poleas, péndulos y estructuras suspendidas, ya que permite transmitir fuerzas entre distintos cuerpos.  En la Figura \ref{fig:tension} se muestran algunas situaciones donde intervienen cuerdas tensas.\\[.35cm]
+
+En situaciones reales, la tensión puede variar a lo largo de la cuerda debido a su peso, elasticidad o la presencia de rozamiento, pero en muchas aplicaciones prácticas se puede considerar constante para simplificar el análisis.
+
+\begin{figure}[h!]
+\centering
+\begin{tabular}{cc}
+\includegraphics[height=3in]{planeamiento_didactico/figuras/captura5.png}&\includegraphics[height=3in]{planeamiento_didactico/figuras/Captura3.png}
+\end{tabular}
+\includegraphics[width=4.5in]{planeamiento_didactico/figuras/figura_11-1.png}
+\caption{Ejemplos donde intervienen cuerda tensas.}
+\label{fig:tension}
+\end{figure}
+
+\section{Fuerza centr\'ipeta}
+
+ La \textit{fuerza centr\'ipeta} en un \textit{movimiento circular uniforme} es la fuerza neta dirigida hacia el centro de la trayectoria circular que experimenta el objeto, dada por
+\begin{equation}
+F_{\Mbox{c}}=\sum F_{r}=ma_{\Mbox{c}}=m\frac{v^{2}}{R},
+\end{equation}
+donde $v$ es la rapidez del movimiento y $R$ el radio de la trayectoria. El t\'ermino $a_{\Mbox{c}}=v^{2}/R$ se denomina \textit{aceleraci\'on centr\'ipeta}. \\[.35cm]
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=2.5in]{planeamiento_didactico/figuras/mcu1.png}
+\caption{Din\'amica del movimiento circular uniforme}
+\label{fig:dmcu}
+\end{figure}
+
+Una aplicaci\'on de la din\'amica circular es el dise\~no de curvas con peralte. Esto consiste en una diferencia en la elevaci\'on de la parte exterior y la interior de una curva, en una carretera o v\'ia. El objetivo del peralte es  compensar con una componente de su propio peso, la inercia del veh\'iculo. El peralte es un elemento de seguridad para evitar el deslizamiento transversal de los vehículos en las carreteras.
+\newpage
+\begin{wwteorema}{Carretera con peralte}
+
+\begin{center}
+    \includegraphics[width=3.5in]{planeamiento_didactico/figuras/peralte.png}
+\end{center}
+
+
+\begin{align*}
+\sum F_{x}=&N \sin \beta=ma_{\Mbox{c}} \\[.35cm]
+\sum F_{y}=&N\cos \beta -mg=0
+\end{align*}
+de donde $$\beta = \arctan \left(\frac{v^2}{gR}\right)$$
+define el \'angulo de peralte
+\end{wwteorema} 
+
+\section{Diagramas de cuerpo libre}
+
+Al analizar un objeto sobre el que act\'ua un conjunto de fuerzas, resulta conveniente considerar que todas estas fuerzas se aplican sobre el mismo punto. Un diagrama donde todas las fuerzas que act\'uan sobre un objeto se dibujan sobre el origen de un sistema de referencia (inercial), se conoce como \textit{diagrama de cuerpo libre} (D.C.L). \\[.35cm]
+\newpage
+\begin{wwteorema}{Diagramas de cuerpo libre}
+
+\textcolor{c4}{Ejemplo 1}
+
+%\begin{figure}[ht!]
+%\centering
+\includegraphics[width=4in]{planeamiento_didactico/figuras/figura_13-1.png} \\[.35cm]
+
+\textcolor{c4}{Ejemplo 2}
+
+\includegraphics[width=4in]{planeamiento_didactico/figuras/figura_13-2.png}
+%\caption{Diagramas de cuerpo libre para dos situaciones.}
+%\textcolor{c1}{La cantidad $\vec{f}_{\Mbox{k}}$ hace referencia a la fuerza de fricci\'on din\'amica, la cual se definir\'a en la pr\'oxima SEMANA.}
+%\label{fig:dcl0}
+%\end{figure}
+\end{wwteorema} 
+%En la Figura \ref{fig:dcl0} se dan dos situaciones y se muestra el D.C.L correspondiente.  \\[.35cm]
+
+
+
+
+
+Para aplicar las leyes de Newton, debemos 
+\begin{itemize}
+\item[$-$] definir un marco de referencia inercial respecto al cual describir el movimiento del sistema,
+\item[$-$] identificar todas las fuerzas que act\'uan sobre el sistema,
+\item[$-$] ubicar dichas fuerzas sobre un sistema de referencia, como si todas actuaran sobre el mismo punto, o sea, eleborar el diagrama de cuerpo libre (D.C.L),
+\item[$-$] encontrar la fuerza neta que act\'ua sobre el sistema,
+\item[$-$] resolver la ecuaci\'on $$\sum \vec{F}=m\vec{a}.$$
+\end{itemize}
+

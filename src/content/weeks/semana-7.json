@@ -3,16 +3,15 @@
   "title": "Aplicación de las Leyes de Newton",
   "image": "https://images.unsplash.com/photo-1569406125624-98ee19b01d4a?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
-    "Identificar las fuerzas que actúan sobre un cuerpo en un diagrama de cuerpo libre (DCL).",
-    "Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio",
-    "Usar la segunda ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo con aceleración."
+    "Identificar las fuerzas que actúan sobre un cuerpo —peso, normal, tensión y fricción— y representarlas en un diagrama de cuerpo libre (DCL).",
+    "Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio.",
+    "Usar la segunda ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo con aceleración.",
+    "Distinguir entre fricción estática y cinética, y determinar su magnitud a partir del coeficiente de fricción y la fuerza normal."
   ],
   "contenidos": [
-    "Diagramas de cuerpo libre (sección 4.6).",
     "Empleo de la primera ley de Newton: partículas en equilibrio (sección 5.1).",
     "Uso de la segunda ley de Newton: dinámica de partículas (sección 5.2).",
-    "fuerzas de fricción (sección 5.3).",
-    "Fuerzas fundamentales de la naturaleza (sección 5.5)."
+    "Fuerzas de fricción (sección 5.3)."
   ],
   "consignas": [
     {

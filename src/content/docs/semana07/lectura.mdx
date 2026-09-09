@@ -1,29 +1,493 @@
 ---
-title: "Aplicación de las Leyes de Newton"
-description: "Material de lectura para la semana 7."
+title: "Aplicación de las leyes de Newton"
+description: "Aplicación de las leyes de Newton: el catálogo de fuerzas del mecánico (peso, normal, tensión y fricción estática y cinética), cómo determinar la fuerza normal en distintas situaciones, y la estrategia de solución con diagramas de cuerpo libre para problemas de equilibrio (primera ley) y de dinámica de partículas (segunda ley)."
 week: 7
-keywords: ["física general I", "semana 7", "TEC Costa Rica"]
+keywords: ["aplicación de las leyes de Newton", "diagrama de cuerpo libre", "fuerza normal", "tensión", "fricción", "fricción estática", "fricción cinética", "coeficiente de fricción", "equilibrio", "primera ley de Newton", "segunda ley de Newton", "plano inclinado", "peso aparente", "dinámica", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-7"]
-category: "semana-7"
-difficulty: "basic"
+date: 2026-09-08
+readingTime: 20
+tags: ["leyes de Newton", "equilibrio", "fricción", "diagrama de cuerpo libre"]
+category: "dinámica"
+difficulty: "intermediate"
 objetivos:
-  - "Identificar las fuerzas que actúan sobre un cuerpo en un diagrama de cuerpo libre (DCL)."
-  - "Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio"
+  - "Identificar las fuerzas que actúan sobre un cuerpo —peso, normal, tensión y fricción— y representarlas en un diagrama de cuerpo libre (DCL)."
+  - "Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio."
   - "Usar la segunda ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo con aceleración."
-draft: true
+  - "Distinguir entre fricción estática y cinética, y determinar su magnitud a partir del coeficiente de fricción y la fuerza normal."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import { Image } from 'astro:assets';
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import { Steps } from '@astrojs/starlight/components';
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Identificar las fuerzas que actúan sobre un cuerpo —peso, normal, tensión y fricción— y representarlas en un diagrama de cuerpo libre (DCL).
+  - Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio.
+  - Usar la segunda ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo con aceleración.
+  - Distinguir entre fricción estática y cinética, y determinar su magnitud a partir del coeficiente de fricción y la fuerza normal.
+</PreCheck>
 
-- Identificar las fuerzas que actúan sobre un cuerpo en un diagrama de cuerpo libre (DCL).
-- Usar la primera ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo en equilibrio
-- Usar la segunda ley de Newton para resolver problemas donde intervienen fuerzas que actúan sobre un cuerpo con aceleración.
+En la semana anterior aprendimos las *reglas del juego*: las tres leyes de Newton, que relacionan la fuerza neta con el cambio de movimiento, y el **diagrama de cuerpo libre (DCL)** como herramienta para inventariar fuerzas. En esta semana ponemos esas reglas a trabajar. Todo problema de dinámica —una caja sobre una rampa, un letrero colgado de dos cables, un ascensor que arranca— se resuelve con el mismo método de tres tiempos: **identificar las fuerzas y dibujar el DCL**, **sumarlas por componentes** y **aplicar** $$\sum \vec{F} = \vec{0}$$ (equilibrio) o $$\sum \vec{F} = m\vec{a}$$ (dinámica). Para hacerlo con soltura, primero afinaremos el reconocimiento del "catálogo" de fuerzas que aparece una y otra vez en los problemas de mecánica: el peso, la normal, la tensión y la fricción. Las cuatro interacciones fundamentales de la naturaleza ya las estudiamos la semana anterior; aquí trabajamos con esas fuerzas cotidianas, que son manifestaciones de aquellas.
 
-## Contenido
+## El catálogo de fuerzas, una por una
 
-Contenido de la semana 7 próximamente disponible.
+La habilidad número uno del análisis dinámico es mirar una situación física y responder sin dudar: *¿qué fuerzas actúan sobre este cuerpo y hacia dónde apunta cada una?* Repasemos cada fuerza del catálogo, ahora con el detalle que necesitamos para calcular.
+
+### El peso: la fuerza que siempre apunta hacia abajo
+
+El **peso** es la fuerza gravitacional con que la Tierra atrae al cuerpo:
+
+$$
+\vec{P} = m\vec{g}
+$$
+
+Tres recordatorios que evitan errores: apunta **verticalmente hacia abajo** siempre —sin importar cómo esté inclinada la superficie ni hacia dónde se mueva el cuerpo—; su magnitud vale $$P = mg$$, con $$g = 9{,}8\,\mathrm{m/s^2}$$; y actúa sobre *cada porción* del cuerpo, aunque en el DCL lo dibujamos como una sola flecha aplicada en el centro de gravedad. Un cuerpo que sube, que baja o que se desliza sobre un plano inclinado tiene exactamente el mismo peso: la gravedad no "descuenta" nada por moverse.
+
+### La fuerza normal: perpendicular a la superficie, pero no siempre igual al peso
+
+La **fuerza normal** $$\vec{N}$$ es la fuerza de contacto que una superficie ejerce sobre el cuerpo apoyado en ella. Su dirección es siempre **perpendicular a la superficie de contacto** —de ahí su nombre—. ¿Y su magnitud? Aquí está el error más común de toda la dinámica: **la normal no tiene una fórmula fija**. Su valor es exactamente el necesario para que el cuerpo no atraviese la superficie, y por eso se determina aplicando las leyes de Newton en la dirección perpendicular al contacto, no "de memoria". La tabla muestra los casos clásicos (en todos ellos el cuerpo no acelera en la dirección perpendicular a la superficie):
+
+| Situación | Fuerza normal |
+| :--- | :--- |
+| Superficie horizontal, sin otras fuerzas verticales | $$N = mg$$ |
+| Superficie horizontal con un empuje adicional $$F$$ inclinado un ángulo $$\theta$$ **hacia abajo** | $$N = mg + F\sin\theta$$ |
+| Superficie horizontal con un jalón $$F$$ inclinado un ángulo $$\theta$$ **hacia arriba** | $$N = mg - F\sin\theta$$ |
+| Plano inclinado un ángulo $$\theta$$ (cuerpo en reposo o deslizando sobre él) | $$N = mg\cos\theta$$ |
+
+Observe que empujar un carrito inclinando las manos hacia abajo *aumenta* la normal, y jalar con una cuerda hacia arriba la *disminuye*: en los dos casos la componente vertical de la fuerza ayuda o se opone al peso. En el caso extremo, si se jala tan fuerte que $$F\sin\theta \ge mg$$, la normal se anula y la caja **despega** de la superficie.
+
+<Box icon="check-list">
+
+**Ejemplo — empujar hacia abajo o jalar hacia arriba**
+
+Una caja de masa $$m = 12\,\mathrm{kg}$$ está sobre un piso horizontal y una persona aplica una fuerza de magnitud $$F = 50\,\mathrm{N}$$ formando $$\theta = 30^\circ$$ con la horizontal. Como la caja no se mueve en dirección vertical, la segunda ley en esa dirección da $$\sum F_y = 0$$:
+
+- Si la fuerza **empuja hacia abajo**: $$N - mg - F\sin\theta = 0$$, de donde
+
+$$
+N = mg + F\sin 30^\circ = (12)(9{,}8) + (50)(0{,}50) = 117{,}6 + 25 = 142{,}6\,\mathrm{N}
+$$
+
+- Si la fuerza **jala hacia arriba**: $$N - mg + F\sin\theta = 0$$, de donde
+
+$$
+N = mg - F\sin 30^\circ = 117{,}6 - 25 = 92{,}6\,\mathrm{N}
+$$
+
+La misma fuerza, aplicada en direcciones distintas, cambia la normal en $$50\,\mathrm{N}$$ respecto del peso $$117{,}6\,\mathrm{N}$$. Esta diferencia no es un detalle menor: como veremos enseguida, la fricción depende directamente de $$N$$, así que *la manera de empujar o jalar cambia también la fricción*.
+
+</Box>
+
+### La tensión: la fuerza que transmiten las cuerdas
+
+La **tensión** $$\vec{T}$$ es la fuerza que una cuerda, cable o cadena ejerce sobre los cuerpos a los que está sujeta. Apunta **a lo largo de la cuerda**, alejándose del cuerpo: una cuerda puede **tirar**, pero nunca empujar. En los problemas de este curso usamos **cuerdas ideales**, que satisfacen dos propiedades:
+
+- **Masa despreciable:** la tensión tiene la **misma magnitud en todos los puntos** de la cuerda; en particular, la fuerza con que la cuerda tira de un extremo es igual a la que tira del otro.
+- **Inextensible:** la cuerda no se estira, de modo que los cuerpos conectados por ella se mueven juntos: si uno avanza $$1\,\mathrm{m}$$, el otro también, y ambos tienen aceleraciones de la **misma magnitud**.
+
+Una **polea ideal** (de masa y fricción despreciables) solo **cambia la dirección** de la tensión, no su magnitud. Gracias a estas propiedades, un sistema de cuerda y polea —como el que baja una cubeta a un pozo o el de una grúa— se analiza con una sola incógnita de tensión compartida por todos los cuerpos conectados.
+
+### La fricción: la fuerza que se opone al deslizamiento
+
+La **fricción** (o *rozamiento*) es la fuerza de contacto que una superficie ejerce **paralela** a ella, oponiéndose al deslizamiento de un cuerpo sobre otra superficie —o a su *tendencia* a deslizar—. A diferencia de la normal, que es siempre perpendicular al contacto, la fricción actúa a lo largo de la superficie, en sentido opuesto al movimiento relativo (o al intento de movimiento). Hay dos tipos:
+
+- **Fricción estática:** actúa mientras el cuerpo **no desliza**, oponiéndose al *inicio* del deslizamiento. No tiene un valor único: se **autoajusta** para equilibrar los demás esfuerzos, hasta un máximo que depende de los materiales y de cuánto se presionen las superficies:
+
+$$
+f_s \le \mu_s N
+$$
+
+  El valor $$\mu_s$$ es el **coeficiente de fricción estática**, característico de cada par de superficies. La igualdad $$f_s = \mu_s N$$ se cumple solo *al borde del deslizamiento*, cuando cualquier empuje adicional hace que el cuerpo arranque.
+
+- **Fricción cinética (o dinámica):** actúa mientras el cuerpo **sí desliza**, con un valor prácticamente constante y proporcional a la normal:
+
+$$
+f_k = \mu_k N
+$$
+
+  donde $$\mu_k$$ es el **coeficiente de fricción cinética**. La dirección de $$\vec{f}_k$$ es siempre opuesta a la velocidad relativa de deslizamiento.
+
+En general $$\mu_s > \mu_k$$: hace falta **más** fuerza para *arrancar* un objeto que para *mantenerlo* deslizando. Piense en el refrigerador de la cocina: mientras empuja suave y no se mueve, la fricción estática iguala su esfuerzo; en el instante en que arranca, la fricción cae bruscamente y el refrigerador "se va". Estos son valores típicos de los coeficientes:
+
+| Par de superficies | $$\mu_s$$ | $$\mu_k$$ |
+| :--- | :--- | :--- |
+| Caucho sobre concreto seco | 1,0 | 0,8 |
+| Acero sobre acero (secos) | 0,6 | 0,4 |
+| Madera sobre madera | 0,5 | 0,3 |
+| Hielo sobre hielo | 0,1 | 0,03 |
+| Teflón sobre acero | 0,04 | 0,04 |
+
+Dos propiedades sorprendentes y útiles: en un rango amplio, la fricción **no depende del área aparente de contacto** —una caja desliza igual parada que acostada, porque aunque el área cambia, también lo hace la distribución de presión— y la fricción cinética **casi no depende de la rapidez**. Lo que sí la controla es la normal: apriete las superficies una contra otra y la fricción sube en proporción directa.
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Una caja está en reposo sobre un piso y se le empuja con una fuerza horizontal cada vez mayor sin que llegue a moverse. La fuerza de fricción estática sobre ella __________.
+
+    <MultipleChoice>
+      <Option>
+        vale siempre $$\mu_s N$$
+      </Option>
+      <Option isCorrect>
+        crece junto con el empuje, hasta un máximo de $$\mu_s N$$
+      </Option>
+      <Option>
+        permanece constante en $$\mu_s N$$
+      </Option>
+      <Option>
+        vale cero, porque la caja no se mueve
+      </Option>
+    </MultipleChoice>
+
+2. Una caja desliza sobre un piso con $$N = 200\,\mathrm{N}$$ y $$\mu_k = 0{,}30$$. La fricción cinética vale __________.
+
+    <MultipleChoice>
+      <Option>
+        $$667\,\mathrm{N}$$
+      </Option>
+      <Option isCorrect>
+        $$60\,\mathrm{N}$$
+      </Option>
+      <Option>
+        $$0{,}0015\,\mathrm{N}$$
+      </Option>
+      <Option>
+        $$200\,\mathrm{N}$$
+      </Option>
+    </MultipleChoice>
+
+3. Si se duplica la fuerza con que dos superficies se presionan entre sí, la fricción cinética __________.
+
+    <MultipleChoice>
+      <Option>
+        no cambia
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+      <Option isCorrect>
+        se duplica
+      </Option>
+      <Option>
+        se cuadruplica
+      </Option>
+    </MultipleChoice>
+
+4. Que $$\mu_s > \mu_k$$ significa que __________.
+
+    <MultipleChoice>
+      <Option>
+        la fricción siempre se opone al movimiento
+      </Option>
+      <Option>
+        la fricción no depende del área de contacto
+      </Option>
+      <Option>
+        es más fácil arrancar un objeto que mantenerlo deslizando
+      </Option>
+      <Option isCorrect>
+        se necesita más fuerza para arrancar un objeto que para mantenerlo deslizando
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Cuerpos en equilibrio: la primera ley en acción
+
+Decimos que un cuerpo está en **equilibrio** cuando su aceleración es cero. Por la primera ley de Newton, eso ocurre si y solo si la fuerza neta sobre él es cero, lo que en componentes se escribe:
+
+$$
+\sum F_x = 0, \qquad \sum F_y = 0
+$$
+
+Cuidado con la palabra "equilibrio": no significa necesariamente reposo. Un cuerpo en equilibrio está **en reposo o moviéndose con velocidad constante** —el bote que cruza el lago a $$20\,\mathrm{km/h}$$ en línea recta está tan en equilibrio como el letrero colgado de un semáforo—. La estrategia es siempre la misma: dibujar el DCL, elegir ejes convenientes y exigir que la suma de componentes se anule en cada eje. En superficies inclinadas conviene alinear el eje $$x$$ con la superficie y el eje $$y$$ perpendicular a ella: así la normal queda "pura" en un eje y el peso se descompone en $$mg\sin\theta$$ (paralelo) y $$mg\cos\theta$$ (perpendicular).
+
+Considere una caja en reposo sobre un plano inclinado un ángulo $$\theta$$, donde la fricción evita que resbale hacia abajo. El DCL contiene exactamente tres fuerzas:
+
+
+<Box icon="check-list">
+
+**Ejemplo — caja en reposo sobre un plano inclinado**
+
+Una caja de masa $$m = 25\,\mathrm{kg}$$ reposa sobre una rampa de $$\theta = 30^\circ$$. Con ejes alineados con la rampa, las ecuaciones de equilibrio son:
+
+$$
+\sum F_y = N - mg\cos\theta = 0 \quad\Rightarrow\quad N = mg\cos 30^\circ = (25)(9{,}8)(0{,}866) \approx 212\,\mathrm{N}
+$$
+
+$$
+\sum F_x = f_s - mg\sin\theta = 0 \quad\Rightarrow\quad f_s = mg\sin 30^\circ = (25)(9{,}8)(0{,}50) = 122{,}5\,\mathrm{N}
+$$
+
+Dos observaciones valiosas. Primero, la normal **no** vale $$mg = 245\,\mathrm{N}$$, sino menos: la rampa solo "sostiene" la componente perpendicular del peso. Segundo, la fricción estática se autoajustó exactamente a $$122{,}5\,\mathrm{N}$$ para equilibrar el empuje de la gravedad; esto será posible mientras $$\mu_s \ge \tan\theta = 0{,}58$$. De hecho, la condición $$\mu_s \ge \tan\theta$$ explica por qué toda rampa tiene un ángulo máximo de inclinación sin deslizar: suba la rampa y la caja resbalará justo cuando $$\tan\theta$$ supere al coeficiente estático.
+
+</Box>
+
+El segundo ejemplo clásico de equilibrio es un cuerpo colgado de **dos cuerdas** con ángulos distintos, como un letrero sostenido por dos cables. La clave: elegir el **nudo** donde se juntan las cuerdas como cuerpo de análisis, pues sobre él actúan las dos tensiones y el jalón del peso.
+
+
+<Box icon="check-list">
+
+**Ejemplo — un letrero de $$10\,\mathrm{kg}$$ colgado de dos cables**
+
+Del letrero de masa $$m = 10\,\mathrm{kg}$$ ($$mg = 98\,\mathrm{N}$$) sale una cuerda que forma $$40^\circ$$ sobre la horizontal, y otra que forma $$65^\circ$$. Sobre el nudo, el equilibrio por componentes da:
+
+$$
+\sum F_x = T_2\cos 65^\circ - T_1\cos 40^\circ = 0
+$$
+
+$$
+\sum F_y = T_1\sin 40^\circ + T_2\sin 65^\circ - mg = 0
+$$
+
+De la primera ecuación, $$T_2 = T_1\,\dfrac{\cos 40^\circ}{\cos 65^\circ} = 1{,}81\,T_1$$. Sustituyendo en la segunda:
+
+$$
+0{,}643\,T_1 + 0{,}906\,(1{,}81\,T_1) = 98\,\mathrm{N} \quad\Rightarrow\quad 2{,}28\,T_1 = 98\,\mathrm{N}
+$$
+
+de donde:
+
+$$
+T_1 \approx 43\,\mathrm{N}, \qquad T_2 \approx 78\,\mathrm{N}
+$$
+
+Note que la cuerda más **vertical** ($$65^\circ$$) carga con la mayor parte del peso: cuanto más cerca de la vertical esté un cable, mayor es su componente que sostiene directamente al letrero. Un cable perfectamente horizontal no podría sostener nada solo: toda su tensión sería horizontal y ninguna componente compensaría al peso.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Un cuerpo está en equilibrio si __________.
+
+    <MultipleChoice>
+      <Option>
+        está necesariamente en reposo
+      </Option>
+      <Option isCorrect>
+        su aceleración es cero: está en reposo o con velocidad constante
+      </Option>
+      <Option>
+        no actúa ninguna fuerza sobre él
+      </Option>
+      <Option>
+        se mueve con velocidad que aumenta de manera uniforme
+      </Option>
+    </MultipleChoice>
+
+2. Una caja reposa sobre un plano inclinado. Si el ángulo de inclinación aumenta, la fuerza normal sobre la caja __________.
+
+    <MultipleChoice>
+      <Option>
+        aumenta, porque el peso no cambia
+      </Option>
+      <Option isCorrect>
+        disminuye, pues vale $$mg\cos\theta$$ y $$\cos\theta$$ se reduce
+      </Option>
+      <Option>
+        permanece igual a $$mg$$
+      </Option>
+      <Option>
+        aumenta en la misma proporción que la fricción
+      </Option>
+    </MultipleChoice>
+
+3. Un letrero cuelga en reposo de un solo cable vertical. La tensión del cable __________.
+
+    <MultipleChoice>
+      <Option>
+        es menor que el peso del letrero
+      </Option>
+      <Option>
+        es mayor que el peso del letrero
+      </Option>
+      <Option isCorrect>
+        es igual al peso del letrero
+      </Option>
+      <Option>
+        depende del material del cable
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Dinámica de partículas: la segunda ley en acción
+
+Cuando la fuerza neta **no** es cero, el cuerpo acelera. La segunda ley, $$\sum \vec{F} = m\vec{a}$$, se aplica por componentes:
+
+$$
+\sum F_x = ma_x, \qquad \sum F_y = ma_y
+$$
+
+El método es idéntico al del equilibrio —DCL, ejes, componentes— con una diferencia: ahora la suma de componentes **no se anula**, sino que iguala $$m$$ por la aceleración correspondiente. La elección inteligente de ejes se vuelve aún más valiosa: en un plano inclinado, por ejemplo, el cuerpo solo acelera **a lo largo** de la superficie, de modo que la componente perpendicular de la segunda ley se reduce a $$\sum F_y = 0$$ aunque el cuerpo se mueva.
+
+<Box icon="check-list">
+
+**Ejemplo — cajón jalado con una cuerda, con fricción**
+
+Un cajón de $$m = 20\,\mathrm{kg}$$ se jala sobre un piso horizontal con una cuerda que ejerce $$T = 100\,\mathrm{N}$$ formando $$30^\circ$$ sobre la horizontal. El coeficiente de fricción cinética entre el cajón y el piso es $$\mu_k = 0{,}35$$. Queremos la aceleración.
+
+**Paso 1 — DCL:** cuatro fuerzas actúan sobre el cajón: la tensión $$\vec{T}$$ (a $$30^\circ$$), el peso $$mg = (20)(9{,}8) = 196\,\mathrm{N}$$, la normal $$\vec{N}$$ y la fricción cinética $$\vec{f}_k$$ (opuesta al movimiento).
+
+**Paso 2 — dirección vertical** (el cajón no se mueve hacia arriba ni hacia abajo, $$a_y = 0$$):
+
+$$
+\sum F_y = N - mg + T\sin 30^\circ = 0 \quad\Rightarrow\quad N = 196 - (100)(0{,}50) = 146\,\mathrm{N}
+$$
+
+Observe: jalar con la cuerda inclinada hacia arriba **reducía** la normal (de $$196\,\mathrm{N}$$ a $$146\,\mathrm{N}$$) —exactamente lo contrario que empujar hacia abajo.
+
+**Paso 3 — fricción:**
+
+$$
+f_k = \mu_k N = (0{,}35)(146) = 51{,}1\,\mathrm{N}
+$$
+
+**Paso 4 — dirección horizontal** (aquí sí hay aceleración):
+
+$$
+\sum F_x = T\cos 30^\circ - f_k = ma \quad\Rightarrow\quad a = \frac{86{,}6 - 51{,}1}{20} \approx 1{,}8\,\mathrm{m/s^2}
+$$
+
+El cajón acelera con $$1{,}8\,\mathrm{m/s^2}$$. Si la misma fuerza se aplicara horizontalmente, la normal sería mayor ($$196\,\mathrm{N}$$), la fricción también, y la aceleración resultante sería menor: inclinar el jalón hacia arriba es una manera eficaz de mover cargas pesadas.
+
+</Box>
+
+<Box icon="check-list">
+
+**Ejemplo — el ascensor y el peso aparente**
+
+Una persona de $$m = 70\,\mathrm{kg}$$ está de pie sobre una báscula dentro de un ascensor. La báscula mide la **normal** con que la sostiene, no el peso: a eso le llamamos *peso aparente*. La única aceleración posible es vertical, así que:
+
+$$
+\sum F_y = N - mg = ma_y \quad\Rightarrow\quad N = m(g + a_y)
+$$
+
+| Movimiento del ascensor | Peso aparente $$N$$ |
+| :--- | :--- |
+| En reposo o con velocidad constante ($$a_y = 0$$) | $$70(9{,}8) = 686\,\mathrm{N}$$ |
+| Arranca subiendo ($$a_y = +2{,}0\,\mathrm{m/s^2}$$) | $$70(11{,}8) = 826\,\mathrm{N}$$: la báscula marca **más** |
+| Frena bajando (también $$a_y = +2{,}0\,\mathrm{m/s^2}$$) | $$826\,\mathrm{N}$$: de nuevo **más** que el peso |
+| Baja acelerando ($$a_y = -2{,}0\,\mathrm{m/s^2}$$) | $$70(7{,}8) = 546\,\mathrm{N}$$: la báscula marca **menos** |
+| Caída libre ($$a_y = -g$$) | $$N = 0$$: ingravidez |
+
+Ese es el "estómago que se queda un piso más arriba" al arrancar la bajada: si la normal que sostiene sus órganos disminuye de golpe, usted lo percibe como una sensación de flotar. Y la caída libre no es un caso exótico: las naves en órbita están cayendo libremente alrededor de la Tierra de manera permanente, y por eso sus tripulantes flotan sin que su masa haya cambiado en nada.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Una persona sube en un ascensor que acelera hacia arriba. La fuerza normal que el piso ejerce sobre ella es __________.
+
+    <MultipleChoice>
+      <Option>
+        menor que su peso
+      </Option>
+      <Option>
+        igual a su peso
+      </Option>
+      <Option isCorrect>
+        mayor que su peso
+      </Option>
+      <Option>
+        cero
+      </Option>
+    </MultipleChoice>
+
+2. Un bloque desliza sobre un piso horizontal, y la única fuerza horizontal que actúa sobre él es la fricción cinética. Su aceleración vale __________.
+
+    <MultipleChoice>
+      <Option>
+        cero
+      </Option>
+      <Option isCorrect>
+        $$\mu_k g$$, dirigida opuesta al movimiento
+      </Option>
+      <Option>
+        $$g$$, dirigida opuesta al movimiento
+      </Option>
+      <Option>
+        $$\mu_k g$$, dirigida a favor del movimiento
+      </Option>
+    </MultipleChoice>
+
+3. Un cuerpo desliza hacia abajo por un plano inclinado sin fricción, un ángulo $$\theta$$ sobre la horizontal. Su aceleración vale __________.
+
+    <MultipleChoice>
+      <Option>
+        $$g$$
+      </Option>
+      <Option>
+        $$g\cos\theta$$
+      </Option>
+      <Option isCorrect>
+        $$g\sin\theta$$
+      </Option>
+      <Option>
+        $$g\tan\theta$$
+      </Option>
+    </MultipleChoice>
+
+4. Un carro se mueve en línea recta a velocidad constante. Si de pronto la fuerza neta sobre él se anula, el carro __________.
+
+    <MultipleChoice>
+      <Option>
+        se detiene de inmediato
+      </Option>
+      <Option>
+        sigue moviéndose con la misma velocidad constante
+      </Option>
+      <Option>
+        desacelera poco a poco hasta detenerse
+      </Option>
+      <Option>
+        mantiene su velocidad pero cambia de dirección
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Estrategia general: del enunciado a la solución
+
+Los ejemplos anteriores comparten un mismo esqueleto. Con práctica, este procedimiento resolverá cualquier problema de una sola partícula:
+
+<Steps>
+1. **Dibuje el diagrama de cuerpo libre** de cada cuerpo: 
+un recuadro aislado y una flecha rotulada por cada fuerza que otros cuerpos ejercen sobre él (peso, normal, tensión, fricción, empujes). Nada de fuerzas ficticias: la aceleración y la fuerza neta son *resultados*, no fuerzas.
+2. **Elija ejes convenientes**: 
+si hay superficie inclinada, un eje paralelo a ella y otro perpendicular; si el cuerpo se mueve en línea recta, un eje a lo largo del movimiento.
+3. **Descomponga las fuerzas** que no estén alineadas con los ejes (por ejemplo, el peso en un plano inclinado: $$mg\sin\theta$$ y $$mg\cos\theta$$).
+4. **Aplique la segunda ley por componentes**:
+ $$\sum F_x = ma_x$$ y $$\sum F_y = ma_y$$, usando $$\sum F = 0$$ en la dirección donde no hay aceleración. Recuerde la fricción: estática si no desliza ($$f_s \le \mu_s N$$), cinética si desliza ($$f_k = \mu_k N$$).
+5. **Resuelva el sistema de ecuaciones** e interprete el resultado: revise signos, unidades y si el valor tiene sentido físico (¿la normal salió negativa? Entonces el cuerpo despega; ¿la aceleración salió en contra del movimiento asumido? Revise el sentido de la fricción).
+</Steps>
+
+Cuatro errores clásicos que vale la pena vigilar:
+
+- **Usar $$N = mg$$ siempre.** La normal cambia con empujes, jalones e inclinaciones; se calcula, no se memoriza.
+- **Igualar la fricción estática a $$\mu_s N$$ siempre.** Solo en el borde del deslizamiento; antes, $$f_s$$ vale exactamente lo necesario para el equilibrio.
+- **Dibujar $$m\vec{a}$$ como una fuerza más en el DCL.** La aceleración es consecuencia de las fuerzas, y aparece del otro lado de la ecuación.
+- **Mezclar componentes de ejes distintos** en la misma ecuación: cada eje se analiza por separado.
+
+## Resumen de la semana
+
+| Concepto | Enunciado | Expresión |
+| :--- | :--- | :--- |
+| Peso | fuerza gravitacional, siempre vertical hacia abajo | $$\vec{P} = m\vec{g}$$ |
+| Fuerza normal | perpendicular a la superficie de contacto; su magnitud se calcula con las leyes de Newton | $$N = mg\cos\theta$$ en un plano inclinado |
+| Tensión | a lo largo de la cuerda ideal; igual magnitud en todos sus puntos | polea ideal: cambia dirección, no magnitud |
+| Fricción estática | se autoajusta hasta un máximo, antes de que el cuerpo deslize | $$f_s \le \mu_s N$$ |
+| Fricción cinética | constante mientras el cuerpo desliza, opuesta al movimiento | $$f_k = \mu_k N$$ |
+| Equilibrio (primera ley) | sin aceleración: reposo o velocidad constante | $$\sum F_x = 0, \quad \sum F_y = 0$$ |
+| Dinámica (segunda ley) | la fuerza neta produce aceleración, por componentes | $$\sum F_x = ma_x, \quad \sum F_y = ma_y$$ |
+
+La idea clave de esta semana es que **las tres leyes de Newton se aplican con un único método**: DCL primero, componentes después, y la ley que corresponda —primera si no hay aceleración, segunda si la hay— al final. Las fuerzas del catálogo (peso, normal, tensión y fricción) son las piezas de siempre; lo que cambia de problema a problema es cómo se combinan. Queda pendiente un caso importante: ¿qué pasa cuando la fuerza neta apunta hacia el centro de una trayectoria circular? Esa es la puerta de entrada a la próxima semana, donde estudiaremos el movimiento circular uniforme y su dinámica. Mientras tanto, ponga el método a trabajar en la práctica de esta semana: cajas sobre rampas, cuerdas y ascensores lo esperan.

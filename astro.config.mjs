@@ -77,10 +77,15 @@ export default defineConfig({
       },
       {
       label: 'Semana 6',
-      badge: 'Nuevo',
-      collapsed: false,
+      collapsed: true,
       items: [{ autogenerate: { "directory": "semana06" } }]
     },
+      {
+        label: 'Semana 7',
+        badge: 'Nuevo',
+        collapsed: false,
+        items: [{ autogenerate: { "directory": "semana07" } }]
+      },
       ],
     }),
     mdx(),
