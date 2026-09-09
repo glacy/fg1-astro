@@ -1,0 +1,329 @@
+---
+title: "Práctica"
+week: 7
+keywords: ["aplicación de las leyes de Newton", "diagrama de cuerpo libre", "fuerza normal", "tensión", "fricción estática", "fricción cinética", "coeficiente de fricción", "equilibrio", "primera ley de Newton", "segunda ley de Newton", "plano inclinado", "polea", "peso aparente", "dinámica", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 📦 El DCL de la caja jalada">
+Una caja desliza sobre un piso áspero, jalada por una cuerda que forma $$30^\circ$$ sobre la horizontal, y se mueve con **velocidad constante**.
+
+1. Dibuje el diagrama de cuerpo libre de la caja: identifique cada fuerza, quién la ejerce y hacia dónde apunta.
+2. ¿La fuerza normal es mayor, menor o igual que el peso de la caja? Justifique con una ecuación.
+3. Si la cuerda fuera perfectamente horizontal, ¿qué le pasaría a la normal y a la fricción?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Diagrama de cuerpo libre**
+
+| Fuerza | ¿Quién la ejerce? | ¿Hacia dónde apunta? |
+| :--- | :--- | :--- |
+| Tensión $$\vec{T}$$ | la cuerda | a lo largo de la cuerda, $$30^\circ$$ sobre la horizontal |
+| Peso $$\vec{P} = m\vec{g}$$ | la Tierra | verticalmente hacia abajo |
+| Normal $$\vec{N}$$ | el piso | perpendicular al piso, hacia arriba |
+| Fricción cinética $$\vec{f}_k$$ | el piso | paralela al piso, opuesta al movimiento |
+
+No hay más fuerzas: la velocidad constante **no** es una fuerza, y la fricción es cinética (no estática) porque la caja sí desliza.
+
+**2. La normal**
+
+La caja no acelera en la dirección vertical ($$a_y = 0$$), así que:
+
+$$
+\sum F_y = N - mg + T\,\mathrm{sen}\,30^\circ = 0 \quad \Rightarrow \quad N = mg - T\,\mathrm{sen}\,30^\circ < mg
+$$
+
+La normal es **menor** que el peso: la componente vertical de la tensión "ayuda" a sostener la caja.
+
+**3. Cuerda horizontal**
+
+Con la cuerda horizontal, la componente vertical de la tensión desaparece y la normal sube a $$N = mg$$. Como la fricción cinética vale $$f_k = \mu_k N$$, al crecer la normal **también crece la fricción**: inclinar el jalón hacia arriba es una manera de mover una carga con menos esfuerzo.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 💪 Empujar o jalar">
+Una caja de $$12\,\mathrm{kg}$$ está sobre un piso horizontal y una persona le aplica una fuerza de $$60\,\mathrm{N}$$ que forma $$25^\circ$$ con la horizontal. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+
+1. Si la persona **empuja** (fuerza inclinada hacia abajo), ¿qué fuerza normal ejerce el piso?
+2. Si en cambio **jala** con una cuerda (fuerza inclinada hacia arriba), ¿cuánto vale la normal?
+3. Explique la diferencia en términos de la componente vertical de la fuerza aplicada.
+
+<details>
+<summary>Ver solución</summary>
+
+El peso de la caja es $$mg = (12)(9{,}8) = 117{,}6\,\mathrm{N}$$ y en ambos casos $$a_y = 0$$.
+
+**1. Empujando hacia abajo**
+
+$$
+\sum F_y = N - mg - F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 117{,}6 + (60)(0{,}423) \approx 143\,\mathrm{N}
+$$
+
+**2. Jalando hacia arriba**
+
+$$
+\sum F_y = N - mg + F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 117{,}6 - 25{,}4 \approx 92\,\mathrm{N}
+$$
+
+**3. La explicación**
+
+La componente vertical de la fuerza vale $$F\,\mathrm{sen}\,25^\circ \approx 25\,\mathrm{N}$$ en los dos casos, pero con sentidos opuestos: al empujar **se suma** al peso (la superficie debe presionar más fuerte) y al jalar **se resta** (la superficie presiona menos). La normal no tiene un valor fijo: se calcula aplicando la primera ley en la dirección vertical. Si se jalara tan fuerte que $$F\,\mathrm{sen}\,\theta \ge mg$$, la normal se anularía y la caja despegaría.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — ⛰️ El cajón en la rampa">
+Un cajón de $$40\,\mathrm{kg}$$ reposa sobre una rampa de concreto inclinada $$20^\circ$$, sostenido por la fricción. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+
+1. Dibuje el DCL con ejes alineados con la rampa y descomponga el peso.
+2. ¿Cuánto vale la fuerza normal?
+3. ¿Cuánto vale la fuerza de fricción estática?
+4. ¿Cuál es el mínimo coeficiente de fricción estática para que el cajón no resbale?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. DCL y descomposición del peso**
+
+Tres fuerzas actúan: el peso $$mg$$ (hacia abajo), la normal $$\vec{N}$$ (perpendicular a la rampa) y la fricción estática $$\vec{f}_s$$ (paralela a la rampa, hacia arriba). Con el eje $$x$$ a lo largo de la rampa, el peso se descompone en $$mg\,\mathrm{sen}\,\theta$$ (paralelo) y $$mg\cos\theta$$ (perpendicular).
+
+**2. Fuerza normal**
+
+$$
+\sum F_y = N - mg\cos 20^\circ = 0 \quad \Rightarrow \quad N = (40)(9{,}8)(0{,}940) \approx 368\,\mathrm{N}
+$$
+
+**3. Fricción estática**
+
+$$
+\sum F_x = f_s - mg\,\mathrm{sen}\,20^\circ = 0 \quad \Rightarrow \quad f_s = (40)(9{,}8)(0{,}342) \approx 134\,\mathrm{N}
+$$
+
+La fricción **se autoajusta** a ese valor: ni más ni menos de lo necesario para equilibrar la componente del peso a lo largo de la rampa.
+
+**4. Coeficiente mínimo**
+
+La fricción disponible llega hasta $$\mu_s N$$, así que se requiere:
+
+$$
+\mu_s \ge \frac{f_s}{N} = \frac{mg\,\mathrm{sen}\,\theta}{mg\cos\theta} = \tan 20^\circ \approx 0{,}36
+$$
+
+Note que el resultado no depende de la masa: una rampa con $$\mu_s$$ dado tiene un ángulo máximo sin resbalar, sea un cajón de $$40\,\mathrm{kg}$$ o de $$400\,\mathrm{kg}$$.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🪧 El letrero contra la pared">
+Un letrero de $$15\,\mathrm{kg}$$ cuelga de un nudo del que salen dos cuerdas amarradas a una misma pared: una va hacia arriba formando $$40^\circ$$ sobre la horizontal y la otra está perfectamente horizontal. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+
+1. Dibuje el DCL del nudo donde se juntan las cuerdas.
+2. Determine la tensión de la cuerda inclinada.
+3. Determine la tensión de la cuerda horizontal.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. DCL del nudo**
+
+Tres fuerzas sobre el nudo: la tensión $$\vec{T}$$ (a $$40^\circ$$ sobre la horizontal, hacia arriba y alejándose de la pared), la tensión horizontal $$\vec{T}_h$$ (hacia la pared) y el peso del letrero $$mg = (15)(9{,}8) = 147\,\mathrm{N}$$ (hacia abajo). El nudo está en equilibrio.
+
+**2. Tensión de la cuerda inclinada**
+
+La componente vertical de $$\vec{T}$$ sostiene todo el peso:
+
+$$
+\sum F_y = T\,\mathrm{sen}\,40^\circ - mg = 0 \quad \Rightarrow \quad T = \frac{147}{0{,}643} \approx 229\,\mathrm{N}
+$$
+
+**3. Tensión de la cuerda horizontal**
+
+La componente horizontal de $$\vec{T}$$ se equilibra con la cuerda horizontal:
+
+$$
+\sum F_x = T\cos 40^\circ - T_h = 0 \quad \Rightarrow \quad T_h = (229)(0{,}766) \approx 175\,\mathrm{N}
+$$
+
+La cuerda inclinada carga la mayor tensión porque su componente vertical es la que compensa directamente al peso; la horizontal solo equilibra la componente horizontal de aquella. Cuanto más inclinada esté la cuerda superior, mayor será la tensión que debe soportar.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 🔩 ¿Arranca o no arranca?">
+Una caja de acero de $$25\,\mathrm{kg}$$ está sobre un piso de acero: $$\mu_s = 0{,}60$$ y $$\mu_k = 0{,}40$$. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+
+1. Se empuja la caja con una fuerza horizontal de $$120\,\mathrm{N}$$. ¿Arranca? ¿Cuánto vale la fricción en ese caso?
+2. ¿Cuál es la fuerza mínima para ponerla en movimiento?
+3. Ya en movimiento, se mantiene un empuje de $$150\,\mathrm{N}$$. ¿Cuál es su aceleración?
+
+<details>
+<summary>Ver solución</summary>
+
+La normal vale $$N = mg = (25)(9{,}8) = 245\,\mathrm{N}$$ (no hay fuerzas verticales adicionales).
+
+**1. Con 120 N**
+
+La fricción estática máxima disponible es:
+
+$$
+f_{s,\text{máx}} = \mu_s N = (0{,}60)(245) = 147\,\mathrm{N}
+$$
+
+Como $$120\,\mathrm{N} < 147\,\mathrm{N}$$, la caja **no arranca**: la fricción estática se autoajusta exactamente a $$f_s = 120\,\mathrm{N}$$ y la caja permanece en reposo ($$a = 0$$).
+
+**2. Fuerza mínima para arrancar**
+
+Justo al borde del deslizamiento, $$f_s = f_{s,\text{máx}} = \mu_s N = 147\,\mathrm{N}$$. Esa es la fuerza mínima.
+
+**3. Ya deslizando, con 150 N**
+
+Ahora la fricción es **cinética**, con un valor fijo:
+
+$$
+f_k = \mu_k N = (0{,}40)(245) = 98\,\mathrm{N}
+$$
+
+$$
+a = \frac{F - f_k}{m} = \frac{150 - 98}{25} \approx 2{,}1\,\mathrm{m/s^2}
+$$
+
+Observe el salto: para arrancar se vencieron $$147\,\mathrm{N}$$ de fricción estática, pero en cuanto desliza la fricción cae a $$98\,\mathrm{N}$$ (porque $$\mu_k < \mu_s$$); por eso la caja "se va" de golpe en el instante en que arranca.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🏗️ Los dos bloques y la polea">
+Un bloque $$A$$ de $$8{,}0\,\mathrm{kg}$$ está sobre una mesa horizontal sin fricción, conectado por una cuerda ideal que pasa por una polea ideal en el borde de la mesa con un bloque colgante $$B$$ de $$5{,}0\,\mathrm{kg}$$. El sistema se suelta desde el reposo. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+
+1. Dibuje el DCL de cada bloque. ¿Qué comparten los dos bloques gracias a la cuerda ideal?
+2. Determine la aceleración de cada bloque.
+3. Determine la tensión de la cuerda.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Diagramas de cuerpo libre**
+
+- Bloque $$A$$: peso $$m_A g$$ (abajo), normal $$N$$ (arriba) y tensión $$\vec{T}$$ (horizontal, hacia la polea). Verticalmente $$N = m_A g$$.
+- Bloque $$B$$: peso $$m_B g$$ (abajo) y tensión $$\vec{T}$$ (hacia arriba, a lo largo de la cuerda).
+
+Gracias a la cuerda ideal (inextensible y de masa despreciable) ambos bloques tienen la **misma aceleración en magnitud**, y la **tensión es la misma** en toda la cuerda.
+
+**2. Aceleración**
+
+Para el bloque $$A$$ (solo fuerzas horizontales relevantes): $$\sum F_x = T = m_A a$$.
+
+Para el bloque $$B$$ (bajando): $$\sum F_y = m_B g - T = m_B a$$.
+
+Sumando ambas ecuaciones se elimina la tensión:
+
+$$
+m_B g = (m_A + m_B)\,a \quad \Rightarrow \quad a = \frac{m_B}{m_A + m_B}\,g = \frac{5{,}0}{13{,}0}(9{,}8) \approx 3{,}8\,\mathrm{m/s^2}
+$$
+
+Ambos bloques aceleran a $$3{,}8\,\mathrm{m/s^2}$$: $$A$$ hacia la polea y $$B$$ hacia abajo.
+
+**3. Tensión**
+
+$$
+T = m_A a = (8{,}0)(3{,}77) \approx 30\,\mathrm{N}
+$$
+
+Verificación con el bloque $$B$$: $$T = m_B(g - a) = (5{,}0)(9{,}8 - 3{,}8) = 30\,\mathrm{N}$$ ✓. La tensión es menor que el peso de $$B$$ ($$49\,\mathrm{N}$$) porque $$B$$ acelera hacia abajo: si la tensión igualara a su peso, no habría fuerza neta y no caería con aceleración.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🛗 La báscula del ascensor">
+Una estudiante de $$65\,\mathrm{kg}$$ sube a un ascensor con una báscula de baño bajo los pies. En cierto instante la báscula marca $$520\,\mathrm{N}$$. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+
+1. ¿Cuál es la aceleración del ascensor (magnitud y dirección) en ese instante?
+2. ¿Puede saberse si el ascensor está subiendo o bajando? Explique.
+3. ¿Qué marcaría la báscula si el cable se rompiera y el ascensor cayera libremente?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. La aceleración**
+
+La báscula marca la normal. Con el eje $$y$$ positivo hacia arriba:
+
+$$
+\sum F_y = N - mg = ma_y \quad \Rightarrow \quad a_y = \frac{N}{m} - g = \frac{520}{65} - 9{,}8 = 8{,}0 - 9{,}8 = -1{,}8\,\mathrm{m/s^2}
+$$
+
+La aceleración es de **$$1{,}8\,\mathrm{m/s^2}$$ dirigida hacia abajo**: la estudiante pesa "aparentemente" menos que en reposo ($$mg = 637\,\mathrm{N}$$).
+
+**2. ¿Sube o baja?**
+
+**No se puede saber**, y esa es la parte importante del ejercicio. Una aceleración hacia abajo es compatible con dos movimientos muy distintos: el ascensor **baja acelerando** o el ascensor **sube frenando** para detenerse. Lo que la báscula detecta es la aceleración, no la velocidad; para saber hacia dónde se mueve habría que observar las paredes.
+
+**3. Caída libre**
+
+Si el ascensor cayera libremente, $$a_y = -g$$ y:
+
+$$
+N = m(g + a_y) = m(g - g) = 0
+$$
+
+La báscula marcaría **cero**: estudiante y báscula caen juntos y la báscula no necesita empujarla. Su peso real ($$637\,\mathrm{N}$$) sigue intacto; lo que se hace cero es su **peso aparente**.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — 🛷 El tobogán con fricción">
+Una caja de $$10\,\mathrm{kg}$$ desliza hacia abajo por un tobogán inclinado $$30^\circ$$, con coeficiente de fricción cinética $$\mu_k = 0{,}20$$. Parte del reposo y recorre $$4{,}0\,\mathrm{m}$$ por la rampa. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+
+1. Dibuje el DCL con ejes alineados con el tobogán.
+2. ¿Cuánto valen la normal y la fricción cinética?
+3. ¿Cuál es su aceleración?
+4. ¿Con qué rapidez llega al final de los $$4{,}0\,\mathrm{m}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. DCL**
+
+Cuatro fuerzas: el peso $$mg$$ (hacia abajo, con componentes $$mg\,\mathrm{sen}\,30^\circ$$ a lo largo del tobogán y $$mg\cos 30^\circ$$ perpendicular), la normal $$\vec{N}$$ (perpendicular al tobogán) y la fricción cinética $$\vec{f}_k$$ (paralela al tobogán, **hacia arriba**, oponiéndose al deslizamiento hacia abajo).
+
+**2. Normal y fricción**
+
+El movimiento es solo a lo largo del tobogán ($$a_y = 0$$ en la dirección perpendicular):
+
+$$
+N = mg\cos 30^\circ = (10)(9{,}8)(0{,}866) \approx 85\,\mathrm{N}
+$$
+
+$$
+f_k = \mu_k N = (0{,}20)(84{,}9) \approx 17\,\mathrm{N}
+$$
+
+**3. Aceleración**
+
+A lo largo del tobogán, el peso empuja hacia abajo de la rampa y la fricción se opone:
+
+$$
+\sum F_x = mg\,\mathrm{sen}\,30^\circ - f_k = ma \quad \Rightarrow \quad a = g(\,\mathrm{sen}\,30^\circ - \mu_k\cos 30^\circ)
+$$
+
+$$
+a = 9{,}8\,(0{,}50 - 0{,}20 \times 0{,}866) = 9{,}8\,(0{,}327) \approx 3{,}2\,\mathrm{m/s^2}
+$$
+
+dirigida hacia abajo del tobogán. Compare con el caso sin fricción, donde sería $$g\,\mathrm{sen}\,30^\circ = 4{,}9\,\mathrm{m/s^2}$$: la fricción reduce la aceleración, pero no la anula mientras $$\tan\theta > \mu_k$$.
+
+**4. Rapidez al final**
+
+Con aceleración constante y velocidad inicial cero (MRUA):
+
+$$
+v^2 = v_0^2 + 2ax = 0 + 2(3{,}2)(4{,}0) = 25{,}6 \quad \Rightarrow \quad v \approx 5{,}1\,\mathrm{m/s}
+$$
+
+Como siempre, la dinámica entrega la aceleración y la cinemática de semanas anteriores hace el resto.
+
+</details>
+</Aside>
