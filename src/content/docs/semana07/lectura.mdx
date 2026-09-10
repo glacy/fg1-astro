@@ -23,6 +23,8 @@ import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import { Steps } from '@astrojs/starlight/components';
+import EjemploNormalArriba from "../../../assets/ejemplo_fuerza_normal_arriba.svg";
+import EjemploNormalAbajo from "../../../assets/ejemplo_fuerza_normal_abajo.svg";
 
 <PreCheck>
   - Identificar las fuerzas que actúan sobre un cuerpo —peso, normal, tensión y fricción— y representarlas en un diagrama de cuerpo libre (DCL).
@@ -31,7 +33,7 @@ import { Steps } from '@astrojs/starlight/components';
   - Distinguir entre fricción estática y cinética, y determinar su magnitud a partir del coeficiente de fricción y la fuerza normal.
 </PreCheck>
 
-En la semana anterior aprendimos las *reglas del juego*: las tres leyes de Newton, que relacionan la fuerza neta con el cambio de movimiento, y el **diagrama de cuerpo libre (DCL)** como herramienta para inventariar fuerzas. En esta semana ponemos esas reglas a trabajar. Todo problema de dinámica —una caja sobre una rampa, un letrero colgado de dos cables, un ascensor que arranca— se resuelve con el mismo método de tres tiempos: **identificar las fuerzas y dibujar el DCL**, **sumarlas por componentes** y **aplicar** $$\sum \vec{F} = \vec{0}$$ (equilibrio) o $$\sum \vec{F} = m\vec{a}$$ (dinámica). Para hacerlo con soltura, primero afinaremos el reconocimiento del "catálogo" de fuerzas que aparece una y otra vez en los problemas de mecánica: el peso, la normal, la tensión y la fricción. Las cuatro interacciones fundamentales de la naturaleza ya las estudiamos la semana anterior; aquí trabajamos con esas fuerzas cotidianas, que son manifestaciones de aquellas.
+En la semana anterior aprendimos las *reglas del juego*: las tres leyes de Newton, que relacionan la fuerza neta con el cambio de movimiento, y el **diagrama de cuerpo libre (DCL)** como herramienta para inventariar fuerzas. En esta semana ponemos esas reglas a trabajar. Todo problema de dinámica —una caja sobre una rampa, un letrero colgado de dos cables, un ascensor que arranca— se resuelve con el mismo método: **identificar las fuerzas y dibujar el DCL**, **sumarlas por componentes** y **aplicar** $$\sum \vec{F} = \vec{0}$$ (equilibrio) ó $$\sum \vec{F} = m\vec{a}$$ (dinámica). Para hacerlo con soltura, primero afinaremos el reconocimiento del "catálogo" de fuerzas que aparece una y otra vez en los problemas de mecánica: el peso, la normal, la tensión y la fricción. 
 
 ## El catálogo de fuerzas, una por una
 
@@ -45,11 +47,11 @@ $$
 \vec{P} = m\vec{g}
 $$
 
-Tres recordatorios que evitan errores: apunta **verticalmente hacia abajo** siempre —sin importar cómo esté inclinada la superficie ni hacia dónde se mueva el cuerpo—; su magnitud vale $$P = mg$$, con $$g = 9{,}8\,\mathrm{m/s^2}$$; y actúa sobre *cada porción* del cuerpo, aunque en el DCL lo dibujamos como una sola flecha aplicada en el centro de gravedad. Un cuerpo que sube, que baja o que se desliza sobre un plano inclinado tiene exactamente el mismo peso: la gravedad no "descuenta" nada por moverse.
+Tres recordatorios que evitan errores: apunta **verticalmente hacia abajo** siempre —sin importar cómo esté inclinada la superficie ni hacia dónde se mueva el cuerpo—; su magnitud vale $$P = mg$$, con $$g = 9{,}8\,\mathrm{m/s^2}$$; y actúa sobre *cada porción* del cuerpo, aunque en el DCL lo dibujamos como una sola flecha aplicada en el centro de gravedad. Un cuerpo que sube, que baja o que se desliza sobre un plano inclinado tiene exactamente el mismo peso.
 
 ### La fuerza normal: perpendicular a la superficie, pero no siempre igual al peso
 
-La **fuerza normal** $$\vec{N}$$ es la fuerza de contacto que una superficie ejerce sobre el cuerpo apoyado en ella. Su dirección es siempre **perpendicular a la superficie de contacto** —de ahí su nombre—. ¿Y su magnitud? Aquí está el error más común de toda la dinámica: **la normal no tiene una fórmula fija**. Su valor es exactamente el necesario para que el cuerpo no atraviese la superficie, y por eso se determina aplicando las leyes de Newton en la dirección perpendicular al contacto, no "de memoria". La tabla muestra los casos clásicos (en todos ellos el cuerpo no acelera en la dirección perpendicular a la superficie):
+La **fuerza normal** $$\vec{N}$$ es la fuerza de contacto que una superficie ejerce sobre el cuerpo apoyado en ella. Su dirección es siempre **perpendicular a la superficie de contacto** —de ahí su nombre—. ¿Y su magnitud? Aquí está el error más común de toda la dinámica: **la normal no tiene una fórmula fija**. Su valor es exactamente el necesario para que el cuerpo no atraviese la superficie, y por eso se determina aplicando las leyes de Newton en la dirección perpendicular al contacto. La tabla muestra los casos clásicos (en todos ellos el cuerpo no acelera en la dirección perpendicular a la superficie):
 
 | Situación | Fuerza normal |
 | :--- | :--- |
@@ -64,16 +66,29 @@ Observe que empujar un carrito inclinando las manos hacia abajo *aumenta* la nor
 
 **Ejemplo — empujar hacia abajo o jalar hacia arriba**
 
-Una caja de masa $$m = 12\,\mathrm{kg}$$ está sobre un piso horizontal y una persona aplica una fuerza de magnitud $$F = 50\,\mathrm{N}$$ formando $$\theta = 30^\circ$$ con la horizontal. Como la caja no se mueve en dirección vertical, la segunda ley en esa dirección da $$\sum F_y = 0$$:
+Una caja de masa $$m = 12\,\mathrm{kg}$$ está sobre un piso horizontal y una persona aplica una fuerza de magnitud $$F = 100\,\mathrm{N}$$ formando $$\theta = 30^\circ$$ con la horizontal. Como la caja no se mueve en dirección vertical, la segunda ley en esa dirección da $$\sum F_y = 0$$:
 
-- Si la fuerza **empuja hacia abajo**: $$N - mg - F\sin\theta = 0$$, de donde
+- Si la fuerza **empuja hacia abajo**: 
+
+<Image src={EjemploNormalAbajo} alt="Caja sobre superficie horizontal y fuerza aplicada hacia abajo" layout='constrained' width={526} height={342}/>
+
+$$
+N - mg - F\sin\theta = 0,
+$$
+de donde
 
 $$
 N = mg + F\sin 30^\circ = (12)(9{,}8) + (50)(0{,}50) = 117{,}6 + 25 = 142{,}6\,\mathrm{N}
 $$
 
-- Si la fuerza **jala hacia arriba**: $$N - mg + F\sin\theta = 0$$, de donde
+- Si la fuerza **jala hacia arriba**: 
 
+<Image src={EjemploNormalArriba} alt="Caja sobre superficie horizontal y fuerza aplicada hacia arriba" layout='constrained' width={526} height={342}/>
+
+$$
+N - mg + F\sin\theta = 0,
+$$
+de donde
 $$
 N = mg - F\sin 30^\circ = 117{,}6 - 25 = 92{,}6\,\mathrm{N}
 $$
@@ -133,28 +148,29 @@ Dos propiedades sorprendentes y útiles: en un rango amplio, la fricción **no d
       <Option>
         vale siempre $$\mu_s N$$
       </Option>
-      <Option isCorrect>
-        crece junto con el empuje, hasta un máximo de $$\mu_s N$$
-      </Option>
+      
       <Option>
         permanece constante en $$\mu_s N$$
       </Option>
       <Option>
         vale cero, porque la caja no se mueve
       </Option>
+      <Option isCorrect>
+        crece junto con el empuje, hasta un máximo de $$\mu_s N$$
+      </Option>
     </MultipleChoice>
 
-2. Una caja desliza sobre un piso con $$N = 200\,\mathrm{N}$$ y $$\mu_k = 0{,}30$$. La fricción cinética vale __________.
+2. Una caja desliza, con un peso de $100\text{ N}$, sobre un piso, experimentando una normal con $$N = 200\,\mathrm{N}$$ y $$\mu_k = 0{,}30$$. La fricción cinética vale __________.
 
     <MultipleChoice>
       <Option>
-        $$667\,\mathrm{N}$$
+        $$30\,\mathrm{N}$$
       </Option>
       <Option isCorrect>
         $$60\,\mathrm{N}$$
       </Option>
       <Option>
-        $$0{,}0015\,\mathrm{N}$$
+        $$100\,\mathrm{N}$$
       </Option>
       <Option>
         $$200\,\mathrm{N}$$
@@ -167,14 +183,14 @@ Dos propiedades sorprendentes y útiles: en un rango amplio, la fricción **no d
       <Option>
         no cambia
       </Option>
-      <Option>
-        se reduce a la mitad
-      </Option>
       <Option isCorrect>
         se duplica
       </Option>
       <Option>
         se cuadruplica
+      </Option>
+      <Option>
+        se reduce a la mitad
       </Option>
     </MultipleChoice>
 
@@ -268,11 +284,11 @@ Note que la cuerda más **vertical** ($$65^\circ$$) carga con la mayor parte del
 1. Un cuerpo está en equilibrio si __________.
 
     <MultipleChoice>
+      <Option isCorrect>
+        su aceleración es cero
+      </Option>
       <Option>
         está necesariamente en reposo
-      </Option>
-      <Option isCorrect>
-        su aceleración es cero: está en reposo o con velocidad constante
       </Option>
       <Option>
         no actúa ninguna fuerza sobre él
@@ -286,13 +302,13 @@ Note que la cuerda más **vertical** ($$65^\circ$$) carga con la mayor parte del
 
     <MultipleChoice>
       <Option>
+        permanece igual a $$mg$$
+      </Option>
+      <Option>
         aumenta, porque el peso no cambia
       </Option>
       <Option isCorrect>
         disminuye, pues vale $$mg\cos\theta$$ y $$\cos\theta$$ se reduce
-      </Option>
-      <Option>
-        permanece igual a $$mg$$
       </Option>
       <Option>
         aumenta en la misma proporción que la fricción
@@ -308,11 +324,11 @@ Note que la cuerda más **vertical** ($$65^\circ$$) carga con la mayor parte del
       <Option>
         es mayor que el peso del letrero
       </Option>
-      <Option isCorrect>
-        es igual al peso del letrero
-      </Option>
       <Option>
         depende del material del cable
+      </Option>
+      <Option isCorrect>
+        es igual al peso del letrero
       </Option>
     </MultipleChoice>
 
@@ -392,12 +408,13 @@ Ese es el "estómago que se queda un piso más arriba" al arrancar la bajada: si
       <Option>
         menor que su peso
       </Option>
-      <Option>
-        igual a su peso
-      </Option>
       <Option isCorrect>
         mayor que su peso
       </Option>
+      <Option>
+        igual a su peso
+      </Option>
+     
       <Option>
         cero
       </Option>
@@ -409,12 +426,13 @@ Ese es el "estómago que se queda un piso más arriba" al arrancar la bajada: si
       <Option>
         cero
       </Option>
-      <Option isCorrect>
-        $$\mu_k g$$, dirigida opuesta al movimiento
-      </Option>
       <Option>
         $$g$$, dirigida opuesta al movimiento
       </Option>
+      <Option isCorrect>
+        $$\mu_k g$$, dirigida opuesta al movimiento
+      </Option>
+      
       <Option>
         $$\mu_k g$$, dirigida a favor del movimiento
       </Option>
@@ -434,23 +452,6 @@ Ese es el "estómago que se queda un piso más arriba" al arrancar la bajada: si
       </Option>
       <Option>
         $$g\tan\theta$$
-      </Option>
-    </MultipleChoice>
-
-4. Un carro se mueve en línea recta a velocidad constante. Si de pronto la fuerza neta sobre él se anula, el carro __________.
-
-    <MultipleChoice>
-      <Option>
-        se detiene de inmediato
-      </Option>
-      <Option>
-        sigue moviéndose con la misma velocidad constante
-      </Option>
-      <Option>
-        desacelera poco a poco hasta detenerse
-      </Option>
-      <Option>
-        mantiene su velocidad pero cambia de dirección
       </Option>
     </MultipleChoice>
 
@@ -490,4 +491,4 @@ Cuatro errores clásicos que vale la pena vigilar:
 | Equilibrio (primera ley) | sin aceleración: reposo o velocidad constante | $$\sum F_x = 0, \quad \sum F_y = 0$$ |
 | Dinámica (segunda ley) | la fuerza neta produce aceleración, por componentes | $$\sum F_x = ma_x, \quad \sum F_y = ma_y$$ |
 
-La idea clave de esta semana es que **las tres leyes de Newton se aplican con un único método**: DCL primero, componentes después, y la ley que corresponda —primera si no hay aceleración, segunda si la hay— al final. Las fuerzas del catálogo (peso, normal, tensión y fricción) son las piezas de siempre; lo que cambia de problema a problema es cómo se combinan. Queda pendiente un caso importante: ¿qué pasa cuando la fuerza neta apunta hacia el centro de una trayectoria circular? Esa es la puerta de entrada a la próxima semana, donde estudiaremos el movimiento circular uniforme y su dinámica. Mientras tanto, ponga el método a trabajar en la práctica de esta semana: cajas sobre rampas, cuerdas y ascensores lo esperan.
+

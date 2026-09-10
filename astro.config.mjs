@@ -106,6 +106,7 @@ export default defineConfig({
   output: 'static',
   image: {
     domains: ['images.unsplash.com'],
+    objectPosition: 'center',
     responsiveStyles: true,
   },
   vite: {
