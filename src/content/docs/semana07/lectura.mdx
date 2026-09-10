@@ -25,6 +25,7 @@ import Option from '../../../components/Option.astro';
 import { Steps } from '@astrojs/starlight/components';
 import EjemploNormalArriba from "../../../assets/ejemplo_fuerza_normal_arriba.svg";
 import EjemploNormalAbajo from "../../../assets/ejemplo_fuerza_normal_abajo.svg";
+import EjemploPoleasCuerda from "../../../assets/sistema_poleas_cuerda.svg";
 
 <PreCheck>
   - Identificar las fuerzas que actúan sobre un cuerpo —peso, normal, tensión y fricción— y representarlas en un diagrama de cuerpo libre (DCL).
@@ -95,6 +96,8 @@ $$
 
 La misma fuerza, aplicada en direcciones distintas, cambia la normal en $$50\,\mathrm{N}$$ respecto del peso $$117{,}6\,\mathrm{N}$$. Esta diferencia no es un detalle menor: como veremos enseguida, la fricción depende directamente de $$N$$, así que *la manera de empujar o jalar cambia también la fricción*.
 
+> La fuerza $$\vec{f}$$ que se muestra en ambos casos es necesaria para garantizar el *equilibrio*. Más adelante identificaremos dicha fuerza con la *fricción*.
+
 </Box>
 
 ### La tensión: la fuerza que transmiten las cuerdas
@@ -105,6 +108,8 @@ La **tensión** $$\vec{T}$$ es la fuerza que una cuerda, cable o cadena ejerce s
 - **Inextensible:** la cuerda no se estira, de modo que los cuerpos conectados por ella se mueven juntos: si uno avanza $$1\,\mathrm{m}$$, el otro también, y ambos tienen aceleraciones de la **misma magnitud**.
 
 Una **polea ideal** (de masa y fricción despreciables) solo **cambia la dirección** de la tensión, no su magnitud. Gracias a estas propiedades, un sistema de cuerda y polea —como el que baja una cubeta a un pozo o el de una grúa— se analiza con una sola incógnita de tensión compartida por todos los cuerpos conectados.
+
+<Image src={EjemploPoleasCuerda} alt="Sistema de poleas y cuerda para sostener un objeto" layout='constrained' width={526} height={342}/>
 
 ### La fricción: la fuerza que se opone al deslizamiento
 
