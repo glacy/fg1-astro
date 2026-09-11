@@ -26,6 +26,8 @@ import { Steps } from '@astrojs/starlight/components';
 import EjemploNormalArriba from "../../../assets/ejemplo_fuerza_normal_arriba.svg";
 import EjemploNormalAbajo from "../../../assets/ejemplo_fuerza_normal_abajo.svg";
 import EjemploPoleasCuerda from "../../../assets/sistema_poleas_cuerda.svg";
+import PlanoInclinado from "../../../assets/plano-inclinado.svg";
+
 
 <PreCheck>
   - Identificar las fuerzas que actúan sobre un cuerpo —peso, normal, tensión y fricción— y representarlas en un diagrama de cuerpo libre (DCL).
@@ -165,7 +167,7 @@ Dos propiedades sorprendentes y útiles: en un rango amplio, la fricción **no d
       </Option>
     </MultipleChoice>
 
-2. Una caja desliza, con un peso de $100\text{ N}$, sobre un piso, experimentando una normal con $$N = 200\,\mathrm{N}$$ y $$\mu_k = 0{,}30$$. La fricción cinética vale __________.
+2. Una caja, con un peso de $100\text{ N}$, desliza sobre un piso, experimentando una normal con $$N = 200\,\mathrm{N}$$ y $$\mu_k = 0{,}30$$. La fricción cinética vale __________.
 
     <MultipleChoice>
       <Option>
@@ -230,12 +232,16 @@ Cuidado con la palabra "equilibrio": no significa necesariamente reposo. Un cuer
 
 Considere una caja en reposo sobre un plano inclinado un ángulo $$\theta$$, donde la fricción evita que resbale hacia abajo. El DCL contiene exactamente tres fuerzas:
 
+<Image src={PlanoInclinado} alt="caja en reposo sobre un plano inclinado" layout='constrained' width={500}/>
+
 
 <Box icon="check-list">
 
 **Ejemplo — caja en reposo sobre un plano inclinado**
 
 Una caja de masa $$m = 25\,\mathrm{kg}$$ reposa sobre una rampa de $$\theta = 30^\circ$$. Con ejes alineados con la rampa, las ecuaciones de equilibrio son:
+
+
 
 $$
 \sum F_y = N - mg\cos\theta = 0 \quad\Rightarrow\quad N = mg\cos 30^\circ = (25)(9{,}8)(0{,}866) \approx 212\,\mathrm{N}
@@ -249,38 +255,6 @@ Dos observaciones valiosas. Primero, la normal **no** vale $$mg = 245\,\mathrm{N
 
 </Box>
 
-El segundo ejemplo clásico de equilibrio es un cuerpo colgado de **dos cuerdas** con ángulos distintos, como un letrero sostenido por dos cables. La clave: elegir el **nudo** donde se juntan las cuerdas como cuerpo de análisis, pues sobre él actúan las dos tensiones y el jalón del peso.
-
-
-<Box icon="check-list">
-
-**Ejemplo — un letrero de $$10\,\mathrm{kg}$$ colgado de dos cables**
-
-Del letrero de masa $$m = 10\,\mathrm{kg}$$ ($$mg = 98\,\mathrm{N}$$) sale una cuerda que forma $$40^\circ$$ sobre la horizontal, y otra que forma $$65^\circ$$. Sobre el nudo, el equilibrio por componentes da:
-
-$$
-\sum F_x = T_2\cos 65^\circ - T_1\cos 40^\circ = 0
-$$
-
-$$
-\sum F_y = T_1\sin 40^\circ + T_2\sin 65^\circ - mg = 0
-$$
-
-De la primera ecuación, $$T_2 = T_1\,\dfrac{\cos 40^\circ}{\cos 65^\circ} = 1{,}81\,T_1$$. Sustituyendo en la segunda:
-
-$$
-0{,}643\,T_1 + 0{,}906\,(1{,}81\,T_1) = 98\,\mathrm{N} \quad\Rightarrow\quad 2{,}28\,T_1 = 98\,\mathrm{N}
-$$
-
-de donde:
-
-$$
-T_1 \approx 43\,\mathrm{N}, \qquad T_2 \approx 78\,\mathrm{N}
-$$
-
-Note que la cuerda más **vertical** ($$65^\circ$$) carga con la mayor parte del peso: cuanto más cerca de la vertical esté un cable, mayor es su componente que sostiene directamente al letrero. Un cable perfectamente horizontal no podría sostener nada solo: toda su tensión sería horizontal y ninguna componente compensaría al peso.
-
-</Box>
 
 <Box icon="question-mark">
 
