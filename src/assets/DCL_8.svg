@@ -1,18 +1,20 @@
 <svg width="285" height="354" viewBox="0 0 285 354" fill="none" xmlns="http://www.w3.org/2000/svg">
 <style>
   :root {
-    --surface: #FFFFFF;
-    --ink: #000000;
+  --surface:#FFFFFF; --ink:#000000;
+  --teal:#007F7F; --brown:#7A5E2F; --red:#C83737;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface:#1C1C1E; --ink:#EDEDED;
+    --teal:#00A8A8; --brown:#C89B5E; --red:#E45B5B;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --surface: #1C1C1E;
-      --ink: #EDEDED;
-    }
-  }
-  /* Los selectores de atributo sobreescriben los fill hardcodeados */
-  [fill="white"] { fill: var(--surface); }
-  [fill="black"] { fill: var(--ink); }
+}
+[fill="white"]   { fill: var(--surface); }
+[fill="black"]   { fill: var(--ink); }
+[fill="#007F7F"] { fill: var(--teal); }
+[fill="#7A5E2F"] { fill: var(--brown); }
+[fill="#C83737"] { fill: var(--red); }
 </style>
 <g clip-path="url(#clip0_2275_816)">
 <rect width="285" height="354" rx="7" fill="white"/>
