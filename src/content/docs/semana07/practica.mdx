@@ -7,7 +7,15 @@ draft: false
 import { Image } from 'astro:assets';
 import { Aside } from '@astrojs/starlight/components';
 import RielCarrito from "../../../assets/riel-carrito-polea-ideal.svg";
-
+import DCL1 from "../../../assets/DCL_1.svg";
+import DCL2arriba from "../../../assets/DCL_2_arriba.svg";
+import DCL2abajo from "../../../assets/DCL_2_abajo.svg";
+import DCL3 from "../../../assets/DCL_3.svg";
+import DCL4 from "../../../assets/DCL_4.svg";
+import DCL5 from "../../../assets/DCL_5.svg";
+import DCL6A from "../../../assets/DCL_6_A.svg";
+import DCL6B from "../../../assets/DCL_6_B.svg";
+import DCL8 from "../../../assets/DCL_8.svg";
 
 <Aside type="note" icon="pencil" title="Ejercicio 1 — 📦 El DCL de la caja jalada">
 Una caja desliza sobre un piso áspero, jalada por una cuerda que forma $$30^\circ$$ sobre la horizontal, y se mueve con **velocidad constante**.
@@ -30,6 +38,8 @@ Una caja desliza sobre un piso áspero, jalada por una cuerda que forma $$30^\ci
 
 No hay más fuerzas: la velocidad constante **no** es una fuerza, y la fricción es cinética (no estática) porque la caja sí desliza.
 
+<Image src={DCL1} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={500}/>
+
 **2. La normal**
 
 La caja no acelera en la dirección vertical ($$a_y = 0$$), así que:
@@ -48,7 +58,7 @@ Con la cuerda horizontal, la componente vertical de la tensión desaparece y la 
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 2 — 💪 Empujar o jalar">
-Una caja de $$12\,\mathrm{kg}$$ está sobre un piso horizontal y una persona le aplica una fuerza de $$60\,\mathrm{N}$$ que forma $$25^\circ$$ con la horizontal. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+Una caja de $$6\,\mathrm{kg}$$ está sobre un piso horizontal y una persona le aplica una fuerza de $$60\,\mathrm{N}$$ que forma $$25^\circ$$ con la horizontal. 
 
 1. Si la persona **empuja** (fuerza inclinada hacia abajo), ¿qué fuerza normal ejerce el piso?
 2. Si en cambio **jala** con una cuerda (fuerza inclinada hacia arriba), ¿cuánto vale la normal?
@@ -57,18 +67,22 @@ Una caja de $$12\,\mathrm{kg}$$ está sobre un piso horizontal y una persona le 
 <details>
 <summary>Ver solución</summary>
 
-El peso de la caja es $$mg = (12)(9{,}8) = 117{,}6\,\mathrm{N}$$ y en ambos casos $$a_y = 0$$.
+El peso de la caja es $$mg = (6)(9{,}8) = 58,8\,\mathrm{N}$$ y en ambos casos $$a_y = 0$$.
 
 **1. Empujando hacia abajo**
 
+<Image src={DCL2abajo} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={500}/>
+
 $$
-\sum F_y = N - mg - F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 117{,}6 + (60)(0{,}423) \approx 143\,\mathrm{N}
+\sum F_y = N - mg - F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 58,8 + (60)(0{,}423) \approx 84,16\,\mathrm{N}
 $$
 
 **2. Jalando hacia arriba**
 
+<Image src={DCL2arriba} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={500}/>
+
 $$
-\sum F_y = N - mg + F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 117{,}6 - 25{,}4 \approx 92\,\mathrm{N}
+\sum F_y = N - mg + F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 58,8 - 25{,}4 \approx 58,8\,\mathrm{N}
 $$
 
 **3. La explicación**
@@ -79,7 +93,7 @@ La componente vertical de la fuerza vale $$F\,\mathrm{sen}\,25^\circ \approx 25\
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 3 — ⛰️ El cajón en la rampa">
-Un cajón de $$40\,\mathrm{kg}$$ reposa sobre una rampa de concreto inclinada $$20^\circ$$, sostenido por la fricción. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+Un cajón de $$40\,\mathrm{kg}$$ reposa sobre una rampa de concreto inclinada $$20^\circ$$, sostenido por la fricción. 
 
 1. Dibuje el DCL con ejes alineados con la rampa y descomponga el peso.
 2. ¿Cuánto vale la fuerza normal?
@@ -92,6 +106,9 @@ Un cajón de $$40\,\mathrm{kg}$$ reposa sobre una rampa de concreto inclinada $$
 **1. DCL y descomposición del peso**
 
 Tres fuerzas actúan: el peso $$mg$$ (hacia abajo), la normal $$\vec{N}$$ (perpendicular a la rampa) y la fricción estática $$\vec{f}_s$$ (paralela a la rampa, hacia arriba). Con el eje $$x$$ a lo largo de la rampa, el peso se descompone en $$mg\,\mathrm{sen}\,\theta$$ (paralelo) y $$mg\cos\theta$$ (perpendicular).
+
+<Image src={DCL3} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={500}/>
+
 
 **2. Fuerza normal**
 
@@ -121,7 +138,7 @@ Note que el resultado no depende de la masa: una rampa con $$\mu_s$$ dado tiene 
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 4 — 🪧 El letrero contra la pared">
-Un letrero de $$15\,\mathrm{kg}$$ cuelga de un nudo del que salen dos cuerdas amarradas a una misma pared: una va hacia arriba formando $$40^\circ$$ sobre la horizontal y la otra está perfectamente horizontal. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+Un letrero de $$15\,\mathrm{kg}$$ cuelga de un nudo del que salen dos cuerdas amarradas a una misma pared: una va hacia arriba formando $$40^\circ$$ sobre la horizontal y la otra está perfectamente horizontal. 
 
 1. Dibuje el DCL del nudo donde se juntan las cuerdas.
 2. Determine la tensión de la cuerda inclinada.
@@ -133,6 +150,9 @@ Un letrero de $$15\,\mathrm{kg}$$ cuelga de un nudo del que salen dos cuerdas am
 **1. DCL del nudo**
 
 Tres fuerzas sobre el nudo: la tensión $$\vec{T}$$ (a $$40^\circ$$ sobre la horizontal, hacia arriba y alejándose de la pared), la tensión horizontal $$\vec{T}_h$$ (hacia la pared) y el peso del letrero $$mg = (15)(9{,}8) = 147\,\mathrm{N}$$ (hacia abajo). El nudo está en equilibrio.
+
+<Image src={DCL4} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={500}/>
+
 
 **2. Tensión de la cuerda inclinada**
 
@@ -156,7 +176,7 @@ La cuerda inclinada carga la mayor tensión porque su componente vertical es la 
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 5 — 🔩 ¿Arranca o no arranca?">
-Una caja de acero de $$25\,\mathrm{kg}$$ está sobre un piso de acero: $$\mu_s = 0{,}60$$ y $$\mu_k = 0{,}40$$. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+Una caja de acero de $$25\,\mathrm{kg}$$ está sobre un piso de acero: $$\mu_s = 0{,}60$$ y $$\mu_k = 0{,}40$$. 
 
 1. Se empuja la caja con una fuerza horizontal de $$120\,\mathrm{N}$$. ¿Arranca? ¿Cuánto vale la fricción en ese caso?
 2. ¿Cuál es la fuerza mínima para ponerla en movimiento?
@@ -164,6 +184,8 @@ Una caja de acero de $$25\,\mathrm{kg}$$ está sobre un piso de acero: $$\mu_s =
 
 <details>
 <summary>Ver solución</summary>
+
+<Image src={DCL5} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={500}/>
 
 La normal vale $$N = mg = (25)(9{,}8) = 245\,\mathrm{N}$$ (no hay fuerzas verticales adicionales).
 
@@ -199,7 +221,7 @@ Observe el salto: para arrancar se vencieron $$147\,\mathrm{N}$$ de fricción es
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 6 — 🏗️ Los dos bloques y la polea">
-Un deslizador $$A$$ de $$8{,}0\,\mathrm{kg}$$ está sobre una mesa horizontal sin fricción, conectado por una cuerda ideal que pasa por una polea ideal en el borde de la mesa con un bloque colgante $$B$$ de $$5{,}0\,\mathrm{kg}$$. El sistema se suelta desde el reposo. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+Un deslizador $$A$$ de $$8{,}0\,\mathrm{kg}$$ está sobre una mesa horizontal sin fricción, conectado por una cuerda ideal que pasa por una polea ideal en el borde de la mesa con un bloque colgante $$B$$ de $$5{,}0\,\mathrm{kg}$$. El sistema se suelta desde el reposo. 
 
 <Image src={RielCarrito} alt="Un deslizador A sobre una mesa horizontal sin fricción, conectado por una cuerda ideal que pasa por una polea ideal en el borde de la mesa con un bloque colgante B" layout='constrained' width={500}/>
 
@@ -214,6 +236,10 @@ Un deslizador $$A$$ de $$8{,}0\,\mathrm{kg}$$ está sobre una mesa horizontal si
 
 - Bloque $$A$$: peso $$m_A g$$ (abajo), normal $$N$$ (arriba) y tensión $$\vec{T}$$ (horizontal, hacia la polea). Verticalmente $$N = m_A g$$.
 - Bloque $$B$$: peso $$m_B g$$ (abajo) y tensión $$\vec{T}$$ (hacia arriba, a lo largo de la cuerda).
+
+<Image src={DCL6A} alt="Diagrama de cuerpo libre para A" layout='constrained' width={500}/>
+
+<Image src={DCL6B} alt="Diagrama de cuerpo libre para B" layout='constrained' width={500}/>
 
 Gracias a la cuerda ideal (inextensible y de masa despreciable) ambos bloques tienen la **misma aceleración en magnitud**, y la **tensión es la misma** en toda la cuerda.
 
@@ -243,7 +269,7 @@ Verificación con el bloque $$B$$: $$T = m_B(g - a) = (5{,}0)(9{,}8 - 3{,}8) = 3
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 7 — 🛗 La báscula del ascensor">
-Una estudiante de $$65\,\mathrm{kg}$$ sube a un ascensor con una báscula de baño bajo los pies. En cierto instante la báscula marca $$520\,\mathrm{N}$$. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+Una estudiante de $$65\,\mathrm{kg}$$ sube a un ascensor con una báscula de baño bajo los pies. En cierto instante la báscula marca $$520\,\mathrm{N}$$. 
 
 1. ¿Cuál es la aceleración del ascensor (magnitud y dirección) en ese instante?
 2. ¿Puede saberse si el ascensor está subiendo o bajando? Explique.
@@ -280,7 +306,7 @@ La báscula marcaría **cero**: estudiante y báscula caen juntos y la báscula 
 </Aside>
 
 <Aside type="note" icon="pencil" title="Ejercicio 8 — 🛷 El tobogán con fricción">
-Una caja de $$10\,\mathrm{kg}$$ desliza hacia abajo por un tobogán inclinado $$30^\circ$$, con coeficiente de fricción cinética $$\mu_k = 0{,}20$$. Parte del reposo y recorre $$4{,}0\,\mathrm{m}$$ por la rampa. Use $$g = 9{,}8\,\mathrm{m/s^2}$$.
+Una caja de $$10\,\mathrm{kg}$$ desliza hacia abajo por un tobogán inclinado $$30^\circ$$, con coeficiente de fricción cinética $$\mu_k = 0{,}20$$. Parte del reposo y recorre $$4{,}0\,\mathrm{m}$$ por la rampa. 
 
 1. Dibuje el DCL con ejes alineados con el tobogán.
 2. ¿Cuánto valen la normal y la fricción cinética?
@@ -293,6 +319,9 @@ Una caja de $$10\,\mathrm{kg}$$ desliza hacia abajo por un tobogán inclinado $$
 **1. DCL**
 
 Cuatro fuerzas: el peso $$mg$$ (hacia abajo, con componentes $$mg\,\mathrm{sen}\,30^\circ$$ a lo largo del tobogán y $$mg\cos 30^\circ$$ perpendicular), la normal $$\vec{N}$$ (perpendicular al tobogán) y la fricción cinética $$\vec{f}_k$$ (paralela al tobogán, **hacia arriba**, oponiéndose al deslizamiento hacia abajo).
+
+<Image src={DCL8} alt="Diagrama de cuerpo libre para el sistema" layout='constrained' width={500}/>
+
 
 **2. Normal y fricción**
 
