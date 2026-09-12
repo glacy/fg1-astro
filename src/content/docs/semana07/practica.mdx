@@ -7,15 +7,7 @@ draft: false
 import { Image } from 'astro:assets';
 import { Aside } from '@astrojs/starlight/components';
 import RielCarrito from "../../../assets/riel-carrito-polea-ideal.svg";
-import DCL1 from "../../../assets/DCL_1.svg";
-import DCL2arriba from "../../../assets/DCL_2_arriba.svg";
-import DCL2abajo from "../../../assets/DCL_2_abajo.svg";
-import DCL3 from "../../../assets/DCL_3.svg";
-import DCL4 from "../../../assets/DCL_4.svg";
-import DCL5 from "../../../assets/DCL_5.svg";
-import DCL6A from "../../../assets/DCL_6_A.svg";
-import DCL6B from "../../../assets/DCL_6_B.svg";
-import DCL8 from "../../../assets/DCL_8.svg";
+import DclDiagram from '../../../components/DclDiagram.astro';
 
 <Aside type="note" icon="pencil" title="Ejercicio 1 — 📦 El DCL de la caja jalada">
 Una caja desliza sobre un piso áspero, jalada por una cuerda que forma $$30^\circ$$ sobre la horizontal, y se mueve con **velocidad constante**.
@@ -38,7 +30,7 @@ Una caja desliza sobre un piso áspero, jalada por una cuerda que forma $$30^\ci
 
 No hay más fuerzas: la velocidad constante **no** es una fuerza, y la fricción es cinética (no estática) porque la caja sí desliza.
 
-<Image src={DCL1} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={350}/>
+<DclDiagram name="DCL_1" label="Diagrama de cuerpo libre del sistema" width={350}/>
 
 **2. La normal**
 
@@ -71,7 +63,7 @@ El peso de la caja es $$mg = (6)(9{,}8) = 58,8\,\mathrm{N}$$ y en ambos casos $$
 
 **1. Empujando hacia abajo**
 
-<Image src={DCL2abajo} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={350}/>
+<DclDiagram name="DCL_2_abajo" label="Diagrama de cuerpo libre del sistema" width={350}/>
 
 $$
 \sum F_y = N - mg - F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 58,8 + (60)(0{,}423) \approx 84,16\,\mathrm{N}
@@ -79,7 +71,7 @@ $$
 
 **2. Jalando hacia arriba**
 
-<Image src={DCL2arriba} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={350}/>
+<DclDiagram name="DCL_2_arriba" label="Diagrama de cuerpo libre del sistema" width={350}/>
 
 $$
 \sum F_y = N - mg + F\,\mathrm{sen}\,25^\circ = 0 \quad \Rightarrow \quad N = 58,8 - 25{,}4 \approx 58,8\,\mathrm{N}
@@ -107,7 +99,7 @@ Un cajón de $$40\,\mathrm{kg}$$ reposa sobre una rampa de concreto inclinada $$
 
 Tres fuerzas actúan: el peso $$mg$$ (hacia abajo), la normal $$\vec{N}$$ (perpendicular a la rampa) y la fricción estática $$\vec{f}_s$$ (paralela a la rampa, hacia arriba). Con el eje $$x$$ a lo largo de la rampa, el peso se descompone en $$mg\,\mathrm{sen}\,\theta$$ (paralelo) y $$mg\cos\theta$$ (perpendicular).
 
-<Image src={DCL3} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={350}/>
+<DclDiagram name="DCL_3" label="Diagrama de cuerpo libre del sistema" width={350}/>
 
 
 **2. Fuerza normal**
@@ -151,7 +143,7 @@ Un letrero de $$15\,\mathrm{kg}$$ cuelga de un nudo del que salen dos cuerdas am
 
 Tres fuerzas sobre el nudo: la tensión $$\vec{T}$$ (a $$40^\circ$$ sobre la horizontal, hacia arriba y alejándose de la pared), la tensión horizontal $$\vec{T}_h$$ (hacia la pared) y el peso del letrero $$mg = (15)(9{,}8) = 147\,\mathrm{N}$$ (hacia abajo). El nudo está en equilibrio.
 
-<Image src={DCL4} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={350}/>
+<DclDiagram name="DCL_4" label="Diagrama de cuerpo libre del sistema" width={350}/>
 
 
 **2. Tensión de la cuerda inclinada**
@@ -185,7 +177,7 @@ Una caja de acero de $$25\,\mathrm{kg}$$ está sobre un piso de acero: $$\mu_s =
 <details>
 <summary>Ver solución</summary>
 
-<Image src={DCL5} alt="Diagrama de cuerpo libre del sistema" layout='constrained' width={350}/>
+<DclDiagram name="DCL_5" label="Diagrama de cuerpo libre del sistema" width={350}/>
 
 La normal vale $$N = mg = (25)(9{,}8) = 245\,\mathrm{N}$$ (no hay fuerzas verticales adicionales).
 
@@ -237,9 +229,9 @@ Un deslizador $$A$$ de $$8{,}0\,\mathrm{kg}$$ está sobre una mesa horizontal si
 - Bloque $$A$$: peso $$m_A g$$ (abajo), normal $$N$$ (arriba) y tensión $$\vec{T}$$ (horizontal, hacia la polea). Verticalmente $$N = m_A g$$.
 - Bloque $$B$$: peso $$m_B g$$ (abajo) y tensión $$\vec{T}$$ (hacia arriba, a lo largo de la cuerda).
 
-<Image src={DCL6A} alt="Diagrama de cuerpo libre para A" layout='constrained' width={350}/>
+<DclDiagram name="DCL_6_A" label="Diagrama de cuerpo libre para A" width={350}/>
 
-<Image src={DCL6B} alt="Diagrama de cuerpo libre para B" layout='constrained' width={350}/>
+<DclDiagram name="DCL_6_B" label="Diagrama de cuerpo libre para B" width={350}/>
 
 Gracias a la cuerda ideal (inextensible y de masa despreciable) ambos bloques tienen la **misma aceleración en magnitud**, y la **tensión es la misma** en toda la cuerda.
 
@@ -320,7 +312,7 @@ Una caja de $$10\,\mathrm{kg}$$ desliza hacia abajo por un tobogán inclinado $$
 
 Cuatro fuerzas: el peso $$mg$$ (hacia abajo, con componentes $$mg\,\mathrm{sen}\,30^\circ$$ a lo largo del tobogán y $$mg\cos 30^\circ$$ perpendicular), la normal $$\vec{N}$$ (perpendicular al tobogán) y la fricción cinética $$\vec{f}_k$$ (paralela al tobogán, **hacia arriba**, oponiéndose al deslizamiento hacia abajo).
 
-<Image src={DCL8} alt="Diagrama de cuerpo libre para el sistema" layout='constrained' width={350}/>
+<DclDiagram name="DCL_8" label="Diagrama de cuerpo libre para el sistema" width={350}/>
 
 
 **2. Normal y fricción**

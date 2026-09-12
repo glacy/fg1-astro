@@ -1,0 +1,24 @@
+---
+import { loadDclSvg } from "../lib/dcl";
+
+interface Props {
+  /** Nombre del asset en src/assets (sin extensión). Ej: "DCL_1" */
+  name: string;
+  /** Descripción del diagrama para lectores de pantalla. */
+  label: string;
+  class?: string;
+  /** Ancho máximo en px del diagrama. */
+  width?: number;
+}
+
+const { name, label, class: className, width } = Astro.props;
+
+const svg = loadDclSvg(name);
+if (!svg) {
+  throw new Error(`[DclDiagram] No existe src/assets/${name}.svg`);
+}
+
+const style = width ? `max-width: ${width}px;` : undefined;
+---
+
+<div class:list={["dcl", className]} role="img" aria-label={label} style={style} set:html={svg} />
