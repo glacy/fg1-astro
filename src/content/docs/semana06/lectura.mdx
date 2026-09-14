@@ -24,7 +24,7 @@ import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import FuerzaComponentes from "../../../assets/fuerza_componentes.svg";
 import CajonFuerzas from "../../../assets/cajon.svg";
-import DiagramaCuerpoLibre from "../../../assets/DCL.svg";
+import DclDiagram from '../../../components/DclDiagram.astro';
 import { Steps } from '@astrojs/starlight/components';
 
 <PreCheck>
@@ -500,7 +500,7 @@ El DCL del cajón contiene exactamente cuatro fuerzas:
 | Fricción $$\vec{f}$$ | el piso | paralela al piso, opuesta al movimiento |
 
 
-<Image src={DiagramaCuerpoLibre} alt="El diagrama de cuerpo libre representa todas las fuerzas que actuan sobre un objeto como si actuaran en el mismo punto" layout='constrained' width={320} height={333}/>
+<DclDiagram name="DCL" label="El diagrama de cuerpo libre representa todas las fuerzas que actuan sobre un objeto como si actuaran en el mismo punto" width={320}/>
 
 Dos errores clásicos que el DCL ayuda a evitar:
 

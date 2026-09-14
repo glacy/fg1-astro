@@ -34,7 +34,7 @@ export default defineConfig({
       title: 'Documentos FG1 - II semestre 2026',
       description: 'Documentación para el curso de Física General I - II semestre 2026',
       disable404Route: true,
-      customCss: ['src/styles/katex-import.css', 'src/styles/starlight-overrides.css'],
+      customCss: ['src/styles/katex-import.css', 'src/styles/starlight-overrides.css', 'src/styles/dcl.css'],
       lastUpdated: true,
       locales: {
         root: {
@@ -77,10 +77,15 @@ export default defineConfig({
       },
       {
       label: 'Semana 6',
-      badge: 'Nuevo',
-      collapsed: false,
+      collapsed: true,
       items: [{ autogenerate: { "directory": "semana06" } }]
     },
+      {
+        label: 'Semana 7',
+        badge: 'Nuevo',
+        collapsed: false,
+        items: [{ autogenerate: { "directory": "semana07" } }]
+      },
       ],
     }),
     mdx(),
@@ -101,6 +106,7 @@ export default defineConfig({
   output: 'static',
   image: {
     domains: ['images.unsplash.com'],
+    objectPosition: 'center',
     responsiveStyles: true,
   },
   vite: {

@@ -1,0 +1,80 @@
+/* Tema para diagramas DCL (SVG Figma inline).
+   Fallback = export claro; los hex claros viven en los atributos de los SVG. */
+:root {
+  --dcl-surface: #ffffff;
+  --dcl-ink: #000000;
+  --dcl-f1: #2563eb;
+  --dcl-f2: #007f7f;
+  --dcl-f3: #c83737;
+  --dcl-f4: #6d28d9;
+  --dcl-f5: #b45309;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dcl-surface: #1c1c1e;
+    --dcl-ink: #ededed;
+    --dcl-f1: #7cb0f9;
+    --dcl-f2: #00a8a8;
+    --dcl-f3: #e45b5b;
+    --dcl-f4: #b79df5;
+    --dcl-f5: #f0b429;
+  }
+}
+
+/* Override manual: tiene prioridad sobre prefers-color-scheme */
+[data-theme="dark"] {
+  --dcl-surface: #1c1c1e;
+  --dcl-ink: #ededed;
+  --dcl-f1: #7cb0f9;
+  --dcl-f2: #00a8a8;
+  --dcl-f3: #e45b5b;
+  --dcl-f4: #b79df5;
+  --dcl-f5: #f0b429;
+}
+
+[data-theme="light"] {
+  --dcl-surface: #ffffff;
+  --dcl-ink: #000000;
+  --dcl-f1: #2563eb;
+  --dcl-f2: #007f7f;
+  --dcl-f3: #c83737;
+  --dcl-f4: #6d28d9;
+  --dcl-f5: #b45309;
+}
+
+/* Overrides de fills por token (case-sensitive, casing real de los exports) */
+.dcl [fill="white"] {
+  fill: var(--dcl-surface);
+}
+.dcl [fill="black"] {
+  fill: var(--dcl-ink);
+}
+.dcl [fill="#81B4FE"] {
+  fill: var(--dcl-f1);
+}
+.dcl [fill="#2563EB"] {
+  fill: var(--dcl-f1);
+}
+.dcl [fill="#007F7F"] {
+  fill: var(--dcl-f2);
+}
+.dcl [fill="#C83737"] {
+  fill: var(--dcl-f3);
+}
+.dcl [fill="#7A5E2F"] {
+  fill: var(--dcl-f4);
+}
+.dcl [fill="#6D28D9"] {
+  fill: var(--dcl-f4);
+}
+.dcl [fill="#B45309"] {
+  fill: var(--dcl-f5);
+}
+
+/* Responsive como el <Image> que reemplaza */
+.dcl svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
