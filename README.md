@@ -1,5 +1,7 @@
 # FG1 — Física General I
 
+[![Sitio en producción](https://img.shields.io/badge/sitio-fg1--astro.vercel.app-black?style=flat-square&logo=vercel)](https://fg1-astro.vercel.app/)
+
 Un sitio web de curso universitario, rápido como una landing page.
 
 Estudiantes acceden al plan semanal, evaluaciones, horarios de atención y lecturas desde cualquier dispositivo, incluso sin internet. Profesores pueden adaptarlo como plantilla para sus propios cursos.
@@ -200,6 +202,8 @@ pnpm typecheck      # tsc --noEmit
 ```
 
 ## Deploy
+
+Producción: **[https://fg1-astro.vercel.app/](https://fg1-astro.vercel.app/)**
 
 ```bash
 git push origin main   # Vercel deploy automático
