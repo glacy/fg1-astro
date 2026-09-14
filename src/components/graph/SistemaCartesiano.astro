@@ -66,10 +66,6 @@ const pointsWithPixel = points.map((point, index) => ({
     : true,
 }));
 
-const ariaLabel = `Sistema cartesiano con ${points.length} punto${points.length !== 1 ? 's' : ''}: ${points
-  .map((p) => `(${formatCoordinate(p.x)}, ${formatCoordinate(p.y)})`)
-  .join(', ')}`;
-
 const description = `Sistema de coordenadas cartesiano con ${points.length} punto${points.length !== 1 ? 's' : ''}.`;
 
 const svgId = id || 'cartesian-system';
