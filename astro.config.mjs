@@ -82,9 +82,14 @@ export default defineConfig({
     },
       {
         label: 'Semana 7',
+        collapsed: true,
+        items: [{ autogenerate: { "directory": "semana07" } }]
+      },
+      {
+        label: 'Semana 8',
         badge: 'Nuevo',
         collapsed: false,
-        items: [{ autogenerate: { "directory": "semana07" } }]
+        items: [{ autogenerate: { "directory": "semana08" } }]
       },
       ],
     }),
