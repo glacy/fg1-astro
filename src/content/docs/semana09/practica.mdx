@@ -1,0 +1,351 @@
+---
+title: "Práctica"
+week: 9
+keywords: ["trabajo", "joule", "energía cinética", "teorema del trabajo y la energía", "energía potencial gravitacional", "energía potencial elástica", "constante del resorte", "fuerzas conservativas", "fuerzas no conservativas", "fricción", "energía mecánica", "conservación de la energía", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 💼 La maleta del aeropuerto">
+Una viajera jala su maleta de $$12\,\mathrm{kg}$$ sobre el piso liso del aeropuerto con una fuerza de $$50\,\mathrm{N}$$ que forma $$30^\circ$$ con la horizontal, a lo largo de $$15\,\mathrm{m}$$ de caminata. Las ruedas hacen la fricción despreciable.
+
+1. Calcule el trabajo de la fuerza aplicada, del peso y de la normal.
+2. ¿Cuánto trabajo total se realizó sobre la maleta? Si parte del reposo, ¿qué rapidez alcanza al final de la caminata?
+3. Si la viajera la jalara con la misma fuerza de $$50\,\mathrm{N}$$ pero paralela al piso, ¿realizaría más o menos trabajo? ¿Por qué?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Trabajo de cada fuerza**
+
+Solo cuenta la componente de la fuerza a lo largo del desplazamiento:
+
+$$
+W_F = Fs\cos\theta = (50\,\mathrm{N})(15\,\mathrm{m})\cos 30^\circ \approx 650\,\mathrm{J}
+$$
+
+El peso y la normal son **perpendiculares** al desplazamiento ($$\theta = 90^\circ$$, $$\cos 90^\circ = 0$$):
+
+$$
+W_{\text{peso}} = 0, \qquad W_N = 0
+$$
+
+Por intensos que sean, ni el peso ni la normal "invierten" energía en un desplazamiento horizontal.
+
+**2. Trabajo total y rapidez final**
+
+$$
+W_{\text{total}} = 650\,\mathrm{J} + 0 + 0 = 650\,\mathrm{J}
+$$
+
+Por el teorema del trabajo y la energía, partiendo del reposo:
+
+$$
+W_{\text{total}} = \frac{1}{2}mv^2 \quad \Rightarrow \quad v = \sqrt{\frac{2\,W_{\text{total}}}{m}} = \sqrt{\frac{2(650\,\mathrm{J})}{12\,\mathrm{kg}}} \approx 10{,}4\,\mathrm{m/s}
+$$
+
+**3. ¿Jalar paralela al piso?**
+
+Con $$\theta = 0^\circ$$:
+
+$$
+W_F' = (50\,\mathrm{N})(15\,\mathrm{m})\cos 0^\circ = 750\,\mathrm{J}
+$$
+
+Serían **$$100\,\mathrm{J}$$ más** de trabajo. Con $$\theta = 30^\circ$$, una parte del jalón ($$F\sin\theta = 25\,\mathrm{N}$$) se dedica a sostener la maleta en lugar de desplazarla: cuanto más alineada esté la fuerza con el movimiento, más eficiente es.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🛷 El trineo en el parque">
+Un padre empuja un trineo de $$20\,\mathrm{kg}$$ con una fuerza horizontal de $$100\,\mathrm{N}$$ a lo largo de $$5{,}0\,\mathrm{m}$$ de nieve. El coeficiente de fricción cinética entre el trineo y la nieve es $$\mu_k = 0{,}20$$. Use $$g = 9{,}81\,\mathrm{m/s^2}$$.
+
+1. Haga la contabilidad del trabajo de las cuatro fuerzas (empuje, fricción, normal y peso).
+2. ¿Cuánto vale el trabajo total?
+3. Si el trineo parte del reposo, ¿con qué rapidez llega al final de los $$5{,}0\,\mathrm{m}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Contabilidad de trabajos**
+
+Sobre el trineo actúan cuatro fuerzas (¡el DCL de la semana 7 sigue siendo el punto de partida!). Como no hay aceleración vertical, $$N = mg = (20\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2}) = 196{,}2\,\mathrm{N}$$.
+
+- Empuje, a favor del movimiento:
+
+$$
+W_F = (100\,\mathrm{N})(5{,}0\,\mathrm{m}) = 500\,\mathrm{J}
+$$
+
+- Fricción cinética, en contra: $$f_k = \mu_k N = (0{,}20)(196{,}2\,\mathrm{N}) = 39{,}2\,\mathrm{N}$$,
+
+$$
+W_f = -f_k s = -(39{,}2\,\mathrm{N})(5{,}0\,\mathrm{m}) = -196\,\mathrm{J}
+$$
+
+- Normal y peso, perpendiculares al desplazamiento: $$W_N = W_{\text{peso}} = 0$$.
+
+**2. Trabajo total**
+
+$$
+W_{\text{total}} = 500 - 196 + 0 + 0 = 304\,\mathrm{J}
+$$
+
+**3. Rapidez final**
+
+$$
+W_{\text{total}} = \frac{1}{2}mv^2 - 0 \quad \Rightarrow \quad v = \sqrt{\frac{2(304\,\mathrm{J})}{20\,\mathrm{kg}}} \approx 5{,}5\,\mathrm{m/s}
+$$
+
+Note el papel de los signos: el empuje inyectó $$500\,\mathrm{J}$$ y la fricción cobró $$196\,\mathrm{J}$$ de peaje; lo que quedó fue el cambio de energía cinética.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🚗 La distancia de frenado">
+Un auto de $$1200\,\mathrm{kg}$$ viaja a $$72\,\mathrm{km/h}$$ cuando el conductor pisa el freno. Suponga que la fuerza total de frenado (fricción de llantas y frenos) es constante, de $$6000\,\mathrm{N}$$.
+
+1. Exprese la rapidez en m/s y calcule la energía cinética del auto.
+2. ¿Qué distancia recorre hasta detenerse?
+3. ¿Qué pasaría con esa distancia si viajara al doble de rapidez?
+4. Repita el inciso 2 para un camión de $$6000\,\mathrm{kg}$$ a la misma rapidez y misma fuerza de frenado. ¿Por qué los camiones necesitan distancias mayores?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez y energía cinética**
+
+$$
+v = 72\,\frac{\mathrm{km}}{\mathrm{h}} \times \frac{1000\,\mathrm{m}}{3600\,\mathrm{s}} = 20\,\mathrm{m/s}, \qquad K = \frac{1}{2}mv^2 = \frac{1}{2}(1200\,\mathrm{kg})(20\,\mathrm{m/s})^2 = 2{,}4\times 10^5\,\mathrm{J}
+$$
+
+**2. Distancia de frenado**
+
+La fricción actúa **en contra** del movimiento, así que su trabajo es negativo y debe "absorber" toda la energía cinética:
+
+$$
+W_f = -Fd = \Delta K = 0 - K \quad \Rightarrow \quad d = \frac{K}{F} = \frac{2{,}4\times 10^5\,\mathrm{J}}{6000\,\mathrm{N}} = 40\,\mathrm{m}
+$$
+
+**3. Si la rapidez se duplica**
+
+La energía cinética es proporcional a $$v^2$$: al duplicar $$v$$, $$K$$ se **cuadruplica** y, con la misma fuerza de frenado, la distancia también:
+
+$$
+d' = \frac{\frac{1}{2}m(40\,\mathrm{m/s})^2}{6000\,\mathrm{N}} = 160\,\mathrm{m}
+$$
+
+Pasó de $$40\,\mathrm{m}$$ a $$160\,\mathrm{m}$$: cuadruplicar, no duplicar. De aquí la peligrosidad de "solo un poco más de velocidad" en carretera.
+
+**4. El camión**
+
+Con $$m = 6000\,\mathrm{kg}$$ a $$20\,\mathrm{m/s}$$:
+
+$$
+d_{\text{camión}} = \frac{\frac{1}{2}(6000\,\mathrm{kg})(20\,\mathrm{m/s})^2}{6000\,\mathrm{N}} = 200\,\mathrm{m}
+$$
+
+Cinco veces la distancia del auto: con la misma fuerza de frenado, la distancia es proporcional a la **masa**, porque hay más energía cinética que disipar.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🧗 La escalada y el chocolate">
+Una escaladora de $$65\,\mathrm{kg}$$ asciende una pared de $$12\,\mathrm{m}$$ de altura a velocidad casi constante.
+
+1. ¿Cuánto trabajo realiza contra la gravedad?
+2. Exprese ese resultado en calorías (cal) y en Calorías "de alimentos" (Cal).
+3. Una barra de chocolate aporta unas $$230\,\mathrm{Cal}$$. Si solo una fracción de la energía de los alimentos se convierte en trabajo mecánico útil, comente por qué el número del inciso 2 es tan pequeño comparado con la barra.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Trabajo contra la gravedad**
+
+A velocidad constante la energía cinética no cambia, así que todo el trabajo de la escaladora se invierte en vencer al peso:
+
+$$
+W = mgh = (65\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})(12\,\mathrm{m}) \approx 7{,}65\times 10^3\,\mathrm{J} \approx 7{,}7\,\mathrm{kJ}
+$$
+
+**2. En unidades "de todos los días"**
+
+Con $$1\,\mathrm{cal} = 4{,}18\,\mathrm{J}$$ y $$1\,\mathrm{Cal} = 4180\,\mathrm{J}$$:
+
+$$
+W \approx \frac{7650\,\mathrm{J}}{4{,}18\,\mathrm{J/cal}} \approx 1830\,\mathrm{cal} \approx \frac{7650\,\mathrm{J}}{4180\,\mathrm{J/Cal}} \approx 1{,}8\,\mathrm{Cal}
+$$
+
+**3. ¿Solo 1,8 Cal?**
+
+Sí: subir una pared de $$12\,\mathrm{m}$$ gasta menos de $$2\,\mathrm{Cal}$$ de trabajo mecánico puro, mientras la barra aporta $$230\,\mathrm{Cal}$$ — más de **cien veces** más. La aparente disparidad tiene dos explicaciones. Primera: el cuerpo humano es una máquina poco eficiente; gran parte de la energía metabólica se disipa como calor (mantener la temperatura, tensión muscular, respiración), con rendimientos típicos del $$20{-}25\%$$. Segunda: la vida diaria implica muchas más tareas que una sola escalada. La lección física: el trabajo mecánico contra la gravedad depende **solo** de la altura ganada ($$mgh$$), no del esfuerzo ni del camino.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 🎢 La montaña rusa">
+Un carrito de montaña rusa se suelta desde el reposo en lo alto de una colina de $$25\,\mathrm{m}$$. La pista está cubierta de hielo, así que la fricción es despreciable. Use $$g = 9{,}81\,\mathrm{m/s^2}$$ y tome $$U_{\text{g}} = 0$$ en el punto más bajo.
+
+1. ¿Con qué rapidez llega el carrito al punto más bajo?
+2. ¿Con qué rapidez pasa por un punto que está a $$10\,\mathrm{m}$$ de altura?
+3. Un compañero asegura que un tramo con muchas curvas haría llegar el carrito **más lento** al punto más bajo que un tramo recto. ¿Tiene razón? ¿Por qué?
+4. ¿La respuesta al inciso 1 cambiaría si el carrito tuviera el doble de masa?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez en el punto más bajo**
+
+Sin fuerzas disipativas, la energía mecánica se conserva: $$K_1 + U_1 = K_2 + U_2$$. En la cima $$K_1 = 0$$ y en la base $$U_2 = 0$$:
+
+$$
+mgh = \frac{1}{2}mv^2 \quad \Rightarrow \quad v = \sqrt{2gh} = \sqrt{2(9{,}81\,\mathrm{m/s^2})(25\,\mathrm{m})} \approx 22\,\mathrm{m/s} \approx 80\,\mathrm{km/h}
+$$
+
+**2. Rapidez a 10 m de altura**
+
+Aquí la altura ganada en rapidez es $$\Delta h = 25\,\mathrm{m} - 10\,\mathrm{m} = 15\,\mathrm{m}$$:
+
+$$
+v = \sqrt{2g\,\Delta h} = \sqrt{2(9{,}81\,\mathrm{m/s^2})(15\,\mathrm{m})} \approx 17\,\mathrm{m/s}
+$$
+
+**3. ¿Importan las curvas?**
+
+No. La gravedad es una fuerza **conservativa**: su trabajo depende solo de la altura inicial y final, no del camino. Bajar en línea recta o en espiral cuesta a la pista exactamente el mismo trabajo contra la gravedad, y el carrito llega con la misma rapidez al punto más bajo (con las curvas, eso sí, la trayectoria será más larga y el viaje tomará más tiempo).
+
+**4. ¿Y con el doble de masa?**
+
+No cambiaría: la masa se **cancela** al igualar $$mgh = \tfrac{1}{2}mv^2$$. Con más masa hay más energía potencial para convertir, pero también más inercia para acelerar: la rapidez final solo depende de la diferencia de altura.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🎱 El resorte del juego de canicas">
+El lanzador de una máquina de canicas usa un resorte de constante $$\kappa = 800\,\mathrm{N/m}$$ que se comprime $$10\,\mathrm{cm}$$ y suelta una bola de $$0{,}10\,\mathrm{kg}$$ por una pista horizontal sin fricción. Use $$g = 9{,}81\,\mathrm{m/s^2}$$.
+
+1. ¿Cuánta energía almacena el resorte comprimido?
+2. ¿Con qué rapidez sale disparada la bola?
+3. Si la pista sube verticalmente al final, ¿a qué altura máxima llegaría la bola?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Energía almacenada**
+
+$$
+U_{\text{e}} = \frac{1}{2}\kappa\,\Delta x^2 = \frac{1}{2}(800\,\mathrm{N/m})(0{,}10\,\mathrm{m})^2 = 4{,}0\,\mathrm{J}
+$$
+
+**2. Rapidez de salida**
+
+La energía elástica se convierte íntegramente en energía cinética:
+
+$$
+\frac{1}{2}\kappa\,\Delta x^2 = \frac{1}{2}mv^2 \quad \Rightarrow \quad v = \Delta x\sqrt{\frac{\kappa}{m}} = (0{,}10\,\mathrm{m})\sqrt{\frac{800\,\mathrm{N/m}}{0{,}10\,\mathrm{kg}}} \approx 8{,}9\,\mathrm{m/s}
+$$
+
+**3. Altura máxima**
+
+En el punto más alto la bola se detiene: toda la energía cinética volvió a ser energía potencial, ahora gravitacional:
+
+$$
+mgh = 4{,}0\,\mathrm{J} \quad \Rightarrow \quad h = \frac{4{,}0\,\mathrm{J}}{(0{,}10\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})} \approx 4{,}1\,\mathrm{m}
+$$
+
+El ejemplo resume la cadena de transformaciones de la semana: **elástica $$\to$$ cinética $$\to$$ gravitacional**, con la energía mecánica intacta en cada eslabón.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🛝 El tobogán del parque">
+Un niño de $$40\,\mathrm{kg}$$ se desliza desde el reposo por un tobogán de $$12\,\mathrm{m}$$ de altura. Al llegar abajo su rapidez es de $$10\,\mathrm{m/s}$$. Use $$g = 9{,}81\,\mathrm{m/s^2}$$.
+
+1. ¿Qué rapidez tendría si el tobogán fuera ideal (sin fricción)?
+2. Identifique las fuerzas conservativas y no conservativas que actúan sobre el niño.
+3. ¿Cuánta energía mecánica se disipó? ¿A dónde fue a parar?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez ideal**
+
+$$
+v_{\text{ideal}} = \sqrt{2gh} = \sqrt{2(9{,}81\,\mathrm{m/s^2})(12\,\mathrm{m})} \approx 15{,}3\,\mathrm{m/s}
+$$
+
+**2. Las fuerzas y su clasificación**
+
+Sobre el niño actúan el **peso** (conservativa: depende solo de la altura, permite definir $$U_{\text{g}}$$), la **normal** del tobogán (no realiza trabajo, pues es perpendicular al desplazamiento) y la **fricción** con la superficie (no conservativa o disipativa: su trabajo depende del largo del tobogán).
+
+**3. Energía disipada**
+
+Balance de energía entre la cima (1) y la base (2), con $$U_{\text{g}} = 0$$ en la base:
+
+$$
+K_1 + U_1 + W_{\text{otras}} = K_2 + U_2
+$$
+
+$$
+0 + mgh + W_{\text{otras}} = \frac{1}{2}mv^2 + 0
+$$
+
+$$
+W_{\text{otras}} = \frac{1}{2}(40\,\mathrm{kg})(10\,\mathrm{m/s})^2 - (40\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})(12\,\mathrm{m}) \approx 2000\,\mathrm{J} - 4709\,\mathrm{J} \approx -2{,}7\,\mathrm{kJ}
+$$
+
+La fricción extrajo unos **$$2700\,\mathrm{J}$$** de energía mecánica: el $$57\%$$ de la energía disponible. Esa energía no desapareció: se transformó en **calor**, y por eso la superficie del tobogán (y el pantalón del niño) se calientan durante el deslizamiento. Nótese que el balance funcionó sin necesidad de conocer la forma exacta del tobogán: solo los estados inicial y final.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — ⛰️ La rampa del camión de mudanza">
+Un trabajador sube un mueble de $$30\,\mathrm{kg}$$ por una rampa de $$4{,}0\,\mathrm{m}$$ de largo que alcanza una altura de $$2{,}0\,\mathrm{m}$$, aplicando una fuerza de $$250\,\mathrm{N}$$ paralela a la rampa. El coeficiente de fricción cinética entre el mueble y la rampa es $$\mu_k = 0{,}25$$. El mueble parte del reposo. Use $$g = 9{,}81\,\mathrm{m/s^2}$$.
+
+1. Calcule el trabajo de la fuerza aplicada, del peso y de la fricción. (Sugerencia: del triángulo de la rampa, $$\sin\theta = 2{,}0/4{,}0 = 0{,}50$$.)
+2. ¿Cuánto vale el trabajo total?
+3. ¿Con qué rapidez llega el mueble a la parte alta?
+
+<details>
+<summary>Ver solución</summary>
+
+Con $$\sin\theta = 0{,}50$$ se tiene $$\theta = 30^\circ$$ y $$\cos\theta \approx 0{,}866$$.
+
+**1. Trabajo de cada fuerza**
+
+- Fuerza aplicada, a favor del movimiento:
+
+$$
+W_F = (250\,\mathrm{N})(4{,}0\,\mathrm{m}) = 1000\,\mathrm{J}
+$$
+
+- Peso: solo importa la altura ganada, $$h = s\sin\theta$$:
+
+$$
+W_{\text{peso}} = -mgh = -(30\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})(2{,}0\,\mathrm{m}) = -589\,\mathrm{J}
+$$
+
+- Fricción cinética: la normal vale $$N = mg\cos\theta = (30\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})(0{,}866) \approx 255\,\mathrm{N}$$, así que $$f_k = \mu_k N \approx 63{,}7\,\mathrm{N}$$:
+
+$$
+W_f = -f_k s = -(63{,}7\,\mathrm{N})(4{,}0\,\mathrm{m}) \approx -255\,\mathrm{J}
+$$
+
+- Normal: perpendicular al desplazamiento, $$W_N = 0$$.
+
+**2. Trabajo total**
+
+$$
+W_{\text{total}} = 1000 - 589 - 255 + 0 \approx 156\,\mathrm{J}
+$$
+
+**3. Rapidez en la parte alta**
+
+$$
+W_{\text{total}} = \frac{1}{2}mv^2 - 0 \quad \Rightarrow \quad v = \sqrt{\frac{2(156\,\mathrm{J})}{30\,\mathrm{kg}}} \approx 3{,}2\,\mathrm{m/s}
+$$
+
+De los $$1000\,\mathrm{J}$$ invertidos por el trabajador, $$589\,\mathrm{J}$$ quedaron guardados como energía potencial gravitacional y $$255\,\mathrm{J}$$ se disiparon como calor; el resto, unos $$156\,\mathrm{J}$$, se convirtió en la energía cinética con la que el mueble llega arriba. Esta misma contabilidad —trabajo de cada fuerza, balance y teorema— resuelve cualquier problema de trabajo y energía del curso.
+
+</details>
+</Aside>

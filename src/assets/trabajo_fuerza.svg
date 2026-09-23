@@ -1,0 +1,29 @@
+<svg width="560" height="310" viewBox="0 0 560 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="560" height="310" fill="white"/>
+<defs>
+<linearGradient id="suelo" x1="280" y1="240" x2="280" y2="266" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D9D9D9"/>
+<stop offset="1" stop-color="#414141"/>
+</linearGradient>
+<marker id="fhead" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+<path d="M0,0 L10,4 L0,8 Z" fill="#C83737"/>
+</marker>
+<marker id="sheadL" markerWidth="10" markerHeight="8" refX="2" refY="4" orient="auto">
+<path d="M10,0 L0,4 L10,8 Z" fill="#007F7F"/>
+</marker>
+<marker id="sheadR" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+<path d="M0,0 L10,4 L0,8 Z" fill="#007F7F"/>
+</marker>
+</defs>
+<rect x="30" y="240" width="470" height="26" fill="url(#suelo)"/>
+<line x1="30" y1="239.5" x2="500" y2="239.5" stroke="black"/>
+<rect x="350" y="170" width="90" height="70" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="190" y="170" width="90" height="70" fill="#EDCEB7" stroke="black" stroke-width="2"/>
+<line x1="195" y1="205" x2="345" y2="205" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="5 5"/>
+<line x1="195" y1="205" x2="330" y2="112" stroke="#C83737" stroke-width="3" marker-end="url(#fhead)"/>
+<path d="M 253 205 A 58 58 0 0 0 242.5 171.7" stroke="black" stroke-width="1.5" fill="none"/>
+<text x="262" y="196" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="20" fill="black">&#952;</text>
+<text x="336" y="104" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="22" fill="#C83737">F</text>
+<line x1="195" y1="284" x2="440" y2="284" stroke="#007F7F" stroke-width="2.5" marker-start="url(#sheadL)" marker-end="url(#sheadR)"/>
+<text x="312" y="278" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="20" fill="#007F7F">s</text>
+</svg>

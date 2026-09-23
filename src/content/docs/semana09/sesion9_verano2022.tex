@@ -1,0 +1,222 @@
+\setcounter{page}{75}
+\setcounter{figure}{0}
+\setcounter{chapter}{8}
+
+\chapter{Trabajo y energía}
+\label{cap:cap9}
+\vspace{-15ex}
+
+\raggedright
+Hasta este punto, hemos analizado cómo se mueve un cuerpo describiendo su posición, velocidad y aceleración, así como las fuerzas responsables de esos cambios. Sin embargo, en el mundo físico no basta con aplicar una fuerza: también es necesario considerar el esfuerzo requerido para producir ese cambio.
+
+Este esfuerzo se relaciona con conceptos fundamentales como el trabajo y la energía, los cuales nos permiten entender no solo si un objeto se mueve, sino cómo y a costa de qué recursos lo hace. El estudio del trabajo y energía no solo profundiza nuestra comprensión del movimiento, sino que también establece una conexión esencial con otras áreas de la física, desde la termodinámica hasta la mecánica cuántica. \\[.35cm]
+
+Considere por ejemplo empujar un objeto pesado (ver Figura \ref{fig:empujon}). Si aplicamos una fuerza constante y logramos desplazarlo una cierta distancia, habremos realizado trabajo sobre el objeto. Este trabajo representa el esfuerzo físico necesario para vencer la fricción y mover el objeto. \\[.35cm]
+
+En cambio, si empujamos con la misma fuerza pero el objeto no se mueve, aunque sentimos cansancio, desde el punto de vista físico no se ha realizado trabajo mecánico, ya que no hubo desplazamiento. Este ejemplo muestra cómo el concepto físico de trabajo está directamente relacionado con la eficacia de la fuerza aplicada para producir movimiento, y no únicamente con la sensación de esfuerzo.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=300px]{planeamiento_didactico/figuras/trabajo-fuerza.pdf} 
+\caption{Para mover un objeto pesado, es necesario realizar \textit{trabajo} aplicando una fuerza que lo desplace.}
+\label{fig:empujon}
+\end{figure}   
+
+%Se define el \textit{trabajo} como la cantidad de \textit{energ\'ia} que hay que invertir para cambiar el estado de movimiento de un sistema. \\[.35cm]
+
+
+
+
+ \section{Trabajo}
+F\'isicamente, el trabajo realizado por una fuerza \underline{constante}, $\vec{F}$, al desplazar un objeto una distancia $s$, est\'a dado por
+\begin{equation}
+W=\vec{F}\cdot \vec{s}=Fs\cos\theta,
+\label{eq:w}
+\end{equation}
+donde $\theta$ es el \'angulo que se forma entre la direcci\'on de aplicaci\'on de la fuerza y la direcci\'on del desplazamiento. \\[.35cm]
+
+En el Sistema Internacional de Unidades (SI), el joule (J) es la unidad utilizada para medir tanto el trabajo como la energía. Se define como el trabajo realizado cuando una fuerza de un newton desplaza un objeto un metro en la dirección de la fuerza
+
+$$1\units{N}\cdot\units{m}=1 \units{J}=1\frac{\units{kg}\cdot \units{m}^{2}}{\units{s}^{2}}. $$
+
+Esto significa que si empujamos un objeto con una fuerza de un newton y logramos moverlo un metro, hemos realizado un joule de trabajo. De forma equivalente, un joule también representa la cantidad de energía transferida o transformada en ese proceso.
+El joule es una unidad fundamental en física porque permite cuantificar cuánto esfuerzo mecánico se ha hecho o cuánta energía se ha utilizado o almacenado en un sistema.
+
+\begin{wwteorema}{Ejemplo trabajo}
+
+Una persona aplica una fuerza de 100 N, paralela a una rampa inclinada de 3 m de largo. 
+$$W_F=(100\text{ N})(3\text{ m})\cos(0^\circ)=300\text{ J}$$
+\centering
+\includegraphics[width=3.5in]{planeamiento_didactico/figuras/empujoncamion.png} 
+\end{wwteorema}
+N\'otese que el trabajo es una cantidad f\'isica escalar. A partir de la definici\'on de trabajo (ecuaci\'on \eqref{eq:w}), esta cantidad puede ser positiva, negativa o inclusive ser nula. \\[.35cm]
+
+En general, podemos decir que si 
+\begin{itemize}
+\item $W>0$, la fuerza que realiza dicho trabajo act\'ua a favor del movimiento,
+\item $W<0$, la fuerza que realiza dicho trabajo act\'ua en contra del movimiento,
+\item $W=0$, la fuerza que realiza dicho trabajo no se ve involucrada en el  movimiento.
+\end{itemize}
+ 
+
+ 
+
+Si sobre un objeto act\'uan una serie de fuerzas $\vec{F}_1$, $\vec{F}_2$, $\ldots$, $\vec{F}_N$ a lo largo de un desplazamiento $\vec{s}$; el \textit{trabajo total} es igual al trabajo que efect\'ua la fuerza neta:
+\begin{equation}
+    W_{\text{total}}=\vec{F}_{\text{neta}} \cdot \vec{s}=\vec{F}_1 \cdot \vec{s}+\vec{F}_2 \cdot \vec{s}+\ldots + \vec{F}_N \cdot \vec{s}
+\end{equation}
+
+\begin{wwteorema}{Ejemplo trabajo total}
+\raggedright
+Retomando el ejemplo anterior, considere que el objeto empujado tiene una masa de $m=20\text{ kg}$ y que entre la superficie y el objeto hay un coeficiente de fricci\'on cin\'etico $\mu_{k}=0,15$. Adem\'as, considere que el desplazamiento vertical entre la base de la rampa y su parte m\'as alta es de $h=1$ m. Denotemos con $\theta$ el \'angulo de inclinaci\'on de la rampa. \\[.35cm]
+El trabajo total al desplazar la caja por la rampa est\'a dado por la contribuci\'on de cada una de las fuerzas presentes:
+\begin{align*}
+W_F=&300\text{ J}\\[.35cm]
+W_{\text{peso}}=&mg\cdot s \cdot \cos (90^\circ+ \theta) =-mgh= -196,2\text{ J} \\[.35cm]
+W_{\text{fricci\'on}}=&\mu_{k} \textcolor{c5}{N} \cdot s \cdot \cos (180^\circ)=-\mu_k \textcolor{c5}{ mg\cos\theta}\cdot s=-83,2\text{ J}\\[.35cm]
+\R W_{\text{total}}=&20,6\text{ J}
+\end{align*}
+Al calcular $W_{\text{peso}}$ hemos usado la propiedad
+$$\boxed{\cos(\alpha\pm\beta)=\cos(\alpha)\cos(\beta)\mp\sin(\alpha)\sin(\beta)}$$
+as\'i como la realci\'on
+$$\boxed{\sin(\theta)=\displaystyle \frac{h}{s}} $$
+\end{wwteorema}
+
+
+En el caso de una fuerza variable
+\begin{equation}
+    W=\int F(x)dx
+\end{equation}
+
+\begin{wwteorema}{Ejemplo trabajo por un resorte}
+\begin{center}
+    \includegraphics[width=2.5in]{planeamiento_didactico/figuras/w_resorte.png}
+\end{center}
+\end{wwteorema}
+\subsection{Teorema del trabajo y la energ\'ia}
+La energía cinética es la forma de energía que posee un cuerpo debido a su movimiento. Todo objeto con masa que se mueve a cierta velocidad tiene energía cinética, y mientras más rápido se mueva o mayor sea su masa, mayor será esta energía. En términos matemáticos, se expresa como 
+\begin{equation}
+K=\frac{1}{2}mv^{2},
+\end{equation}
+donde $m$ es la masa del objeto y $v$ su rapidez. Este concepto es fundamental para entender cómo se transfiere y transforma la energía en los sistemas físicos, y está estrechamente relacionado con el trabajo realizado por las fuerzas que actúan sobre un cuerpo.\\[.35cm]
+
+
+Cuando un objeto acelera, frena o cambia su velocidad, es porque ha habido una transferencia de energía a través del trabajo. \\[.35cm]
+
+Considere un objeto, que bajo el efecto de una fuerza (neta), cambia su velocidad de un valor inicial $v_{\text{inicial}}$ a un valor final $v_{\text{final}}$. El trabajo que realiza dicha fuerza est\'a dado por el cambio de energ\'ia cin\'etica que experimenta el objeto:
+\begin{equation}
+W_{\text{total}}=\Delta K=\frac{1}{2}mv_{\text{final}}^{2}-\frac{1}{2}mv_{\text{inicial}}^{2}
+\end{equation}
+A esta expresi\'on se le conoce como \textit{Teorema de trabajo y la energ\'ia}.\\[.35cm]
+
+\begin{wwteorema}{Ejemplo Teorema trabajo-energ\'ia}
+
+En el ejemplo anterior, considere que el objeto empujado se encontraba inicialmente  en reposo.  
+ A partir del Teorema del trabajo y la energ\'ia, 
+$$W_{\text{total}}=20,6\text{ J}=\frac{1}{2}mv_{\text{final}}^2\R v_{\text{final}}=1,44\text{ m/s.}$$
+\end{wwteorema}
+Note que la energ\'ia cin\'etica tiene unidades de trabajo. Es decir, la energ\'ia se expresa en juoles  en el SI.\\[.35cm]
+
+Además, el joule está relacionado con otras unidades de energía más conocidas fuera del ámbito de la física (ver tabla \ref{tab:cal}).
+\begin{table}[h!]
+\caption{Algunas unidades de energ\'ia}
+\label{tab:cal}
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Unidad}&\textbf{Equivalencia en J} \\[.35cm]
+\toprule
+\textit{ergio} (erg)& $10^{-7}$\\[.35cm]
+\textit{calor\'ia} (cal)& $4,18$ \\[.35cm]
+\textit{Calor\'ia grande} (Cal) & $4180$ \\[.35cm]
+\textit{kilowatt-hora} (kW$\cdot$ h)& $3,6\tentimes{6}$ \\[.35cm]
+\textit{electronvoltio} (eV)& $1,6\tentimes{-19}$ \\[.35cm]
+\textit{British thermal unit} (BTU o BTu)& $1055,06$ \\[.35cm]
+%\otoprule
+\toprule
+\end{tabular}
+\end{table}
+
+\section{Energ\'ia potencial}
+
+La \textit{energ\'ia potencial} o tambi\'en llamada \textit{energ\'ia de configuraci\'on} depende del tipo de sistema que tengamos y de su configuraci\'on.\\[.35cm]
+
+\subsection{Energ\'ia potencial gravitacional}
+Cuando un objeto de masa $m$ se encuentra a una altura $h$ sobre un nivel de referencia, su energ\'ia potencial gravitacional $U_{\text{grav}}$, est\'a dada por
+\begin{equation}
+U_\text{g}=mgh.
+\end{equation}
+%donde $U_0$ representa un valor de referencia, $U_0=U_{\text{grav}}(h=0)$. Suele definirse, generalmente, $U_{0}=0$.\\[.35cm]
+
+
+\subsection{Energ\'ia potencial el\'astica} 
+Esta es la energ\'ia que almacena o libera un resorte cuando es comprimido o estirado. Si denotamos $\Delta x$ la longitud de compresi\'on / estiramiento que sufre un resorte, la energ\'ia potencial el\'astica del mismo est\'a dada por
+\begin{equation}
+U_{\text{e}}(\Delta x)=\frac{1}{2}\kappa\Delta x^{2},
+\end{equation}
+donde $\kappa$ es una constante, llamada \textit{constante del resorte}, y caracteriza la dureza del resorte.
+
+\section{Fuerzas conservativas y no conservativas}
+En física, las fuerzas se clasifican según cómo afectan la energía mecánica de un sistema. 
+
+\subsection{Fuerzas conservativas}
+Son aquellas fuerzas cuya acción no depende del camino recorrido, sino únicamente del punto inicial y final. Esto significa que el trabajo realizado por una fuerza conservativa sobre un objeto que se mueve a lo largo de un camino cerrado (es decir, que vuelve al mismo punto) es cero. \\[.35cm]
+
+Ejemplos clásicos de fuerzas conservativas:
+
+\begin{itemize}
+    \item La fuerza gravitatoria
+    \item La fuerza elástica (como la de un resorte ideal)
+    \item La fuerza electrostática
+\end{itemize}
+
+Estas fuerzas permiten definir una energía potencial asociada al sistema. Por eso, cuando actúan solas, la energía mecánica total (cinética + potencial) se conserva.
+
+\subsection{Fuerzas no conservativas}
+En cambio, las fuerzas no conservativas sí dependen del camino recorrido. El trabajo que realizan no puede recuperarse completamente en forma de energía mecánica, ya que parte de esa energía se transforma en otras formas como calor o sonido. \\[.35cm]
+
+Ejemplos comunes:
+
+\begin{itemize}
+    \item La fuerza de fricción
+    \item La resistencia del aire
+    \item Cualquier fuerza que produzca disipación de energía
+\end{itemize}
+ A las fuerzas no conservativas tambi\'en se les llama \textit{fuerzas disipativas}.
+ 
+\subsection{Conservaci\'on de la energ\'ia}
+
+La \textit{energ\'ia mec\'anica} de un sistema est\'a dada por la suma de su energ\'ia cin\'etica y potencial:
+\begin{equation}
+E=K+U,
+\end{equation}
+
+\textit{``En ausencia de fuerzas disipativas, la energ\'ia mec\'anica de un sistema permanece constante''}\\[.35cm]
+
+
+
+de manera que la \textit{ley de conservaci\'on de la energ\'ia} que acabamos de enunciar, puede escribirse \textbf{adem\'as} de cualquiera de las siguientes formas:
+
+\begin{align}
+\Delta E=&0\\[.35cm]
+\Delta K =& -\Delta U\\[.35cm]
+W=&-\Delta U
+\end{align}
+
+En el caso que un sistema presente fuerzas disipativas, podemos aplicar el Teorema de conservaci\'on de la energ\'ia si consideramos la cantidad de energ\'ia que estas fuerzas disipan, $W_{\text{otras}}$, de manera que:
+ \begin{equation}
+%\Delta K + \Delta U + \Delta W_{\text{otras}}=0.
+K_1+U_1+W_{\text{otras}}=K_2+U_2
+\end{equation}
+
+\begin{wwteorema}{Ejemplo fuerzas conservativas y no conservativas}
+  En la base de un plano inclinado ($\theta=20^\circ$) se coloca un resorte ($\kappa=10^4\U{N/m}$). El resorte se comprime $\Delta x = 10 \U{cm}$ y se coloca una caja de $m=5\U{kg}$. Si entre la caja y el plano existe un $\mu_{k}=0,3$, determine la distancia $D$ que recorre la caja una vez liberado el sistema.
+        \includegraphics{planeamiento_didactico/figuras/masa-resorte-plano.png}
+   Tomando como referencia el punto de equilibrio del resorte
+   \begin{align*}
+       E_{\text{1}}=&\frac{1}{2}\kappa (\Delta x)^2-mg\Delta x\sin \theta \\[.35cm]
+       E_{\text{2}}=&mg(D-\Delta x)\sin \theta \\[.35cm]
+       W_{\text{otras}}=&-\mu_{k}(mg \cos \theta)D
+    \end{align*}
+    de donde $$D=\frac{\kappa (\Delta x)^2}{2mg (\sin\theta+\mu_{k}\cos\theta)}=1,63\U{m.}$$
+\end{wwteorema}

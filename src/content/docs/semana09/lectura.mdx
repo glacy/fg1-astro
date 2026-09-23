@@ -1,31 +1,557 @@
 ---
 title: "Trabajo y energía"
-description: "Material de lectura para la semana 9."
+description: "Trabajo y energía: trabajo de una fuerza constante y de una fuerza variable, unidades y signo del trabajo; energía cinética y teorema del trabajo y la energía; energía potencial gravitacional y elástica; fuerzas conservativas y no conservativas; conservación de la energía mecánica y su aplicación en presencia de fuerzas disipativas."
 week: 9
-keywords: ["física general I", "semana 9", "TEC Costa Rica"]
+keywords: ["trabajo", "joule", "energía cinética", "teorema del trabajo y la energía", "energía potencial", "energía potencial gravitacional", "energía potencial elástica", "constante del resorte", "fuerzas conservativas", "fuerzas no conservativas", "fuerzas disipativas", "energía mecánica", "conservación de la energía", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-9"]
-category: "semana-9"
-difficulty: "basic"
+date: 2026-09-07
+readingTime: 20
+tags: ["trabajo", "energía cinética", "energía potencial", "conservación de la energía"]
+category: "energía"
+difficulty: "intermediate"
 objetivos:
   - "Definir los conceptos: trabajo, energía cinética, energía potencial, fuerza conservativa y energía mecánica."
   - "Calcular el trabajo efectuado por una fuerza sobre un cuerpo."
   - "Relacionar el trabajo neto efectuado sobre un cuerpo con el cambio de energía cinética experimentado."
   - "Resolver problemas aplicando los conceptos de trabajo y energía, en contextos con fuerzas conservativas y no conservativas."
-draft: true
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import { Image } from 'astro:assets';
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import TrabajoFuerza from "../../../assets/trabajo_fuerza.svg";
+import ResorteEnergia from "../../../assets/resorte_energia.svg";
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Definir los conceptos: trabajo, energía cinética, energía potencial, fuerza conservativa y energía mecánica.
+  - Calcular el trabajo efectuado por una fuerza sobre un cuerpo.
+  - Relacionar el trabajo neto efectuado sobre un cuerpo con el cambio de energía cinética experimentado.
+  - Resolver problemas aplicando los conceptos de trabajo y energía, en contextos con fuerzas conservativas y no conservativas.
+</PreCheck>
 
-- Definir los conceptos: trabajo, energía cinética, energía potencial, fuerza conservativa y energía mecánica.
-- Calcular el trabajo efectuado por una fuerza sobre un cuerpo.
-- Relacionar el trabajo neto efectuado sobre un cuerpo con el cambio de energía cinética experimentado.
-- Resolver problemas aplicando los conceptos de trabajo y energía, en contextos con fuerzas conservativas y no conservativas.
+Durante las últimas semanas estudiamos el movimiento con la maquinaria de Newton: dibujar el diagrama de cuerpo libre, sumar fuerzas por componentes y aplicar $$\sum \vec{F} = m\vec{a}$$. Ese método funciona y lo seguiremos usando; sin embargo, en el mundo físico no basta con aplicar una fuerza: también importa el *esfuerzo* requerido para producir un cambio. Considere empujar un objeto pesado: si la fuerza logra desplazarlo, el empuje rindió frutos; si empuja con la misma fuerza y el objeto no se mueve, aunque sienta cansancio, desde el punto de vista físico no se ha realizado **trabajo mecánico**, porque no hubo desplazamiento. El concepto físico de trabajo mide la *eficacia* de una fuerza para producir movimiento, no la sensación de esfuerzo.
 
-## Contenido
+De esa idea nace el segundo gran enfoque de la mecánica: el **análisis energético**. El trabajo es el mecanismo mediante el cual se transfiere **energía** de un cuerpo a otro, y la energía tiene una propiedad extraordinaria: en condiciones adecuadas, **se conserva**. Esto permite resolver problemas donde el método de Newton se vuelve engorroso —fuerzas que varían, trayectorias curvas, situaciones donde solo importan el estado inicial y el final— con una simple *contabilidad* de energía. En esta semana construiremos esa contabilidad paso a paso: primero el trabajo, luego la energía cinética y el teorema que las conecta, después las energías potenciales y, finalmente, la ley de conservación de la energía mecánica.
 
-Contenido de la semana 9 próximamente disponible.
+## El trabajo: cuando una fuerza rinde
+
+Físicamente, el trabajo realizado por una fuerza **constante** $$\vec{F}$$ que desplaza un objeto una distancia $$s$$ está dado por:
+
+$$
+W = \vec{F}\cdot\vec{s} = Fs\cos\theta
+$$
+
+donde $$\theta$$ es el ángulo entre la dirección de la fuerza y la dirección del desplazamiento. Solo cuenta la componente de la fuerza **a lo largo del desplazamiento**: arrastrar una maleta jalando la correa hacia arriba rinde menos que jalarla casi horizontal, porque en el primer caso buena parte del jalón se gasta en levantar la maleta, no en desplazarla.
+
+<Image src={TrabajoFuerza} alt="Una fuerza F forma un ángulo θ con el desplazamiento s de la caja" layout='constrained' width={560}/>
+
+En el Sistema Internacional, el trabajo se mide en **joules** (J): un joule es el trabajo que realiza una fuerza de un newton al desplazar un objeto un metro en la dirección de la fuerza:
+
+$$
+1\,\mathrm{N}\cdot\mathrm{m} = 1\,\mathrm{J} = 1\,\frac{\mathrm{kg}\cdot\mathrm{m}^2}{\mathrm{s}^2}
+$$
+
+Para calibrar la intuición: levantar una manzana de $$100\,\mathrm{g}$$ (¡el peso de $$1\,\mathrm{N}$$ de la semana 6!) una altura de $$1\,\mathrm{m}$$ cuesta aproximadamente $$1\,\mathrm{J}$$ de trabajo. El joule cuantifica cuánto esfuerzo mecánico se ha invertido o, de forma equivalente, cuánta energía se ha transferido en el proceso.
+
+Un detalle crucial: **el trabajo es una cantidad escalar**. Puede ser positivo, negativo o nulo según el ángulo $$\theta$$, y esa información sobre el *signo* resume el papel de cada fuerza en el movimiento:
+
+- $$W > 0$$: la fuerza actúa **a favor** del movimiento (empuja en la dirección del desplazamiento) y le transfiere energía al objeto.
+- $$W < 0$$: la fuerza actúa **en contra** del movimiento (como la fricción) y le extrae energía.
+- $$W = 0$$: la fuerza es **perpendicular** al desplazamiento o el objeto no se desplaza. Por eso, cuando una caja desliza por un piso horizontal, el peso y la normal —ambos verticales— no realizan trabajo alguno, por intensos que sean.
+
+Cuando sobre el objeto actúan varias fuerzas $$\vec{F}_1, \vec{F}_2, \ldots, \vec{F}_N$$ a lo largo del mismo desplazamiento, cada una realiza su propio trabajo y el **trabajo total** coincide con el trabajo de la fuerza neta:
+
+$$
+W_{\text{total}} = \vec{F}_{\text{neta}}\cdot\vec{s} = \vec{F}_1\cdot\vec{s} + \vec{F}_2\cdot\vec{s} + \ldots + \vec{F}_N\cdot\vec{s}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — subir una caja por una rampa de carga**
+
+Una persona aplica una fuerza de $$F = 100\,\mathrm{N}$$ paralela a una rampa de $$s = 3{,}0\,\mathrm{m}$$ de largo y logra subir una caja de $$m = 20\,\mathrm{kg}$$ hasta una altura $$h = 1{,}0\,\mathrm{m}$$. Entre la caja y la rampa hay un coeficiente de fricción cinética $$\mu_k = 0{,}15$$. Hagamos la contabilidad del trabajo de cada fuerza.
+
+- **Fuerza aplicada** (paralela a la rampa, a favor del movimiento): 
+
+$$
+W_F = Fs\cos 0^\circ = (100\,\mathrm{N})(3{,}0\,\mathrm{m}) = 300\,\mathrm{J}
+$$
+
+- **Peso**: su componente a lo largo de la rampa es $$mg\sin\theta$$, opuesta al movimiento. Como la altura ganada es $$h = s\sin\theta$$:
+
+$$
+W_{\text{peso}} = -mg\sin\theta \cdot s = -mgh = -(20\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})(1{,}0\,\mathrm{m}) = -196{,}2\,\mathrm{J}
+$$
+
+- **Fricción cinética** (siempre opuesta al movimiento). Del DCL de la semana 7, la normal vale $$N = mg\cos\theta$$, con $$\sin\theta = h/s = 1/3$$, de modo que $$\cos\theta \approx 0{,}943$$:
+
+$$
+W_{\text{fricción}} = -\mu_k mg\cos\theta \cdot s = -(0{,}15)(20\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})(0{,}943)(3{,}0\,\mathrm{m}) \approx -83{,}2\,\mathrm{J}
+$$
+
+- **Normal**: perpendicular al desplazamiento, así que $$W_N = 0$$.
+
+El trabajo total es la suma de todos:
+
+$$
+W_{\text{total}} = 300 - 196{,}2 - 83{,}2 + 0 = 20{,}6\,\mathrm{J}
+$$
+
+Observe el patrón: los trabajos positivos "inyectan" energía y los negativos "cobran peaje". Esta lista firmada es la contabilidad que el análisis energético llevará a lo largo de todo el curso.
+
+</Box>
+
+Hasta aquí asumimos fuerzas constantes. Cuando la fuerza cambia durante el desplazamiento —un resorte que se comprime, por ejemplo— la definición se extiende integrando a lo largo del trayecto:
+
+$$
+W = \int F(x)\,dx
+$$
+
+Es decir, el trabajo es el **área bajo la gráfica de la fuerza en función de la posición**. Si la fuerza de un resorte obedece $$F = \kappa\,\Delta x$$ —donde $$\kappa$$ es la constante del resorte—, el trabajo para deformarlo desde $$0$$ hasta $$\Delta x$$ es el área del triángulo bajo la recta:
+
+$$
+W = \int_0^{\Delta x} \kappa x \, dx = \frac{1}{2}\kappa\,\Delta x^2
+$$
+
+Guarde este resultado: reaparecerá más adelante como la energía almacenada en el resorte.
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Una caja se desplaza $$2{,}0\,\mathrm{m}$$ sobre un piso mientras una fuerza de $$50\,\mathrm{N}$$ actúa paralela al desplazamiento. El trabajo de esa fuerza es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$25\,\mathrm{J}$$
+      </Option>
+      <Option>
+        $$50\,\mathrm{J}$$
+      </Option>
+      <Option isCorrect>
+        $$100\,\mathrm{J}$$
+      </Option>
+      <Option>
+        cero
+      </Option>
+    </MultipleChoice>
+
+2. Una fuerza forma $$90^\circ$$ con el desplazamiento del objeto. Su trabajo es __________.
+
+    <MultipleChoice>
+      <Option>
+        máximo
+      </Option>
+      <Option>
+        positivo
+      </Option>
+      <Option isCorrect>
+        cero
+      </Option>
+      <Option>
+        negativo
+      </Option>
+    </MultipleChoice>
+
+3. Un bloque desliza por un piso horizontal. El trabajo que realiza el **peso** durante ese desplazamiento es __________.
+
+    <MultipleChoice>
+      <Option>
+        positivo
+      </Option>
+      <Option>
+        negativo
+      </Option>
+      <Option isCorrect>
+        cero
+      </Option>
+      <Option>
+        depende de la rapidez del bloque
+      </Option>
+    </MultipleChoice>
+
+4. Una persona empuja un muro con gran esfuerzo durante varios minutos, sin moverlo. El trabajo mecánico realizado sobre el muro es __________.
+
+    <MultipleChoice>
+      <Option>
+        positivo, aunque pequeño
+      </Option>
+      <Option>
+        negativo
+      </Option>
+      <Option isCorrect>
+        cero
+      </Option>
+      <Option>
+        igual al cansancio que la persona siente
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Energía cinética y el teorema del trabajo y la energía
+
+La **energía cinética** es la energía que posee un cuerpo debido a su movimiento. Todo objeto con masa que se mueve a cierta rapidez tiene energía cinética, y mientras mayor sea su masa o su rapidez, mayor será esa energía:
+
+$$
+K = \frac{1}{2}mv^2
+$$
+
+donde $$m$$ es la masa y $$v$$ la rapidez. Note que $$K$$ depende de la *magnitud* de la velocidad, no de su dirección: como el trabajo, es un escalar y se mide en joules. Duplicar la rapidez **cuadruplica** la energía cinética; por eso los daños en un choque crecen mucho más rápido que la velocidad.
+
+¿Qué relación hay entre el trabajo y esta energía? Cuando un objeto acelera, frena o cambia su rapidez, es porque hubo una transferencia de energía a través del trabajo. Si una fuerza neta cambia la rapidez del objeto de un valor inicial $$v_{\text{inicial}}$$ a un valor final $$v_{\text{final}}$$, el trabajo total realizado coincide exactamente con el cambio de energía cinética:
+
+$$
+W_{\text{total}} = \Delta K = \frac{1}{2}mv_{\text{final}}^2 - \frac{1}{2}mv_{\text{inicial}}^2
+$$
+
+Esta es el **teorema del trabajo y la energía**, el puente entre las dos mitades de la mecánica: la contabilidad de trabajos de la sección anterior y la energía del objeto. Su poder es notable: no necesitamos calcular la aceleración ni seguir el movimiento paso a paso; solo comparamos el estado inicial con el final.
+
+<Box icon="check-list">
+
+**Ejemplo — ¿con qué rapidez llega la caja arriba? (continuación)**
+
+Retomemos la caja de la rampa: partió del reposo y el trabajo total sobre ella fue $$W_{\text{total}} = 20{,}6\,\mathrm{J}$$. Por el teorema del trabajo y la energía:
+
+$$
+W_{\text{total}} = \frac{1}{2}mv_{\text{final}}^2 - 0 \quad \Rightarrow \quad v_{\text{final}} = \sqrt{\frac{2\,W_{\text{total}}}{m}} = \sqrt{\frac{2(20{,}6\,\mathrm{J})}{20\,\mathrm{kg}}} = 1{,}44\,\mathrm{m/s}
+$$
+
+El mismo resultado por el método de Newton exigiría calcular la fuerza neta a lo largo de la rampa, obtener la aceleración con $$\sum F = ma$$ y luego resolver la cinemática. El teorema condensa todo eso en una resta y una raíz: para rapideces, basta la contabilidad de trabajos.
+
+</Box>
+
+Como la energía es una magnitud tan universal, el joule convive con otras unidades que aparecerán en contextos ajenos al aula. Conviene reconocerlas:
+
+| Unidad | Equivalencia en J | Dónde se encuentra |
+| :--- | :--- | :--- |
+| *ergio* (erg) | $$10^{-7}$$ | física atómica y antigua literatura |
+| *caloría* (cal) | $$4{,}18$$ | calentamiento del agua |
+| *Caloría grande* (Cal) | $$4180$$ | etiquetas de alimentos |
+| *kilowatt-hora* (kW$$\cdot$$h) | $$3{,}6\times 10^{6}$$ | factura eléctrica |
+| *electronvoltio* (eV) | $$1{,}6\times 10^{-19}$$ | electrones y núcleos |
+| *British thermal unit* (BTU) | $$1055{,}06$$ | aires acondicionados |
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Si la rapidez de un cuerpo se duplica, su energía cinética __________.
+
+    <MultipleChoice>
+      <Option>
+        se duplica
+      </Option>
+      <Option isCorrect>
+        se cuadruplica
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+    </MultipleChoice>
+
+2. Un auto frena hasta detenerse. El trabajo total realizado sobre él es __________.
+
+    <MultipleChoice>
+      <Option>
+        positivo e igual a $$\tfrac{1}{2}mv^2$$
+      </Option>
+      <Option>
+        cero
+      </Option>
+      <Option isCorrect>
+        negativo e igual a $$-\tfrac{1}{2}mv^2$$
+      </Option>
+      <Option>
+        positivo, pero menor que $$\tfrac{1}{2}mv^2$$
+      </Option>
+    </MultipleChoice>
+
+3. En el SI, la energía cinética se mide en __________.
+
+    <MultipleChoice>
+      <Option>
+        newtons
+      </Option>
+      <Option>
+        watts
+      </Option>
+      <Option>
+        $$\mathrm{kg}\cdot\mathrm{m/s}$$
+      </Option>
+      <Option isCorrect>
+        joules
+      </Option>
+    </MultipleChoice>
+
+4. El teorema del trabajo y la energía establece que __________.
+
+    <MultipleChoice>
+      <Option>
+        el trabajo total siempre es positivo
+      </Option>
+      <Option isCorrect>
+        el trabajo total equivale al cambio de energía cinética
+      </Option>
+      <Option>
+        la energía cinética siempre se conserva
+      </Option>
+      <Option>
+        el trabajo depende de la trayectoria recorrida
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Energía potencial
+
+Hemos visto la energía del movimiento. Pero un sistema también puede almacenar energía por el simple hecho de estar **arreglado** de cierta manera: un cuerpo elevado a cierta altura, un resorte comprimido. A esta forma de energía se le llama **energía potencial** o *energía de configuración*, porque depende de la posición o configuración del sistema y no de si este se mueve o no.
+
+### Energía potencial gravitacional
+
+Cuando un objeto de masa $$m$$ se encuentra a una altura $$h$$ sobre un nivel de referencia, su energía potencial gravitacional está dada por:
+
+$$
+U_{\text{g}} = mgh
+$$
+
+El nivel de referencia (donde $$h = 0$$) es **arbitrario**: puede ser el suelo, una mesa o el nivel del mar. Lo que tiene significado físico no es el valor de $$U_{\text{g}}$$, sino la **diferencia** de energía entre dos posiciones, y esa diferencia no depende de dónde se ponga el cero. Por ejemplo, una mochila de $$5{,}0\,\mathrm{kg}$$ subida $$2{,}0\,\mathrm{m}$$ gana $$\Delta U_{\text{g}} = mgh \approx 98\,\mathrm{J}$$, tomemos la referencia donde la tomemos.
+
+### Energía potencial elástica
+
+Un resorte que se comprime o se estira también almacena energía, lista para devolverse cuando el resorte recupere su longitud natural. Si el resorte se deforma una cantidad $$\Delta x$$ respecto de su longitud natural, la energía potencial elástica es:
+
+$$
+U_{\text{e}}(\Delta x) = \frac{1}{2}\kappa\,\Delta x^2
+$$
+
+donde $$\kappa$$ es la **constante del resorte**, que caracteriza su dureza: mientras mayor sea $$\kappa$$, más fuerza se necesita para deformarlo y más energía almacena para una misma deformación. Compare con el resultado de la integral de la sección anterior: son la misma expresión. El trabajo que hicimos para comprimir el resorte quedó almacenado en él como energía potencial.
+
+<Image src={ResorteEnergia} alt="Un resorte estirado una distancia Δx de su longitud natural ejerce una fuerza de restitución F = κΔx" layout='constrained' width={620}/>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Se eleva un objeto al doble de la altura sobre el mismo nivel de referencia. Su energía potencial gravitacional __________.
+
+    <MultipleChoice>
+      <Option>
+        se cuadruplica
+      </Option>
+      <Option isCorrect>
+        se duplica
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+    </MultipleChoice>
+
+2. Se comprime un resorte el doble ($$\Delta x \to 2\Delta x$$). Su energía potencial elástica __________.
+
+    <MultipleChoice>
+      <Option>
+        se duplica
+      </Option>
+      <Option isCorrect>
+        se cuadruplica
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Fuerzas conservativas y no conservativas
+
+### Fuerzas conservativas
+
+Una fuerza es **conservativa** cuando el trabajo que realiza **no depende del camino recorrido**, sino únicamente de los puntos inicial y final. La fuerza gravitatoria es el ejemplo perfecto: subir una mochila a la terraza por la escalera o por la rampa cuesta exactamente el mismo trabajo contra la gravedad, porque al final la mochila está a la misma altura. Como consecuencia, el trabajo de una fuerza conservativa a lo largo de un **camino cerrado** —que termina donde empezó— es cero: lo que la fuerza se llevó en la ida, lo devuelve en la vuelta.
+
+Ejemplos clásicos de fuerzas conservativas:
+
+- la fuerza gravitatoria;
+- la fuerza elástica de un resorte ideal;
+- la fuerza electrostática.
+
+La propiedad distintiva de estas fuerzas es que **permiten definir una energía potencial asociada**: la energía potencial es, precisamente, el trabajo almacenado que la fuerza conservativa puede devolver.
+
+### Fuerzas no conservativas
+
+En contraste, las fuerzas **no conservativas** sí dependen del camino recorrido: mientras más largo sea el trayecto, más trabajo extraen del sistema, y ese trabajo no se recupera en forma de energía mecánica, pues parte de la energía se transforma en calor, sonido o deformaciones. Ejemplos comunes:
+
+- la fuerza de fricción;
+- la resistencia del aire;
+- cualquier fuerza que disipe energía.
+
+Por eso a las fuerzas no conservativas también se les llama **fuerzas disipativas**: frotar las manos en un día frío es una forma directa de comprobarlo. Y una consecuencia importante: como el trabajo de la fricción depende del camino, **no existe una "energía potencial de fricción"**.
+
+### Conservación de la energía mecánica
+
+La **energía mecánica** de un sistema es la suma de su energía cinética y su energía potencial:
+
+$$
+E = K + U
+$$
+
+> *"En ausencia de fuerzas disipativas, la energía mecánica de un sistema permanece constante."*
+
+Esta ley de conservación puede escribirse de varias formas equivalentes:
+
+$$
+\Delta E = 0, \qquad \Delta K = -\Delta U, \qquad W = -\Delta U
+$$
+
+La segunda forma es la más útil para leer la física de una situación: si la energía potencial **disminuye**, la energía cinética **aumenta** en la misma cantidad. Una pelota que cae convierte altura en rapidez, gramo a gramo, joule a joule.
+
+Cuando actúan fuerzas disipativas, la energía mecánica ya no se conserva, pero la contabilidad sigue funcionando si registramos la energía que ellas extraen. Llamando $$W_{\text{otras}}$$ al trabajo de las fuerzas no conservativas:
+
+$$
+K_1 + U_1 + W_{\text{otras}} = K_2 + U_2
+$$
+
+La energía no desaparece: solo cambia de partida, y la fricción siempre firma el recibo.
+
+<Box icon="check-list">
+
+**Ejemplo — resorte, rampa y fricción: el balance final**
+
+En la base de un plano inclinado $$\theta = 20^\circ$$ hay un resorte de constante $$\kappa = 10^4\,\mathrm{N/m}$$, comprimido una distancia $$\Delta x = 10\,\mathrm{cm}$$. Se coloca sobre él una caja de $$m = 5{,}0\,\mathrm{kg}$$ y se libera el sistema. Entre la caja y el plano hay fricción, con $$\mu_k = 0{,}3$. ¿Qué distancia $$D$$ recorre la caja a lo largo del plano antes de detenerse?
+
+Elijamos dos estados y escribamos su energía mecánica, con la referencia de alturas en el punto de partida:
+
+- **Estado 1** (resorte comprimido, caja en reposo): no hay energía cinética y solo hay energía elástica:
+
+$$
+K_1 = 0, \qquad U_1 = \frac{1}{2}\kappa\,\Delta x^2 = \frac{1}{2}(10^4\,\mathrm{N/m})(0{,}10\,\mathrm{m})^2 = 50\,\mathrm{J}
+$$
+
+- **Estado 2** (caja detenida, resorte ya relajado): no hay energía cinética ni elástica, solo gravitacional, con una altura ganada de $$D\sin\theta$$:
+
+$$
+K_2 = 0, \qquad U_2 = mgD\sin\theta
+$$
+
+- **La fricción** actúa sobre todo el recorrido con fuerza $$\mu_k mg\cos\theta$$, extrayendo:
+
+$$
+W_{\text{otras}} = -\mu_k mg\cos\theta \cdot D
+$$
+
+El balance de energía, $$K_1 + U_1 + W_{\text{otras}} = K_2 + U_2$$, queda entonces:
+
+$$
+50 - \mu_k mg\cos\theta \cdot D = mgD\sin\theta \quad \Rightarrow \quad D = \frac{\frac{1}{2}\kappa\,\Delta x^2}{mg(\sin\theta + \mu_k\cos\theta)}
+$$
+
+$$
+D = \frac{50\,\mathrm{J}}{(5{,}0\,\mathrm{kg})(9{,}81\,\mathrm{m/s^2})\left(\sin 20^\circ + 0{,}3\cos 20^\circ\right)} = \frac{50}{30{,}6}\,\mathrm{m} = 1{,}63\,\mathrm{m}
+$$
+
+Lea la ecuación como lo que es: de los $$50\,\mathrm{J}$$ que devolvió el resorte, una parte se gastó en ganar altura y el resto en vencer la fricción. Nótese también que no hubo que analizar la fase en que el resorte empuja a la caja: el análisis energético solo compara el inicio con el final.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. ¿Cuál de las siguientes fuerzas **no** permite definir una energía potencial asociada? __________.
+
+    <MultipleChoice>
+      <Option>
+        la fuerza gravitatoria
+      </Option>
+      <Option>
+        la fuerza elástica de un resorte
+      </Option>
+      <Option isCorrect>
+        la fuerza de fricción
+      </Option>
+      <Option>
+        la fuerza electrostática
+      </Option>
+    </MultipleChoice>
+
+2. Una pelota cae verticalmente sin resistencia del aire. Durante la caída __________.
+
+    <MultipleChoice>
+      <Option>
+        la energía mecánica disminuye
+      </Option>
+      <Option>
+        la energía cinética permanece constante
+      </Option>
+      <Option isCorrect>
+        $$\Delta K = -\Delta U$$
+      </Option>
+      <Option>
+        la energía mecánica aumenta
+      </Option>
+    </MultipleChoice>
+
+3. Una caja desliza hasta detenerse sobre un piso con fricción. La energía cinética perdida se transformó principalmente en __________.
+
+    <MultipleChoice>
+      <Option>
+        energía potencial elástica
+      </Option>
+      <Option isCorrect>
+        calor por fricción
+      </Option>
+      <Option>
+        energía potencial gravitacional
+      </Option>
+      <Option>
+        trabajo de la fuerza normal
+      </Option>
+    </MultipleChoice>
+
+4. En un péndulo ideal (sin fricción), en el punto más bajo de la trayectoria __________.
+
+    <MultipleChoice>
+      <Option>
+        la energía potencial es máxima y la cinética es cero
+      </Option>
+      <Option>
+        la energía mecánica vale cero
+      </Option>
+      <Option isCorrect>
+        la energía cinética es máxima y la potencial es mínima
+      </Option>
+      <Option>
+        la energía mecánica es máxima
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Trabajo de una fuerza constante | $$W = Fs\cos\theta$$ | escalar: positivo, negativo o nulo |
+| Trabajo total | $$W_{\text{total}} = \vec{F}_{\text{neta}}\cdot\vec{s}$$ | suma de los trabajos de cada fuerza |
+| Fuerza variable | $$W = \int F(x)\,dx$$ | área bajo la curva $$F$$–$$x$$ |
+| Joule | $$1\,\mathrm{J} = 1\,\mathrm{N}\cdot\mathrm{m}$$ | levantar una manzana $$1\,\mathrm{m}$$ cuesta $$\approx 1\,\mathrm{J}$$ |
+| Energía cinética | $$K = \frac{1}{2}mv^2$$ | depende de la rapidez, no de la dirección |
+| Teorema trabajo-energía | $$W_{\text{total}} = \Delta K$$ | puente entre fuerzas y rapideces |
+| Energía potencial gravitacional | $$U_{\text{g}} = mgh$$ | nivel de referencia arbitrario |
+| Energía potencial elástica | $$U_{\text{e}} = \frac{1}{2}\kappa\,\Delta x^2$$ | almacenada al comprimir o estirar |
+| Energía mecánica | $$E = K + U$$ | constante si no hay fuerzas disipativas |
+| Balance con disipación | $$K_1 + U_1 + W_{\text{otras}} = K_2 + U_2$$ | la fricción extrae energía mecánica |
+
+La idea clave de esta semana es que el **trabajo es el mecanismo de transferencia de energía** y que esa energía admite dos grandes formas en la mecánica: **cinética**, asociada al movimiento, y **potencial**, asociada a la configuración del sistema. Cuando las fuerzas son conservativas, la conversión entre ambas formas es perfecta y la energía mecánica se conserva; cuando hay fuerzas disipativas, la contabilidad sigue siendo posible con solo registrar su trabajo, como hicimos en la rampa y en el resorte. En la práctica de la semana aplicaremos este balance a rampas de carga, resortes comprimidos y planos con fricción; la semana siguiente extenderá estas ideas a fuerzas que varían de forma arbitraria y a la **potencia**, que mide qué tan rápido se transfiere la energía.
