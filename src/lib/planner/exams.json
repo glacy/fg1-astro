@@ -44,7 +44,12 @@
         "Movimiento parabólico",
         "Leyes de Newton"
       ],
-      "links": []
+      "links": [
+                {
+          "label": "Distribución de aulas",
+          "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_primer_parcial.html"
+        }
+      ]
     },
     {
       "id": "826a86d2-b926-461c-ada5-7b4b253a8fe9",
@@ -61,7 +66,8 @@
         "Leyes de Newton"
       ],
       "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
-      "links": []
+      "links": [
+      ]
     },
     {
       "id": "2",
