@@ -3,10 +3,10 @@
   "title": "Trabajo y energía",
   "image": "https://images.unsplash.com/photo-1698159985937-05ace2fc04c6?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
-    "Definir los conceptos: trabajo, energía cinética, energía potencial, fuerza conservativa y energía mecánica.",
-    "Calcular el trabajo efectuado por una fuerza sobre un cuerpo.",
-    "Relacionar el trabajo neto efectuado sobre un cuerpo con el cambio de energía cinética experimentado.",
-    "Resolver problemas aplicando los conceptos de trabajo y energía, en contextos con fuerzas conservativas y no conservativas."
+    "Definir el significado de trabajo, energía cinética, energía potencial, fuerza conservativa y energía mecánica.",
+    "Calcular el trabajo efectuado por una fuerza constante sobre un cuerpo, determinando su signo a partir del ángulo entre la fuerza y el desplazamiento.",
+    "Aplicar el teorema del trabajo y la energía para relacionar el trabajo neto con el cambio de energía cinética de un cuerpo.",
+    "Distinguir entre fuerzas conservativas y no conservativas, y usar la ley de conservación de la energía mecánica para resolver problemas donde intervienen fuerzas disipativas, como la fricción."
   ],
   "contenidos": [
     "Trabajo (sección 6.1).",
