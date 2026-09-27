@@ -10,7 +10,6 @@
     "jsxImportSource": "react",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -26,6 +25,7 @@
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "astro.config.mjs"
   ]
 }
