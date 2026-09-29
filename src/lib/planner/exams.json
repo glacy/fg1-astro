@@ -48,6 +48,14 @@
                 {
           "label": "Distribución de aulas",
           "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_primer_parcial.html"
+        },
+        {"label": "Enunciado",
+          "url": "/FG1_IIS-2026_primer_parcial.pdf",
+          "download": true
+        },
+        {"label": "Solución",
+          "url": "/FG1_IIS-2026_primer_parcial_solucion.pdf",
+          "download": true
         }
       ]
     },
