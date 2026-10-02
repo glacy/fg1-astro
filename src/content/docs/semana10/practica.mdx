@@ -1,0 +1,319 @@
+---
+title: "Práctica"
+week: 10
+keywords: ["fuerzas variables", "trabajo", "integral", "área bajo la curva", "potencia", "watt", "caballo de fuerza", "potencia instantánea", "energía potencial", "nabla", "gradiente", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🛒 El empuje que se debilita">
+Un trabajador empuja un carrito de $$30\,\mathrm{kg}$$ por un muelle horizontal. A medida que avanza, su empuje efectivo disminuye linealmente según $$F(x) = 120 - 30x$$, con $$F$$ en newtons y $$x$$ en metros, desde $$x = 0$$ hasta $$x = 3{,}0\,\mathrm{m}$$. El piso es liso y el carrito parte del reposo.
+
+1. Calcule el trabajo del empuje integrando la fuerza.
+2. Verifique el resultado gráficamente, usando el área bajo la recta $$F$$–$$x$$.
+3. Con el teorema del trabajo y la energía, ¿con qué rapidez llega el carrito a $$x = 3{,}0\,\mathrm{m}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Trabajo por integración**
+
+$$
+W = \int_0^{3{,}0} (120 - 30x)\,dx = \left[120x - 15x^2\right]_0^{3{,}0} = 360 - 135 = 225\,\mathrm{J}
+$$
+
+**2. Verificación gráfica**
+
+La fuerza es una recta que va de $$120\,\mathrm{N}$$ (en $$x=0$$) a $$30\,\mathrm{N}$$ (en $$x = 3{,}0\,\mathrm{m}$$). El área bajo ella es un trapecio de bases $$120$$ y $$30$$ y altura $$3{,}0$$:
+
+$$
+W = \frac{(120 + 30)}{2}\,\mathrm{N} \times 3{,}0\,\mathrm{m} = 225\,\mathrm{J}
+$$
+
+Mismo resultado por los dos caminos: la integral y el área bajo la curva son la misma cosa, como vimos en la semana 3 con las gráficas de velocidad.
+
+**3. Rapidez final**
+
+$$
+W_{\text{total}} = \Delta K \quad \Rightarrow \quad 225\,\mathrm{J} = \frac{1}{2}(30\,\mathrm{kg})v^2 \quad \Rightarrow \quad v = \sqrt{\frac{2(225\,\mathrm{J})}{30\,\mathrm{kg}}} = \sqrt{15} \approx 3{,}9\,\mathrm{m/s}
+$$
+
+El teorema del trabajo y la energía no distingue entre fuerzas constantes y variables: solo necesita el trabajo total, y para eso la integral hace el trabajo pesado.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 📈 La gráfica del remolque">
+Un bote es remolcado por un muelle y la fuerza del cable se registra durante el arranque. La gráfica $$F$$–$$x$$ muestra tres tramos rectos: la fuerza sube linealmente de $$0$$ a $$200\,\mathrm{N}$$ durante los primeros $$2{,}0\,\mathrm{m}$$; se mantiene constante en $$200\,\mathrm{N}$$ hasta los $$5{,}0\,\mathrm{m}$$; y luego baja linealmente hasta $$0$$ en $$x = 6{,}0\,\mathrm{m}$$.
+
+1. Calcule el trabajo del cable entre $$0$$ y $$2{,}0\,\mathrm{m}$$.
+2. Calcule el trabajo entre $$2{,}0$$ y $$5{,}0\,\mathrm{m}$$.
+3. Calcule el trabajo total entre $$0$$ y $$6{,}0\,\mathrm{m}$$.
+4. Si el bote de $$40\,\mathrm{kg}$$ parte del reposo y la resistencia del agua es despreciable, ¿con qué rapidez pasa por $$x = 5{,}0\,\mathrm{m}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Tramo de arranque ($$0$$ a $$2{,}0\,\mathrm{m}$$)**
+
+El área es un triángulo de base $$2{,}0\,\mathrm{m}$$ y altura $$200\,\mathrm{N}$$:
+
+$$
+W_1 = \frac{1}{2}(2{,}0\,\mathrm{m})(200\,\mathrm{N}) = 200\,\mathrm{J}
+$$
+
+**2. Tramo de crucero ($$2{,}0$$ a $$5{,}0\,\mathrm{m}$$)**
+
+Rectángulo de base $$3{,}0\,\mathrm{m}$$ y altura $$200\,\mathrm{N}$$:
+
+$$
+W_2 = (3{,}0\,\mathrm{m})(200\,\mathrm{N}) = 600\,\mathrm{J}
+$$
+
+**3. Trabajo total ($$0$$ a $$6{,}0\,\mathrm{m}$$)**
+
+El tramo final añade otro triángulo de base $$1{,}0\,\mathrm{m}$$ y altura $$200\,\mathrm{N}$$:
+
+$$
+W_3 = \frac{1}{2}(1{,}0\,\mathrm{m})(200\,\mathrm{N}) = 100\,\mathrm{J}, \qquad W_{\text{total}} = 200 + 600 + 100 = 900\,\mathrm{J}
+$$
+
+Partir la gráfica en figuras geométricas simples equivale a partir la integral en tramos: cada figura es un trozo de área, y el trabajo es la suma.
+
+**4. Rapidez a los 5,0 m**
+
+Hasta $$x = 5{,}0\,\mathrm{m}$$ el cable aportó $$200 + 600 = 800\,\mathrm{J}$$:
+
+$$
+800\,\mathrm{J} = \frac{1}{2}(40\,\mathrm{kg})v^2 \quad \Rightarrow \quad v = \sqrt{\frac{2(800\,\mathrm{J})}{40\,\mathrm{kg}}} = \sqrt{40} \approx 6{,}3\,\mathrm{m/s}
+$$
+
+Nótese que no se necesita la aceleración en ningún momento: la gráfica entrega el trabajo y el teorema entrega la rapidez.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🏥 El ascensor del hospital">
+El motor de un ascensor levanta una carga total de $$600\,\mathrm{kg}$$ (cabina más pasajeros) una altura de $$12\,\mathrm{m}$$ en $$8{,}0\,\mathrm{s}$$, a rapidez constante.
+
+1. ¿Cuánto trabajo realiza el motor contra la gravedad?
+2. ¿Cuál es la potencia media del motor en watts y en kilowatts?
+3. Exprese esa potencia en caballos de fuerza (hp).
+4. Si el mismo recorrido se hiciera en la mitad del tiempo, ¿cómo cambiarían el trabajo y la potencia? Calcúlelos.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Trabajo del motor**
+
+A rapidez constante la energía cinética no cambia: el motor entrega exactamente el trabajo que la gravedad "cobra":
+
+$$
+W = mgh = (600\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2})(12\,\mathrm{m}) = 7{,}1\times 10^4\,\mathrm{J} \approx 71\,\mathrm{kJ}
+$$
+
+**2. Potencia media**
+
+$$
+P_{\text{prom}} = \frac{W}{\Delta t} = \frac{7{,}06\times 10^4\,\mathrm{J}}{8{,}0\,\mathrm{s}} \approx 8800\,\mathrm{W} \approx 8{,}8\,\mathrm{kW}
+$$
+
+**3. En caballos de fuerza**
+
+$$
+P \approx \frac{8820\,\mathrm{W}}{746\,\mathrm{W/hp}} \approx 12\,\mathrm{hp}
+$$
+
+**4. En la mitad del tiempo**
+
+El trabajo **no cambia**: depende solo de la masa y la altura, no de la prisa ($$W = mgh \approx 71\,\mathrm{kJ}$$). La potencia se **duplica**:
+
+$$
+P' = \frac{7{,}06\times 10^4\,\mathrm{J}}{4{,}0\,\mathrm{s}} \approx 1{,}76\times 10^4\,\mathrm{W} \approx 18\,\mathrm{kW} \approx 24\,\mathrm{hp}
+$$
+
+Aquí está la esencia de la potencia: mismo trabajo, distinto tiempo, distinta máquina. Un motor de ascensor rápido no "trabaja más"; trabaja **más rápido**.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🚴 El ciclista y el viento">
+Una ciclista avanza por una carretera plana a rapidez constante de $$10\,\mathrm{m/s}$$. La fuerza total que se opone a su avance (resistencia del aire más rodadura) es de $$40\,\mathrm{N}$$.
+
+1. ¿Qué fuerza debe aplicar la ciclista sobre los pedales, efectiva a lo largo del movimiento? ¿Por qué?
+2. ¿Qué potencia desarrolla?
+3. La resistencia del aire crece con el **cuadrado** de la rapidez. Si la ciclista duplicara su rapidez a $$20\,\mathrm{m/s}$$, ¿qué potencia necesitaría? Comente el resultado.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Fuerza necesaria**
+
+A rapidez constante la aceleración es cero, así que la fuerza neta es cero: la ciclista aplica exactamente la fuerza que el medio le opone, $$F = 40\,\mathrm{N}$$, dirigida a favor del movimiento.
+
+**2. Potencia desarrollada**
+
+$$
+P = Fv\cos 0^\circ = (40\,\mathrm{N})(10\,\mathrm{m/s}) = 400\,\mathrm{W} \approx 0{,}54\,\mathrm{hp}
+$$
+
+Una cifra respetable: sostener $$400\,\mathrm{W}$$ de manera continua es terreno de ciclistas entrenados.
+
+**3. Al duplicar la rapidez**
+
+La nueva resistencia se cuadruplica (porque $$v^2$$): $$F' = 4(40\,\mathrm{N}) = 160\,\mathrm{N}$$. Y como además la rapidez se duplica:
+
+$$
+P' = F'v' = (160\,\mathrm{N})(20\,\mathrm{m/s}) = 3200\,\mathrm{W} = 3{,}2\,\mathrm{kW}
+$$
+
+Ocho veces la potencia anterior. Como $$F \propto v^2$$ y $$P = Fv$$, la potencia crece con el **cubo** de la rapidez: por eso pasar de $$10$$ a $$20\,\mathrm{m/s}$$ en bicicleta no es "el doble de esfuerzo", sino una tarea reservada a motores. Este $$P \propto v^3$$ es la razón física de las limitaciones de rapidez de casi todo lo que se mueve en un fluido.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 💧 La bomba del pozo">
+Una bomba eleva $$100\,\mathrm{L}$$ de agua por minuto desde un pozo de $$8{,}0\,\mathrm{m}$$ de profundidad. Recuerde que $$1\,\mathrm{L}$$ de agua tiene una masa de $$1\,\mathrm{kg}$$.
+
+1. ¿Qué trabajo realiza la bomba por cada litro elevado?
+2. ¿Cuál es la potencia ideal mínima de la bomba, en watts y en hp?
+3. En la ferretería solo hay bombas de $$0{,}50\,\mathrm{hp}$$. Explique por qué esa bomba no está "sobrada", aunque la potencia ideal sea menor.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Trabajo por litro**
+
+$$
+W_{\text{litro}} = mgh = (1{,}0\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2})(8{,}0\,\mathrm{m}) \approx 78\,\mathrm{J}
+$$
+
+**2. Potencia ideal mínima**
+
+Cada minuto se elevan $$100\,\mathrm{kg}$$, es decir $$100 \times 78\,\mathrm{J} = 7840\,\mathrm{J}$$ por minuto:
+
+$$
+P_{\text{ideal}} = \frac{7840\,\mathrm{J}}{60\,\mathrm{s}} \approx 131\,\mathrm{W} \approx 0{,}18\,\mathrm{hp}
+$$
+
+**3. ¿Por qué 0,50 hp no es exceso?**
+
+Los $$131\,\mathrm{W}$$ son la potencia **ideal**: suponen que cada joule del motor llega íntegro al agua. En una instalación real, parte de la potencia se pierde en la fricción del agua contra las tuberías y codos, en el calentamiento del motor y en el rendimiento mecánico de la bomba (típicamente $$40{-}70\%$$). Con un rendimiento del orden del $$50\%$$, el motor debe entregar unos $$260\,\mathrm{W}$$, y conviene un margen de seguridad: la de $$0{,}50\,\mathrm{hp}$$ ($$373\,\mathrm{W}$$) es una elección sensata. La potencia que se calcula con $$P = W/t$$ es el **mínimo teórico**; las máquinas reales siempre cobran comisión.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — ⛰️ La colina de energía">
+Una partícula se mueve a lo largo del eje $$x$$ con una energía potencial $$U(x) = 2x^2$$, con $$U$$ en joules y $$x$$ en metros.
+
+1. Obtenga la fuerza $$F_x(x)$$ a partir de la energía potencial.
+2. Evalúe la fuerza en $$x = +0{,}50\,\mathrm{m}$$ y en $$x = -0{,}50\,\mathrm{m}$$. ¿Hacia dónde apunta en cada caso?
+3. ¿En qué posición la fuerza es nula? ¿Por qué se dice que es un **equilibrio estable**?
+4. ¿Reconoce esta fuerza? ¿Qué sistema físico tiene esta energía potencial?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. La fuerza desde la energía**
+
+$$
+F_x = -\frac{dU}{dx} = -\frac{d}{dx}\left(2x^2\right) = -4x
+$$
+
+**2. Evaluación**
+
+$$
+F_x(+0{,}50\,\mathrm{m}) = -4(0{,}50) = -2{,}0\,\mathrm{N}, \qquad F_x(-0{,}50\,\mathrm{m}) = -4(-0{,}50) = +2{,}0\,\mathrm{N}
+$$
+
+En $$x = +0{,}50\,\mathrm{m}$$ la fuerza apunta hacia $$-x$$; en $$x = -0{,}50\,\mathrm{m}$$ apunta hacia $$+x$$. En ambos casos **hacia el origen**: como una canica en el fondo de un tazón, la partícula siempre es empujada "cuesta abajo" en el paisaje de energía.
+
+**3. Posición de equilibrio**
+
+La fuerza se anula en $$x = 0$$, justo donde $$U$$ es mínima. Es un equilibrio **estable** porque cualquier desviación pequeña de la partícula genera una fuerza que la devuelve al punto de equilibrio (al revés de un lápiz sobre su punta, cuya energía potencial es máxima allí y el equilibrio es inestable).
+
+**4. ¿Sistema conocido?**
+
+Compare con la energía elástica: $$U = \frac{1}{2}\kappa x^2 = 2x^2$$ corresponde a un resorte con $$\frac{1}{2}\kappa = 2$$, es decir $$\kappa = 4\,\mathrm{N/m}$$. La fuerza recuperada es $$F = -\kappa x = -4x$$: la ley de Hooke, obtenida aquí sin más que derivar la energía.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🏔️ El valle de energía">
+Una partícula se mueve en el plano $$xy$$ con energía potencial $$U(x, y) = 2(x^2 + y^2)$$, con $$U$$ en joules y las coordenadas en metros.
+
+1. Obtenga las componentes $$F_x$$ y $$F_y$$ de la fuerza.
+2. Evalúe la fuerza en el punto $$(3{,}0\,\mathrm{m},\, 4{,}0\,\mathrm{m})$$: componentes, magnitud y dirección.
+3. Describa el "paisaje" que describe $$U$$ y explique por qué la fuerza apunta siempre hacia el origen.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Componentes de la fuerza**
+
+Cada componente se obtiene derivando respecto de su coordenada (las demás fijas):
+
+$$
+F_x = -\frac{\partial U}{\partial x} = -4x, \qquad F_y = -\frac{\partial U}{\partial y} = -4y
+$$
+
+En forma compacta: $$\vec{F} = -\nabla U = -4x\,\hat{\iota} - 4y\,\hat{\jmath}$$.
+
+**2. En el punto (3,0 m, 4,0 m)**
+
+$$
+\vec{F} = -4(3{,}0)\,\hat{\iota} - 4(4{,}0)\,\hat{\jmath} = (-12\,\mathrm{N})\,\hat{\iota} + (-16\,\mathrm{N})\,\hat{\jmath}
+$$
+
+$$
+|\vec{F}| = \sqrt{12^2 + 16^2} = \sqrt{400} = 20\,\mathrm{N}
+$$
+
+La dirección es la del vector $$(-12, -16)$$: exactamente **opuesta** al vector posición $$(3, 4)$$, o sea, apuntando hacia el origen.
+
+**3. El paisaje**
+
+$$U = 2(x^2 + y^2)$$ describe un "valle" parabólico: un tazón infinito cuyo punto más bajo está en el origen, donde $$U = 0$$. La regla $$\vec{F} = -\nabla U$$ dice que la fuerza apunta en la dirección de **máxima caída** de la energía potencial, como el agua que escurre por una ladera: siempre cuesta abajo, siempre hacia el fondo del valle. Por eso la fuerza del inciso 2 apunta al origen desde cualquier punto del plano.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — 🎯 La pistola de juguete">
+Una pistola de juguete usa un resorte de constante $$\kappa = 200\,\mathrm{N/m}$$ que se comprime $$15\,\mathrm{cm}$$ y suelta horizontalmente una bola de $$50\,\mathrm{g}$$, sin fricción. La expansión del resorte dura $$5{,}0\,\mathrm{ms}$$.
+
+1. Calcule el trabajo del resorte sobre la bola durante la expansión, integrando su fuerza.
+2. ¿Con qué rapidez sale disparada la bola?
+3. ¿Cuál es la potencia media entregada durante el disparo?
+4. Compare esa potencia con la de una persona subiendo escaleras (unos $$300{-}700\,\mathrm{W}$$). ¿Cómo puede un juguete competir con un humano?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Trabajo del resorte**
+
+Durante la expansión la bola va de $$x = 0{,}15\,\mathrm{m}$$ a $$x = 0$$; la fuerza del resorte es $$F = -\kappa x$$ y el trabajo:
+
+$$
+W = \int_{0{,}15}^{0} (-\kappa x)\,dx = \frac{1}{2}\kappa\,(0{,}15\,\mathrm{m})^2 = \frac{1}{2}(200\,\mathrm{N/m})(0{,}15\,\mathrm{m})^2 = 2{,}25\,\mathrm{J}
+$$
+
+Verificación gráfica: la fuerza cae linealmente de $$\kappa\,\Delta x = 30\,\mathrm{N}$$ a $$0$$, un triángulo de base $$0{,}15\,\mathrm{m}$$ y altura $$30\,\mathrm{N}$$: $$W = \frac{1}{2}(0{,}15)(30) = 2{,}25\,\mathrm{J}$$. El resultado de la semana 9 —la energía elástica— no es más que esta integral.
+
+**2. Rapidez de salida**
+
+$$
+\frac{1}{2}mv^2 = 2{,}25\,\mathrm{J} \quad \Rightarrow \quad v = \sqrt{\frac{2(2{,}25\,\mathrm{J})}{0{,}050\,\mathrm{kg}}} = \sqrt{90} \approx 9{,}5\,\mathrm{m/s}
+$$
+
+**3. Potencia media del disparo**
+
+$$
+P_{\text{prom}} = \frac{\Delta W}{\Delta t} = \frac{2{,}25\,\mathrm{J}}{5{,}0\times 10^{-3}\,\mathrm{s}} = 450\,\mathrm{W}
+$$
+
+**4. Juguete contra humano**
+
+$$450\,\mathrm{W}$$ está dentro del rango de una persona subiendo escaleras a paso de trote, pero el juguete lo sostiene solo durante cinco milisegundos. No hay contradicción: la potencia mide la **tasa** de transferencia, no la cantidad total. Un resorte rígido entrega poca energía pero en un instante brevísimo, y por eso puede lanzar la bola a $$9{,}5\,\mathrm{m/s}$$; la escaladora entrega mucha más energía ($$2744\,\mathrm{J}$$ contra $$2{,}25\,\mathrm{J}$$), repartida en muchos segundos. Energía y potencia responden a preguntas distintas: *cuánto* y *qué tan rápido*.
+
+</details>
+</Aside>

@@ -1,7 +1,7 @@
 {
   "id": 10,
   "title": "Fuerzas variables, potencia, fuerza y energia potencial",
-  "image": "https://images.unsplash.com/photo-1429772011165-0c2e054367b8?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1711199694531-e982a79ea381?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
     "Calcular el trabajo efectuado por una fuerza variable.",
     "Comprender el concepto de potencia como la tasa de cambio para efectuar trabajo.",
@@ -14,8 +14,13 @@
   ],
   "consignas": [
     {
-      "text": "Revisar las secciones correspondientes del Capítulo 6 y Capítulo 7 del libro principal de consulta.",
+      "text": "Revisar las secciones correspondientes del Capítulo 6 del libro principal de consulta.",
       "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_06.pdf",
+      "icon": "lucide:book-open"
+    },
+     {
+      "text": "Revisar las secciones correspondientes del Capítulo 7 del libro principal de consulta.",
+      "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/libro%2FCapitulo_07.pdf",
       "icon": "lucide:book-open"
     },
     {
@@ -24,12 +29,14 @@
       "icon": "lucide:file-text"
     }
   ],
-  "evaluaciones": [],
-  "recursos": [
+  "evaluaciones": [
     {
-      "text": "Solución Práctica Semana 9",
-      "url": "/soluciones/solucion_practica_semana9.pdf",
+      "text": "Práctica 10",
+      "url": "./../semana10/practica/",
       "icon": "lucide:calculator"
     }
+  ],
+  "recursos": [
+
   ]
 }
