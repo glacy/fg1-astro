@@ -37,6 +37,10 @@
     }
   ],
   "recursos": [
-
+    {
+      "text": "PhET: Energía en la pista de patinaje",
+      "url": "https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_all.html?locale=es",
+      "icon": "lucide:link"
+    }
   ]
 }
