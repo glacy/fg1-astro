@@ -1,29 +1,425 @@
 ---
-title: "Fuerzas variables, potencia, fuerza y energia potencial"
-description: "Material de lectura para la semana 10."
+title: "Fuerzas variables, potencia, fuerza y energía potencial"
+description: "Fuerzas variables, potencia, fuerza y energía potencial: trabajo de una fuerza variable mediante integración y área bajo la curva; potencia media e instantánea, unidades y su expresión en términos de fuerza y velocidad; recuperación de la fuerza a partir de la función de energía potencial con el operador nabla."
 week: 10
-keywords: ["física general I", "semana 10", "TEC Costa Rica"]
+keywords: ["fuerzas variables", "trabajo", "integral", "área bajo la curva", "potencia", "watt", "caballo de fuerza", "potencia instantánea", "energía potencial", "nabla", "gradiente", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-10"]
-category: "semana-10"
-difficulty: "basic"
+date: 2026-10-03
+readingTime: 20
+tags: ["fuerzas variables", "potencia", "energía potencial"]
+category: "energía"
+difficulty: "intermediate"
 objetivos:
   - "Calcular el trabajo efectuado por una fuerza variable."
   - "Comprender el concepto de potencia como la tasa de cambio para efectuar trabajo."
   - "Determinar las propiedades de una fuerza conservativa conociendo la función de energía potencial correspondiente."
-draft: true
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import { Image } from 'astro:assets';
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import AreaBajoCurvaW from "../../../assets/DCL_area_bajo_curva_W.svg";
+import DclDiagram from '../../../components/DclDiagram.astro';
+import EjemploFuerzaVariable from "../../../assets/ejemplo1_fuerza_variable.svg";
 
-Al finalizar esta semana, serás capaz de:
 
-- Calcular el trabajo efectuado por una fuerza variable.
-- Comprender el concepto de potencia como la tasa de cambio para efectuar trabajo.
-- Determinar las propiedades de una fuerza conservativa conociendo la función de energía potencial correspondiente.
 
-## Contenido
 
-Contenido de la semana 10 próximamente disponible.
+<PreCheck>
+  - Calcular el trabajo efectuado por una fuerza variable.
+  - Comprender el concepto de potencia como la tasa de cambio para efectuar trabajo.
+  - Determinar las propiedades de una fuerza conservativa conociendo la función de energía potencial correspondiente.
+</PreCheck>
+
+La semana pasada construimos la **contabilidad de la energía**: el trabajo mide cuánta energía transfiere una fuerza, y el teorema del trabajo y la energía convierte esa contabilidad en rapideces. Pero en esa fórmula, $$W = Fs\cos\theta$$, escondimos una suposición silenciosa: que la fuerza mantiene el mismo valor durante todo el desplazamiento. En el mundo físico pocas fuerzas cooperan así. Un resorte empuja cada vez más débil a medida que recupera su longitud; la resistencia del aire crece con la rapidez; el empuje de una persona se agota a lo largo del trayecto. A estas les llamamos **fuerzas variables**, y para analizarlas necesitamos herramientas más precisas: la integración y el análisis gráfico.
+
+Por otro lado, saber *cuánta* energía se transfiere no agota la descripción de un proceso: también importa *qué tan rápido* se transfiere. Subir un piano al segundo piso requiere el mismo trabajo se haga con grúa o escalón a escalón, pero la grúa lo hace en minutos y la persona en horas. Esa tasa de transferencia es la **potencia**, y es la magnitud que define el desempeño de motores, máquinas y atletas. Esta semana completamos el análisis energético en tres pasos: primero ampliaremos la definición de trabajo para que sobreviva a fuerzas que cambian; luego añadiremos la dimensión del tiempo con la potencia; y finalmente invertiremos el camino de la semana pasada —en lugar de partir de la fuerza para llegar a la energía, partiremos de la energía potencial para reconstruir la fuerza—.
+
+## Fuerzas variables
+
+La fórmula $$W = Fs\cos\theta$$ asume un único valor de la fuerza para todo el trayecto. Si la fuerza cambia de un punto a otro, ¿qué valor usar? Ninguno en particular: la solución es la misma que aplicamos cuando una velocidad cambia y queremos el desplazamiento en la semana 3 — partir el problema en tramos tan pequeños que dentro de cada uno la fuerza casi no varía, calcular el trabajo de cada tramo y sumar todo. Ese "sumar tramos infinitamente pequeños" es, por definición, una **integral**: el trabajo realizado por una fuerza $$F(x)$$ que depende de la posición, al desplazar el objeto de $$x_1$$ a $$x_2$$, es
+
+$$
+W = \int_{x_1}^{x_2} F(x)\,dx
+$$
+
+La integral tiene una lectura geométrica directa, la misma que ya explotamos con las gráficas de velocidad: el trabajo es el **área bajo la curva** de la fuerza en función de la posición. Donde la gráfica es alta, la fuerza rinde mucho en ese tramo; donde es baja, rinde poco. El área acumula todo el trayecto de un vistazo:
+
+
+
+<DclDiagram name="DCL_area_bajo_curva_W" label="En una gráfica F vs x, el área bajo la curva entre x1 y x2 representa el trabajo realizado por la fuerza en ese intervalo" width={636}/>
+
+
+Resumimos la correspondencia entre las dos situaciones:
+
+| | Fuerza constante | Fuerza variable |
+| :--- | :--- | :--- |
+| Trabajo | $$W = Fs\cos\theta$$ | $$W = \int_{x_1}^{x_2} F(x)\,dx$$ |
+| Herramienta | álgebra directa | integración o área bajo la curva |
+
+Note que la fórmula de la fuerza constante es un caso particular de la integral: si $$F$$ no depende de $$x$$, sale de la integral y queda $$F(x_2 - x_1) = Fs$$. La herramienta nueva no reemplaza la anterior; la contiene.
+
+<Box icon="check-list">
+
+**Ejemplo — un empuje que se agota**
+
+Un trabajador empuja un carrito por un muelle de madera. A medida que avanza, el carrito encuentra más resistencia y su empuje efectivo disminuye de manera lineal: $$F(x) = 50 - 10x$$, con $$F$$ en newtons y $$x$$ en metros. ¿Cuánto trabajo realiza desde $$x = 0$$ hasta $$x = 4\,\mathrm{m}$$?
+
+Por la definición integral:
+
+$$
+W = \int_0^{4} (50 - 10x)\,dx = \left[50x - 5x^2\right]_0^{4} = 200 - 80 = 120\,\mathrm{J}
+$$
+
+El mismo resultado se obtiene sin integrar, leyendo la gráfica: $$F(x)$$ es una recta que va de $$50\,\mathrm{N}$$ a $$10\,\mathrm{N}$$, así que el área bajo ella es un **trapecio** de bases $$50$$ y $$10$$ y altura $$4$$:
+
+$$
+W = \frac{(50 + 10)}{2}\,\mathrm{N} \times 4\,\mathrm{m} = 120\,\mathrm{J}
+$$
+
+<Image src={EjemploFuerzaVariable} alt="Gráfica de fuerza variable F(x) = 50 - 10x" layout='constrained' width={384}/>
+
+
+Si la fuerza hubiese sido constante en $$50\,\mathrm{N}$$, el trabajo habría sido $$200\,\mathrm{J}$$. El tramo final, con el empuje debilitado, "cuesta" menos área: la integral registra exactamente ese detalle que la fórmula de la fuerza constante no puede ver.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En una gráfica de fuerza en función de la posición, el trabajo realizado entre dos puntos se representa por __________.
+
+    <MultipleChoice>
+      <Option>
+        el valor máximo de la fuerza
+      </Option>
+      <Option>
+        la pendiente de la curva
+      </Option>
+      <Option>
+        el largo del recorrido
+      </Option>
+       <Option isCorrect>
+        el área bajo la curva
+      </Option>
+    </MultipleChoice>
+
+2. Una fuerza varía linealmente de $$0\,\mathrm{N}$$ a $$60\,\mathrm{N}$$ durante un desplazamiento de $$3{,}0\,\mathrm{m}$$. El trabajo realizado es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$30\,\mathrm{J}$$
+      </Option>
+      <Option>
+        $$60\,\mathrm{J}$$
+      </Option>
+      <Option isCorrect>
+        $$90\,\mathrm{J}$$
+      </Option>
+      <Option>
+        $$180\,\mathrm{J}$$
+      </Option>
+    </MultipleChoice>
+
+3. Si en un intervalo la fuerza apunta en contra del movimiento ($$F(x)$$ negativa), el área bajo la curva —y con ella el trabajo— es __________.
+
+    <MultipleChoice>
+      <Option>
+        cero
+      </Option>
+      <Option>
+        positivo
+      </Option>
+      <Option isCorrect>
+        negativo
+      </Option>
+      <Option>
+        indefinido
+      </Option>
+    </MultipleChoice>
+
+4. La fórmula $$W = Fs\cos\theta$$ de la fuerza constante es __________.
+
+    <MultipleChoice>
+      <Option>
+        incompatible con la definición integral
+      </Option>
+      <Option>
+        válida solo para fuerzas conservativas
+      </Option>
+       <Option isCorrect>
+        un caso particular de la integral cuando $$F$$ no varía
+      </Option>
+      <Option>
+        una aproximación que siempre subestima el trabajo
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Potencia
+
+La contabilidad de trabajos dice cuánta energía se transfiere, pero no qué tan rápido. Cargar un tanque de agua con una manguera abierta o con un balde pequeño requiere el mismo trabajo total; la diferencia es el tiempo. La **potencia** mide esa diferencia: es la rapidez con que se realiza un trabajo o se transfiere energía. La **potencia media** es el trabajo efectuado por unidad de tiempo:
+
+$$
+P_{\text{prom}} = \frac{\Delta W}{\Delta t}
+$$
+
+donde $$\Delta W$$ es el trabajo realizado durante el intervalo $$\Delta t$$. Cuando interesa el valor en un instante preciso —la potencia que entrega un motor justo al arrancar, por ejemplo— se toma el límite con intervalos cada vez más cortos, y se obtiene la **potencia instantánea**:
+
+$$
+P = \frac{dW}{dt}
+$$
+
+Existe una forma especialmente útil de la potencia instantánea para una fuerza que actúa sobre un objeto en movimiento. Si en un tiempo $$dt$$ la fuerza realiza un trabajo $$dW = \vec{F}\cdot d\vec{s}$$ y el objeto se mueve con velocidad $$\vec{v} = d\vec{s}/dt$$:
+
+$$
+P = \vec{F}\cdot\vec{v} = Fv\cos\theta
+$$
+
+La lectura física es la misma que aprendimos con el trabajo: solo la componente de la fuerza **a lo largo del movimiento** cobra a tasa. Caminar contra un viento fuerte cansa justo porque el viento aplica una fuerza opuesta a nuestra velocidad y extrae potencia de nosotros en cada paso.
+
+En el Sistema Internacional, la unidad de potencia es el **watt** (W):
+
+$$
+1\,\mathrm{W} = 1\,\frac{\mathrm{J}}{\mathrm{s}}
+$$
+
+Como ocurre con el joule, el watt convive con unidades de otros contextos que conviene reconocer:
+
+| Unidad | Equivalencia en W | Dónde se encuentra |
+| :--- | :--- | :--- |
+| *kilovatio* (kW) | $$1000$$ | motores y factura eléctrica |
+| *caballo de fuerza* (hp) | $$\approx 746$$ | especificaciones de vehículos (sistema inglés) |
+| *caballo de vapor* (CV) | $$\approx 735$$ | especificaciones europeas |
+
+<Box icon="check-list">
+
+**Ejemplo — subir la escalera: ¿cuánto vale un humano?**
+
+Una persona de $$m = 70\,\mathrm{kg}$$ sube por una escalera una altura $$h = 4{,}0\,\mathrm{m}$$. El trabajo contra la gravedad no depende de la prisa:
+
+$$
+W = mgh = (70\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2})(4{,}0\,\mathrm{m}) = 2744\,\mathrm{J} \approx 2{,}7\,\mathrm{kJ}
+$$
+
+Lo que cambia con la prisa es la potencia. Subiendo **tranquilamente**, en $$t = 10\,\mathrm{s}$$:
+
+$$
+P_{\text{prom}} = \frac{2744\,\mathrm{J}}{10\,\mathrm{s}} \approx 274\,\mathrm{W}
+$$
+
+Subiendo **a paso de trote**, en $$t = 4{,}0\,\mathrm{s}$$:
+
+$$
+P_{\text{prom}} = \frac{2744\,\mathrm{J}}{4{,}0\,\mathrm{s}} \approx 686\,\mathrm{W}
+$$
+
+El mismo trabajo, dos potencias muy distintas. Note el orden de magnitud: $$686\,\mathrm{W} \approx 0{,}9\,\mathrm{hp}$$ —por unos segundos, una persona subiendo escaleras rinde casi un caballo de fuerza—. La potencia es la magnitud que distingue el desempeño, no el trabajo total.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. La potencia media de una máquina se calcula dividiendo __________.
+
+    <MultipleChoice>
+      <Option>
+        el trabajo entre la distancia
+      </Option>
+      <Option isCorrect>
+        el trabajo entre el tiempo
+      </Option>
+      <Option>
+        la fuerza entre el tiempo
+      </Option>
+      <Option>
+        la energía entre la masa
+      </Option>
+    </MultipleChoice>
+
+2. Un remolque jala un auto con una fuerza de $$2000\,\mathrm{N}$$ paralela al movimiento, a rapidez constante de $$10\,\mathrm{m/s}$$. La potencia entregada es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$200\,\mathrm{W}$$
+      </Option>
+      <Option>
+        $$2\,\mathrm{kW}$$
+      </Option>
+      <Option isCorrect>
+        $$20\,\mathrm{kW}$$
+      </Option>
+      <Option>
+        $$200\,\mathrm{kW}$$
+      </Option>
+    </MultipleChoice>
+
+3. Si una misma tarea se realiza en la mitad del tiempo, la potencia media __________.
+
+    <MultipleChoice>
+      <Option>
+        no cambia
+      </Option>
+      <Option isCorrect>
+        se duplica
+      </Option>
+      <Option>
+        se cuadruplica
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+    </MultipleChoice>
+
+4. Dos estudiantes suben por la misma escalera hasta el mismo salón; uno tarda el doble que el otro. Sobre el trabajo y la potencia de la gravedad vencida, es cierto que __________.
+
+    <MultipleChoice>
+         
+      <Option>
+        el más lento hizo más trabajo
+      </Option>
+      <Option>
+        el más rápido hizo más trabajo y más potencia
+      </Option>
+      <Option>
+        ambos tuvieron la misma potencia porque la altura es la misma
+      </Option>
+       <Option isCorrect>
+        ambos hicieron el mismo trabajo, pero el más rápido desarrolló mayor potencia
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Fuerza y energía potencial
+
+En la semana pasada recorrimos el camino de la fuerza hacia la energía: al integrar la fuerza del resorte obtuvimos la energía almacenada, $$U_{\text{el}} = \frac{1}{2}\kappa\,\Delta x^2$$. Esta semana hacemos el recorrido inverso, y es aquí donde el análisis energético muestra su verdadero alcance. Toda fuerza **conservativa** deriva de una función de energía potencial $$U$$, y la fuerza se recupera de ella derivando: la fuerza apunta hacia donde la energía potencial **disminuye más rápido**. En una dimensión:
+
+$$
+F_x = -\frac{dU}{dx}
+$$
+
+La fuerza es menos la pendiente de la gráfica de $$U(x)$$: como una canica sobre una colina, el sistema "cae" hacia los valores menores de la energía potencial. En tres dimensiones, cada componente de la fuerza se obtiene derivando respecto de su coordenada:
+
+$$
+F_x = -\frac{\partial U}{\partial x}, \qquad F_y = -\frac{\partial U}{\partial y}, \qquad F_z = -\frac{\partial U}{\partial z}
+$$
+
+Las derivadas parciales $$\partial U/\partial x$$ indican cómo cambia $$U$$ cuando nos movemos solo en $$x$$, manteniendo $$y$$ y $$z$$ fijos. Para escribir las tres relaciones en una sola línea usamos el **operador nabla**, $$\nabla$$, que aplicado a una función escalar $$\Phi(x, y, z)$$ produce el vector de sus derivadas parciales:
+
+$$
+\nabla \Phi = \frac{\partial \Phi}{\partial x}\,\hat{\iota} + \frac{\partial \Phi}{\partial y}\,\hat{\jmath} + \frac{\partial \Phi}{\partial z}\,\hat{\kappa}
+$$
+
+De modo que la relación fuerza–energía se condensa en:
+
+$$
+\vec{F} = -\nabla U
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — recuperar el peso y la fuerza del resorte**
+
+La fórmula $$\vec{F} = -\nabla U$$ es más que notación compacta: es una máquina que produce fuerzas conocidas a partir de energías conocidas. Verifiquémosla con los dos casos que venimos manejando.
+
+**El peso.** La energía potencial gravitacional cerca de la Tierra es $$U_g = mgy$$. Sus derivadas parciales son $$\partial U_g/\partial x = 0$$, $$\partial U_g/\partial y = mg$$ y $$\partial U_g/\partial z = 0$$, así que:
+
+$$
+\vec{F}_g = -\nabla(mgy) = -mg\,\hat{\jmath}
+$$
+
+La fórmula devuelve exactamente el peso que definimos en la semana 6: una fuerza de magnitud $$mg$$ apuntando hacia abajo. La energía "sabía" de la fuerza.
+
+**El resorte.** Ahora el cierre que quedó pendiente. La semana pasada derivamos la energía elástica $$U_{\text{el}}(x) = \frac{1}{2}\kappa\,x^2$$ integrando la fuerza del resorte, que asumimos conocer. Hoy podemos hacer el camino inverso:
+
+$$
+F_x = -\frac{dU_{\text{el}}}{dx} = -\frac{d}{dx}\left(\frac{1}{2}\kappa\,x^2\right) = -\kappa\,x
+$$
+
+La ley de Hooke reaparece, esta vez no como una hipótesis sino como consecuencia de la energía. Integrar y derivar son las dos direcciones del mismo puente: la fuerza genera la energía potencial, y la energía potencial devuelve la fuerza.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. A partir de la energía potencial $$U(x) = \frac{1}{2}\kappa\,x^2$$, la fuerza asociada es __________.
+
+    <MultipleChoice>
+      <Option isCorrect>
+        $$F_x = -\kappa\,x$$
+      </Option>
+      <Option>
+        $$F_x = +\kappa\,x$$
+      </Option>
+      <Option>
+        $$F_x = \frac{1}{2}\kappa\,x$$
+      </Option>
+      <Option>
+        $$F_x = -\frac{1}{2}\kappa\,x^2$$
+      </Option>
+    </MultipleChoice>
+
+2. En una gráfica de energía potencial en función de la posición, la fuerza en un punto se relaciona con __________.
+
+    <MultipleChoice>
+      <Option>
+        el área bajo la curva
+      </Option>
+      <Option>
+        la altura del máximo de la curva
+      </Option>
+      <Option>
+        el valor de la energía en ese punto
+      </Option>
+      <Option isCorrect>
+        la pendiente de la curva, con signo negativo
+      </Option>
+      
+    </MultipleChoice>
+
+3. Si en cierta región del espacio la energía potencial es constante, la fuerza conservativa allí es __________.
+
+    <MultipleChoice>
+    <Option isCorrect>
+        cero
+      </Option>
+      <Option>
+        máxima
+      </Option>
+      <Option>
+        proporcional a la energía
+      </Option>
+      <Option>
+        perpendicular al movimiento
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Trabajo de una fuerza variable | $$W = \int_{x_1}^{x_2} F(x)\,dx$$ | área bajo la curva $$F$$–$$x$$ |
+| Caso particular | $$W = Fs\cos\theta$$ | fuerza constante: sale de la integral |
+| Potencia media | $$P_{\text{prom}} = \Delta W/\Delta t$$ | rapidez de transferencia de energía |
+| Potencia instantánea | $$P = dW/dt = \vec{F}\cdot\vec{v}$$ | solo la componente a lo largo de $$\vec{v}$$ |
+| Watt | $$1\,\mathrm{W} = 1\,\mathrm{J/s}$$ | subir escaleras: entre $$300$$ y $$700\,\mathrm{W}$$ |
+| Caballo de fuerza | $$1\,\mathrm{hp} \approx 746\,\mathrm{W}$$ | el humano de sprint roza $$1\,\mathrm{hp}$$ |
+| Fuerza desde la energía (1D) | $$F_x = -dU/dx$$ | menos la pendiente de $$U(x)$$ |
+| Forma vectorial | $$\vec{F} = -\nabla U$$ | nabla: vector de derivadas parciales |
+| Peso desde $$U_g = mgy$$ | $$\vec{F}_g = -mg\,\hat{\jmath}$$ | verificación del resultado |
+| Resorte desde $$U_{\text{el}} = \frac{1}{2}\kappa x^2$$ | $$F_x = -\kappa\,x$$ | ley de Hooke recuperada |
+
+La contabilidad de la energía que iniciamos la semana pasada queda ahora completa: funciona aunque la fuerza cambie a lo largo del trayecto —la integral reemplaza al producto directo—, la **potencia** le agrega el reloj midiendo qué tan rápido fluye la energía, y la relación entre fuerza y energía potencial opera en ambos sentidos: de la fuerza a la energía integrando, y de la energía a la fuerza derivando. Con estas piezas, en la práctica de la semana calcularemos trabajos de fuerzas que se agotan, potencias de motores y personas, y fuerzas escondidas en funciones de energía. La semana siguiente abrirá una contabilidad nueva: la **cantidad de movimiento**, cuyo balance rige choques y colisiones donde la energía, a veces, no se conserva.
+
