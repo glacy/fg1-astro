@@ -23,6 +23,9 @@ import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
 import AreaBajoCurvaW from "../../../assets/DCL_area_bajo_curva_W.svg";
 import DclDiagram from '../../../components/DclDiagram.astro';
+import EjemploFuerzaVariable from "../../../assets/ejemplo1_fuerza_variable.svg";
+
+
 
 
 <PreCheck>
@@ -77,6 +80,9 @@ $$
 W = \frac{(50 + 10)}{2}\,\mathrm{N} \times 4\,\mathrm{m} = 120\,\mathrm{J}
 $$
 
+<Image src={EjemploFuerzaVariable} alt="Gráfica de fuerza variable F(x) = 50 - 10x" layout='constrained' width={384}/>
+
+
 Si la fuerza hubiese sido constante en $$50\,\mathrm{N}$$, el trabajo habría sido $$200\,\mathrm{J}$$. El tramo final, con el empuje debilitado, "cuesta" menos área: la integral registra exactamente ese detalle que la fórmula de la fuerza constante no puede ver.
 
 </Box>
@@ -89,16 +95,16 @@ Si la fuerza hubiese sido constante en $$50\,\mathrm{N}$$, el trabajo habría si
 
     <MultipleChoice>
       <Option>
-        la pendiente de la curva
-      </Option>
-      <Option isCorrect>
-        el área bajo la curva
-      </Option>
-      <Option>
         el valor máximo de la fuerza
       </Option>
       <Option>
+        la pendiente de la curva
+      </Option>
+      <Option>
         el largo del recorrido
+      </Option>
+       <Option isCorrect>
+        el área bajo la curva
       </Option>
     </MultipleChoice>
 
@@ -123,13 +129,13 @@ Si la fuerza hubiese sido constante en $$50\,\mathrm{N}$$, el trabajo habría si
 
     <MultipleChoice>
       <Option>
+        cero
+      </Option>
+      <Option>
         positivo
       </Option>
       <Option isCorrect>
         negativo
-      </Option>
-      <Option>
-        cero
       </Option>
       <Option>
         indefinido
@@ -142,11 +148,11 @@ Si la fuerza hubiese sido constante en $$50\,\mathrm{N}$$, el trabajo habría si
       <Option>
         incompatible con la definición integral
       </Option>
-      <Option isCorrect>
-        un caso particular de la integral cuando $$F$$ no varía
-      </Option>
       <Option>
         válida solo para fuerzas conservativas
+      </Option>
+       <Option isCorrect>
+        un caso particular de la integral cuando $$F$$ no varía
       </Option>
       <Option>
         una aproximación que siempre subestima el trabajo
@@ -261,31 +267,32 @@ El mismo trabajo, dos potencias muy distintas. Note el orden de magnitud: $$686\
       <Option>
         no cambia
       </Option>
-      <Option>
-        se reduce a la mitad
-      </Option>
       <Option isCorrect>
         se duplica
       </Option>
       <Option>
         se cuadruplica
       </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
     </MultipleChoice>
 
 4. Dos estudiantes suben por la misma escalera hasta el mismo salón; uno tarda el doble que el otro. Sobre el trabajo y la potencia de la gravedad vencida, es cierto que __________.
 
     <MultipleChoice>
-      <Option>
-        el más rápido hizo más trabajo y más potencia
-      </Option>
-      <Option isCorrect>
-        ambos hicieron el mismo trabajo, pero el más rápido desarrolló mayor potencia
-      </Option>
+         
       <Option>
         el más lento hizo más trabajo
       </Option>
       <Option>
+        el más rápido hizo más trabajo y más potencia
+      </Option>
+      <Option>
         ambos tuvieron la misma potencia porque la altura es la misma
+      </Option>
+       <Option isCorrect>
+        ambos hicieron el mismo trabajo, pero el más rápido desarrolló mayor potencia
       </Option>
     </MultipleChoice>
 
