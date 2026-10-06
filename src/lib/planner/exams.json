@@ -75,6 +75,14 @@
       ],
       "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
       "links": [
+              {"label": "Enunciado",
+          "url": "/FG1_IIS-2026_primer_parcial_extraordinario.pdf",
+          "download": true
+        },
+        {"label": "Solución",
+          "url": "/FG1_IIS-2026_primer_parcial_extraordinario_solucion.pdf",
+          "download": true
+        }
       ]
     },
     {
