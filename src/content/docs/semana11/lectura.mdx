@@ -1,31 +1,540 @@
 ---
 title: "Cantidad de movimiento, impulso y colisiones"
-description: "Material de lectura para la semana 11."
+description: "Cantidad de movimiento, impulso y colisiones: definición vectorial de la cantidad de movimiento a partir de la segunda ley de Newton; teorema del impulso y la cantidad de movimiento con fuerzas medias y variables; principio de conservación de la cantidad de movimiento en sistemas de partículas; choques elásticos, inelásticos y perfectamente inelásticos; centro de masa de un sistema de partículas."
 week: 11
-keywords: ["física general I", "semana 11", "TEC Costa Rica"]
+keywords: ["cantidad de movimiento", "momento lineal", "impulso", "teorema del impulso y la cantidad de movimiento", "conservación de la cantidad de movimiento", "colisiones", "choques elásticos", "choques inelásticos", "choque perfectamente inelástico", "centro de masa", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-11"]
-category: "semana-11"
-difficulty: "basic"
+date: 2026-10-10
+readingTime: 20
+tags: ["cantidad de movimiento", "impulso", "colisiones", "centro de masa"]
+category: "momento lineal"
+difficulty: "intermediate"
 objetivos:
-  - "Definir los conceptos: cantidad de movimiento, impulso y centro de masa."
-  - "Relacionar el impulso de la fuerza neta que actúa sobre una partícula y el cambio en su cantidad de movimiento."
+  - "Definir la cantidad de movimiento, el impulso y el centro de masa, e identificar sus unidades."
+  - "Relacionar el impulso de la fuerza neta que actúa sobre una partícula con el cambio en su cantidad de movimiento."
+  - "Aplicar el principio de conservación de la cantidad de movimiento a sistemas donde la fuerza externa neta es nula."
   - "Resolver problemas en los que dos o más cuerpos colisionan entre sí, a partir de la conservación de la cantidad de movimiento total del sistema."
-  - "Diferenciar entre colisiones elásticas, inelásticas y totalmente inelásticas."
-draft: true
+  - "Diferenciar entre colisiones elásticas, inelásticas y perfectamente inelásticas a partir de la energía cinética del sistema."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import { Image } from 'astro:assets';
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import CantidadMovimiento from "../../../assets/cantidad_movimiento.svg";
+import Patada from "../../../assets/patada.png";
+import Colision from "../../../assets/colision.svg";
+import CentroMasa from "../../../assets/centro_masa.svg";
+import DclDiagram from '../../../components/DclDiagram.astro';
 
-Al finalizar esta semana, serás capaz de:
 
-- Definir los conceptos: cantidad de movimiento, impulso y centro de masa.
-- Relacionar el impulso de la fuerza neta que actúa sobre una partícula y el cambio en su cantidad de movimiento.
-- Resolver problemas en los que dos o más cuerpos colisionan entre sí, a partir de la conservación de la cantidad de movimiento total del sistema.
-- Diferenciar entre colisiones elásticas, inelásticas y totalmente inelásticas.
+<PreCheck>
+  - Definir la cantidad de movimiento, el impulso y el centro de masa, e identificar sus unidades.
+  - Relacionar el impulso de la fuerza neta que actúa sobre una partícula con el cambio en su cantidad de movimiento.
+  - Aplicar el principio de conservación de la cantidad de movimiento a sistemas donde la fuerza externa neta es nula.
+  - Resolver problemas en los que dos o más cuerpos colisionan entre sí, a partir de la conservación de la cantidad de movimiento total del sistema.
+  - Diferenciar entre colisiones elásticas, inelásticas y perfectamente inelásticas a partir de la energía cinética del sistema.
+</PreCheck>
 
-## Contenido
+La semana pasada cerramos la contabilidad de la energía con tres piezas: el trabajo de fuerzas variables, la potencia y la relación entre fuerza y energía potencial. Esa contabilidad predice rapideces con asombrosa economía. Sin embargo, tiene un punto ciego: en los **choques**. Cuando dos bolas de billar chocan, una parte de la energía cinética se transforma en calor, sonido y deformación, y el análisis energético por sí solo no alcanza para predecir cómo saldrán las bolas del encuentro; cuando dos carros de prueba se estrellan, la energía cinética "desaparece" del balance mecánico y con ella, aparentemente, nuestra capacidad de predicción.
 
-Contenido de la semana 11 próximamente disponible.
+Esta semana abrimos una contabilidad nueva que sobrevive a esos procesos: la **cantidad de movimiento** o **momento lineal**, una magnitud vectorial —con dirección, no solo con magnitud— cuya propiedad extraordinaria es que **se conserva** en ausencia de fuerzas externas netas, incluso cuando la energía cinética no lo hace. El plan es el siguiente: primero definiremos la cantidad de movimiento reescribiendo la segunda ley de Newton y presentaremos su compañera, el **impulso**; luego elevaremos esa definición a sistemas de partículas para obtener el principio de conservación; después lo aplicaremos a los choques y los clasificaremos según su energía cinética; y finalizaremos con el **centro de masa**, el punto que resume todo el movimiento de un sistema en una sola flecha.
+
+## Cantidad de movimiento e impulso
+
+Para construir la nueva contabilidad no hace falta inventar nada: basta reescribir la segunda ley de Newton. Si la masa del cuerpo es constante, el producto $$m\vec{v}$$ puede meterse dentro de la derivada:
+
+$$
+\sum\vec{F} = m\vec{a} = m\frac{d\vec{v}}{dt} = \frac{d(m\vec{v})}{dt}
+$$
+
+La cantidad que queda dentro de la derivada merece nombre propio: la **cantidad de movimiento** (o **momento lineal**) de una partícula de masa $$m$$ y velocidad $$\vec{v}$$:
+
+$$
+\vec{p} = m\vec{v}
+$$
+
+Es un **vector** que apunta en la misma dirección que la velocidad, y la flecha que lo representa es tanto más larga cuanto mayores sean la masa y la rapidez. Sus unidades son $$\mathrm{kg}\cdot\mathrm{m/s}$$.
+
+<Image src={CantidadMovimiento} alt="Una partícula de masa m con su vector velocidad v y su vector cantidad de movimiento p = mv, apuntando en la misma dirección" layout='constrained' width={560}/>
+
+Reescrita así, la segunda ley dice algo conceptualmente nuevo: **el efecto de la fuerza neta sobre un objeto es cambiar su cantidad de movimiento**. La fuerza no cambia la velocidad "directamente"; lo que acumula, instante a instante, es un cambio en $$m\vec{v}$$.
+
+Si la interacción dura un intervalo muy corto —una patada a un balón, un golpe de raqueta, un martillo sobre un clavo— el detalle instante a instante de la fuerza es imposible de seguir y, en la práctica, irrelevante. Lo que importa es su efecto acumulado: si llamamos $$\vec{F}_{\text{media}}$$ a la fuerza constante que produciría el mismo cambio durante el mismo intervalo $$\Delta t$$, la segunda ley se integra a:
+
+$$
+\vec{J} = \vec{F}_{\text{media}}\,\Delta t = \Delta\vec{p}
+$$
+
+donde $$\vec{J}$$ recibe el nombre de **impulso**. Esta expresión se conoce como el **teorema del impulso y la cantidad de movimiento**:
+
+> *El impulso de la fuerza neta sobre una partícula durante un intervalo de tiempo es igual al cambio de la cantidad de movimiento de la partícula durante ese intervalo.*
+
+Es decir, **el impulso es el cambio de la cantidad de movimiento**, y por serlo comparte su carácter vectorial: $$\vec{J}$$ apunta hacia donde apunta $$\Delta\vec{p}$$. Sus unidades son las mismas que las de $$\vec{p}$$: $$[\vec{p}] = [\vec{J}] = \mathrm{kg}\cdot\mathrm{m/s}$$, que equivalen a los newton-segundo ($$1\,\mathrm{N}\cdot\mathrm{s} = 1\,\mathrm{kg}\cdot\mathrm{m/s}$$).
+
+Cuando la fuerza varía con el tiempo, el impulso se calcula integrando:
+
+$$
+\vec{J} = \int_{t_1}^{t_2} \vec{F}(t)\,dt
+$$
+
+La lectura geométrica es la misma que explotamos la semana pasada con el trabajo: **en una gráfica de fuerza en función del tiempo, el área bajo la curva entre $$t_1$$ y $$t_2$$ es el impulso**. Allí el área bajo $$F$$–$$x$$ medía energía transferida; aquí el área bajo $$F$$–$$t$$ mide cantidad de movimiento transferida. En un choque real la fuerza sube y baja como un pulso estrecho: aunque su valor pico sea enorme, el área —el efecto total— puede ser modesta.
+
+
+<DclDiagram name="DCL_area_bajo_curva_F_t" label="Gráfica de una fuerza intensa pero de corta duración; el área bajo la curva entre t1 y t2 representa el impulso" width={743}/>
+
+
+
+<Box icon="check-list">
+
+**Ejemplo — la patada**
+
+Un balón de fútbol de $$m = 0{,}40\,\mathrm{kg}$$ rueda hacia la izquierda a $$20\,\mathrm{m/s}$$. Un jugador lo patea de modo que sale a $$30\,\mathrm{m/s}$$ con dirección de $$45^\circ$$ hacia arriba y a la derecha. El contacto del pie con el balón dura $$\Delta t = 10\,\mathrm{ms}$$. ¿Cuál es el impulso de la patada y la fuerza media aplicada?
+
+Elijamos el eje $$x$$ hacia la derecha y el $$y$$ hacia arriba. La velocidad inicial es $$\vec{v}_0 = (-20\,\mathrm{m/s})\,\hat{\iota}$$ y la final tiene componentes $$v_{f,x} = 30\cos 45^\circ = 21{,}2\,\mathrm{m/s}$$ y $$v_{f,y} = 30\sin 45^\circ = 21{,}2\,\mathrm{m/s}$$. Por componentes, el cambio de cantidad de movimiento es:
+
+$$
+\Delta p_x = m(v_{f,x} - v_{0,x}) = (0{,}40\,\mathrm{kg})\left[21{,}2 - (-20)\right]\,\mathrm{m/s} = 16{,}5\,\mathrm{kg}\cdot\mathrm{m/s}
+$$
+
+$$
+\Delta p_y = m(v_{f,y} - v_{0,y}) = (0{,}40\,\mathrm{kg})(21{,}2\,\mathrm{m/s}) = 8{,}5\,\mathrm{kg}\cdot\mathrm{m/s}
+$$
+
+Por el teorema del impulso y la cantidad de movimiento:
+
+$$
+\vec{J} = \Delta\vec{p} = (16{,}5\,\mathrm{kg}\cdot\mathrm{m/s})\,\hat{\iota} + (8{,}5\,\mathrm{kg}\cdot\mathrm{m/s})\,\hat{\jmath}
+$$
+
+con magnitud $$|\vec{J}| = \sqrt{(16{,}5)^2 + (8{,}5)^2} \approx 18{,}6\,\mathrm{kg}\cdot\mathrm{m/s}$$. La fuerza media de la patada es:
+
+$$
+\vec{F}_{\text{media}} = \frac{\vec{J}}{\Delta t} = \frac{(16{,}5\,\mathrm{kg}\cdot\mathrm{m/s})\,\hat{\iota} + (8{,}5\,\mathrm{kg}\cdot\mathrm{m/s})\,\hat{\jmath}}{10\times 10^{-3}\,\mathrm{s}} \approx (1{,}7\,\mathrm{kN})\,\hat{\iota} + (0{,}85\,\mathrm{kN})\,\hat{\jmath}
+$$
+
+de magnitud $$F_{\text{media}} \approx 1{,}9\,\mathrm{kN}$$, unos 190 kgf. Observe el reverso de la moneda: por tratarse de un cambio de cantidad de movimiento **grande** (¡el balón invirtió su dirección!) en un tiempo **corto**, la fuerza resulta enorme. Esa es la razón física por la que el balón se deforma visiblemente y la patada "suena".
+
+<Image src={Patada} alt="Un balón con velocidad inicial de 20 m/s hacia la izquierda recibe una patada que lo lanza a 30 m/s con dirección de 45° hacia arriba y a la derecha" layout='constrained' width={520}/>
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Las unidades de la cantidad de movimiento y del impulso son __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\mathrm{J}\cdot\mathrm{s}$$
+      </Option>
+      <Option>
+        $$\mathrm{N}\cdot\mathrm{m}$$
+      </Option>
+      <Option isCorrect>
+        $$\mathrm{kg}\cdot\mathrm{m/s}$$
+      </Option>
+      <Option>
+        $$\mathrm{kg}\cdot\mathrm{m/s^2}$$
+      </Option>
+
+    </MultipleChoice>
+
+2. En una gráfica de fuerza en función del tiempo, el impulso entre dos instantes se representa por __________.
+
+    <MultipleChoice>
+      <Option>
+        el ancho del intervalo de tiempo
+      </Option>
+      <Option>
+        el valor máximo de la fuerza
+      </Option>
+      <Option>
+        la pendiente de la curva
+      </Option>
+      <Option isCorrect>
+        el área bajo la curva
+      </Option>
+    </MultipleChoice>
+
+3. Si el mismo cambio de cantidad de movimiento se produce en el **doble** del tiempo, la fuerza media necesaria __________.
+
+    <MultipleChoice>
+      <Option>
+        se duplica
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+      <Option>
+        se cuadruplica
+      </Option>
+      <Option isCorrect>
+        se reduce a la mitad
+      </Option>
+    </MultipleChoice>
+
+4. Un balón en reposo recibe un impulso y sale disparado. La dirección del impulso es __________.
+
+    <MultipleChoice>
+      <Option>
+        indeterminada, porque el balón estaba en reposo
+      </Option>
+      <Option isCorrect>
+        la misma que la de la velocidad final
+      </Option>
+      <Option>
+        opuesta a la de la velocidad final
+      </Option>
+      <Option>
+        perpendicular a la velocidad final
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Conservación de la cantidad de movimiento
+
+¿Para qué sirve esta nueva magnitud? Su verdadero poder aparece al pasar de una partícula a un **sistema**. Para un sistema de $$N$$ partículas con masas $$m_1, m_2, \ldots, m_N$$ y velocidades $$\vec{v}_1, \vec{v}_2, \ldots, \vec{v}_N$$, definimos la **cantidad de movimiento total** como la suma de las individuales:
+
+$$
+\vec{P} = \sum \vec{p}_i = \vec{p}_1 + \vec{p}_2 + \cdots + \vec{p}_N
+$$
+
+Al derivar en el tiempo, cada término aporta $$m_i\vec{a}_i = \vec{F}_i$$, la fuerza total sobre esa partícula. Pero las fuerzas sobre un sistema se dividen en dos familias: las **internas**, que cada partícula ejerce sobre otra del sistema, y las **externas**. Por la tercera ley de Newton, las fuerzas internas aparecen en pares acción–reacción que se cancelan entre sí al sumarlas. Solo sobreviven las externas:
+
+$$
+\frac{d\vec{P}}{dt} = \vec{F}_{\text{ext}}
+$$
+
+De aquí nace el **principio de conservación de la cantidad de movimiento**:
+
+> *Si sobre un sistema no se ejerce una fuerza externa neta, su cantidad de movimiento total permanece constante.*
+
+Conviene comparar con la ley de conservación de la energía mecánica de la semana 9: ambas exigen condiciones sobre las fuerzas, pero distintas. La energía mecánica se conserva cuando **las fuerzas que actúan son conservativas**; la cantidad de movimiento se conserva cuando **la fuerza externa neta es nula**, sin importar si las fuerzas internas son conservativas o no. Esa independencia del carácter de las fuerzas internas es lo que hace que la conservación de $$\vec{P}$$ sobreviva precisamente donde la energía mecánica falla: en los choques.
+
+<Box icon="check-list">
+
+**Ejemplo — el astronauta y la herramienta**
+
+Un astronauta de $$70{,}0\,\mathrm{kg}$$, realizando una reparación en las afueras de la Estación Espacial Internacional, lanza una herramienta de $$1{,}75\,\mathrm{kg}$$ con una rapidez de $$3{,}20\,\mathrm{m/s}$$ respecto a la estación. ¿Qué le ocurre al astronauta?
+
+Tomemos como sistema al conjunto astronauta + herramienta. En el espacio, la fuerza externa neta sobre el sistema es prácticamente nula, así que su cantidad de movimiento total se conserva. Como el sistema partió del reposo:
+
+$$
+\Delta\vec{p}_{\text{astronauta}} = -\Delta\vec{p}_{\text{herramienta}}
+$$
+
+El cambio de la herramienta vale $$m\,\Delta v = (1{,}75\,\mathrm{kg})(3{,}20\,\mathrm{m/s}) = 5{,}60\,\mathrm{kg}\cdot\mathrm{m/s}$$, de modo que el astronauta adquiere una velocidad:
+
+$$
+v_{\text{astronauta}} = -\frac{m_{\text{herramienta}}\,v_{\text{herramienta}}}{m_{\text{astronauta}}} = -\frac{5{,}60\,\mathrm{kg}\cdot\mathrm{m/s}}{70{,}0\,\mathrm{kg}} = -0{,}080\,\mathrm{m/s} = -8{,}0\,\mathrm{cm/s}
+$$
+
+El astronauta sale despedido lentamente en dirección opuesta. Observe la proporción: la rapidez de cada uno es inversa a su masa, porque los cambios de cantidad de movimiento son iguales y opuestos.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Dos patinadores en reposo se empujan mutuamente. Después del empujón, la cantidad de movimiento total del sistema es __________.
+
+    <MultipleChoice>
+      <Option>
+        positiva, apuntando hacia el patinador más pesado
+      </Option>
+      <Option isCorrect>
+        cero, igual que antes del empujón
+      </Option>
+      <Option>
+        positiva, apuntando hacia el patinador más liviano
+      </Option>
+      <Option>
+        imposible de saber sin conocer la fuerza del empujón
+      </Option>
+    </MultipleChoice>
+
+2. La cantidad de movimiento total de un sistema se conserva cuando __________.
+
+    <MultipleChoice>
+      <Option>
+        todas las fuerzas internas son conservativas
+      </Option>
+      <Option isCorrect>
+        la fuerza externa neta sobre el sistema es nula
+      </Option>
+      <Option>
+        la energía cinética del sistema se conserva
+      </Option>
+      <Option>
+        las partículas del sistema no interactúan entre sí
+      </Option>
+    </MultipleChoice>
+
+3. Las fuerzas internas de un sistema no cambian su cantidad de movimiento total porque __________.
+
+    <MultipleChoice>
+      <Option>
+        son de corta duración
+      </Option>
+      <Option>
+        siempre son perpendiculares al movimiento
+      </Option>
+      <Option isCorrect>
+        aparecen en pares acción–reacción que se cancelan al sumarlas
+      </Option>
+      <Option>
+        son mucho menores que las fuerzas externas
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Conservación de la cantidad de movimiento y choques
+
+Un choque es el escenario ideal para la nueva contabilidad. Durante el impacto, dos o más cuerpos interactúan mediante fuerzas internas **intensas pero de corta duración**; cualquier impulso externo (por ejemplo, el de la fricción con el piso) es despreciable frente a ellas. Por eso, aunque el choque sea un caos de deformaciones y fuerzas violentas, en toda colisión se cumple:
+
+$$
+\vec{P}_{\text{antes}} = \vec{P}_{\text{después}}
+$$
+
+donde $$\vec{P}$$ es la cantidad de movimiento total del sistema de cuerpos que chocan. No lo lea como una única igualdad: se trata de un **sistema de ecuaciones vectorial** —una por cada componente— que relaciona las masas y las velocidades (rapideces y direcciones) antes y después del encuentro. Ese sistema de ecuaciones es la herramienta para predecir el resultado de un choque.
+
+<Image src={Colision} alt="Colisión frontal de dos esferas: antes del choque la esfera m1 se acerca a m2; después ambas se separan con velocidades v3' y v4'" layout='constrained' width={516}/>
+
+La cantidad de movimiento se conserva en **toda** colisión, pero no todas las colisiones son iguales: lo que las distingue es el destino de la **energía cinética total** del sistema, $$K_{\text{total}} = \sum K_i$$, la misma energía cinética que definimos en la semana 9, ahora sumada sobre todos los cuerpos:
+
+| Colisión | Característica | Ejemplo |
+| :--- | :--- | :--- |
+| *Elástica* | $$K_{\text{antes}} = K_{\text{después}}$$ | bolas de billar, moléculas de un gas |
+| *Inelástica* | $$K_{\text{antes}} > K_{\text{después}}$$ | choque de vehículos con deformación |
+| *Perfectamente inelástica* | los cuerpos quedan pegados y comparten velocidad | vagones de tren que se enganchan |
+
+La energía cinética que "falta" en un choque inelástico no desaparece del universo: se transforma en calor, sonido y deformación permanente —la fricción firma el recibo, como aprendimos en la semana 9—. Pero la **mayoría** de los choques reales son inelásticos; el choque perfectamente elástico es una idealización útil.
+
+<Box icon="check-list">
+
+**Ejemplo — clasificar un choque**
+
+Una esfera de $$m_1 = 2{,}0\,\mathrm{kg}$$ avanza a $$v_1 = 5{,}0\,\mathrm{m/s}$$ sobre una superficie sin fricción y choca con una esfera de $$m_2 = 1{,}0\,\mathrm{kg}$$ en reposo. Después del choque, la primera esfera continúa hacia adelante a $$2{,}0\,\mathrm{m/s}$$. ¿Con qué rapidez sale la segunda? ¿El choque fue elástico?
+
+Por conservación de la cantidad de movimiento (tomando el sentido de $$v_1$$ como positivo):
+
+$$
+m_1 v_1 + m_2(0) = m_1 v_1' + m_2 v_2' \quad\Rightarrow\quad (2{,}0)(5{,}0) = (2{,}0)(2{,}0) + (1{,}0)v_2'
+$$
+
+$$
+v_2' = 10 - 4{,}0 = 6{,}0\,\mathrm{m/s}
+$$
+
+Ahora comparamos las energías cinéticas:
+
+$$
+K_{\text{antes}} = \frac{1}{2}(2{,}0\,\mathrm{kg})(5{,}0\,\mathrm{m/s})^2 = 25\,\mathrm{J}
+$$
+
+$$
+K_{\text{después}} = \frac{1}{2}(2{,}0\,\mathrm{kg})(2{,}0\,\mathrm{m/s})^2 + \frac{1}{2}(1{,}0\,\mathrm{kg})(6{,}0\,\mathrm{m/s})^2 = 4{,}0 + 18 = 22\,\mathrm{J}
+$$
+
+Como $$K_{\text{antes}} > K_{\text{después}}$$, se perdieron $$3{,}0\,\mathrm{J}$$ (en sonido y deformación): el choque fue **inelástico**, aunque la cantidad de movimiento se conservara exactamente. Esa es la división del trabajo entre las dos contabilidades: $$\vec{P}$$ siempre se conserva en el choque; $$K$$, solo en el elástico.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En **toda** colisión entre cuerpos que forman un sistema aislado se conserva __________.
+
+    <MultipleChoice>
+      <Option>
+        la energía cinética total
+      </Option>
+      <Option>
+        la energía mecánica total
+      </Option>
+      <Option>
+        la rapidez total de los cuerpos
+      </Option>
+      <Option isCorrect>
+        la cantidad de movimiento total
+      </Option>
+
+    </MultipleChoice>
+
+2. Dos carros de juguete chocan y quedan enganchados moviéndose juntos. La colisión fue __________.
+
+    <MultipleChoice>
+      <Option>
+        elástica
+      </Option>
+      <Option isCorrect>
+        perfectamente inelástica
+      </Option>
+      <Option>
+        inelástica, pero no perfectamente
+      </Option>
+    </MultipleChoice>
+
+3. En un choque se encontró que $$K_{\text{antes}} > K_{\text{después}}$$. La energía cinética perdida se transformó principalmente en __________.
+
+    <MultipleChoice>
+      <Option>
+        cantidad de movimiento
+      </Option>
+      <Option isCorrect>
+        calor, sonido y deformación
+      </Option>
+      <Option>
+        energía potencial gravitacional
+      </Option>
+      <Option>
+        nada: la energía cinética siempre se conserva
+      </Option>
+    </MultipleChoice>
+
+4. Un choque entre carros dura una fracción de segundo. La conservación de la cantidad de movimiento se puede aplicar durante el choque aunque exista fricción con el piso, porque __________.
+
+    <MultipleChoice>
+      <Option>
+        la fricción es una fuerza conservativa
+      </Option>
+      <Option>
+        la energía cinética se conserva durante el choque
+      </Option>
+      <Option>
+        la fricción con el piso es siempre despreciable en general
+      </Option>
+
+      <Option isCorrect>
+        el impulso de la fuerza externa durante el choque es despreciable frente al de las fuerzas internas
+      </Option>
+    </MultipleChoice>
+</Box>
+
+## Centro de masa
+
+Los resultados anteriores admiten una descripción aún más compacta. Considere un sistema de $$N$$ partículas con masas $$m_1, m_2, \ldots, m_N$$, ubicadas en las posiciones $$\vec{r}_1, \vec{r}_2, \ldots, \vec{r}_N$$. Definimos la **posición del centro de masa** como el promedio de las posiciones, ponderado por las masas:
+
+$$
+\vec{r}_{\text{cm}} = \frac{1}{M}\sum m_i\,\vec{r}_i, \qquad M = \sum m_i = m_1 + m_2 + \cdots + m_N
+$$
+
+Si cada partícula se mueve, el centro de masa se mueve con ella, con una **velocidad del centro de masa** definida de la misma forma:
+
+$$
+\vec{v}_{\text{cm}} = \frac{1}{M}\sum m_i\,\vec{v}_i
+$$
+
+Compare esta expresión con la definición de la cantidad de movimiento total: las dos son la misma ecuación. Efectivamente:
+
+$$
+\vec{P} = \sum m_i\vec{v}_i = M\,\vec{v}_{\text{cm}}
+$$
+
+Esta igualdad da el significado físico del centro de masa: es un punto que **resume** el sistema. El sistema completo se traslada como si toda su masa $$M$$ estuviera concentrada en ese punto y todas las fuerzas externas se aplicaran sobre él. Por eso, en el ejemplo del astronauta, mientras la herramienta vuela hacia un lado y el astronauta hacia el otro, el centro de masa del sistema —que partió del reposo— sigue quieto: los dos cuerpos orbitan alrededor de un punto que no se mueve.
+
+<Image src={CentroMasa} alt="Tres masas de 50, 100 y 50 kg dispuestas en una cuadrícula, y a la derecha el centro de masa del sistema equivalente a una masa de 200 kg" layout='constrained' width={1090}/>
+
+<Box icon="check-list">
+
+**Ejemplo — ubicar el centro de masa**
+
+Tres cajas descansan sobre un muelle, con masas $$m_1 = 50\,\mathrm{kg}$$ en $$(1\,\mathrm{m},\,1\,\mathrm{m})$$, $$m_2 = 100\,\mathrm{kg}$$ en $$(5\,\mathrm{m},\,1\,\mathrm{m})$$ y $$m_3 = 50\,\mathrm{kg}$$ en $$(1\,\mathrm{m},\,5\,\mathrm{m})$$. ¿Dónde está el centro de masa del sistema?
+
+La masa total es $$M = 50 + 100 + 50 = 200\,\mathrm{kg}$$. Por componentes:
+
+$$
+x_{\text{cm}} = \frac{m_1 x_1 + m_2 x_2 + m_3 x_3}{M} = \frac{(50)(1) + (100)(5) + (50)(1)}{200} = \frac{600}{200} = 3{,}0\,\mathrm{m}
+$$
+
+$$
+y_{\text{cm}} = \frac{m_1 y_1 + m_2 y_2 + m_3 y_3}{M} = \frac{(50)(1) + (100)(1) + (50)(5)}{200} = \frac{400}{200} = 2{,}0\,\mathrm{m}
+$$
+
+El centro de masa está en $$(3{,}0\,\mathrm{m},\,2{,}0\,\mathrm{m})$$. Note que **no** coincide con el centro geométrico de las posiciones: la caja de $$100\,\mathrm{kg}$$ "tira" del promedio hacia sí, porque en este promedio cada posición vale lo que su masa.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. El centro de masa de dos masas iguales está ubicado __________.
+
+    <MultipleChoice>
+      <Option>
+        sobre la masa mayor
+      </Option>
+      <Option>
+        fuera del segmento que une ambas masas
+      </Option>
+      <Option>
+        cerca de la masa que se mueve más rápido
+      </Option>
+      <Option isCorrect>
+        exactamente a mitad de camino entre ambas
+      </Option>
+
+    </MultipleChoice>
+
+2. Si un sistema aislado se traslada, su centro de masa __________.
+
+    <MultipleChoice>
+      <Option>
+        permanece fijo mientras las partes se mueven
+      </Option>
+      <Option>
+        se mueve con la partícula más masiva
+      </Option>
+      <Option isCorrect>
+        se traslada con velocidad constante
+      </Option>
+      <Option>
+        describe una trayectoria parabólica
+      </Option>
+    </MultipleChoice>
+
+3. El centro de masa de un cuerpo __________.
+
+    <MultipleChoice>
+      <Option>
+        siempre coincide con un punto material del cuerpo
+      </Option>
+      <Option isCorrect>
+        puede estar fuera del cuerpo, como en un aro
+      </Option>
+      <Option>
+        siempre está en su centro geométrico
+      </Option>
+      <Option>
+        solo existe para cuerpos rígidos
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Cantidad de movimiento | $$\vec{p} = m\vec{v}$$ | vector: misma dirección que $$\vec{v}$$ |
+| Fuerza neta | $$\sum\vec{F} = \dfrac{d\vec{p}}{dt}$$ | la fuerza neta cambia la cantidad de movimiento |
+| Impulso (fuerza media) | $$\vec{J} = \vec{F}_{\text{media}}\,\Delta t = \Delta\vec{p}$$ | teorema del impulso y la cantidad de movimiento |
+| Fuerza variable | $$\vec{J} = \displaystyle\int_{t_1}^{t_2}\vec{F}(t)\,dt$$ | área bajo la curva $$F$$–$$t$$ |
+| Unidades | $$\mathrm{kg}\cdot\mathrm{m/s} = \mathrm{N}\cdot\mathrm{s}$$ | p y J comparten unidades |
+| Cantidad de movimiento total | $$\vec{P} = \sum\vec{p}_i = M\vec{v}_{\text{cm}}$$ | $$d\vec{P}/dt = \vec{F}_{\text{ext}}$$ |
+| Conservación | $$\vec{P}_{\text{antes}} = \vec{P}_{\text{después}}$$ | si la fuerza externa neta es nula |
+| Choque elástico | $$K_{\text{antes}} = K_{\text{después}}$$ | ideal: billar, moléculas |
+| Choque inelástico | $$K_{\text{antes}} > K_{\text{después}}$$ | se pierde $$K$$ en calor, sonido y deformación |
+| Choque perfectamente inelástico | cuerpos pegados | comparten una única velocidad final |
+| Centro de masa | $$\vec{r}_{\text{cm}} = \dfrac{1}{M}\sum m_i\vec{r}_i$$ | promedio ponderado por las masas |
+
+La nueva contabilidad queda instalada: la **cantidad de movimiento** registra lo que la energía no ve —la dirección del movimiento y lo que ocurre en los choques—, el **impulso** traduce fuerzas de corta duración en cambios de esa magnitud, y el **centro de masa** condensa todo el sistema en un solo punto que se traslada como una partícula. En la práctica de la semana aplicaremos este balance a patadas y rebotes, gráficas de fuerza, choques de tránsito, patinadores que se empujan y explosiones. La semana siguiente cambiaremos el tipo de movimiento: del traslacional al **rotacional**, donde volveremos a construir coordenadas, velocidades y aceleraciones —ahora angulares— y estas mismas ideas de conservación reaparecerán en forma giratoria.

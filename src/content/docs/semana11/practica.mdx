@@ -1,0 +1,308 @@
+---
+title: "Práctica"
+week: 11
+keywords: ["cantidad de movimiento", "momento lineal", "impulso", "teorema del impulso y la cantidad de movimiento", "conservación de la cantidad de movimiento", "colisiones", "choques elásticos", "choques inelásticos", "choque perfectamente inelástico", "centro de masa", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🎾 El revés de la pelota">
+Una pelota de tenis de $$57\,\mathrm{g}$$ llega horizontalmente a una pared a $$30\,\mathrm{m/s}$$ y rebota en la misma línea con rapidez de $$20\,\mathrm{m/s}$$. El contacto con la pared dura $$20\,\mathrm{ms}$$.
+
+1. Calcule el cambio de cantidad de movimiento de la pelota, con su signo.
+2. Obtenga la fuerza media que la pared aplicó sobre la pelota.
+3. Compare esa fuerza con el peso de la pelota. ¿Por qué puede una pared "pesar" tanto durante un rebote?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Cambio de cantidad de movimiento**
+
+Tomemos positivo el sentido de rebote (hacia afuera de la pared). La velocidad inicial es $$v_0 = -30\,\mathrm{m/s}$$ y la final $$v_f = +20\,\mathrm{m/s}$$:
+
+$$
+\Delta p = m(v_f - v_0) = (0{,}057\,\mathrm{kg})\left[20 - (-30)\right]\,\mathrm{m/s} = (0{,}057)(50) = 2{,}85\,\mathrm{kg}\cdot\mathrm{m/s}
+$$
+
+Note que invertir la dirección hace que el cambio sea mayor que la cantidad de movimiento inicial: sumar $$+20$$ y $$-30$$ da $$50$$, no $$10$$.
+
+**2. Fuerza media**
+
+$$
+F_{\text{media}} = \frac{\Delta p}{\Delta t} = \frac{2{,}85\,\mathrm{kg}\cdot\mathrm{m/s}}{20\times 10^{-3}\,\mathrm{s}} \approx 143\,\mathrm{N}
+$$
+
+**3. Comparación con el peso**
+
+El peso de la pelota es $$W = (0{,}057\,\mathrm{kg})(9{,}8\,\mathrm{m/s^2}) \approx 0{,}56\,\mathrm{N}$$, así que la fuerza media del rebote es unas **250 veces** el peso. La pared no es "fuerte": es **breve**. El teorema del impulso dice $$F = \Delta p/\Delta t$$: al comprimir el mismo cambio de cantidad de movimiento en veinte milisegundos, la fuerza se dispara. Por eso los choques duelen y las redes de seguridad, al alargar el tiempo de contacto, no.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🔨 La gráfica del martillo">
+Un martillo golpea un clavo y un sensor registra la fuerza del golpe: sube linealmente desde $$0$$ hasta $$800\,\mathrm{N}$$ en los primeros $$2{,}0\,\mathrm{ms}$$, y luego baja linealmente hasta $$0$$ en los $$2{,}0\,\mathrm{ms}$$ siguientes.
+
+1. Calcule el impulso del golpe.
+2. ¿Cuál sería la fuerza media equivalente durante los $$4{,}0\,\mathrm{ms}$$ del contacto?
+3. Un clavo "dócil" requiere un impulso de al menos $$1{,}5\,\mathrm{N}\cdot\mathrm{s}$$ por golpe. ¿Basta este martillo? Justifique con la gráfica, sin recalcular nada.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Impulso por área**
+
+La gráfica es un triángulo de base $$4{,}0\,\mathrm{ms}$$ y altura $$800\,\mathrm{N}$$:
+
+$$
+J = \frac{1}{2}(4{,}0\times 10^{-3}\,\mathrm{s})(800\,\mathrm{N}) = 1{,}6\,\mathrm{N}\cdot\mathrm{s}
+$$
+
+**2. Fuerza media equivalente**
+
+$$
+F_{\text{media}} = \frac{J}{\Delta t} = \frac{1{,}6\,\mathrm{N}\cdot\mathrm{s}}{4{,}0\times 10^{-3}\,\mathrm{s}} = 400\,\mathrm{N}
+$$
+
+Justo la mitad de la fuerza pico: para una curva simétrica, la fuerza media equivale al promedio entre pico y cero.
+
+**3. ¿Suficiente?**
+
+El golpe entrega $$1{,}6\,\mathrm{N}\cdot\mathrm{s}$$, por encima de los $$1{,}5\,\mathrm{N}\cdot\mathrm{s}$$ requeridos. Gráficamente, la línea horizontal de $$750\,\mathrm{N}$$ (que haría un rectángulo de $$1{,}5\,\mathrm{N}\cdot\mathrm{s}$$ en $$4{,}0\,\mathrm{ms}$$) queda por debajo del pulso del martillo en todo el intervalo: el área del triángulo supera al rectángulo. El martillo sirve, con un margen del $$7\%$$ —más bien justo, honestamente.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🚦 El camión y el auto">
+Un camión de $$6000\,\mathrm{kg}$$ avanza a $$12\,\mathrm{m/s}$$ por una avenida y embiste por detrás a un auto de $$1200\,\mathrm{kg}$$ detenido en un semáforo. Los vehículos quedan enganchados.
+
+1. ¿Con qué rapidez se mueve el conjunto inmediatamente después del choque?
+2. Calcule la energía cinética antes y después del choque, y la cantidad perdida.
+3. ¿Qué fracción de la energía inicial se perdió? ¿A dónde fue a parar?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez del conjunto**
+
+Choque perfectamente inelástico: se conserva la cantidad de movimiento y los cuerpos comparten velocidad final.
+
+$$
+(6000\,\mathrm{kg})(12\,\mathrm{m/s}) + 0 = (7200\,\mathrm{kg})\,v' \quad\Rightarrow\quad v' = \frac{72\,000}{7200} = 10\,\mathrm{m/s}
+$$
+
+**2. Balance de energía cinética**
+
+$$
+K_{\text{antes}} = \frac{1}{2}(6000)(12)^2 = 432\,\mathrm{kJ}, \qquad K_{\text{después}} = \frac{1}{2}(7200)(10)^2 = 360\,\mathrm{kJ}
+$$
+
+$$
+\Delta K = 360 - 432 = -72\,\mathrm{kJ}
+$$
+
+**3. Fracción perdida**
+
+$$
+\frac{72\,\mathrm{kJ}}{432\,\mathrm{kJ}} \approx 17\%
+$$
+
+Un sexto de la energía cinética se transformó en deformación de la carrocería, calor y sonido. La cantidad de movimiento, en cambio, se conservó íntegra: esa asimetría es la razón de que los análisis de choques se hagan con $$\vec{P}$$ y no con $$K$$.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — ⛸️ Patinadores que se empujan">
+Dos patinadores, de $$60\,\mathrm{kg}$$ y $$90\,\mathrm{kg}$$, están de pie y en reposo frente a frente sobre hielo sin fricción. Se empujan mutuamente y se separan; el patinador de $$90\,\mathrm{kg}$$ sale con $$2{,}0\,\mathrm{m/s}$$.
+
+1. ¿Con qué rapidez y en qué dirección sale el patinador de $$60\,\mathrm{kg}$$?
+2. ¿Cuál es la cantidad de movimiento total del sistema después del empujón? ¿Y la energía cinética total?
+3. Si la cantidad de movimiento total es cero, ¿de dónde salió la energía cinética?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez del patinador liviano**
+
+El sistema parte del reposo y el hielo no ejerce fuerza horizontal apreciable: $$\vec{P} = 0$$ antes y después.
+
+$$
+m_1 v_1 + m_2 v_2 = 0 \quad\Rightarrow\quad v_1 = -\frac{m_2 v_2}{m_1} = -\frac{(90\,\mathrm{kg})(2{,}0\,\mathrm{m/s})}{60\,\mathrm{kg}} = -3{,}0\,\mathrm{m/s}
+$$
+
+Sale a $$3{,}0\,\mathrm{m/s}$$ en sentido opuesto al pesado. La rapidez es inversamente proporcional a la masa.
+
+**2. Totales**
+
+$$
+P_{\text{total}} = (60)(-3{,}0) + (90)(2{,}0) = -180 + 180 = 0\,\mathrm{kg}\cdot\mathrm{m/s}
+$$
+
+$$
+K_{\text{total}} = \frac{1}{2}(60)(3{,}0)^2 + \frac{1}{2}(90)(2{,}0)^2 = 270 + 180 = 450\,\mathrm{J}
+$$
+
+**3. Origen de la energía**
+
+La cantidad de movimiento se conserva, pero la energía cinética **no era cero al final por casualidad**: la crearon los músculos de los patinadores. El empujón es una fuerza interna que realiza trabajo positivo sobre ambos cuerpos, convirtiendo energía química en cinética. He aquí la regla: las fuerzas internas no pueden cambiar $$\vec{P}$$ (se cancelan por pares), pero sí pueden cambiar $$K$$ (cada cuerpo se desplaza mientras es empujado). Conservación de cantidad de movimiento no implica conservación de energía.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 🎱 Choque en la mesa de billar">
+Una bola de $$3{,}0\,\mathrm{kg}$$ (supóngala grande para facilitar las cuentas) avanza a $$4{,}0\,\mathrm{m/s}$$ sobre una mesa sin fricción y choca con una bola de $$2{,}0\,\mathrm{kg}$$ en reposo. Después del choque, la bola de $$3{,}0\,\mathrm{kg}$$ continúa en la misma dirección a $$1{,}0\,\mathrm{m/s}$$.
+
+1. Calcule la rapidez de la segunda bola después del choque.
+2. Calcule las energías cinéticas total antes y después, y clasifique el choque.
+3. Si el choque hubiera sido perfectamente elástico, ¿podría la primera bola continuar hacia adelante? Razone cualitativamente.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez de la segunda bola**
+
+$$
+(3{,}0)(4{,}0) + 0 = (3{,}0)(1{,}0) + (2{,}0)\,v_2' \quad\Rightarrow\quad v_2' = \frac{12 - 3{,}0}{2{,}0} = 4{,}5\,\mathrm{m/s}
+$$
+
+**2. Clasificación**
+
+$$
+K_{\text{antes}} = \frac{1}{2}(3{,}0)(4{,}0)^2 = 24\,\mathrm{J}
+$$
+
+$$
+K_{\text{después}} = \frac{1}{2}(3{,}0)(1{,}0)^2 + \frac{1}{2}(2{,}0)(4{,}5)^2 = 1{,}5 + 20{,}25 = 21{,}75\,\mathrm{J}
+$$
+
+Como $$K_{\text{antes}} > K_{\text{después}}$$, el choque fue **inelástico**: se perdieron $$2{,}25\,\mathrm{J}$$ en el "clac" y la deformación momentánea de las bolas.
+
+**3. ¿Y si fuera elástico?**
+
+En un choque perfectamente elástico entre una bola que persigue a otra en reposo, la conservación simultánea de $$\vec{P}$$ y $$K$$ obliga a resultados más rígidos. Para las masas de este problema, la solución elástica exige que la primera bola se **detenga** y la segunda salga con toda la rapidez inicial. Que aquí la primera bola siga avanzando a $$1{,}0\,\mathrm{m/s}$$ ya insinúa, sin necesidad de cálculos, que el choque no fue elástico.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🥚 El huevo y el colchón">
+Un huevo de $$50\,\mathrm{g}$$ cae desde $$2{,}0\,\mathrm{m}$$ de altura. Si cae sobre concreto se detiene en $$2{,}0\,\mathrm{ms}$$; si cae sobre una espuma gruesa, en $$20\,\mathrm{ms}$$. Desprecie la resistencia del aire ($$g = 9{,}8\,\mathrm{m/s^2}$$).
+
+1. ¿Con qué rapidez llega el huevo al piso?
+2. Calcule el impulso que recibe el huevo en cada caso.
+3. Calcule la fuerza media sobre el huevo en cada caso y compárela con su peso.
+4. Explique el principio de seguridad que ilustra este experimento y dé dos ejemplos tecnológicos.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez de impacto**
+
+$$
+v = \sqrt{2gh} = \sqrt{2(9{,}8)(2{,}0)} = \sqrt{39{,}2} \approx 6{,}3\,\mathrm{m/s}
+$$
+
+**2. Impulso**
+
+El huevo llega a $$6{,}3\,\mathrm{m/s}$$ hacia abajo y termina en reposo; tomando arriba como positivo:
+
+$$
+J = \Delta p = 0 - m(-v) = (0{,}050\,\mathrm{kg})(6{,}3\,\mathrm{m/s}) \approx 0{,}31\,\mathrm{N}\cdot\mathrm{s}
+$$
+
+**El mismo en ambos casos**: la caída es la misma, así que el cambio de cantidad de movimiento requerido para detener al huevo no depende del piso.
+
+**3. Fuerza media**
+
+$$
+F_{\text{concreto}} = \frac{0{,}31\,\mathrm{N}\cdot\mathrm{s}}{2{,}0\times 10^{-3}\,\mathrm{s}} \approx 157\,\mathrm{N}, \qquad F_{\text{espuma}} = \frac{0{,}31\,\mathrm{N}\cdot\mathrm{s}}{20\times 10^{-3}\,\mathrm{s}} \approx 15{,}7\,\mathrm{N}
+$$
+
+Con un peso de $$W = 0{,}49\,\mathrm{N}$$, el concreto aplica unas 320 veces el peso (huevo frito) y la espuma unas 32 veces (huevo intacto). Diez veces más tiempo de contacto, diez veces menos fuerza: mismo impulso, distinto destino.
+
+**4. El principio**
+
+Para un $$\Delta p$$ dado, $$F_{\text{media}} = \Delta p/\Delta t$$: **alargar el tiempo de contacto reduce la fuerza**. Es el principio del airbag, del casco con espuma interior, de las zonas de deformación de los autos y de las redes de los salto de altura: no cambian cuánto hay que frenar, cambian cuánto tiempo se tarda en frenar.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🎆 La explosión del cohete de juguete">
+Un cohete de juguete de $$2{,}0\,\mathrm{kg}$$ flota en reposo en el espacio y explota en tres fragmentos: el fragmento A, de $$0{,}50\,\mathrm{kg}$$, sale a $$30\,\mathrm{m/s}$$ hacia el este; el fragmento B, de $$0{,}70\,\mathrm{kg}$$, sale a $$20\,\mathrm{m/s}$$ hacia el norte.
+
+1. ¿Cuál es la masa del fragmento C y cuál su cantidad de movimiento?
+2. Calcule la velocidad del fragmento C (magnitud y dirección).
+3. ¿Se conservó la energía mecánica en la explosión? Estime la energía liberada y comente.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Masa y cantidad de movimiento de C**
+
+$$
+m_C = 2{,}0 - 0{,}50 - 0{,}70 = 0{,}80\,\mathrm{kg}
+$$
+
+Con el sistema inicialmente en reposo, la cantidad de movimiento total después debe ser nula. Tomando el este como $$+\hat{\iota}$$ y el norte como $$+\hat{\jmath}$$:
+
+$$
+\vec{p}_C = -\vec{p}_A - \vec{p}_B = -(0{,}50)(30)\,\hat{\iota} - (0{,}70)(20)\,\hat{\jmath} = (-15\,\mathrm{kg}\cdot\mathrm{m/s})\,\hat{\iota} + (-14\,\mathrm{kg}\cdot\mathrm{m/s})\,\hat{\jmath}
+$$
+
+**2. Velocidad de C**
+
+$$
+|\vec{p}_C| = \sqrt{15^2 + 14^2} = \sqrt{421} \approx 20{,}5\,\mathrm{kg}\cdot\mathrm{m/s} \quad\Rightarrow\quad v_C = \frac{20{,}5}{0{,}80} \approx 26\,\mathrm{m/s}
+$$
+
+La dirección es hacia el suroeste, formando un ángulo $$\theta = \arctan(14/15) \approx 43^\circ$$ al sur del oeste. Los tres vectores $$\vec{p}_A$$, $$\vec{p}_B$$ y $$\vec{p}_C$$ forman un triángulo cerrado: esa es la lectura geométrica de $$\vec{P} = 0$$.
+
+**3. Energía**
+
+Antes de la explosión la energía cinética era cero; después no lo es:
+
+$$
+K = \frac{(0{,}50)(30)^2}{2} + \frac{(0{,}70)(20)^2}{2} + \frac{(0{,}80)(26)^2}{2} \approx 225 + 140 + 270 \approx 6{,}4\times 10^2\,\mathrm{J}
+$$
+
+La energía mecánica **aumentó** en unos $$640\,\mathrm{J}$$: salió de la energía química del explosivo. En una explosión se conserva la cantidad de movimiento, no la energía mecánica: la regla inversa a la de un choque perfectamente inelástico. Ambos procesos son, de hecho, la misma física corrida al revés.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — ⚖️ El centro de masa y la balsa">
+Tres contenedores descansan sobre un muelle plano: $$m_1 = 30\,\mathrm{kg}$$ en $$(0,\,0)$$, $$m_2 = 50\,\mathrm{kg}$$ en $$(4{,}0\,\mathrm{m},\,0)$$ y $$m_3 = 20\,\mathrm{kg}$$ en $$(0,\,3{,}0\,\mathrm{m})$$.
+
+1. Ubique el centro de masa del sistema.
+2. Una persona de $$60\,\mathrm{kg}$$ está de pie en una balsa de $$120\,\mathrm{kg}$$ flotando quieta en agua sin corrientes. Camina $$3{,}0\,\mathrm{m}$$ respecto a la balsa, de la proa a la popa. ¿Cuánto se desplaza la balsa, y en qué dirección?
+3. ¿Dónde queda el centro de masa del sistema persona–balsa después de la caminata?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Centro de masa de los contenedores**
+
+$$
+M = 30 + 50 + 20 = 100\,\mathrm{kg}
+$$
+
+$$
+x_{\text{cm}} = \frac{(30)(0) + (50)(4{,}0) + (20)(0)}{100} = 2{,}0\,\mathrm{m}, \qquad y_{\text{cm}} = \frac{(30)(0) + (50)(0) + (20)(3{,}0)}{100} = 0{,}60\,\mathrm{m}
+$$
+
+El centro de masa está en $$(2{,}0\,\mathrm{m},\,0{,}60\,\mathrm{m})$$: más cerca del contenedor de $$50\,\mathrm{kg}$$ que del centro geométrico, como corresponde a un promedio ponderado por las masas.
+
+**2. Desplazamiento de la balsa**
+
+Con el sistema persona–balsa en reposo y sin fuerza externa horizontal, $$\vec{P} = 0$$ en todo momento: el centro de masa del sistema no se mueve. La persona camina $$3{,}0\,\mathrm{m}$$ **respecto a la balsa**; llamando $$x_p$$ y $$x_b$$ a los desplazamientos respecto al agua (positivos hacia la proa), la condición de caminata es $$x_p - x_b = -3{,}0\,\mathrm{m}$$ y la conservación exige:
+
+$$
+m_p\,x_p + m_b\,x_b = 0 \quad\Rightarrow\quad 60(x_b - 3{,}0) + 120\,x_b = 0 \quad\Rightarrow\quad x_b = \frac{180}{180} = 1{,}0\,\mathrm{m}
+$$
+
+La balsa se desplaza $$1{,}0\,\mathrm{m}$$ en dirección **opuesta** a la caminata (hacia donde estaba la proa). La persona, respecto al agua, avanza solo $$x_p = 1{,}0 - 3{,}0 = -2{,}0\,\mathrm{m}$$: parte de su paso se lo "roba" el retroceso de la balsa.
+
+**3. El centro de masa**
+
+Queda exactamente donde estaba: al ser nula la fuerza externa horizontal, el centro de masa del sistema persona–balsa no puede moverse, sin importar lo que haga la persona adentro. Verifíquelo con las cuentas: $$60(-2{,}0) + 120(1{,}0) = 0$$.
+
+</details>
+</Aside>
