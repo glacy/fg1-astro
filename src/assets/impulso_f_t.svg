@@ -1,0 +1,20 @@
+<svg width="600" height="330" viewBox="0 0 600 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="600" height="330" fill="white"/>
+<path d="M140 270 C 205 270, 235 92, 300 92 C 365 92, 395 270, 460 270 L 460 270 L 140 270 Z" fill="#6D28D9" fill-opacity="0.16"/>
+<path d="M140 270 C 205 270, 235 92, 300 92 C 365 92, 395 270, 460 270" stroke="#6D28D9" stroke-width="2.5" fill="none"/>
+<path d="M60 270 H 546 M546 270 l-9 -5 M546 270 l-9 5" stroke="black" stroke-width="1.8"/>
+<path d="M60 270 V 42 M60 42 l-5 9 M60 42 l5 9" stroke="black" stroke-width="1.8"/>
+<path d="M140 270 V 280 M460 270 V 280" stroke="black" stroke-width="1.5"/>
+<line x1="140" y1="270" x2="140" y2="262" stroke="black" stroke-width="1.5" stroke-dasharray="3 3"/>
+<line x1="460" y1="270" x2="460" y2="262" stroke="black" stroke-width="1.5" stroke-dasharray="3 3"/>
+<text x="552" y="288" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="18" fill="black">t</text>
+<text x="566" y="286" font-family="Inter, Arial, sans-serif" font-size="13" fill="black">(ms)</text>
+<text x="46" y="34" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="18" fill="black">F</text>
+<text x="58" y="40" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="13" fill="black">x</text>
+<text x="126" y="298" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="17" fill="black">t</text>
+<text x="132" y="303" font-family="Inter, Arial, sans-serif" font-size="12" fill="black">1</text>
+<text x="452" y="298" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="17" fill="black">t</text>
+<text x="458" y="303" font-family="Inter, Arial, sans-serif" font-size="12" fill="black">2</text>
+<text x="300" y="196" font-family="Inter, Arial, sans-serif" font-style="italic" font-size="18" fill="#6D28D9" text-anchor="middle">área = J = Δp</text>
+<text x="300" y="58" font-family="Inter, Arial, sans-serif" font-size="14" fill="#525252" text-anchor="middle">fuerza de un choque: intensa pero de corta duración</text>
+</svg>

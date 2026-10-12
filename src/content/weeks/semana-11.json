@@ -1,12 +1,13 @@
 {
   "id": 11,
   "title": "Cantidad de movimiento, impulso y colisiones",
-  "image": "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1544281153-6603be88b354?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
-    "Definir los conceptos: cantidad de movimiento, impulso y centro de masa.",
-    "Relacionar el impulso de la fuerza neta que actúa sobre una partícula y el cambio en su cantidad de movimiento.",
+    "Definir la cantidad de movimiento, el impulso y el centro de masa, e identificar sus unidades.",
+    "Relacionar el impulso de la fuerza neta que actúa sobre una partícula con el cambio en su cantidad de movimiento.",
+    "Aplicar el principio de conservación de la cantidad de movimiento a sistemas donde la fuerza externa neta es nula.",
     "Resolver problemas en los que dos o más cuerpos colisionan entre sí, a partir de la conservación de la cantidad de movimiento total del sistema.",
-    "Diferenciar entre colisiones elásticas, inelásticas y totalmente inelásticas."
+    "Diferenciar entre colisiones elásticas, inelásticas y perfectamente inelásticas a partir de la energía cinética del sistema."
   ],
   "contenidos": [
     "Cantidad de movimiento e impulso (sección 8.1).",
