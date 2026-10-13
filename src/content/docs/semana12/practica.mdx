@@ -1,0 +1,364 @@
+---
+title: "Práctica"
+week: 12
+keywords: ["cinemática rotacional", "posición angular", "velocidad angular", "aceleración angular", "radián", "revoluciones por minuto", "r.p.m", "aceleración angular constante", "velocidad tangencial", "aceleración tangencial", "aceleración radial", "movimiento circular", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🌀 El ventilador de mesa">
+Un ventilador de mesa gira a velocidad constante de $$1200\,\mathrm{r.p.m}$$.
+
+1. Exprese su velocidad angular en revoluciones por segundo y en radianes por segundo.
+2. ¿Cuántas vueltas completas da en $$30\,\mathrm{s}$$?
+3. ¿Cuánto tarda en dar una vuelta completa?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Conversiones**
+
+$$
+\omega = \frac{1200\,\mathrm{rev}}{60\,\mathrm{s}} = 20\,\mathrm{rev/s}
+$$
+
+$$
+\omega = 20 \times 2\pi = 40\pi \approx 126\,\mathrm{rad/s}
+$$
+
+**2. Vueltas en 30 s**
+
+A velocidad constante, el ángulo crece linealmente:
+
+$$
+N = \omega\,t = (20\,\mathrm{rev/s})(30\,\mathrm{s}) = 600\,\mathrm{vueltas}
+$$
+
+**3. Tiempo por vuelta**
+
+Es el inverso de la velocidad angular en rev/s:
+
+$$
+T = \frac{1}{20\,\mathrm{rev/s}} = 0{,}050\,\mathrm{s} = 50\,\mathrm{ms}
+$$
+
+Observe que las tres respuestas dicen lo mismo en unidades distintas: el ventilador gira 20 veces por segundo, barre $$126\,\mathrm{rad}$$ por segundo y cada vuelta le cuesta 50 ms. Elegir la unidad adecuada suele simplificar el problema.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 💿 Arranque de un disco duro">
+El plato de un disco duro parte del reposo y alcanza su velocidad de operación de $$7200\,\mathrm{r.p.m}$$ en $$4{,}0\,\mathrm{s}$$, con aceleración angular constante.
+
+1. Exprese la velocidad final en rad/s y calcule la aceleración angular.
+2. ¿Cuántos radianes gira el plato durante el arranque?
+3. ¿Cuántas vueltas completas da en ese tiempo?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad final y aceleración angular**
+
+$$
+\omega = \frac{7200\,\mathrm{rev}}{60\,\mathrm{s}} \times 2\pi = 240\pi \approx 754\,\mathrm{rad/s}
+$$
+
+Partiendo del reposo con $$\alpha$$ constante:
+
+$$
+\alpha = \frac{\omega - \omega_0}{t} = \frac{754\,\mathrm{rad/s}}{4{,}0\,\mathrm{s}} \approx 189\,\mathrm{rad/s^2}
+$$
+
+**2. Ángulo barrido**
+
+$$
+\theta = \frac{1}{2}\alpha\,t^2 = \frac{1}{2}(189\,\mathrm{rad/s^2})(4{,}0\,\mathrm{s})^2 \approx 1{,}5\times 10^3\,\mathrm{rad}
+$$
+
+**3. En vueltas**
+
+$$
+N = \frac{\theta}{2\pi} = \frac{1508\,\mathrm{rad}}{2\pi\,\mathrm{rad/rev}} = 240\,\mathrm{vueltas}
+$$
+
+Verificación elegante: con aceleración uniforme la velocidad angular promedio es $$\frac{0 + 120\,\mathrm{rev/s}}{2} = 60\,\mathrm{rev/s}$$, y $$60 \times 4{,}0 = 240$$ vueltas. El promedio siempre ahorra cálculos, igual que en la cinemática lineal.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🚲 Frenado de una rueda de bicicleta">
+Una rueda de bicicleta gira a $$15\,\mathrm{rad/s}$$ cuando el ciclista frena. La rueda se detiene después de dar $$20\,\mathrm{vueltas}$$, con desaceleración constante.
+
+1. Calcule la aceleración angular de la rueda.
+2. ¿Cuánto tiempo dura el frenado?
+3. Si el radio de la rueda es $$0{,}34\,\mathrm{m}$$, ¿con qué rapidez lineal se movía la bicicleta? ¿Y con qué desaceleración lineal?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Aceleración angular**
+
+El ángulo barrido es $$\Delta\theta = 20 \times 2\pi = 40\pi \approx 126\,\mathrm{rad}$$. Como el problema no menciona el tiempo, usemos la ecuación sin tiempo:
+
+$$
+\omega^2 = \omega_0^2 + 2\alpha\,\Delta\theta \quad\Rightarrow\quad \alpha = \frac{0 - (15\,\mathrm{rad/s})^2}{2(126\,\mathrm{rad})} \approx -0{,}90\,\mathrm{rad/s^2}
+$$
+
+**2. Tiempo de frenado**
+
+$$
+\omega = \omega_0 + \alpha\,t \quad\Rightarrow\quad t = \frac{0 - 15}{-0{,}90} \approx 17\,\mathrm{s}
+$$
+
+**3. Traducción a lineal**
+
+$$
+v = r\,\omega = (0{,}34\,\mathrm{m})(15\,\mathrm{rad/s}) = 5{,}1\,\mathrm{m/s} \approx 18\,\mathrm{km/h}
+$$
+
+$$
+a_{\text{tan}} = r\,\alpha = (0{,}34\,\mathrm{m})(-0{,}90\,\mathrm{rad/s^2}) = -0{,}31\,\mathrm{m/s^2}
+$$
+
+La frenada es suave: desacelera a un tercio de $$g$$ y recorre $$(5{,}1\,\mathrm{m/s})(17\,\mathrm{s})/2 \approx 43\,\mathrm{m}$$, que es justo la longitud de $$20$$ vueltas de rueda: $$20 \times 2\pi(0{,}34) \approx 43\,\mathrm{m}$$. Los dos lenguajes cuentan la misma historia.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 📈 La rueda que invierte su giro">
+La velocidad angular de una rueda obedece $$\omega_z(t) = (-24\,\mathrm{rad/s}) + (4{,}0\,\mathrm{rad/s^2})\,t$$.
+
+1. Describa el movimiento en $$t = 0$$: sentido y rapidez angular.
+2. ¿Cuál es la aceleración angular? ¿La rueda "acelera" o "frena" al inicio?
+3. ¿En qué instante la rueda se detiene momentáneamente?
+4. Calcule el ángulo barrido entre $$t = 0$$ y ese instante, por el método del área bajo la curva.
+5. Calcule el ángulo barrido hasta $$t = 9{,}0\,\mathrm{s}$$ y explique el signo.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Movimiento inicial**
+
+$$
+\omega_z(0) = -24\,\mathrm{rad/s}
+$$
+
+Gira en sentido horario (signo negativo) a $$24\,\mathrm{rad/s}$$.
+
+**2. Aceleración angular**
+
+$$
+\alpha = +4{,}0\,\mathrm{rad/s^2}
+$$
+
+Al inicio $$\omega < 0$$ y $$\alpha > 0$$: la aceleración se opone al giro, así que la rueda **frena**. Igual que una $$a$$ positiva frena un carro que va hacia la izquierda.
+
+**3. Instante de detención**
+
+$$
+0 = -24 + 4{,}0\,t \quad\Rightarrow\quad t = 6{,}0\,\mathrm{s}
+$$
+
+A partir de ahí $$\omega_z > 0$$: la rueda invierte el sentido y pasa a girar antihorario.
+
+**4. Ángulo hasta la detención**
+
+El área bajo la recta entre $$0$$ y $$6{,}0\,\mathrm{s}$$ es un triángulo por debajo del eje:
+
+$$
+\Delta\theta = \frac{1}{2}(6{,}0\,\mathrm{s})(-24\,\mathrm{rad/s}) = -72\,\mathrm{rad} \approx -11{,}5\,\mathrm{vueltas}
+$$
+
+**5. Ángulo hasta t = 9,0 s**
+
+Entre $$6{,}0$$ y $$9{,}0\,\mathrm{s}$$ la gráfica forma un triángulo por encima del eje, con $$\omega$$ creciendo de $$0$$ a $$\omega(9) = +12\,\mathrm{rad/s}$$:
+
+$$
+\Delta\theta_{6\to 9} = \frac{1}{2}(3{,}0\,\mathrm{s})(12\,\mathrm{rad/s}) = +18\,\mathrm{rad}
+$$
+
+$$
+\theta(9) = -72 + 18 = -54\,\mathrm{rad}
+$$
+
+El signo neto sigue negativo: el giro horario inicial (72 rad) supera al antihorario recuperado (18 rad). En términos de vueltas, la rueda está $$8{,}6$$ vueltas horarias "por delante" de su posición inicial.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 🎡 La rueda de la fortuna">
+Una rueda de la fortuna de radio $$8{,}0\,\mathrm{m}$$ gira con velocidad angular constante, dando una revolución cada $$25\,\mathrm{s}$$.
+
+1. Calcule la velocidad angular de la rueda.
+2. ¿Con qué rapidez lineal se mueve una cabina?
+3. ¿Cuál es la aceleración de la cabina? ¿Hacia dónde apunta?
+4. Compare esa aceleración con $$g$$. ¿Por qué la cabina "siente" el movimiento apenas?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad angular**
+
+$$
+\omega = \frac{2\pi\,\mathrm{rad}}{25\,\mathrm{s}} \approx 0{,}25\,\mathrm{rad/s}
+$$
+
+**2. Rapidez lineal**
+
+$$
+v = r\,\omega = (8{,}0\,\mathrm{m})(0{,}25\,\mathrm{rad/s}) \approx 2{,}0\,\mathrm{m/s}
+$$
+
+Un paseo tranquilo: unos 7 km/h.
+
+**3. Aceleración**
+
+Con $$\omega$$ constante, $$\alpha = 0$$ y $$a_{\text{tan}} = 0$$. Toda la aceleración es radial:
+
+$$
+a_{\text{rad}} = r\,\omega^2 = (8{,}0\,\mathrm{m})(0{,}25\,\mathrm{rad/s})^2 \approx 0{,}51\,\mathrm{m/s^2}
+$$
+
+Apunta hacia el eje (el centro de la rueda): es lo que obliga a la cabina a curvar su trayectoria en lugar de salir en línea recta.
+
+**4. Comparación con g**
+
+$$
+\frac{a_{\text{rad}}}{g} = \frac{0{,}51}{9{,}8} \approx 0{,}05
+$$
+
+La aceleración centrípeta es apenas un $$5\%$$ de la gravedad, y la estructura de la cabina se encarga de ella sin que el pasajero la note. El vértigo de una rueda de la fortuna viene de la altura, no de la física: a esta tasa de giro, el movimiento circular es casi imperceptible.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — ⚙️ Motor y polea con correa">
+Un motor gira una polea de radio $$r_1 = 4{,}0\,\mathrm{cm}$$ a $$3000\,\mathrm{r.p.m}$$. Una correa conecta esa polea con una segunda polea de radio $$r_2 = 12\,\mathrm{cm}$$, sin resbalar.
+
+1. ¿Por qué la rapidez tangencial de la correa es la misma en los bordes de ambas poleas?
+2. Calcule la rapidez de la correa y la velocidad angular de la segunda polea (en rad/s y en r.p.m).
+3. Si el motor acelera con $$\alpha_1 = 150\,\mathrm{rad/s^2}$$, ¿cuál es la aceleración angular de la segunda polea?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. La condición de no resbalar**
+
+Si la correa no resbala, cada trozo de correa se mueve con la superficie de la polea en el punto de contacto: la correa tiene una única rapidez a lo largo de todo su recorrido. Por eso $$v = r_1\omega_1 = r_2\omega_2$$: las poleas comparten la rapidez **tangencial**, no la angular.
+
+**2. Rapidez de la correa y polea conducida**
+
+$$
+\omega_1 = \frac{3000 \times 2\pi}{60} = 100\pi \approx 314\,\mathrm{rad/s}
+$$
+
+$$
+v = r_1\,\omega_1 = (0{,}040\,\mathrm{m})(314\,\mathrm{rad/s}) \approx 12{,}6\,\mathrm{m/s}
+$$
+
+$$
+\omega_2 = \frac{v}{r_2} = \frac{12{,}6\,\mathrm{m/s}}{0{,}12\,\mathrm{m}} \approx 105\,\mathrm{rad/s} \approx 1000\,\mathrm{r.p.m}
+$$
+
+La polea grande gira tres veces más lenta, en la proporción exacta $$\omega_2/\omega_1 = r_1/r_2 = 1/3$$: es una reductora.
+
+**3. Aceleración angular**
+
+La correa también tiene una única aceleración tangencial, así que $$r_1\alpha_1 = r_2\alpha_2$$:
+
+$$
+\alpha_2 = \alpha_1\,\frac{r_1}{r_2} = (150\,\mathrm{rad/s^2})\,\frac{1}{3} = 50\,\mathrm{rad/s^2}
+$$
+
+Todo lo que el motor transmite por la correa —rapidez y aceleración— llega multiplicado por el mismo factor $$r_1/r_2$$.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🌍 La rotación de la Tierra">
+La Tierra completa una rotación cada $$24\,\mathrm{h}$$. Considere un punto en el ecuador, a $$r = 6{,}4\times 10^6\,\mathrm{m}$$ del eje de rotación.
+
+1. Calcule la velocidad angular de rotación terrestre.
+2. ¿Con qué rapidez lineal se mueve una persona en el ecuador, respecto al eje?
+3. ¿Cuál es su aceleración centrípeta? Compárela con $$g$$.
+4. Un punto en Costa Rica (latitud $$\approx 10^\circ$$) describe un círculo de radio $$r\cos 10^\circ$$. ¿Cómo cambian su rapidez y su aceleración respecto al punto del ecuador?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad angular**
+
+$$
+\omega = \frac{2\pi\,\mathrm{rad}}{24 \times 3600\,\mathrm{s}} = \frac{2\pi}{86\,400} \approx 7{,}3\times 10^{-5}\,\mathrm{rad/s}
+$$
+
+**2. Rapidez lineal en el ecuador**
+
+$$
+v = r\,\omega = (6{,}4\times 10^6\,\mathrm{m})(7{,}3\times 10^{-5}\,\mathrm{rad/s}) \approx 465\,\mathrm{m/s}
+$$
+
+Más de $$1600\,\mathrm{km/h}$$: todos los habitantes del ecuador viajan a velocidad de avión de combate sin enterarse.
+
+**3. Aceleración centrípeta**
+
+$$
+a_{\text{rad}} = r\,\omega^2 = (6{,}4\times 10^6)(7{,}3\times 10^{-5})^2 \approx 0{,}034\,\mathrm{m/s^2} \approx \frac{g}{290}
+$$
+
+Es apenas un 0,3% de la gravedad: por eso nadie "sale volando". La Tierra gira despacio en términos angulares —una vuelta al día— y esa lentitud hace minúscula la aceleración centrípeta, aunque la rapidez lineal sea enorme. $$\omega$$ manda: la aceleración depende de su cuadrado, no de la impresión que causa el número de kilómetros por hora.
+
+**4. En Costa Rica**
+
+El radio del círculo que describe el punto disminuye al factor $$\cos 10^\circ \approx 0{,}985$$, pero $$\omega$$ es la misma (¡todo el planeta da la vuelta en 24 h!). Entonces:
+
+$$
+v' = v\cos 10^\circ \approx 458\,\mathrm{m/s}, \qquad a'_{\text{rad}} = a_{\text{rad}}\cos 10^\circ \approx 0{,}033\,\mathrm{m/s^2}
+$$
+
+Mismo $$\omega$$, menor radio: menor todo lo lineal, en la misma proporción.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — ✈️ La punta de la hélice">
+La hélice de un avión pequeño tiene un radio de $$1{,}5\,\mathrm{m}$$ y gira a $$1800\,\mathrm{r.p.m}$$ constantes.
+
+1. Calcule la velocidad angular de la hélice.
+2. ¿Con qué rapidez lineal se mueve la punta de una pala?
+3. Compare esa rapidez con la velocidad del sonido ($$343\,\mathrm{m/s}$$) y comente.
+4. ¿Cuál es la aceleración centrípeta de la punta, en $$\mathrm{m/s^2}$$ y en unidades de $$g$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad angular**
+
+$$
+\omega = \frac{1800 \times 2\pi}{60} = 60\pi \approx 189\,\mathrm{rad/s}
+$$
+
+**2. Rapidez de la punta**
+
+$$
+v = r\,\omega = (1{,}5\,\mathrm{m})(189\,\mathrm{rad/s}) \approx 283\,\mathrm{m/s}
+$$
+
+**3. Comparación con el sonido**
+
+$$
+\frac{v}{v_{\text{sonido}}} = \frac{283}{343} \approx 0{,}83
+$$
+
+La punta vuela al $$83\%$$ de la velocidad del sonido: entra en el régimen transónico, donde el aire se comporta de forma muy distinta (y ruidosa). Esta es la razón física por la que las hélices limitan su diámetro y su régimen de giro: no se puede seguir subiendo revoluciones sin que la punta "rompa" el sonido. Los aviones a turbina resuelven el problema de otra manera: toman el aire con álabes cortos girando muchísimo más rápido.
+
+**4. Aceleración centrípeta**
+
+$$
+a_{\text{rad}} = r\,\omega^2 = (1{,}5\,\mathrm{m})(189\,\mathrm{rad/s})^2 \approx 5{,}3\times 10^4\,\mathrm{m/s^2} \approx 5400\,g
+$$
+
+La punta soporta una aceleración de más de cinco mil veces la gravedad, sostenida, apuntando hacia el eje. Que un trozo de aluminio resista eso mil veces por minuto sin fatigarse da una idea de lo exigentes que son los materiales de la aviación.
+
+</details>
+</Aside>
