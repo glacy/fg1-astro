@@ -16,10 +16,14 @@ objetivos:
 draft: false
 ---
 
+import { Image } from 'astro:assets';
 import PreCheck from '../../../components/PreCheck.astro';
 import Box from '../../../components/Box.astro';
 import MultipleChoice from '../../../components/MultipleChoice.astro';
 import Option from '../../../components/Option.astro';
+import DclDiagram from '../../../components/DclDiagram.astro';
+import Radian from "../../../assets/radian.svg";
+import AceleracionAngular from "../../../assets/aceleracion-angular.svg";
 
 
 <PreCheck>
@@ -55,6 +59,8 @@ El radián tiene una propiedad que ningún otro sistema de unidades de ángulo o
 $$
 s = r\,\theta \qquad \text{(con } \theta \text{ en radianes)}
 $$
+
+<Image src={Radian} alt="Longitud de arco" layout='constrained' width={429}/>
 
 Esta relación es la semilla del puente lineal–angular que construiremos en la última sección.
 
@@ -291,6 +297,9 @@ $$
 v = r\,\omega
 $$
 
+<DclDiagram name="DCL_helices" label="Relación entre la rapidez angular y la velocidad tangencial a una distantcia r" width={465}/>
+
+
 Y derivando una vez más aparecen las dos componentes de su aceleración. La componente **tangencial**, responsable de cambiar la rapidez del punto:
 
 $$
@@ -302,6 +311,8 @@ y la componente **radial** (o centrípeta), responsable de mantenerlo girando, q
 $$
 a_{\text{rad}} = \frac{v^2}{r} = r\,\omega^2
 $$
+
+<Image src={AceleracionAngular} alt="Aceleración angular de cuerpo rígido" layout='constrained' width={525}/>
 
 Estas fórmulas traducen cualquier resultado angular a lineal y viceversa. Fíjese en la estructura: cuanto más lejos del eje está el punto, más rápido se mueve y más acelera para el mismo giro del cuerpo. Es la razón de que en los tornamesas los surcos exteriores "pasen más rápido" bajo la aguja, y de que la punta de una hélice viaje mucho más deprisa que su base. Observe también que $$a_{\text{rad}}$$ existe **aunque $$\omega$$ sea constante**: es la aceleración centrípeta del movimiento circular uniforme de la semana 4, y vale $$r\omega^2$$ sin importar que el giro sea parejo.
 
