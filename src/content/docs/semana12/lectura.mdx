@@ -24,6 +24,7 @@ import Option from '../../../components/Option.astro';
 import DclDiagram from '../../../components/DclDiagram.astro';
 import Radian from "../../../assets/radian.svg";
 import AceleracionAngular from "../../../assets/aceleracion-angular.svg";
+import GraficaAlpha from "../../../assets/mov-rot-alpha-constante.png";
 
 
 <PreCheck>
@@ -127,11 +128,11 @@ que en radianes equivale a $$\theta = (377\,\mathrm{rad/s})(45\,\mathrm{s}) \app
       <Option>
         la mitad de la circunferencia
       </Option>
-      <Option isCorrect>
-        igual al radio del círculo
-      </Option>
       <Option>
         igual al diámetro del círculo
+      </Option>
+      <Option isCorrect>
+        igual al radio del círculo
       </Option>
     </MultipleChoice>
 
@@ -161,11 +162,11 @@ que en radianes equivale a $$\theta = (377\,\mathrm{rad/s})(45\,\mathrm{s}) \app
       <Option>
         $$188\,\mathrm{rad/s}$$
       </Option>
-      <Option isCorrect>
-        $$\pi\,\mathrm{rad/s}$$
-      </Option>
       <Option>
         $$0{,}5\,\mathrm{rad/s}$$
+      </Option>
+      <Option isCorrect>
+        $$\pi\,\mathrm{rad/s}$$
       </Option>
     </MultipleChoice>
 
@@ -208,25 +209,27 @@ La tercera ecuación es la favorita cuando el problema no menciona el tiempo: re
 
 <Box icon="check-list">
 
-**Ejemplo — leer una gráfica de $$\omega$$–$$t$$**
+**Ejemplo — leer una gráfica de $$\theta$$–$$t$$**
 
-La velocidad angular de una rueda obedece la función $$\omega_z(t) = (-25\,\mathrm{rad/s}) + (5\,\mathrm{rad/s^2})\,t$$: parte girando en sentido horario a $$25\,\mathrm{rad/s}$$ y aumenta linealmente. ¿En qué instante la rueda se detiene? ¿Cuánto ha girado hasta ese momento?
+La posición angular de una rueda obedece la función $$\theta(t) = (20\,\mathrm{rad}) + (-25\,\mathrm{rad/s})\,t + \frac{1}{2}(5\,\mathrm{rad/s^2})\,t^2$$: parte de $$\theta_0 = 20\,\mathrm{rad}$$ girando en sentido horario a $$25\,\mathrm{rad/s}$$, con aceleración angular constante $$\alpha = 5\,\mathrm{rad/s^2}$$. Su velocidad angular es la pendiente de esa curva: $$\omega_z(t) = (-25\,\mathrm{rad/s}) + (5\,\mathrm{rad/s^2})\,t$$. ¿En qué instante la rueda se detiene? ¿Cuánto ha girado hasta ese momento?
 
-Imponemos $$\omega_z = 0$$:
+<Image src={GraficaAlpha} alt="Gráfica de posición angular en función del tiempo: una parábola que desciende desde 20 rad, alcanza su mínimo de −42,5 rad en t = 5 s y vuelve a subir" layout='constrained' width={430}/>
+
+En la gráfica, la parábola desciende ($$\omega_z < 0$$, giro horario), se va aplanando y alcanza su **mínimo** justo donde la tangente es horizontal: pendiente nula, rueda detenida. Imponemos $$\omega_z = 0$$:
 
 $$
 0 = -25 + 5\,t \quad\Rightarrow\quad t = \frac{25\,\mathrm{rad/s}}{5\,\mathrm{rad/s^2}} = 5\,\mathrm{s}
 $$
 
-En la gráfica, ese es el instante en que la recta cruza el eje del tiempo: antes de él $$\omega_z < 0$$ (giro horario) y después $$\omega_z > 0$$ (giro antihorario). La rueda se detiene momentáneamente e **invierte el sentido de giro**.
+Ese es el instante del mínimo de la curva: antes de él $$\omega_z < 0$$ (giro horario) y después $$\omega_z > 0$$ (giro antihorario). La rueda se detiene momentáneamente e **invierte el sentido de giro**.
 
-Hasta ese instante, el ángulo barrido es el área bajo la recta entre $$t = 0$$ y $$t = 5\,\mathrm{s}$$, un triángulo por debajo del eje:
+El ángulo barrido se lee del propio eje vertical: en $$t = 5\,\mathrm{s}$$ la curva pasa por $$\theta(5) = 20 - 125 + 62{,}5 = -42{,}5\,\mathrm{rad}$$, de modo que
 
 $$
-\Delta\theta = \frac{1}{2}(5\,\mathrm{s})(-25\,\mathrm{rad/s}) = -62{,}5\,\mathrm{rad} \approx -10\,\mathrm{vueltas}
+\Delta\theta = \theta(5\,\mathrm{s}) - \theta_0 = -42{,}5\,\mathrm{rad} - 20\,\mathrm{rad} = -62{,}5\,\mathrm{rad} \approx -10\,\mathrm{vueltas}
 $$
 
-El signo negativo confirma el giro horario. Con la segunda ecuación cinemática se obtiene lo mismo: $$\theta = \omega_0 t + \frac{1}{2}\alpha t^2 = (-25)(5) + \frac{1}{2}(5)(25) = -62{,}5\,\mathrm{rad}$$. Cinemática rotacional y lineal: las mismas herramientas con otras etiquetas.
+El signo negativo confirma el giro horario; en una gráfica de $$\omega$$–$$t$$ ese mismo valor aparece como el área bajo la recta, el triángulo $$\frac{1}{2}(5\,\mathrm{s})(-25\,\mathrm{rad/s})$$ por debajo del eje. Con la primera ecuación cinemática se obtiene lo mismo: $$\theta = \theta_0 + \omega_0\,t + \frac{1}{2}\alpha\,t^2 = 20 + (-25)(5) + \frac{1}{2}(5)(25) = -42{,}5\,\mathrm{rad}$$. Cinemática rotacional y lineal: las mismas herramientas con otras etiquetas.
 
 </Box>
 
@@ -240,11 +243,11 @@ El signo negativo confirma el giro horario. Con la segunda ecuación cinemática
       <Option>
         el área bajo la curva
       </Option>
-      <Option isCorrect>
-        la pendiente de la curva
-      </Option>
       <Option>
         el valor máximo de $$\omega$$
+      </Option>
+      <Option isCorrect>
+        la pendiente de la curva
       </Option>
       <Option>
         la intersección con el eje vertical
@@ -254,17 +257,17 @@ El signo negativo confirma el giro horario. Con la segunda ecuación cinemática
 2. Un disco parte del reposo con $$\alpha$$ constante. Después de girar $$4{,}0\,\mathrm{vueltas}$$, su velocidad angular es $$\omega$$. Si hubiera girado $$16\,\mathrm{vueltas}$$, su velocidad angular sería __________.
 
     <MultipleChoice>
-      <Option>
-        la misma
-      </Option>
-      <Option>
-        un $$25\%$$ mayor
-      </Option>
       <Option isCorrect>
         el doble
       </Option>
       <Option>
+        la misma
+      </Option>
+      <Option>
         el cuádruple
+      </Option>
+      <Option>
+        un $$25\%$$ mayor
       </Option>
     </MultipleChoice>
 
@@ -368,17 +371,20 @@ $$
       <Option>
         no cambia
       </Option>
-      <Option>
-        se reduce a la mitad
-      </Option>
       <Option isCorrect>
         se cuadruplica
+      </Option>
+      <Option>
+        se reduce a la mitad
       </Option>
     </MultipleChoice>
 
 3. Un punto de una rueda gira con $$\omega$$ constante. Su aceleración tangencial es __________.
 
     <MultipleChoice>
+      <Option>
+        igual a la aceleración radial
+      </Option>
       <Option>
         igual a $$r\omega^2$$
       </Option>
@@ -387,9 +393,6 @@ $$
       </Option>
       <Option isCorrect>
         cero
-      </Option>
-      <Option>
-        igual a la aceleración radial
       </Option>
     </MultipleChoice>
 
