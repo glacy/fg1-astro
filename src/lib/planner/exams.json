@@ -5,7 +5,7 @@
       "id": "80f35105-c3b7-43ee-8669-3f5cda551735",
       "title": "Bitácora e informe",
       "subject": "Proyecto",
-      "date": "2026-10-09",
+      "date": "2026-09-25",
       "time": "23:59",
       "topics": [
         "Trabajo en equipo",
@@ -48,14 +48,6 @@
                 {
           "label": "Distribución de aulas",
           "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_primer_parcial.html"
-        },
-        {"label": "Enunciado",
-          "url": "/FG1_IIS-2026_primer_parcial.pdf",
-          "download": true
-        },
-        {"label": "Solución",
-          "url": "/FG1_IIS-2026_primer_parcial_solucion.pdf",
-          "download": true
         }
       ]
     },
@@ -65,7 +57,7 @@
       "subject": "Examen Extraordinario",
       "date": "2026-10-05",
       "time": "13:00",
-      "location": "B2-10",
+      "location": "",
       "topics": [
         "Cantidades físicas",
         "MRU",
@@ -75,14 +67,6 @@
       ],
       "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
       "links": [
-              {"label": "Enunciado",
-          "url": "/FG1_IIS-2026_primer_parcial_extraordinario.pdf",
-          "download": true
-        },
-        {"label": "Solución",
-          "url": "/FG1_IIS-2026_primer_parcial_extraordinario_solucion.pdf",
-          "download": true
-        }
       ]
     },
     {
@@ -96,6 +80,8 @@
         "Dinámica del movimiento circular",
         "Trabajo y energía",
         "Conservación de la energía",
+        "Fuerzas variables",
+        "Potencia",
         "Colisiones"
       ],
       "notes": "",
@@ -114,6 +100,8 @@
         "Dinámica del movimiento circular",
         "Trabajo y energía",
         "Conservación de la energía",
+        "Fuerzas variables",
+        "Potencia",
         "Colisiones"
       ],
       "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
