@@ -52,6 +52,7 @@ No hay `pnpm test` (Vitest en devDeps sin config; sitio estático).
 - KaTeX pinned a 0.18.1 via `pnpm.overrides` (CSS vendado: `public/katex.min.css` + `public/katex-fonts/`). Si se actualiza, alinear CSS/fuentes a la misma versión.
 - Conversiones: `::: note` → `<div class="note">`; `{.smallcaps}` → `style="font-variant: small-caps;"`; `{.underline}` → `<u>`; refs cruzadas (`{#id}`) → texto plano; títulos `##` sin `{#cap:x}`.
 - Figuras: `<figure>` + `<img>`, src relativa a `src/content/` o desde `public/`.
+- NO generar figuras SVG a mano para el material de semanas; apoyarse en texto, tablas y ecuaciones. Reutilizar solo assets existentes en `src/assets/`.
 - Frontmatter docs: pattern en `src/content/docs/semana-01/lectura.mdx`.
 
 ## Filtros cliente

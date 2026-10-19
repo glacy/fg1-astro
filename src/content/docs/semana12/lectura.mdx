@@ -1,29 +1,415 @@
 ---
 title: "Cinemática del movimiento rotacional"
-description: "Material de lectura para la semana 12."
+description: "Cinemática del movimiento rotacional: posición, velocidad y aceleración angulares y sus unidades (radián, revolución, r.p.m); analogía con la cinemática lineal; ecuaciones de la rotación con aceleración angular constante; relación entre las magnitudes angulares de un cuerpo rígido y la velocidad y las componentes tangencial y radial de la aceleración de un punto del cuerpo."
 week: 12
-keywords: ["física general I", "semana 12", "TEC Costa Rica"]
+keywords: ["cinemática rotacional", "posición angular", "velocidad angular", "aceleración angular", "radián", "revoluciones por minuto", "r.p.m", "aceleración angular constante", "velocidad tangencial", "aceleración tangencial", "aceleración radial", "movimiento circular", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-12"]
-category: "semana-12"
-difficulty: "basic"
+date: 2026-10-14
+readingTime: 20
+tags: ["rotación", "velocidad angular", "aceleración angular", "movimiento circular"]
+category: "movimiento rotacional"
+difficulty: "intermediate"
 objetivos:
-  - "Describir la rotación de un cuerpo rígido en términos de las coordenadas, la velocidad y la aceleración angulares."
-  - "Analizar la rotación de un cuerpo rígido cuando la aceleración angular es constante."
-  - "Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo."
-draft: true
+  - "Describir la rotación de un cuerpo rígido mediante la posición, la velocidad y la aceleración angulares, y expresarlas en sus distintas unidades (rad, rev, r.p.m)."
+  - "Analizar la rotación de un cuerpo rígido cuando la aceleración angular es constante, mediante las ecuaciones cinemáticas angulares."
+  - "Relacionar la velocidad y las componentes tangencial y radial de la aceleración de un punto del cuerpo con la velocidad y la aceleración angulares de la rotación."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import { Image } from 'astro:assets';
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import DclDiagram from '../../../components/DclDiagram.astro';
+import Radian from "../../../assets/radian.svg";
+import AceleracionAngular from "../../../assets/aceleracion-angular.svg";
+import GraficaAlpha from "../../../assets/mov-rot-alpha-constante.png";
 
-Al finalizar esta semana, serás capaz de:
 
-- Describir la rotación de un cuerpo rígido en términos de las coordenadas, la velocidad y la aceleración angulares.
-- Analizar la rotación de un cuerpo rígido cuando la aceleración angular es constante.
-- Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo.
+<PreCheck>
+  - Describir la rotación de un cuerpo rígido mediante la posición, la velocidad y la aceleración angulares, y expresarlas en sus distintas unidades (rad, rev, r.p.m).
+  - Analizar la rotación de un cuerpo rígido cuando la aceleración angular es constante, mediante las ecuaciones cinemáticas angulares.
+  - Relacionar la velocidad y las componentes tangencial y radial de la aceleración de un punto del cuerpo con la velocidad y la aceleración angulares de la rotación.
+</PreCheck>
 
-## Contenido
+Como prometimos al cerrar la semana pasada, cambiamos de escenario. Durante once semanas estudiamos objetos que se trasladan: cajas sobre pisos, proyectiles en el aire, vagones que chocan. Pero buena parte de la física cotidiana gira: ruedas, ventiladores, poleas, engranajes, discos, hélices y planetas. Para una rueda que gira sobre su eje, preguntar "¿dónde está?" tiene poco sentido —todos sus puntos vuelven una y otra vez al mismo lugar—; la pregunta útil es "¿cuánto ha girado?".
 
-Contenido de la semana 12 próximamente disponible.
+La buena noticia es que no necesitamos una maquinaria nueva: la cinemática rotacional **reusa completa** la que construimos desde la semana 2, con un solo cambio de variable. Donde escribíamos posición $$x$$ escribiremos **posición angular** $$\theta$$; donde derivábamos para obtener $$v$$ y $$a$$, derivaremos para obtener **velocidad angular** $$\omega$$ y **aceleración angular** $$\alpha$$. El plan de la semana: primero definiremos las tres magnitudes angulares y sus unidades —radián, revolución y r.p.m—; luego resolveremos el caso de **aceleración angular constante**, donde reaparecerán las ecuaciones del movimiento rectilíneo uniformemente acelerado con otras letras; y finalmente tenderemos el puente entre ambos mundos, traduciendo giro en velocidad y aceleración de los puntos del cuerpo.
+
+La analogía que sostiene toda la semana se resume en una tabla:
+
+| Magnitud | Cinemática lineal | Cinemática rotacional |
+| :--- | :--- | :--- |
+| Posición | $$x$$ | $$\theta$$ (posición angular) |
+| Rapidez de cambio | $$v = \dfrac{dx}{dt}$$ | $$\omega = \dfrac{d\theta}{dt}$$ (velocidad angular) |
+| Cambio de rapidez | $$a = \dfrac{dv}{dt}$$ | $$\alpha = \dfrac{d\omega}{dt}$$ (aceleración angular) |
+
+## Velocidad y aceleración angulares
+
+Cuando un cuerpo gira alrededor de un eje fijo, la cantidad de giro se mide con la **posición angular** $$\theta$$. El cambio de la posición angular, $$\Delta\theta$$, es el ángulo barrido por una línea que conecta un punto del cuerpo con el eje de rotación, a medida que el cuerpo gira. Por ejemplo, si una rueda pasa de orientarse hacia el este a orientarse hacia el norte, ha barrido $$\Delta\theta = 90^\circ$$, sin importar qué punto de la rueda usemos para medir: en un cuerpo rígido, **todos los puntos barren el mismo ángulo**.
+
+El ángulo se mide en grados, revoluciones o radianes, pero en física usamos principalmente el **radián**, por su conexión directa con la geometría del círculo: un radián es el ángulo que subtiende un arco cuya longitud es igual al radio. Como la circunferencia mide $$2\pi r$$, un giro completo equivale a $$2\pi$$ radianes:
+
+$$
+2\pi\,\mathrm{rad} = 360^\circ = 1\,\mathrm{rev}, \qquad 1\,\mathrm{rad} \approx 57{,}3^\circ
+$$
+
+El radián tiene una propiedad que ningún otro sistema de unidades de ángulo ofrece: relaciona de forma natural la longitud de arco $$s$$, el radio $$r$$ y el ángulo barrido $$\theta$$:
+
+$$
+s = r\,\theta \qquad \text{(con } \theta \text{ en radianes)}
+$$
+
+<Image src={Radian} alt="Longitud de arco" layout='constrained' width={429}/>
+
+Esta relación es la semilla del puente lineal–angular que construiremos en la última sección.
+
+Así como la velocidad mide cómo cambia la posición con el tiempo, la **velocidad angular** mide cómo cambia el ángulo:
+
+$$
+\omega = \frac{d\theta}{dt}
+$$
+
+y la **aceleración angular** mide cómo cambia la velocidad angular:
+
+$$
+\alpha = \frac{d\omega}{dt}
+$$
+
+El signo registra el sentido del giro: con la convención habitual, $$\omega > 0$$ para giro antihorario y $$\omega < 0$$ para giro horario. Cuando $$\alpha > 0$$ la magnitud del giro crece y cuando $$\alpha < 0$$ decrece, aunque el significado exacto de "frenar" o "acelerar" depende del signo de $$\omega$$: igual que una $$a$$ positiva frena un carro que va hacia la izquierda, una $$\alpha$$ positiva frena una rueda que gira en sentido horario.
+
+Además, ambas magnitudes son **vectoriales**: $$\vec{\omega}$$ y $$\vec{\alpha}$$ se orientan a lo largo del eje de rotación, y su sentido se fija con la **regla de la mano derecha**: envuelva los dedos de la mano derecha siguiendo el sentido del giro y el pulgar extendido señala la dirección del vector. Con esta regla, un giro antihorario visto desde arriba tiene $$\vec{\omega}$$ apuntando hacia arriba (hacia afuera del plano), y un giro horario la tiene apuntando hacia abajo (hacia adentro del plano).
+
+En aplicaciones aparece también la **revolución** (rev): un objeto que completa una vuelta ejecuta $$1$$ rev, de manera que $$2\pi\,\mathrm{rad} = 360^\circ = 1\,\mathrm{rev}$$. De ahí nace la unidad "popular" de los catálogos y tableros, las revoluciones por minuto:
+
+$$
+1\,\mathrm{r.p.m} = \frac{2\pi\,\mathrm{rad}}{60\,\mathrm{s}} = \frac{\pi}{30}\,\mathrm{rad/s} \approx 0{,}105\,\mathrm{rad/s}
+$$
+
+<Box icon="check-list">
+
+**Ejemplo — el triturador de café**
+
+Un triturador de café eléctrico gira a velocidad constante de $$3600\,\mathrm{r.p.m}$$. Si permanece encendido durante $$45\,\mathrm{s}$$, ¿cuántas vueltas completas da su eje? ¿Y cuántos radianes barre?
+
+Primero convirtamos a unidades más cómodas. En revoluciones por segundo:
+
+$$
+\omega = \frac{3600\,\mathrm{rev}}{60\,\mathrm{s}} = 60\,\mathrm{rev/s}
+$$
+
+y en radianes por segundo:
+
+$$
+\omega = 60 \times 2\pi = 120\pi \approx 377\,\mathrm{rad/s}
+$$
+
+El número de vueltas en $$45\,\mathrm{s}$$ es la "distancia angular" recorrida:
+
+$$
+N = \omega\,t = (60\,\mathrm{rev/s})(45\,\mathrm{s}) = 2700\,\mathrm{vueltas}
+$$
+
+que en radianes equivale a $$\theta = (377\,\mathrm{rad/s})(45\,\mathrm{s}) \approx 1{,}7\times 10^4\,\mathrm{rad}$$. Note la estructura: el cálculo es idéntico al de "auto a velocidad constante, ¿cuántos kilómetros en una hora?" de la semana 2, con revoluciones en lugar de kilómetros.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Un ángulo de $$1\,\mathrm{rad}$$ subtiende un arco cuya longitud es __________.
+
+    <MultipleChoice>
+      <Option>
+        igual a la circunferencia completa
+      </Option>
+      <Option>
+        la mitad de la circunferencia
+      </Option>
+      <Option>
+        igual al diámetro del círculo
+      </Option>
+      <Option isCorrect>
+        igual al radio del círculo
+      </Option>
+    </MultipleChoice>
+
+2. Un giro de $$3{,}0\,\mathrm{vueltas}$$ equivale a __________.
+
+    <MultipleChoice>
+      <Option>
+        $$3{,}0\,\mathrm{rad}$$
+      </Option>
+      <Option isCorrect>
+        $$6\pi\,\mathrm{rad}$$
+      </Option>
+      <Option>
+        $$\pi\,\mathrm{rad}$$
+      </Option>
+      <Option>
+        $$360^\circ$$
+      </Option>
+    </MultipleChoice>
+
+3. Una rueda gira a $$30\,\mathrm{r.p.m}$$. Su velocidad angular es aproximadamente __________.
+
+    <MultipleChoice>
+      <Option>
+        $$30\,\mathrm{rad/s}$$
+      </Option>
+      <Option>
+        $$188\,\mathrm{rad/s}$$
+      </Option>
+      <Option>
+        $$0{,}5\,\mathrm{rad/s}$$
+      </Option>
+      <Option isCorrect>
+        $$\pi\,\mathrm{rad/s}$$
+      </Option>
+    </MultipleChoice>
+
+4. Una rueda gira en sentido **horario** y su rapidez angular aumenta. Los signos de $$\omega$$ y $$\alpha$$ son __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\omega > 0$$ y $$\alpha > 0$$
+      </Option>
+      <Option isCorrect>
+        $$\omega < 0$$ y $$\alpha < 0$$
+      </Option>
+      <Option>
+        $$\omega < 0$$ y $$\alpha > 0$$
+      </Option>
+      <Option>
+        $$\omega > 0$$ y $$\alpha < 0$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Rotación con aceleración angular constante
+
+Si la velocidad angular cambia a tasa constante —un disco que arranca desde el reposo, una turbina que frena de manera uniforme—, la matemática es exactamente la del movimiento rectilíneo uniformemente acelerado de las semanas 2 y 3: basta cambiar $$x \to \theta$$, $$v \to \omega$$ y $$a \to \alpha$$ en las ecuaciones que ya conocemos:
+
+$$
+\theta = \theta_0 + \omega_0\,t + \frac{1}{2}\alpha\,t^2
+$$
+
+$$
+\omega = \omega_0 + \alpha\,t
+$$
+
+$$
+\omega^2 = \omega_0^2 + 2\alpha\,(\theta - \theta_0)
+$$
+
+La tercera ecuación es la favorita cuando el problema no menciona el tiempo: relaciona rapideces angulares con el ángulo barrido directamente. Y la lectura gráfica que aprendimos con las gráficas de $$v$$–$$t$$ también se traslada tal cual: en una gráfica de $$\omega$$–$$t$$, la **pendiente** es la aceleración angular y el **área bajo la curva** es el ángulo barrido.
+
+<Box icon="check-list">
+
+**Ejemplo — leer una gráfica de $$\theta$$–$$t$$**
+
+La posición angular de una rueda obedece la función $$\theta(t) = (20\,\mathrm{rad}) + (-25\,\mathrm{rad/s})\,t + \frac{1}{2}(5\,\mathrm{rad/s^2})\,t^2$$: parte de $$\theta_0 = 20\,\mathrm{rad}$$ girando en sentido horario a $$25\,\mathrm{rad/s}$$, con aceleración angular constante $$\alpha = 5\,\mathrm{rad/s^2}$$. Su velocidad angular es la pendiente de esa curva: $$\omega_z(t) = (-25\,\mathrm{rad/s}) + (5\,\mathrm{rad/s^2})\,t$$. ¿En qué instante la rueda se detiene? ¿Cuánto ha girado hasta ese momento?
+
+<Image src={GraficaAlpha} alt="Gráfica de posición angular en función del tiempo: una parábola que desciende desde 20 rad, alcanza su mínimo de −42,5 rad en t = 5 s y vuelve a subir" layout='constrained' width={430}/>
+
+En la gráfica, la parábola desciende ($$\omega_z < 0$$, giro horario), se va aplanando y alcanza su **mínimo** justo donde la tangente es horizontal: pendiente nula, rueda detenida. Imponemos $$\omega_z = 0$$:
+
+$$
+0 = -25 + 5\,t \quad\Rightarrow\quad t = \frac{25\,\mathrm{rad/s}}{5\,\mathrm{rad/s^2}} = 5\,\mathrm{s}
+$$
+
+Ese es el instante del mínimo de la curva: antes de él $$\omega_z < 0$$ (giro horario) y después $$\omega_z > 0$$ (giro antihorario). La rueda se detiene momentáneamente e **invierte el sentido de giro**.
+
+El ángulo barrido se lee del propio eje vertical: en $$t = 5\,\mathrm{s}$$ la curva pasa por $$\theta(5) = 20 - 125 + 62{,}5 = -42{,}5\,\mathrm{rad}$$, de modo que
+
+$$
+\Delta\theta = \theta(5\,\mathrm{s}) - \theta_0 = -42{,}5\,\mathrm{rad} - 20\,\mathrm{rad} = -62{,}5\,\mathrm{rad} \approx -10\,\mathrm{vueltas}
+$$
+
+El signo negativo confirma el giro horario; en una gráfica de $$\omega$$–$$t$$ ese mismo valor aparece como el área bajo la recta, el triángulo $$\frac{1}{2}(5\,\mathrm{s})(-25\,\mathrm{rad/s})$$ por debajo del eje. Con la primera ecuación cinemática se obtiene lo mismo: $$\theta = \theta_0 + \omega_0\,t + \frac{1}{2}\alpha\,t^2 = 20 + (-25)(5) + \frac{1}{2}(5)(25) = -42{,}5\,\mathrm{rad}$$. Cinemática rotacional y lineal: las mismas herramientas con otras etiquetas.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En una gráfica de velocidad angular en función del tiempo, la aceleración angular se representa por __________.
+
+    <MultipleChoice>
+      <Option>
+        el área bajo la curva
+      </Option>
+      <Option>
+        el valor máximo de $$\omega$$
+      </Option>
+      <Option isCorrect>
+        la pendiente de la curva
+      </Option>
+      <Option>
+        la intersección con el eje vertical
+      </Option>
+    </MultipleChoice>
+
+2. Un disco parte del reposo con $$\alpha$$ constante. Después de girar $$4{,}0\,\mathrm{vueltas}$$, su velocidad angular es $$\omega$$. Si hubiera girado $$16\,\mathrm{vueltas}$$, su velocidad angular sería __________.
+
+    <MultipleChoice>
+      <Option isCorrect>
+        el doble
+      </Option>
+      <Option>
+        la misma
+      </Option>
+      <Option>
+        el cuádruple
+      </Option>
+      <Option>
+        un $$25\%$$ mayor
+      </Option>
+    </MultipleChoice>
+
+3. Una rueda gira a $$20\,\mathrm{rad/s}$$ y frena con $$\alpha = -4{,}0\,\mathrm{rad/s^2}$$. Tarda en detenerse __________.
+
+    <MultipleChoice>
+      <Option>
+        $$0{,}20\,\mathrm{s}$$
+      </Option>
+      <Option isCorrect>
+        $$5{,}0\,\mathrm{s}$$
+      </Option>
+      <Option>
+        $$16\,\mathrm{s}$$
+      </Option>
+      <Option>
+        $$80\,\mathrm{s}$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Relación entre cinemática lineal y angular
+
+La cinemática rotacional no es independiente de la lineal: cuando un cuerpo rígido gira sobre un eje fijo, cada uno de sus puntos describe un **movimiento circular** —el que estudiamos en la semana 4— con posición, velocidad y aceleración propias. El puente entre los dos lenguajes lo tiende la relación $$s = r\theta$$ que presentamos al inicio.
+
+Si un punto del cuerpo está a una distancia $$r$$ del eje de rotación, derivando $$s = r\theta$$ respecto al tiempo (con $$r$$ constante) se obtiene su rapidez lineal:
+
+$$
+v = r\,\omega
+$$
+
+<DclDiagram name="DCL_helices" label="Relación entre la rapidez angular y la velocidad tangencial a una distantcia r" width={465}/>
+
+
+Y derivando una vez más aparecen las dos componentes de su aceleración. La componente **tangencial**, responsable de cambiar la rapidez del punto:
+
+$$
+a_{\text{tan}} = r\,\alpha
+$$
+
+y la componente **radial** (o centrípeta), responsable de mantenerlo girando, que apunta siempre hacia el eje:
+
+$$
+a_{\text{rad}} = \frac{v^2}{r} = r\,\omega^2
+$$
+
+<Image src={AceleracionAngular} alt="Aceleración angular de cuerpo rígido" layout='constrained' width={525}/>
+
+Estas fórmulas traducen cualquier resultado angular a lineal y viceversa. Fíjese en la estructura: cuanto más lejos del eje está el punto, más rápido se mueve y más acelera para el mismo giro del cuerpo. Es la razón de que en los tornamesas los surcos exteriores "pasen más rápido" bajo la aguja, y de que la punta de una hélice viaje mucho más deprisa que su base. Observe también que $$a_{\text{rad}}$$ existe **aunque $$\omega$$ sea constante**: es la aceleración centrípeta del movimiento circular uniforme de la semana 4, y vale $$r\omega^2$$ sin importar que el giro sea parejo.
+
+<Box icon="check-list">
+
+**Ejemplo — la punta del ventilador**
+
+Las palas de un ventilador miden $$r = 0{,}25\,\mathrm{m}$$ desde el eje y giran con velocidad angular constante de $$\omega = 20\,\mathrm{rad/s}$$. ¿A qué rapidez se mueve la punta de una pala? ¿Con qué aceleración?
+
+La rapidez lineal sale directamente del puente:
+
+$$
+v = r\,\omega = (0{,}25\,\mathrm{m})(20\,\mathrm{rad/s}) = 5{,}0\,\mathrm{m/s}
+$$
+
+Como la velocidad angular es constante, $$\alpha = 0$$ y la componente tangencial de la aceleración es nula: la punta no va más rápido ni más lento. Pero sí acelera, en el sentido estricto de la palabra: su dirección de movimiento cambia continuamente, con una aceleración radial
+
+$$
+a_{\text{rad}} = r\,\omega^2 = (0{,}25\,\mathrm{m})(20\,\mathrm{rad/s})^2 = 100\,\mathrm{m/s^2} \approx 10\,g
+$$
+
+¡Diez veces la aceleración de la gravedad, apuntando permanentemente hacia el eje! La rapidez es modesta, pero cambiar de dirección a esa tasa exige una aceleración enorme: es el recordatorio de la semana 4 de que "moverse en círculos" es, físicamente, acelerar.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Dos puntos de un mismo disco rígido que gira, uno en el borde y otro a mitad del radio, tienen la misma __________.
+
+    <MultipleChoice>
+      <Option>
+        rapidez lineal
+      </Option>
+      <Option isCorrect>
+        velocidad angular
+      </Option>
+      <Option>
+        aceleración radial
+      </Option>
+      <Option>
+        distancia recorrida en una vuelta
+      </Option>
+    </MultipleChoice>
+
+2. Si la velocidad angular de una rueda se duplica, la aceleración radial de un punto de su borde __________.
+
+    <MultipleChoice>
+      <Option>
+        se duplica
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+      <Option isCorrect>
+        se cuadruplica
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+    </MultipleChoice>
+
+3. Un punto de una rueda gira con $$\omega$$ constante. Su aceleración tangencial es __________.
+
+    <MultipleChoice>
+      <Option>
+        igual a la aceleración radial
+      </Option>
+      <Option>
+        igual a $$r\omega^2$$
+      </Option>
+      <Option>
+        igual a $$r\omega$$
+      </Option>
+      <Option isCorrect>
+        cero
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Lineal | Rotacional | Observaciones |
+| :--- | :--- | :--- | :--- |
+| Posición | $$x$$ | $$\theta$$ | en radianes: $$s = r\theta$$ |
+| Unidades de giro | m | $$2\pi\,\mathrm{rad} = 360^\circ = 1\,\mathrm{rev}$$ | $$1\,\mathrm{r.p.m} = \pi/30\,\mathrm{rad/s}$$ |
+| Velocidad | $$v = dx/dt$$ | $$\omega = d\theta/dt$$ | signo: sentido del giro |
+| Aceleración | $$a = dv/dt$$ | $$\alpha = d\omega/dt$$ | vectorial: regla de la mano derecha |
+| Cinemática (sin $$t$$) | $$v^2 = v_0^2 + 2a\,\Delta x$$ | $$\omega^2 = \omega_0^2 + 2\alpha\,\Delta\theta$$ | válidas con $$\alpha$$ constante |
+| Cinemática (con $$t$$) | $$x = x_0 + v_0 t + \frac{1}{2}at^2$$ | $$\theta = \theta_0 + \omega_0 t + \frac{1}{2}\alpha t^2$$ | mismas que el MRUA |
+| Velocidad de un punto | $$v = r\,\omega$$ | — | crece con la distancia al eje |
+| Aceleración tangencial | $$a_{\text{tan}} = r\,\alpha$$ | — | cambia la rapidez del punto |
+| Aceleración radial | $$a_{\text{rad}} = v^2/r = r\,\omega^2$$ | — | hacia el eje; existe aun con $$\omega$$ constante |
+
+La semana pusimos en marcha el movimiento giratorio: la tabla de analogías convierte cualquier problema de rotación en un problema de cinemática que ya sabemos resolver, y las relaciones $$v = r\omega$$, $$a_{\text{tan}} = r\alpha$$ y $$a_{\text{rad}} = r\omega^2$$ traducen el giro del cuerpo en el movimiento real de sus puntos. En la práctica de la semana pondremos a girar ventiladores, discos duros, ruedas de bicicleta, poleas, ruedas de la fortuna y a la propia Tierra. La semana siguiente le devolveremos a la rotación las dos piezas que todavía le faltan —masa y energía— para poder aplicar la contabilidad de las semanas 9 a 11 a cuerpos que giran: el **momento de inercia** y la energía cinética de rotación.
