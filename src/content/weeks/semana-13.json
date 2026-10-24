@@ -5,7 +5,7 @@
   "objetivos": [
     "Relacionar la energía cinética de rotación con el momento de inercia de un cuerpo en torno a un eje de rotación.",
     "Relacionar los valores del momento de inercia de un cuerpo para dos ejes de rotación diferentes, pero paralelos.",
-    "Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo."
+    "Calcular el momento de inercia de sistemas de partículas y de cuerpos compuestos respecto a un eje dado."
   ],
   "contenidos": [
     "Energía en el movimiento de rotación (sección 9.4).",
