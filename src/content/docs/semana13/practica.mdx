@@ -1,0 +1,333 @@
+---
+title: "Práctica"
+week: 13
+keywords: ["cuerpo rígido", "energía cinética de rotación", "momento de inercia", "distribución de masa", "teorema de los ejes paralelos", "momento de inercia de una varilla", "aro", "disco", "esfera", "eje de rotación", "centro de masa", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🎯 Cuatro esferas en un cuadrado">
+Cuatro esferas pequeñas, que pueden tratarse como masas puntuales de $$0{,}200\,\mathrm{kg}$$ cada una, están colocadas en las esquinas de un cuadrado de $$0{,}400\,\mathrm{m}$$ de lado, conectadas por varillas muy ligeras. Calcule el momento de inercia del sistema alrededor de un eje:
+
+1. perpendicular al plano del cuadrado, que pasa por su centro;
+2. contenido en el plano del cuadrado, que pasa por su centro y es paralelo a dos de sus lados;
+3. contenido en el plano del cuadrado, sobre la diagonal que une dos esferas opuestas.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Eje perpendicular por el centro**
+
+Las cuatro masas están a la misma distancia del centro: media diagonal, $$r = \frac{L}{\sqrt{2}} = \frac{0{,}400}{\sqrt{2}} = 0{,}283\,\mathrm{m}$$, es decir $$r^2 = L^2/2 = 0{,}0800\,\mathrm{m^2}$$:
+
+$$
+I_a = 4\,m\,r^2 = 4(0{,}200\,\mathrm{kg})(0{,}0800\,\mathrm{m^2}) = 0{,}064\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**2. Eje en el plano, paralelo a dos lados**
+
+Dos masas están sobre el eje ($$r = 0$$, no aportan) y las otras dos a $$r = L/2 = 0{,}200\,\mathrm{m}$$:
+
+$$
+I_b = 2(0{,}200\,\mathrm{kg})(0{,}200\,\mathrm{m})^2 = 0{,}016\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**3. Eje sobre la diagonal**
+
+Ahora las dos esferas sobre la diagonal quedan en el eje ($$r = 0$$) y las otras dos están a la distancia de la diagonal completa, $$r = L\sqrt{2} = 0{,}566\,\mathrm{m}$$, con $$r^2 = 2L^2 = 0{,}320\,\mathrm{m^2}$$:
+
+$$
+I_c = 2(0{,}200\,\mathrm{kg})(0{,}320\,\mathrm{m^2}) = 0{,}128\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+Mismo sistema, tres ejes, tres respuestas —incluida una **ocho veces** mayor que otra. El momento de inercia pertenece al par (cuerpo, eje), no al cuerpo solo. Note también el efecto del cuadrado: el eje de la diagonal "premia" a las dos masas que deja sobre sí, pero cobra carísimo a las dos que aleja.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🔗 Dos masas y una varilla ligera">
+Masas de $$1{,}0\,\mathrm{kg}$$ y $$3{,}0\,\mathrm{kg}$$ están unidas por una varilla de masa despreciable de $$2{,}0\,\mathrm{m}$$ de largo.
+
+1. Calcule el momento de inercia respecto a un eje perpendicular a la varilla que pasa por la masa de $$1{,}0\,\mathrm{kg}$$.
+2. Repita para un eje que pasa por la masa de $$3{,}0\,\mathrm{kg}$$.
+3. Calcule el momento de inercia respecto a un eje perpendicular que pasa por el centro de masa del sistema, y verifique los resultados anteriores con el teorema de los ejes paralelos.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Eje por la masa de 1,0 kg**
+
+La masa sobre el eje no aporta:
+
+$$
+I_1 = (1{,}0)(0)^2 + (3{,}0)(2{,}0)^2 = 12\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**2. Eje por la masa de 3,0 kg**
+
+$$
+I_2 = (1{,}0)(2{,}0)^2 + (3{,}0)(0)^2 = 4{,}0\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**3. Eje por el centro de masa**
+
+El centro de masa está a $$x_{\text{cm}} = \frac{(1{,}0)(0) + (3{,}0)(2{,}0)}{4{,}0} = 1{,}5\,\mathrm{m}$$ de la masa de $$1{,}0\,\mathrm{kg}$$ (y a $$0{,}5\,\mathrm{m}$$ de la otra):
+
+$$
+I_{\text{cm}} = (1{,}0)(1{,}5)^2 + (3{,}0)(0{,}5)^2 = 2{,}25 + 0{,}75 = 3{,}0\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+Verificación con el teorema ($$M = 4{,}0\,\mathrm{kg}$$, $$d = 1{,}5\,\mathrm{m}$$ y $$d = 0{,}5\,\mathrm{m}$$):
+
+$$
+I_1 = 3{,}0 + (4{,}0)(1{,}5)^2 = 3{,}0 + 9{,}0 = 12\,\mathrm{kg}\cdot\mathrm{m^2} \;\checkmark
+$$
+
+$$
+I_2 = 3{,}0 + (4{,}0)(0{,}5)^2 = 3{,}0 + 1{,}0 = 4{,}0\,\mathrm{kg}\cdot\mathrm{m^2} \;\checkmark
+$$
+
+El sistema gira cuatro veces más fácil sobre su centro de masa que sobre la masa ligera. Y la verificación funciona en ambos sentidos: el teorema conecta los tres valores con una sola resta.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🔩 La varilla por el extremo">
+Una varilla delgada uniforme de masa $$M = 3{,}0\,\mathrm{kg}$$ y longitud $$L = 0{,}80\,\mathrm{m}$$ puede girar alrededor de ejes perpendiculares a ella.
+
+1. Calcule su momento de inercia respecto a un eje por su centro.
+2. Obtenga el momento de inercia respecto a un eje por uno de sus extremos, con el teorema de los ejes paralelos.
+3. Verifique el resultado con la fórmula tabulada $$I = \frac{1}{3}ML^2$$, y explique por qué girar la varilla "por la punta" cuesta más que "por el medio".
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Eje por el centro**
+
+De la tabla:
+
+$$
+I_{\text{cm}} = \frac{1}{12}M L^2 = \frac{(3{,}0\,\mathrm{kg})(0{,}80\,\mathrm{m})^2}{12} = 0{,}16\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**2. Eje por el extremo**
+
+El eje del extremo está a $$d = L/2 = 0{,}40\,\mathrm{m}$$ del eje del centro:
+
+$$
+I_{\text{extremo}} = I_{\text{cm}} + M d^2 = 0{,}16 + (3{,}0\,\mathrm{kg})(0{,}40\,\mathrm{m})^2 = 0{,}16 + 0{,}48 = 0{,}64\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**3. Verificación e interpretación**
+
+$$
+\frac{1}{3}M L^2 = \frac{(3{,}0)(0{,}80)^2}{3} = 0{,}64\,\mathrm{kg}\cdot\mathrm{m^2} \;\checkmark
+$$
+
+El resultado es exactamente el triple del eje central. La razón física: al pasar el eje al extremo, **toda** la masa queda a un solo lado y a distancias en promedio mayores, y en $$I = \int r^2\,dm$$ las distancias entran al cuadrado. La mitad de la varilla que antes estaba "cerca" del eje ahora está a media varilla como mínimo: nada la compensa. En el fondo es la misma lección del ejemplo de la lectura: no manda solo cuánta masa hay, sino a qué distancia está.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — ⚖️ Aro contra disco">
+Un aro delgado y un disco sólido tienen la misma masa, $$M = 2{,}0\,\mathrm{kg}$$, y el mismo radio, $$R = 0{,}30\,\mathrm{m}$$. Ambos giran alrededor de su eje central con energía cinética de $$4{,}0\,\mathrm{J}$$.
+
+1. Calcule el momento de inercia de cada uno.
+2. Calcule la velocidad angular de cada uno.
+3. ¿Cuál gira más rápido? ¿Y cuál sería más "difícil" de detener si ambos giraran a la misma $$\omega$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Momentos de inercia**
+
+$$
+I_{\text{aro}} = M R^2 = (2{,}0)(0{,}30)^2 = 0{,}18\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+$$
+I_{\text{disco}} = \frac{1}{2}M R^2 = 0{,}090\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**2. Velocidades angulares**
+
+De $$K = \frac{1}{2}I\omega^2$$ se despeja $$\omega = \sqrt{2K/I}$$:
+
+$$
+\omega_{\text{aro}} = \sqrt{\frac{2(4{,}0)}{0{,}18}} \approx 6{,}7\,\mathrm{rad/s}, \qquad \omega_{\text{disco}} = \sqrt{\frac{2(4{,}0)}{0{,}090}} \approx 9{,}4\,\mathrm{rad/s}
+$$
+
+**3. Comparación**
+
+Con la misma energía, el disco gira $$\sqrt{2} \approx 1{,}4$$ veces más rápido: su masa repartida hacia el centro le da la mitad del momento de inercia, así que los mismos joules le compran más giro. Pero si ambos giraran a la **misma** velocidad angular, el aro almacenaría el doble de energía (y exigiría el doble de trabajo para frenarse): toda su masa está en el borde, a máxima distancia del eje. Esta es exactamente la razón de diseño de los volantes de inercia: concentrar la masa en el aro maximiza la energía almacenada por cada rad/s de giro.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 🚪 La puerta con contrapeso">
+Una estructura pivotea sobre una bisagra vertical: una varilla delgada uniforme de masa $$M = 3{,}0\,\mathrm{kg}$$ y longitud $$L = 0{,}90\,\mathrm{m}$$, con una esfera pequeña de $$m = 0{,}50\,\mathrm{kg}$$ acoplada en el extremo libre.
+
+1. Calcule el momento de inercia de la varilla respecto a la bisagra.
+2. Calcule el de la esfera y el total.
+3. ¿Qué fracción de la masa representa la esfera? ¿Y qué fracción del momento de inercia? Comente.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Varilla**
+
+La bisagra está a $$L/2$$ del centro de la varilla; la fórmula del extremo aplica directamente:
+
+$$
+I_{\text{varilla}} = \frac{1}{3}M L^2 = \frac{(3{,}0)(0{,}90)^2}{3} = 0{,}81\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**2. Esfera y total**
+
+Toda la masa de la esfera está a $$L$$ del eje:
+
+$$
+I_{\text{esfera}} = m L^2 = (0{,}50)(0{,}90)^2 = 0{,}405\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+$$
+I = 0{,}81 + 0{,}405 = 1{,}2\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**3. Fracciones**
+
+La esfera es el $$0{,}50/3{,}5 = 14\%$$ de la masa, pero aporta $$0{,}405/1{,}215 = 33\%$$ del momento de inercia. Más de un tercio de la "dificultad de giro" proviene de un quinto del material. Cualquiera que haya empujado una puerta pesada con el tirador en el borde —y no junto a las bisagras— ya conocía experimentalmente este resultado.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — ⚙️ Polea, bloque y fricción">
+Una cuerda pasa por una polea de radio $$R = 10\,\mathrm{cm}$$ y masa $$m = 50\,\mathrm{g}$$, que puede modelarse como un disco sólido ($$I = \frac{1}{2}mR^2$$). De un lado, la cuerda se conecta a un bloque de peso $$20\,\mathrm{N}$$ que descansa sobre una mesa horizontal, con coeficiente de fricción cinética $$\mu_k = 0{,}12$$. Del otro lado cuelga un contrapeso de peso $$30\,\mathrm{N}$$. El sistema se suelta del reposo y la cuerda no resbala sobre la polea.
+
+1. Calcule el momento de inercia de la polea.
+2. Use el balance de energía para calcular la rapidez del contrapeso después de descender $$1{,}5\,\mathrm{m}$$.
+3. ¿Qué fracción de la energía entregada se fue a la rotación de la polea?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Momento de inercia de la polea**
+
+$$
+I = \frac{1}{2}m R^2 = \frac{1}{2}(0{,}050\,\mathrm{kg})(0{,}10\,\mathrm{m})^2 = 2{,}5\times 10^{-4}\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+**2. Balance de energía**
+
+Las masas valen $$m_1 = 20/9{,}8 = 2{,}04\,\mathrm{kg}$$ y $$m_2 = 30/9{,}8 = 3{,}06\,\mathrm{kg}$$. El contrapeso baja $$h = 1{,}5\,\mathrm{m}$$; el bloque avanza lo mismo sobre la mesa y la fricción cobra su peaje; la polea gira con $$\omega = v/R$$ (cuerda sin resbalar). Del reposo al estado final:
+
+$$
+m_2 g h - \mu_k m_1 g h = \frac{1}{2}(m_1 + m_2)v^2 + \frac{1}{2}I\left(\frac{v}{R}\right)^2
+$$
+
+$$
+(30)(1{,}5) - (0{,}12)(20)(1{,}5) = 45 - 3{,}6 = 41{,}4\,\mathrm{J}
+$$
+
+$$
+\frac{1}{2}(5{,}10)v^2 + \frac{1}{2}(2{,}5\times 10^{-4})\,(100\,v^2) = (2{,}55 + 0{,}0125)\,v^2
+$$
+
+$$
+v = \sqrt{\frac{41{,}4}{2{,}56}} \approx 4{,}0\,\mathrm{m/s}
+$$
+
+La contabilidad es la de siempre: la gravedad paga $$45\,\mathrm{J}$$, la fricción cobra $$3{,}6\,\mathrm{J}$$, y lo que queda se reparte entre la traslación de las dos masas y el giro de la polea.
+
+**3. La parte rotacional**
+
+$$
+\frac{K_{\text{rot}}}{K_{\text{total}}} = \frac{0{,}0125}{2{,}56} \approx 0{,}5\%
+$$
+
+Ínfima: la polea es liviana ($$50\,\mathrm{g}$$ frente a más de $$5\,\mathrm{kg}$$ de masas). En los problemas con poleas "ideales" de masa despreciable este término simplemente no existe; aquí vimos cómo se inserta cuando la polea es real.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🚗 La energía escondida en las ruedas">
+Un auto de $$1200\,\mathrm{kg}$$ (incluidas sus ruedas) circula a $$25\,\mathrm{m/s}$$ ($$90\,\mathrm{km/h}$$). Cada una de sus cuatro ruedas tiene masa $$15\,\mathrm{kg}$$, radio $$0{,}32\,\mathrm{m}$$ y puede modelarse como un aro ($$I = MR^2$$, con la masa concentrada en el neumático).
+
+1. Calcule la energía cinética de traslación del auto.
+2. Calcule la energía cinética de rotación de las cuatro ruedas.
+3. ¿Qué tanto aumenta la energía total del auto por el giro de sus ruedas?
+4. Al frenar hasta detenerse, ¿a dónde va toda esa energía?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Traslación**
+
+$$
+K_{\text{tras}} = \frac{1}{2}(1200)(25)^2 = 375\,\mathrm{kJ}
+$$
+
+**2. Rotación de las ruedas**
+
+Cada rueda gira sin resbalar: $$\omega = v/R = 25/0{,}32 = 78{,}1\,\mathrm{rad/s}$$, con $$I = MR^2 = (15)(0{,}32)^2 = 1{,}54\,\mathrm{kg}\cdot\mathrm{m^2}$$:
+
+$$
+K_{\text{rueda}} = \frac{1}{2}(1{,}54)(78{,}1)^2 \approx 4{,}7\,\mathrm{kJ} \quad\Rightarrow\quad K_{\text{rot}} = 4 \times 4{,}7 \approx 18{,}8\,\mathrm{kJ}
+$$
+
+**3. Impacto en el total**
+
+$$
+\frac{18{,}8}{375} \approx 5\%
+$$
+
+El giro de las ruedas añade un $$5\%$$ a la energía del auto. No es enorme, pero tampoco cero: los cálculos de frenado y aceleración que ignoren la rotación se quedarán cortos en ese porcentaje.
+
+**4. Al frenar**
+
+Todo se convierte en calor: la traslación y la rotación mueren en los frenos, que disipan $$375 + 18{,}8 \approx 394\,\mathrm{kJ}$$ en cada frenada desde $$90\,\mathrm{km/h}$$. Ese es el principio de la frenada regenerativa de los vehículos eléctricos: en lugar de quemar esos joules en discos rojos, el motor gira al revés y los recupera como electricidad — y cuanto más "volante" sea el vehículo (masa giratoria), más hay que recuperar.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — 🛞 El volante de inercia">
+Un volante de inercia puede modelarse como un disco sólido de masa $$M = 5{,}0\,\mathrm{kg}$$ y radio $$R = 0{,}20\,\mathrm{m}$$, que gira a $$3000\,\mathrm{r.p.m}$$.
+
+1. Calcule su momento de inercia y su velocidad angular.
+2. ¿Cuánta energía cinética almacena?
+3. ¿A qué altura habría que subir el volante (de $$5{,}0\,\mathrm{kg}$$) para que tuviera la misma energía potencial gravitacional?
+4. Los sistemas de recuperación de energía de los autos de carrera usan volantes de este tipo. ¿Qué propiedad de $$I$$ explica que se prefiera un volante pesado y con la masa concentrada en el borde?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Inercia y velocidad angular**
+
+$$
+I = \frac{1}{2}M R^2 = \frac{1}{2}(5{,}0)(0{,}20)^2 = 0{,}10\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+$$
+\omega = \frac{3000 \times 2\pi}{60} = 100\pi \approx 314\,\mathrm{rad/s}
+$$
+
+**2. Energía almacenada**
+
+$$
+K = \frac{1}{2}I\omega^2 = \frac{1}{2}(0{,}10)(314)^2 \approx 4{,}9\,\mathrm{kJ}
+$$
+
+**3. Equivalente en altura**
+
+$$
+h = \frac{K}{Mg} = \frac{4930}{(5{,}0)(9{,}8)} \approx 100\,\mathrm{m}
+$$
+
+Un objeto que cabe en las manos almacena, en su giro, la energía potencial de subirse un edificio de treinta pisos. La energía de rotación es compacta y de acceso rapidísimo: se extrae frenando el volante, sin combustión ni reacciones químicas.
+
+**4. El diseño**
+
+Como $$I \sim M R^2$$, cada kilogramo vale cuadráticamente más cuanto más lejos del eje esté: un volante de aro (masa en el borde) almacena el doble que un disco de la misma masa y radio. Y más masa, directamente, más capacidad. "Pesado y con la masa en el aro" es, literalmente, la fórmula $$I = MR^2$$ llevada al taller.
+
+</details>
+</Aside>
