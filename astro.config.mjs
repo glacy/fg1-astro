@@ -107,9 +107,14 @@ export default defineConfig({
       },
       {
       label: 'Semana 12',
+      collapsed: true,
+      items: [{ autogenerate: { "directory": "semana12" } }]
+    },
+    {
+      label: 'Semana 13',
       badge: 'Nuevo',
       collapsed: false,
-      items: [{ autogenerate: { "directory": "semana12" } }]
+      items: [{ autogenerate: { "directory": "semana13" } }]
     }
       ],
     }),

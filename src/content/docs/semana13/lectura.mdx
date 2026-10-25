@@ -1,29 +1,383 @@
 ---
 title: "Rotación de cuerpos rígidos"
-description: "Material de lectura para la semana 13."
+description: "Rotación de cuerpos rígidos: energía cinética de rotación y momento de inercia de una partícula, un sistema de partículas y un cuerpo rígido; analogía entre masa y momento de inercia; momentos de inercia de cuerpos comunes; teorema de los ejes paralelos y su aplicación a la varilla uniforme; cálculo del momento de inercia de cuerpos compuestos."
 week: 13
-keywords: ["física general I", "semana 13", "TEC Costa Rica"]
+keywords: ["cuerpo rígido", "energía cinética de rotación", "momento de inercia", "distribución de masa", "teorema de los ejes paralelos", "momento de inercia de una varilla", "aro", "disco", "esfera", "eje de rotación", "centro de masa", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-13"]
-category: "semana-13"
-difficulty: "basic"
+date: 2026-10-24
+readingTime: 20
+tags: ["rotación", "momento de inercia", "energía cinética de rotación", "cuerpo rígido"]
+category: "movimiento rotacional"
+difficulty: "intermediate"
 objetivos:
   - "Relacionar la energía cinética de rotación con el momento de inercia de un cuerpo en torno a un eje de rotación."
   - "Relacionar los valores del momento de inercia de un cuerpo para dos ejes de rotación diferentes, pero paralelos."
-  - "Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo."
-draft: true
+  - "Calcular el momento de inercia de sistemas de partículas y de cuerpos compuestos respecto a un eje dado."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-Al finalizar esta semana, serás capaz de:
 
-- Relacionar la energía cinética de rotación con el momento de inercia de un cuerpo en torno a un eje de rotación.
-- Relacionar los valores del momento de inercia de un cuerpo para dos ejes de rotación diferentes, pero paralelos.
-- Relacionar la rotación de un cuerpo rígido con la velocidad y la aceleración lineales de un punto en el cuerpo.
+<PreCheck>
+  - Relacionar la energía cinética de rotación con el momento de inercia de un cuerpo en torno a un eje de rotación.
+  - Relacionar los valores del momento de inercia de un cuerpo para dos ejes de rotación diferentes, pero paralelos.
+  - Calcular el momento de inercia de sistemas de partículas y de cuerpos compuestos respecto a un eje dado.
+</PreCheck>
 
-## Contenido
+La semana pasada pusimos en marcha el movimiento giratorio: posición, velocidad y aceleración angulares describen *cómo* rota un cuerpo. Pero faltaba algo esencial: hasta aquí, toda nuestra física ha tratado con objetos que tienen masa pero no tamaño, o tamaño pero no rotación. Las contabilidades de energía de las semanas 9 a 11 funcionan para partículas que se trasladan; la cinemática rotacional de la semana 12 describe ángulos sin mencionar la masa ni una sola vez. Un disco y una llanta del mismo radio y con la misma velocidad angular tienen la misma descripción cinemática, y sin embargo cuesta muy distinto detenerlos: la diferencia está en *cuánta masa hay y dónde está colocada*.
 
-Contenido de la semana 13 próximamente disponible.
+Esta semana conectamos ambos mundos. Un **cuerpo rígido** es un sistema ideal de partículas cuyas distancias mutuas permanecen fijas; al girar, todos sus puntos comparten la misma velocidad angular $$\omega$$ —como vimos la semana pasada— pero cada punto se mueve con su propia rapidez $$v_i = r_i\,\omega$$, según su distancia al eje. Sumando la energía cinética de todas las partículas aparecerá de forma natural el **momento de inercia** $$I$$, la cantidad que le da a la rotación su propia "masa". El plan: primero construiremos la energía cinética de rotación $$K = \frac{1}{2}I\omega^2$$; luego aprenderemos a trasladar el momento de inercia entre ejes con el **teorema de los ejes paralelos**; y finalmente lo calcularemos para sistemas de partículas y cuerpos compuestos.
+
+## Energía en el movimiento de rotación
+
+Comencemos con lo más simple: una partícula puntual de masa $$m$$ que describe un círculo de radio $$r$$ con rapidez lineal $$v$$. Su energía cinética es la de siempre:
+
+$$
+K = \frac{1}{2}m v^2
+$$
+
+Ahora usemos el puente de la semana pasada, $$v = r\,\omega$$. Sustituyendo y agrupando:
+
+$$
+K = \frac{1}{2}m(r\,\omega)^2 = \frac{1}{2}\left(m r^2\right)\omega^2
+$$
+
+La energía cinética quedó escrita en términos de la velocidad angular, y el factor que la acompaña merece nombre propio: el **momento de inercia** de la partícula respecto al eje de giro,
+
+$$
+I = m r^2
+$$
+
+de modo que la energía cinética rotacional se escribe como:
+
+$$
+K_{\text{rot}} = \frac{1}{2}I\,\omega^2
+$$
+
+El paso a cuerpos reales es inmediato. Un cuerpo rígido es un conjunto de partículas $$m_1, m_2, \ldots, m_N$$ a distancias $$r_1, r_2, \ldots, r_N$$ del eje, y —por ser rígido— **todas comparten la misma $$\omega$$**: eso es exactamente lo que estudiamos en la semana 12. La energía cinética total es la suma de las individuales:
+
+$$
+K_{\text{total}} = \sum_i \frac{1}{2}m_i v_i^2 = \frac{1}{2}\sum_i m_i (r_i\,\omega)^2 = \frac{1}{2}\left(\sum_i m_i r_i^2\right)\omega^2
+$$
+
+Como $$\omega$$ es común a todas las partículas, sale de la suma y queda definido el momento de inercia del sistema:
+
+$$
+I = \sum_i m_i\, r_i^2
+$$
+
+Para un cuerpo continuo —donde las "partículas" son elementos diferenciales de masa $$dm$$— la suma se vuelve integral, con el mismo espíritu de las integrales de trabajo de la semana 10:
+
+$$
+I = \int r^2\, dm
+$$
+
+La estructura de $$K_{\text{rot}} = \frac{1}{2}I\omega^2$$ es un calco de $$K = \frac{1}{2}mv^2$$: basta cambiar $$v \to \omega$$ y $$m \to I$$. Y la analogía va más allá de la notación: **el momento de inercia mide la resistencia de un cuerpo a cambiar su estado de rotación**, igual que la masa mide su resistencia a cambiar su estado de traslación. Pero hay una diferencia esencial: la masa es una propiedad del cuerpo, mientras que el momento de inercia depende también del **eje elegido** y de cómo se distribuye la masa respecto a él. Masa lejos del eje pesa mucho más que masa cerca: en $$I$$ cada porción de masa entra multiplicada por el **cuadrado** de su distancia al eje. Por eso una llanta, con su masa concentrada en el aro, es más "difícil de girar" que un disco sólido de la misma masa y radio.
+
+| Cuerpo | Eje | $$I$$ |
+| :--- | :--- | :--- |
+| Aro delgado | perpendicular al plano, por el centro | $$M R^2$$ |
+| Disco sólido | perpendicular al plano, por el centro | $$\frac{1}{2}M R^2$$ |
+| Varilla delgada | perpendicular, por el centro | $$\frac{1}{12}M L^2$$ |
+| Varilla delgada | perpendicular, por un extremo | $$\frac{1}{3}M L^2$$ |
+| Esfera sólida | por el centro | $$\frac{2}{5}M R^2$$ |
+
+Estas fórmulas —consecuencia de la integral $$I = \int r^2\,dm$$ para cada geometría— son las piezas con que armaremos cuerpos compuestos en la última sección. Guarde en particular el resultado de la varilla por el centro: reaparecerá enseguida.
+
+<Box icon="check-list">
+
+**Ejemplo — la polea compuesta entra al balance de energía**
+
+Una polea de dos escalones —de radios $$R_1$$ y $$R_2$$— gira sin fricción sobre su eje. Una cuerda enrollada en el escalón pequeño sostiene una masa $$m_1$$, y otra cuerda enrollada en el escalón grande sostiene una masa $$m_2$$. Al soltar el sistema, las masas se mueven y la polea gira un ángulo $$\Delta\theta$$. Escribamos el balance de energía con la maquinaria de la semana 9, ahora con una línea nueva.
+
+Si las cuerdas no resbalan, cada masa sube o baja exactamente lo que su cuerda se enrolla o desenrolla: la masa 1 sube $$R_1\,\Delta\theta$$ y la masa 2 baja $$R_2\,\Delta\theta$$. La energía mecánica se conserva:
+
+$$
+0 = -m_1 g\,R_1\,\Delta\theta + m_2 g\,R_2\,\Delta\theta + \frac{1}{2}m_1 v_1^2 + \frac{1}{2}m_2 v_2^2 + \frac{1}{2}I_{\text{polea}}\,\omega^2
+$$
+
+Léalo término a término como una lista de pagos y cobros: la masa 1 **sube** y cobra energía potencial ($$-m_1 g R_1\Delta\theta$$); la masa 2 **baja** y la paga ($$+m_2 g R_2\Delta\theta$$); lo que queda se reparte entre la energía cinética de traslación de las dos masas y —la novedad— la energía cinética de rotación de la polea. La condición de no resbalar conecta todos los movimientos:
+
+$$
+\omega = \frac{v_1}{R_1} = \frac{v_2}{R_2}
+$$
+
+Nada del método cambió: el balance de energía de las semanas 9 y 10 admite la rotación con solo **añadir un renglón** al inventario, $$\frac{1}{2}I\omega^2$$, y una condición cinemática, la de no resbalar.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. El momento de inercia de una partícula de masa $$m$$ a una distancia $$r$$ del eje es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$m r$$
+      </Option>
+      <Option isCorrect>
+        $$m r^2$$
+      </Option>
+      <Option>
+        $$\frac{1}{2}m r^2$$
+      </Option>
+      <Option>
+        $$m^2 r$$
+      </Option>
+    </MultipleChoice>
+
+2. La energía cinética de rotación de un cuerpo rígido se escribe __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\frac{1}{2}m\,\omega^2$$
+      </Option>
+      <Option>
+        $$\frac{1}{2}I\,v^2$$
+      </Option>
+      <Option isCorrect>
+        $$\frac{1}{2}I\,\omega^2$$
+      </Option>
+      <Option>
+        $$I\,\omega$$
+      </Option>
+    </MultipleChoice>
+
+3. En un cuerpo rígido que gira, todas las partículas comparten la misma __________.
+
+    <MultipleChoice>
+      <Option>
+        rapidez lineal
+      </Option>
+      <Option>
+        distancia al eje
+      </Option>
+      <Option>
+        energía cinética
+      </Option>
+      <Option isCorrect>
+        velocidad angular
+      </Option>
+
+    </MultipleChoice>
+
+</Box>
+
+## Teorema de los ejes paralelos
+
+El momento de inercia no es una propiedad del cuerpo a secas: depende del eje. Y en muchos problemas prácticos el cuerpo no gira sobre un eje "amable" que pase por su centro de masa: una puerta gira sobre sus bisagras, una varilla pivotada gira por su extremo, una rueda de bicicleta gira por su eje pero una manivela puede obligarla a girar por otro lado. ¿Hay que rehacer la integral cada vez que cambia el eje? No: si conocemos el momento de inercia respecto a un eje que pasa por el centro de masa, el **teorema de los ejes paralelos** lo transporta a cualquier eje paralelo:
+
+$$
+I = I_{\text{cm}} + M d^2
+$$
+
+donde $$M$$ es la masa total del cuerpo y $$d$$ la distancia entre los dos ejes. Dos lecturas de esta fórmula:
+
+- $$I_{\text{cm}}$$ es el **mínimo**: cualquier otro eje paralelo, a cualquier distancia, produce un momento de inercia mayor. El centro de masa es el punto de giro "más barato" del cuerpo.
+- El precio de alejar el eje crece con $$d^2$$: mover el eje al doble de distancia **cuadruplica** el término de corrección, igual que duplicar la rapidez cuadruplica la energía cinética.
+
+La verificación más sencilla es la varilla delgada, de la que conocemos $$I_{\text{cm}} = \frac{1}{12}M L^2$$ para el eje perpendicular por su centro.
+
+<Box icon="check-list">
+
+**Ejemplo — la varilla pivoteada por un extremo**
+
+Una varilla delgada uniforme de masa $$M$$ y longitud $$L$$ gira alrededor de un eje perpendicular que pasa por uno de sus extremos. ¿Cuál es su momento de inercia?
+
+El eje del extremo es paralelo al eje del centro de masa, separado una distancia $$d = L/2$$. Aplicando el teorema:
+
+$$
+I_{\text{extremo}} = I_{\text{cm}} + M d^2 = \frac{M L^2}{12} + M\left(\frac{L}{2}\right)^2 = \frac{M L^2}{12} + \frac{M L^2}{4} = \frac{M L^2}{3}
+$$
+
+que es exactamente la cuarta fila de la tabla de la sección anterior. Observe la magnitud del cambio: girar la varilla sobre su extremo cuesta **el triple** que girarla sobre su centro, aunque se trate del mismo cuerpo con la misma masa. La razón es la ponderación cuadrática de $$I$$: al alejar el eje, la mitad "lejana" de la varilla —que ya estaba lejos— queda muchísimo más lejos en términos de $$r^2$$. Es la diferencia entre girar un paraguas sobre su punta y girarlo agarrado por el medio.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Para aplicar el teorema de los ejes paralelos, $$I_{\text{cm}}$$ debe calcularse respecto a un eje que __________.
+
+    <MultipleChoice>
+      <Option isCorrect>
+        pase por el centro de masa y sea paralelo al otro eje
+      </Option>
+      <Option>
+        pase por cualquier punto del cuerpo
+      </Option>
+      <Option>
+        pase por un extremo del cuerpo
+      </Option>
+      <Option>
+        sea perpendicular al cuerpo
+      </Option>
+    </MultipleChoice>
+
+2. El momento de inercia de un cuerpo es **mínimo** respecto a un eje que pasa por __________.
+
+    <MultipleChoice>
+      <Option>
+        el punto más cercano al suelo
+      </Option>
+      <Option>
+        un extremo del cuerpo
+      </Option>
+      <Option>
+        el punto más masivo
+      </Option>
+
+
+ 
+      <Option isCorrect>
+        el centro de masa
+      </Option>
+    </MultipleChoice>
+
+3. Si la distancia entre dos ejes paralelos se duplica, el término de corrección $$M d^2$$ __________.
+
+    <MultipleChoice>
+      <Option>
+        se duplica
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+      <Option isCorrect>
+        se cuadruplica
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+    </MultipleChoice>
+
+4. Una varilla uniforme tiene $$I = \frac{1}{3}M L^2$$ respecto a un eje por su extremo y $$I = \frac{1}{12}M L^2$$ por su centro. La razón entre el primero y el segundo es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\frac{1}{4}$$
+      </Option>
+      <Option>
+        $$\frac{1}{2}$$
+      </Option>
+      <Option isCorrect>
+        $$4$$
+      </Option>
+      <Option>
+        $$3$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Cálculo del momento de inercia
+
+Nos queda la habilidad operativa: calcular $$I$$ para un cuerpo cualquiera respecto a un eje dado. Para sistemas de **partículas puntuales**, la definición hace todo el trabajo: cada masa entra multiplicada por el cuadrado de su distancia al eje, y las que están sobre el eje no aportan nada. Tomemos dos masas, $$m_1 = 2{,}0\,\mathrm{kg}$$ y $$m_2 = 3{,}0\,\mathrm{kg}$$, unidas por una varilla despreciable de $$1{,}5\,\mathrm{m.}$$ Respecto a un eje que pasa por la masa de $$2{,}0\,\mathrm{kg}$$, solo la otra masa cuenta:
+
+$$
+I = (2{,}0)(0)^2 + (3{,}0)(1{,}5)^2 = 6{,}8\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+mientras que respecto a un eje paralelo por el centro de masa —que está a $$0{,}90\,\mathrm{m}$$ de la masa de $$2{,}0\,\mathrm{kg}$$—
+
+$$
+I_{\text{cm}} = (2{,}0)(0{,}90)^2 + (3{,}0)(0{,}60)^2 = 2{,}7\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+Casi tres veces menos, consistente con el teorema: $$I = I_{\text{cm}} + M d^2 = 2{,}7 + (5{,}0)(0{,}90)^2 = 6{,}8\,\mathrm{kg}\cdot\mathrm{m^2}$$. La misma masa, ejes distintos: momentos de inercia distintos.
+
+Para **cuerpos compuestos**, la estrategia es sumar contribuciones: el momento de inercia total respecto a un eje es la suma de los momentos de inercia de cada pieza **respecto a ese mismo eje**. Cuando la fórmula de una pieza está referida a su propio centro de masa (como las de la tabla), el teorema de los ejes paralelos la traslada primero al eje del problema.
+
+<Box icon="check-list">
+
+**Ejemplo — una estructura pivoteada por una bisagra**
+
+Una varilla delgada uniforme de masa $$M = 2{,}0\,\mathrm{kg}$$ y longitud $$L = 1{,}2\,\mathrm{m}$$ está fija por un extremo a una bisagra. En el extremo libre lleva acoplada una esfera pequeña, que trataremos como masa puntual de $$m = 0{,}50\,\mathrm{kg}$$. ¿Cuál es el momento de inercia del conjunto respecto al eje de la bisagra?
+
+Sumemos las dos piezas respecto al eje de la bisagra:
+
+- **La varilla**: su fórmula tabulada es para el eje por su centro; la bisagra está a $$L/2$$. Por el teorema de los ejes paralelos, o directamente la fila de la tabla:
+
+$$
+I_{\text{varilla}} = \frac{1}{3}M L^2 = \frac{(2{,}0\,\mathrm{kg})(1{,}2\,\mathrm{m})^2}{3} = 0{,}96\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+- **La esfera**: toda su masa está a distancia $$L$$ del eje:
+
+$$
+I_{\text{esfera}} = m L^2 = (0{,}50\,\mathrm{kg})(1{,}2\,\mathrm{m})^2 = 0{,}72\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+- **El total**:
+
+$$
+I = 0{,}96 + 0{,}72 = 1{,}68\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+Vale la pena detenerse en el último número: la esfera aporta solo el $$20\%$$ de la masa ($$0{,}50$$ de $$2{,}5\,\mathrm{kg}$$), pero el $$43\%$$ del momento de inercia. Está en el lugar peor posible: lejos del eje, y su distancia entra al cuadrado. En $$I$$ no manda solo cuánta masa hay, sino **dónde** está.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En un sistema de masas puntuales, las masas ubicadas exactamente sobre el eje de rotación __________.
+
+    <MultipleChoice>
+      <Option>
+        aportan su masa completa al momento de inercia
+      </Option>
+      <Option isCorrect>
+        no aportan nada al momento de inercia
+      </Option>
+      <Option>
+        aportan la mitad de su contribución
+      </Option>
+      <Option>
+        aportan según su velocidad lineal
+      </Option>
+    </MultipleChoice>
+
+2. Para hallar el momento de inercia de un cuerpo compuesto respecto a un eje, se __________.
+
+    <MultipleChoice>
+      <Option>
+        usa solo la pieza más masiva
+      </Option>
+      <Option>
+        promedian los momentos de inercia de las piezas
+      </Option>
+      <Option>
+        multiplican los momentos de inercia de las piezas
+      </Option>
+      <Option isCorrect>
+        suman los momentos de inercia de las piezas respecto a ese mismo eje
+      </Option>
+    </MultipleChoice>
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Cuerpo rígido | distancias fijas entre partículas | todas las partes comparten $$\omega$$ |
+| Momento de inercia (partícula) | $$I = m r^2$$ | respecto al eje de giro |
+| Momento de inercia (sistema) | $$I = \sum m_i r_i^2$$ | suma ponderada por $$r^2$$ |
+| Momento de inercia (cuerpo continuo) | $$I = \int r^2\, dm$$ | la masa lejana pesa cuadráticamente |
+| Energía cinética de rotación | $$K_{\text{rot}} = \frac{1}{2}I\,\omega^2$$ | análoga a $$\frac{1}{2}mv^2$$ |
+| Aro delgado | $$I = M R^2$$ | eje central perpendicular |
+| Disco sólido | $$I = \frac{1}{2}M R^2$$ | eje central perpendicular |
+| Varilla por el centro | $$I = \frac{1}{12}M L^2$$ | eje perpendicular |
+| Varilla por un extremo | $$I = \frac{1}{3}M L^2$$ | teorema de ejes paralelos |
+| Esfera sólida | $$I = \frac{2}{5}M R^2$$ | eje por el centro |
+| Teorema de los ejes paralelos | $$I = I_{\text{cm}} + M d^2$$ | $$I_{\text{cm}}$$ es el mínimo |
+| Cuerpos compuestos | $$I = \sum I_{\text{piezas}}$$ | cada pieza respecto al mismo eje |
+
+La semana le devolvió la masa a la rotación. El momento de inercia juega, en $$K = \frac{1}{2}I\omega^2$$, el papel que la masa juega en $$K = \frac{1}{2}mv^2$$ — con la diferencia de que depende del eje y castiga cuadráticamente la distancia, de modo que **dónde** está la masa importa tanto como **cuánta** hay. Con el teorema de los ejes paralelos y la suma por piezas, cualquier cuerpo puede caracterizarse respecto a cualquier eje; y con el balance de energía ampliado, podemos ya predecir rapideces en sistemas con poleas, varillas y ruedas. En la práctica de la semana calcularemos momentos de inercia de cuadrados de masas, estructuras con bisagras y volantes, y pondremos a trabajar el balance de energía en sistemas donde la rotación no es opcional. La semana siguiente pasaremos de la energía a las fuerzas: la **torca**, el análogo rotacional de la fuerza, y la segunda ley de Newton para la rotación, $$\sum\tau = I\alpha$$.
