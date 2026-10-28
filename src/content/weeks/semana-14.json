@@ -1,10 +1,11 @@
 {
   "id": 14,
   "title": "Dinámica del movimiento de rotación",
-  "image": "https://images.unsplash.com/photo-1707194402198-167726d7f687?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1704732061018-3ac738176c20?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
-    "Determinar como la torca neta sobre un cuerpo afecta su movimiento de rotación.",
-    "Analizar el movimiento de un cuerpo que gira y se mueve como un todo en el espacio."
+    "Definir la torca de una fuerza respecto a un eje y calcularla a partir de su brazo de palanca o de sus componentes.",
+    "Determinar cómo la torca neta sobre un cuerpo afecta su movimiento de rotación, mediante la segunda ley de Newton para la rotación.",
+    "Analizar el movimiento de un cuerpo que se traslada y rota a la vez, en particular el rodamiento sin deslizamiento, mediante el balance de energía."
   ],
   "contenidos": [
     "Torca (sección 10.1).",
@@ -31,10 +32,5 @@
     }
   ],
   "recursos": [
-    {
-      "text": "Solución Práctica Semana 13",
-      "url": "/soluciones/solucion_practica_semana13.pdf",
-      "icon": "lucide:calculator"
-    }
   ]
 }

@@ -1,27 +1,430 @@
 ---
 title: "Dinámica del movimiento de rotación"
-description: "Material de lectura para la semana 14."
+description: "Dinámica del movimiento de rotación: torca de una fuerza respecto a un eje, brazo de palanca y producto vectorial; segunda ley de Newton para la rotación, torca neta y aceleración angular; energía cinética de un cuerpo que se traslada y rota; rodamiento sin deslizamiento y su tratamiento energético."
 week: 14
-keywords: ["física general I", "semana 14", "TEC Costa Rica"]
+keywords: ["torca", "momento de fuerza", "brazo de palanca", "producto vectorial", "segunda ley de Newton para la rotación", "aceleración angular", "eje móvil", "rodamiento sin deslizamiento", "rodadura", "energía cinética total", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-14"]
-category: "semana-14"
-difficulty: "basic"
+date: 2026-10-31
+readingTime: 20
+tags: ["torca", "dinámica rotacional", "rodamiento", "segunda ley de Newton"]
+category: "movimiento rotacional"
+difficulty: "intermediate"
 objetivos:
-  - "Determinar como la torca neta sobre un cuerpo afecta su movimiento de rotación."
-  - "Analizar el movimiento de un cuerpo que gira y se mueve como un todo en el espacio."
-draft: true
+  - "Definir la torca de una fuerza respecto a un eje y calcularla a partir de su brazo de palanca o de sus componentes."
+  - "Determinar cómo la torca neta sobre un cuerpo afecta su movimiento de rotación, mediante la segunda ley de Newton para la rotación."
+  - "Analizar el movimiento de un cuerpo que se traslada y rota a la vez, en particular el rodamiento sin deslizamiento, mediante el balance de energía."
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-Al finalizar esta semana, serás capaz de:
 
-- Determinar como la torca neta sobre un cuerpo afecta su movimiento de rotación.
-- Analizar el movimiento de un cuerpo que gira y se mueve como un todo en el espacio.
+<PreCheck>
+  - Definir la torca de una fuerza respecto a un eje y calcularla a partir de su brazo de palanca o de sus componentes.
+  - Determinar cómo la torca neta sobre un cuerpo afecta su movimiento de rotación, mediante la segunda ley de Newton para la rotación.
+  - Analizar el movimiento de un cuerpo que se traslada y rota a la vez, en particular el rodamiento sin deslizamiento, mediante el balance de energía.
+</PreCheck>
 
-## Contenido
+La semana pasada le devolvimos la masa a la rotación: el momento de inercia $$I$$ ocupa, en $$K = \frac{1}{2}I\omega^2$$, el lugar que la masa ocupa en la energía de traslación. Pero nos falta el motor del cambio. En las semanas 6 y 7 aprendimos que una **fuerza neta** es lo que altera el estado de traslación de un cuerpo; sin embargo, la fuerza sola no alcanza para describir lo que ocurre cuando empujamos una puerta, apretamos un tornillo o pedaleamos: todos sabemos que empujar una puerta junto a las bisagras, por fuerte que sea el empuje, no la abre. Lo que abre la puerta no es la magnitud de la fuerza, sino *dónde* y *cómo* se aplica.
 
-Contenido de la semana 14 próximamente disponible.
+Ese "dónde y cómo" lo cuantifica la **torca** (también llamada momento de fuerza): la tendencia de una fuerza a producir rotación respecto a un eje. Esta semana construimos la dinámica rotacional completa en tres pasos: primero definiremos la torca y su brazo de palanca; luego escribiremos la **segunda ley de Newton para la rotación**, donde la torca neta produce aceleración angular con el momento de inercia como factor de proporcionalidad; y finalmente aplicaremos todo a cuerpos que se trasladan y giran a la vez —el caso estrella es el **rodamiento sin deslizamiento** de ruedas y cilindros—.
+
+## Torca
+
+Cuando una fuerza $$\vec{F}$$ se aplica en un punto cuya posición relativa al eje de rotación es $$\vec{r}$$, su capacidad de provocar giro se cuantifica con el producto vectorial:
+
+$$
+\vec{\tau} = \vec{r} \times \vec{F}
+$$
+
+La notación de producto vectorial condensa tres hechos físicos en una sola línea. Su magnitud es:
+
+$$
+\tau = r\,F\,\sin\theta
+$$
+
+donde $$\theta$$ es el ángulo entre $$\vec{r}$$ y $$\vec{F}$$. De aquí se leen las tres propiedades esenciales de la torca:
+
+- Es **máxima** cuando la fuerza es perpendicular al vector de posición ($$\theta = 90^\circ$$): empujar la puerta de un tirón frontal al borde libre es lo más eficaz.
+- Es **nula** cuando la fuerza apunta a lo largo de $$\vec{r}$$ ($$\theta = 0^\circ$$ o $$180^\circ$$): una fuerza dirigida hacia las bisagras, por intensa que sea, no gira nada.
+- Su dirección es **perpendicular al plano** que forman $$\vec{r}$$ y $$\vec{F}$$, con el sentido que fija la regla de la mano derecha —la misma de la semana 12—.
+
+Cuando $$\vec{r}$$ y $$\vec{F}$$ viven en el plano de giro, la magnitud se puede reorganizar de dos maneras equivalentes:
+
+$$
+\tau_z = r\,F\,\sin\theta = r\,F_{\perp} = r_{\perp}\,F
+$$
+
+Aquí $$F_{\perp}$$ es la componente de la fuerza perpendicular a $$\vec{r}$$, y $$r_{\perp}$$ es la **distancia perpendicular del eje a la línea de acción de la fuerza**, llamada **brazo de palanca**. Las dos lecturas cuentan la misma historia con distintas palabras: solo la componente de la fuerza cruzada al brazo produce torca, y solo el brazo cruzado a la fuerza produce torca. El brazo de palanca explica por qué un tirador va en el borde de la puerta (máximo $$r_{\perp}$$) y por qué un cascanueces tiene mangos largos.
+
+El signo registra el sentido del giro que la torca tendería a producir: por convención, positivas las torcas que giran en sentido antihorario y negativas las que giran en sentido horario, vistas desde el lado del eje $$z$$ positivo.
+
+<Box icon="check-list">
+
+**Ejemplo — la llave de tuercas**
+
+Una fuerza de $$17\,\mathrm{N}$$ se aplica en el extremo de una llave de tuercas de $$25\,\mathrm{cm}$$ de longitud, formando un ángulo de $$37^\circ$$ con el mango de la llave (el ángulo entre $$\vec{F}$$ y la prolongación de $$\vec{r}$$ es de $$143^\circ$$). ¿Qué torca produce?
+
+Con el brazo de palanca: la distancia perpendicular del tornillo a la línea de acción de la fuerza es
+
+$$
+r_{\perp} = r\,\sin 37^\circ = (0{,}25\,\mathrm{m})(0{,}602) = 0{,}15\,\mathrm{m}
+$$
+
+y la torca resulta:
+
+$$
+\tau = r_{\perp}\,F = (0{,}15\,\mathrm{m})(17\,\mathrm{N}) \approx 2{,}6\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+(Usamos $$\sin 37^\circ$$ y no $$\sin 143^\circ$$ gracias a la identidad $$\sin(180^\circ - \theta) = \sin\theta$$: ambas formas dan lo mismo.)
+
+La fuerza "desperdicia" buena parte de su potencial: aplicada perpendicular al mango, la misma fuerza de $$17\,\mathrm{N}$$ produciría $$\tau_{\text{máx}} = rF = (0{,}25)(17) = 4{,}3\,\mathrm{N}\cdot\mathrm{m}$$, un $$60\%$$ más. Con apenas un $$60\%$$ de eficiencia ($$\sin 37^\circ = 0{,}60$$), esta forma de jalar es la de quien se cansa sin aflojar la tuerca. Y si la fuerza apuntara a lo largo del mango —directamente hacia o desde el tornillo—, la torca sería exactamente cero: mucha fuerza, nula torca.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. La torca de una fuerza es máxima cuando el ángulo entre $$\vec{r}$$ y $$\vec{F}$$ es de __________.
+
+    <MultipleChoice>
+      <Option>
+        $$0^\circ$$
+      </Option>
+      <Option>
+        $$37^\circ$$
+      </Option>
+      <Option isCorrect>
+        $$90^\circ$$
+      </Option>
+      <Option>
+        $$180^\circ$$
+      </Option>
+    </MultipleChoice>
+
+2. El brazo de palanca es __________.
+
+    <MultipleChoice>
+      <Option>
+        la distancia entre el punto de aplicación y el origen
+      </Option>
+      <Option>
+        la componente de la fuerza perpendicular a $$\vec{r}$$
+      </Option>
+      <Option isCorrect>
+        la distancia perpendicular del eje a la línea de acción de la fuerza
+      </Option>
+      <Option>
+        el largo del cuerpo que gira
+      </Option>
+    </MultipleChoice>
+
+3. Una fuerza se aplica en el punto medio de una puerta, dirigida horizontalmente **hacia las bisagras**. La torca respecto a las bisagras es __________.
+
+    <MultipleChoice>
+      <Option>
+        máxima
+      </Option>
+      <Option>
+        positiva
+      </Option>
+      <Option>
+        la mitad del máximo
+      </Option>
+      <Option isCorrect>
+        nula
+      </Option>
+    </MultipleChoice>
+
+4. Si se duplica la distancia de aplicación manteniendo la misma fuerza perpendicular, la torca __________.
+
+    <MultipleChoice>
+      <Option>
+        no cambia
+      </Option>
+      <Option isCorrect>
+        se duplica
+      </Option>
+      <Option>
+        se cuadruplica
+      </Option>
+      <Option>
+        se reduce a la mitad
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Torca y aceleración angular de un cuerpo rígido
+
+La segunda ley de Newton dice que la fuerza neta causa aceleración lineal: $$\sum\vec{F} = m\vec{a}$$. Para la rotación ocurre lo mismo con la torca en el papel de la fuerza: **la torca neta sobre un cuerpo rígido causa aceleración angular**, y el factor de proporcionalidad es el momento de inercia de la semana pasada:
+
+$$
+\sum \tau_z = I_z\,\alpha_z
+$$
+
+donde $$z$$ es el eje de giro. La analogía línea a línea es completa:
+
+| Traslación | Rotación |
+| :--- | :--- |
+| Fuerza $$F$$ | Torca $$\tau$$ |
+| Masa $$m$$ | Momento de inercia $$I$$ |
+| Aceleración $$a$$ | Aceleración angular $$\alpha$$ |
+| $$\sum F = ma$$ | $$\sum\tau = I\alpha$$ |
+
+La ecuación explica de una vez el papel de $$I$$: a igual torca, el cuerpo con mayor momento de inercia adquiere menor aceleración angular. Un disco y un aro de la misma masa y radio, empujados con la misma torca: el disco (mitad del $$I$$) gira el doble de rápido en aceleración. Y si la torca neta es nula, $$\alpha = 0$$: el cuerpo mantiene su rotación constante o permanece en reposo rotacional — una condición que la semana siguiente, dedicada al equilibrio, explotará a fondo.
+
+<Box icon="check-list">
+
+**Ejemplo — arrancar una polea con un jalón**
+
+Un cable se arrolla en una polea de masa $$M = 50\,\mathrm{kg}$$ y radio $$R = 0{,}120\,\mathrm{m}$$, montada sobre un eje sin fricción. Si se jala del cable con una fuerza constante de $$9{,}0\,\mathrm{N}$$, ¿qué aceleración angular adquiere la polea?
+
+La torca del jalón es máxima, porque el cable sale tangencialmente del borde: el brazo de palanca es $$R$$.
+
+$$
+\tau = F\,R = (9{,}0\,\mathrm{N})(0{,}120\,\mathrm{m}) = 1{,}08\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+La polea es un disco sólido: $$I = \frac{1}{2}MR^2 = \frac{1}{2}(50\,\mathrm{kg})(0{,}120\,\mathrm{m})^2 = 0{,}36\,\mathrm{kg}\cdot\mathrm{m^2}$$. La segunda ley rotacional da:
+
+$$
+\alpha = \frac{\tau}{I} = \frac{1{,}08\,\mathrm{N}\cdot\mathrm{m}}{0{,}36\,\mathrm{kg}\cdot\mathrm{m^2}} = 3{,}0\,\mathrm{rad/s^2}
+$$
+
+Nueve newtons no parecen mucho para mover cincuenta kilos, y no lo son: la aceleración es modesta porque el momento de inercia de la polea es grande. Tras $$5{,}0\,\mathrm{s}$$ de jalón constante, la polea habría alcanzado $$\omega = \alpha t = 15\,\mathrm{rad/s}$$, girando $$\theta = \frac{1}{2}\alpha t^2 \approx 38\,\mathrm{rad} \approx 6{,}0\,\mathrm{vueltas}$$. La dinámica rotacional conversa sin fricción con la cinemática de la semana 12: la segunda ley entrega $$\alpha$$, y las ecuaciones de $$\theta$$, $$\omega$$ y $$t$$ hacen el resto.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. La segunda ley de Newton para la rotación establece que __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\sum F = I\alpha$$
+      </Option>
+      <Option isCorrect>
+        $$\sum \tau = I\alpha$$
+      </Option>
+      <Option>
+        $$\sum \tau = m a$$
+      </Option>
+      <Option>
+        $$\sum \tau = I\omega$$
+      </Option>
+    </MultipleChoice>
+
+2. Dos cuerpos reciben la misma torca neta. El de mayor momento de inercia adquiere __________.
+
+    <MultipleChoice>
+      <Option>
+        mayor aceleración angular
+      </Option>
+      <Option>
+        la misma aceleración angular
+      </Option>
+      <Option isCorrect>
+        menor aceleración angular
+      </Option>
+      <Option>
+        mayor velocidad angular instantánea
+      </Option>
+    </MultipleChoice>
+
+3. Si la torca neta sobre un cuerpo que gira es nula, el cuerpo __________.
+
+    <MultipleChoice>
+      <Option>
+        se detiene
+      </Option>
+      <Option>
+        gira con aceleración constante
+      </Option>
+      <Option isCorrect>
+        mantiene su velocidad angular constante (que puede ser cero)
+      </Option>
+      <Option>
+        invierte su sentido de giro
+      </Option>
+    </MultipleChoice>
+
+4. Se jala de un cable enrollado en el borde de una polea. La torca es máxima porque __________.
+
+    <MultipleChoice>
+      <Option>
+        la polea es redonda
+      </Option>
+      <Option>
+        el cable es ligero
+      </Option>
+      <Option isCorrect>
+        el cable sale tangente: el brazo de palanca es el radio completo
+      </Option>
+      <Option>
+        la fuerza es paralela al eje
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Rotación en torno a un eje móvil: el rodamiento
+
+Todo lo anterior asume un eje fijo. Pero los objetos reales suelen hacer ambas cosas a la vez: una rueda de bicicleta **se traslada** con la bicicleta y **rota** sobre su eje. La buena noticia es que no hace falta una física nueva. Cuando un cuerpo rígido se traslada y rota simultáneamente, su movimiento se descompone en una traslación del centro de masa —con toda la masa concentrada allí, como vimos en la semana 11— más una rotación alrededor de un eje que pasa por el centro de masa. La energía cinética total es la suma de ambas contribuciones:
+
+$$
+K_{\text{total}} = \frac{1}{2}m\,v_{\text{cm}}^2 + \frac{1}{2}I_{\text{cm}}\,\omega^2
+$$
+
+El caso más importante es el **rodamiento sin deslizamiento**: una rueda o cilindro que avanza sobre una superficie "agarrándose" de ella. En cada instante, el punto del cuerpo que toca la superficie está **momentáneamente en reposo** respecto a ella — no hay deslizamiento, así que la fricción que actúa es estática y, como el punto de contacto no se desplaza, **esa fricción no realiza trabajo**. El contacto sin resbalar liga la traslación con el giro:
+
+$$
+v_{\text{cm}} = \omega\,R
+$$
+
+Con esta condición, el balance de energía de la semana 9 funciona intacto:
+
+$$
+E = \frac{1}{2}m\,v_{\text{cm}}^2 + \frac{1}{2}I_{\text{cm}}\,\omega^2 + M g\,y_{\text{cm}} = \text{constante}
+$$
+
+Un resultado elegante cae de inmediato: la **carrera de rodadura**. Si un aro, un disco y una esfera sólidos, del mismo radio y masa, se sueltan desde el reposo y ruedan sin deslizar por un plano inclinado que desciende una altura $$h$$, la energía se reparte entre traslación y rotación según cuánto valga su $$I_{\text{cm}}$$:
+
+$$
+M g h = \frac{1}{2}M v_{\text{cm}}^2 + \frac{1}{2}I_{\text{cm}}\frac{v_{\text{cm}}^2}{R^2}
+\quad\Rightarrow\quad
+v_{\text{cm}} = \sqrt{\frac{2 g h}{1 + \frac{I_{\text{cm}}}{M R^2}}}
+$$
+
+El factor $$I_{\text{cm}}/MR^2$$ decide la carrera: vale $$1$$ para el aro, $$\frac{1}{2}$$ para el disco y $$\frac{2}{5}$$ para la esfera. Con $$h = 1{,}0\,\mathrm{m}$$:
+
+| Cuerpo | $$I_{\text{cm}}/MR^2$$ | $$v_{\text{cm}}$$ al pie |
+| :--- | :--- | :--- |
+| Aro | $$1$$ | $$\sqrt{gh} = 3{,}1\,\mathrm{m/s}$$ |
+| Disco | $$\frac{1}{2}$$ | $$\sqrt{\tfrac{4}{3}gh} = 3{,}6\,\mathrm{m/s}$$ |
+| Esfera | $$\frac{2}{5}$$ | $$\sqrt{\tfrac{10}{7}gh} = 3{,}7\,\mathrm{m/s}$$ |
+
+La esfera gana y el aro pierde: quien destina menor fracción de su energía al giro tiene más disponible para avanzar. Note lo que **no** aparece en la fórmula: ni la masa ni el radio. Todos los aros empatan entre sí, todos los discos empatan entre sí, sin importar su tamaño ni su peso — solo la forma (la distribución de masa) decide.
+
+<Box icon="check-list">
+
+**Ejemplo — el cilindro que baja rodando**
+
+Un cilindro sólido de $$m = 6{,}0\,\mathrm{kg}$$ y radio $$R = 0{,}20\,\mathrm{m}$$ parte del reposo y rueda sin deslizar por un plano inclinado de $$30^\circ$$, recorriéndolo hasta descender $$h = 1{,}0\,\mathrm{m}$$. ¿Con qué rapidez llega abajo? ¿Cómo se reparte su energía?
+
+Como no hay deslizamiento, la fricción estática no trabaja y la energía mecánica se conserva:
+
+$$
+m g h = \frac{1}{2}m v_{\text{cm}}^2 + \frac{1}{2}I_{\text{cm}}\,\omega^2
+$$
+
+Con $$I_{\text{cm}} = \frac{1}{2}m R^2$$ y $$\omega = v_{\text{cm}}/R$$:
+
+$$
+m g h = \frac{1}{2}m v_{\text{cm}}^2 + \frac{1}{2}\left(\frac{1}{2}m R^2\right)\frac{v_{\text{cm}}^2}{R^2} = \frac{3}{4}m v_{\text{cm}}^2
+$$
+
+$$
+v_{\text{cm}} = \sqrt{\frac{4}{3}g h} = \sqrt{\frac{4}{3}(9{,}8)(1{,}0)} = 3{,}6\,\mathrm{m/s}
+$$
+
+El balance completo: la gravedad entregó $$m g h = (6{,}0)(9{,}8)(1{,}0) = 59\,\mathrm{J}$$, de los cuales $$\frac{1}{2}mv^2 = 39\,\mathrm{J}$$ se fueron a la traslación y $$\frac{1}{2}I\omega^2 = 20\,\mathrm{J}$$ al giro: **un tercio de la energía se invirtió en hacer girar el cilindro**. Ese es el peaje rotacional de la rodadura, y su tamaño depende solo de la forma del cuerpo: el cilindro llega al pie del plano más lento de lo que llegaría deslizando sin fricción ($$\sqrt{2gh} = 4{,}4\,\mathrm{m/s}$$), pero llega rodando — que es, normalmente, lo que se quiere.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. En un cuerpo que se traslada y rota, la energía cinética total es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\frac{1}{2}m v_{\text{cm}}^2$$ únicamente
+      </Option>
+      <Option>
+        $$\frac{1}{2}I_{\text{cm}}\omega^2$$ únicamente
+      </Option>
+      <Option isCorrect>
+        $$\frac{1}{2}m v_{\text{cm}}^2 + \frac{1}{2}I_{\text{cm}}\omega^2$$
+      </Option>
+      <Option>
+        $$\frac{1}{2}(m + I)\,\omega^2$$
+      </Option>
+    </MultipleChoice>
+
+2. Una rueda rueda **sin deslizar**. El punto de contacto con el piso, en ese instante, está __________.
+
+    <MultipleChoice>
+      <Option>
+        moviéndose al doble de la rapidez del centro
+      </Option>
+      <Option isCorrect>
+        momentáneamente en reposo respecto al piso
+      </Option>
+      <Option>
+        moviéndose a la mitad de la rapidez del centro
+      </Option>
+      <Option>
+        deslizando hacia atrás
+      </Option>
+    </MultipleChoice>
+
+3. En rodamiento sin deslizamiento, la fricción estática __________.
+
+    <MultipleChoice>
+      <Option>
+        disipa la mitad de la energía
+      </Option>
+      <Option>
+        no realiza trabajo
+      </Option>
+      <Option>
+        acelera el centro de masa
+      </Option>
+      <Option isCorrect>
+        ambas: no realiza trabajo y permite la rodadura
+      </Option>
+    </MultipleChoice>
+
+4. Rodando sin deslizar desde la misma altura, llega primero al pie del plano __________.
+
+    <MultipleChoice>
+      <Option>
+        el cuerpo más liviano
+      </Option>
+      <Option>
+        el de mayor radio
+      </Option>
+      <Option isCorrect>
+        el de menor $$I_{\text{cm}}/MR^2$$
+      </Option>
+      <Option>
+        todos llegan juntos, como en caída libre
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Torca | $$\vec{\tau} = \vec{r}\times\vec{F}$$ | magnitud $$\tau = rF\sin\theta$$ |
+| Brazo de palanca | $$\tau = r_{\perp}F = rF_{\perp}$$ | distancia perpendicular a la línea de acción |
+| Máxima / nula | $$\theta = 90^\circ$$ / $$\theta = 0^\circ, 180^\circ$$ | fuerza a lo largo de $$\vec{r}$$ no gira nada |
+| Segunda ley rotacional | $$\sum\tau_z = I_z\alpha_z$$ | análoga a $$\sum F = ma$$ |
+| Torca neta nula | $$\alpha = 0$$ | rotación constante o reposo: equilibrio |
+| Cinética total | $$K = \frac{1}{2}mv_{\text{cm}}^2 + \frac{1}{2}I_{\text{cm}}\omega^2$$ | traslación del c.m. + rotación sobre el c.m. |
+| Rodamiento sin deslizamiento | $$v_{\text{cm}} = \omega R$$ | el punto de contacto está momentáneamente en reposo |
+| Fricción en rodadura | estática, no trabaja | la energía mecánica se conserva |
+| Carrera de rodadura | $$v_{\text{cm}} = \sqrt{\dfrac{2gh}{1 + I_{\text{cm}}/MR^2}}$$ | decide la forma, no la masa ni el radio |
+
+La dinámica rotacional quedó completa: la **torca** es el agente del cambio, la segunda ley $$\sum\tau = I\alpha$$ mide cuánto cambia, y el momento de inercia de la semana pasada hace de "masa" en el intercambio. Para cuerpos en movimiento general, la descomposición traslación–rotación y la condición de rodadura permiten aplicar el balance de energía sin nada nuevo. En la práctica de la semana calcularemos torcas con componentes y brazos de palanca, arrancaremos poleas con la segunda ley rotacional —incluida una polea compuesta con dos cuerdas— y haremos rodar cilindros, esferas y bicicletas. La semana siguiente estudiaremos el caso límite que hoy apenas rozamos: cuando la torca neta **y** la fuerza neta se anulan a la vez, el cuerpo está en **equilibrio**, y esa condición bastará para resolver vigas, rótulos y escaleras apoyadas en paredes.

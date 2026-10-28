@@ -1,0 +1,360 @@
+---
+title: "Práctica"
+week: 14
+keywords: ["torca", "momento de fuerza", "brazo de palanca", "producto vectorial", "segunda ley de Newton para la rotación", "aceleración angular", "eje móvil", "rodamiento sin deslizamiento", "rodadura", "energía cinética total", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🎯 Torca por componentes">
+Una fuerza $$\vec{F} = (-1\,\mathrm{N})\,\hat{\iota} + (-2\,\mathrm{N})\,\hat{\jmath}$$ actúa sobre un objeto en el punto cuya posición respecto al eje es $$\vec{r} = (+2\,\mathrm{m})\,\hat{\iota} + (-3\,\mathrm{m})\,\hat{\jmath}$$.
+
+1. Calcule la componente $$z$$ de la torca.
+2. Calcule la magnitud de $$\vec{r}$$, la de $$\vec{F}$$ y el ángulo entre ambos, y verifique el resultado con $$\tau = rF\sin\theta$$.
+3. Visto desde el eje $$+z$$, ¿la fuerza tiende a girar el objeto en sentido horario o antihorario?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Componente z de la torca**
+
+Para vectores en el plano $$xy$$, $$\tau_z = r_x F_y - r_y F_x$$:
+
+$$
+\tau_z = (2)(-2) - (-3)(-1) = -4 - 3 = -7\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+**2. Verificación con rF sin θ**
+
+$$
+r = \sqrt{2^2 + (-3)^2} = \sqrt{13} = 3{,}61\,\mathrm{m}, \qquad F = \sqrt{(-1)^2 + (-2)^2} = \sqrt{5} = 2{,}24\,\mathrm{N}
+$$
+
+El producto punto da $$\vec{r}\cdot\vec{F} = (2)(-1) + (-3)(-2) = 4\,\mathrm{N}\cdot\mathrm{m}$$, de modo que $$\cos\theta = \frac{4}{(3{,}61)(2{,}24)} = 0{,}496$$ y $$\theta \approx 60{,}3^\circ$$. Entonces:
+
+$$
+\tau = rF\sin\theta = (3{,}61)(2{,}24)\sin 60{,}3^\circ \approx 7{,}0\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+Coincide con el valor absoluto obtenido por componentes: dos caminos, una respuesta.
+
+**3. Sentido del giro**
+
+El signo negativo de $$\tau_z$$ indica que el vector torca apunta hacia $$-z$$ (hacia adentro del plano). Visto desde $$+z$$, la fuerza tiende a girar el objeto en sentido **horario**.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🚪 Tres fuerzas sobre una placa">
+Una placa cuadrada de $$0{,}80\,\mathrm{m}$$ de lado está articulada en una esquina, sobre un eje perpendicular al plano que pasa por el punto $$O$$. Sobre la placa actúan tres fuerzas, cada una de $$12\,\mathrm{N}$$:
+
+1. una aplicada en la esquina opuesta a $$O$$, perpendicular a la diagonal que une esa esquina con $$O$$;
+2. otra aplicada en esa misma esquina opuesta, pero dirigida a lo largo de la diagonal, alejándose de $$O$$;
+3. una tercera aplicada en el punto medio del lado superior, horizontal, en el sentido que tiende a girar la placa en sentido horario.
+
+Calcule la torca de cada fuerza respecto a $$O$$ y la torca neta. Use el sentido antihorario como positivo.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Fuerza perpendicular a la diagonal**
+
+La esquina opuesta está a la distancia de la diagonal, $$r = L\sqrt{2} = (0{,}80)\sqrt{2} = 1{,}13\,\mathrm{m}$$ de $$O$$. Con la fuerza perpendicular ($$\theta = 90^\circ$$):
+
+$$
+\tau_1 = rF = (1{,}13\,\mathrm{m})(12\,\mathrm{N}) \approx +13{,}6\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+(apunta antihorario: positivo).
+
+**2. Fuerza a lo largo de la diagonal**
+
+Ahora $$\theta = 180^\circ$$: la línea de acción pasa por $$O$$, el brazo de palanca es cero:
+
+$$
+\tau_2 = rF\sin 180^\circ = 0
+$$
+
+Misma fuerza, mismo punto de aplicación, torca nula: empujando "hacia el pivote" no se gira nada.
+
+**3. Fuerza horizontal en el punto medio superior**
+
+El punto está a $$0{,}80\,\mathrm{m}$$ por encima de $$O$$; como la fuerza es horizontal, su brazo de palanca es exactamente esa altura:
+
+$$
+\tau_3 = -(0{,}80\,\mathrm{m})(12\,\mathrm{N}) = -9{,}6\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+(negativa: tiende a girar en sentido horario).
+
+**Torca neta**
+
+$$
+\sum\tau = 13{,}6 + 0 - 9{,}6 = +4{,}0\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+La placa experimenta una torca neta antihoraria de $$4{,}0\,\mathrm{N}\cdot\mathrm{m}$$. El ejercicio condensa las tres situaciones del brazo de palanca: máximo, nulo e intermedio.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🔧 La llave de tuercas">
+Una fuerza de $$17\,\mathrm{N}$$ se aplica en el extremo de una llave de $$25\,\mathrm{cm}$$, formando $$37^\circ$$ con el mango de la llave.
+
+1. Calcule la torca producida sobre el tornillo.
+2. ¿Cuál sería la torca máxima posible con esa fuerza? ¿Qué fracción se está aprovechando?
+3. ¿En qué dirección habría que aplicar la fuerza para obtener torca nula? ¿Sirve de algo jalar así?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Torca producida**
+
+El ángulo entre $$\vec{F}$$ y la prolongación de $$\vec{r}$$ es $$143^\circ$$, y $$\sin(180^\circ - 37^\circ) = \sin 37^\circ = 0{,}602$$:
+
+$$
+\tau = rF\sin 37^\circ = (0{,}25\,\mathrm{m})(17\,\mathrm{N})(0{,}602) \approx 2{,}6\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+**2. Máximo posible**
+
+La torca máxima se logra con la fuerza perpendicular al mango ($$\theta = 90^\circ$$):
+
+$$
+\tau_{\text{máx}} = rF = (0{,}25)(17) = 4{,}3\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+La fracción aprovechada es $$2{,}6/4{,}3 = \sin 37^\circ = 60\%$$. El $$40\%$$ restante de la fuerza empuja el mango a lo largo de su dirección, donde no produce giro alguno.
+
+**3. Torca nula**
+
+Basta aplicar la fuerza **a lo largo del mango**: hacia el tornillo ($$\theta = 180^\circ$$) o alejándose de él ($$\theta = 0^\circ$$). En ambos casos la línea de acción pasa por el pivote y el brazo de palanca es cero. No sirve de nada: se puede jalar con toda la fuerza del mundo y la tuerca no se moverá un grado. Esta es, en miniatura, toda la física de las llaves de tuercas: máximo brazo, máxima perpendicularidad.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — ⚙️ Arranque de una polea">
+Un cable enrollado en el borde de una polea —que puede modelarse como un disco sólido de masa $$M = 50\,\mathrm{kg}$$ y radio $$R = 0{,}120\,\mathrm{m}$$— es jalado con una fuerza constante de $$9{,}0\,\mathrm{N}$$. La polea parte del reposo sobre un eje sin fricción.
+
+1. Calcule la aceleración angular de la polea.
+2. ¿Qué velocidad angular y cuántas vueltas acumula después de $$5{,}0\,\mathrm{s}$$?
+3. ¿Cuánto tiempo tarda en alcanzar $$300\,\mathrm{r.p.m}$$?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Aceleración angular**
+
+Momento de inercia del disco:
+
+$$
+I = \frac{1}{2}MR^2 = \frac{1}{2}(50)(0{,}120)^2 = 0{,}36\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+La torca del jalón es $$\tau = FR = (9{,}0)(0{,}120) = 1{,}08\,\mathrm{N}\cdot\mathrm{m}$$ (brazo máximo: el cable sale tangente). Por la segunda ley rotacional:
+
+$$
+\alpha = \frac{\tau}{I} = \frac{1{,}08}{0{,}36} = 3{,}0\,\mathrm{rad/s^2}
+$$
+
+**2. Después de 5,0 s**
+
+Con cinemática angular constante:
+
+$$
+\omega = \alpha t = (3{,}0)(5{,}0) = 15\,\mathrm{rad/s}
+$$
+
+$$
+\theta = \frac{1}{2}\alpha t^2 = \frac{1}{2}(3{,}0)(5{,}0)^2 = 37{,}5\,\mathrm{rad} \approx 6{,}0\,\mathrm{vueltas}
+$$
+
+**3. Tiempo hasta 300 r.p.m**
+
+$$
+\omega = \frac{300 \times 2\pi}{60} \approx 31{,}4\,\mathrm{rad/s} \quad\Rightarrow\quad t = \frac{\omega}{\alpha} = \frac{31{,}4}{3{,}0} \approx 10{,}5\,\mathrm{s}
+$$
+
+Nótese la división del trabajo: la segunda ley rotacional entrega $$\alpha$$, y a partir de ahí el problema es cinemática de la semana 12 pura. $$\sum\tau = I\alpha$$ es el puente entre las fuerzas y el giro.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — ⚖️ La polea compuesta">
+Una polea compuesta consta de dos discos concéntricos de radios $$R_1 = 0{,}12\,\mathrm{m}$$ y $$R_2 = 0{,}20\,\mathrm{m}$$, cada uno de masa $$0{,}50\,\mathrm{kg}$$. Una cuerda enrollada en el disco pequeño sostiene un bloque de $$m_1 = 20\,\mathrm{kg}$$, y otra enrollada en el disco grande sostiene un bloque de $$m_2 = 10\,\mathrm{kg}$$. El sistema se suelta del reposo; las cuerdas no resbalan.
+
+1. ¿Hacia qué lado gira la polea?
+2. Calcule la aceleración angular de la polea y las aceleraciones de los bloques.
+3. Calcule las tensiones de las dos cuerdas.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Sentido de giro**
+
+Comparando las torcas de los pesos (cada cuerda sale tangente: brazo igual al radio):
+
+$$
+\tau_1 = m_1 g R_1 = (20)(9{,}8)(0{,}12) = 23{,}5\,\mathrm{N}\cdot\mathrm{m}, \qquad \tau_2 = m_2 g R_2 = (10)(9{,}8)(0{,}20) = 19{,}6\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+El bloque de $$20\,\mathrm{kg}$$ "gana": la polea gira hacia su lado y $$m_1$$ desciende mientras $$m_2$$ sube. Note que aunque $$m_2$$ es la mitad de $$m_1$$, la pelea está pareja: su radio es mayor.
+
+**2. Aceleraciones**
+
+Momento de inercia de los dos discos:
+
+$$
+I = \frac{1}{2}(0{,}50)(0{,}12)^2 + \frac{1}{2}(0{,}50)(0{,}20)^2 = 0{,}0036 + 0{,}010 = 0{,}0136\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+Con $$a_1 = \alpha R_1$$, $$a_2 = \alpha R_2$$ (cuerdas sin resbalar), $$m_1 a_1 = m_1 g - T_1$$, $$m_2 a_2 = T_2 - m_2 g$$ y $$\sum\tau = I\alpha$$ para la polea:
+
+$$
+\alpha = \frac{(m_1 R_1 - m_2 R_2)\,g}{I + m_1 R_1^2 + m_2 R_2^2} = \frac{(2{,}4 - 2{,}0)(9{,}8)}{0{,}0136 + 0{,}288 + 0{,}40} = \frac{3{,}92}{0{,}70} \approx 5{,}6\,\mathrm{rad/s^2}
+$$
+
+$$
+a_1 = \alpha R_1 \approx 0{,}67\,\mathrm{m/s^2}, \qquad a_2 = \alpha R_2 \approx 1{,}1\,\mathrm{m/s^2}
+$$
+
+Los bloques **no** tienen la misma aceleración: cada uno se mueve con la rapidez de su cuerda, y las cuerdas salen de radios distintos.
+
+**3. Tensiones**
+
+$$
+T_1 = m_1(g - a_1) = (20)(9{,}8 - 0{,}67) \approx 1{,}8\times 10^2\,\mathrm{N}
+$$
+
+$$
+T_2 = m_2(g + a_2) = (10)(9{,}8 + 1{,}1) \approx 1{,}1\times 10^2\,\mathrm{N}
+$$
+
+Verificación: $$T_1 R_1 - T_2 R_2 = 21{,}9 - 21{,}8 \approx 0{,}08\,\mathrm{N}\cdot\mathrm{m} = I\alpha$$ ✓. Y note que ambas tensiones son menores de lo que serían en reposo estático del lado que baja y mayores del que sube: las tensiones "respiren" con la aceleración, igual que en los problemas de Newton de la semana 7.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🏁 La carrera de rodadura">
+Un aro, un disco sólido y una esfera sólida, todos de la misma masa y radio, parten del reposo y ruedan sin deslizar por un plano inclinado que desciende $$h = 2{,}0\,\mathrm{m}$$.
+
+1. Obtenga la rapidez al pie del plano para cada cuerpo.
+2. ¿Quién llega primero? ¿Depende de la masa o del radio?
+3. Calcule la fracción de la energía que cada cuerpo invierte en girar.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapideces al pie**
+
+La conservación de energía con $$\omega = v_{\text{cm}}/R$$ da $$v_{\text{cm}} = \sqrt{\dfrac{2gh}{1 + I_{\text{cm}}/MR^2}}$$:
+
+$$
+v_{\text{aro}} = \sqrt{g h} = \sqrt{(9{,}8)(2{,}0)} = 4{,}4\,\mathrm{m/s}
+$$
+
+$$
+v_{\text{disco}} = \sqrt{\frac{4}{3}g h} = \sqrt{\frac{4}{3}(9{,}8)(2{,}0)} = 5{,}1\,\mathrm{m/s}
+$$
+
+$$
+v_{\text{esfera}} = \sqrt{\frac{10}{7}g h} = \sqrt{\frac{10}{7}(9{,}8)(2{,}0)} = 5{,}3\,\mathrm{m/s}
+$$
+
+**2. El orden de llegada**
+
+Esfera, luego disco, luego aro: gana quien tiene menor $$I_{\text{cm}}/MR^2$$, es decir, quien reparte menos energía al giro. La fórmula no contiene ni $$M$$ ni $$R$$: la masa y el tamaño **no** importan, solo la forma. Todos los aros del mundo empatan entre sí, por grandes o livianos que sean.
+
+**3. Fracción rotacional**
+
+Con $$\omega = v/R$$, la fracción de la energía total que va al giro es $$\frac{\frac{1}{2}I\omega^2}{mgh} = \frac{I/MR^2}{1 + I/MR^2}$$:
+
+$$
+\text{aro: } \frac{1}{2} = 50\%, \qquad \text{disco: } \frac{1/2}{3/2} = 33\%, \qquad \text{esfera: } \frac{2/5}{7/5} = \frac{2}{7} \approx 29\%
+$$
+
+La esfera gana la carrera porque su peaje rotacional es el más barato: de cada joule que la gravedad le entrega, guarda casi tres cuartos para avanzar. El aro gasta la mitad de su herencia en girar en el sitio.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🛞 El cilindro en el muelle de carga">
+Un cilindro sólido de $$m = 6{,}0\,\mathrm{kg}$$ y radio $$R = 0{,}20\,\mathrm{m}$$ rueda sin deslizar desde el reposo bajando una rampa de $$30^\circ$$, hasta descender una altura de $$1{,}0\,\mathrm{m}$$.
+
+1. ¿Con qué rapidez llega al pie de la rampa?
+2. ¿Cuánta energía se fue a la traslación y cuánta a la rotación?
+3. ¿Con qué rapidez llegaría si la rampa fuera perfectamente lisa y el cilindro **deslizara** sin girar? Comente la diferencia.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Rapidez al pie**
+
+Para un cilindro sólido, $$I_{\text{cm}} = \frac{1}{2}mR^2$$, así que:
+
+$$
+v_{\text{cm}} = \sqrt{\frac{4}{3}g h} = \sqrt{\frac{4}{3}(9{,}8)(1{,}0)} \approx 3{,}6\,\mathrm{m/s}
+$$
+
+(El ángulo de la rampa no aparece: solo importa la altura descendida, igual que en la semana 9.)
+
+**2. Reparto de la energía**
+
+La gravedad entregó $$m g h = (6{,}0)(9{,}8)(1{,}0) = 59\,\mathrm{J}$$:
+
+$$
+K_{\text{tras}} = \frac{1}{2}(6{,}0)(3{,}6)^2 \approx 39\,\mathrm{J}, \qquad K_{\text{rot}} = 59 - 39 \approx 20\,\mathrm{J}
+$$
+
+Un tercio de la energía se fue al giro: ese es el peaje fijo de rodar un cilindro ($$\omega = v/R$$ obliga a girar mientras se avanza).
+
+**3. Si deslizara sin girar**
+
+Sin rotación, toda la energía sería traslacional:
+
+$$
+v = \sqrt{2 g h} = \sqrt{2(9{,}8)(1{,}0)} = 4{,}4\,\mathrm{m/s}
+$$
+
+Un $$22\%$$ más rápido. La fricción estática que produce la rodadura no disipa energía, pero **redirige** una parte de ella hacia el giro. Rodar es, energéticamente, más barato que deslizar con fricción cinética (que sí disiparía todo en calor), pero más caro que volar sin tocar nada: la energía se conserva, no se regala.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — 🚲 El peaje rotacional de la bicicleta">
+Una ciclista de $$65\,\mathrm{kg}$$ avanza junto a su bicicleta de $$12\,\mathrm{kg}$$ a $$8{,}0\,\mathrm{m/s}$$. Cada rueda tiene masa $$1{,}2\,\mathrm{kg}$$, radio $$0{,}34\,\mathrm{m}$$ y puede modelarse como un aro ($$I = MR^2$$).
+
+1. Calcule la energía cinética de traslación del sistema.
+2. Calcule la energía cinética de rotación de las dos ruedas.
+3. ¿Qué porcentaje de la energía total corresponde al giro de las ruedas?
+4. Los ciclistas de competencia pagan fortunas por ruedas ultraligeras. Justifique (o no) ese gasto con sus números.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Traslación**
+
+$$
+K_{\text{tras}} = \frac{1}{2}(65 + 12)(8{,}0)^2 = \frac{1}{2}(77)(64) = 2464\,\mathrm{J} \approx 2{,}5\,\mathrm{kJ}
+$$
+
+**2. Rotación de las ruedas**
+
+Rodando sin deslizar, cada rueda gira con $$\omega = v/R = 8{,}0/0{,}34 = 23{,}5\,\mathrm{rad/s}$$, con $$I = (1{,}2)(0{,}34)^2 = 0{,}139\,\mathrm{kg}\cdot\mathrm{m^2}$$:
+
+$$
+K_{\text{rot}} = 2 \times \frac{1}{2}(0{,}139)(23{,}5)^2 \approx 2 \times 38{,}4 \approx 77\,\mathrm{J}
+$$
+
+**3. Porcentaje**
+
+$$
+\frac{77}{2464 + 77} = \frac{77}{2541} \approx 3\%
+$$
+
+**4. ¿Vale la pena?**
+
+Al acelerar desde cero, cada joule debe suministrarse una sola vez, y el ahorro de $$77\,\mathrm{J}$$ es casi invisible. Pero en una competencia, la ciclista **frena y vuelve a acelerar** decenas de veces por curva: esa energía rotacional se pierde en cada frenada y debe reconstruirse con las piernas en cada salida. Con $$77\,\mathrm{J}$$ por incidente y treinta incidentes, son $$2{,}3\,\mathrm{kJ}$$ — el equivalente de un tramo de subida extra. El efecto es real pero modesto: el peaje rotacional de las ruedas es pequeño porque son ligeras frente al conjunto. Donde la masa giratoria manda —en un volante de inercia o en el plato de un torno—, la lección sí es mayúscula: masa que gira, energía que cuesta dos veces.
+
+</details>
+</Aside>
