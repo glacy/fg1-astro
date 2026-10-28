@@ -80,12 +80,15 @@
         "Dinámica del movimiento circular",
         "Trabajo y energía",
         "Conservación de la energía",
-        "Fuerzas variables",
-        "Potencia",
         "Colisiones"
       ],
       "notes": "",
-      "links": []
+      "links": [
+        {
+          "label": "Distribución de aulas",
+          "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_segundo_parcial.html"
+        }
+      ]
     },
     {
       "id": "2-extra",
@@ -94,14 +97,12 @@
       "weight": 20,
       "date": "2026-11-09",
       "time": "13:00",
-      "location": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_segundo_parcial.html",
+      "location": "",
       "topics": [
         "Movimiento en un círculo",
         "Dinámica del movimiento circular",
         "Trabajo y energía",
         "Conservación de la energía",
-        "Fuerzas variables",
-        "Potencia",
         "Colisiones"
       ],
       "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
