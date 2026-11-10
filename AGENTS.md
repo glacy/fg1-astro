@@ -12,6 +12,8 @@ pnpm lint       # ESLint flat config
 
 No hay `pnpm test` (Vitest en devDeps sin config; sitio estático).
 
+**NUNCA ejecutar `pnpm build`** (ni `astro build`) a menos que se solicite explícitamente. Para validar cambios, preferir `pnpm lint` y `pnpm typecheck`.
+
 ## Arquitectura: dos sistemas de ruteo
 
 | Sistema | Rutas | VT | SW |
@@ -53,6 +55,7 @@ No hay `pnpm test` (Vitest en devDeps sin config; sitio estático).
 - Conversiones: `::: note` → `<div class="note">`; `{.smallcaps}` → `style="font-variant: small-caps;"`; `{.underline}` → `<u>`; refs cruzadas (`{#id}`) → texto plano; títulos `##` sin `{#cap:x}`.
 - Figuras: `<figure>` + `<img>`, src relativa a `src/content/` o desde `public/`.
 - NO generar figuras SVG a mano para el material de semanas; apoyarse en texto, tablas y ecuaciones. Reutilizar solo assets existentes en `src/assets/`.
+- Quizzes (`<Box icon="question-mark">` + `<MultipleChoice>`/`<Option>`): las opciones SIEMPRE ordenadas por longitud de texto — de corta a larga o de larga a corta, consistente dentro de cada pregunta. La posición de `isCorrect` es independiente del orden.
 - Frontmatter docs: pattern en `src/content/docs/semana-01/lectura.mdx`.
 
 ## Filtros cliente

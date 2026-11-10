@@ -24,6 +24,12 @@
       "icon": "lucide:file-text"
     }
   ],
-  "evaluaciones": [],
+  "evaluaciones": [
+    {
+      "text": "Práctica 16",
+      "url": "./../semana16/practica/",
+      "icon": "lucide:calculator"
+    }
+  ],
   "recursos": []
 }

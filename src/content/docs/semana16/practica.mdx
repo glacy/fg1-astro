@@ -1,0 +1,323 @@
+---
+title: "Práctica"
+week: 16
+keywords: ["momento angular", "momentum angular", "trabajo rotacional", "potencia rotacional", "torca", "conservación del momento angular", "pirueta", "patinador", "silla giratoria", "carrusel", "colisión rotacional", "púlsar", "giroscopio", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🎯 El motor de la bomba">
+Un motor eléctrico ejerce una torca constante de $$30\,\mathrm{N}\cdot\mathrm{m}$$ sobre el eje de una bomba.
+
+1. ¿Cuánto trabajo realiza el motor en $$40$$ vueltas del eje?
+2. ¿Qué potencia entrega cuando el eje gira a $$1800\,\mathrm{r.p.m.}$$?
+3. ¿A qué velocidad angular (en rad/s y en r.p.m.) debe girar para entregar $$3{,}0\,\mathrm{kW}$$ con esa misma torca?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Trabajo en 40 vueltas**
+
+$$
+\Delta\theta = 40 \times 2\pi = 251\,\mathrm{rad}
+\quad\Rightarrow\quad
+W = \tau_z\,\Delta\theta = (30)(251) \approx 7{,}5\,\mathrm{kJ}
+$$
+
+**2. Potencia a $$1800\,\mathrm{r.p.m.}$$**
+
+Primero la conversión de unidades — el paso que siempre hay que hacer:
+
+$$
+\omega = \frac{1800 \times 2\pi}{60} = 188{,}5\,\mathrm{rad/s}
+\quad\Rightarrow\quad
+P = \tau_z\,\omega_z = (30)(188{,}5) \approx 5{,}7\,\mathrm{kW}
+$$
+
+**3. Velocidad para $$3{,}0\,\mathrm{kW}$$**
+
+Despejando de $$P = \tau_z\,\omega_z$$:
+
+$$
+\omega = \frac{P}{\tau_z} = \frac{3000}{30} = 100\,\mathrm{rad/s}
+\quad\Rightarrow\quad
+\frac{100 \times 60}{2\pi} \approx 955\,\mathrm{r.p.m.}
+$$
+
+A torca fija, la potencia crece linealmente con el régimen de giro: es la razón por la que los motores se anuncian con el par a **tantas** revoluciones — el número solo no dice nada sin su compañero.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — ⚡ El volante de inercia">
+Un volante de inercia, modelable como un disco uniforme de $$M = 100\,\mathrm{kg}$$ y $$R = 0{,}50\,\mathrm{m}$$, parte del reposo y un motor lo lleva a $$600\,\mathrm{r.p.m.}$$ en $$10\,\mathrm{s}$$, con aceleración angular constante.
+
+1. Calcule la aceleración angular y la torca que aplica el motor.
+2. Calcule el trabajo realizado y el incremento de energía cinética rotacional. ¿Coinciden?
+3. ¿Cuál fue la potencia media del motor?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Aceleración y torca**
+
+Momento de inercia del disco: $$I = \frac{1}{2}MR^2 = \frac{1}{2}(100)(0{,}50)^2 = 12{,}5\,\mathrm{kg}\cdot\mathrm{m^2}$$. La velocidad final es $$\omega = \frac{600 \times 2\pi}{60} = 62{,}8\,\mathrm{rad/s}$$, así que:
+
+$$
+\alpha = \frac{\omega}{t} = \frac{62{,}8}{10} = 6{,}28\,\mathrm{rad/s^2}
+\quad\Rightarrow\quad
+\tau = I\alpha = (12{,}5)(6{,}28) \approx 79\,\mathrm{N}\cdot\mathrm{m}
+$$
+
+**2. Trabajo y energía**
+
+Por el teorema trabajo–energía rotacional:
+
+$$
+W = \Delta K_{\text{rot}} = \frac{1}{2}I\omega^2 = \frac{1}{2}(12{,}5)(62{,}8)^2 \approx 24{,}7\,\mathrm{kJ}
+$$
+
+Y por la definición de trabajo, con $$\Delta\theta = \frac{1}{2}\alpha t^2 = \frac{1}{2}(6{,}28)(100) = 314\,\mathrm{rad}$$:
+
+$$
+W = \tau_z\,\Delta\theta = (78{,}5)(314) \approx 24{,}7\,\mathrm{kJ} \checkmark
+$$
+
+Coinciden exactamente: la segunda ley rotacional ($$\tau = I\alpha$$) y el teorema trabajo–energía ($$W = \Delta K$$) son la misma física escrita dos veces — la comprobación cruzada es gratis.
+
+**3. Potencia media**
+
+$$
+P_{\text{media}} = \frac{W}{t} = \frac{24\,700}{10} \approx 2{,}5\,\mathrm{kW}
+$$
+
+Menos que la potencia instantánea final ($$P_{\text{final}} = \tau\omega = (78{,}5)(62{,}8) \approx 4{,}9\,\mathrm{kW}$$): con aceleración constante, el motor trabaja cada vez más fuerte hasta el final.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🌍 De una piedra a la Tierra">
+1. Una pelota de $$0{,}30\,\mathrm{kg}$$ gira describiendo un círculo de $$0{,}50\,\mathrm{m}$$ de radio con rapidez constante de $$6{,}0\,\mathrm{m/s}$$. Calcule su momento angular respecto al centro.
+2. La Tierra ($$M = 5{,}97\times10^{24}\,\mathrm{kg}$$) orbita el Sol con rapidez $$v = 2{,}98\times10^{4}\,\mathrm{m/s}$$ en una órbita de radio $$r = 1{,}496\times10^{11}\,\mathrm{m}$$. Calcule su momento angular orbital.
+3. ¿Por qué el momento angular orbital de la Tierra permanece constante año tras año? ¿Qué papel juega la forma de la órbita (elíptica) en las rapideces?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. La pelota**
+
+En movimiento circular puro, $$\vec{v}$$ es perpendicular a $$\vec{r}$$ en todo instante:
+
+$$
+L = m\,v\,r = (0{,}30)(6{,}0)(0{,}50) = 0{,}90\,\mathrm{kg}\cdot\mathrm{m^2/s}
+$$
+
+**2. La Tierra**
+
+La misma fórmula, números astronómicos:
+
+$$
+L = m\,v\,r = (5{,}97\times10^{24})(2{,}98\times10^{4})(1{,}496\times10^{11}) \approx 2{,}7\times10^{40}\,\mathrm{kg}\cdot\mathrm{m^2/s}
+$$
+
+Cuarenta órdenes de magnitud sobre la pelota — y la misma ley para ambos.
+
+**3. ¿Por qué se conserva?**
+
+La única fuerza significativa es la gravitacional solar, que es **central**: apunta del planeta al Sol, a lo largo de $$\vec{r}$$. Su torca respecto al Sol es $$\vec{\tau} = \vec{r}\times\vec{F} = \vec{0}$$, y con torca nula, $$d\vec{L}/dt = 0$$. La órbita elíptica no lo molesta: cuando la Tierra está más cerca del Sol se mueve **más rápido** y cuando está lejos, más lento, de modo que el producto $$m\,v\,r\,\sin\theta$$ se mantiene fijo. Esa regularidad es la **segunda ley de Kepler** — el área barrida por unidad de tiempo es constante — vista con los lentes de la conservación del momento angular.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🏒 El disco que aterriza sobre otro">
+Un disco de acero gira sin fricción sobre un eje vertical con momento de inercia $$I_A = 0{,}40\,\mathrm{kg}\cdot\mathrm{m^2}$$ y velocidad angular $$15\,\mathrm{rad/s}$$. Un segundo disco idéntico, en reposo, se deja caer sobre el primero; al tocar, la fricción entre ambos hace que giran juntos.
+
+1. ¿Cuál es la velocidad angular final del conjunto?
+2. Verifique la conservación del momento angular.
+3. ¿Cuánta energía cinética se perdió? ¿Dónde fue a parar?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad angular final**
+
+El disco que cae no lleva momento angular (giraba $$\omega = 0$$), pero al aterrizar **aumenta la inercia** del conjunto: $$I_f = 0{,}40 + 0{,}40 = 0{,}80\,\mathrm{kg}\cdot\mathrm{m^2}$$.
+
+$$
+\omega_f = \frac{I_A\,\omega_A}{I_f} = \frac{(0{,}40)(15)}{0{,}80} = 7{,}5\,\mathrm{rad/s}
+$$
+
+**2. Verificación**
+
+Antes: $$L_i = (0{,}40)(15) = 6{,}0\,\mathrm{kg}\cdot\mathrm{m^2/s}$$. Después: $$L_f = (0{,}80)(7{,}5) = 6{,}0\,\mathrm{kg}\cdot\mathrm{m^2/s}$$ ✓. La fricción entre los discos es una fuerza **interna** al sistema: frena a uno y acelera al otro, con torcas iguales y opuestas. El eje no la siente; $$L$$ ni se entera.
+
+**3. La energía**
+
+$$
+K_i = \frac{1}{2}(0{,}40)(15)^2 = 45\,\mathrm{J}
+\qquad
+K_f = \frac{1}{2}(0{,}80)(7{,}5)^2 = 22{,}5\,\mathrm{J}
+$$
+
+Se perdió la mitad ($$22{,}5\,\mathrm{J}$$): es la energía disipada por la fricción entre los discos mientras se sincronizaban — exactamente como en un choque perfectamente inelástico lineal de la semana 11, donde los cuerpos "se pegan" y la energía cinética baja mientras el momentum se conserva. La conservación del momento angular es la regla; el frotamiento entre superficies, el impuesto que se paga para cumplirla.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — ⛸️ La pirueta del patinador">
+Una patinadora gira con los brazos extendidos a $$\omega_1 = 5{,}0\,\mathrm{rad/s}$$ (unas $$0{,}80$$ revoluciones por segundo), con momento de inercia $$I_1 = 4{,}6\,\mathrm{kg}\cdot\mathrm{m^2}$$. Al juntar los brazos al pecho, su momento de inercia baja a $$I_2 = 1{,}9\,\mathrm{kg}\cdot\mathrm{m^2}$$.
+
+1. ¿Cuál es su nueva velocidad angular, en rad/s y en revoluciones por segundo?
+2. ¿Cuánto trabajo hicieron sus brazos?
+3. ¿Qué pasará cuando vuelva a extender los brazos para salir de la pirueta?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Nueva velocidad angular**
+
+Sin torcas externas sobre el eje vertical, $$I_1\,\omega_1 = I_2\,\omega_2$$:
+
+$$
+\omega_2 = \frac{I_1\,\omega_1}{I_2} = \frac{(4{,}6)(5{,}0)}{1{,}9} \approx 12{,}1\,\mathrm{rad/s} \approx 1{,}92\,\mathrm{rev/s}
+$$
+
+La velocidad angular creció un factor $$I_1/I_2 \approx 2{,}4$$: de una pirueta tranquila a un giro vertiginoso, sin que el hielo tuviera nada que ver.
+
+**2. Trabajo de los brazos**
+
+La energía cinética rotacional antes y después:
+
+$$
+K_1 = \frac{1}{2}(4{,}6)(5{,}0)^2 = 57{,}5\,\mathrm{J}
+\qquad
+K_2 = \frac{1}{2}(1{,}9)(12{,}1)^2 \approx 139\,\mathrm{J}
+$$
+
+$$
+W_{\text{brazos}} = K_2 - K_1 \approx 82\,\mathrm{J}
+$$
+
+Los músculos hicieron unos $$82\,\mathrm{J}$$ de trabajo jalando las masas contra el tirón hacia afuera del giro. El momento angular no cambió; la energía sí — otra demostración de que ambos teoremas corren por carriles independientes.
+
+**3. Salir de la pirueta**
+
+Al extender los brazos, $$I$$ vuelve a crecer y $$\omega$$ cae al valor original ($$I\omega$$ se conserva en cada paso). Bajar los brazos cuesta energía — $$K$$ retorna a $$57{,}5\,\mathrm{J}$$ — pero esta vez la energía **sale** del sistema: los brazos frenan masas que "quieren" seguir girando, disipándola como calor en los músculos. Por eso las piernas de los patinadores queman tanto en una rutina: cada entrada y salida de pirueta es un ciclo de trabajo muscular gobernado por $$I\omega = \text{constante}$$.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🎠 El niño y el carrusel">
+Un carrusel de parque es un disco uniforme de $$M = 200\,\mathrm{kg}$$ y radio $$R = 2{,}0\,\mathrm{m}$$, inicialmente en reposo, con rodamiento sin fricción. Un niño de $$25\,\mathrm{kg}$$ corre tangencialmente a $$4{,}0\,\mathrm{m/s}$$ por el borde y salta sobre él, quedándose pegado al borde.
+
+1. ¿Con qué velocidad angular gira el conjunto?
+2. ¿Cuánta energía cinética se perdió en el salto?
+3. ¿Qué pasaría si dos niños idénticos saltaran simultáneamente en puntos opuestos del borde, corriendo en sentidos contrarios?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Velocidad angular del conjunto**
+
+El niño llega con momento angular respecto al eje del carrusel: $$L = m\,v\,R = (25)(4{,}0)(2{,}0) = 200\,\mathrm{kg}\cdot\mathrm{m^2/s}$$. La inercia final es la del disco más la del niño como masa en el borde:
+
+$$
+I_f = \frac{1}{2}MR^2 + mR^2 = \frac{1}{2}(200)(2{,}0)^2 + (25)(2{,}0)^2 = 400 + 100 = 500\,\mathrm{kg}\cdot\mathrm{m^2}
+$$
+
+$$
+\omega_f = \frac{L}{I_f} = \frac{200}{500} = 0{,}40\,\mathrm{rad/s}
+$$
+
+**2. Energía perdida**
+
+$$
+K_i = \frac{1}{2}m v^2 = \frac{1}{2}(25)(4{,}0)^2 = 200\,\mathrm{J}
+\qquad
+K_f = \frac{1}{2}I_f\,\omega_f^2 = \frac{1}{2}(500)(0{,}40)^2 = 40\,\mathrm{J}
+$$
+
+Se perdió el $$80\%$$ (unos $$160\,\mathrm{J}$$): el aterrizaje sobre el carrusel es un choque perfectamente inelástico rotacional — el niño "frena" de $$4{,}0\,\mathrm{m/s}$$ a $$\omega R = 0{,}8\,\mathrm{m/s}$$, y la diferencia se disipa en el impacto.
+
+**3. Dos niños en sentidos contrarios**
+
+Cada uno llega con $$L = 200\,\mathrm{kg}\cdot\mathrm{m^2/s}$$, pero en **sentidos opuestos**: el momento angular total que aportan es cero. El carrusel queda en reposo, con la inercia total ($$700\,\mathrm{kg}\cdot\mathrm{m^2}$$) y cero giro — aunque toda la energía de ambos niños se disipa igual en los aterrizajes. Es la versión rotacional de dos corredores que chocan frontalmente: momentum total cero, energía en calor.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 🌟 El nacimiento de un púlsar">
+El núcleo de una estrella masiva, de radio $$R_1 = 1{,}0\times10^{7}\,\mathrm{m}$$, completa una rotación cada $$30$$ días. Al agotarse su combustible, colapsa hasta convertirse en una estrella de neutrones de radio $$R_2 = 1{,}0\times10^{4}\,\mathrm{m}$$ ($$10\,\mathrm{km}$$). Suponga que la masa no cambia y que el momento de inercia es proporcional a $$MR^2$$ en ambas etapas.
+
+1. ¿Cuál es el factor de aumento de la velocidad angular?
+2. ¿Cuál es el período de rotación de la estrella de neutrones?
+3. ¿De dónde sale la enorme energía cinética rotacional final?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Factor de aumento**
+
+Con la masa fija, $$I \propto R^2$$, y la conservación exige $$I_1\,\omega_1 = I_2\,\omega_2$$:
+
+$$
+\frac{\omega_2}{\omega_1} = \frac{I_1}{I_2} = \left(\frac{R_1}{R_2}\right)^2 = \left(\frac{10^{7}}{10^{4}}\right)^2 = 10^{6}
+$$
+
+Un millón de veces más rápido: el mismo truco del patinador que junta los brazos, con el universo como escenario.
+
+**2. Período final**
+
+$$
+T_2 = T_1\,\frac{I_2}{I_1} = 30\,\text{días} \times \frac{1}{10^{6}} = \frac{2{,}592\times10^{6}\,\mathrm{s}}{10^{6}} \approx 2{,}6\,\mathrm{s}
+$$
+
+De una vuelta mensual a una vuelta cada $$2{,}6$$ segundos. (Los púlsares reales, con colapsos aún más concentrados y núcleos que ya giraban más rápido, llegan a cientos de revoluciones por segundo — y ese parpadeo regular de radio es exactamente lo que los radiotelescopios detectan.)
+
+**3. ¿De dónde sale la energía?**
+
+Con $$L$$ constante, $$K = L^2/2I$$: al reducirse $$I$$ un millón de veces, la energía cinética **crece** un millón de veces. La cuenta la paga la gravedad: el material del núcleo cae hacia el centro durante el colapso y la energía potencial gravitacional liberada se invierte en hacer girar cada vez más rápido lo que queda. Conservación de momento angular define *cómo* acelera el giro; la gravitación pone *el dinero*.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 8 — 💥 La bala y la varilla">
+Una bala de $$10\,\mathrm{g}$$ viaja horizontalmente a $$400\,\mathrm{m/s}$$ e impacta —incrustándose— en el extremo de una varilla uniforme de $$M = 1{,}2\,\mathrm{kg}$$ y longitud $$L = 0{,}80\,\mathrm{m}$$, que puede girar sin fricción alrededor de un eje vertical que pasa por su otro extremo.
+
+1. Calcule el momento angular de la bala respecto al eje justo antes del impacto.
+2. ¿Con qué velocidad angular gira el conjunto varilla-bala después?
+3. ¿Qué fracción de la energía cinética sobrevive al impacto? Compare con los choques lineales de la semana 11.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Momento angular de la bala**
+
+La velocidad es perpendicular al brazo (extremo de la varilla):
+
+$$
+L = m\,v\,L = (0{,}010)(400)(0{,}80) = 3{,}2\,\mathrm{kg}\cdot\mathrm{m^2/s}
+$$
+
+**2. Velocidad angular final**
+
+El eje no ejerce torca respecto a sí mismo, así que el momento angular se conserva a través del choque. Inercias: varilla con pivote en el extremo, $$I_v = \frac{1}{3}ML^2 = \frac{1}{3}(1{,}2)(0{,}80)^2 = 0{,}256\,\mathrm{kg}\cdot\mathrm{m^2}$$; bala incrustada, $$m L^2 = (0{,}010)(0{,}64) = 0{,}0064\,\mathrm{kg}\cdot\mathrm{m^2}$$:
+
+$$
+I_f = 0{,}2624\,\mathrm{kg}\cdot\mathrm{m^2}
+\quad\Rightarrow\quad
+\omega_f = \frac{L}{I_f} = \frac{3{,}2}{0{,}2624} \approx 12{,}2\,\mathrm{rad/s}
+$$
+
+**3. Balance de energía**
+
+$$
+K_i = \frac{1}{2}m v^2 = \frac{1}{2}(0{,}010)(400)^2 = 800\,\mathrm{J}
+\qquad
+K_f = \frac{1}{2}I_f\,\omega_f^2 = \frac{1}{2}(0{,}2624)(12{,}2)^2 \approx 19{,}5\,\mathrm{J}
+$$
+
+Sobrevive apenas $$19{,}5/800 \approx 2{,}4\%$$: el $$98\%$$ se disipa deformando la madera y el plomo. No es sorpresa: incrustar la bala es un choque **perfectamente inelástico** — la versión rotacional de la bala que se aloja en un bloque de la semana 11. En ambos mundos la misma regla de oro: el momentum (lineal o angular) se conserva en el choque; la energía cinética solo se conserva si el choque es elástico, y este no lo es. Con esto, el diccionario traslación–rotación queda completo hasta su última entrada.
+
+</details>
+</Aside>

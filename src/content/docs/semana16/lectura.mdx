@@ -1,29 +1,457 @@
 ---
 title: "Momentum Angular"
-description: "Material de lectura para la semana 16."
+description: "Momentum angular: trabajo y potencia en el movimiento de rotación; momento angular de una partícula y de un cuerpo rígido; la segunda ley de Newton para la rotación en su forma general; teorema de conservación del momento angular y sus aplicaciones — piruetas, sillas giratorias, colisiones rotacionales y estrellas de neutrones."
 week: 16
-keywords: ["física general I", "semana 16", "TEC Costa Rica"]
+keywords: ["momento angular", "momentum angular", "trabajo rotacional", "potencia rotacional", "torca", "conservación del momento angular", "pirueta", "patinador", "silla giratoria", "carrusel", "colisión rotacional", "púlsar", "giroscopio", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-16"]
-category: "semana-16"
-difficulty: "basic"
+date: 2026-11-14
+readingTime: 20
+tags: ["momento angular", "rotación", "conservación", "trabajo y potencia"]
+category: "movimiento rotacional"
+difficulty: "intermediate"
 objetivos:
   - "Definir los conceptos: momento angular, trabajo y potencia en la rotación."
   - "Explicar el teorema de conservación del momento angular."
   - "Resolver problemas aplicando los conceptos de momento angular."
-draft: true
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Definir los conceptos: momento angular, trabajo y potencia en la rotación.
+  - Explicar el teorema de conservación del momento angular.
+  - Resolver problemas aplicando los conceptos de momento angular.
+</PreCheck>
 
-- Definir los conceptos: momento angular, trabajo y potencia en la rotación.
-- Explicar el teorema de conservación del momento angular.
-- Resolver problemas aplicando los conceptos de momento angular.
+La semana pasada estudiamos el estado en el que nada cambia: fuerza neta y torca neta nulas, el cuerpo quieto, el ingeniero contento. Pero el mundo que rota — las hélices, las turbinas, los discos duros, los planetas, los patinadores en plena pirueta — no vive en el equilibrio: vive **girando**. Dos preguntas quedaban abiertas y esta semana, la última del curso, las responde. Primero: ¿cómo se transfiere energía a un sistema que rota? Es decir, ¿qué son el **trabajo** y la **potencia** cuando el desplazamiento es angular y el "empuje" es una torca? Segundo, la más profunda: cuando la torca neta **se anula pero el cuerpo sigue girando**, ¿qué se conserva?
 
-## Contenido
+La respuesta a la primera es un cambio de variables puro: el trabajo rotacional es $$W = \tau_z\,\Delta\theta$$ y la potencia es $$P = \tau_z\,\omega_z$$ — las mismas fórmulas de las semanas 9 y 10 con $$F$$ cambiada por torca y distancia por ángulo. La respuesta a la segunda es la gran conclusión de la mecánica rotacional: el **momento angular**, la cantidad de movimiento de los sistemas que giran. Como el momentum lineal de la semana 11, se conserva cuando nada externo lo perturba; y a diferencia de $$\sum\tau = I\alpha$$ — que exige momento de inercia constante — su ley general, $$\sum\vec{\tau} = d\vec{L}/dt$$, sobrevive incluso cuando el cuerpo **cambia de forma** en pleno giro. Esa sola línea explica por qué el patinador que junta los brazos gira más rápido, por qué el gato que cae logra voltearse y por qué hay estrellas de neutrones que rotan cientos de veces por segundo.
 
-Contenido de la semana 16 próximamente disponible.
+El plan: primero el trabajo y la potencia rotacional, con sus tablas de analogía; luego el momento angular, de la partícula al cuerpo rígido; y finalmente el teorema de conservación, la herramienta que resolverá piruetas, carruseles, choques giratorios y estrellas colapsantes.
+
+## Trabajo y potencia en el movimiento de rotación
+
+Cuando una fuerza constante desplaza su punto de aplicación, el trabajo es $$W = F\,d$$. Para una fuerza que gira un cuerpo rígido, el desplazamiento del punto de aplicación es un **arco**: $$s = r\,\Delta\theta$$. Si la fuerza actúa tangencialmente, su torca respecto al eje es $$\tau_z = F\,r$$, y al sustituir ambas el radio se cancela:
+
+$$
+W = F\,s = F\,(r\,\Delta\theta) = (\underbrace{F\,r}_{\tau_z})\,\Delta\theta
+$$
+
+El resultado general — válido para cualquier fuerza, porque solo la componente que produce torca trabaja — es que el trabajo de una **torca constante** al generar un desplazamiento angular es:
+
+$$
+W = \tau_z\,\Delta\theta
+$$
+
+con $$\Delta\theta$$ en radianes, por supuesto. Es $$F\,d$$ con el diccionario de la semana 12: torca por ángulo, joules al final. Y si sobre el cuerpo actúan varias torcas, el teorema del trabajo y la energía de la semana 9 se traduce íntegro: el trabajo total iguala el cambio de energía cinética **rotacional**,
+
+$$
+W_{\text{total}} = \Delta K_{\text{rot}} = \frac{1}{2}I\,\omega_2^2 - \frac{1}{2}I\,\omega_1^2
+$$
+
+La **potencia** completa el paquete. Derivando el trabajo respecto al tiempo (con $$\omega_z = d\theta/dt$$):
+
+$$
+P = \tau_z\,\omega_z
+$$
+
+la gemela rotacional de $$P = F\,v$$. Es la fórmula con la que se especifica un motor real: su desempeño se anuncia como par (torca) y régimen de giro (revoluciones por minuto), y el producto de ambos es la potencia que entrega.
+
+La analogía traslación–rotación, que venimos construyendo desde la semana 12, suma dos filas nuevas:
+
+| Traslación | Rotación |
+| :--- | :--- |
+| Fuerza $$F$$ | Torca $$\tau_z$$ |
+| Desplazamiento $$d$$ | Ángulo $$\Delta\theta$$ |
+| Trabajo $$W = F\,d$$ | Trabajo $$W = \tau_z\,\Delta\theta$$ |
+| Potencia $$P = F\,v$$ | Potencia $$P = \tau_z\,\omega_z$$ |
+| Energía cinética $$\frac{1}{2}mv^2$$ | Energía cinética $$\frac{1}{2}I\omega^2$$ |
+
+<Box icon="check-list">
+
+**Ejemplo — el motor y el volante**
+
+Un motor ejerce una torca constante de $$40\,\mathrm{N}\cdot\mathrm{m}$$ sobre un volante de inercia. ¿Cuánto trabajo realiza en $$25$$ vueltas? ¿Qué potencia entrega cuando el volante gira a $$120\,\mathrm{rad/s}$$? ¿Y cuántos joules cuesta cada vuelta?
+
+**Trabajo en 25 vueltas**: cada vuelta son $$2\pi$$ radianes:
+
+$$
+W = \tau_z\,\Delta\theta = (40\,\mathrm{N}\cdot\mathrm{m})(25 \times 2\pi\,\mathrm{rad}) = (40)(157) \approx 6{,}3\,\mathrm{kJ}
+$$
+
+**Potencia a $$120\,\mathrm{rad/s}$$**:
+
+$$
+P = \tau_z\,\omega_z = (40)(120) = 4800\,\mathrm{W} = 4{,}8\,\mathrm{kW}
+$$
+
+**Costo por vuelta**: es el trabajo de una revolución completa:
+
+$$
+\frac{W}{\text{vuelta}} = \tau_z\,(2\pi) = (40)(6{,}28) \approx 251\,\mathrm{J}
+$$
+
+Note la consistencia: a $$120\,\mathrm{rad/s}$$ el motor completa $$120/(2\pi) \approx 19{,}1$$ vueltas por segundo, y $$19{,}1 \times 251\,\mathrm{J} \approx 4{,}8\,\mathrm{kJ}$$ cada segundo — exactamente la potencia calculada. Dos caminos, una respuesta: torca por ángulo y potencia por velocidad angular son la misma contabilidad.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. El trabajo de una torca constante $$\tau_z$$ que produce un desplazamiento angular $$\Delta\theta$$ es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\tau_z\,\omega_z$$
+      </Option>
+      <Option isCorrect>
+        $$\tau_z\,\Delta\theta$$
+      </Option>
+      <Option>
+        $$\frac{1}{2}\tau_z\,\Delta\theta^2$$
+      </Option>
+      <Option>
+        $$I\,\Delta\theta$$
+      </Option>
+    </MultipleChoice>
+
+2. El ángulo en $$W = \tau_z\,\Delta\theta$$ debe expresarse en __________.
+
+    <MultipleChoice>
+      <Option>
+        revoluciones
+      </Option>
+      <Option>
+        grados
+      </Option>
+      <Option isCorrect>
+        radianes
+      </Option>
+      <Option>
+        cualquier unidad, pues el producto da joules igual
+      </Option>
+    </MultipleChoice>
+
+3. Si sobre un volante solo actúa la torca del motor, el trabajo de esta iguala __________.
+
+    <MultipleChoice>
+      <Option>
+        el cambio de energía potencial del volante
+      </Option>
+      <Option isCorrect>
+        el cambio de su energía cinética rotacional
+      </Option>
+      <Option>
+        la potencia del motor
+      </Option>
+      <Option>
+        el momento de inercia por el ángulo girado
+      </Option>
+    </MultipleChoice>
+
+4. Un motor entrega $$90\,\mathrm{N}\cdot\mathrm{m}$$ girando a $$50\,\mathrm{rad/s}$$. Su potencia es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$1{,}8\,\mathrm{W}$$
+      </Option>
+      <Option>
+        $$140\,\mathrm{W}$$
+      </Option>
+      <Option isCorrect>
+        $$4{,}5\,\mathrm{kW}$$
+      </Option>
+      <Option>
+        $$4{,}5\,\mathrm{MW}$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Momento angular
+
+La semana 14 escribió la segunda ley de la rotación como $$\sum\tau_z = I_z\,\alpha_z$$. Funciona... mientras el momento de inercia sea constante. Pero el patinador que junta los brazos cambia $$I$$ **en pleno giro**, y entonces esa ecuación no sabe qué decir: ¿cuál $$I$$ usar? La mecánica lineal ya vivió este momento: para la traslación, $$\sum\vec{F} = m\vec{a}$$ no sobrevive a sistemas de masa variable, y la ley que de verdad gobierna es $$\sum\vec{F} = d\vec{p}/dt$$, escrita en términos de la **cantidad de movimiento**. La rotación necesita su propia magnitud análoga.
+
+Para una **partícula** de masa $$m$$ y momento lineal $$\vec{p} = m\vec{v}$$, respecto a un origen por el que pasa el eje de giro, se define el **momento angular** (o momentum angular):
+
+$$
+\vec{L} = \vec{r} \times \vec{p} = \vec{r} \times m\vec{v}
+$$
+
+Su magnitud es $$L = m\,v\,r\,\sin\theta$$ — el producto del momento lineal por el brazo de palanca del origen a la línea de acción de la velocidad — y su dirección sigue la regla de la mano derecha, perpendicular al plano de $$\vec{r}$$ y $$\vec{p}$$. En un movimiento circular puro, con $$\vec{v}$$ siempre perpendicular a $$\vec{r}$$, se reduce a $$L = m\,v\,r$$. Sus unidades son $$\mathrm{kg}\cdot\mathrm{m^2/s}$$.
+
+El momento angular es la cantidad física que se altera cuando un cuerpo — rígido o no rígido — gira bajo el efecto de una torca, y la relación entre ambas es la **segunda ley de Newton para la rotación en su forma general**:
+
+$$
+\sum \vec{\tau} = \frac{d\vec{L}}{dt}
+$$
+
+Verifiquémosla en el terreno conocido: para un **cuerpo rígido** que gira alrededor de un eje de simetría con velocidad angular $$\vec{\omega}$$,
+
+$$
+\vec{L} = I\,\vec{\omega}
+$$
+
+donde $$I$$ es el momento de inercia respecto a ese eje. Y si el eje de giro permanece fijo,
+
+$$
+L_z = I_z\,\omega_z
+\qquad\Rightarrow\qquad
+\sum\tau_z = \frac{dL_z}{dt} = I_z\,\alpha_z
+$$
+
+la segunda ley de la semana 14, ahora como caso particular de una ley más general: cuando $$I_z$$ es constante sale de la derivada; cuando no lo es, la ley **sigue valiendo** y el cambio de $$I$$ se paga con cambio de $$\omega$$, como veremos en la siguiente sección.
+
+La tabla de analogías cierra el círculo del curso:
+
+| Traslación | Rotación |
+| :--- | :--- |
+| Masa $$m$$ (inercia) | Momento de inercia $$I$$ |
+| Cantidad de movimiento $$p = mv$$ | Momento angular $$L = I\omega$$ |
+| $$\sum\vec{F} = d\vec{p}/dt$$ | $$\sum\vec{\tau} = d\vec{L}/dt$$ |
+| $$\sum\vec{F} = 0 \Rightarrow \vec{p}$$ constante | $$\sum\vec{\tau} = 0 \Rightarrow \vec{L}$$ constante |
+
+<Box icon="check-list">
+
+**Ejemplo — la piedra y el disco**
+
+**Partícula**: una piedra de $$0{,}20\,\mathrm{kg}$$ gira atada a una cuerda de $$0{,}80\,\mathrm{m}$$ con rapidez constante de $$5{,}0\,\mathrm{m/s}$$. ¿Cuál es su momento angular respecto al centro del círculo?
+
+$$
+L = m\,v\,r = (0{,}20\,\mathrm{kg})(5{,}0\,\mathrm{m/s})(0{,}80\,\mathrm{m}) = 0{,}80\,\mathrm{kg}\cdot\mathrm{m^2/s}
+$$
+
+La tensión de la cuerda apunta siempre al centro: es una **fuerza central**, su torca respecto al eje es nula y por eso $$L$$ se mantiene constante aunque nada "empuje" el giro. Esta observación sencilla es, en miniatura, la ley de conservación de la sección siguiente — y la razón por la que las órbitas planetarias son estables.
+
+**Cuerpo rígido**: un disco uniforme de $$M = 4{,}0\,\mathrm{kg}$$ y $$R = 0{,}20\,\mathrm{m}$$ gira a $$20\,\mathrm{rad/s}$$ sobre su eje de simetría. Con $$I = \frac{1}{2}MR^2 = \frac{1}{2}(4{,}0)(0{,}20)^2 = 0{,}080\,\mathrm{kg}\cdot\mathrm{m^2}$$:
+
+$$
+L = I\,\omega = (0{,}080)(20) = 1{,}6\,\mathrm{kg}\cdot\mathrm{m^2/s}
+$$
+
+Dos geometrías distintas, una sola definición: momento lineal cruzado con brazo, o inercia por velocidad angular — el mismo $$L$$ que la torca cambia y que, sin torca, se conserva.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. El momento angular de una partícula respecto a un origen es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\vec{p} \times \vec{r}$$
+      </Option>
+      <Option isCorrect>
+        $$\vec{r} \times \vec{p}$$
+      </Option>
+      <Option>
+        $$\vec{r} \cdot \vec{p}$$
+      </Option>
+      <Option>
+        $$m\,\vec{r}$$
+      </Option>
+    </MultipleChoice>
+
+2. La ley general de la rotación establece que __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\sum\vec{\tau} = I\,\alpha$$, sin condiciones adicionales
+      </Option>
+      <Option isCorrect>
+        $$\sum\vec{\tau} = d\vec{L}/dt$$
+      </Option>
+      <Option>
+        $$\sum\vec{F} = d\vec{L}/dt$$
+      </Option>
+      <Option>
+        $$\vec{L} = \vec{\tau}\,\omega$$
+      </Option>
+    </MultipleChoice>
+
+3. Para un cuerpo rígido que gira sobre un eje de simetría, $$\vec{L} = $$ __________.
+
+    <MultipleChoice>
+      <Option>
+        $$m\,\vec{\omega}$$
+      </Option>
+      <Option>
+        $$\vec{\omega}/I$$
+      </Option>
+      <Option isCorrect>
+        $$I\,\vec{\omega}$$
+      </Option>
+      <Option>
+        $$\frac{1}{2}I\,\omega^2$$
+      </Option>
+    </MultipleChoice>
+
+4. La unidad del momento angular en el SI es __________.
+
+    <MultipleChoice>
+      <Option>
+        $$\mathrm{kg}\cdot\mathrm{m/s}$$
+      </Option>
+      <Option>
+        $$\mathrm{kg}\cdot\mathrm{m^2}$$
+      </Option>
+      <Option>
+        $$\mathrm{N}\cdot\mathrm{m}$$
+      </Option>
+      <Option isCorrect>
+        $$\mathrm{kg}\cdot\mathrm{m^2/s}$$
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Conservación del momento angular
+
+La ley general $$\sum\vec{\tau} = d\vec{L}/dt$$ esconde un regalo. Si la torca neta que actúa sobre el cuerpo es nula,
+
+$$
+\sum\vec{\tau} = \vec{0} \quad\Rightarrow\quad \frac{d\vec{L}}{dt} = 0 \quad\Rightarrow\quad \vec{L} = \text{constante}
+$$
+
+**el momento angular se conserva.** Es el espejo exacto de la conservación del momentum lineal de la semana 11: ausencia de fuerza externa → momentum constante; ausencia de torca externa → momento angular constante.
+
+Para un cuerpo rígido que gira sin cambiar la dirección de su eje, la conservación se lee como la igualdad del "antes y el después":
+
+$$
+I_{z,1}\,\omega_{z,1} = I_{z,2}\,\omega_{z,2}
+$$
+
+Y aquí está la diferencia con todo lo anterior: **$$I$$ no tiene por qué ser el mismo en los dos instantes**. Un cuerpo puede cambiar su momento de inercia en pleno giro — redistribuyendo su masa — y la velocidad angular se ajusta sola para mantener el producto $$I\omega$$ fijo. Es exactamente lo que hace el patinador en la pirueta: brazos extendidos, $$I_{z,1}$$ grande y giro lento; brazos pegados al cuerpo, $$I_{z,2}$$ menor y giro rápido ($$\omega_{z,2} > \omega_{z,1}$$). Nadie le aplica torca: la fricción del hielo y el peso pasan por el eje, así que $$L$$ simplemente se respeta.
+
+El repertorio de la naturaleza y la ingeniería está lleno de esta ley:
+
+- **Deportes**: el patinador de la pirueta; el clavadista que agrupa el cuerpo para girar más rápido y lo extiende para "frenar" antes de entrar al agua; el bailarín de folclor que gira en puntillas.
+- **La silla giratoria**: quien sostiene pesas extendidas y las acerca al pecho acelera de forma asombrosa.
+- **Giroscopios y discos duros**: ruedas que mantienen su orientación porque conservar $$\vec{L}$$ significa conservar también su **dirección**.
+- **Astronomía**: los planetas orbitan con momento angular constante (la gravedad es central: torca nula); una estrella que colapsa a estrella de neutrones reduce su radio millones de veces, su $$I$$ se desploma y nace un **púlsar** que gira hasta cientos de veces por segundo.
+
+Una advertencia fina que separa a quienes dominan el tema: la conservación de $$\vec{L}$$ **no** implica la de la energía. Si $$I$$ cambia, $$\omega$$ cambia, y con ellas la energía cinética $$K = \frac{1}{2}I\omega^2 = \frac{L^2}{2I}$$. Reducir $$I$$ **aumenta** $$K$$ — alguien hizo trabajo: los músculos del patinador, que jalan los brazos contra el tirón hacia afuera. El momento angular es la cantidad terca que no se negocia; la energía, como siempre, se transfiere.
+
+<Box icon="check-list">
+
+**Ejemplo — la silla giratoria**
+
+Un estudiante en una silla giratoria (sin fricción) sostiene dos pesas con los brazos extendidos. Con brazos extendidos, el momento de inercia del conjunto es $$I_1 = 6{,}0\,\mathrm{kg}\cdot\mathrm{m^2}$$ y un compañero lo impulsa hasta $$\omega_1 = 1{,}5\,\mathrm{rad/s}$$. El estudiante acerca las pesas al pecho y el momento de inercia baja a $$I_2 = 2{,}4\,\mathrm{kg}\cdot\mathrm{m^2}$$. ¿A qué velocidad angular queda girando? ¿Qué pasó con la energía?
+
+**Conservación del momento angular** — ninguna torca externa actúa sobre el eje vertical:
+
+$$
+I_1\,\omega_1 = I_2\,\omega_2
+\quad\Rightarrow\quad
+\omega_2 = \frac{I_1\,\omega_1}{I_2} = \frac{(6{,}0)(1{,}5)}{2{,}4} = 3{,}75\,\mathrm{rad/s}
+$$
+
+El giro se acelera dos y media veces, sin que nadie empuje: el momento angular no cambió ($$9{,}0\,\mathrm{kg}\cdot\mathrm{m^2/s}$$ antes y después), solo se repartió distinto entre $$I$$ y $$\omega$$.
+
+**El balance de energía** cuenta la otra mitad de la historia:
+
+$$
+K_1 = \frac{1}{2}(6{,}0)(1{,}5)^2 = 6{,}8\,\mathrm{J}
+\qquad
+K_2 = \frac{1}{2}(2{,}4)(3{,}75)^2 \approx 17\,\mathrm{J}
+$$
+
+La energía cinética **creció** unos $$10\,\mathrm{J}$$. No se creó de la nada: los brazos del estudiante hicieron trabajo al jalar las pesas, venciendo el tirón hacia afuera del giro. La torca no fue externa (actúa dentro del sistema), así que $$\vec{L}$$ ni se enteró; la energía sí lo notó. Conservación de $$\vec{L}$$ y conservación de $$K$$ son teoremas independientes — y este experimento de salón es la forma más barata de demostrarlo.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. El momento angular de un cuerpo se conserva cuando __________.
+
+    <MultipleChoice>
+      <Option>
+        la fuerza neta sobre él es cero
+      </Option>
+      <Option>
+        su energía cinética es constante
+      </Option>
+      <Option isCorrect>
+        la torca neta externa sobre él es cero
+      </Option>
+      <Option>
+        su momento de inercia es constante
+      </Option>
+    </MultipleChoice>
+
+2. Un patinador gira con los brazos extendidos y los junta. Su velocidad angular __________.
+
+    <MultipleChoice>
+      <Option>
+        disminuye, porque $$I$$ disminuye
+      </Option>
+      <Option isCorrect>
+        aumenta, porque $$I\omega$$ debe permanecer constante
+      </Option>
+      <Option>
+        no cambia, pues nadie le aplica torca
+      </Option>
+      <Option>
+        aumenta solo si la energía se conserva
+      </Option>
+    </MultipleChoice>
+
+3. Si el momento de inercia de un cuerpo que gira se reduce a la mitad sin torca externa, su energía cinética rotacional __________.
+
+    <MultipleChoice>
+      <Option>
+        se reduce a la mitad
+      </Option>
+      <Option>
+        no cambia
+      </Option>
+      <Option isCorrect>
+        se duplica
+      </Option>
+      <Option>
+        se cuadruplica
+      </Option>
+    </MultipleChoice>
+
+4. Una estrella que colapsa a estrella de neutrones gira cada vez más rápido porque __________.
+
+    <MultipleChoice>
+      <Option>
+        la gravedad le aplica una torca en el eje de giro
+      </Option>
+      <Option>
+        su masa aumenta durante el colapso
+      </Option>
+      <Option isCorrect>
+        su momento de inercia disminuye y su momento angular se conserva
+      </Option>
+      <Option>
+        su energía cinética se conserva durante el colapso
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Trabajo rotacional | $$W = \tau_z\,\Delta\theta$$ | torca constante; ángulo en radianes |
+| Teorema trabajo–energía | $$W_{\text{total}} = \frac{1}{2}I\omega_2^2 - \frac{1}{2}I\omega_1^2$$ | el trabajo de las torcas iguala el cambio de $$K_{\text{rot}}$$ |
+| Potencia rotacional | $$P = \tau_z\,\omega_z$$ | la especificación de todo motor: par por régimen |
+| Momento angular de partícula | $$\vec{L} = \vec{r}\times m\vec{v}$$ | magnitud $$mvr\sin\theta$$; circular puro: $$L = mvr$$ |
+| Momento angular de cuerpo rígido | $$\vec{L} = I\vec{\omega}$$; $$L_z = I_z\omega_z$$ | sobre eje de simetría / eje fijo |
+| Segunda ley general | $$\sum\vec{\tau} = d\vec{L}/dt$$ | vale aunque $$I$$ cambie; $$\sum\tau = I\alpha$$ es caso particular |
+| Conservación | $$\sum\vec{\tau}_{ext} = 0 \Rightarrow I_1\omega_1 = I_2\omega_2$$ | piruetas, sillas, carruseles, estrellas que colapsan |
+| Energía | $$K = L^2/2I$$ | $$\vec{L}$$ constante **no** implica $$K$$ constante |
+
+El curso termina donde empezó, pero mirándolo desde otra altura. Las semanas 1 a 11 construyeron la mecánica de la traslación — cinemática, fuerzas, energía, momentum — y las semanas 12 a 16 la reprodujeron para el giro: ángulos por posiciones, momento de inercia por masa, torca por fuerza, trabajo rotacional por trabajo, y ahora momento angular por momentum. Cada teorema que aprendió en una columna tiene su gemelo en la otra: esa simetría, más que cualquier fórmula suelta, es la gran lección de Física General I. En la práctica final pondrá a girar motores y volantes, calculará el momento angular de la Tierra, frenará discos que chocan, acelerará patinadores y carruseles, y verá a una estrella entera obedecer la misma ley que la pirueta de un patinador. Aplique bien el diccionario — y buenas vacaciones.

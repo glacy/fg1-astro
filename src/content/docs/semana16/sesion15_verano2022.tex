@@ -1,0 +1,89 @@
+\setcounter{page}{136}
+\setcounter{figure}{0}
+\setcounter{chapter}{15}
+
+\chapter{Momentum angular}
+\label{cap:cap15}
+\vspace{-10ex}
+
+\raggedright
+
+Hasta ahora hemos explorado cómo se describen la rotación y la aceleración angular de un cuerpo rígido bajo la acción de una torca. Siguiendo el paralelismo entre el movimiento lineal y el rotacional, es natural preguntarse: ¿cómo se transfiere energía en un sistema que rota? ¿Qué papel juegan el trabajo y la potencia cuando el movimiento no es lineal, sino angular?
+
+En esta sección abordaremos dos ideas fundamentales que amplían nuestro entendimiento de los sistemas rotacionales:
+
+
+\begin{itemize}
+\item Por un lado, el \textbf{trabajo rotacional} se asocia con la acción de una torca que provoca una rotación, y se define de forma análoga al trabajo lineal, pero considerando la variable angular. La \textbf{potencia} en este contexto nos permitirá cuantificar la rapidez con la que se realiza trabajo en un sistema que gira.
+
+
+\item Por otro lado, introduciremos el concepto de \textbf{momentum angular}, que es la cantidad de movimiento asociada a un objeto en rotación. Esta magnitud tiene un papel tan fundamental como la cantidad de movimiento lineal (momentum lineal), especialmente cuando se estudian sistemas donde las torcas externas son pequeñas o inexistentes, permitiendo el uso del principio de conservación del momentum angular.
+\end{itemize}
+
+
+Estos conceptos no solo son clave para comprender fenómenos físicos como el giro de una hélice o la rotación de un planeta, sino que también tienen aplicaciones prácticas en ingeniería, biomecánica, deportes y tecnologías que involucran sistemas en rotación, como turbinas, discos duros y giroscopios.
+\section{Trabajo y potencia en el movimento de rotaci\'on}
+El trabajo efectuado por una torca constante al generar un desplazamiento angular sobre un cuerpo est\'a dado por
+\begin{equation}
+    W=\tau_z \Delta \theta
+\end{equation}
+
+Si una torca efectúa trabajo sobre un cuerpo rígido que gira, la energía cinética experimenta un cambio en una cantidad igual a ese trabajo, es decir
+\begin{equation}
+    W_{\Mbox{total}}=\Delta K_{\Mbox{rot}}=\frac{1}{2}I\omega_{\Mbox{2}}^2-\frac{1}{2}I\omega_{\Mbox{1}}^2
+\end{equation}
+La potencia debida a una torca que actúa sobre un cuerpo rígido se relaciona con la velocidad angular del cuerpo con respecto
+al eje de rotación mediante
+\begin{equation}
+    P=\tau_z \omega_z
+\end{equation}
+
+\section{Momento angular}
+
+La \textit{cantidad de movimiento rotacional} de una part\'icula puntual de masa $m$ y momento lineal $\vec{p}$ se define como
+\begin{equation}
+\vec{L}=\vec{r}\times\vec{p}=\vec{r}\times m \vec{v}.
+\end{equation}
+
+ Definido de esta forma, el tambi\'en llamado \textit{momentum angular}, es la cantidad f\'isica que se ve alterada cuando un cuerpo (r\'igido o no r\'igido) gira bajo el efecto de una torca, es decir
+
+\begin{equation}
+\sum \vec{\bm{\tau}}=\der{\vec{L}}{t}.
+\end{equation}
+
+En el caso de un cuerpo r\'igido que gira alrededor de un eje de simetr\'ia con velocidad angular $\vec{\omega}$
+ \begin{equation}
+\vec{L}=I\vec{\omega},
+\end{equation}
+donde $I$ es el momento de inercia rotacional respecto al eje de simetr\'ia. \\
+
+Para un cuerpo r\'igido, en donde el eje de giro permanece fijo, se cumple que 
+\begin{equation}
+L_z=I_z\omega_z.
+\end{equation}
+por lo que 
+\begin{equation}
+\sum \tau_z=\der{L_z}{t}=I_z\alpha_z.
+\end{equation}
+
+\section{Conservaci\'on del momento angular}
+
+ Si la torca neta que act\'ua sobre un cuerpo r\'igido es nula, es decir, si 
+ $$ \sum \vec{\bm{\tau}}=\vec{0}$$
+ se cumple que $\vec{L}$ es constante (se conserva). Por lo tanto, en ausencia de torcas externas, se cumple para un cuerpo r\'igido que gira sin cambiar la direcci\'on de su eje de giro que 
+\begin{equation}
+I_{\Mbox{z,1}}\omega_{{\Mbox{z,1}}}=I_{\Mbox{z,2}}\omega_{{\Mbox{z,2}}}.
+\end{equation}
+Esta caracter\'istica es la que permite, por ejemplo, que una persona aumente su velocidad de giro al \textit{redistribuir} su masa en una "pirueta" de patinaje (ver Figura \ref{fig:patinador}).
+\begin{figure}[!h]
+\begin{center}
+%\begin{tabular}{lr}
+%\includegraphics[height=2in]{ejemplorot1}&
+\includegraphics[width=3in]{planeamiento_didactico/figuras/patinador.png}
+%\end{tabular}
+\caption{\textit{Patinador girando}. $I_{\Mbox{z,1}}>I_{\Mbox{z,2}}$, por lo que $\omega_{{\Mbox{z,2}}}>\omega_{{\Mbox{z,1}}}$.}
+\label{fig:patinador}
+\textcolor{c4}{\footnotesize{Fuente: Sears, F. W., Zemansky, M. W., Young, H. D. y Freedman, R. A.
+(2013). F\'isica Universitaria. Volumen 1. D\'ecimo tercera Edici\'on. M\'exico: Pearson Educaci\'on}}
+\end{center}
+\end{figure}

@@ -1,0 +1,337 @@
+---
+title: "Práctica"
+week: 15
+keywords: ["equilibrio estático", "condiciones de equilibrio", "equilibrio traslacional", "equilibrio rotacional", "primera condición de equilibrio", "segunda condición de equilibrio", "centro de gravedad", "centro de masa", "base de soporte", "estabilidad", "vuelco", "torca gravitacional", "diagrama de cuerpo libre", "cuerpo rígido", "física general I", "TEC Costa Rica"]
+draft: false
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note" icon="pencil" title="Ejercicio 1 — 🎯 El letrero de la feria">
+Un letrero que pesa $$240\,\mathrm{N}$$ cuelga de un nudo del que salen dos cables hacia lados opuestos, cada uno formando $$45^\circ$$ con la horizontal.
+
+1. Calcule la tensión de cada cable.
+2. El dueño del local propone cambiar el montaje: un cable vertical y otro horizontal, anclados al mismo nudo. ¿Qué tensión tendría cada uno?
+3. ¿Cuál de los dos montajes prefiere? Justifique con sus resultados.
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Cables a $$45^\circ$$**
+
+Por simetría, ambas tensiones son iguales. La suma vertical sobre el nudo da:
+
+$$
+2\,T\sin 45^\circ = 240\,\mathrm{N} \quad\Rightarrow\quad T = \frac{240}{2(0{,}707)} \approx 170\,\mathrm{N}
+$$
+
+**2. Un cable vertical y otro horizontal**
+
+El cable vertical soporta todo el peso: $$T_v = 240\,\mathrm{N}$$. La suma horizontal exige entonces que el cable horizontal no tense nada:
+
+$$
+T_h = 0
+$$
+
+Un cable horizontal **no puede** aportar componente vertical: por muchos newtons que tenga, ninguno sirve para sostener el letrero.
+
+**3. ¿Cuál montaje?**
+
+El de dos cables a $$45^\circ$$: cada uno carga $$170\,\mathrm{N}$$, menos que el peso completo de $$240\,\mathrm{N}$$ del montaje alternativo. La lección general: solo la componente **vertical** de cada tensión sostiene el peso, y esa componente crece con la verticalidad del cable. Los letreros cuelgan "en V" porque reparten la carga: mientras más verticales los cables, menos tensión soporta cada uno.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 2 — 🚶 Throcky camina de nuevo">
+Una tabla uniforme de $$M = 40\,\mathrm{kg}$$ y $$L = 4{,}0\,\mathrm{m}$$ descansa sobre dos caballetes separados $$D = 1{,}0\,\mathrm{m}$$, equidistantes del centro de la tabla.
+
+1. ¿Qué masa máxima puede tener una persona parada en el extremo derecho sin que la tabla se mueva?
+2. Una persona de $$60\,\mathrm{kg}$$ camina desde el centro hacia el extremo derecho. ¿A qué distancia **del centro** puede llegar como máximo?
+3. Si los caballetes se separan a $$D = 2{,}0\,\mathrm{m}$$, recalcule los incisos 1 y 2. ¿Qué conclusiones saca sobre la separación de los apoyos?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Masa máxima en el extremo**
+
+El umbral del vuelco ocurre cuando el centro de gravedad del conjunto queda sobre el caballete derecho ($$x_S = D/2 = 0{,}50\,\mathrm{m}$$ del centro):
+
+$$
+\frac{m(L/2)}{M+m} = \frac{D}{2}
+\quad\Rightarrow\quad
+m = M\,\frac{D}{L-D} = (40)\,\frac{1{,}0}{4{,}0-1{,}0} \approx 13{,}3\,\mathrm{kg}
+$$
+
+Poco más de un perro mediano: con caballetes tan juntos, la tabla apenas aguanta a un niño.
+
+**2. Hasta dónde llega la persona de $$60\,\mathrm{kg}$$**
+
+Torcas respecto al caballete derecho en el umbral del vuelco (el peso de la tabla, $$392\,\mathrm{N}$$, actúa a $$0{,}50\,\mathrm{m}$$ del eje; la persona, a $$x - 0{,}50$$):
+
+$$
+Mg\,\frac{D}{2} = mg\left(x - \frac{D}{2}\right)
+\quad\Rightarrow\quad
+x = \frac{D}{2}\left(1 + \frac{M}{m}\right) = 0{,}50\left(1 + \frac{40}{60}\right) \approx 0{,}83\,\mathrm{m}
+$$
+
+Desde el centro puede avanzar $$0{,}83\,\mathrm{m}$$; el extremo está a $$2{,}0\,\mathrm{m}$$: **no puede llegar** — le faltan casi un metro y veinte de tabla por recorrer.
+
+**3. Con caballetes más separados ($$D = 2{,}0\,\mathrm{m}$$)**
+
+$$
+m = M\,\frac{D}{L-D} = (40)\,\frac{2{,}0}{4{,}0-2{,}0} = 40\,\mathrm{kg}
+\qquad\qquad
+x = 1{,}0\left(1 + \frac{40}{60}\right) \approx 1{,}67\,\mathrm{m}
+$$
+
+Triplique la masa admisible en el extremo y casi duplique el avance permitido. **Separar los apoyos** acerca el umbral del vuelco hacia los extremos: es la diferencia entre una tabla en equilibrio precario y una plataforma confiable — y la razón por la que los andamios reparten sus apoyos.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 3 — 🌉 El puente peatonal">
+Un puente provisional uniforme de $$8{,}0\,\mathrm{m}$$ de largo y $$300\,\mathrm{kg}$$ de masa descansa sobre dos apoyos, uno en cada extremo. Una persona de $$80\,\mathrm{kg}$$ cruza el puente.
+
+1. Calcule la fuerza que soporta cada apoyo cuando la persona está a $$2{,}0\,\mathrm{m}$$ del apoyo izquierdo.
+2. ¿El reparto entre apoyos es proporcional a las distancias? Interprete.
+3. ¿Dónde debe pararse la persona para que ambos apoyos reciban la misma fuerza?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Reacciones de los apoyos**
+
+Pesos: puente $$W_p = (300)(9{,}8) = 2940\,\mathrm{N}$$ (en el centro, a $$4{,}0\,\mathrm{m}$$ de cada extremo); persona $$W_m = (80)(9{,}8) = 784\,\mathrm{N}$$ a $$2{,}0\,\mathrm{m}$$ del apoyo izquierdo.
+
+Torcas respecto al apoyo izquierdo (la reacción izquierda desaparece):
+
+$$
+R_B\,(8{,}0) = (2940)(4{,}0) + (784)(2{,}0) = 11760 + 1568 \quad\Rightarrow\quad R_B \approx 1666\,\mathrm{N}
+$$
+
+Suma vertical:
+
+$$
+R_A = 2940 + 784 - 1666 = 2058\,\mathrm{N}
+$$
+
+**2. Interpretación**
+
+El apoyo izquierdo carga $$2058\,\mathrm{N}$$ y el derecho $$1666\,\mathrm{N}$$. No es un reparto proporcional a las distancias a cada apoyo: cada apoyo recibe la fracción de cada peso que dicta el **brazo del otro apoyo**. El puente solo aporta la mitad a cada lado, pero la persona —parada en el tercio izquierdo— transfiere $$\frac{3}{4}$$ de su peso al apoyo cercano. Por eso las estructuras reales se calculan con la carga en su posición **más desfavorable**, no en la más cómoda.
+
+**3. Reparto igualitario**
+
+Por simetría: al centro del puente ($$4{,}0\,\mathrm{m}$$ de cada apoyo). Entonces cada peso aporta exactamente la mitad a cada apoyo:
+
+$$
+R_A = R_B = \frac{2940 + 784}{2} = 1862\,\mathrm{N}
+$$
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 4 — 🏪 El rótulo de la ferretería">
+Un rótulo uniforme de $$1{,}5\,\mathrm{m}$$ de largo y $$12\,\mathrm{kg}$$ de masa sobresale horizontalmente de una pared, sujeto por una bisagra en el extremo interior. En el extremo exterior cuelga un cable que forma $$53^\circ$$ con la horizontal y, además, una carga de $$60\,\mathrm{N}$$ cuelga directamente de ese extremo.
+
+1. Calcule la tensión del cable.
+2. Calcule las componentes de la fuerza que ejerce la bisagra sobre el rótulo.
+3. El cable se reancla más arriba, de modo que forma $$60^\circ$$ con la horizontal. ¿Cómo cambian la tensión y la componente horizontal de la bisagra?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Tensión del cable**
+
+Pesos: rótulo $$W_r = (12)(9{,}8) = 117{,}6\,\mathrm{N}$$ en el centro (a $$0{,}75\,\mathrm{m}$$ de la bisagra); carga $$60\,\mathrm{N}$$ en el extremo (a $$1{,}5\,\mathrm{m}$$). Torcas respecto a la bisagra (ahí actúa la incógnita doble $$\vec{H}$$):
+
+$$
+T\sin 53^\circ\,(1{,}5) = (117{,}6)(0{,}75) + (60)(1{,}5) = 88{,}2 + 90
+$$
+
+$$
+T = \frac{178{,}2}{1{,}5\,(0{,}8)} = 148{,}5\,\mathrm{N} \approx 149\,\mathrm{N}
+$$
+
+**2. Fuerza de bisagra**
+
+Suma horizontal (el cable jala hacia afuera, la bisagra empuja hacia la pared):
+
+$$
+H_x = T\cos 53^\circ = (148{,}5)(0{,}6) \approx 89\,\mathrm{N}
+$$
+
+Suma vertical:
+
+$$
+H_y = 117{,}6 + 60 - T\sin 53^\circ = 177{,}6 - 118{,}8 \approx 59\,\mathrm{N} \;\text{(hacia arriba)}
+$$
+
+La magnitud total es $$H = \sqrt{89^2 + 59^2} \approx 107\,\mathrm{N}$$. Aun con el cable, la bisagra sigue trabajando fuerte: los anclajes a pared se diseñan con ambos agentes en mente.
+
+**3. Cable más vertical ($$60^\circ$$)**
+
+$$
+T = \frac{178{,}2}{1{,}5\,\sin 60^\circ} = \frac{178{,}2}{1{,}30} \approx 137\,\mathrm{N}
+\qquad\qquad
+H_x = T\cos 60^\circ \approx 69\,\mathrm{N}
+$$
+
+Ambas disminuyen: un cable más vertical entrega más sustentación por newton de tensión **y** jala menos hacia afuera. El ángulo del cable no es un detalle de instalación, es el parámetro de diseño principal del rótulo.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 5 — 🪜 La escalera prudente">
+Una escalera uniforme de $$5{,}0\,\mathrm{m}$$ de largo y $$20\,\mathrm{kg}$$ de masa se apoya sobre un piso rugoso y contra una **pared sin fricción**; su base está a $$3{,}0\,\mathrm{m}$$ de la pared. Una persona de $$70\,\mathrm{kg}$$ sube por la escalera.
+
+1. Con la persona a $$4{,}0\,\mathrm{m}$$ a lo largo de la escalera (medidos desde la base), calcule la fuerza normal de la pared.
+2. Calcule la fuerza normal y la fricción del piso.
+3. ¿Cuál es el mínimo coeficiente de fricción estático necesario?
+4. ¿Y si la persona sube hasta el extremo superior?
+
+<details>
+<summary>Ver solución</summary>
+
+**Geometría**: la escalera forma $$53^\circ$$ con el piso ($$\cos 53^\circ = 3{,}0/5{,}0$$). La pared toca la escalera a $$4{,}0\,\mathrm{m}$$ de altura; los brazos horizontales desde la base son $$2{,}5\cos 53^\circ = 1{,}5\,\mathrm{m}$$ (peso de la escalera) y $$4{,}0\cos 53^\circ = 2{,}4\,\mathrm{m}$$ (persona).
+
+**1. Fuerza normal de la pared**
+
+La pared sin fricción solo empuja horizontalmente ($$N_w$$). Torcas respecto a la base de la escalera (ahí se anulan la normal y la fricción del piso):
+
+$$
+N_w\,(4{,}0) = (196)(1{,}5) + (686)(2{,}4) = 294 + 1646
+$$
+
+$$
+N_w = \frac{1940}{4{,}0} \approx 485\,\mathrm{N}
+$$
+
+**2. Fuerzas del piso**
+
+Suma vertical: la normal del piso sostiene ambos pesos:
+
+$$
+N_f = (20 + 70)(9{,}8) = 882\,\mathrm{N}
+$$
+
+Suma horizontal: la fricción es la única en igualarse a la pared:
+
+$$
+f = N_w \approx 485\,\mathrm{N}
+$$
+
+**3. Coeficiente mínimo**
+
+$$
+\mu_{\text{mín}} = \frac{f}{N_f} = \frac{485}{882} \approx 0{,}55
+$$
+
+**4. Persona en la cima**
+
+La persona pasa a $$5{,}0\cos 53^\circ = 3{,}0\,\mathrm{m}$$ horizontales de la base:
+
+$$
+N_w = \frac{(196)(1{,}5) + (686)(3{,}0)}{4{,}0} = \frac{2352}{4{,}0} = 588\,\mathrm{N}
+\quad\Rightarrow\quad
+\mu_{\text{mín}} = \frac{588}{882} \approx 0{,}67
+$$
+
+Cuanto más alto sube la persona, más exige la fricción del piso — la pared solo puede empujar horizontal, y toda su pareja la pone el piso. Por eso las escaleras reales tienen tacos de goma, y por eso se les prohíbe al usuario el último peldaño.
+
+</details>
+</Aside>
+
+<Aside type="note" icon="pencil" title="Ejercicio 6 — 🧱 El balance del escultor">
+Una varilla ligera sostiene dos esferas: una de $$2{,}0\,\mathrm{kg}$$ en el extremo izquierdo ($$x = 0$$) y una de $$6{,}0\,\mathrm{kg}$$ en el extremo derecho ($$x = 0{,}80\,\mathrm{m}$$).
+
+1. ¿Dónde queda el centro de gravedad del conjunto?
+2. El escultor apoya la varilla en un filo colocado en el **centro geométrico** ($$x = 0{,}40\,\mathrm{m}$$). ¿Qué ocurre y por qué?
+3. ¿En qué posición debe colocar el filo para lograr el equilibrio?
+4. ¿Qué masa tendría que agregar en $$x = 0{,}20\,\mathrm{m}$$ para que el equilibrio se logre con el filo en el centro geométrico?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Centro de gravedad**
+
+Suma ponderada con origen en la esfera pequeña:
+
+$$
+x_{\text{cg}} = \frac{(2{,}0)(0) + (6{,}0)(0{,}80)}{2{,}0 + 6{,}0} = \frac{4{,}8}{8{,}0} = 0{,}60\,\mathrm{m}
+$$
+
+A $$20\,\mathrm{cm}$$ de la esfera pesada y a $$60\,\mathrm{cm}$$ de la liviana: el centro de gravedad siempre se acerca a la masa mayor.
+
+**2. Filo en el centro geométrico**
+
+La varilla vuela hacia el lado pesado. Las torcas respecto a $$x = 0{,}40\,\mathrm{m}$$: la esfera de $$2{,}0\,\mathrm{kg}$$ (a $$0{,}40\,\mathrm{m}$$) produce $$19{,}6 \times 0{,}40 \approx 7{,}8\,\mathrm{N}\cdot\mathrm{m}$$, mientras la de $$6{,}0\,\mathrm{kg}$$ (también a $$0{,}40\,\mathrm{m}$$) produce $$58{,}8 \times 0{,}40 \approx 23{,}5\,\mathrm{N}\cdot\mathrm{m}$$. Torca neta hacia la derecha, sin nada que la contradiga: **cae**. El centro geométrico solo equilibra masas iguales; el equilibrio exige el **centro de gravedad**, no el centro de la figura.
+
+**3. Posición correcta del filo**
+
+Exactamente bajo el centro de gravedad: $$x = 0{,}60\,\mathrm{m}$$. Allí las torcas de ambos pesos se anulan entre sí.
+
+**4. Masa extra para equilibrar en el centro geométrico**
+
+Con una masa $$m_3$$ en $$x = 0{,}20\,\mathrm{m}$$, exigimos $$x_{\text{cg}} = 0{,}40\,\mathrm{m}$$:
+
+$$
+\frac{(6{,}0)(0{,}80) + m_3(0{,}20)}{8{,}0 + m_3} = 0{,}40
+\quad\Rightarrow\quad
+4{,}8 + 0{,}20\,m_3 = 3{,}2 + 0{,}40\,m_3
+\quad\Rightarrow\quad
+m_3 = 8{,}0\,\mathrm{kg}
+$$
+
+Ocho kilos a la izquierda del centro compensan el sesgo de la esfera derecha: el contrapeso, técnica ancestral de toda balanza y toda grúa, es un problema de centros de gravedad.
+
+</details>
+</Aside>
+
+
+<Aside type="note" icon="pencil" title="Ejercicio 7 — 💪 El precio de sostener una pesa">
+Un antebrazo horizontal sostiene una pesa de $$15\,\mathrm{kg}$$ en la mano, a $$35\,\mathrm{cm}$$ del codo. El antebrazo (más la mano) tiene masa $$2{,}0\,\mathrm{kg}$$ con centro de gravedad a $$15\,\mathrm{cm}$$ del codo, y el tendón del bíceps se ancla a $$5{,}0\,\mathrm{cm}$$ del codo, jalando con un ángulo de $$75^\circ$$ respecto al antebrazo.
+
+1. Calcule la fuerza que ejerce el bíceps.
+2. Calcule las componentes de la fuerza que el húmero ejerce sobre el antebrazo en el codo.
+3. Compare la fuerza del bíceps con el peso que sostiene la mano. ¿Qué diseño anatómico explica la diferencia?
+
+<details>
+<summary>Ver solución</summary>
+
+**1. Fuerza del bíceps**
+
+Torcas respecto al codo (ahí se anula la fuerza de articulación). Pesos: antebrazo $$W_a = (2{,}0)(9{,}8) = 19{,}6\,\mathrm{N}$$; pesa $$W_p = (15)(9{,}8) = 147\,\mathrm{N}$$. El brazo útil del tendón es su distancia horizontal al codo multiplicada por $$\sin 75^\circ$$:
+
+$$
+F_b\sin 75^\circ\,(0{,}050) = (19{,}6)(0{,}15) + (147)(0{,}35) = 2{,}94 + 51{,}45
+$$
+
+$$
+F_b = \frac{54{,}39}{0{,}0483} \approx 1130\,\mathrm{N}
+$$
+
+**2. Fuerza de articulación (codo)**
+
+Suma horizontal — el tendón también jala hacia adelante:
+
+$$
+H_x = F_b\cos 75^\circ = (1130)(0{,}259) \approx 292\,\mathrm{N}
+$$
+
+Suma vertical:
+
+$$
+H_y = 19{,}6 + 147 - F_b\sin 75^\circ = 166{,}6 - 1091 \approx -921\,\mathrm{N}
+$$
+
+Negativa: el codo **jala el antebrazo hacia abajo** con unos $$921\,\mathrm{N}$$ (el húmero "tira" del codo para que el antebrazo no salga disparado hacia arriba). La fuerza total de articulación es $$H = \sqrt{292^2 + 921^2} \approx 966\,\mathrm{N}$$.
+
+**3. Interpretación**
+
+$$
+\frac{F_b}{W_p} = \frac{1130}{147} \approx 7{,}7
+$$
+
+El bíceps tira con casi **ocho veces** el peso sostenido, y el codo soporta más de $$950\,\mathrm{N}$$ para manejar $$147$$. El responsable es el diseño de palancas del cuerpo: el tendón se ancla a $$5{,}0\,\mathrm{cm}$$ del eje, mientras la carga está a $$35\,\mathrm{cm}$$ — un brazo de palanca siete veces más corto. Es el mismo principio del cascanueces al revés: fuerza enorme, desplazamiento pequeño. El cuerpo humano sacrifica economía de fuerza a cambio de velocidad y rango de movimiento — y cada pesa en el gimnasio factura esa decisión evolutiva.
+
+</details>
+</Aside>
