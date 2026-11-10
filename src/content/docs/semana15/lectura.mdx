@@ -1,29 +1,397 @@
 ---
 title: "Equilibrio estático"
-description: "Material de lectura para la semana 15."
+description: "Equilibrio estático: condiciones de equilibrio traslacional y rotacional; centro de gravedad, base de soporte y estabilidad; torca gravitacional; procedimiento general para resolver problemas de cuerpos rígidos en equilibrio, con aplicaciones a letreros colgantes, vigas, tablas sobre caballetes y escaleras."
 week: 15
-keywords: ["física general I", "semana 15", "TEC Costa Rica"]
+keywords: ["equilibrio estático", "condiciones de equilibrio", "equilibrio traslacional", "equilibrio rotacional", "primera condición de equilibrio", "segunda condición de equilibrio", "centro de gravedad", "centro de masa", "base de soporte", "estabilidad", "vuelco", "torca gravitacional", "diagrama de cuerpo libre", "cuerpo rígido", "física general I", "TEC Costa Rica"]
 author: "Tecnológico de Costa Rica"
-date: 2026-07-21
-readingTime: 15
-tags: ["semana-15"]
-category: "semana-15"
-difficulty: "basic"
+date: 2026-11-07
+readingTime: 20
+tags: ["equilibrio", "estática", "centro de gravedad", "torca"]
+category: "movimiento rotacional"
+difficulty: "intermediate"
 objetivos:
   - "Reconocer las condiciones que deben satisfacerse para que un cuerpo o una estructura estén en equilibrio."
   - "Relacionar la posición del centro de gravedad de un objeto con su estabilidad."
   - "Resolver problemas que implican cuerpos rígidos en equilibrio."
-draft: true
+draft: false
 ---
 
-## Objetivos de Aprendizaje
+import PreCheck from '../../../components/PreCheck.astro';
+import Box from '../../../components/Box.astro';
+import MultipleChoice from '../../../components/MultipleChoice.astro';
+import Option from '../../../components/Option.astro';
+import { Image } from 'astro:assets';
+import CentroMasa from "../../../assets/centro_masa.svg";
 
-Al finalizar esta semana, serás capaz de:
+<PreCheck>
+  - Reconocer las condiciones que deben satisfacerse para que un cuerpo o una estructura estén en equilibrio.
+  - Relacionar la posición del centro de gravedad de un objeto con su estabilidad.
+  - Resolver problemas que implican cuerpos rígidos en equilibrio.
+</PreCheck>
 
-- Reconocer las condiciones que deben satisfacerse para que un cuerpo o una estructura estén en equilibrio.
-- Relacionar la posición del centro de gravedad de un objeto con su estabilidad.
-- Resolver problemas que implican cuerpos rígidos en equilibrio.
+La semana pasada quedó pendiente una promesa: cuando la fuerza neta **y** la torca neta se anulan a la vez, la segunda ley rotacional entrega $$\alpha = 0$$ y la segunda ley de Newton entrega $$a = 0$$ — el cuerpo ni se traslada ni rota: permanece exactamente como está. Ese caso límite parece trivial y es, en realidad, el pan de cada día de la ingeniería. Los puentes, las grúas, las mesas, las sillas, los rótulos colgantes y el propio cuerpo humano de pie pasan su vida entera en ese estado, llamado **equilibrio estático**: reposo sostenido por un balance perfecto de fuerzas y torcas.
 
-## Contenido
+Que el estado sea inmóvil no significa que las fuerzas desaparezcan. Un rótulo de veinte kilos colgado de una pared soporta su peso completo, la tensión de un cable y el empuje de una bisagra — y no se mueve ni un milímetro porque las tres se cancelan con precisión quirúrgica. El equilibrio estático es, entonces, una herramienta de diseño: permite calcular cuánta tensión resiste un cable, dónde apoyar una viga o cuánta inclinación aguanta una escalera antes de resbalar, **sin resolver ninguna dinámica**.
 
-Contenido de la semana 15 próximamente disponible.
+El plan de la semana tiene tres estaciones: primero las **dos condiciones de equilibrio**, la versión operativa de "no se traslada y no rota"; luego el **centro de gravedad**, el punto donde conviene imaginar concentrado todo el peso, y su relación directa con la **estabilidad** — por qué una torre cae y una silla no; y finalmente un **procedimiento general** para resolver problemas de cuerpos rígidos, que aplicaremos a letreros, tablas sobre caballetes y escaleras apoyadas en paredes.
+
+## Condiciones de equilibrio
+
+"Estático" significa dos ausencias simultáneas: ausencia de aceleración de traslación y ausencia de aceleración rotacional. Cada una se traduce en una condición matemática.
+
+**Equilibrio traslacional**: la suma de todas las fuerzas que actúan sobre el cuerpo debe ser cero:
+
+$$
+\sum \vec{F} = 0
+$$
+
+Esta condición garantiza que el centro de masa del objeto no se acelera ($$a_{\text{cm}} = 0$$). En componentes, para fuerzas en el plano:
+
+$$
+\sum F_x = 0 \qquad \text{y} \qquad \sum F_y = 0
+$$
+
+**Equilibrio rotacional**: la suma de todas las torcas (o momentos de fuerza) respecto a cualquier eje debe ser cero:
+
+$$
+\sum \vec{\tau} = 0 \qquad\Rightarrow\qquad \sum \tau_z = 0
+$$
+
+Esto asegura que el objeto no gira ni cambia su estado de rotación ($$\alpha = 0$$).
+
+Dos observaciones finas sobre la segunda condición. Primero, dice "cualquier eje", y lo cumple: si las fuerzas se balancean y la torca se anula respecto a un eje, se anula respecto a todos. La consecuencia práctica es una libertad valiosa — **nosotros elegimos el eje** que más nos convenga, y en la sección final explotaremos esa elección. Segundo, la condición $$\sum \tau = 0$$ también la cumple un cuerpo que gira con velocidad angular constante; lo que define el **equilibrio estático** es que, además, el cuerpo está en reposo ($$v = 0$$ y $$\omega = 0$$): ni se traslada ni rota.
+
+Este formalismo es la base para estudiar estructuras y sistemas en arquitectura, biomecánica, robótica e ingeniería civil y mecánica: permite no solo verificar si un sistema es estable, sino diseñar configuraciones seguras bajo condiciones de carga reales.
+
+<Box icon="check-list">
+
+**Ejemplo — el letrero del taller**
+
+Un letrero que pesa $$300\,\mathrm{N}$$ cuelga de un punto donde se anudan dos cables: el izquierdo forma $$37^\circ$$ con la horizontal y el derecho forma $$53^\circ$$. ¿Qué tensión soporta cada cable?
+
+El nudo es un punto en equilibrio: sobre él actúan las dos tensiones y el peso del letrero. La primera condición basta.
+
+**Suma horizontal** ($$T_1$$ hacia la izquierda, $$T_2$$ hacia la derecha):
+
+$$
+T_2\cos 53^\circ - T_1\cos 37^\circ = 0 \quad\Rightarrow\quad 0{,}6\,T_2 = 0{,}8\,T_1 \quad\Rightarrow\quad T_2 = \frac{4}{3}T_1
+$$
+
+**Suma vertical:**
+
+$$
+T_1\sin 37^\circ + T_2\sin 53^\circ = 300\,\mathrm{N} \quad\Rightarrow\quad 0{,}6\,T_1 + 0{,}8\left(\frac{4}{3}T_1\right) = \frac{5}{3}T_1 = 300\,\mathrm{N}
+$$
+
+$$
+T_1 = 180\,\mathrm{N} \qquad\qquad T_2 = 240\,\mathrm{N}
+$$
+
+El cable más **vertical** ($$53^\circ$$) carga con más tensión — su componente vertical por newton de cable es mayor, así que debe aportar más del peso. Dos ecuaciones, dos incógnitas, cero dinámica: así sabe un diseñador cuál cable de los dos se rompe primero.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Un cuerpo está en equilibrio estático cuando __________.
+
+    <MultipleChoice>
+      <Option>
+        su energía cinética es máxima
+      </Option>
+      <Option>
+        la fuerza neta sobre él es cero, aunque pueda girar
+      </Option>
+      <Option>
+        la torca neta sobre él es cero, aunque pueda trasladarse
+      </Option>
+      <Option isCorrect>
+        la fuerza neta y la torca neta son cero y el cuerpo está en reposo
+      </Option>
+
+    </MultipleChoice>
+
+2. La condición $$\sum \vec{F} = 0$$ garantiza que __________.
+
+    <MultipleChoice>
+      <Option>
+        el cuerpo no puede girar
+      </Option>
+      <Option isCorrect>
+        el centro de masa no se acelera
+      </Option>
+      <Option>
+        la energía mecánica se conserva
+      </Option>
+      <Option>
+        todas las fuerzas aplicadas son nulas
+      </Option>
+    </MultipleChoice>
+
+3. La condición de torcas $$\sum \tau = 0$$ debe cumplirse respecto a __________.
+
+    <MultipleChoice>
+      <Option>
+        únicamente el centro de masa
+      </Option>
+      <Option>
+        únicamente un extremo del cuerpo
+      </Option>
+      <Option>
+        únicamente el eje de simetría del cuerpo
+      </Option>
+      <Option isCorrect>
+        cualquier eje; si se cumple para uno, se cumple para todos
+      </Option>
+    </MultipleChoice>
+</Box>
+
+## Centro de gravedad
+
+El **centro de gravedad** de un cuerpo es el punto donde puede considerarse aplicada, de manera efectiva, la fuerza gravitacional total que actúa sobre él. Cada porción de materia del cuerpo siente su propia fuerza de gravedad — la mesa sostiene el peso de cada centímetro de la tabla—, pero para el análisis de equilibrio toda esa familia de fuerzas se puede reemplazar por **una sola fuerza**, el peso $$M\vec{g}$$, aplicada verticalmente hacia abajo en el centro de gravedad.
+
+Para cuerpos **homogéneos y de forma regular** —una esfera uniforme, una varilla uniforme— el centro de gravedad coincide con el centro geométrico. Para objetos con distribución irregular de masa, debe calcularse considerando la contribución de cada parte. En sistemas compuestos, el centro de gravedad del conjunto se determina mediante una suma ponderada de las posiciones individuales, con las masas como pesos:
+
+$$
+\vec{r}_{\text{cg}} = \frac{m_1\vec{r}_1 + m_2\vec{r}_2 + m_3\vec{r}_3 + \cdots}{m_1 + m_2 + m_3 + \cdots} = \frac{\displaystyle\sum_i m_i\vec{r}_i}{\displaystyle\sum_i m_i}
+$$
+
+Es la misma fórmula del **centro de masa** de la semana 11, retomada aquí con un detalle experimental a favor: cerca de la superficie terrestre, donde $$g$$ es esencialmente uniforme, centro de gravedad y centro de masa **coinciden**, y podemos usar indistintamente ambos nombres.
+
+<Image src={CentroMasa} alt="Tres masas de 50, 100 y 50 kg dispuestas en una cuadrícula, y a la derecha el centro de masa del sistema, equivalente a una masa de 200 kg" layout='constrained' width={1090}/>
+
+### Centro de gravedad y estabilidad
+
+En el estudio del equilibrio estático, el centro de gravedad juega un papel esencial: **para que un cuerpo apoyado esté en equilibrio, la línea vertical que pasa por su centro de gravedad debe quedar dentro de su base de soporte** — la región del contacto con el suelo, real (las patas de una mesa) o convexa (el contorno de la llanta de un vehículo).
+
+La razón es pura torca. Si el centro de gravedad queda dentro de la base, el peso —que actúa hacia abajo desde ese punto— genera torcas que el propio apoyo puede contrarrestar. Si el centro de gravedad queda **fuera** de la base, el peso genera una torca respecto al borde del apoyo que nada puede contrarrestar: el cuerpo rota y **vuelca**. Esta es la física completa de la torre de bloques que se tambalea, de la motocicleta estacionada y del pasajero que se asoma demasiado desde una silla: no hace falta calcular nada, solo preguntarse **adónde cae la vertical del centro de gravedad**.
+
+De aquí salen las reglas de oro de la estabilidad que la ingeniería usa todos los días: mientras **más bajo** el centro de gravedad y **más ancha** la base de soporte, más inclinación, empuje o curva se necesita para que la vertical salga de la base y el cuerpo vuelque.
+
+La torca gravitacional se puede escribir en forma vectorial. Respecto a un punto o eje de apoyo, la torca del peso se calcula con el vector de posición del centro de masa:
+
+$$
+\vec{\tau}_g = \vec{r}_{\text{cm}} \times M\vec{g}
+$$
+
+donde $$\vec{r}_{\text{cm}}$$ va del punto de apoyo al centro de masa. Localizar correctamente el centro de gravedad permite predecir el comportamiento de equilibrio de estructuras, muebles, vehículos y dispositivos, y es una herramienta fundamental de diseño y seguridad en ingeniería y arquitectura.
+
+<Box icon="check-list">
+
+**Ejemplo — caminando por una tabla**
+
+Una tabla uniforme de longitud $$L = 6{,}0\,\mathrm{m}$$ y masa $$M = 90\,\mathrm{kg}$$ descansa sobre dos caballetes separados una distancia $$D = 1{,}5\,\mathrm{m}$$, equidistantes del centro de la tabla. ¿Qué masa máxima puede tener una persona que se pare en el extremo derecho sin que la tabla se mueva?
+
+**La idea central**: para que el conjunto tabla-persona esté justo a punto de volcar sobre el caballete derecho, su centro de gravedad conjunto debe quedar **exactamente sobre ese caballete**. Tomamos el origen en el centro geométrico de la tabla (que es también su centro de gravedad) y el eje $$+x$$ hacia la derecha. Entonces el centro de gravedad de la tabla está en $$x_P = 0$$, el de la persona en $$x_T = L/2 = 3{,}0\,\mathrm{m}$$, y el caballete derecho en $$x_S = D/2 = 0{,}75\,\mathrm{m}$$.
+
+El centro de gravedad del sistema es la suma ponderada:
+
+$$
+x_{\text{cg}} = \frac{M(0) + m(L/2)}{M + m} = \frac{m}{M+m}\cdot\frac{L}{2}
+$$
+
+Igualando a la posición del caballete, $$x_{\text{cg}} = x_S$$, y despejando $$m$$:
+
+$$
+\frac{m}{M+m}\cdot\frac{L}{2} = \frac{D}{2}
+\quad\Rightarrow\quad
+mL = (M+m)D
+\quad\Rightarrow\quad
+m = M\,\frac{D}{L-D}
+$$
+
+$$
+m = (90\,\mathrm{kg})\,\frac{1{,}5}{6{,}0 - 1{,}5} = 30\,\mathrm{kg}
+$$
+
+**Verificación por torcas** respecto al caballete derecho: el peso de la tabla ($$882\,\mathrm{N}$$, a $$0{,}75\,\mathrm{m}$$ del eje) da una torca de $$662\,\mathrm{N}\cdot\mathrm{m}$$; la persona, a $$2{,}25\,\mathrm{m}$$ del eje, debe producir la misma torca: $$m = 662/(9{,}8 \times 2{,}25) = 30\,\mathrm{kg}$$ ✓.
+
+Treinta kilos no es mucha gente: es un niño. Los caballetes tan juntos dejan a la tabla con poco margen — todo el arte del equilibrio está en dónde queda el centro de gravedad conjunto respecto al apoyo.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Para un cuerpo homogéneo y de forma regular, el centro de gravedad coincide con __________.
+
+    <MultipleChoice>
+      <Option>
+        el punto donde se aplica la fuerza normal
+      </Option>
+      <Option isCorrect>
+        el centro geométrico del cuerpo
+      </Option>
+      <Option>
+        el punto más bajo del cuerpo
+      </Option>
+       <Option>
+        el punto de apoyo
+      </Option>
+    </MultipleChoice>
+
+2. Un cuerpo apoyado sobre una base de soporte vuelca cuando __________.
+
+    <MultipleChoice>
+      <Option>
+        su masa supera cierto valor crítico
+      </Option>
+      <Option>
+        el peso excede la fuerza normal
+      </Option>
+      <Option>
+        su centro de gravedad está sobre el centro geométrico
+      </Option>
+      <Option isCorrect>
+        la vertical que pasa por su centro de gravedad sale de la base de soporte
+      </Option>
+    </MultipleChoice>
+
+3. La torca gravitacional de un cuerpo respecto a un punto de apoyo se calcula como si todo el peso __________.
+
+    <MultipleChoice>
+      <Option>
+        estuviera repartido en infinitas fuerzas sin punto común
+      </Option>
+      <Option isCorrect>
+        se aplicara en el centro de gravedad del cuerpo
+      </Option>
+      <Option>
+        se aplicara en el punto más alto del cuerpo
+      </Option>
+      <Option>
+        se aplicara en el punto de apoyo
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Solución de problemas de cuerpos rígidos en equilibrio
+
+Las dos condiciones de equilibrio convierten un problema de diseño en un sistema de ecuaciones. Para resolver problemas de equilibrio estático, en general conviene seguir este procedimiento:
+
+1. **Identificar el sistema**: determine qué objeto o conjunto está en estudio y simplifíquelo, si es posible, como un cuerpo rígido.
+2. **Dibujar el diagrama de cuerpo libre (DCL)**: dibuje el objeto aislado e identifique **todas** las fuerzas que actúan sobre él — peso en el centro de gravedad, normales, fricciones, tensiones, reacciones de bisagras — con su dirección y su punto de aplicación.
+3. **Seleccionar el sistema de referencia**: elija ejes coordenados adecuados y decida el punto o eje respecto al cual calculará las torcas.
+4. **Escribir las ecuaciones de equilibrio**: aplique las condiciones
+
+$$
+\sum F_x = 0 \qquad \sum F_y = 0 \qquad \sum \tau_z = 0
+$$
+
+5. **Resolver el sistema de ecuaciones**: despeje las incógnitas (fuerzas, distancias, ángulos) y verifique que el número de ecuaciones alcance para todas.
+6. **Comprobar los resultados**: revise unidades y consistencia física — las fuerzas deben apuntar en direcciones razonables y las condiciones de equilibrio deben cumplirse con los valores obtenidos.
+7. **Interpretar el resultado**: explique qué significan los valores en el contexto del problema y si el sistema permanece en equilibrio según las condiciones iniciales.
+
+Dos estrategias hacen la diferencia entre un problema laborioso y uno elegante. La primera: **elija el eje de torcas donde actúan las incógnitas que no le interesan** — toda fuerza cuyo punto de aplicación está en el eje tiene brazo de palanca nulo y desaparece de la ecuación. Por eso los problemas con bisagras se resuelven tomando las torcas justo en la bisagra. La segunda: **cuente incógnitas antes de resolver** — una bisagra ideal, por ejemplo, ejerce una fuerza con dos componentes (horizontal y vertical) pero no ejerce torca, así que aporta dos incógnitas que las ecuaciones $$\sum F_x = 0$$ y $$\sum F_y = 0$$ rematarán.
+
+<Box icon="check-list">
+
+**Ejemplo — el rótulo de la ferretería**
+
+Un rótulo uniforme de $$2{,}0\,\mathrm{m}$$ de largo y $$20\,\mathrm{kg}$$ de masa sobresale horizontalmente de una pared, sujeto por una bisagra en el extremo interior y un cable anclado en el extremo exterior que forma $$37^\circ$$ con la horizontal. Calcule la tensión del cable y la fuerza que ejerce la bisagra.
+
+**DCL y estrategia**: sobre la viga actúan tres agentes — el peso $$Mg = 196\,\mathrm{N}$$ en el centro (a $$1{,}0\,\mathrm{m}$$ de la bisagra), la tensión $$\vec{T}$$ en el extremo (a $$2{,}0\,\mathrm{m}$$, con componente vertical $$T\sin 37^\circ$$) y la fuerza de bisagra $$\vec{H}$$, de componentes desconocidas $$H_x$$ y $$H_y$$. Como la bisagra es una incógnita doble, tomamos las **torcas respecto a la bisagra**: su brazo de palanca es nulo y $$\vec{H}$$ desaparece de la ecuación.
+
+**Torcas respecto a la bisagra** (antihorario positivo):
+
+$$
+T\sin 37^\circ \,(2{,}0\,\mathrm{m}) - Mg\,(1{,}0\,\mathrm{m}) = 0
+\quad\Rightarrow\quad
+T = \frac{Mg}{2\sin 37^\circ} = \frac{196}{1{,}2} \approx 163\,\mathrm{N}
+$$
+
+**Suma horizontal** — el cable jala hacia afuera, la bisagra sostiene hacia la pared:
+
+$$
+H_x - T\cos 37^\circ = 0 \quad\Rightarrow\quad H_x = (163)(0{,}8) \approx 131\,\mathrm{N}
+$$
+
+**Suma vertical:**
+
+$$
+H_y + T\sin 37^\circ - Mg = 0 \quad\Rightarrow\quad H_y = 196 - 98 = 98\,\mathrm{N}
+$$
+
+La bisagra empuja la viga **hacia la pared** con $$131\,\mathrm{N}$$ y **hacia arriba** con $$98\,\mathrm{N}$$; su magnitud es $$H = \sqrt{131^2 + 98^2} \approx 163\,\mathrm{N}$$ — curiosamente igual a la tensión. No es casual: con tres fuerzas no paralelas en equilibrio, sus líneas de acción deben **concurrir en un punto**, y eso obliga a la bisagra a igualar a la tensión.
+
+Note además quién hace el trabajo pesado: el cable aporta $$T\sin 37^\circ = 98\,\mathrm{N}$$ de sustentación vertical, apenas la mitad del peso; la otra mitad la paga la bisagra. Un cable más vertical aliviaría a ambos.
+
+</Box>
+
+<Box icon="question-mark">
+
+**Pon a prueba tu conocimiento**
+
+1. Al escribir la ecuación de torcas conviene ubicar el eje donde actúan incógnitas, porque __________.
+
+    <MultipleChoice>
+      <Option>
+        así la torca neta siempre resulta positiva
+      </Option>
+      <Option>
+        el peso deja de aparecer en la ecuación
+      </Option>
+      <Option isCorrect>
+        sus torcas valen cero y desaparecen de la ecuación
+      </Option>
+      <Option>
+        las ecuaciones de fuerzas se vuelven innecesarias
+      </Option>
+    </MultipleChoice>
+
+2. Una bisagra ideal sujeta una viga a una pared. La bisagra __________.
+
+    <MultipleChoice>
+      <Option>
+        solo puede ejercer fuerza vertical
+      </Option>
+      <Option>
+        solo puede ejercer fuerza horizontal
+      </Option>
+      <Option>
+        ejerce una torca fija que hay que incluir en $$\sum \tau = 0$$
+      </Option>
+      <Option isCorrect>
+        ejerce una fuerza con dos componentes y no ejerce torca
+      </Option>
+    </MultipleChoice>
+
+3. Tres fuerzas no paralelas mantienen un cuerpo en equilibrio. Sus líneas de acción __________.
+
+    <MultipleChoice>
+      <Option>
+        se cruzan siempre en el centro de masa
+      </Option>
+      <Option>
+        son necesariamente paralelas entre sí
+      </Option>
+ 
+      <Option>
+        forman necesariamente $$90^\circ$$ entre sí
+      </Option>
+      <Option isCorrect>
+        concurren en un punto común
+      </Option>
+    </MultipleChoice>
+
+</Box>
+
+## Resumen de la semana
+
+| Concepto | Expresión | Observaciones |
+| :--- | :--- | :--- |
+| Equilibrio traslacional | $$\sum F_x = 0, \quad \sum F_y = 0$$ | el centro de masa no se acelera |
+| Equilibrio rotacional | $$\sum \tau_z = 0$$ | respecto a **cualquier** eje; el eje se elige |
+| Equilibrio estático | ambas condiciones **y** reposo | $$v = 0$$ y $$\omega = 0$$ |
+| Peso efectivo | $$M\vec{g}$$ en el centro de gravedad | una sola flecha vertical reemplaza a todas |
+| Centro de gravedad | $$\vec{r}_{\text{cg}} = \dfrac{\sum_i m_i \vec{r}_i}{\sum_i m_i}$$ | coincide con el centro de masa; homogéneo regular → centro geométrico |
+| Estabilidad | vertical del c.g. dentro de la base de soporte | fuera de la base → torca sin oposición → vuelco |
+| Torca gravitacional | $$\vec{\tau}_g = \vec{r}_{\text{cm}} \times M\vec{g}$$ | medida respecto al punto o eje de apoyo |
+| Eje estratégico | pasar por las incógnitas | sus torcas valen cero: la ecuación se simplifica |
+| Bisagra ideal | fuerza con dos componentes, torca nula | dos incógnitas que rematan $$\sum F_x = 0$$ y $$\sum F_y = 0$$ |
+
+El curso cierra el círculo de la rotación: la **torca** es el agente del cambio, $$\sum\tau = I\alpha$$ mide cuánto cambia, y cuando nada cambia — fuerza neta y torca neta nulas a la vez — el cuerpo está en **equilibrio**, una condición que basta para resolver letreros, tablas, puentes, escaleras y hasta el brazo humano. En la práctica de la semana colgaremos letreros, limitaremos caminantes sobre tablas, cargaremos puentes, apoyaremos escaleras contra paredes sin fricción y calcularemos cuánto le cuesta a un bíceps sostener una pesa. Y en la última semana del curso estudiaremos el complemento dinámico del equilibrio: cuando la torca neta se anula **pero** el cuerpo sigue girando, la cantidad que se conserva es el **momento angular**.

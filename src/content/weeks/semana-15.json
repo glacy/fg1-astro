@@ -1,7 +1,7 @@
 {
   "id": 15,
   "title": "Equilibrio estático",
-  "image": "https://images.unsplash.com/photo-1656090756308-e2cfced43780?auto=format&fit=crop&q=80&w=1000",
+  "image": "https://images.unsplash.com/photo-1619261529873-3c4cc299d23d?auto=format&fit=crop&q=80&w=1000",
   "objetivos": [
     "Reconocer las condiciones que deben satisfacerse para que un cuerpo o una estructura estén en equilibrio.",
     "Relacionar la posición del centro de gravedad de un objeto con su estabilidad.",
@@ -32,10 +32,5 @@
     }
   ],
   "recursos": [
-    {
-      "text": "Solución Práctica Semana 14",
-      "url": "/soluciones/solucion_practica_semana14.pdf",
-      "icon": "lucide:calculator"
-    }
   ]
 }
