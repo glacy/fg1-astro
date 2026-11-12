@@ -109,8 +109,13 @@
           "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_segundo_parcial.html"
         },
         {
-          "label": "Formulario",
-          "url": "/FG1_IIS-2026_segundo_parcial_instrucciones_formulario.pdf",
+          "label": "Enunciado",
+          "url": "/FG1_IIS-2026_segundo_parcial.pdf",
+          "download": true
+        },
+         {
+          "label": "Solución",
+          "url": "/FG1_IIS-2026_segundo_parcial_solucion.pdf",
           "download": true
         }
       ]
@@ -131,7 +136,18 @@
         "Colisiones"
       ],
       "notes": "Esta prueba la pueden realizar aquellas personas que hayan justificado su ausencia a la prueba ordinaria, de acuerdo a lo que establece el Artículo 66 del RREA",
-      "links": []
+      "links": [
+                {
+          "label": "Enunciado",
+          "url": "/FG1_IIS-2026_segundo_parcial_extraordinario.pdf",
+          "download": true
+        },
+         {
+          "label": "Solución",
+          "url": "/FG1_IIS-2026_segundo_parcial_extraordinario_solucion.pdf",
+          "download": true
+        }
+      ]
     },
     {
       "id": "3",
