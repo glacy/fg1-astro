@@ -122,15 +122,10 @@ export default defineConfig({
     },
     {
       label: 'Semana 15',
-      collapsed: true,
-      items: [{ autogenerate: { "directory": "semana15" } }]
-    },
-    {
-      label: 'Semana 16',
       badge: 'Nuevo',
       collapsed: false,
-      items: [{ autogenerate: { "directory": "semana16" } }]
-    }
+      items: [{ autogenerate: { "directory": "semana15" } }]
+    },
       ],
     }),
     mdx(),
