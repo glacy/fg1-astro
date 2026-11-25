@@ -158,13 +158,14 @@
       ],
       "links": [
         {
-          "label": "Formulario",
-          "url": "/FG1_IIS-2026_tercer_parcial_instrucciones_formulario.pdf",
+          "label": "Enunciado",
+          "url": "/FG1_IIS-2026_tercer_parcial.pdf",
           "download": false
         },
         {
-          "label": "Distribución de aulas",
-          "url": "https://tecdigital.tec.ac.cr/dotlrn/catedras.tec/catedradefsicagenerali/file-storage/view/distribucion_aulas_tercer_parcial.html"
+          "label": "Solución",
+          "url": "/FG1_IIS-2026_tercer_parcial_solucion.pdf",
+          "download": true
         }
       ]
     },
